@@ -50,7 +50,7 @@ export type Beat =
   | { kind: "done" };
 
 export const RATA_INTRO =
-  "2021 年底《新蝙蝠侠》首支预告片中隐藏了一串神秘密码，指向华纳官方设立的沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，谐音 URL）。网站采用经典黑客命令行终端界面，影迷需逐一破解谜语人的密码挑战以解锁高谭机密文件。本页面完整复刻了当年全套解谜挑战，欢迎重温经典破案体验。";
+  "2021 年底《新蝙蝠侠》首支预告片中隐藏了一串神秘密码，指向华纳官方设立的沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，谐音 URL）。网站采用经典黑客命令行终端界面，影迷需逐一破解谜语人的密码挑战以解锁高谭机密文件。本页面完整复刻了当年全套解谜挑战，并附带谜语人 26 个几何密码符号全对照表。";
 
 export const COMMANDS: { cmd: string; hint: string }[] = [
   { cmd: "Y", hint: "开始挑战 / 确认" },
@@ -335,7 +335,7 @@ export const TESTS: Test[] = [
       },
       {
         id: "joker",
-        prompt: ["TO WIT: A WILDCARD IN THE TRUEST SENSE."],
+        prompt: [["TO WIT: A WILDCARD IN THE TRUEST SENSE."][0]],
         answers: ["joker", "thejoker", "小丑"],
         ok: "JOKER.",
       },
@@ -616,3 +616,82 @@ export function hintFor(id: string) {
       return "LOOK AGAIN.";
   }
 }
+
+export type CipherEntry = {
+  letter: string;
+  symbol: string;
+  shapeName: string;
+};
+
+export const RIDDLER_CIPHER_ALPHABET: CipherEntry[] = [
+  { letter: "A", symbol: "⬡", shapeName: "六边形" },
+  { letter: "B", symbol: "⊞", shapeName: "带十字方块" },
+  { letter: "C", symbol: "▲", shapeName: "实心三角" },
+  { letter: "D", symbol: "◬", shapeName: "带点三角" },
+  { letter: "E", symbol: "⬟", shapeName: "五边形" },
+  { letter: "F", symbol: "◪", shapeName: "半阴影方块" },
+  { letter: "G", symbol: "◈", shapeName: "空心菱形" },
+  { letter: "H", symbol: "⬗", shapeName: "实心菱形" },
+  { letter: "I", symbol: "◩", shapeName: "对角方块" },
+  { letter: "J", symbol: "⬢", shapeName: "实心六角" },
+  { letter: "K", symbol: "▽", shapeName: "倒三角" },
+  { letter: "L", symbol: "◸", shapeName: "左上直角" },
+  { letter: "M", symbol: "◹", shapeName: "右上直角" },
+  { letter: "N", symbol: "◺", shapeName: "左下直角" },
+  { letter: "O", symbol: "◿", shapeName: "右下直角" },
+  { letter: "P", symbol: "⬠", shapeName: "空心五边形" },
+  { letter: "Q", symbol: "⬘", shapeName: "右阴影菱形" },
+  { letter: "R", symbol: "⬙", shapeName: "左阴影菱形" },
+  { letter: "S", symbol: "◭", shapeName: "垂直半分三角" },
+  { letter: "T", symbol: "◮", shapeName: "水平半分三角" },
+  { letter: "U", symbol: "⬔", shapeName: "左半分方块" },
+  { letter: "V", symbol: "⬕", shapeName: "右半分方块" },
+  { letter: "W", symbol: "⬖", shapeName: "上半分方块" },
+  { letter: "X", symbol: "⬗", shapeName: "下半分方块" },
+  { letter: "Y", symbol: "⬡", shapeName: "内圈六角" },
+  { letter: "Z", symbol: "⬢", shapeName: "外圈六角" },
+];
+
+export type DecodedMessage = {
+  id: string;
+  source: string;
+  sourceEn: string;
+  cipherNote: string;
+  decodedEn: string;
+  decodedZh: string;
+};
+
+export const DECODED_MESSAGES: DecodedMessage[] = [
+  {
+    id: "card-01",
+    source: "市长案发现场首封贺卡",
+    sourceEn: "Mayor Mitchell Crime Scene Card",
+    cipherNote: "手写几何符号代换加密",
+    decodedEn: "HE LIES STILL",
+    decodedZh: "“他依然躺在那里 / 他依旧在撒谎”（双关：Lies Still 既指尸体静止，亦指谎言未休）",
+  },
+  {
+    id: "card-02",
+    source: "局长萨维奇案发现场信函",
+    sourceEn: "Commissioner Savage Crime Scene Card",
+    cipherNote: "手写几何符号代换加密",
+    decodedEn: "YOU ARE A PART OF THIS TOO",
+    decodedZh: "“你也是这套腐败体制的一份子”",
+  },
+  {
+    id: "card-03",
+    source: "托马斯·韦恩竞选录像暗码",
+    sourceEn: "Thomas Wayne Video Overlay Cipher",
+    cipherNote: "暗网视频末尾逐帧闪烁代码",
+    decodedEn: "THE SINS OF MY FATHER",
+    decodedZh: "“我父亲犯下的罪孽”",
+  },
+  {
+    id: "trailer-cipher",
+    source: "预告片首发暗网网址代码",
+    sourceEn: "Main Teaser Trailer Post-Credit Cipher",
+    cipherNote: "数字序列代换与西班牙语双关",
+    decodedEn: "YOU ARE EL RATA ALADA -> URL: RATAALADA.COM",
+    decodedZh: "“你是长翅膀的老鼠”（音译：You Are El = URL，指向解谜网站 rataalada.com）",
+  },
+];

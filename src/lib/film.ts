@@ -9,7 +9,7 @@ export const FILM = {
   sagaNameZh: "蝙蝠侠史诗犯罪传奇",
   releaseLabel: "2028 年 2 月 18 日",
   releaseIso: "2028-02-18T05:00:00.000Z",
-  format: "IMAX · 史诗犯罪传奇",
+  format: "史诗犯罪传奇",
 } as const;
 
 export function pageTitle(page?: string) {

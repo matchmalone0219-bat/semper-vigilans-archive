@@ -16,7 +16,7 @@ export const Route = createFileRoute("/rataalada")({
   head: () => ({
     meta: [
       { title: pageTitle("谜语人终端与密码本") },
-      { name: "theme-color", "#030903" },
+      { name: "theme-color", content: "#030903" },
     ],
   }),
   component: Rataalada,

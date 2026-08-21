@@ -27,7 +27,6 @@ import { Route as PeopleIndexRouteImport } from './routes/people.index'
 import { Route as PeopleIdRouteImport } from './routes/people.$id'
 import { Route as PlacesIndexRouteImport } from './routes/places.index'
 import { Route as PlacesIdRouteImport } from './routes/places.$id'
-import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -119,11 +118,6 @@ const PlacesIdRoute = PlacesIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => PlacesRoute,
 } as any)
-const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
-  id: '/api/auth/$',
-  path: '/api/auth/$',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -144,7 +138,6 @@ export interface FileRoutesByFullPath {
   '/places/$id': typeof PlacesIdRoute
   '/people/': typeof PeopleIndexRoute
   '/places/': typeof PlacesIndexRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -163,7 +156,6 @@ export interface FileRoutesByTo {
   '/places/$id': typeof PlacesIdRoute
   '/people': typeof PeopleIndexRoute
   '/places': typeof PlacesIndexRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -185,7 +177,6 @@ export interface FileRoutesById {
   '/places/$id': typeof PlacesIdRoute
   '/people/': typeof PeopleIndexRoute
   '/places/': typeof PlacesIndexRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -208,7 +199,6 @@ export interface FileRouteTypes {
     | '/places/$id'
     | '/people/'
     | '/places/'
-    | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -227,7 +217,6 @@ export interface FileRouteTypes {
     | '/places/$id'
     | '/people'
     | '/places'
-    | '/api/auth/$'
   id:
     | '__root__'
     | '/'
@@ -248,7 +237,6 @@ export interface FileRouteTypes {
     | '/places/$id'
     | '/people/'
     | '/places/'
-    | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -266,7 +254,6 @@ export interface RootRouteChildren {
   RecapRoute: typeof RecapRoute
   RootsRoute: typeof RootsRoute
   TheoriesRoute: typeof TheoriesRoute
-  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -397,13 +384,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlacesIdRouteImport
       parentRoute: typeof PlacesRoute
     }
-    '/api/auth/$': {
-      id: '/api/auth/$'
-      path: '/api/auth/$'
-      fullPath: '/api/auth/$'
-      preLoaderRoute: typeof ApiAuthSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -448,17 +428,7 @@ const rootRouteChildren: RootRouteChildren = {
   RecapRoute: RecapRoute,
   RootsRoute: RootsRoute,
   TheoriesRoute: TheoriesRoute,
-  ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

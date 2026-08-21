@@ -5,6 +5,7 @@ export type EvidenceItem = {
   type: string;
   desc: string;
   image?: string;
+  imageAlt?: string;
 };
 
 export type CaseFile = {
@@ -17,6 +18,8 @@ export type CaseFile = {
   date: string;
   location: string;
   status: "solved" | "closed" | "catastrophe";
+  image: string;
+  imageAlt: string;
   summary: string;
   method: string;
   evidences: EvidenceItem[];
@@ -34,6 +37,8 @@ export const CASE_FILES: CaseFile[] = [
     date: "10 月 31 日 · 万圣节第一夜",
     location: "市长私人官邸二楼书房",
     status: "solved",
+    image: "/media/still-mitchell.jpg",
+    imageAlt: "蝙蝠侠在市长书房勘验：墙上钉满谜语人剪报与偷拍照片",
     summary: "万圣节当夜，市长在书房观看竞选新闻时遭遇潜伏室内的谜语人袭击。凶手使用重型钝器击碎其颅骨，随后使用工业管道胶带将其头部紧紧缠裹窒息致死，并在封口胶带上用鲜血涂写「NO MORE LIES」（不要再说谎）。",
     method: "入室潜伏伏击 · 钝器重击颅骨 · 胶带面部封死 · 鲜血题字",
     evidences: [
@@ -43,6 +48,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "First Riddle Card for the Batman",
         type: "加密文书",
         desc: "现场显眼位置留下的绿色定制信封，封面手写「To the Batman」。内卡谜面为：‘当谎言不再是谎言？——当它变成审判时。’ 下方附有第一串几何代换密码。",
+        image: "/media/case-riddle-card.jpg",
+        imageAlt: "戴手套的手翻开谜语人贺卡：What does a liar do when DEAD",
       },
       {
         id: "ev-01-knife",
@@ -50,6 +57,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "Carpet Cutting Tool",
         type: "凶器工具",
         desc: "谜语人在《谜语人元年》中购入的重型地毯割刀，刀刃锋利，用于切断电线并切割现场物证胶带，未留下任何指纹。",
+        image: "/media/case-riddler-tape.jpg",
+        imageAlt: "谜语人戴防毒面罩，现场展开工业胶带",
       },
       {
         id: "ev-01-thumb",
@@ -57,6 +66,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "Severed Thumb & USB Flash Drive",
         type: "数字物证",
         desc: "在市长停泊于车库的座驾中发现。凶手切下市长右手拇指并串联加密闪存盘（谐音‘Thumb Drive’）。破译后解密出市长与安妮卡出入冰山俱乐部的偷拍密照。",
+        image: "/media/still-morgue.jpg",
+        imageAlt: "戈登与蝙蝠侠在停尸间对照物证与死者档案",
       },
     ],
     revelation: "直接撕开了高谭最高政要与卡尔迈恩·法尔科内地下黑帮的勾结链条，引出冰山俱乐部洗钱窝点。",
@@ -71,6 +82,8 @@ export const CASE_FILES: CaseFile[] = [
     date: "11 月 1 日 · 万圣节次日",
     location: "废弃水厂地下管网",
     status: "solved",
+    image: "/media/riddler.jpg",
+    imageAlt: "谜语人在案发现场：防毒面罩、雨衣与工业胶带",
     summary: "警察局长萨维奇在离开警局后遭谜语人电击迷晕绑架。凶手将其固定于特制刑架上，头部套入装有多只饥饿大鼠的铁丝迷宫头套，迫使老鼠啃咬面部致死，并在尸体胸前悬挂指控标语。",
     method: "电击绑架 · 机械老鼠刑具 · 窒息与撕咬致死 · 现场吊挂录像",
     evidences: [
@@ -80,6 +93,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "Custom Rat Maze Trap",
         type: "致命刑具",
         desc: "手工焊接的精密铁丝网头笼，内部设计有单向隔板与引诱老鼠的机关，呼应凶手对警方沦为黑帮‘老鼠’（告密者）的嘲弄。",
+        image: "/media/case-rat-cage.jpg",
+        imageAlt: "老鼠迷宫头套概念图：有机玻璃前板、铁丝网与通向头笼的管道",
       },
       {
         id: "ev-02-tape",
@@ -87,6 +102,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "Bribery Video Tape & Second Cipher",
         type: "视听证据",
         desc: "现场留下的 VHS 录像带，播放萨维奇局长私下收受法尔科内家族巨额毒品分红的密谈录音；信函谜题指向高谭孤儿院历史。",
+        image: "/media/still-lair.jpg",
+        imageAlt: "谜语人公寓墙面：剪报、监控屏与针对政要的调查材料",
       },
     ],
     revelation: "证实高谭警界最高指挥层已被法尔科内深度渗透，警局内部多名高级警官长期收受黑金分红。",
@@ -101,6 +118,8 @@ export const CASE_FILES: CaseFile[] = [
     date: "11 月 2 日 · 市长追悼会",
     location: "高谭市政大教堂追悼大厅",
     status: "solved",
+    image: "/media/still-colson.jpg",
+    imageAlt: "地方检察官科尔森被胶带封口、颈戴定时炸药项圈闯入追悼会",
     summary: "科尔森被套上军用定时项圈炸药装置，被胶带封口并强行驱车撞入市长唐·米切尔的官方追悼会。胸前绑有写给蝙蝠侠的手机。谜语人通过视频连线要求其回答三道关乎司法黑幕的谜题，科尔森因恐惧法尔科内报复家人拒绝回答最后一道题，被当众炸死。",
     method: "C4 项圈定时炸弹 · 车辆强冲集会 · 线上直播公审 · 定时引爆",
     evidences: [
@@ -110,6 +129,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "C4 Explosive Collar Mechanism",
         type: "爆炸装置",
         desc: "工业级重型金属项圈，内嵌军用级塑胶炸药与倒计时液晶屏，具备防拆卸水银倾斜开关，密码错误或超时立即引爆。",
+        image: "/media/case-colson-collar.jpg",
+        imageAlt: "科尔森颈上的 C4 项圈特写，倒计时显示 00:58",
       },
       {
         id: "ev-03-phone",
@@ -117,6 +138,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "Crime Scene Mobile & Three-Riddle Audio",
         type: "通信物证",
         desc: "挂在科尔森胸前的主机。三道谜题分别为：①司法受贿的定义；②滴剂毒品交易黑幕；③出卖萨尔瓦多·马罗尼的真正告密者身份。",
+        image: "/media/still-colson-funeral.jpg",
+        imageAlt: "市政大教堂追悼会：戈登、韦恩与政要在爆炸发生前",
       },
     ],
     revelation: "科尔森临死前承认自己作为地方检察官，曾多次非法压制针对「新生」慈善基金的司法调查与洗钱指控。",
@@ -131,6 +154,8 @@ export const CASE_FILES: CaseFile[] = [
     date: "11 月 4 日",
     location: "废弃码头汽车后备箱",
     status: "solved",
+    image: "/media/still-selina-apt.jpg",
+    imageAlt: "瑟琳娜出租屋：安妮卡遭绑架前的最后住所",
     summary: "安妮卡在出租屋内遭到绑架，随后被发现掐死并藏尸于废弃汽车后备箱中。调查证实，安妮卡因在陪伴市长米切尔期间无意中偷听到法尔科内就是警方秘密告密者（“老鼠”）的绝密真相，遭到卡尔迈恩·法尔科内亲自灭口。",
     method: "入室绑架 · 徒手掐颈窒息 · 车辆藏尸抛弃",
     evidences: [
@@ -140,6 +165,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "Forged Passport & Escape Notes",
         type: "个人物品",
         desc: "在瑟琳娜公寓夹层中搜获，安妮卡因极度恐惧黑帮追杀而准备逃离高谭的行程记录与假身份证明。",
+        image: "/media/still-selina-apt.jpg",
+        imageAlt: "瑟琳娜公寓内景，安妮卡出逃前的生活痕迹",
       },
       {
         id: "ev-04-voicemail",
@@ -147,6 +174,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "44 Below Secret Voicemail",
         type: "录音证据",
         desc: "安妮卡生前留给瑟琳娜的语音留言，背景音清晰录下市长透露‘法尔科内才是整座城市真正掌控者与线人’的关键对话。",
+        image: "/media/lounge.jpg",
+        imageAlt: "冰山俱乐部 44 Below 贵宾室，录音发生的现场",
       },
       {
         id: "ev-04-prints",
@@ -154,6 +183,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "Carmine Falcone Latent Fingerprints",
         type: "法医物证",
         desc: "GCPD 法医物证室从死者颈部软组织提取到的潜伏指纹，铁证如山证实系法尔科内本人亲手掐死。",
+        image: "/media/still-falcone.jpg",
+        imageAlt: "卡尔迈恩·法尔科内在冰山俱乐部顶层",
       },
     ],
     revelation: "彻底拆穿了法尔科内作为“正直商人”的伪装，促使瑟琳娜持枪复仇，并导致法尔科内走出俱乐部被狙杀。",
@@ -168,6 +199,8 @@ export const CASE_FILES: CaseFile[] = [
     date: "11 月 5 日 · 选举日决算之夜",
     location: "高谭市外围防洪大堤 / 哥谭广场花园体育馆",
     status: "catastrophe",
+    image: "/media/case-seawall.jpg",
+    imageAlt: "从阿卡姆窗口看见防洪大堤七点同步爆炸，火光映在河面上",
     summary: "谜语人虽已关押于阿卡姆，但其通过暗网 rataalada.com 召集的多名武装追随者，在全城 7 处关键防洪大堤受力点同步引爆满载炸药的货车，导致防洪墙彻底溃坝，海水席卷整座城市。信徒埋伏于哥谭广场花园体育馆钢架顶部，居高临下狙击避难市民与新当选市长贝拉·蕾尔。",
     method: "7车同步定向爆破 · 破坏大堤水文设施 · 淹没全城 · 穹顶狙击扫射",
     evidences: [
@@ -177,6 +210,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "Seawall Structural Demolition Blueprint",
         type: "工程图纸",
         desc: "在谜语人公寓地毯下搜出的市政防洪大堤结构施工图，精确标注了 7 处地基受力弱点与炸药当量计算公式。",
+        image: "/media/case-flood-street.jpg",
+        imageAlt: "决堤后高谭街道被海水吞没，车辆与残骸漂在水面上",
       },
       {
         id: "ev-05-rifle",
@@ -184,6 +219,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "Riddler Cult Sniper Rifles & Gas Masks",
         type: "武装军火",
         desc: "在体育馆穹顶击毙与生擒的数十名信徒装备，全部佩戴谜语人同款军用防毒面罩、防风眼镜与大口径狩猎步枪。",
+        image: "/media/case-riddler-mask.jpg",
+        imageAlt: "谜语人同款皮革面罩与风镜，信徒在体育馆使用的制式伪装",
       },
       {
         id: "ev-05-flare",
@@ -191,6 +228,8 @@ export const CASE_FILES: CaseFile[] = [
         nameEn: "Severed Cable & Road Flare Remnants",
         type: "救援物证",
         desc: "蝙蝠侠用胸前折叠战术刀割断坠落水中的高压主电缆排除漏电，并点燃红色军用照明弹带领被困民众撤离的现场物证。",
+        image: "/media/case-flare.jpg",
+        imageAlt: "蝙蝠侠在洪水中举起红色照明弹，带领被困市民撤离",
       },
     ],
     revelation: "高谭市全城陷入百年不遇的严重洪涝灾难，旧体制彻底崩解；蝙蝠侠在绝境中完成了从「复仇化身」向「希望守护者」的升华。",

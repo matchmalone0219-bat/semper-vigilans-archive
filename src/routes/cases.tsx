@@ -88,6 +88,14 @@ function Cases() {
                   </div>
                 </div>
 
+                <figure className="mt-6 overflow-hidden border border-fg/10 bg-bg">
+                  <img
+                    src={c.image}
+                    alt={c.imageAlt}
+                    className="aspect-[16/9] w-full object-cover"
+                  />
+                </figure>
+
                 <div className="mt-6 grid gap-6 sm:grid-cols-3 text-sm">
                   <div>
                     <p className="text-xs text-faint uppercase tracking-wider">受害者 / 目标</p>
@@ -111,19 +119,28 @@ function Cases() {
                   </h4>
                   <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {c.evidences.map((ev) => (
-                      <li key={ev.id} className="border border-fg/10 bg-bg p-4">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="font-display text-[10px] tracking-widest text-blood uppercase">
-                            {ev.type}
-                          </span>
+                      <li key={ev.id} className="overflow-hidden border border-fg/10 bg-bg">
+                        {ev.image ? (
+                          <img
+                            src={ev.image}
+                            alt={ev.imageAlt ?? ev.name}
+                            className="aspect-[16/10] w-full object-cover"
+                          />
+                        ) : null}
+                        <div className="p-4">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="font-display text-[10px] tracking-widest text-blood uppercase">
+                              {ev.type}
+                            </span>
+                          </div>
+                          <h5 className="mt-2 font-sans text-base font-black tracking-tight">
+                            {ev.name}
+                          </h5>
+                          <p className="text-[11px] text-faint">{ev.nameEn}</p>
+                          <p className="mt-2 text-pretty text-xs leading-relaxed text-muted">
+                            {ev.desc}
+                          </p>
                         </div>
-                        <h5 className="mt-2 font-sans text-base font-black tracking-tight">
-                          {ev.name}
-                        </h5>
-                        <p className="text-[11px] text-faint">{ev.nameEn}</p>
-                        <p className="mt-2 text-pretty text-xs leading-relaxed text-muted">
-                          {ev.desc}
-                        </p>
                       </li>
                     ))}
                   </ul>

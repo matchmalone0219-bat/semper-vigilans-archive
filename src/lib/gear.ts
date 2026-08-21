@@ -62,7 +62,7 @@ export const GEAR: GearItem[] = [
     name: "胸甲可拆卸战术刀",
     nameEn: "Detachable Chest Emblem Blade",
     seen: "第一部成片 · 战术道具",
-    image: "/media/gear-suit.jpg",
+    image: "/media/gear-chest-blade.jpg",
     imageAlt: "蝙蝠侠胸前金属徽记战术刀细节",
     lede: "装配于胸甲正前方的金属蝙蝠徽标，实际上是一把由特种合金打造的可拆卸高强度战术折叠刀，兼具身份图腾与关键时刻破障工具的双重功能。",
     body: [
@@ -146,8 +146,8 @@ export const GEAR: GearItem[] = [
     name: "蝙蝠机车与流浪者机车",
     nameEn: "Batcycle & Drifter Motorcycle",
     seen: "第一部成片 · 经典机车",
-    image: "/media/still-cat-bike.jpg",
-    imageAlt: "高谭街头疾驰的机车造型",
+    image: "/media/gear-batcycle.jpg",
+    imageAlt: "哑光黑蝙蝠机车工作室实拍，前脸带蝙蝠耳廓导流罩",
     lede: "布鲁斯配备的两款不同用途的高性能改装机车：用于夜间高速机动打击犯罪的重装蝙蝠机车，以及用于白天便装潜伏侦查的复古流浪者机车。",
     body: [
       "蝙蝠机车基于现代化双缸运动街车底盘深度改装，整车涂装低反光哑光黑，去除了所有多余装饰外壳，具备极高的窄巷穿梭灵活性与爆发加速性能。",
@@ -160,8 +160,8 @@ export const GEAR: GearItem[] = [
     name: "1963 款雪佛兰克尔维特跑车",
     nameEn: "1963 Chevrolet Corvette Stingray",
     seen: "第一部成片 · 布鲁斯私人座驾",
-    image: "/media/still-bruce.jpg",
-    imageAlt: "布鲁斯·韦恩驾驶古董跑车出席公开场合",
+    image: "/media/corvette.jpg",
+    imageAlt: "1963 款雪佛兰克尔维特分窗跑车",
     lede: "布鲁斯·韦恩以亿万富翁继承人真实身份出席公开社交场合时驾驶的私人座驾，为汽车工业史上极富盛名的经典分窗式（Split-Window）古董跑车。",
     body: [
       "该车通体为深邃纯黑涂装，拥有标志性的分体式后车窗与修长优雅的流线型车身线条。在第一部市长唐·米切尔隆重的市政追悼会戏份中，布鲁斯正是驾驶这辆克尔维特缓缓驶抵利物浦圣乔治大厅门前。",

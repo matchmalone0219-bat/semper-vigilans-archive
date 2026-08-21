@@ -388,8 +388,8 @@ export const RECAPS: RecapWork[] = [
     published: "2022 年 2 月",
     form: "官方授权前传小说（企鹅兰登书屋出版）",
     meta: "大卫·卢曼（David Lewman）著 · 华纳兄弟官方授权",
-    image: "/media/orphanage.jpg",
-    imageAlt: "电影中布鲁斯·韦恩出席追思活动剧照",
+    image: "/media/recap/before-cover.jpg",
+    imageAlt: "《蝙蝠侠之前》（Before the Batman: An Original Movie Novel）官方小说封面",
     lede: "本书作为官方授权的前传故事，重点填补了电影开场前布鲁斯·韦恩与爱德华·纳什顿在青少年时期的成长轨迹，交代了韦恩塔地下秘密车间的发现、蝙蝠战车的前身改装过程，以及爱德华仇恨体制的思想萌芽。",
     sections: [
       {

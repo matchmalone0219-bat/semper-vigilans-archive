@@ -132,7 +132,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠2》", note: "吉尔·佩雷斯-亚伯拉罕确认回归。", href: "/dossier" },
     ],
     places: ["gcpd"],
-    stills: ["/media/court.jpg"],
+    stills: ["/media/still-martinez.jpg"],
     sections: [
       {
         heading: "尽职尽责的基层力量",
@@ -146,7 +146,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠》", note: "被谜语人绑缚项圈炸弹，在市长葬礼上当众处决身亡。", href: "/recap", hash: "the-batman" },
     ],
     places: ["gcpd", "city-hall"],
-    stills: ["/media/still-mud.jpg"],
+    stills: ["/media/still-colson.jpg", "/media/still-colson-funeral.jpg"],
     sections: [
       {
         heading: "深陷黑金泥潭的地方检察官",
@@ -164,7 +164,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠》", note: "万圣节当夜在官邸遇害，成为谜语人首桩暗杀受害者。", href: "/recap", hash: "the-batman" },
     ],
     places: ["city-hall"],
-    stills: ["/media/craft/two-temple.jpg"],
+    stills: ["/media/still-mitchell.jpg"],
     sections: [
       {
         heading: "谜语人连环暗杀的序幕",
@@ -178,7 +178,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠》", note: "冰山俱乐部服务生，因知晓告密者机密被法尔科内掐死。", href: "/recap", hash: "the-batman" },
     ],
     places: ["iceberg"],
-    stills: ["/media/still-selina-apt.jpg"],
+    stills: ["/media/lounge.jpg"],
     sections: [
       {
         heading: "无辜卷入黑帮内幕的牺牲者",
@@ -274,7 +274,7 @@ export const FILES: Record<string, PersonFile> = {
     also: ["维克托·阿吉拉尔", "企鹅人副手"],
     appearances: [{ work: "限定剧《企鹅人》", note: "主要角色，跟随奥兹并在终局遇害。", href: "/recap", hash: "the-penguin" }],
     places: ["crown-point", "iceberg"],
-    stills: ["/media/peng-smoke.jpg"],
+    stills: ["/media/still-victor.jpg"],
     sections: [
       {
         heading: "街头少年的悲剧宿命",
@@ -291,7 +291,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠2》", note: "官方尚未宣布回归。", href: "/dossier" },
     ],
     places: ["orphanage", "arkham", "riddler-room"],
-    stills: ["/media/riddler.jpg", "/media/still-lair.jpg"],
+    stills: ["/media/riddler.jpg", "/media/still-lair.jpg", "/media/still-riddler-unmask.jpg"],
     sections: [
       {
         heading: "账本深处的极客罪犯",
@@ -310,7 +310,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠2》", note: "传闻待定，官方尚未确认加盟。", href: "/dossier" },
     ],
     places: ["arkham"],
-    stills: [],
+    stills: ["/media/portraits/joker.jpg"],
     sections: [
       {
         heading: "阿卡姆高戒备病房的神秘低语",

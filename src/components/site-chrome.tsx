@@ -3,7 +3,6 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { FILM } from "@/lib/film";
-import { SiteSearch } from "@/components/site-search";
 
 const NAV = [
   {
@@ -136,7 +135,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             ))}
           </nav>
           <div className="flex items-center gap-1 md:ml-4">
-            <SiteSearch />
             <button
               type="button"
               className="relative grid size-11 place-items-center text-fg md:hidden"

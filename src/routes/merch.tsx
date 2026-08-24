@@ -97,7 +97,7 @@ function Merch() {
 
       <p className="mx-auto max-w-6xl px-4 pb-16 text-sm text-faint sm:px-6">
         本站为影迷非商业资料库，不提供任何商品购买与销售服务。产品展示图与技术规格均整理自
-        INART、Hot Toys、Prime 1 Studio、Mondo、Abrams
+        INART、Hot Toys、Prime 1 Studio、Infinity Studio、Mondo、Abrams、LEGO、Kross Studio、PUMA、Jazzinc Dioramas
         及华纳家庭娱乐等授权厂牌公开物料。查阅电影装备设定请前往{" "}
         <Link to="/gear" className="text-fg underline-offset-4 hover:underline">
           装备

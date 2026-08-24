@@ -3,11 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Countdown } from "@/components/countdown";
 import { Rain } from "@/components/atmosphere";
-import { CAST, FILM, latestLog, pageTitle } from "@/lib/film";
-import { STILL_TEASERS } from "@/lib/gallery";
-import { RECAPS } from "@/lib/recap";
-import { GEAR } from "@/lib/gear";
-import { MERCH_TEASERS } from "@/lib/merch";
+import { FILM, latestLog, pageTitle } from "@/lib/film";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -16,8 +12,48 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+const CORE_LINKS = [
+  {
+    to: "/dossier",
+    kicker: "01 / Dossier",
+    title: "电影档案",
+    description: "续集公开信息、演员阵容、拍摄日志与来源核验。",
+    image: "/media/p2-snow1.jpg",
+  },
+  {
+    to: "/recap",
+    kicker: "02 / Universe",
+    title: "世界观",
+    description: "前作、衍生剧、漫画与哥谭时间线的完整串联。",
+    image: "/media/signal.jpg",
+  },
+  {
+    to: "/craft",
+    kicker: "03 / Behind the Scenes",
+    title: "幕后",
+    description: "摄影、配乐、声音设计与英伦实景取景巡礼。",
+    image: "/media/still-bruce.jpg",
+  },
+  {
+    to: "/merch",
+    kicker: "04 / Collection",
+    title: "收藏",
+    description: "官方授权人偶、载具、出版物与艺术收藏品。",
+    image: "/media/merch/inart.jpg",
+  },
+] as const;
+
+const QUICK_LINKS = [
+  { to: "/people", label: "人物名册", detail: "角色与派系" },
+  { to: "/places", label: "哥谭地点", detail: "地标与据点" },
+  { to: "/cases", label: "重案卷宗", detail: "案件与物证" },
+  { to: "/gear", label: "装备库", detail: "战衣与载具" },
+  { to: "/gallery", label: "影像画廊", detail: "剧照与片场" },
+  { to: "/roots", label: "原著溯源", detail: "漫画与影史" },
+  { to: "/updates", label: "站点更新", detail: "修订与新增" },
+] as const;
+
 function Home() {
-  const leadCast = CAST.filter((c) => c.status === "confirmed").slice(0, 4);
   const latest = latestLog();
 
   return (
@@ -64,27 +100,29 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
-          <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-            01 / Prologue
-          </p>
-          <h2 className="mt-3 font-sans text-3xl font-black leading-tight tracking-tight sm:text-5xl">
-            洪水退去，哥谭市即将迎来严苛寒冬。
-          </h2>
-        </div>
-        <div className="space-y-5 text-pretty text-base leading-relaxed text-muted lg:col-span-7">
-          <p>
-            前作《新蝙蝠侠》以谜语人引发的哥谭暴洪收尾，续集已公开冬季视觉元素。格拉斯哥片场出现人造雪与蝙蝠战车，制作标识可见「Semper
-            Vigilans」（永远警惕）；华纳兄弟尚未单独公开说明该代号的性质。
-          </p>
-          <p>
-            本站为影迷自发建立的中文资料库，持续汇总官方公开信息、可靠媒体报道、片场可见线索与影迷推测。重要更新尽可能附原始或可靠来源，无法核实的内容会明确降级为线索或传闻。
-          </p>
+      <section className="border-b border-fg/10">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-center lg:gap-16 lg:py-20">
+          <div>
+            <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
+              Latest Signal · {latest.date}
+            </p>
+            <h2 className="mt-3 font-sans text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+              最新动态
+            </h2>
+            <p className="mt-4 max-w-md text-pretty text-sm leading-relaxed text-muted">
+              追踪官方公开信息、可靠媒体报道与片场可见线索；未经证实的内容会明确标注为传闻或观察。
+            </p>
+            <Link
+              to="/updates"
+              className="mt-6 inline-flex text-xs tracking-[0.2em] text-muted uppercase hover:text-fg"
+            >
+              查看站点更新记录 →
+            </Link>
+          </div>
           <Link
             to="/dossier"
             hash="log"
-            className="mt-2 block border border-fg/15 p-4 hover:border-blood"
+            className="group grid overflow-hidden border border-fg/15 bg-surface hover:border-blood sm:grid-cols-[0.9fr_1.1fr]"
           >
             {latest.image ? (
               <img
@@ -92,291 +130,80 @@ function Home() {
                 alt=""
                 loading="lazy"
                 decoding="async"
-                className="mb-3 aspect-[16/8] w-full object-cover"
+                className="aspect-[16/9] size-full object-cover sm:aspect-auto"
               />
             ) : null}
-            <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
-              最新拍摄动态 · {latest.date}
-            </p>
-            <p className="mt-2 font-sans text-xl font-black tracking-tight text-fg">
-              {latest.title}
-            </p>
-            <p className="mt-2 text-sm leading-relaxed">{latest.body}</p>
-            <span className="mt-3 block font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase">
-              完整日志与来源 →
-            </span>
-          </Link>
-          <Link
-            to="/updates"
-            className="text-xs tracking-[0.2em] text-muted uppercase hover:text-fg"
-          >
-            查看站点更新记录 →
-          </Link>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-              02 / Universe Timeline
-            </p>
-            <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-              宇宙作品时间线
-            </h2>
-          </div>
-          <div className="hidden items-center gap-5 sm:flex">
-            <Link
-              to="/recap"
-              className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg"
-            >
-              查看完整回顾
-            </Link>
-            <Link
-              to="/roots"
-              className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg"
-            >
-              原著渊源
-            </Link>
-          </div>
-        </div>
-        <ul className="mt-10 grid gap-4 md:grid-cols-2">
-          {RECAPS.map((work) => (
-            <li key={work.id}>
-              <Link
-                to="/recap"
-                hash={work.id}
-                className="group relative isolate block overflow-hidden"
-              >
-                <img
-                  src={work.image}
-                  alt={work.imageAlt}
-                  className="aspect-[16/9] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <p className="font-display text-xs font-semibold tracking-[0.28em] text-fg/70 uppercase">
-                    {work.when} · {work.form}
-                  </p>
-                  <p className="mt-1 font-sans text-2xl font-black tracking-tight">{work.title}</p>
-                  <p className="mt-2 max-w-md text-sm text-fg/80">{work.lede}</p>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="border-y border-fg/10 bg-surface">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-                03 / Cast & Characters
+            <div className="flex flex-col justify-center p-5 sm:p-7">
+              <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
+                拍摄日志 · {latest.date}
               </p>
-              <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-                核心演职员与角色
-              </h2>
+              <p className="mt-2 font-sans text-xl font-black tracking-tight text-fg sm:text-2xl">
+                {latest.title}
+              </p>
+              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">{latest.body}</p>
+              <span className="mt-5 font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase">
+                完整日志与来源 →
+              </span>
             </div>
-            <div className="hidden items-center gap-5 sm:flex">
-              <Link
-                to="/people"
-                className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg"
-              >
-                人物名册
-              </Link>
-              <Link
-                to="/craft"
-                className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg"
-              >
-                幕后与视听
-              </Link>
-              <Link
-                to="/dossier"
-                hash="relations"
-                className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg"
-              >
-                关系图谱
-              </Link>
-              <Link
-                to="/dossier"
-                className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg"
-              >
-                完整档案
-              </Link>
-            </div>
-          </div>
-          <ul className="mt-10 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {leadCast.map((person) => {
-              const inner = (
-                <>
-                  <p className="font-display text-sm font-semibold tracking-[0.22em] text-muted uppercase">
-                    {person.roleEn}
-                  </p>
-                  <p className="mt-3 font-sans text-2xl font-black leading-snug tracking-tight">
-                    {person.name}
-                  </p>
-                  <p className="mt-1 text-sm text-muted">{person.role}</p>
-                </>
-              );
-              return (
-                <li key={person.roleEn} className="bg-bg">
-                  {person.personId ? (
-                    <Link
-                      to="/people/$id"
-                      params={{ id: person.personId }}
-                      className="block p-6 hover:bg-surface/60"
-                    >
-                      {inner}
-                    </Link>
-                  ) : (
-                    <div className="p-6">{inner}</div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+          </Link>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-              04 / Gear & Tech
-            </p>
-            <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-              蝙蝠侠专属装备
-            </h2>
-          </div>
-          <Link to="/gear" className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg">
-            全部装备解析
-          </Link>
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <div>
+          <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
+            Core Archives
+          </p>
+          <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
+            四个核心入口
+          </h2>
         </div>
-        <ul className="mt-10 grid gap-4 md:grid-cols-3">
-          {GEAR.filter((g) => ["suit", "car", "grapnel"].includes(g.id)).map((item) => (
-            <li key={item.id}>
-              <Link
-                to="/gear"
-                hash={item.id}
-                className="group relative isolate block overflow-hidden"
-              >
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          {CORE_LINKS.map((item) => (
+            <li key={item.to}>
+              <Link to={item.to} className="group relative isolate block min-h-72 overflow-hidden">
                 <img
                   src={item.image}
-                  alt={item.imageAlt}
-                  className="aspect-[16/10] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 size-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/25 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-4">
-                  <p className="font-display text-xs font-semibold tracking-[0.28em] text-fg/70 uppercase">
-                    {item.nameEn}
+                <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/35 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <p className="font-display text-xs font-semibold tracking-[0.26em] text-fg/70 uppercase">
+                    {item.kicker}
                   </p>
-                  <p className="mt-1 font-sans text-xl font-black tracking-tight">{item.name}</p>
+                  <p className="mt-2 font-sans text-3xl font-black tracking-tight">{item.title}</p>
+                  <p className="mt-2 max-w-md text-sm leading-relaxed text-fg/75">
+                    {item.description}
+                  </p>
                 </div>
               </Link>
             </li>
           ))}
         </ul>
-      </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-              05 / Stills Gallery
-            </p>
-            <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-              精选剧照与片场画廊
-            </h2>
-          </div>
-          <Link
-            to="/gallery"
-            className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg"
-          >
-            浏览全部剧照
-          </Link>
-        </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {STILL_TEASERS.map((still) => (
-            <Link
-              key={still.src}
-              to="/gallery"
-              className="group relative isolate block aspect-[16/10] overflow-hidden"
-            >
-              <img
-                src={still.src}
-                alt={still.title}
-                className="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg/80 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <p className="font-display text-xs font-semibold tracking-[0.28em] text-fg/70 uppercase">
-                  {still.kicker}
-                </p>
-                <p className="mt-1 font-sans text-xl font-black tracking-tight">{still.title}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="crt-shell">
-        <Link
-          to="/rataalada"
-          className="relative z-10 mx-auto block max-w-6xl px-4 py-16 sm:px-6 sm:py-20"
-        >
-          <p className="text-sm font-medium tracking-[0.32em] text-phosphor/70 uppercase">
-            YOU ARE EL RATA ALADA
+        <div className="mt-8 border-y border-fg/10 py-4">
+          <p className="mb-3 font-display text-[10px] font-semibold tracking-[0.22em] text-faint uppercase">
+            Quick Access · 横向浏览
           </p>
-          <h2 className="mt-3 font-mono text-3xl font-medium tracking-wide sm:text-5xl">
-            谜语人暗号挑战
-          </h2>
-          <p className="mt-4 max-w-xl text-pretty text-sm leading-relaxed text-phosphor/80 sm:text-base">
-            复刻自 2021 年华纳官方解谜网站
-            rataalada.com：黑底绿字经典黑客命令行终端，答对三条一组的谜语即可解密解锁专属剧照与彩蛋文件。
-          </p>
-          <p className="mt-6 text-sm tracking-[0.22em] uppercase">{">"} 输入 Y 开始挑战 →</p>
-        </Link>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-              06 / Collectibles
-            </p>
-            <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-              官方周边与收藏品
-            </h2>
-          </div>
-          <Link
-            to="/merch"
-            className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg"
-          >
-            查看全部分类
-          </Link>
-        </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {MERCH_TEASERS.map((item) => (
-            <Link
-              key={item.id}
-              to="/merch"
-              hash={item.id}
-              className="group relative isolate block overflow-hidden bg-elevated"
-            >
-              <img
-                src={item.image}
-                alt={item.imageAlt}
-                className="aspect-[16/10] w-full object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-              />
-              <div className="border-t border-fg/10 p-4">
-                <p className="font-display text-xs font-semibold tracking-[0.28em] text-fg/70 uppercase">
-                  {item.maker}
-                </p>
-                <p className="mt-1 font-sans text-xl font-black tracking-tight">{item.name}</p>
-              </div>
-            </Link>
-          ))}
+          <ul className="flex snap-x gap-3 overflow-x-auto pb-2">
+            {QUICK_LINKS.map((item) => (
+              <li key={item.to} className="min-w-48 flex-1 snap-start">
+                <Link
+                  to={item.to}
+                  className="flex h-full items-center justify-between gap-4 border border-fg/10 bg-surface p-4 hover:border-blood"
+                >
+                  <span>
+                    <span className="block font-sans font-black tracking-tight">{item.label}</span>
+                    <span className="mt-1 block text-xs text-faint">{item.detail}</span>
+                  </span>
+                  <ArrowRight className="size-4 shrink-0 text-blood" />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </main>

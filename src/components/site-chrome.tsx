@@ -1,54 +1,43 @@
 import { type ReactNode, useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { FILM } from "@/lib/film";
 import { SiteSearch } from "@/components/site-search";
 
 const NAV = [
-  { to: "/", label: "首页" },
-  { to: "/dossier", label: "档案" },
-  { to: "/cases", label: "卷宗" },
-  { to: "/recap", label: "回顾" },
-  { to: "/roots", label: "溯源" },
-  { to: "/craft", label: "视听" },
-  { to: "/gear", label: "装备" },
-  { to: "/merch", label: "周边" },
-  { to: "/gallery", label: "剧照" },
+  {
+    to: "/dossier",
+    label: "电影档案",
+    paths: ["/dossier", "/people", "/places", "/cases"],
+    children: [
+      { to: "/people", label: "人物名册" },
+      { to: "/places", label: "哥谭地点" },
+      { to: "/cases", label: "重案卷宗" },
+    ],
+  },
+  {
+    to: "/recap",
+    label: "世界观",
+    paths: ["/recap", "/roots", "/gear"],
+    children: [
+      { to: "/roots", label: "原著溯源" },
+      { to: "/gear", label: "蝙蝠侠装备库" },
+    ],
+  },
+  {
+    to: "/craft",
+    label: "幕后",
+    paths: ["/craft", "/gallery"],
+    children: [{ to: "/gallery", label: "剧照与片场画廊" }],
+  },
+  { to: "/merch", label: "收藏", paths: ["/merch"], children: [] },
   { to: "/rataalada", label: "暗号" },
 ] as const;
 
-function navActive(to: string, pathname: string) {
-  if (to === "/dossier") {
-    return (
-      pathname === "/dossier" || pathname.startsWith("/people") || pathname.startsWith("/places")
-    );
-  }
-  if (to === "/cases") {
-    return pathname.startsWith("/cases");
-  }
-  if (to === "/recap") {
-    return pathname.startsWith("/recap");
-  }
-  if (to === "/roots") {
-    return pathname.startsWith("/roots");
-  }
-  if (to === "/craft") {
-    return pathname.startsWith("/craft");
-  }
-  if (to === "/gear") {
-    return pathname.startsWith("/gear");
-  }
-  if (to === "/merch") {
-    return pathname.startsWith("/merch");
-  }
-  if (to === "/gallery") {
-    return pathname.startsWith("/gallery");
-  }
-  if (to === "/rataalada") {
-    return pathname.startsWith("/rataalada");
-  }
-  return pathname === to;
+function navActive(item: (typeof NAV)[number], pathname: string) {
+  const paths = "paths" in item ? item.paths : [item.to];
+  return paths.some((path) => pathname === path || pathname.startsWith(`${path}/`));
 }
 
 export function SiteChrome({ children }: { children: ReactNode }) {
@@ -91,18 +80,33 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           </Link>
           <nav className="hidden items-center gap-3 lg:gap-5 md:flex">
             {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className={cn(
-                  "text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-150",
-                  navActive(item.to, pathname)
-                    ? "text-fg font-bold text-blood"
-                    : "text-muted hover:text-fg",
-                )}
-              >
-                {item.label}
-              </Link>
+              <div key={item.to} className="group relative flex h-16 items-center">
+                <Link
+                  to={item.to}
+                  className={cn(
+                    "flex items-center gap-1 text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-150",
+                    navActive(item, pathname) ? "font-bold text-blood" : "text-muted hover:text-fg",
+                  )}
+                >
+                  {item.label}
+                  {"children" in item && item.children.length > 0 ? (
+                    <ChevronDown className="size-3 transition-transform group-hover:rotate-180" />
+                  ) : null}
+                </Link>
+                {"children" in item && item.children.length > 0 ? (
+                  <div className="pointer-events-none absolute left-1/2 top-[calc(100%-1px)] min-w-44 -translate-x-1/2 border border-fg/10 bg-bg/95 p-2 opacity-0 shadow-2xl backdrop-blur-md transition-opacity group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.to}
+                        to={child.to}
+                        className="block whitespace-nowrap px-3 py-2 text-xs tracking-[0.12em] text-muted hover:bg-surface hover:text-fg"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
             ))}
           </nav>
           <div className="flex items-center gap-1 md:ml-4">
@@ -123,16 +127,30 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         <div className="fixed inset-0 z-30 bg-bg/95 pt-16 md:hidden">
           <nav className="flex flex-col gap-1 px-6 py-6">
             {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className={cn(
-                  "py-2 font-sans text-2xl font-black tracking-tight",
-                  navActive(item.to, pathname) ? "text-blood" : "text-muted",
-                )}
-              >
-                {item.label}
-              </Link>
+              <div key={item.to} className="border-b border-fg/10 py-3 last:border-0">
+                <Link
+                  to={item.to}
+                  className={cn(
+                    "font-sans text-2xl font-black tracking-tight",
+                    navActive(item, pathname) ? "text-blood" : "text-muted",
+                  )}
+                >
+                  {item.label}
+                </Link>
+                {"children" in item && item.children.length > 0 ? (
+                  <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.to}
+                        to={child.to}
+                        className="text-sm tracking-[0.12em] text-faint hover:text-fg"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
             ))}
           </nav>
         </div>

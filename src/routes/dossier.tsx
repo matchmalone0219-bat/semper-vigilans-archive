@@ -61,7 +61,7 @@ function Dossier() {
             专题。
           </p>
           <p className="mt-4 max-w-xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
-            持续追踪最新前沿动态：权威官宣、外媒独家与片场高能路透一网打尽！包含第一手现场解析与热议剧情猜想，带你全方位沉浸式探索哥谭最新绝密档案。
+            追踪影片最新动态：汇总官方公告、媒体报道与公开片场路透。包含现场解析与剧情背景整理，提供全方位的电影资料参考。
           </p>
           <nav className="mt-8 flex flex-wrap gap-3">
             {jump.map((item) => (

@@ -61,7 +61,7 @@ function Dossier() {
             专题。
           </p>
           <p className="mt-4 max-w-xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
-            资料整理至 {CONTENT_REVIEWED_AT}：公开事实附来源；片场照片与视频会保留本站的场景推演和剧情猜想，并以“片场线索”或“传闻推测”标出。大胆开脑洞，但别把它当片方剧透。
+            持续追踪最新前沿动态：权威官宣、外媒独家与片场高能路透一网打尽！包含第一手现场解析与热议剧情猜想，带你全方位沉浸式探索哥谭最新绝密档案。
           </p>
           <nav className="mt-8 flex flex-wrap gap-3">
             {jump.map((item) => (

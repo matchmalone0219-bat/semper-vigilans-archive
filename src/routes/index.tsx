@@ -101,51 +101,60 @@ function Home() {
       </section>
 
       <section className="border-b border-fg/10">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-center lg:gap-16 lg:py-20">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16 lg:py-20">
           <div>
             <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
+              01 / Prologue
+            </p>
+            <h2 className="mt-3 font-sans text-3xl font-black leading-tight tracking-tight sm:text-5xl">
+              洪水退去，哥谭市即将迎来严苛寒冬。
+            </h2>
+            <p className="mt-8 max-w-xl text-pretty leading-relaxed text-muted">
+              前作《新蝙蝠侠》以谜语人引发的哥谭暴洪收尾，续集将时间线推向寒冷冬日。剧组在苏格兰格拉斯哥搭建雪景实拍，蝙蝠战车换上雪地胎，项目代号定为「Semper
+              Vigilans」（永远警惕）。
+            </p>
+            <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted">
+              本站为影迷自发建立的中文资料库，为您持续汇总官方公开新闻、演职员名单、片场实拍线索与剧情推测。所有传闻均已明确标注来源，力求提供客观严谨的影视资讯。
+            </p>
+          </div>
+          <div>
+            <p className="mb-3 font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
               Latest Signal · {latest.date}
             </p>
-            <h2 className="mt-3 font-sans text-3xl font-black leading-tight tracking-tight sm:text-4xl">
-              最新动态
-            </h2>
-            <p className="mt-4 max-w-md text-pretty text-sm leading-relaxed text-muted">
-              追踪官方公开信息、可靠媒体报道与片场可见线索；未经证实的内容会明确标注为传闻或观察。
-            </p>
+            <Link
+              to="/dossier"
+              hash="log"
+              className="group block overflow-hidden border border-fg/15 bg-surface hover:border-blood"
+            >
+              {latest.image ? (
+                <img
+                  src={latest.image}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[16/8] w-full object-cover"
+                />
+              ) : null}
+              <div className="p-5 sm:p-7">
+                <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
+                  最新拍摄动态 · {latest.date}
+                </p>
+                <p className="mt-2 font-sans text-xl font-black tracking-tight text-fg sm:text-2xl">
+                  {latest.title}
+                </p>
+                <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">{latest.body}</p>
+                <span className="mt-5 block font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase">
+                  完整日志与来源 →
+                </span>
+              </div>
+            </Link>
             <Link
               to="/updates"
-              className="mt-6 inline-flex text-xs tracking-[0.2em] text-muted uppercase hover:text-fg"
+              className="mt-4 inline-flex text-xs tracking-[0.2em] text-muted uppercase hover:text-fg"
             >
               查看站点更新记录 →
             </Link>
           </div>
-          <Link
-            to="/dossier"
-            hash="log"
-            className="group grid overflow-hidden border border-fg/15 bg-surface hover:border-blood sm:grid-cols-[0.9fr_1.1fr]"
-          >
-            {latest.image ? (
-              <img
-                src={latest.image}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className="aspect-[16/9] size-full object-cover sm:aspect-auto"
-              />
-            ) : null}
-            <div className="flex flex-col justify-center p-5 sm:p-7">
-              <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
-                拍摄日志 · {latest.date}
-              </p>
-              <p className="mt-2 font-sans text-xl font-black tracking-tight text-fg sm:text-2xl">
-                {latest.title}
-              </p>
-              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">{latest.body}</p>
-              <span className="mt-5 font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase">
-                完整日志与来源 →
-              </span>
-            </div>
-          </Link>
         </div>
       </section>
 

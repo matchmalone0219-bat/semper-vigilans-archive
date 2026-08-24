@@ -50,7 +50,7 @@ export type Beat =
   | { kind: "done" };
 
 export const RATA_INTRO =
-  "2021 年底《新蝙蝠侠》首支预告片中隐藏了一串神秘密码，指向华纳官方设立的沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，谐音 URL）。网站采用经典黑客命令行终端界面，影迷需逐一破解谜语人的密码挑战以解锁高谭机密文件。本页面完整复刻了当年全套解谜挑战，并附带谜语人 26 个几何密码符号全对照表。";
+  "2021 年底《新蝙蝠侠》首支预告片中隐藏了一串神秘密码，指向华纳官方设立的沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，谐音 URL）。网站采用经典黑客命令行终端界面，影迷需逐一破解谜语人的密码挑战以解锁哥谭机密文件。本页面完整复刻了当年全套解谜挑战，并附带谜语人 26 个几何密码符号全对照表。";
 
 export const COMMANDS: { cmd: string; hint: string }[] = [
   { cmd: "Y", hint: "开始挑战 / 确认" },
@@ -85,7 +85,7 @@ export const TESTS: Test[] = [
     id: "w1",
     kicker: "TEST 01",
     when: "2021.12 · 预告片先导阶段",
-    note: "预告片首波谜题，破解三道谜题即可解锁第一批高谭目击档案。",
+    note: "预告片首波谜题，破解三道谜题即可解锁第一批哥谭目击档案。",
     riddles: [
       {
         id: "street",
@@ -113,8 +113,8 @@ export const TESTS: Test[] = [
       "TYPE OPEN STREET.IMG TO VIEW.",
     ],
     stills: [
-      still("STREET.IMG", "/media/street.jpg", "雨中战衣", "高谭警方监控记录：雨夜巡逻中的蝙蝠侠。"),
-      still("GOTHAM.IMG", "/media/gotham.jpg", "俯瞰高谭", "高谭天际线俯瞰视角照片。"),
+      still("STREET.IMG", "/media/street.jpg", "雨中战衣", "哥谭警方监控记录：雨夜巡逻中的蝙蝠侠。"),
+      still("GOTHAM.IMG", "/media/gotham.jpg", "俯瞰哥谭", "哥谭天际线俯瞰视角照片。"),
       still("SUBJECT.IMG", "/media/riddler.jpg", "出题嫌疑人", "嫌疑人档案：爱德华·纳什顿。"),
     ],
     texts: [
@@ -134,7 +134,7 @@ export const TESTS: Test[] = [
     id: "w2",
     kicker: "TEST 02",
     when: "2022.01 · 第二阶段",
-    note: "涉及冰山俱乐部与高谭地下黑金交易的加密挑战。",
+    note: "涉及冰山俱乐部与哥谭地下黑金交易的加密挑战。",
     riddles: [
       {
         id: "iceberg",
@@ -167,7 +167,7 @@ export const TESTS: Test[] = [
     id: "w3",
     kicker: "TEST 03",
     when: "2022.01 · 第三阶段",
-    note: "针对高谭特权阶层与黑金内幕的深度谜题。",
+    note: "针对哥谭特权阶层与黑金内幕的深度谜题。",
     riddles: [
       {
         id: "feelings",
@@ -197,7 +197,7 @@ export const TESTS: Test[] = [
     ],
     prize: ["FILES UNLOCKED.", "POWER CORRUPTS. THE SHADOWS KEEP THE RECEIPT."],
     stills: [
-      still("SHADOW.IMG", "/media/still-sunset.jpg", "光与暗之间", "落日余晖中高谭城市的阴影天际线。"),
+      still("SHADOW.IMG", "/media/still-sunset.jpg", "光与暗之间", "落日余晖中哥谭城市的阴影天际线。"),
     ],
   },
   {
@@ -310,7 +310,7 @@ export const TESTS: Test[] = [
     ],
     stills: [
       still("LEDGER.IMG", "/media/ledger.jpg", "黑金账簿", "第一部核心物证：被审计拆解的洗钱账本。"),
-      still("MANOR.IMG", "/media/orphanage.jpg", "高谭孤儿院", "旧韦恩庄园改建的高谭孤儿院外景。"),
+      still("MANOR.IMG", "/media/orphanage.jpg", "哥谭孤儿院", "旧韦恩庄园改建的哥谭孤儿院外景。"),
     ],
   },
   {

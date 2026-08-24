@@ -149,7 +149,7 @@ function Dossier() {
         <section id="relations" className="scroll-mt-24">
           <SectionKicker n="04" title="人物关系" />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            点名字，线和档案一起亮。每个人可以打开单独的档案。完整名册在{" "}
+            点击人物节点可查看彼此关联与简介，支持直接跳转至该角色的独立人物档案。完整人物列表请访问{" "}
             <Link to="/people" className="text-fg underline-offset-4 hover:underline">
               人物
             </Link>
@@ -161,9 +161,9 @@ function Dossier() {
         </section>
 
         <section id="places" className="scroll-mt-24">
-          <SectionKicker n="05" title="高谭地点" />
+          <SectionKicker n="05" title="哥谭地点" />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            主要地标与其在正史中的状态。完整列表见{" "}
+            收录哥谭市核心地标及其在故事中的现状。查看全城地图与详细地点解析请访问{" "}
             <Link to="/places" className="text-fg underline-offset-4 hover:underline">
               地点
             </Link>
@@ -191,7 +191,7 @@ function Dossier() {
         <section className="scroll-mt-24">
           <SectionKicker n="06" title="幕后与视听" />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            第一部配乐与光影已经定调，第二部换了摄影指导。完整专题在{" "}
+            深度解析系列电影的原创配乐动机、摄影视觉风格与现实取景地。完整专题请访问{" "}
             <Link to="/craft" className="text-fg underline-offset-4 hover:underline">
               幕后与视听
             </Link>
@@ -204,21 +204,21 @@ function Dossier() {
                 image: "/media/gotham.jpg",
                 kicker: "Score",
                 title: "吉亚奇诺四主题",
-                body: "四音符铜管、猫女弦乐、变奏《圣母颂》，以及选用曲 Nirvana。",
+                body: "解析吉亚奇诺创作的核心主题动机、猫女弦乐与经典插曲。",
               },
               {
                 href: "/craft#lens",
                 image: "/media/street.jpg",
                 kicker: "Cinematography",
                 title: "弗雷泽 / 梅塞施密特",
-                body: "第一部钠灯浅景深归弗雷泽。梅塞施密特接拍第二部，成片未公布。",
+                body: "格雷格·弗雷泽与埃里克·梅塞施密特的光影美学与摄影机镜头解析。",
               },
               {
                 href: "/craft#map",
                 image: "/media/craft/st-georges.jpg",
                 kicker: "Locations",
                 title: "利物浦 · 格拉斯哥 · 伦敦",
-                body: "市政厅、墓园、电车隧道与冬日封街，按可核对场记排列。",
+                body: "利物浦、格拉斯哥与伦敦等主要取景坐标与影迷巡礼打卡指南。",
               },
             ].map((card) => (
               <li key={card.href}>
@@ -244,11 +244,11 @@ function Dossier() {
         <section id="log" className="scroll-mt-24">
           <SectionKicker n="07" title="拍摄日志" />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            现实里的档期，按日期往下长。正在拍的标在最上。高谭城里发生的事在{" "}
+            按时间倒序汇总电影从立项、开机到最新外景实拍的完整制片历程。查阅哥谭宇宙剧情故事线请前往{" "}
             <Link to="/recap" hash="gotham-timeline" className="text-fg underline-offset-4 hover:underline">
-              回顾 · 高谭时间轴
+              回顾 · 哥谭编年史
             </Link>
-            。片场照片在{" "}
+            。片场实拍图集请查阅{" "}
             <Link to="/gallery" hash="part2" className="text-fg underline-offset-4 hover:underline">
               剧照 · 第二部路透
             </Link>

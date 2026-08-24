@@ -66,7 +66,7 @@ function Gear() {
           <Link to="/gallery" className="text-fg underline-offset-4 hover:underline">
             剧照
           </Link>
-          。这些东西在高谭里怎么用过，在{" "}
+          。这些东西在哥谭里怎么用过，在{" "}
           <Link to="/recap" className="text-fg underline-offset-4 hover:underline">
             回顾
           </Link>

@@ -26,7 +26,7 @@ export const FILES: Record<string, PersonFile> = {
   waynes: {
     also: ["托马斯·韦恩", "玛莎·韦恩", "阿卡姆家族"],
     appearances: [
-      { work: "官方前传小说", note: "竞选市长、建立高谭孤儿院、设立「新生」慈善基金。", href: "/recap", hash: "before" },
+      { work: "官方前传小说", note: "竞选市长、建立哥谭孤儿院、设立「新生」慈善基金。", href: "/recap", hash: "before" },
       { work: "漫画《谜语人元年》", note: "封口调查记者、玛莎家族精神病史、巷中遇害。", href: "/recap", hash: "year-one" },
       { work: "电影《新蝙蝠侠》", note: "作为核心背景人物出现，账本与录像带揭开历史内幕。", href: "/recap", hash: "the-batman" },
     ],
@@ -35,11 +35,11 @@ export const FILES: Record<string, PersonFile> = {
     sections: [
       {
         heading: "名门慈善家背后的真相",
-        body: "托马斯·韦恩曾是高谭备受尊敬的外科医生与慈善巨擘，他将老宅韦恩庄园捐出改建为高谭孤儿院，并设立「新生」慈善基金。然而在后续调查中证实，该基金在托马斯遇害后沦为法尔科内买通政界与司法高层的洗钱工具。",
+        body: "托马斯·韦恩曾是哥谭备受尊敬的外科医生与慈善巨擘，他将老宅韦恩庄园捐出改建为哥谭孤儿院，并设立「新生」慈善基金。然而在后续调查中证实，该基金在托马斯遇害后沦为法尔科内买通政界与司法高层的洗钱工具。",
       },
       {
         heading: "家族隐秘与遇刺悲剧",
-        body: "玛莎·韦恩（原姓阿卡姆）拥有深厚的家族精神病史。托马斯在竞选期间曾设法阻止记者报道此事，间接卷入黑帮利益瓜葛。两人在剧院后巷遇刺身亡，成为布鲁斯走上义警之路的起点，也让高谭陷入长达数十年的权力失序。",
+        body: "玛莎·韦恩（原姓阿卡姆）拥有深厚的家族精神病史。托马斯在竞选期间曾设法阻止记者报道此事，间接卷入黑帮利益瓜葛。两人在剧院后巷遇刺身亡，成为布鲁斯走上义警之路的起点，也让哥谭陷入长达数十年的权力失序。",
       },
     ],
   },
@@ -67,7 +67,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "从复仇之火到希望之光",
-        body: "在与谜语人的交锋中，布鲁斯被迫面对家族历史的阴影，并在大洪水漫灌体育馆的危急时刻奋力救出受困平民。他由此领悟到，高谭不仅需要对罪恶的惩戒，更需要象征光明与希望的守护者。",
+        body: "在与谜语人的交锋中，布鲁斯被迫面对家族历史的阴影，并在大洪水漫灌体育馆的危急时刻奋力救出受困平民。他由此领悟到，哥谭不仅需要对罪恶的惩戒，更需要象征光明与希望的守护者。",
       },
       {
         heading: "续集展望：凛冬下的内心考验",
@@ -87,7 +87,7 @@ export const FILES: Record<string, PersonFile> = {
     sections: [
       {
         heading: "亦师亦友的后方支柱",
-        body: "阿尔弗雷德拥有深厚的军事情报背景。在韦恩夫妇遇害后，他承担起抚养布鲁斯的重任，教授其侦查推理、无限制格斗与战术工程等全方位技能。",
+        body: "阿尔弗雷德拥有深厚的军事情报背景。在韦恩夫妇遇害后，他承担起抚养布鲁斯的重任，教授其侦查推理、近身格斗与战术工程等全方位技能。",
       },
       {
         heading: "生死相托的深厚羁绊",
@@ -96,7 +96,7 @@ export const FILES: Record<string, PersonFile> = {
     ],
   },
   bella: {
-    also: ["贝拉·蕾尔", "高谭市长"],
+    also: ["贝拉·蕾尔", "哥谭市长"],
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "年轻改革派候选人，在枪击与洪灾浩劫中幸存并当选。", href: "/recap", hash: "the-batman" },
       { work: "电影《新蝙蝠侠2》", note: "洁米·劳森确认回归，主导城市灾后重建。", href: "/dossier" },
@@ -105,7 +105,7 @@ export const FILES: Record<string, PersonFile> = {
     stills: ["/media/flood.jpg"],
     sections: [
       {
-        heading: "高谭灾后改革的领军者",
+        heading: "哥谭灾后改革的领军者",
         body: "贝拉·蕾尔作为年轻有为的改革派政治家，在竞选集会枪击与决堤洪灾中沉着应对并当选市长。在灾后重建期，她致力于铲除旧体制贪腐积弊，重塑市民对法治的信任。",
       },
     ],
@@ -113,7 +113,7 @@ export const FILES: Record<string, PersonFile> = {
   gordon: {
     also: ["吉姆·戈登", "GCPD 警官", "戈登中尉"],
     appearances: [
-      { work: "电影《新蝙蝠侠》", note: "高谭警局中尉，力排众议与蝙蝠侠并肩调查破案。", href: "/recap", hash: "the-batman" },
+      { work: "电影《新蝙蝠侠》", note: "哥谭警局中尉，力排众议与蝙蝠侠并肩调查破案。", href: "/recap", hash: "the-batman" },
       { work: "电影《新蝙蝠侠2》", note: "杰弗里·怀特确认回归，坚守体制内正义防线。", href: "/dossier" },
     ],
     places: ["gcpd", "gsg"],
@@ -136,7 +136,7 @@ export const FILES: Record<string, PersonFile> = {
     sections: [
       {
         heading: "尽职尽责的基层力量",
-        body: "高谭市警局恪尽职守的基层警官，在第一部多次协助戈登维持现场秩序并参与搜查，已确认在《新蝙蝠侠2》中继续登场。",
+        body: "哥谭市警局恪尽职守的基层警官，在第一部多次协助戈登维持现场秩序并参与搜查，已确认在《新蝙蝠侠2》中继续登场。",
       },
     ],
   },
@@ -150,7 +150,7 @@ export const FILES: Record<string, PersonFile> = {
     sections: [
       {
         heading: "深陷黑金泥潭的地方检察官",
-        body: "由彼得·萨斯加德（Peter Sarsgaard）饰演。作为高谭市最高检察官，他长期接受卡尔迈恩·法尔科内的大额贿赂，对黑帮犯罪活动睁一只眼闭一只眼，并多次打压针对「新生」基金的司法审计。",
+        body: "由彼得·萨斯加德（Peter Sarsgaard）饰演。作为哥谭市最高检察官，他长期接受卡尔迈恩·法尔科内的大额贿赂，对黑帮犯罪活动睁一只眼闭一只眼，并多次打压针对「新生」基金的司法审计。",
       },
       {
         heading: "项圈炸弹与悲惨结局",
@@ -159,7 +159,7 @@ export const FILES: Record<string, PersonFile> = {
     ],
   },
   mitchell: {
-    also: ["唐·米切尔", "前高谭市长"],
+    also: ["唐·米切尔", "前哥谭市长"],
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "万圣节当夜在官邸遇害，成为谜语人首桩暗杀受害者。", href: "/recap", hash: "the-batman" },
     ],
@@ -168,7 +168,7 @@ export const FILES: Record<string, PersonFile> = {
     sections: [
       {
         heading: "谜语人连环暗杀的序幕",
-        body: "由鲁伯特·彭利-琼斯（Rupert Penry-Jones）饰演。高谭市三届连任的市长，表面上高调宣扬反腐与治安，暗中却与法尔科内及冰山俱乐部勾结。在万圣节当晚于家中遭谜语人残忍杀害，并在脸上涂满「不要再说谎」的血字。",
+        body: "由鲁伯特·彭利-琼斯（Rupert Penry-Jones）饰演。哥谭市三届连任的市长，表面上高调宣扬反腐与治安，暗中却与法尔科内及冰山俱乐部勾结。在万圣节当晚于家中遭谜语人残忍杀害，并在脸上涂满「不要再说谎」的血字。",
       },
     ],
   },
@@ -197,7 +197,7 @@ export const FILES: Record<string, PersonFile> = {
     stills: ["/media/still-falcone.jpg", "/media/lounge.jpg"],
     sections: [
       {
-        heading: "曾经的高谭地下皇帝",
+        heading: "曾经的哥谭地下皇帝",
         body: "以冰山俱乐部为据点掌控毒品网络与市政贿赂链条，曾出卖马罗尼成为警方的秘密线人。在第一部真相大白走出俱乐部时遭谜语人狙杀，其死直接引发了地下黑帮势力的全面洗牌。",
       },
     ],
@@ -220,7 +220,7 @@ export const FILES: Record<string, PersonFile> = {
     sections: [
       {
         heading: "身手矫健的暗夜游侠",
-        body: "卡尔迈恩·法尔科内的私生女，为了查明好友失踪案潜入冰山俱乐部，与蝙蝠侠多次交锋并结成默契搭档。在解决恩怨后骑行机车离开高谭，前往布鲁德海文（Blüdhaven）。",
+        body: "卡尔迈恩·法尔科内的私生女，为了查明好友失踪案潜入冰山俱乐部，与蝙蝠侠多次交锋并结成默契搭档。在解决恩怨后骑行机车离开哥谭，前往布鲁德海文（Blüdhaven）。",
       },
       {
         heading: "后续暗线与人物牵绊",
@@ -247,7 +247,7 @@ export const FILES: Record<string, PersonFile> = {
     also: ["奥兹·科布", "企鹅人"],
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "法尔科内手下得力干将，在枪林弹雨中保全自身。", href: "/recap", hash: "the-batman" },
-      { work: "限定剧《企鹅人》", note: "主线主角，通过精妙阴谋扫清对手登顶黑道王座。", href: "/recap", hash: "the-penguin" },
+      { work: "限定剧《企鹅人》", note: "主线主角，通过周密谋略扫清对手登顶黑道王座。", href: "/recap", hash: "the-penguin" },
       { work: "电影《新蝙蝠侠2》", note: "科林·法瑞尔确认回归，成为黑帮新教父。", href: "/dossier" },
     ],
     places: ["iceberg", "crown-point"],
@@ -266,7 +266,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "铁血登顶与地下新王",
-        body: "在《企鹅人》八集剧集中，他击溃法尔科内与马罗尼家族核心势力，甚至掐断了自己唯一信任的心腹维克托以抹杀人性软肋，彻底登顶高谭地下新王。已确认在《新蝙蝠侠2》中强势登场。",
+        body: "在《企鹅人》八集剧集中，他击溃法尔科内与马罗尼家族核心势力，甚至灭口了唯一信任的心腹维克托以消除自身软肋，彻底登顶哥谭地下新王。已确认在《新蝙蝠侠2》中强势登场。",
       },
     ],
   },
@@ -278,7 +278,7 @@ export const FILES: Record<string, PersonFile> = {
     sections: [
       {
         heading: "街头少年的悲剧宿命",
-        body: "在洪灾中失去家人的贫困少年，因偷窃企鹅人车轮而被奥兹收留并成为其心腹助手。在奥兹登顶王座之夜，奥兹为了抹杀自身最后的情感软肋亲手将其灭口，深刻展现了黑帮争斗的极端残酷。",
+        body: "在洪灾中失去家人的贫困少年，因偷窃企鹅人车轮而被奥兹收留并成为其心腹助手。在奥兹登顶王座之夜，奥兹为了彻底消除自身的情感软肋亲手将其灭口，展现了黑帮争斗极度冰冷的一面。",
       },
     ],
   },
@@ -294,8 +294,8 @@ export const FILES: Record<string, PersonFile> = {
     stills: ["/media/riddler.jpg", "/media/still-lair.jpg", "/media/still-riddler-unmask.jpg"],
     sections: [
       {
-        heading: "账本深处的极客罪犯",
-        body: "曾在高谭孤儿院度过凄苦童年，成年后担任司法会计师。在审核账目时发现了「新生」基金与官匪勾结的巨大黑幕，深感体制腐败无药可救，化身谜语人向权贵阶层发起血腥复仇。",
+        heading: "账本深处的罪犯",
+        body: "曾在哥谭孤儿院度过凄苦童年，成年后担任司法会计师。在审核账目时发现了「新生」基金与官匪勾结的巨大黑幕，深感体制腐败无药可救，化身谜语人向权贵阶层发起血腥复仇。",
       },
       {
         heading: "与蝙蝠侠的思想镜像",

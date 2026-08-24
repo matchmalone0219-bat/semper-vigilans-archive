@@ -230,9 +230,9 @@ function Craft() {
             英国取景巡礼地图
           </h2>
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            电影中高谭市的虚构地点可在{" "}
+            电影中哥谭市的虚构地点可在{" "}
             <Link to="/places" className="text-fg underline-offset-4 hover:underline">
-              高谭地点总览
+              哥谭地点总览
             </Link>
             {" "}中查阅；以下为您详细梳理英国利物浦、格拉斯哥与伦敦三大城市的现实取景坐标与影迷巡礼指南。
           </p>
@@ -329,7 +329,7 @@ function Craft() {
                           params={{ id: pin.placeId }}
                           className="text-muted underline-offset-4 hover:text-fg hover:underline"
                         >
-                          查看高谭对应地点档案 →
+                          查看哥谭对应地点档案 →
                         </Link>
                       </p>
                     ) : null}

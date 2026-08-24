@@ -18,9 +18,9 @@ function PlacesIndex() {
         </p>
         <h1 className="mt-3 font-sans text-5xl font-black tracking-tight sm:text-6xl">地点</h1>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-          高谭主要地标：仍在使用、已易主、曾遭洪水或已废弃的地点。时间顺序见{" "}
+          哥谭主要地标：仍在使用、已易主、曾遭洪水或已废弃的地点。时间顺序见{" "}
           <Link to="/recap" hash="gotham-timeline" className="text-fg underline-offset-4 hover:underline">
-            回顾 · 高谭历史编年史
+            回顾 · 哥谭历史编年史
           </Link>
           。
         </p>

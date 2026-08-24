@@ -270,7 +270,7 @@ function Roots() {
         </section>
 
         <p className="max-w-2xl text-sm leading-relaxed text-faint">
-          查阅高谭历史编年史，请前往{" "}
+          查阅哥谭历史编年史，请前往{" "}
           <Link to="/recap" className="text-muted underline-offset-4 hover:text-fg hover:underline">
             前作回顾
           </Link>

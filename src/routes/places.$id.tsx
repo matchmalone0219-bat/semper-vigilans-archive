@@ -106,7 +106,7 @@ function PlacePage() {
         <p className="text-sm text-faint">
           城里的事先按发生顺序写在{" "}
           <Link to="/recap" hash="gotham-timeline" className="text-fg underline-offset-4 hover:underline">
-            高谭时间轴
+            哥谭时间轴
           </Link>
           。
         </p>

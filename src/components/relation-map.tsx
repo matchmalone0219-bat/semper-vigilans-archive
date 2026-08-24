@@ -58,7 +58,7 @@ export function RelationMap() {
   return (
     <div>
       <p className="max-w-2xl text-pretty text-sm text-muted">
-        点头像或名字。红线是对立或致死，白线是血缘或羁绊。已死、离城、传闻，和还站在街上的人分开标。每个人有单独的档案，从这里进去。
+        点击头像或名称可高亮查看人物关系网络。红线代表对立与敌对关系，白线代表血缘与同盟羁绊；已身亡或离城的角色均已特别标注，支持直接进入独立角色档案。
       </p>
 
       <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-[11px] tracking-[0.18em] text-faint uppercase">
@@ -74,7 +74,7 @@ export function RelationMap() {
           viewBox={`0 0 ${W} ${H}`}
           className="w-full min-w-[760px] bg-surface text-fg"
           role="img"
-          aria-label="高谭人物关系图"
+          aria-label="哥谭人物关系图"
         >
           <defs>
             <filter id="rel-gray">

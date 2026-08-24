@@ -22,7 +22,7 @@ export const THEMES: ThemeCue[] = [
     titleEn: "The Batman Theme",
     kind: "迈克尔·吉亚奇诺 原创配乐",
     image: "/media/gotham.jpg",
-    imageAlt: "蝙蝠侠伫立于高处俯瞰雨夜高谭",
+    imageAlt: "蝙蝠侠伫立于高处俯瞰雨夜哥谭",
     when: "开场夜巡、飞车追逐与终局救援等关键场景",
     lede: "以低沉有力的四音符下沉音型（Ostinato）为核心，由重低音铜管与钢琴交替敲击推进，精准烘托出蝙蝠侠如巨浪般不可阻挡的执念与压迫感。",
     sections: [
@@ -70,7 +70,7 @@ export const THEMES: ThemeCue[] = [
     sections: [
       {
         heading: "童年创伤的听觉投射",
-        body: "在剧情设定中，《圣母颂》是爱德华·纳什顿童年在高谭孤儿院唱诗班演唱的曲目。吉亚奇诺在电影开场与凶杀案现场反复引入这段清澈圣洁的童声合唱，深刻暗示了凶手对童年苦难的病态执念与扭曲心理。",
+        body: "在剧情设定中，《圣母颂》是爱德华·纳什顿童年在哥谭孤儿院唱诗班演唱的曲目。吉亚奇诺在电影开场与凶杀案现场反复引入这段清澈圣洁的童声合唱，深刻暗示了凶手对童年苦难的病态执念与扭曲心理。",
       },
       {
         heading: "黑暗交响的变奏重塑",
@@ -95,7 +95,7 @@ export const THEMES: ThemeCue[] = [
       },
       {
         heading: "全片情绪的首尾呼应",
-        body: "歌曲在开场伴随布鲁斯的夜巡日记独白缓缓流淌，勾勒出高谭街头的凋敝与主角内心的孤独；在终局洪灾救援中再度响起时，低沉的大提琴声伴随着蝙蝠侠走向被困民众的身影，完美完成了从阴暗迷茫到点亮希望的史诗闭环。",
+        body: "歌曲在开场伴随布鲁斯的夜巡日记独白缓缓流淌，勾勒出哥谭街头的凋敝与主角内心的孤独；在终局洪灾救援中再度响起时，低沉的大提琴声伴随着蝙蝠侠走向被困民众的身影，完美完成了从阴暗迷茫到点亮希望的史诗闭环。",
       },
     ],
   },
@@ -130,7 +130,7 @@ export const SOUNDTRACK_TRACKS: SoundtrackTrack[] = [
   {
     title: "《Dido's Lament》（狄多的哀歌）",
     artist: "亨利·珀塞尔 / 蒂芬男童合唱团",
-    scene: "高谭市政厅圣乔治大厅内，市长唐·米切尔隆重追悼会现场合唱",
+    scene: "哥谭市政厅圣乔治大厅内，市长唐·米切尔隆重追悼会现场合唱",
     type: "classical",
   },
   {
@@ -206,7 +206,7 @@ export const LENS = {
   stills: [
     { src: "/media/street.jpg", caption: "雨夜高反差：湿滑柏油路面将钠灯反射为条状高光" },
     { src: "/media/still-rain2.jpg", caption: "大光圈浅景深：特制变形宽银幕镜头呈现出锐利的中心画质与柔美的边缘光斑" },
-    { src: "/media/gotham.jpg", caption: "高谭全景纵深：低照度环境下以城市自身灯火作为唯美光源" },
+    { src: "/media/gotham.jpg", caption: "哥谭全景纵深：低照度环境下以城市自身灯火作为唯美光源" },
     { src: "/media/p2-snow1.jpg", caption: "格拉斯哥冬季实拍：续集将摄影焦点由深秋暴雨转向凛冽风雪" },
   ],
   fraser: [
@@ -216,11 +216,11 @@ export const LENS = {
     },
     {
       heading: "新黑色电影的现场实用光美学",
-      body: "全片几乎不依赖大面积人工柔光箱，而是大量利用高谭场景内部的真实光源——高压钠灯的橙黄反光、霓虹招牌的冷红冷蓝、车头大灯以及湿润积水的镜面反射。曝光严格压制在低照度区域，暗部深邃而不失层次，营造出极度逼真的夜间犯罪现场氛围。",
+      body: "全片几乎不依赖大面积人工柔光箱，而是大量利用哥谭场景内部的真实光源——高压钠灯的橙黄反光、霓虹招牌的冷红冷蓝、车头大灯以及湿润积水的镜面反射。曝光严格压制在低照度区域，暗部深邃而不失层次，营造出极度逼真的夜间犯罪现场氛围。",
     },
     {
       heading: "极具张力的几何剪影构图",
-      body: "弗雷泽多次采用中心透视与大剪影构图，将蝙蝠侠修长的耳廓与高谭哥特式摩天楼天际线巧妙融为一体。在著名的飞车追逐戏中，变形镜头带来的横向蓝色眩光在雨幕中穿透而出，带来了震撼人心的视觉冲击力。",
+      body: "弗雷泽多次采用中心透视与大剪影构图，将蝙蝠侠修长的耳廓与哥谭哥特式摩天楼天际线巧妙融为一体。在著名的飞车追逐戏中，变形镜头带来的横向蓝色眩光在雨幕中穿透而出，带来了震撼人心的视觉冲击力。",
     },
   ] satisfies LensNote[],
   messerschmidt: [
@@ -261,13 +261,13 @@ export const CITIES: LocationCity[] = [
     id: "liverpool",
     city: "利物浦",
     cityEn: "Liverpool",
-    note: "利物浦是《新蝙蝠侠》宇宙中高谭市政中心与宏伟新古典主义建筑的核心取景地。",
+    note: "利物浦是《新蝙蝠侠》宇宙中哥谭市政中心与宏伟新古典主义建筑的核心取景地。",
     pins: [
       {
         id: "st-georges",
         name: "圣乔治大厅",
         nameEn: "St George's Hall",
-        filmAs: "高谭市政厅 / 市长追悼会外景",
+        filmAs: "哥谭市政厅 / 市长追悼会外景",
         work: "电影《新蝙蝠侠》 · 电影《新蝙蝠侠2》",
         image: "/media/craft/st-georges.jpg",
         imageAlt: "利物浦圣乔治大厅新古典主义宏伟柱廊",
@@ -278,7 +278,7 @@ export const CITIES: LocationCity[] = [
         id: "liver-building",
         name: "皇家利物大厦",
         nameEn: "Royal Liver Building",
-        filmAs: "高谭市警局 (GCPD) 屋顶天台",
+        filmAs: "哥谭市警局 (GCPD) 屋顶天台",
         work: "电影《新蝙蝠侠》",
         image: "/media/craft/liver-building.jpg",
         imageAlt: "利物浦皇家利物大厦双钟楼顶层",
@@ -290,7 +290,7 @@ export const CITIES: LocationCity[] = [
         id: "anfield",
         name: "安菲尔德公墓",
         nameEn: "Anfield Cemetery",
-        filmAs: "高谭墓园哥特式地下隧道",
+        filmAs: "哥谭墓园哥特式地下隧道",
         work: "电影《新蝙蝠侠》",
         image: "/media/still-cat-bike.jpg",
         imageAlt: "猫女骑行机车穿过墓园隧道",
@@ -320,7 +320,7 @@ export const CITIES: LocationCity[] = [
         id: "necropolis",
         name: "格拉斯哥墓园",
         nameEn: "Glasgow Necropolis",
-        filmAs: "高谭大公墓与叹息桥",
+        filmAs: "哥谭大公墓与叹息桥",
         work: "电影《新蝙蝠侠》",
         image: "/media/craft/necropolis.jpg",
         imageAlt: "格拉斯哥墓园叹息桥与远处的纪念碑群",
@@ -331,22 +331,22 @@ export const CITIES: LocationCity[] = [
         id: "glasgow-bridge",
         name: "格拉斯哥大桥",
         nameEn: "Glasgow Bridge",
-        filmAs: "冬日高谭大桥与战车突围现场",
+        filmAs: "冬日哥谭大桥与战车突围现场",
         work: "电影《新蝙蝠侠2》",
         image: "/media/p2-snow2.jpg",
         imageAlt: "铺满人造积雪的格拉斯哥大桥实拍现场",
-        body: "横跨克莱德河（River Clyde）连接南北两岸的核心桥梁。2026 年 8 月中旬，剧组封桥铺设人造积雪与高谭路标，拍摄了蝙蝠战车在大雪中极速冲破封锁线的重头戏。",
+        body: "横跨克莱德河（River Clyde）连接南北两岸的核心桥梁。2026 年 8 月中旬，剧组封桥铺设人造积雪与哥谭路标，拍摄了蝙蝠战车在大雪中极速冲破封锁线的重头戏。",
         visit: "跨河主要市政桥梁，行人可通过宽阔的人行步道步行过桥，轻松打卡片场同款机位视角。",
       },
       {
         id: "broomielaw",
         name: "布鲁米洛滨河街区",
         nameEn: "Broomielaw",
-        filmAs: "高谭冬日商业街与警匪对峙区",
+        filmAs: "哥谭冬日商业街与警匪对峙区",
         work: "电影《新蝙蝠侠2》",
         image: "/media/p2-snow1.jpg",
         imageAlt: "布鲁米洛街区雪景实拍俯瞰图",
-        body: "克莱德河北岸著名的历史沿河大道。剧组将整条街区的沿街商铺重新装修改装为高谭市的百货大楼与餐厅，并在此完成了装甲特警车队与战车对峙的夜战实拍。",
+        body: "克莱德河北岸著名的历史沿河大道。剧组将整条街区的沿街商铺重新装修改装为哥谭市的百货大楼与餐厅，并在此完成了装甲特警车队与战车对峙的夜战实拍。",
         visit: "位于格拉斯哥核心滨河区域，沿途拥有开阔的步行绿道与现代咖啡厅，交通极为便利。",
       },
     ],
@@ -361,7 +361,7 @@ export const CITIES: LocationCity[] = [
         id: "two-temple",
         name: "双殿官邸",
         nameEn: "Two Temple Place",
-        filmAs: "高谭市长唐·米切尔豪华府邸",
+        filmAs: "哥谭市长唐·米切尔豪华府邸",
         work: "电影《新蝙蝠侠》",
         image: "/media/craft/two-temple.jpg",
         imageAlt: "伦敦双殿维多利亚哥特式华丽外立面",
@@ -384,7 +384,7 @@ export const CITIES: LocationCity[] = [
         id: "lethaby",
         name: "莱瑟比楼",
         nameEn: "Lethaby Building",
-        filmAs: "高谭警局室内",
+        filmAs: "哥谭警局室内",
         work: "电影《新蝙蝠侠》",
         image: "/media/still-gordon.jpg",
         imageAlt: "吉姆·戈登。",
@@ -426,9 +426,9 @@ export const ALIASES: { heard: string; mapsTo: string; body: string }[] = [
     body: "电影中宏伟的市长追悼会外景实拍于利物浦圣乔治大厅（St George's Hall）的古典柱廊前，室内悼念大厅则由制片厂大型摄影棚实景搭建。",
   },
   {
-    heard: "高谭市政大堂",
+    heard: "哥谭市政大堂",
     mapsTo: "st-georges",
-    body: "高谭市政厅的外立面与宽阔台阶均取景自利物浦圣乔治大厅，是串联前作与续集的核心地标之一。",
+    body: "哥谭市政厅的外立面与宽阔台阶均取景自利物浦圣乔治大厅，是串联前作与续集的核心地标之一。",
   },
   {
     heard: "国王通道地下隧道",

@@ -17,7 +17,7 @@ function Recap() {
       <header className="relative isolate overflow-hidden border-b border-fg/10">
         <img
           src="/media/flood.jpg"
-          alt="大洪水过后的高谭市"
+          alt="大洪水过后的哥谭市"
           className="absolute inset-0 size-full object-cover opacity-55"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-bg/40" />
@@ -29,7 +29,7 @@ function Recap() {
             前作与宇宙回顾
           </h1>
           <p className="mt-4 max-w-xl text-pretty text-muted">
-            按照高谭宇宙内部事件发展顺序梳理（包含前传小说、漫画、电影《新蝙蝠侠》与剧集《企鹅人》）。原著漫画致敬考据请查阅{" "}
+            按照哥谭宇宙内部事件发展顺序梳理（包含前传小说、漫画、电影《新蝙蝠侠》与剧集《企鹅人》）。原著漫画致敬考据请查阅{" "}
             <Link to="/roots" className="text-fg underline-offset-4 hover:underline">
               原著渊源
             </Link>
@@ -44,12 +44,12 @@ function Recap() {
             00 / Timeline
           </p>
           <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-            高谭历史编年史
+            哥谭历史编年史
           </h2>
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
             按故事内部时间线排列。相关地标详情可查阅{" "}
             <Link to="/places" className="text-fg underline-offset-4 hover:underline">
-              高谭地点总览
+              哥谭地点总览
             </Link>
             ；最新续集资讯与拍摄日程可查阅{" "}
             <Link to="/dossier" className="text-fg underline-offset-4 hover:underline">

@@ -15,7 +15,7 @@ function Cases() {
       <header className="relative isolate overflow-hidden border-b border-fg/10">
         <img
           src="/media/still-lair.jpg"
-          alt="高谭重案卷宗与调查物证"
+          alt="哥谭重案卷宗与调查物证"
           className="absolute inset-0 size-full object-cover opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/75 to-bg/40" />
@@ -30,7 +30,7 @@ function Cases() {
             五大凶案物证室 · 布鲁斯夜巡日记 · 阿卡姆审讯纪要
           </p>
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-            以严密法医物证与警局侦查卷宗视角，全面复盘第一部连环暗杀大案的现场线索、致命凶器、录像密码与终局大坝决堤物证；同时收录布鲁斯·韦恩夜巡日记《高谭项目》全文与阿卡姆 5 分钟删减审讯深度拉片。
+            以严密法医物证与警局侦查卷宗视角，全面复盘第一部连环暗杀大案的现场线索、致命凶器、录像密码与终局大坝决堤物证；同时收录布鲁斯·韦恩夜巡日记《哥谭项目》全文与阿卡姆 5 分钟删减审讯深度拉片。
           </p>
           <nav className="mt-8 flex flex-wrap gap-3">
             {[
@@ -61,7 +61,7 @@ function Cases() {
               五大重案现场物证卷宗
             </h2>
             <p className="mt-2 text-sm text-muted">
-              高谭市警察局 (GCPD) 重案组与义警联合侦查案件归档。按案发时间先后顺序编排。
+              哥谭市警察局 (GCPD) 重案组与义警联合侦查案件归档。按案发时间先后顺序编排。
             </p>
           </div>
 
@@ -161,7 +161,7 @@ function Cases() {
               02 / The Gotham Project
             </p>
             <h2 className="mt-2 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-              布鲁斯·韦恩夜巡日记《高谭项目》
+              布鲁斯·韦恩夜巡日记《哥谭项目》
             </h2>
             <p className="mt-2 text-sm text-muted">
               完整收录电影开场至终局成片中，布鲁斯在地下车间深夜手写日记的全部独白文本（中英对照）。
@@ -250,7 +250,7 @@ function Cases() {
         </section>
 
         <p className="max-w-2xl text-sm leading-relaxed text-faint">
-          查阅高谭历史发展全景，请前往{" "}
+          查阅哥谭历史发展全景，请前往{" "}
           <Link to="/recap" className="text-muted underline-offset-4 hover:text-fg hover:underline">
             前作与宇宙回顾
           </Link>

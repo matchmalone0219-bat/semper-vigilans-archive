@@ -113,7 +113,7 @@ export const MERCH: MerchGroup[] = [
         spec: "1/3 比例 · 高约 88 cm · 限量发行",
         image: "/media/merch/p1s-sae.jpg",
         imageAlt: "Prime 1 Studio 特殊艺术版红雨灯光效果全身雕像",
-        body: "以传奇漫画家吉姆·李（Jim Lee）为 DC FanDome 创作的概念插画为灵感，结合电影实拍装甲细节，地台融合了高谭标志性滴水兽雕塑与红雨氛围灯效，极具艺术表现力。",
+        body: "以传奇漫画家吉姆·李（Jim Lee）为 DC FanDome 创作的概念插画为灵感，结合电影实拍装甲细节，地台融合了哥谭标志性滴水兽雕塑与红雨氛围灯效，极具艺术表现力。",
       },
     ],
   },
@@ -177,7 +177,7 @@ export const MERCH: MerchGroup[] = [
         spec: "精装大开本 · 全彩印刷",
         image: "/media/merch/artbook.jpg",
         imageAlt: "《The Art of The Batman》精装设定集封面",
-        body: "导演马特·里夫斯亲笔作序。全书收录数百张前期概念设计图、分镜头脚本、服装道具分解图与主创专访，详细记录了新高谭视觉构建的全过程。",
+        body: "导演马特·里夫斯亲笔作序。全书收录数百张前期概念设计图、分镜头脚本、服装道具分解图与主创专访，详细记录了新哥谭视觉构建的全过程。",
       },
       {
         id: "novel",

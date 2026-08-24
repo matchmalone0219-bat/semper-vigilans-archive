@@ -25,7 +25,7 @@ function Home() {
       <section className="relative isolate min-h-svh overflow-hidden">
         <img
           src="/media/gotham.jpg"
-          alt="雨夜中的高谭市全景"
+          alt="雨夜中的哥谭市全景"
           className="absolute inset-0 size-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-bg/25" />
@@ -70,12 +70,12 @@ function Home() {
             01 / Prologue
           </p>
           <h2 className="mt-3 font-sans text-3xl font-black leading-tight tracking-tight sm:text-5xl">
-            洪水退去，高谭市即将迎来严苛寒冬。
+            洪水退去，哥谭市即将迎来严苛寒冬。
           </h2>
         </div>
         <div className="space-y-5 text-pretty text-base leading-relaxed text-muted lg:col-span-7">
           <p>
-            前作《新蝙蝠侠》以谜语人引发的高谭暴洪收尾，续集将时间线推向寒冷冬日。剧组在苏格兰格拉斯哥搭建雪景实拍，蝙蝠战车换上雪地胎，项目代号定为「Semper Vigilans」（永远警惕）。
+            前作《新蝙蝠侠》以谜语人引发的哥谭暴洪收尾，续集将时间线推向寒冷冬日。剧组在苏格兰格拉斯哥搭建雪景实拍，蝙蝠战车换上雪地胎，项目代号定为「Semper Vigilans」（永远警惕）。
           </p>
           <p>
             本站为影迷自发建立的中文资料库，为您持续汇总官方公开新闻、演职员名单、片场实拍线索与剧情推测。所有传闻均已明确标注来源，力求提供客观严谨的影视资讯。

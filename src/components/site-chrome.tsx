@@ -171,7 +171,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 </li>
                 <li>
                   <Link to="/places" className="hover:text-fg">
-                    高谭地点
+                    哥谭地点
                   </Link>
                 </li>
                 <li>

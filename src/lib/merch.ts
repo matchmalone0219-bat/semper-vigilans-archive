@@ -126,17 +126,6 @@ export const MERCH: MerchGroup[] = [
         imageAlt: "Factory Entertainment 1:1 战术抓钩枪实物展示",
         body: "全尺寸 1:1 电影实体道具复刻，尺寸约 10×21×5 厘米。采用实心合金精密压铸，高度还原钢缆线轴、握把机械制动机构与表面战损涂装，配有博物馆级展示盒与独立编号收藏证书。",
       },
-      {
-        id: "inart-cowl-replica",
-        name: "INART 1:1 蝙蝠面罩胸像复刻",
-        nameEn: "The Batman 1:1 Scale Cowl & Bust Replica",
-        maker: "INART · Queen Studios",
-        year: "2023",
-        spec: "1:1 全尺寸 · 医用级硅胶与特种皮革",
-        image: "/media/merch/inart-cowl.jpg",
-        imageAlt: "INART 1:1 蝙蝠头套与胸像实物展陈",
-        body: "Queen Studios 旗下高端品牌打造的 1:1 实物级头套复刻。采用医用级铂金硅胶、手工缝制皮革与内置加固骨架构成，真实重现战术头套缝线、弹痕与皮革质感，完美再现电影开场夜巡的威慑力。",
-      },
     ],
   },
   {

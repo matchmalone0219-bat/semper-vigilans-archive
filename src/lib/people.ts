@@ -71,7 +71,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "续集展望：凛冬下的内心考验",
-        body: "导演马特·里夫斯表示，《新蝙蝠侠2》将进一步深入挖掘布鲁斯·韦恩的内心世界，展现作为普通人在沉重使命下的道德抉择。片场路透中装配雪地胎与战损涂装的战车，预示着更加凶险的冬日较量。",
+        body: "导演马特·里夫斯表示，《新蝙蝠侠2》将进一步聚焦布鲁斯·韦恩本人。片场公开画面显示冬季视觉元素与蝙蝠战车回归，但具体道德抉择和剧情冲突仍未公开。",
       },
     ],
   },
@@ -80,7 +80,7 @@ export const FILES: Record<string, PersonFile> = {
     appearances: [
       { work: "官方前传小说", note: "负责布鲁斯的体能格斗、侦查技能与机械工程训练。", href: "/recap", hash: "before" },
       { work: "电影《新蝙蝠侠》", note: "常驻地下车间，在炸弹袭击中为保护布鲁斯受伤。", href: "/recap", hash: "the-batman" },
-      { work: "电影《新蝙蝠侠2》", note: "安迪·瑟金斯确认回归，继续担任后方核心支柱。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "安迪·瑟金斯确认回归，具体剧情尚未公开。", href: "/dossier" },
     ],
     places: ["wayne-tower", "cave"],
     stills: ["/media/still-alfred.jpg"],
@@ -91,7 +91,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "生死相托的深厚羁绊",
-        body: "在第一部中，阿尔弗雷德替布鲁斯拆开暗藏炸药的信件而负伤。在病榻前两人坦诚相待，解开了历史心结。在续集中，他将继续镇守地下车间提供全面的情报支援。",
+        body: "在第一部中，阿尔弗雷德替布鲁斯拆开暗藏炸药的信件而负伤。在病榻前两人坦诚相待，解开了历史心结。安迪·瑟金斯已确认回归，但续集中的具体行动尚未公开。",
       },
     ],
   },
@@ -99,14 +99,14 @@ export const FILES: Record<string, PersonFile> = {
     also: ["贝拉·蕾尔", "哥谭市长"],
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "年轻改革派候选人，在枪击与洪灾浩劫中幸存并当选。", href: "/recap", hash: "the-batman" },
-      { work: "电影《新蝙蝠侠2》", note: "洁米·劳森确认回归，主导城市灾后重建。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "洁米·劳森确认回归，具体剧情尚未公开。", href: "/dossier" },
     ],
     places: ["gsg", "city-hall"],
     stills: ["/media/flood.jpg"],
     sections: [
       {
         heading: "哥谭灾后改革的领军者",
-        body: "贝拉·蕾尔作为年轻有为的改革派政治家，在竞选集会枪击与决堤洪灾中沉着应对并当选市长。在灾后重建期，她致力于铲除旧体制贪腐积弊，重塑市民对法治的信任。",
+        body: "贝拉·蕾尔作为年轻改革派政治家，在竞选集会枪击与决堤洪灾中幸存并当选市长。影片表现了她的反腐立场；续集将如何呈现灾后治理尚未公开。",
       },
     ],
   },
@@ -248,7 +248,7 @@ export const FILES: Record<string, PersonFile> = {
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "法尔科内手下得力干将，在枪林弹雨中保全自身。", href: "/recap", hash: "the-batman" },
       { work: "限定剧《企鹅人》", note: "主线主角，通过周密谋略扫清对手登顶黑道王座。", href: "/recap", hash: "the-penguin" },
-      { work: "电影《新蝙蝠侠2》", note: "科林·法瑞尔确认回归，成为黑帮新教父。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "科林·法瑞尔确认回归，具体戏份尚未公开。", href: "/dossier" },
     ],
     places: ["iceberg", "crown-point"],
     stills: [
@@ -266,7 +266,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "铁血登顶与地下新王",
-        body: "在《企鹅人》八集剧集中，他击溃法尔科内与马罗尼家族核心势力，甚至灭口了唯一信任的心腹维克托以消除自身软肋，彻底登顶哥谭地下新王。已确认在《新蝙蝠侠2》中强势登场。",
+        body: "在《企鹅人》八集剧集中，他击溃法尔科内与马罗尼家族核心势力，甚至灭口了唯一信任的心腹维克托以消除自身软肋，最终进入哥谭权力上层。科林·法瑞尔已确认回归，但作用仍未公开。",
       },
     ],
   },

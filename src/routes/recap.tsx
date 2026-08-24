@@ -418,7 +418,7 @@ function Recap() {
             步入第二部的各方格局
           </h2>
           <p className="mt-4 max-w-2xl text-pretty text-muted">
-            故事时间紧接《企鹅人》结局数周后的严冬，当前已确定的各方势力状态概览：
+            依据公开采访、已播剧情与片场可见信息整理；续集尚未披露的行动均不作确定判断：
           </p>
           <ul className="mt-10 grid gap-px bg-border sm:grid-cols-2">
             {BOARD.map((row) => (

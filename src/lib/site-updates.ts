@@ -14,6 +14,12 @@ export const SITE_UPDATE_KIND: Record<SiteUpdate["kind"], string> = {
 export const SITE_UPDATES: SiteUpdate[] = [
   {
     date: "2026.08.24",
+    title: "完成续集资料与来源审计",
+    body: "重新核查档期、开拍、演员与英国外景资料；为核心事实补充来源，并将无法由公开证据支持的剧情判断降级为线索或传闻。",
+    kind: "content",
+  },
+  {
+    date: "2026.08.24",
     title: "来源链接、全站搜索与分享信息上线",
     body: "为重点拍摄日志和收藏品补充可核实的公开来源；新增跨栏目搜索，并完善页面摘要、分享卡片与资源路径。",
     kind: "experience",

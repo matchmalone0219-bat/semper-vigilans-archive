@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   CERTAINTY_LABEL,
   CAST,
+  CONTENT_REVIEWED_AT,
   FACTS,
   FILM,
   LOG,
@@ -59,6 +60,9 @@ function Dossier() {
             </Link>
             专题。
           </p>
+          <p className="mt-4 max-w-xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
+            资料核验至 {CONTENT_REVIEWED_AT}：官方/导演公开信息与可靠媒体归为“确认”，片场可见内容归为“线索”，角色与剧情推测归为“传闻”。
+          </p>
           <nav className="mt-8 flex flex-wrap gap-3">
             {jump.map((item) => (
               <a
@@ -80,7 +84,17 @@ function Dossier() {
             {FACTS.map((fact) => (
               <div key={fact.label} className="grid gap-2 py-4 sm:grid-cols-12 sm:gap-6">
                 <dt className="text-sm tracking-widest text-muted sm:col-span-3">{fact.label}</dt>
-                <dd className="text-pretty sm:col-span-9">{fact.value}</dd>
+                <dd className="text-pretty sm:col-span-9">
+                  {fact.value}
+                  {fact.source ? (
+                    <SourceLink
+                      label={fact.source}
+                      href={fact.sourceUrl}
+                      tier={fact.sourceTier}
+                      verifiedAt={CONTENT_REVIEWED_AT}
+                    />
+                  ) : null}
+                </dd>
               </div>
             ))}
           </dl>
@@ -102,6 +116,14 @@ function Dossier() {
                   {CERTAINTY_LABEL[item.tag]}
                 </span>
                 <p className="mt-3 text-pretty leading-relaxed">{item.text}</p>
+                {item.source ? (
+                  <SourceLink
+                    label={item.source}
+                    href={item.sourceUrl}
+                    tier={item.sourceTier}
+                    verifiedAt={CONTENT_REVIEWED_AT}
+                  />
+                ) : null}
               </li>
             ))}
           </ul>
@@ -109,6 +131,13 @@ function Dossier() {
 
         <section id="cast" className="scroll-mt-24">
           <SectionKicker n="03" title="演职员" />
+          <SourceLink
+            label="Variety · 导演公开确认回归与新加盟阵容"
+            href="https://au.variety.com/2026/film/news/the-batman-part-2-scarlett-johansson-sebastian-stan-36609/"
+            tier="press"
+            verifiedAt={CONTENT_REVIEWED_AT}
+            className="mt-3 text-xs text-faint"
+          />
           <ul className="mt-8 grid gap-px bg-border sm:grid-cols-2">
             {CAST.map((person) => {
               const inner = (

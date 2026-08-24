@@ -42,7 +42,7 @@ export const PLOT: { tag: Certainty; text: string }[] = [
   },
   {
     tag: "hint",
-    text: "2026 年 8 月 18 日起，剧组在苏格兰格拉斯哥封街拍摄冬季外景。18 至 20 日路透可见人造雪、圣诞灯、战损战车与高谭 SWAT 载具；20 日夜戏排练出现围堵战车与模拟直升机探照灯。故事季节为严冬。",
+    text: "2026 年 8 月 18 日起，剧组在苏格兰格拉斯哥封街拍摄冬季外景，市政通告夜戏窗口持续至 8 月 28 日。18 至 23 日路透可见人造雪、圣诞灯、战损战车、高谭 SWAT 与 GCPD 涂装车辆；21 日起拍到替身驾驶战车追逐，23 日夜拍到战车突围与警车交火。故事季节为严冬。",
   },
   {
     tag: "hint",
@@ -188,7 +188,13 @@ export type LogEntry = {
   hash?: string;
   upcoming?: boolean;
   image?: string;
+  images?: string[];
 };
+
+export function logImages(entry: LogEntry): string[] {
+  if (entry.images && entry.images.length > 0) return entry.images;
+  return entry.image ? [entry.image] : [];
+}
 
 export const LOG: LogEntry[] = [
   {
@@ -298,6 +304,14 @@ export const LOG: LogEntry[] = [
     body: "里夫斯连续发出前作片段 GIF，确认罗伯特·帕丁森、杰弗里·怀特、安迪·瑟金斯、科林·法瑞尔、洁米·劳森与吉尔·佩雷斯-亚伯拉罕等前作核心卡司悉数回归。",
     kind: "cast",
     source: "Matt Reeves / X",
+    image: "/media/portraits/bruce.jpg",
+    images: [
+      "/media/portraits/bruce.jpg",
+      "/media/portraits/gordon.jpg",
+      "/media/portraits/alfred.jpg",
+      "/media/portraits/oz.jpg",
+      "/media/portraits/bella.jpg",
+    ],
   },
   {
     date: "2026.05.14",
@@ -306,6 +320,7 @@ export const LOG: LogEntry[] = [
     body: "里夫斯正式宣布斯嘉丽·约翰逊、塞巴斯蒂安·斯坦、查尔斯·丹斯、塞巴斯蒂安·科赫与布莱恩·泰瑞·亨利等加盟《新蝙蝠侠2》，各演员的具体角色与设定目前保持保密，尚未正式公开。",
     kind: "cast",
     source: "Matt Reeves / X",
+    image: "/media/portraits/charles.jpg",
   },
   {
     date: "2026.05.20",
@@ -339,6 +354,14 @@ export const LOG: LogEntry[] = [
     href: "/gallery",
     hash: "part2",
     image: "/media/p2-lacys.jpg",
+    images: [
+      "/media/p2-lacys.jpg",
+      "/media/car.jpg",
+      "/media/p2-trailer.jpg",
+      "/media/p2-swat.jpg",
+      "/media/log/p2-bothwell-snow.jpg",
+      "/media/log/p2-crane-cops.jpg",
+    ],
   },
   {
     date: "2026.08.19",
@@ -350,6 +373,14 @@ export const LOG: LogEntry[] = [
     href: "/gallery",
     hash: "part2",
     image: "/media/p2-car19.jpg",
+    images: [
+      "/media/p2-car19.jpg",
+      "/media/p2-dmg1.jpg",
+      "/media/p2-dmg2.jpg",
+      "/media/p2-snow1.jpg",
+      "/media/p2-snow3.jpg",
+      "/media/log/p2-crane-crew.jpg",
+    ],
   },
   {
     date: "2026.08.20",
@@ -361,6 +392,71 @@ export const LOG: LogEntry[] = [
     href: "/gallery",
     hash: "part2",
     image: "/media/p2-batman.jpg",
+    images: [
+      "/media/p2-batman.jpg",
+      "/media/p2-snow4.jpg",
+      "/media/p2-snow2.jpg",
+      "/media/log/p2-swat-day.jpg",
+      "/media/log/p2-firetruck.jpg",
+      "/media/log/p2-us-flags.jpg",
+    ],
+  },
+  {
+    date: "2026.08.21",
+    iso: "2026-08-21",
+    title: "Pitt Street 夜戏：替身驾驶战车追逐",
+    body: "21 日夜，封路转至 Pitt Street 与 Bothwell Street 西段。当地路透拍到替身 Rick English 驾驶战车完成追逐镜头，并有人近距离见到全套战衣替身。白天街道仍覆盖人造雪，高谭警车、消防车与美国国旗店招保留。封路至次日凌晨 5 点。",
+    kind: "shoot",
+    source: "当地片场路透 / kt_perspective",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-gcpd-line.jpg",
+    images: [
+      "/media/log/p2-gcpd-line.jpg",
+      "/media/log/p2-gcpd-night.jpg",
+      "/media/log/p2-gotham-sign.jpg",
+      "/media/log/p2-bothwell-look.jpg",
+      "/media/log/p2-fire-cops.jpg",
+      "/media/log/p2-cop-close.jpg",
+    ],
+  },
+  {
+    date: "2026.08.22",
+    iso: "2026-08-22",
+    title: "周末夜戏窗口：Bothwell Street 连续封街",
+    body: "22 日起进入市政通告中的连续夜戏窗口（每晚 19:30–05:00，持续至 28 日）。Bothwell Street 与 Wellington Street 仍是主战场：临街改成高谭冬景，摄影吊臂、灯架与 GCPD 涂装车辆彻夜作业。官方未发剧照。",
+    kind: "shoot",
+    source: "BBC 封路通告 / 当地路透",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-bothwell-snow2.jpg",
+    images: [
+      "/media/log/p2-bothwell-snow2.jpg",
+      "/media/log/p2-wet-flag.jpg",
+      "/media/log/p2-22-street.jpg",
+      "/media/log/p2-22-lane.jpg",
+      "/media/log/p2-swat-day2.jpg",
+      "/media/log/p2-crane-cops.jpg",
+    ],
+  },
+  {
+    date: "2026.08.23",
+    iso: "2026-08-23",
+    title: "第五夜：战车突围，GCPD 交火",
+    body: "23 日夜被当地称作第五夜。路透拍到战车在人造雪与湿滑路面上甩尾突围，高谭警车列队开火；视频中可见替身戴上头套驾驶。白天街道仍有 GCPD 涂装车辆与 SWAT 载具待命。官方剧照仍未发布。",
+    kind: "shoot",
+    source: "当地片场路透 8 月 23 日 / Scottish Journeys",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-escape-1.jpg",
+    images: [
+      "/media/log/p2-escape-1.jpg",
+      "/media/log/p2-escape-2.jpg",
+      "/media/log/p2-escape-3.jpg",
+      "/media/log/p2-chase-still.jpg",
+      "/media/p2-batman.jpg",
+      "/media/p2-snow4.jpg",
+    ],
   },
   {
     date: "2028.02.18",

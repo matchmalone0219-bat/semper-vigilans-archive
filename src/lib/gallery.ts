@@ -209,8 +209,45 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》目前没有官方剧照。以下为 2026 年 8 月 18 日至 20 日格拉斯哥外景见报、并在社交媒体公开发布的片场照片。工作标题 Semper Vigilans。",
+      "《新蝙蝠侠2》目前没有官方剧照。以下为 2026 年 8 月 18 日至 23 日格拉斯哥外景见报、并在社交媒体公开发布的片场照片。工作标题 Semper Vigilans。",
     stills: [
+      {
+        src: "/media/log/p2-escape-1.jpg",
+        title: "战车突围",
+        caption:
+          "2026 年 8 月 23 日夜。战车在人造雪上甩尾，高谭警车列队开火。当地称为第五夜。",
+        source: "片场照片 · 当地路透 8 月 23 日",
+      },
+      {
+        src: "/media/log/p2-escape-2.jpg",
+        title: "警车列队",
+        caption: "GCPD 涂装车辆在湿滑路面上围堵战车。同一夜追逐戏。",
+        source: "片场照片 · 当地路透 8 月 23 日",
+      },
+      {
+        src: "/media/log/p2-escape-3.jpg",
+        title: "湿路追逐",
+        caption: "战车从警车阵列中穿出。替身戴头套驾驶。",
+        source: "片场照片 · 当地路透 8 月 23 日",
+      },
+      {
+        src: "/media/log/p2-bothwell-snow.jpg",
+        title: "Bothwell Street 雪景",
+        caption: "格拉斯哥 Bothwell Street 铺上人造雪，路边停着高谭警车。",
+        source: "片场照片 · The Herald / Colin Mearns",
+      },
+      {
+        src: "/media/log/p2-gotham-sign.jpg",
+        title: "Gotham 路牌",
+        caption: "剧组换上 Gotham 路牌。格拉斯哥市中心临时改成高谭冬景。",
+        source: "片场照片 · 当地路透",
+      },
+      {
+        src: "/media/log/p2-firetruck.jpg",
+        title: "高谭消防车",
+        caption: "美式消防车与 GCPD 涂装出现在封街路段。",
+        source: "片场照片 · 当地路透",
+      },
       {
         src: "/media/p2-batman.jpg",
         title: "战衣上街",

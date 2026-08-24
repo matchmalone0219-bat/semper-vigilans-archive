@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CERTAINTY_LABEL, CAST, FACTS, FILM, LOG, LOG_KIND, PLOT, latestLog, pageTitle } from "@/lib/film";
+import { CERTAINTY_LABEL, CAST, FACTS, FILM, LOG, LOG_KIND, PLOT, latestLog, logImages, pageTitle } from "@/lib/film";
 import { RelationMap } from "@/components/relation-map";
+import { LogCarousel } from "@/components/log-carousel";
 import { PLACES } from "@/lib/places";
 import { cn } from "@/lib/cn";
 
@@ -254,13 +255,9 @@ function Dossier() {
             。
           </p>
 
-          <article className="mt-8 border border-blood/40 bg-surface/40 p-5 sm:flex sm:gap-6 sm:p-6">
-            {latest.image ? (
-              <img
-                src={latest.image}
-                alt=""
-                className="mb-4 aspect-[16/9] w-full object-cover sm:mb-0 sm:w-64 sm:shrink-0"
-              />
+          <article className="mt-8 border border-blood/40 bg-surface/40 p-5 sm:p-6">
+            {logImages(latest).length ? (
+              <LogCarousel images={logImages(latest)} className="mb-4" />
             ) : null}
             <div>
               <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
@@ -306,12 +303,8 @@ function Dossier() {
                 <p className="mt-2 max-w-2xl text-pretty text-sm leading-relaxed text-muted">
                   {event.body}
                 </p>
-                {event.image ? (
-                  <img
-                    src={event.image}
-                    alt=""
-                    className="mt-3 aspect-[16/9] w-full max-w-md object-cover"
-                  />
+                {logImages(event).length ? (
+                  <LogCarousel images={logImages(event)} className="mt-3 max-w-2xl" />
                 ) : null}
                 {event.source ? (
                   <p className="mt-2 text-xs text-faint">{event.source}</p>

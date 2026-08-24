@@ -86,8 +86,62 @@ export const MERCH: MerchGroup[] = [
     ],
   },
   {
-    id: "statues",
+    id: "props",
     kicker: "02",
+    title: "1:1 电影道具复刻",
+    titleEn: "1:1 Prop Replicas",
+    intro:
+      "基于华纳兄弟制片团队原始 3D 资产与 STL 扫描数据 1:1 精准复刻的实体电影道具，采用高规格压铸金属与真实皮革材质打造，具备极高收藏与鉴赏价值。",
+    items: [
+      {
+        id: "fe-batarang",
+        name: "Factory Entertainment 1:1 金属蝙蝠飞镖",
+        nameEn: "The Batman Batarang Limited Edition Prop Replica",
+        maker: "Factory Entertainment · 华纳官方授权",
+        year: "2022",
+        spec: "1:1 比例 · 实心压铸金属 · 钢琴烤漆亚克力展示盒",
+        image: "/media/gear-chest-blade-exhibit.jpg",
+        imageAlt: "Factory Entertainment 1:1 蝙蝠飞镖金属复刻道具与展示盒",
+        body: "Factory Entertainment 根据《新蝙蝠侠》电影制片组提供的原始数字资产打造。全尺寸纯金属压铸，表面经过手工战损旧化处理，真实还原大银幕质感；随附带专属编号金属铭牌与高规格钢琴烤漆亚克力展示盒。",
+      },
+      {
+        id: "paragon-glyph",
+        name: "Paragon FX 1:1 胸甲可拆卸金属蝙蝠徽标",
+        nameEn: "The Batman 2022 Bat Glyph 1:1 Metal Prop Replica",
+        maker: "Paragon FX Group · 华纳官方授权",
+        year: "2022",
+        spec: "1:1 全尺寸 · 纯金属实心铸造 · 全球限量 750 件",
+        image: "/media/gear-chest-blade.jpg",
+        imageAlt: "Paragon FX 1:1 金属蝙蝠徽标双面与展开形态",
+        body: "获得华纳兄弟官方授权，由知名道具厂牌 Paragon 依据电影道具原件 STL 文件 1:1 打造。全金属实心分量感十足，不仅忠实还原徽记表面的细微机械纹理，更可拆卸展开为双刃战术折叠刀。",
+      },
+      {
+        id: "fe-grapnel",
+        name: "Factory Entertainment 1:1 战术抓钩发射器",
+        nameEn: "The Batman Grapple Launcher 1:1 Life-Size Prop Replica",
+        maker: "Factory Entertainment · 华纳官方授权",
+        year: "2022",
+        spec: "1:1 比例 · 全金属铸造 · 全球限量 1500 件",
+        image: "/media/gear-grapnel-concept.jpg",
+        imageAlt: "Factory Entertainment 1:1 战术抓钩枪实物展示",
+        body: "全尺寸 1:1 电影实体道具复刻，尺寸约 10×21×5 厘米。采用实心合金精密压铸，高度还原钢缆线轴、握把机械制动机构与表面战损涂装，配有博物馆级展示盒与独立编号收藏证书。",
+      },
+      {
+        id: "inart-cowl-replica",
+        name: "INART 1:1 蝙蝠面罩胸像复刻",
+        nameEn: "The Batman 1:1 Scale Cowl & Bust Replica",
+        maker: "INART · Queen Studios",
+        year: "2023",
+        spec: "1:1 全尺寸 · 医用级硅胶与特种皮革",
+        image: "/media/merch/inart-cowl.jpg",
+        imageAlt: "INART 1:1 蝙蝠头套与胸像实物展陈",
+        body: "Queen Studios 旗下高端品牌打造的 1:1 实物级头套复刻。采用医用级铂金硅胶、手工缝制皮革与内置加固骨架构成，真实重现战术头套缝线、弹痕与皮革质感，完美再现电影开场夜巡的威慑力。",
+      },
+    ],
+  },
+  {
+    id: "statues",
+    kicker: "03",
     title: "高端雕像",
     titleEn: "Statues",
     intro:
@@ -119,7 +173,7 @@ export const MERCH: MerchGroup[] = [
   },
   {
     id: "vehicles",
-    kicker: "03",
+    kicker: "04",
     title: "车模载具",
     titleEn: "Die-Cast Vehicles",
     intro:
@@ -162,7 +216,7 @@ export const MERCH: MerchGroup[] = [
   },
   {
     id: "print",
-    kicker: "04",
+    kicker: "05",
     title: "出版书籍",
     titleEn: "Books & Comics",
     intro:
@@ -205,7 +259,7 @@ export const MERCH: MerchGroup[] = [
   },
   {
     id: "media",
-    kicker: "05",
+    kicker: "06",
     title: "影音与原声",
     titleEn: "Home Video & Soundtrack",
     intro:
@@ -248,7 +302,7 @@ export const MERCH: MerchGroup[] = [
   },
   {
     id: "posters",
-    kicker: "06",
+    kicker: "07",
     title: "艺术海报与丝网印",
     titleEn: "Official Posters & Prints",
     intro:

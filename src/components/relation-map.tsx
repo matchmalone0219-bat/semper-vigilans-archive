@@ -34,6 +34,31 @@ function nodeBox(n: RelNode) {
   return { x: n.x - NW / 2, y: n.y - NH / 2, w: NW, h: NH };
 }
 
+/** Where the visible line leaves a card, heading toward the other node. */
+function edgeAnchor(from: RelNode, to: RelNode) {
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const tx = Math.abs(dx) < 0.01 ? Number.POSITIVE_INFINITY : NW / 2 / Math.abs(dx);
+  const ty = Math.abs(dy) < 0.01 ? Number.POSITIVE_INFINITY : NH / 2 / Math.abs(dy);
+  const t = Math.min(tx, ty);
+  return { x: from.x + dx * t, y: from.y + dy * t };
+}
+
+function labelAnchor(a: RelNode, b: RelNode, dup: boolean) {
+  const p1 = edgeAnchor(a, b);
+  const p2 = edgeAnchor(b, a);
+  let x = (p1.x + p2.x) / 2;
+  let y = (p1.y + p2.y) / 2;
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  if (Math.abs(dx) >= Math.abs(dy)) {
+    y = Math.min(a.y, b.y) - NH / 2 - (dup ? 22 : 9);
+  } else if (dup) {
+    x += 16;
+  }
+  return { x, y };
+}
+
 export function RelationMap() {
   const [active, setActive] = useState<string | null>("bruce");
 
@@ -101,15 +126,10 @@ export function RelationMap() {
             const b = NODE_MAP[e.b];
             if (!a || !b) return null;
             const on = !lit || lit.edgeIdx.has(i);
-            const mx = (a.x + b.x) / 2;
-            const my = (a.y + b.y) / 2;
-            const dup = EDGES.findIndex((x) => x.a === e.a && x.b === e.b) !== i;
-            const ox = dup ? 10 : 0;
-            const oy = dup ? -14 : 0;
             const dashed = e.kind === "rumor" || e.kind === "foe";
             return (
               <g
-                key={`${e.a}-${e.b}-${e.label}`}
+                key={`line-${e.a}-${e.b}-${e.label}`}
                 opacity={on ? 1 : 0.12}
                 className="transition-opacity duration-150"
               >
@@ -122,16 +142,6 @@ export function RelationMap() {
                   strokeWidth={e.kind === "kill" ? 2.2 : 1.2}
                   strokeDasharray={dashed ? "5 4" : undefined}
                 />
-                <text
-                  x={mx + ox}
-                  y={my + oy - 6}
-                  textAnchor="middle"
-                  fill={e.kind === "kill" || e.kind === "foe" ? "var(--color-blood)" : "var(--color-muted)"}
-                  fontSize="11"
-                  fontFamily="var(--font-sans)"
-                >
-                  {e.label}
-                </text>
               </g>
             );
           })}
@@ -189,6 +199,41 @@ export function RelationMap() {
                   letterSpacing="0.06em"
                 >
                   {STATUS_LABEL[n.status]}
+                </text>
+              </g>
+            );
+          })}
+
+          {EDGES.map((e, i) => {
+            const a = NODE_MAP[e.a];
+            const b = NODE_MAP[e.b];
+            if (!a || !b) return null;
+            const on = !lit || lit.edgeIdx.has(i);
+            const dup = EDGES.findIndex((x) => x.a === e.a && x.b === e.b) !== i;
+            const pos = labelAnchor(a, b, dup);
+            const tw = e.label.length * 7.4 + 12;
+            return (
+              <g
+                key={`label-${e.a}-${e.b}-${e.label}`}
+                opacity={on ? 1 : 0.12}
+                className="pointer-events-none transition-opacity duration-150"
+              >
+                <rect
+                  x={pos.x - tw / 2}
+                  y={pos.y - 12}
+                  width={tw}
+                  height={16}
+                  fill="var(--color-surface)"
+                />
+                <text
+                  x={pos.x}
+                  y={pos.y}
+                  textAnchor="middle"
+                  fill={e.kind === "kill" || e.kind === "foe" ? "var(--color-blood)" : "var(--color-muted)"}
+                  fontSize="11"
+                  fontFamily="var(--font-sans)"
+                >
+                  {e.label}
                 </text>
               </g>
             );

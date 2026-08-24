@@ -23,7 +23,6 @@ import { Route as RataaladaRouteImport } from './routes/rataalada'
 import { Route as RecapRouteImport } from './routes/recap'
 import { Route as RootsRouteImport } from './routes/roots'
 import { Route as TheoriesRouteImport } from './routes/theories'
-import { Route as UpdatesRouteImport } from './routes/updates'
 import { Route as PeopleIndexRouteImport } from './routes/people.index'
 import { Route as PeopleIdRouteImport } from './routes/people.$id'
 import { Route as PlacesIndexRouteImport } from './routes/places.index'
@@ -99,11 +98,6 @@ const TheoriesRoute = TheoriesRouteImport.update({
   path: '/theories',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UpdatesRoute = UpdatesRouteImport.update({
-  id: '/updates',
-  path: '/updates',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PeopleIndexRoute = PeopleIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -140,7 +134,6 @@ export interface FileRoutesByFullPath {
   '/recap': typeof RecapRoute
   '/roots': typeof RootsRoute
   '/theories': typeof TheoriesRoute
-  '/updates': typeof UpdatesRoute
   '/people/$id': typeof PeopleIdRoute
   '/places/$id': typeof PlacesIdRoute
   '/people/': typeof PeopleIndexRoute
@@ -159,7 +152,6 @@ export interface FileRoutesByTo {
   '/recap': typeof RecapRoute
   '/roots': typeof RootsRoute
   '/theories': typeof TheoriesRoute
-  '/updates': typeof UpdatesRoute
   '/people/$id': typeof PeopleIdRoute
   '/places/$id': typeof PlacesIdRoute
   '/people': typeof PeopleIndexRoute
@@ -181,7 +173,6 @@ export interface FileRoutesById {
   '/recap': typeof RecapRoute
   '/roots': typeof RootsRoute
   '/theories': typeof TheoriesRoute
-  '/updates': typeof UpdatesRoute
   '/people/$id': typeof PeopleIdRoute
   '/places/$id': typeof PlacesIdRoute
   '/people/': typeof PeopleIndexRoute
@@ -204,7 +195,6 @@ export interface FileRouteTypes {
     | '/recap'
     | '/roots'
     | '/theories'
-    | '/updates'
     | '/people/$id'
     | '/places/$id'
     | '/people/'
@@ -223,7 +213,6 @@ export interface FileRouteTypes {
     | '/recap'
     | '/roots'
     | '/theories'
-    | '/updates'
     | '/people/$id'
     | '/places/$id'
     | '/people'
@@ -244,7 +233,6 @@ export interface FileRouteTypes {
     | '/recap'
     | '/roots'
     | '/theories'
-    | '/updates'
     | '/people/$id'
     | '/places/$id'
     | '/people/'
@@ -266,7 +254,6 @@ export interface RootRouteChildren {
   RecapRoute: typeof RecapRoute
   RootsRoute: typeof RootsRoute
   TheoriesRoute: typeof TheoriesRoute
-  UpdatesRoute: typeof UpdatesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -369,13 +356,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TheoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/updates': {
-      id: '/updates'
-      path: '/updates'
-      fullPath: '/updates'
-      preLoaderRoute: typeof UpdatesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/people/': {
       id: '/people/'
       path: '/'
@@ -448,7 +428,6 @@ const rootRouteChildren: RootRouteChildren = {
   RecapRoute: RecapRoute,
   RootsRoute: RootsRoute,
   TheoriesRoute: TheoriesRoute,
-  UpdatesRoute: UpdatesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -50,7 +50,6 @@ const QUICK_LINKS = [
   { to: "/gear", label: "装备库", detail: "战衣与载具" },
   { to: "/gallery", label: "影像画廊", detail: "剧照与片场" },
   { to: "/roots", label: "原著溯源", detail: "漫画与影史" },
-  { to: "/updates", label: "站点更新", detail: "修订与新增" },
 ] as const;
 
 function Home() {
@@ -147,12 +146,6 @@ function Home() {
                   完整日志与来源 →
                 </span>
               </div>
-            </Link>
-            <Link
-              to="/updates"
-              className="mt-4 inline-flex text-xs tracking-[0.2em] text-muted uppercase hover:text-fg"
-            >
-              查看站点更新记录 →
             </Link>
           </div>
         </div>

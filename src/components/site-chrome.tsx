@@ -284,11 +284,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                     谜语人暗号终端
                   </Link>
                 </li>
-                <li>
-                  <Link to="/updates" className="hover:text-fg">
-                    站点更新记录
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>

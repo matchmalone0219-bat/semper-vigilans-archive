@@ -38,7 +38,6 @@ const PAGES = [
   item("官方周边与收藏品", "人偶、道具、雕像与载具", "/merch", "栏目"),
   item("剧照与片场画廊", "第一部、企鹅人与续集路透", "/gallery", "栏目"),
   item("谜语人暗号终端", "互动谜题 Rataalada", "/rataalada", "互动"),
-  item("站点更新", "新增内容、体验改进与维护记录", "/updates", "栏目"),
 ];
 
 export const SEARCH_ITEMS: SearchItem[] = [

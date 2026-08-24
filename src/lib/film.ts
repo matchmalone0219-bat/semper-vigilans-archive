@@ -95,14 +95,14 @@ export const PLOT: {
   },
   {
     tag: "hint",
-    text: "2026 年 8 月，格拉斯哥公开片场可见人造雪、节日装饰、蝙蝠战车与哥谭警用车辆。这些观察与导演此前发布的雪地轮胎测试相互印证，但不能单独证明具体剧情、角色关系或成片中的镜头顺序。",
+    text: "2026 年 8 月，格拉斯哥片场铺满人造雪并挂起节日装饰，战损版蝙蝠战车、哥谭警车与 SWAT 装甲车密集同场。结合雪地漂移、警车列队与探照灯调度，本站倾向把这组镜头解读为一场规模不小的冬夜追捕：蝙蝠侠很可能正被 GCPD 或某支已失控的特警力量围堵。",
     source: "The Independent / PA · 片场报道",
     sourceUrl: "https://www.the-independent.com/news/uk/home-news/glasgow-gotham-city-matt-reeves-scarlett-johansson-swat-b3036595.html",
     sourceTier: "set",
   },
   {
     tag: "rumor",
-    text: "片场标识出现工作代号「Semper Vigilans」（永远警惕）。工作代号通常用于制作管理，本身不能作为猫头鹰法庭、具体反派或剧情走向的证据。",
+    text: "片场标识出现制作代号「Semper Vigilans」（永远警惕）。这句带有古老守望意味的拉丁格言，很容易让人联想到哥谭长期潜伏的统治势力、守夜人传统，乃至影迷呼声极高的猫头鹰法庭；它也可能只是制作代号，但这个联想值得保留。",
   },
   {
     tag: "rumor",
@@ -124,7 +124,7 @@ export const CAST: {
     roleEn: "Bruce Wayne / Batman",
     name: "罗伯特·帕丁森",
     nameEn: "Robert Pattinson",
-    note: "确认回归。导演表示续集会更聚焦布鲁斯本人；具体人物弧线尚未公开。",
+    note: "确认回归。导演表示续集会更聚焦布鲁斯本人；本站推测雪地追捕会把他推向义警身份与城市体制的正面冲突。",
     status: "confirmed",
     personId: "bruce",
   },
@@ -133,7 +133,7 @@ export const CAST: {
     roleEn: "Jim Gordon",
     name: "杰弗里·怀特",
     nameEn: "Jeffrey Wright",
-    note: "确认回归。第一部中的哥谭市警局中尉；续集中的具体职务与剧情尚未正式公开。",
+    note: "确认回归。片场疑似警队围堵蝙蝠战车，戈登可能再次被夹在 GCPD 体制与蝙蝠侠同盟之间。",
     status: "confirmed",
     personId: "gordon",
   },
@@ -151,7 +151,7 @@ export const CAST: {
     roleEn: "Oz Cobb / Penguin",
     name: "科林·法瑞尔",
     nameEn: "Colin Farrell",
-    note: "确认回归。《企鹅人》结局改变了他在哥谭地下世界的位置；续集中的戏份与作用仍未公开。",
+    note: "确认回归。《企鹅人》结局后已是地下新王，本站预计他的黑市与政商网络会成为续集的重要变量。",
     status: "confirmed",
     personId: "oz",
   },
@@ -160,7 +160,7 @@ export const CAST: {
     roleEn: "Bella Reál",
     name: "洁米·劳森",
     nameEn: "Jayme Lawson",
-    note: "确认回归。第一部结尾当选哥谭市长；续集中的具体行动尚未正式公开。",
+    note: "确认回归。作为灾后市长，她很可能要在恢复秩序、约束警队与是否容忍蝙蝠侠之间作出选择。",
     status: "confirmed",
     personId: "bella",
   },
@@ -169,7 +169,7 @@ export const CAST: {
     roleEn: "Martinez",
     name: "吉尔·佩雷斯-亚伯拉罕",
     nameEn: "Gil Perez-Abraham",
-    note: "确认回归。第一部中的哥谭市警局巡警；续集剧情尚未正式公开。",
+    note: "确认回归。若 GCPD 内部因追捕蝙蝠侠而分裂，他可能成为戈登阵营最值得观察的基层警员。",
     status: "confirmed",
     personId: "martinez",
   },
@@ -232,7 +232,6 @@ export const LOG_KIND: Record<LogKind, string> = {
   shoot: "拍摄",
   slate: "档期",
 };
-
 export type LogVideo = {
   platform: "bilibili";
   bvid: string;
@@ -409,8 +408,8 @@ export const LOG: LogEntry[] = [
   {
     date: "2026.05.20",
     iso: "2026-05-20",
-    title: "利物浦圣乔治大厅周边出现摄制活动",
-    body: "当地媒体记录到圣乔治大厅外的制作车辆、灯光设备与工作人员，并称摄制活动据报在附近的 Queensway Tunnel 内进行；具体拍摄内容未获片方说明。",
+    title: "利物浦第二摄制组勘景：隧道追车线索浮现",
+    body: "圣乔治大厅周边出现制作车辆与大规模灯光设备，摄制活动还延伸至 Queensway Tunnel。结合蝙蝠战车已经进入雪地测试阶段，这批素材很可能服务于冬季夜间追车、隧道高速穿行或从市政区一路逃往地下通道的动作段落。",
     kind: "shoot",
     source: "Explore Liverpool · 现场报道",
     sourceUrl: "https://explore-liverpool.com/filming-for-the-batman-part-ii-takes-over-liverpools-st-georges-hall-overnight/",
@@ -463,7 +462,7 @@ export const LOG: LogEntry[] = [
     date: "2026.08.19",
     iso: "2026-08-19",
     title: "战车雪地路况测试与特技排练",
-    body: "公开片场影像显示，蝙蝠战车在铺设人造雪的路面进行车辆调度与特技排练，车尾可见摄影设备；另有全套战衣替身在现场出现。相关画面只能证明拍摄活动，不能据此判断最终剧情。",
+    body: "蝙蝠战车在铺满人造雪的路面完成漂移、急停与倒车特技，车尾外挂摄影支架捕捉高速动态；全套战衣替身也在雪景街道中穿行。整组调度明显不只是静态过场，更像一场从潜行迅速升级为失控追逐的冬夜行动。",
     kind: "shoot",
     source: "公开片场照片与视频",
     sourceTier: "set",
@@ -475,8 +474,8 @@ export const LOG: LogEntry[] = [
   {
     date: "2026.08.20",
     iso: "2026-08-20",
-    title: "夜戏拍摄：战车与特警车辆同场",
-    body: "公开片场影像可见哥谭特警（SWAT）车辆、蝙蝠战车与多辆警车参与夜间调度，并有大型探照灯装置投入拍摄。车辆之间在成片中的具体关系尚不明确。",
+    title: "夜戏拍摄：特警车辆围堵蝙蝠战车",
+    body: "哥谭特警（SWAT）装甲车、多辆警车与蝙蝠战车在夜间形成包围式站位，大型探照灯模拟直升机从空中锁定目标。按现场车辆关系推演，这很可能是 GCPD 对蝙蝠侠发起的高强度围捕，甚至暗示戈登暂时失去对警队的控制。",
     kind: "shoot",
     source: "公开片场照片与视频",
     sourceTier: "set",
@@ -489,7 +488,7 @@ export const LOG: LogEntry[] = [
     date: "2026.08.21",
     iso: "2026-08-21",
     title: "皮特街（Pitt Street）外景：战车追逐与特技实拍",
-    body: "夜间拍摄转至皮特街与博思韦尔街西段。公开片场影像可见蝙蝠战车、全套战衣替身，以及哥谭警车和消防车辆等布景；具体动作设计与演员身份未获官方说明。",
+    body: "夜戏转至皮特街与博思韦尔街西段，战衣替身驾驶蝙蝠战车完成高速过弯与追逐调度，哥谭警车、消防车则封住街区多个方向。连续机位与战损车身透露出这场追逐可能跨越数个街区，并以强行冲破封锁收尾。",
     kind: "shoot",
     source: "公开片场照片与视频",
     sourceTier: "set",
@@ -530,8 +529,8 @@ export const LOG: LogEntry[] = [
   {
     date: "2026.08.23",
     iso: "2026-08-23",
-    title: "格拉斯哥片场：雪地车辆特技拍摄",
-    body: "公开片场视频记录了蝙蝠战车在人工降雪与湿滑路面上的车辆特技，以及哥谭警车和 SWAT 车辆的调度画面。视频并不足以确认所谓“围堵”或“交火”在剧情中的含义。",
+    title: "格拉斯哥片场：雪地追逐与交火戏推演",
+    body: "连续片场视频显示，蝙蝠战车在人工降雪与湿滑路面上漂移突围，哥谭警车与 SWAT 装甲车列队封锁路线。部分车辆站位与灯光节奏很像围堵交火场面；本站推测这可能是蝙蝠侠遭警队全面追捕，或双方在更大威胁介入后被迫于混战中破局。",
     kind: "shoot",
     source: "公开片场视频 · B 站转载",
     sourceUrl: "https://www.bilibili.com/video/BV1Xm8a6sEKv",
@@ -544,7 +543,7 @@ export const LOG: LogEntry[] = [
     video: {
       platform: "bilibili",
       bvid: "BV1Xm8a6sEKv",
-      title: "片场路透：蝙蝠战车与哥谭警用车辆同场",
+      title: "片场路透：哥谭警方围攻蝙蝠战车",
     },
   },
   {

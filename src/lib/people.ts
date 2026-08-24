@@ -71,7 +71,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "续集展望：凛冬下的内心考验",
-        body: "导演马特·里夫斯表示，《新蝙蝠侠2》将进一步聚焦布鲁斯·韦恩本人。片场公开画面显示冬季视觉元素与蝙蝠战车回归，但具体道德抉择和剧情冲突仍未公开。",
+        body: "导演马特·里夫斯表示，《新蝙蝠侠2》将进一步聚焦布鲁斯·韦恩本人。雪地战车被 GCPD 与 SWAT 车辆包围的片场线索，则让本站更倾向于一种危险走向：布鲁斯不仅要对抗新敌人，还可能被哥谭体制重新视为必须清除的威胁。",
       },
     ],
   },
@@ -80,7 +80,7 @@ export const FILES: Record<string, PersonFile> = {
     appearances: [
       { work: "官方前传小说", note: "负责布鲁斯的体能格斗、侦查技能与机械工程训练。", href: "/recap", hash: "before" },
       { work: "电影《新蝙蝠侠》", note: "常驻地下车间，在炸弹袭击中为保护布鲁斯受伤。", href: "/recap", hash: "the-batman" },
-      { work: "电影《新蝙蝠侠2》", note: "安迪·瑟金斯确认回归，具体剧情尚未公开。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "安迪·瑟金斯确认回归，预计继续担任布鲁斯的后方核心。", href: "/dossier" },
     ],
     places: ["wayne-tower", "cave"],
     stills: ["/media/still-alfred.jpg"],
@@ -91,7 +91,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "生死相托的深厚羁绊",
-        body: "在第一部中，阿尔弗雷德替布鲁斯拆开暗藏炸药的信件而负伤。在病榻前两人坦诚相待，解开了历史心结。安迪·瑟金斯已确认回归，但续集中的具体行动尚未公开。",
+        body: "在第一部中，阿尔弗雷德替布鲁斯拆开暗藏炸药的信件而负伤。在病榻前两人坦诚相待，解开了历史心结。随着布鲁斯可能再次遭到警队围捕，本站预计阿尔弗雷德会继续镇守地下车间，承担情报、装备与撤离支援。",
       },
     ],
   },
@@ -99,14 +99,14 @@ export const FILES: Record<string, PersonFile> = {
     also: ["贝拉·蕾尔", "哥谭市长"],
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "年轻改革派候选人，在枪击与洪灾浩劫中幸存并当选。", href: "/recap", hash: "the-batman" },
-      { work: "电影《新蝙蝠侠2》", note: "洁米·劳森确认回归，具体剧情尚未公开。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "洁米·劳森确认回归，预计身处灾后重建与警政冲突中心。", href: "/dossier" },
     ],
     places: ["gsg", "city-hall"],
     stills: ["/media/flood.jpg"],
     sections: [
       {
         heading: "哥谭灾后改革的领军者",
-        body: "贝拉·蕾尔作为年轻改革派政治家，在竞选集会枪击与决堤洪灾中幸存并当选市长。影片表现了她的反腐立场；续集将如何呈现灾后治理尚未公开。",
+        body: "贝拉·蕾尔作为年轻改革派政治家，在枪击与洪灾中幸存并当选市长。严冬、灾后重建与疑似警队追捕蝙蝠侠的线索叠在一起，使她很可能成为续集中最难站队的人：既要恢复秩序，也必须决定哥谭是否仍需要一个不受体制控制的义警。",
       },
     ],
   },
@@ -248,7 +248,7 @@ export const FILES: Record<string, PersonFile> = {
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "法尔科内手下得力干将，在枪林弹雨中保全自身。", href: "/recap", hash: "the-batman" },
       { work: "限定剧《企鹅人》", note: "主线主角，通过周密谋略扫清对手登顶黑道王座。", href: "/recap", hash: "the-penguin" },
-      { work: "电影《新蝙蝠侠2》", note: "科林·法瑞尔确认回归，具体戏份尚未公开。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "科林·法瑞尔确认回归，以黑道新王身份重新进入棋局。", href: "/dossier" },
     ],
     places: ["iceberg", "crown-point"],
     stills: [
@@ -266,7 +266,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "铁血登顶与地下新王",
-        body: "在《企鹅人》八集剧集中，他击溃法尔科内与马罗尼家族核心势力，甚至灭口了唯一信任的心腹维克托以消除自身软肋，最终进入哥谭权力上层。科林·法瑞尔已确认回归，但作用仍未公开。",
+        body: "在《企鹅人》八集剧集中，他击溃法尔科内与马罗尼家族核心势力，甚至灭口唯一信任的心腹维克托，彻底登顶哥谭地下新王。科林·法瑞尔确认回归后，本站判断他不会只是客串：城市重建、警政资源与黑市网络都可能成为奥兹继续扩张的筹码。",
       },
     ],
   },
@@ -338,7 +338,6 @@ export function getPerson(id: string): Person | null {
     factionLabel: faction?.label ?? node.faction,
   };
 }
-
 export const PEOPLE = NODES.map((n) => getPerson(n.id)).filter((p): p is Person => p !== null);
 
 export function relatedPeople(id: string) {

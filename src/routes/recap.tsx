@@ -418,7 +418,7 @@ function Recap() {
             步入第二部的各方格局
           </h2>
           <p className="mt-4 max-w-2xl text-pretty text-muted">
-            依据公开采访、已播剧情与片场可见信息整理；续集尚未披露的行动均不作确定判断：
+            依据公开采访、已播剧情与片场照片整理，并加入本站对冬季哥谭、警队围捕和势力走向的影迷推演：
           </p>
           <ul className="mt-10 grid gap-px bg-border sm:grid-cols-2">
             {BOARD.map((row) => (

@@ -14,8 +14,14 @@ export const SITE_UPDATE_KIND: Record<SiteUpdate["kind"], string> = {
 export const SITE_UPDATES: SiteUpdate[] = [
   {
     date: "2026.08.24",
+    title: "恢复片场解读与剧情推演",
+    body: "保留事实来源与证据标签，同时恢复对雪地追车、警队围捕、人物立场和哥谭势力走向的影迷式猜想。",
+    kind: "content",
+  },
+  {
+    date: "2026.08.24",
     title: "完成续集资料与来源审计",
-    body: "重新核查档期、开拍、演员与英国外景资料；为核心事实补充来源，并将无法由公开证据支持的剧情判断降级为线索或传闻。",
+    body: "重新核查档期、开拍、演员与英国外景资料，为核心事实补充来源；片场解读与剧情猜想继续作为独立的影迷推演保留。",
     kind: "content",
   },
   {

@@ -61,7 +61,7 @@ function Dossier() {
             专题。
           </p>
           <p className="mt-4 max-w-xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
-            资料核验至 {CONTENT_REVIEWED_AT}：官方/导演公开信息与可靠媒体归为“确认”，片场可见内容归为“线索”，角色与剧情推测归为“传闻”。
+            资料整理至 {CONTENT_REVIEWED_AT}：公开事实附来源；片场照片与视频会保留本站的场景推演和剧情猜想，并以“片场线索”或“传闻推测”标出。大胆开脑洞，但别把它当片方剧透。
           </p>
           <nav className="mt-8 flex flex-wrap gap-3">
             {jump.map((item) => (
@@ -374,7 +374,6 @@ function Dossier() {
     </main>
   );
 }
-
 function SectionKicker({ n, title }: { n: string; title: string }) {
   return (
     <div>

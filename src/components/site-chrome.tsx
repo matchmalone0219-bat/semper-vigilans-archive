@@ -11,9 +11,12 @@ const NAV = [
     label: "电影档案",
     paths: ["/dossier", "/people", "/places", "/cases"],
     children: [
+      { to: "/dossier", hash: "facts", label: "公开信息" },
+      { to: "/dossier", hash: "plot", label: "故事线索" },
+      { to: "/dossier", hash: "cast", label: "演员阵容" },
+      { to: "/dossier", hash: "log", label: "拍摄日志" },
       { to: "/people", label: "人物名册" },
       { to: "/places", label: "哥谭地点" },
-      { to: "/cases", label: "重案卷宗" },
     ],
   },
   {
@@ -21,17 +24,38 @@ const NAV = [
     label: "世界观",
     paths: ["/recap", "/roots", "/gear"],
     children: [
-      { to: "/roots", label: "原著溯源" },
-      { to: "/gear", label: "蝙蝠侠装备库" },
+      { to: "/recap", hash: "the-batman", label: "前作《新蝙蝠侠》" },
+      { to: "/recap", hash: "the-penguin", label: "衍生剧《企鹅人》" },
+      { to: "/recap", hash: "roots", label: "漫画原著" },
+      { to: "/recap", hash: "gotham-timeline", label: "世界观时间线" },
     ],
   },
   {
     to: "/craft",
     label: "幕后",
     paths: ["/craft", "/gallery"],
-    children: [{ to: "/gallery", label: "剧照与片场画廊" }],
+    children: [
+      { to: "/craft", hash: "score", label: "电影配乐" },
+      { to: "/craft", hash: "soundtrack-list", label: "插曲与古典乐" },
+      { to: "/craft", hash: "lens", label: "光影摄影" },
+      { to: "/craft", hash: "map", label: "取景巡礼" },
+      { to: "/gallery", label: "剧照与片场画廊" },
+    ],
   },
-  { to: "/merch", label: "收藏", paths: ["/merch"], children: [] },
+  {
+    to: "/merch",
+    label: "收藏",
+    paths: ["/merch"],
+    children: [
+      { to: "/merch", hash: "figures", label: "可动人偶" },
+      { to: "/merch", hash: "props", label: "道具复刻" },
+      { to: "/merch", hash: "statues", label: "收藏雕像" },
+      { to: "/merch", hash: "vehicles", label: "载具模型" },
+      { to: "/merch", hash: "print", label: "出版读物" },
+      { to: "/merch", hash: "media", label: "影音收藏" },
+      { to: "/merch", hash: "posters", label: "艺术海报" },
+    ],
+  },
   { to: "/rataalada", label: "暗号" },
 ] as const;
 
@@ -42,13 +66,14 @@ function navActive(item: (typeof NAV)[number], pathname: string) {
 
 export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const hash = useRouterState({ select: (s) => s.location.hash });
   const [open, setOpen] = useState(false);
   const isHome = pathname === "/";
   const isRata = pathname.startsWith("/rataalada");
 
   useEffect(() => {
     setOpen(false);
-  }, [pathname]);
+  }, [pathname, hash]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -97,8 +122,9 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                   <div className="pointer-events-none absolute left-1/2 top-[calc(100%-1px)] min-w-44 -translate-x-1/2 border border-fg/10 bg-bg/95 p-2 opacity-0 shadow-2xl backdrop-blur-md transition-opacity group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
                     {item.children.map((child) => (
                       <Link
-                        key={child.to}
+                        key={`${child.to}-${"hash" in child ? child.hash : child.label}`}
                         to={child.to}
+                        hash={"hash" in child ? child.hash : undefined}
                         className="block whitespace-nowrap px-3 py-2 text-xs tracking-[0.12em] text-muted hover:bg-surface hover:text-fg"
                       >
                         {child.label}
@@ -141,8 +167,9 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                   <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
                     {item.children.map((child) => (
                       <Link
-                        key={child.to}
+                        key={`${child.to}-${"hash" in child ? child.hash : child.label}`}
                         to={child.to}
+                        hash={"hash" in child ? child.hash : undefined}
                         className="text-sm tracking-[0.12em] text-faint hover:text-fg"
                       >
                         {child.label}

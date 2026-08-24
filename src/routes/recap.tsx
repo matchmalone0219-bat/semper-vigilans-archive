@@ -37,10 +37,10 @@ function Recap() {
             UNIVERSE TIMELINE & RECAPS
           </p>
           <h1 className="mt-4 font-sans text-5xl font-black leading-none tracking-tight sm:text-7xl">
-            前作回顾
+            前作回顾与时间线
           </h1>
-          <p className="mt-4 max-w-xl text-pretty text-muted">
-            按时间顺序完整梳理《新蝙蝠侠》宇宙的历史脉络与作品剧情，涵盖官方前传小说、限定漫画、电影正片与《企鹅人》剧集；关于原著漫画的致敬与考据，请查阅{" "}
+          <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
+            全景梳理《新蝙蝠侠》系列的多维时间线：既包含从 1997 年韦恩悲剧直至第二部凛冬的「哥谭故事编年史」，也完整记录了自 2017 年立项至今的「现实制片历程」；关于原著漫画的致敬与考据，请查阅{" "}
             <Link to="/roots" className="text-fg underline-offset-4 hover:underline">
               原著渊源
             </Link>

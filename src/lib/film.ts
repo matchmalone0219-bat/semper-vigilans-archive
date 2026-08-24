@@ -177,6 +177,12 @@ export const LOG_KIND: Record<LogKind, string> = {
   slate: "档期",
 };
 
+export type LogVideo = {
+  platform: "bilibili";
+  bvid: string;
+  title: string;
+};
+
 export type LogEntry = {
   date: string;
   iso: string;
@@ -189,6 +195,7 @@ export type LogEntry = {
   upcoming?: boolean;
   image?: string;
   images?: string[];
+  video?: LogVideo;
 };
 
 export function logImages(entry: LogEntry): string[] {
@@ -304,13 +311,14 @@ export const LOG: LogEntry[] = [
     body: "里夫斯发布前作片段回顾，确认罗伯特·帕丁森、杰弗里·怀特、安迪·瑟金斯、科林·法瑞尔、洁米·劳森与吉尔·佩雷斯-亚伯拉罕等前作核心主演悉数回归。",
     kind: "cast",
     source: "Matt Reeves / X",
-    image: "/media/portraits/bruce.jpg",
+    image: "/media/log/x-cast-return-01.jpg",
     images: [
-      "/media/portraits/bruce.jpg",
-      "/media/portraits/gordon.jpg",
-      "/media/portraits/alfred.jpg",
-      "/media/portraits/oz.jpg",
-      "/media/portraits/bella.jpg",
+      "/media/log/x-cast-return-01.jpg",
+      "/media/log/x-cast-return-02.jpg",
+      "/media/log/x-cast-return-03.jpg",
+      "/media/log/x-cast-return-04.jpg",
+      "/media/log/x-cast-return-05.jpg",
+      "/media/log/x-cast-return-06.jpg",
     ],
   },
   {
@@ -320,7 +328,15 @@ export const LOG: LogEntry[] = [
     body: "里夫斯正式宣布斯嘉丽·约翰逊、塞巴斯蒂安·斯坦、查尔斯·丹斯、塞巴斯蒂安·科赫与布莱恩·泰瑞·亨利等加盟《新蝙蝠侠2》，各演员的具体角色与设定目前保持保密。",
     kind: "cast",
     source: "Matt Reeves / X",
-    image: "/media/portraits/charles.jpg",
+    image: "/media/log/x-cast-new-01.jpg",
+    images: [
+      "/media/log/x-cast-new-01.jpg",
+      "/media/log/x-cast-new-02.jpg",
+      "/media/log/x-cast-new-03.jpg",
+      "/media/log/x-cast-new-04.jpg",
+      "/media/log/x-cast-new-05.jpg",
+      "/media/log/x-cast-new-06.jpg",
+    ],
   },
   {
     date: "2026.05.20",
@@ -342,7 +358,12 @@ export const LOG: LogEntry[] = [
     title: "档期调整至 2028 年 2 月 18 日",
     body: "华纳调整档期安排，续集正式定档 2028 年 2 月 18 日北美总统日假期，全线登陆 IMAX。里夫斯同日公布了罗伯特·帕丁森的摄影测试片段。",
     kind: "slate",
-    source: "Deadline / Variety",
+    source: "Deadline / Variety · 视频转自 B 站",
+    video: {
+      platform: "bilibili",
+      bvid: "BV1BTKG6mEUQ",
+      title: "DC《新蝙蝠侠2》首曝镜头 · 定档 2028 年 2 月 18 日",
+    },
   },
   {
     date: "2026.08.18",
@@ -445,7 +466,7 @@ export const LOG: LogEntry[] = [
     title: "格拉斯哥片场：雪地追逐与枪战戏实拍",
     body: "片场拍摄进入新阶段，现场路透记录了蝙蝠战车在人工降雪与湿滑路面上的漂移特技，并有哥谭警车列队围堵与交火场景。替身演员佩戴头套完成高难度驾驶动作，日间街道上持续有哥谭警车与 SWAT 特警装甲车待命。",
     kind: "shoot",
-    source: "当地片场路透报道",
+    source: "当地片场路透报道 · 视频转自 B 站",
     href: "/gallery",
     hash: "part2",
     image: "/media/log/p2-escape-1.jpg",
@@ -457,6 +478,11 @@ export const LOG: LogEntry[] = [
       "/media/p2-batman.jpg",
       "/media/p2-snow4.jpg",
     ],
+    video: {
+      platform: "bilibili",
+      bvid: "BV1Xm8a6sEKv",
+      title: "片场路透：哥谭警方围攻蝙蝠战车",
+    },
   },
   {
     date: "2028.02.18",

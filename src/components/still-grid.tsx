@@ -33,6 +33,8 @@ export function StillGrid({
                   <img
                     src={still.src}
                     alt={still.caption}
+                    loading="lazy"
+                    decoding="async"
                     className="size-full object-cover transition-opacity duration-150 hover:opacity-90"
                   />
                 </div>

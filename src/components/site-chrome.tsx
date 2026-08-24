@@ -3,6 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { FILM } from "@/lib/film";
+import { SiteSearch } from "@/components/site-search";
 
 const NAV = [
   { to: "/", label: "首页" },
@@ -20,9 +21,7 @@ const NAV = [
 function navActive(to: string, pathname: string) {
   if (to === "/dossier") {
     return (
-      pathname === "/dossier" ||
-      pathname.startsWith("/people") ||
-      pathname.startsWith("/places")
+      pathname === "/dossier" || pathname.startsWith("/people") || pathname.startsWith("/places")
     );
   }
   if (to === "/cases") {
@@ -97,21 +96,26 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 to={item.to}
                 className={cn(
                   "text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-150",
-                  navActive(item.to, pathname) ? "text-fg font-bold text-blood" : "text-muted hover:text-fg",
+                  navActive(item.to, pathname)
+                    ? "text-fg font-bold text-blood"
+                    : "text-muted hover:text-fg",
                 )}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-          <button
-            type="button"
-            className="relative grid size-11 place-items-center text-fg md:hidden"
-            aria-label={open ? "关闭菜单" : "打开菜单"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
+          <div className="flex items-center gap-1 md:ml-4">
+            <SiteSearch />
+            <button
+              type="button"
+              className="relative grid size-11 place-items-center text-fg md:hidden"
+              aria-label={open ? "关闭菜单" : "打开菜单"}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -142,10 +146,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             <p className="font-display text-lg font-extrabold tracking-[0.16em] text-blood uppercase">
               {FILM.siteName}
             </p>
-            <p className="mt-1">《{FILM.titleZh}》（{FILM.titleEn}）非官方影迷档案库</p>
+            <p className="mt-1">
+              《{FILM.titleZh}》（{FILM.titleEn}）非官方影迷档案库
+            </p>
             <p className="mt-4 max-w-md text-pretty text-xs leading-relaxed text-faint">
-              本站为影迷非商业交流网站，与华纳兄弟、DC
-              Studios 及电影主创团队无官方合作关系。内容整理自公开新闻报道、片场路透及官方宣发物料，传闻均已标明出处。
+              本站为影迷非商业交流网站，与华纳兄弟、DC Studios
+              及电影主创团队无官方合作关系。内容整理自公开新闻报道、片场路透及官方宣发物料，传闻均已标明出处。
             </p>
           </div>
           <div className="flex flex-col gap-6 sm:flex-row sm:gap-10">
@@ -231,6 +237,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 <li>
                   <Link to="/rataalada" className="hover:text-fg">
                     谜语人暗号终端
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/updates" className="hover:text-fg">
+                    站点更新记录
                   </Link>
                 </li>
               </ul>

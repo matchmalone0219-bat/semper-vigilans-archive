@@ -18,15 +18,25 @@ export function pageTitle(page?: string) {
 
 export const FACTS: { label: string; value: string }[] = [
   { label: "片名", value: "The Batman: Part II / 《新蝙蝠侠2》" },
-  { label: "导演 / 编剧", value: "马特·里夫斯（Matt Reeves），联合编剧麦特森·汤姆林（Mattson Tomlin）" },
+  {
+    label: "导演 / 编剧",
+    value: "马特·里夫斯（Matt Reeves），联合编剧麦特森·汤姆林（Mattson Tomlin）",
+  },
   { label: "摄影", value: "埃里克·梅塞施密特（Erik Messerschmidt）" },
   { label: "配乐", value: "迈克尔·吉亚奇诺（Michael Giacchino，预计回归）" },
   { label: "制片", value: "DC Studios · 6th & Idaho · Dylan Clark Productions" },
-  { label: "发行", value: "华纳兄弟发行 · 现行北美档期 2028 年 2 月 18 日 · IMAX。此前三次改期：2025.10.03、2026.10.02、2027.10.01。" },
+  {
+    label: "发行",
+    value:
+      "华纳兄弟发行 · 现行北美档期 2028 年 2 月 18 日 · IMAX。此前三次改期：2025.10.03、2026.10.02、2027.10.01。",
+  },
   { label: "工作标题", value: "Semper Vigilans（拉丁语：永远警惕）" },
   { label: "主摄影", value: "2026 年 6 月 12 日于英国利维斯登制片厂（Leavesden）正式开拍" },
   { label: "外景", value: "英国伦敦、利物浦、格拉斯哥" },
-  { label: "序列", value: `《新蝙蝠侠》（2022）直接续作，属于「${FILM.sagaNameZh}」（${FILM.sagaName}），与詹姆斯·古恩主导的 DCU 宇宙相互独立。` },
+  {
+    label: "序列",
+    value: `《新蝙蝠侠》（2022）直接续作，属于「${FILM.sagaNameZh}」（${FILM.sagaName}），与詹姆斯·古恩主导的 DCU 宇宙相互独立。`,
+  },
 ];
 
 export type Certainty = "confirmed" | "hint" | "rumor";
@@ -190,6 +200,9 @@ export type LogEntry = {
   body: string;
   kind: LogKind;
   source?: string;
+  sourceUrl?: string;
+  sourceTier?: "official" | "press" | "set";
+  verifiedAt?: string;
   href?: "/gallery" | "/dossier" | "/recap";
   hash?: string;
   upcoming?: boolean;
@@ -302,6 +315,10 @@ export const LOG: LogEntry[] = [
     body: "里夫斯在社交平台发布了两张监视器截图，画面为蝙蝠战车在积雪路面上行驶，配文「#SnowTires」，官方首次确认续集故事发生在冬季。",
     kind: "shoot",
     source: "Matt Reeves / X",
+    sourceUrl:
+      "https://www.thewrap.com/creative-content/movies/the-batman-part-2-first-look-images/",
+    sourceTier: "press",
+    verifiedAt: "2026.08.24",
     image: "/media/log/snowtires.jpg",
   },
   {
@@ -328,6 +345,10 @@ export const LOG: LogEntry[] = [
     body: "里夫斯正式宣布斯嘉丽·约翰逊、塞巴斯蒂安·斯坦、查尔斯·丹斯、塞巴斯蒂安·科赫与布莱恩·泰瑞·亨利等加盟《新蝙蝠侠2》，各演员的具体角色与设定目前保持保密。",
     kind: "cast",
     source: "Matt Reeves / X",
+    sourceUrl:
+      "https://www.independent.co.uk/arts-entertainment/films/news/batman-2-scarlett-johansson-sebastian-stan-matt-reeves-b2977051.html",
+    sourceTier: "press",
+    verifiedAt: "2026.08.24",
     image: "/media/log/x-cast-new-01.jpg",
     images: [
       "/media/log/x-cast-new-01.jpg",

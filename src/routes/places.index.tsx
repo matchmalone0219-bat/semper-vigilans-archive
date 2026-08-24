@@ -19,7 +19,11 @@ function PlacesIndex() {
         <h1 className="mt-3 font-sans text-5xl font-black tracking-tight sm:text-6xl">地点</h1>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
           收录哥谭市核心地标建筑与关键历史场景，包含各据点的当前状态与关联剧情。按故事发生时间梳理的完整脉络请查看{" "}
-          <Link to="/recap" hash="gotham-timeline" className="text-fg underline-offset-4 hover:underline">
+          <Link
+            to="/recap"
+            hash="gotham-timeline"
+            className="text-fg underline-offset-4 hover:underline"
+          >
             回顾 · 哥谭历史编年史
           </Link>
           。
@@ -35,6 +39,8 @@ function PlacesIndex() {
                   <img
                     src={place.image}
                     alt={place.imageAlt}
+                    loading="lazy"
+                    decoding="async"
                     className="size-full object-cover transition-opacity duration-150 group-hover:opacity-90"
                   />
                 </div>

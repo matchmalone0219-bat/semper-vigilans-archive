@@ -145,41 +145,43 @@ export default defineConfig(({ command, isPreview, mode }) => {
   const githubPagesBuild = mode === "github-pages";
 
   return {
-  base: githubPagesBuild ? "/semper-vigilans-archive/" : "/",
-  server: {
-    host: "0.0.0.0",
-    port: 8080,
-    strictPort: true,
-  },
-  preview: {
-    host: "127.0.0.1",
-    port: 8081,
-    strictPort: true,
-  },
-  resolve: { tsconfigPaths: true },
-  plugins: [
-    pgliteBootstrapPlugin(),
-    // Before tanstackStart so /auth/popup never falls through to the SPA.
-    authPopupPlugin(),
-    // PWA head + ?install=1 tutorial page; runs before Start/Nitro.
-    grokPwaPlugin(),
-    tailwindcss(),
-    ...(githubPagesBuild ? [tanstackRouter({ target: "react" })] : [tanstackStart()]),
-    ...(githubPagesBuild ? [githubPagesMediaPlugin()] : []),
-    ...(!githubPagesBuild && (command === "build" || isPreview)
-      ? [
-          nitro({
-            preset: sitesBuild ? "cloudflare_module" : "vercel",
-            ...(sitesBuild ? { output: { dir: "./dist" } } : {}),
-            // Auto-registers server/middleware/* (the PWA install page +
-            // manifest + head-tag middleware). Nitro v3 defaults serverDir to
-            // false, so removing this silently unwires /?install=1 on deploys.
-            serverDir: "./server",
-          }),
-        ]
-      : []),
-    ...(sitesBuild ? [sites()] : []),
-    viteReact(),
-  ],
+    base: githubPagesBuild ? "/semper-vigilans-archive/" : "/",
+    server: {
+      host: "0.0.0.0",
+      port: 8080,
+      strictPort: true,
+    },
+    preview: {
+      host: "127.0.0.1",
+      port: 8081,
+      strictPort: true,
+    },
+    resolve: { tsconfigPaths: true },
+    plugins: [
+      pgliteBootstrapPlugin(),
+      // Before tanstackStart so /auth/popup never falls through to the SPA.
+      authPopupPlugin(),
+      // Grok preview-only PWA assets are unavailable on GitHub Pages.
+      ...(!githubPagesBuild ? [grokPwaPlugin()] : []),
+      tailwindcss(),
+      ...(githubPagesBuild
+        ? [tanstackRouter({ target: "react", autoCodeSplitting: true })]
+        : [tanstackStart()]),
+      ...(githubPagesBuild ? [githubPagesMediaPlugin()] : []),
+      ...(!githubPagesBuild && (command === "build" || isPreview)
+        ? [
+            nitro({
+              preset: sitesBuild ? "cloudflare_module" : "vercel",
+              ...(sitesBuild ? { output: { dir: "./dist" } } : {}),
+              // Auto-registers server/middleware/* (the PWA install page +
+              // manifest + head-tag middleware). Nitro v3 defaults serverDir to
+              // false, so removing this silently unwires /?install=1 on deploys.
+              serverDir: "./server",
+            }),
+          ]
+        : []),
+      ...(sitesBuild ? [sites()] : []),
+      viteReact(),
+    ],
   };
 });

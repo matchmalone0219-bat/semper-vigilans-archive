@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MERCH } from "@/lib/merch";
 import { pageTitle } from "@/lib/film";
+import { SourceLink } from "@/components/source-link";
 
 export const Route = createFileRoute("/merch")({
   head: () => ({
@@ -36,11 +37,7 @@ function Merch() {
       </header>
 
       {MERCH.map((group) => (
-        <section
-          key={group.id}
-          id={group.id}
-          className="scroll-mt-20 border-t border-fg/10"
-        >
+        <section key={group.id} id={group.id} className="scroll-mt-20 border-t border-fg/10">
           <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16">
             <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
               {group.kicker} / {group.titleEn}
@@ -48,9 +45,7 @@ function Merch() {
             <h2 className="mt-3 font-sans text-4xl font-black tracking-tight sm:text-5xl">
               {group.title}
             </h2>
-            <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-              {group.intro}
-            </p>
+            <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">{group.intro}</p>
             <ul className="mt-10 grid gap-10 sm:grid-cols-2">
               {group.items.map((item, i) => (
                 <li
@@ -63,6 +58,8 @@ function Merch() {
                       <img
                         src={item.image}
                         alt={item.imageAlt}
+                        loading="lazy"
+                        decoding="async"
                         className={
                           i === 0 && group.items.length > 1
                             ? "mx-auto max-h-[56vh] w-full object-contain"
@@ -71,9 +68,7 @@ function Merch() {
                       />
                     </figure>
                     <div className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                      <h3 className="font-sans text-2xl font-black tracking-tight">
-                        {item.name}
-                      </h3>
+                      <h3 className="font-sans text-2xl font-black tracking-tight">{item.name}</h3>
                       <p className="font-display text-sm font-semibold tracking-wide text-muted">
                         {item.nameEn}
                       </p>
@@ -84,6 +79,14 @@ function Merch() {
                     <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-muted sm:text-base">
                       {item.body}
                     </p>
+                    {item.sourceUrl && item.sourceLabel ? (
+                      <SourceLink
+                        label={item.sourceLabel}
+                        href={item.sourceUrl}
+                        tier="official"
+                        verifiedAt={item.verifiedAt}
+                      />
+                    ) : null}
                   </article>
                 </li>
               ))}
@@ -93,7 +96,9 @@ function Merch() {
       ))}
 
       <p className="mx-auto max-w-6xl px-4 pb-16 text-sm text-faint sm:px-6">
-        本站为影迷非商业资料库，不提供任何商品购买与销售服务。产品展示图与技术规格均整理自 INART、Hot Toys、Prime 1 Studio、Mondo、Abrams 及华纳家庭娱乐等授权厂牌公开物料。查阅电影装备设定请前往{" "}
+        本站为影迷非商业资料库，不提供任何商品购买与销售服务。产品展示图与技术规格均整理自
+        INART、Hot Toys、Prime 1 Studio、Mondo、Abrams
+        及华纳家庭娱乐等授权厂牌公开物料。查阅电影装备设定请前往{" "}
         <Link to="/gear" className="text-fg underline-offset-4 hover:underline">
           装备
         </Link>

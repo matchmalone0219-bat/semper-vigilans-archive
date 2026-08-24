@@ -2,13 +2,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 
-export function LogCarousel({
-  images,
-  className,
-}: {
-  images: string[];
-  className?: string;
-}) {
+export function LogCarousel({ images, className }: { images: string[]; className?: string }) {
   const [index, setIndex] = useState(0);
   if (!images.length) return null;
 
@@ -17,6 +11,8 @@ export function LogCarousel({
       <img
         src={images[0]}
         alt=""
+        loading="lazy"
+        decoding="async"
         className={cn("aspect-[16/10] w-full object-cover", className)}
       />
     );
@@ -31,6 +27,8 @@ export function LogCarousel({
       <img
         src={images[index]}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="aspect-[16/10] w-full object-cover"
       />
       <button

@@ -50,6 +50,8 @@ function Gear() {
               <img
                 src={item.image}
                 alt={item.imageAlt}
+                loading="lazy"
+                decoding="async"
                 className="mx-auto max-h-[70vh] w-full object-contain"
               />
             </figure>

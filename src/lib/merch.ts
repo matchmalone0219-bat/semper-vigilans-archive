@@ -8,6 +8,9 @@ export type MerchItem = {
   image: string;
   imageAlt: string;
   body: string;
+  sourceUrl?: string;
+  sourceLabel?: string;
+  verifiedAt?: string;
 };
 
 export type MerchGroup = {
@@ -38,6 +41,9 @@ export const MERCH: MerchGroup[] = [
         image: "/media/merch/inart.jpg",
         imageAlt: "INART 1/6 蝙蝠侠全身官方产品展示图",
         body: "Queen Studios 旗下高端可动人偶品牌 INART 打造。精准还原罗伯特·帕丁森面部轮廓，配备独立可动眼球系统与多款替换表情，豪华版特别附带手工植发头雕。战衣严格按照电影多层分件结构剪裁制作，真实还原金属护甲与布料质感。",
+        sourceUrl: "https://queenstudios.shop/products/batman-1-6-collectible-figure",
+        sourceLabel: "Queen Studios / INART 产品页",
+        verifiedAt: "2026.08.24",
       },
       {
         id: "hottoys",
@@ -103,6 +109,10 @@ export const MERCH: MerchGroup[] = [
         image: "/media/merch/fe-batarang.jpg",
         imageAlt: "Factory Entertainment 1:1 蝙蝠飞镖金属复刻道具与展示盒",
         body: "Factory Entertainment 根据《新蝙蝠侠》电影制片组提供的原始数字资产打造。全尺寸纯金属压铸，表面经过手工战损旧化处理，真实还原大银幕质感；随附带专属编号金属铭牌与高规格钢琴烤漆亚克力展示盒。",
+        sourceUrl:
+          "https://factoryent.com/products/the-batman-batarang-limited-edition-prop-replica",
+        sourceLabel: "Factory Entertainment 产品页",
+        verifiedAt: "2026.08.24",
       },
       {
         id: "paragon-glyph",
@@ -114,6 +124,9 @@ export const MERCH: MerchGroup[] = [
         image: "/media/merch/paragon-glyph.jpg",
         imageAlt: "Paragon FX 1:1 金属蝙蝠徽标双面与展开形态",
         body: "获得华纳兄弟官方授权，由知名道具厂牌 Paragon 依据电影道具原件 STL 文件 1:1 打造。全金属实心分量感十足，不仅忠实还原徽记表面的细微机械纹理，更可拆卸展开为双刃战术折叠刀。",
+        sourceUrl: "https://paragonfxgroup.com/products/thebatman2022",
+        sourceLabel: "Paragon FX 产品页",
+        verifiedAt: "2026.08.24",
       },
       {
         id: "fe-grapnel",
@@ -125,6 +138,10 @@ export const MERCH: MerchGroup[] = [
         image: "/media/merch/fe-grapnel.jpg",
         imageAlt: "Factory Entertainment 1:1 战术抓钩枪实物展示",
         body: "全尺寸 1:1 电影实体道具复刻，尺寸约 10×21×5 厘米。采用实心合金精密压铸，高度还原钢缆线轴、握把机械制动机构与表面战损涂装，配有博物馆级展示盒与独立编号收藏证书。",
+        sourceUrl:
+          "https://factoryent.com/products/the-batman-grapple-launcher-limited-edition-prop-replica",
+        sourceLabel: "Factory Entertainment 产品页",
+        verifiedAt: "2026.08.24",
       },
     ],
   },
@@ -367,8 +384,4 @@ export const MERCH: MerchGroup[] = [
   },
 ];
 
-export const MERCH_TEASERS = [
-  MERCH[0].items[0],
-  MERCH[1].items[0],
-  MERCH[2].items[0],
-];
+export const MERCH_TEASERS = [MERCH[0].items[0], MERCH[1].items[0], MERCH[2].items[0]];

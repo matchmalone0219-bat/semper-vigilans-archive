@@ -1,10 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CERTAINTY_LABEL, CAST, FACTS, FILM, LOG, LOG_KIND, PLOT, latestLog, logImages, pageTitle } from "@/lib/film";
+import {
+  CERTAINTY_LABEL,
+  CAST,
+  FACTS,
+  FILM,
+  LOG,
+  LOG_KIND,
+  PLOT,
+  latestLog,
+  logImages,
+  pageTitle,
+} from "@/lib/film";
 import { RelationMap } from "@/components/relation-map";
 import { LogCarousel } from "@/components/log-carousel";
 import { BiliPlayer } from "@/components/bili-player";
 import { PLACES } from "@/lib/places";
 import { cn } from "@/lib/cn";
+import { SourceLink } from "@/components/source-link";
 
 export const Route = createFileRoute("/dossier")({
   head: () => ({
@@ -40,7 +52,8 @@ function Dossier() {
             档案
           </h1>
           <p className="mt-4 max-w-xl text-pretty text-muted">
-            系统整理《{FILM.titleZh}》相关的全方位资讯，涵盖官方公告、片场实拍动态与演职员阵容；深入了解配乐创作、摄影风格与取景地解析，请访问{" "}
+            系统整理《{FILM.titleZh}
+            》相关的全方位资讯，涵盖官方公告、片场实拍动态与演职员阵容；深入了解配乐创作、摄影风格与取景地解析，请访问{" "}
             <Link to="/craft" className="text-fg underline-offset-4 hover:underline">
               幕后与视听
             </Link>
@@ -65,13 +78,8 @@ function Dossier() {
           <SectionKicker n="01" title="基本信息" />
           <dl className="mt-8 divide-y divide-fg/10 border-y border-fg/10">
             {FACTS.map((fact) => (
-              <div
-                key={fact.label}
-                className="grid gap-2 py-4 sm:grid-cols-12 sm:gap-6"
-              >
-                <dt className="text-sm tracking-widest text-muted sm:col-span-3">
-                  {fact.label}
-                </dt>
+              <div key={fact.label} className="grid gap-2 py-4 sm:grid-cols-12 sm:gap-6">
+                <dt className="text-sm tracking-widest text-muted sm:col-span-3">{fact.label}</dt>
                 <dd className="text-pretty sm:col-span-9">{fact.value}</dd>
               </div>
             ))}
@@ -82,10 +90,7 @@ function Dossier() {
           <SectionKicker n="02" title="故事线索" />
           <ul className="mt-8 space-y-4">
             {PLOT.map((item) => (
-              <li
-                key={item.text}
-                className="border border-fg/10 bg-surface/40 p-5 sm:p-6"
-              >
+              <li key={item.text} className="border border-fg/10 bg-surface/40 p-5 sm:p-6">
                 <span
                   className={cn(
                     "inline-block text-[10px] tracking-[0.28em] uppercase",
@@ -178,6 +183,8 @@ function Dossier() {
                     <img
                       src={place.image}
                       alt=""
+                      loading="lazy"
+                      decoding="async"
                       className="size-full object-cover transition-opacity duration-150 group-hover:opacity-90"
                     />
                   </div>
@@ -228,6 +235,8 @@ function Dossier() {
                     <img
                       src={card.image}
                       alt=""
+                      loading="lazy"
+                      decoding="async"
                       className="size-full object-cover transition-opacity duration-150 group-hover:opacity-90"
                     />
                   </div>
@@ -246,7 +255,11 @@ function Dossier() {
           <SectionKicker n="07" title="拍摄日志" />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
             按时间倒序汇总电影从立项、开机到最新外景实拍的完整制片历程。查阅哥谭宇宙剧情故事线请前往{" "}
-            <Link to="/recap" hash="gotham-timeline" className="text-fg underline-offset-4 hover:underline">
+            <Link
+              to="/recap"
+              hash="gotham-timeline"
+              className="text-fg underline-offset-4 hover:underline"
+            >
               回顾 · 哥谭编年史
             </Link>
             。片场实拍图集请查阅{" "}
@@ -267,7 +280,14 @@ function Dossier() {
               </p>
               <h3 className="mt-2 font-sans text-2xl font-black tracking-tight">{latest.title}</h3>
               <p className="mt-3 text-pretty text-sm leading-relaxed text-muted">{latest.body}</p>
-              {latest.source ? <p className="mt-2 text-xs text-faint">{latest.source}</p> : null}
+              {latest.source ? (
+                <SourceLink
+                  label={latest.source}
+                  href={latest.sourceUrl}
+                  tier={latest.sourceTier}
+                  verifiedAt={latest.verifiedAt}
+                />
+              ) : null}
               {latest.href ? (
                 <p className="mt-3">
                   <Link
@@ -308,11 +328,14 @@ function Dossier() {
                 {logImages(event).length ? (
                   <LogCarousel images={logImages(event)} className="mt-3 max-w-2xl" />
                 ) : null}
-                {event.video ? (
-                  <BiliPlayer video={event.video} className="mt-3 max-w-2xl" />
-                ) : null}
+                {event.video ? <BiliPlayer video={event.video} className="mt-3 max-w-2xl" /> : null}
                 {event.source ? (
-                  <p className="mt-2 text-xs text-faint">{event.source}</p>
+                  <SourceLink
+                    label={event.source}
+                    href={event.sourceUrl}
+                    tier={event.sourceTier}
+                    verifiedAt={event.verifiedAt}
+                  />
                 ) : null}
               </li>
             ))}

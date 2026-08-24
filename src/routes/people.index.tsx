@@ -21,7 +21,11 @@ function PeopleIndex() {
         <h1 className="mt-3 font-sans text-5xl font-black tracking-tight sm:text-6xl">人物</h1>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
           收录哥谭各派系核心角色的生平履历与出场档案。点击角色卡片可查看详细生平背景与出场记录；查看全景人物关系网络请前往{" "}
-          <Link to="/dossier" hash="relations" className="text-fg underline-offset-4 hover:underline">
+          <Link
+            to="/dossier"
+            hash="relations"
+            className="text-fg underline-offset-4 hover:underline"
+          >
             电影档案 · 人物关系
           </Link>
           。
@@ -49,6 +53,8 @@ function PeopleIndex() {
                         <img
                           src={p.portrait.src}
                           alt=""
+                          loading="lazy"
+                          decoding="async"
                           className={cn(
                             "size-20 shrink-0 object-cover",
                             (p.status === "dead" || p.status === "rumor") && "grayscale",
@@ -59,7 +65,9 @@ function PeopleIndex() {
                         <p className="font-display text-xs font-semibold tracking-[0.18em] text-faint uppercase">
                           {p.sub} · {STATUS_LABEL[p.status]}
                         </p>
-                        <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">{p.name}</h2>
+                        <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">
+                          {p.name}
+                        </h2>
                         {p.actor ? <p className="mt-1 text-sm text-muted">{p.actor}</p> : null}
                       </span>
                     </Link>

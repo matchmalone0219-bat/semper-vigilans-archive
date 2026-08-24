@@ -75,7 +75,8 @@ function Home() {
         </div>
         <div className="space-y-5 text-pretty text-base leading-relaxed text-muted lg:col-span-7">
           <p>
-            前作《新蝙蝠侠》以谜语人引发的哥谭暴洪收尾，续集将时间线推向寒冷冬日。剧组在苏格兰格拉斯哥搭建雪景实拍，蝙蝠战车换上雪地胎，项目代号定为「Semper Vigilans」（永远警惕）。
+            前作《新蝙蝠侠》以谜语人引发的哥谭暴洪收尾，续集将时间线推向寒冷冬日。剧组在苏格兰格拉斯哥搭建雪景实拍，蝙蝠战车换上雪地胎，项目代号定为「Semper
+            Vigilans」（永远警惕）。
           </p>
           <p>
             本站为影迷自发建立的中文资料库，为您持续汇总官方公开新闻、演职员名单、片场实拍线索与剧情推测。所有传闻均已明确标注来源，力求提供客观严谨的影视资讯。
@@ -86,13 +87,30 @@ function Home() {
             className="mt-2 block border border-fg/15 p-4 hover:border-blood"
           >
             {latest.image ? (
-              <img src={latest.image} alt="" className="mb-3 aspect-[16/8] w-full object-cover" />
+              <img
+                src={latest.image}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="mb-3 aspect-[16/8] w-full object-cover"
+              />
             ) : null}
             <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
               最新拍摄动态 · {latest.date}
             </p>
-            <p className="mt-2 font-sans text-xl font-black tracking-tight text-fg">{latest.title}</p>
+            <p className="mt-2 font-sans text-xl font-black tracking-tight text-fg">
+              {latest.title}
+            </p>
             <p className="mt-2 text-sm leading-relaxed">{latest.body}</p>
+            <span className="mt-3 block font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase">
+              完整日志与来源 →
+            </span>
+          </Link>
+          <Link
+            to="/updates"
+            className="text-xs tracking-[0.2em] text-muted uppercase hover:text-fg"
+          >
+            查看站点更新记录 →
           </Link>
         </div>
       </section>
@@ -140,9 +158,7 @@ function Home() {
                   <p className="font-display text-xs font-semibold tracking-[0.28em] text-fg/70 uppercase">
                     {work.when} · {work.form}
                   </p>
-                  <p className="mt-1 font-sans text-2xl font-black tracking-tight">
-                    {work.title}
-                  </p>
+                  <p className="mt-1 font-sans text-2xl font-black tracking-tight">{work.title}</p>
                   <p className="mt-2 max-w-md text-sm text-fg/80">{work.lede}</p>
                 </div>
               </Link>
@@ -233,10 +249,7 @@ function Home() {
               蝙蝠侠专属装备
             </h2>
           </div>
-          <Link
-            to="/gear"
-            className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg"
-          >
+          <Link to="/gear" className="text-xs tracking-[0.28em] text-muted uppercase hover:text-fg">
             全部装备解析
           </Link>
         </div>
@@ -258,9 +271,7 @@ function Home() {
                   <p className="font-display text-xs font-semibold tracking-[0.28em] text-fg/70 uppercase">
                     {item.nameEn}
                   </p>
-                  <p className="mt-1 font-sans text-xl font-black tracking-tight">
-                    {item.name}
-                  </p>
+                  <p className="mt-1 font-sans text-xl font-black tracking-tight">{item.name}</p>
                 </div>
               </Link>
             </li>
@@ -302,9 +313,7 @@ function Home() {
                 <p className="font-display text-xs font-semibold tracking-[0.28em] text-fg/70 uppercase">
                   {still.kicker}
                 </p>
-                <p className="mt-1 font-sans text-xl font-black tracking-tight">
-                  {still.title}
-                </p>
+                <p className="mt-1 font-sans text-xl font-black tracking-tight">{still.title}</p>
               </div>
             </Link>
           ))}
@@ -323,11 +332,10 @@ function Home() {
             谜语人暗号挑战
           </h2>
           <p className="mt-4 max-w-xl text-pretty text-sm leading-relaxed text-phosphor/80 sm:text-base">
-            复刻自 2021 年华纳官方解谜网站 rataalada.com：黑底绿字经典黑客命令行终端，答对三条一组的谜语即可解密解锁专属剧照与彩蛋文件。
+            复刻自 2021 年华纳官方解谜网站
+            rataalada.com：黑底绿字经典黑客命令行终端，答对三条一组的谜语即可解密解锁专属剧照与彩蛋文件。
           </p>
-          <p className="mt-6 text-sm tracking-[0.22em] uppercase">
-            {">"} 输入 Y 开始挑战 →
-          </p>
+          <p className="mt-6 text-sm tracking-[0.22em] uppercase">{">"} 输入 Y 开始挑战 →</p>
         </Link>
       </section>
 
@@ -365,9 +373,7 @@ function Home() {
                 <p className="font-display text-xs font-semibold tracking-[0.28em] text-fg/70 uppercase">
                   {item.maker}
                 </p>
-                <p className="mt-1 font-sans text-xl font-black tracking-tight">
-                  {item.name}
-                </p>
+                <p className="mt-1 font-sans text-xl font-black tracking-tight">{item.name}</p>
               </div>
             </Link>
           ))}

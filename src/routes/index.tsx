@@ -109,7 +109,7 @@ function Home() {
               洪水退去，哥谭市即将迎来严苛寒冬。
             </h2>
             <p className="mt-8 max-w-xl text-pretty leading-relaxed text-muted">
-              《新蝙蝠侠》以谜语人炸毁大坝、淹没哥谭收尾；在《企鹅人》中奥兹·科布（Oz Cobb）夺取黑道控制权数周后的寒冷冬日，《新蝙蝠侠2》的故事正式展开。目前剧组正以「Semper Vigilans」（永远警惕）为制作代号，在苏格兰格拉斯哥展开实景拍摄。
+              前作《The Batman》以谜语人引爆炸坝、洪水漫灌哥谭落幕；而衍生剧《The Penguin》中奥兹·科布（Oz Cobb）夺取黑道王座数周后，整座城市步入寒冬，《The Batman Part II》的故事由此正式拉开帷幕。目前剧组正以「Semper Vigilans」（永远警惕）为项目代号，在苏格兰格拉斯哥展开大规模雪景实拍。
             </p>
             <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted">
               本站为影迷自发建立的中文资料库，为您持续汇总官方公开新闻、演职员名单、片场实拍线索与剧情推测。所有传闻均已明确标注来源，力求提供客观严谨的影视资讯。

@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
 
 export const Route = createFileRoute("/recap")({
   head: () => ({
-    meta: [{ title: pageTitle("前作回顾与双时间轴") }],
+    meta: [{ title: pageTitle("前作回顾与时间线") }],
   }),
   component: Recap,
 });
@@ -34,13 +34,13 @@ function Recap() {
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-bg/40" />
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
           <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
-            TIMELINES & RECAPS
+            UNIVERSE TIMELINE & RECAPS
           </p>
           <h1 className="mt-4 font-sans text-5xl font-black leading-none tracking-tight sm:text-7xl">
-            前作与双时间轴
+            前作回顾
           </h1>
           <p className="mt-4 max-w-xl text-pretty text-muted">
-            支持一键切换「故事宇宙编年史」与「现实制片时间线」，全景串联前传小说、限定漫画、电影正片、《企鹅人》剧集与续集最新进展。原著漫画致敬考据请查阅{" "}
+            按时间顺序完整梳理《新蝙蝠侠》宇宙的历史脉络与作品剧情，涵盖官方前传小说、限定漫画、电影正片与《企鹅人》剧集；关于原著漫画的致敬与考据，请查阅{" "}
             <Link to="/roots" className="text-fg underline-offset-4 hover:underline">
               原著渊源
             </Link>
@@ -55,13 +55,13 @@ function Recap() {
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-                00 / Chronology
+                00 / Timeline
               </p>
               <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-                双轨编年史
+                故事年表与制片历程
               </h2>
               <p className="mt-2 max-w-2xl text-pretty text-sm text-muted">
-                可自由切换查看「哥谭故事内部编年史」或「华纳现实制片拍摄历程」。
+                提供「哥谭故事时间线」与「现实制片拍摄历程」两种视图。
               </p>
             </div>
 
@@ -77,7 +77,7 @@ function Recap() {
                     : "text-muted hover:text-fg",
                 )}
               >
-                故事宇宙编年史 (In-Universe)
+                哥谭故事时间线 (剧情)
               </button>
               <button
                 type="button"
@@ -89,7 +89,7 @@ function Recap() {
                     : "text-muted hover:text-fg",
                 )}
               >
-                现实制片编年史 (Production)
+                现实制片历程 (幕后)
               </button>
             </div>
           </div>
@@ -99,7 +99,7 @@ function Recap() {
             <div className="mt-10">
               <div className="rounded-none border border-fg/10 bg-surface/30 p-4">
                 <p className="text-xs font-semibold tracking-wider text-blood uppercase">
-                  快捷作品导航
+                  作品快捷导航
                 </p>
                 <ol className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-3 sm:gap-y-2">
                   {TIMELINE.map((beat, i) => (

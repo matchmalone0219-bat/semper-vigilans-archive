@@ -102,7 +102,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           >
             {FILM.siteName}
           </Link>
-          <nav className="hidden items-center gap-3 lg:gap-5 md:flex">
+          <nav className="hidden items-center gap-3 lg:gap-5 md:ml-auto md:flex">
             {NAV.map((item) => (
               <div key={item.to} className="group relative flex h-16 items-center">
                 <Link

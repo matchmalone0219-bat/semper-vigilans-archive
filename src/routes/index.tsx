@@ -157,7 +157,7 @@ function Home() {
             Core Archives
           </p>
           <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-            四个核心入口
+            核心档案
           </h2>
         </div>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2">

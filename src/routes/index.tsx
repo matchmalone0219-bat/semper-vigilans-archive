@@ -109,8 +109,7 @@ function Home() {
               洪水退去，哥谭市即将迎来严苛寒冬。
             </h2>
             <p className="mt-8 max-w-xl text-pretty leading-relaxed text-muted">
-              前作《新蝙蝠侠》以谜语人引发的哥谭暴洪收尾，续集将时间线推向寒冷冬日。剧组在苏格兰格拉斯哥搭建雪景实拍，蝙蝠战车换上雪地胎，项目代号定为「Semper
-              Vigilans」（永远警惕）。
+              经历第一部的大洪水后，哥谭市在续集中迎来严酷寒冬。剧组使用代号「Semper Vigilans」（永远警惕）在苏格兰格拉斯哥进行实景封街拍摄，记录了蝙蝠战车在雪地中的全新动态。
             </p>
             <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted">
               本站为影迷自发建立的中文资料库，为您持续汇总官方公开新闻、演职员名单、片场实拍线索与剧情推测。所有传闻均已明确标注来源，力求提供客观严谨的影视资讯。

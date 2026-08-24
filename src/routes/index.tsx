@@ -109,7 +109,7 @@ function Home() {
               洪水退去，哥谭市即将迎来严苛寒冬。
             </h2>
             <p className="mt-8 max-w-xl text-pretty leading-relaxed text-muted">
-              经历第一部的大洪水后，哥谭市在续集中迎来严酷寒冬。剧组使用代号「Semper Vigilans」（永远警惕）在苏格兰格拉斯哥进行实景封街拍摄，记录了蝙蝠战车在雪地中的全新动态。
+              《新蝙蝠侠》以谜语人炸毁大坝、淹没哥谭收尾；在《企鹅人》中奥兹·科布（Oz Cobb）夺取黑道控制权数周后的寒冷冬日，《新蝙蝠侠2》的故事正式展开。目前剧组正以「Semper Vigilans」（永远警惕）为制作代号，在苏格兰格拉斯哥展开实景拍摄。
             </p>
             <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted">
               本站为影迷自发建立的中文资料库，为您持续汇总官方公开新闻、演职员名单、片场实拍线索与剧情推测。所有传闻均已明确标注来源，力求提供客观严谨的影视资讯。

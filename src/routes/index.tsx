@@ -17,7 +17,7 @@ const CORE_LINKS = [
     to: "/dossier",
     kicker: "01 / Dossier",
     title: "电影档案",
-    description: "续集公开信息、演员阵容、拍摄日志与来源核验。",
+    description: "续集公开信息、演职员阵容与片场拍摄日志。",
     image: "/media/p2-snow1.jpg",
   },
   {

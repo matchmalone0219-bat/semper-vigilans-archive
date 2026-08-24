@@ -4,7 +4,7 @@ import { pageTitle } from "@/lib/film";
 
 export const Route = createFileRoute("/merch")({
   head: () => ({
-    meta: [{ title: pageTitle("周边") }],
+    meta: [{ title: pageTitle("周边与收藏品") }],
   }),
   component: Merch,
 });
@@ -14,11 +14,13 @@ function Merch() {
     <main>
       <header className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
-          Merch / Licensed
+          Merch / Licensed Collectibles
         </p>
-        <h1 className="mt-3 font-sans text-5xl font-black tracking-tight sm:text-6xl">周边</h1>
+        <h1 className="mt-3 font-sans text-5xl font-black tracking-tight sm:text-6xl">
+          官方周边与收藏品
+        </h1>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-          第一部上映前后发出去的授权产品，按类型分开。人偶、雕像、载具、出版、影像和海报。海报收的是印出来的纸，不是宣发图。第二部还没有周边。
+          收录《新蝙蝠侠》首部曲上映期间推出的官方授权衍生品与收藏级物料，涵盖可动人偶、博物馆级雕像、合金车模、出版书籍、影音原声及实体艺术丝网海报；相关产品信息整理自各大授权厂商与发行方公开发布的官方资料。目前第二部尚未公布任何周边。
         </p>
         <nav className="mt-8 flex flex-wrap gap-3">
           {MERCH.map((g) => (
@@ -91,13 +93,13 @@ function Merch() {
       ))}
 
       <p className="mx-auto max-w-6xl px-4 pb-16 text-sm text-faint sm:px-6">
-        本页不是商店，不提供购买链接。产品图来自 INART / Queen Studios、Hot Toys、Prime 1 Studio、Mattel、McFarlane、Jada、Funko、Mondo、IMAX、Dolby、Abrams、华纳家庭娱乐与 WaterTower 发给媒体的物料。设定集里的装备概念在{" "}
+        本站为影迷非商业资料库，不提供任何商品购买与销售服务。产品展示图与技术规格均整理自 INART、Hot Toys、Prime 1 Studio、Mondo、Abrams 及华纳家庭娱乐等授权厂牌公开物料。查阅电影装备设定请前往{" "}
         <Link to="/gear" className="text-fg underline-offset-4 hover:underline">
           装备
         </Link>
-        。小说和漫画在故事里怎么接，在{" "}
+        ，了解衍生小说与漫画在故事线中的承接关系请查阅{" "}
         <Link to="/recap" className="text-fg underline-offset-4 hover:underline">
-          回顾
+          前作回顾
         </Link>
         。
       </p>

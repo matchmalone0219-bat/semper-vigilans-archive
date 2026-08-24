@@ -26,7 +26,7 @@ export const MERCH: MerchGroup[] = [
     title: "可动人偶",
     titleEn: "Action Figures",
     intro:
-      "包含主流厂商官方授权的 1/6 珍藏级可动人偶、7 寸量产线及 Q 版乙烯模型，忠实还原 2022 年电影中的角色战衣、面部特征与配件细节。",
+      "汇集主流厂商官方授权的 1/6 珍藏级可动人偶、7 寸可动玩具及流行文化潮玩，高度还原 2022 年电影中的角色战衣剪裁、面部轮廓与武器配件。",
     items: [
       {
         id: "inart",
@@ -91,7 +91,7 @@ export const MERCH: MerchGroup[] = [
     title: "高端雕像",
     titleEn: "Statues",
     intro:
-      "日本顶级雕像品牌 Prime 1 Studio 联合 Blitzway 打造的 1/3 博物馆级限量树脂雕像，具备极高的面部逼真度与场景收藏价值。",
+      "收录博物馆级高精度限量树脂雕像，以近 80 厘米的恢弘体量、细腻皮肤纹理与写实战损装甲，复刻电影殿堂级收藏质感。",
     items: [
       {
         id: "p1s",
@@ -123,7 +123,7 @@ export const MERCH: MerchGroup[] = [
     title: "车模载具",
     titleEn: "Die-Cast Vehicles",
     intro:
-      "涵盖 1/64、1/32、1/24 及 1/18 多种比例的蝙蝠战车合金模型，真实再现 1960–70 年代改装肌肉车底盘与外露喷气引擎结构。",
+      "涵盖 1/64、1/32、1/24 及 1/18 多种比例的蝙蝠战车合金模型，精细重现美式改装肌肉车底盘、全钢防滚架与外露喷气涡轮结构。",
     items: [
       {
         id: "hotwheels",
@@ -166,7 +166,7 @@ export const MERCH: MerchGroup[] = [
     title: "出版书籍",
     titleEn: "Books & Comics",
     intro:
-      "包含官方艺术设定集、前传小说以及主演保罗·达诺亲笔编剧的衍生漫画，为深入探索里夫斯导剪宇宙的必读文献。",
+      "收录官方艺术设定集、前传小说以及主演保罗·达诺亲笔编剧的衍生漫画，为深入探索《新蝙蝠侠》世界观的官方授权读物。",
     items: [
       {
         id: "artbook",
@@ -209,7 +209,7 @@ export const MERCH: MerchGroup[] = [
     title: "影音与原声",
     titleEn: "Home Video & Soundtrack",
     intro:
-      "包含 4K UHD 超高清蓝光光盘及迈克尔·吉亚奇诺创作的电影官方原声大碟，完美呈现高动态影像与沉浸式声场。",
+      "包含 4K UHD 超高清蓝光光盘、杜比视界音画典藏光碟，以及迈克尔·吉亚奇诺创作的电影官方黑胶与原声大碟。",
     items: [
       {
         id: "uhd",
@@ -249,10 +249,10 @@ export const MERCH: MerchGroup[] = [
   {
     id: "posters",
     kicker: "06",
-    title: "官方海报与艺术微喷",
+    title: "艺术海报与丝网印",
     titleEn: "Official Posters & Prints",
     intro:
-      "汇总院线公映海报、IMAX/杜比影院限定特典以及 Mondo 限量艺术丝网印刷画作，极具视觉冲击力与装裱收藏价值。",
+      "收录影院限定实体海报特典、Mondo 艺术家限量丝网版画及收藏级装裱挂画，展现新黑色电影的先锋视觉艺术风格。",
     items: [
       {
         id: "poster-mondo",

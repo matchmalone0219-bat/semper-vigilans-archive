@@ -19,7 +19,7 @@ function Gallery() {
         </p>
         <h1 className="mt-3 font-sans text-5xl font-black tracking-tight sm:text-6xl">剧照</h1>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-          按作品分开存放。点图看大图，左右键翻页。第一部和《企鹅人》是华纳、HBO 发给媒体的官方剧照；第二部还没有官方物料，只有格拉斯哥片场见报的照片。
+          精选《新蝙蝠侠》宇宙官方高清剧照与片场纪实图集。支持点击查看大图与全屏画廊浏览，包含第一部电影剧照、HBO《企鹅人》限定剧剧照以及第二部格拉斯哥外景拍摄路透记录。
         </p>
         <nav className="mt-8 flex flex-wrap gap-3">
           {GALLERIES.map((g) => (

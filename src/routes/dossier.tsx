@@ -40,11 +40,11 @@ function Dossier() {
             档案
           </h1>
           <p className="mt-4 max-w-xl text-pretty text-muted">
-            《{FILM.titleZh}》公开信息整理。官方确认、片场线索与传闻推测分栏存放，不混写。配乐、光影与实地取景见{" "}
+            系统整理《{FILM.titleZh}》相关的全方位资讯，涵盖官方公告、片场实拍动态与演职员阵容；深入了解配乐创作、摄影风格与取景地解析，请访问{" "}
             <Link to="/craft" className="text-fg underline-offset-4 hover:underline">
               幕后与视听
             </Link>
-            。
+            专题。
           </p>
           <nav className="mt-8 flex flex-wrap gap-3">
             {jump.map((item) => (

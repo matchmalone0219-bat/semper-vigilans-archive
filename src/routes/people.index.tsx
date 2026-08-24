@@ -20,9 +20,9 @@ function PeopleIndex() {
         </p>
         <h1 className="mt-3 font-sans text-5xl font-black tracking-tight sm:text-6xl">人物</h1>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-          关系图上的每个名字在此有单独档案。点头像进入详情。关系图仍在{" "}
+          收录哥谭各派系核心角色的生平履历与出场档案。点击角色卡片可查看详细生平背景与出场记录；查看全景人物关系网络请前往{" "}
           <Link to="/dossier" hash="relations" className="text-fg underline-offset-4 hover:underline">
-            档案 · 人物关系
+            电影档案 · 人物关系
           </Link>
           。
         </p>

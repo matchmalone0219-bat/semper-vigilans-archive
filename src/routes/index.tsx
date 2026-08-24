@@ -25,7 +25,7 @@ const CORE_LINKS = [
     kicker: "02 / Universe",
     title: "世界观",
     description: "前作、衍生剧、漫画与哥谭时间线的完整串联。",
-    image: "/media/signal.jpg",
+    image: "/media/still-fire.jpg",
   },
   {
     to: "/craft",

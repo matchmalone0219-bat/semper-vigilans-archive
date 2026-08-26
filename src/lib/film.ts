@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.08.24";
+export const CONTENT_REVIEWED_AT = "2026.08.26";
 
 export function pageTitle(page?: string) {
   return page ? `${page} · ${FILM.siteName}` : `${FILM.siteName} · 《${FILM.titleZh}》影迷档案站`;
@@ -56,9 +56,9 @@ export const FACTS: {
   },
   {
     label: "公开外景",
-    value: "英国利物浦与苏格兰格拉斯哥。格拉斯哥市中心目前已展开实景封街拍摄",
-    source: "STV News · Glasgow 现场报道",
-    sourceUrl: "https://news.stv.tv/west-central/is-glasgow-transforming-into-gotham-for-the-batman-part-ii-filming",
+    value: "英国利物浦与苏格兰格拉斯哥。格拉斯哥市中心自 8 月 18 日起封街实拍，道路通告显示拍摄将持续到 9 月初",
+    source: "STV News / The Herald · 道路限制通告",
+    sourceUrl: "https://www.heraldscotland.com/news/26411083.glasgow-road-closures-place-batman-part-ii-filming/",
     sourceTier: "press",
   },
   {
@@ -545,6 +545,50 @@ export const LOG: LogEntry[] = [
       bvid: "BV1Xm8a6sEKv",
       title: "片场路透：哥谭警方围攻蝙蝠战车",
     },
+  },
+  {
+    date: "2026.08.24",
+    iso: "2026-08-24",
+    title: "特警包围战车新角度，副驾出现金发女子",
+    body: "当地摄影师放出新一组夜间路透：蝙蝠战车停在 SWAT 装甲车与哥谭警车阵列中。另有路透拍到副驾驶坐着一名金发女子，身份官方未公布；网上猜测为斯嘉丽·约翰逊所饰角色，目前只能记为片场线索。未见帕丁森本人，驾驶者为特技替身 Rick English。",
+    kind: "shoot",
+    source: "片场路透 · ross_sneddon / sydd.91",
+    sourceUrl: "https://x.com/TheBatmanSagaNW/status/2092037411794497961",
+    sourceTier: "set",
+    verifiedAt: "2026.08.26",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-24-swat1.jpg",
+    images: [
+      "/media/log/p2-24-swat1.jpg",
+      "/media/log/p2-24-swat2.jpg",
+      "/media/log/p2-24-swat3.jpg",
+      "/media/log/p2-24-swat4.jpg",
+      "/media/log/p2-24-car.jpg",
+      "/media/log/p2-24-blonde.jpg",
+    ],
+  },
+  {
+    date: "2026.08.25",
+    iso: "2026-08-25",
+    title: "战衣路透：替身夜戏突围，战车加装防撞杠漂移",
+    body: "特技演员 Rick English 身着全套蝙蝠战衣出现在格拉斯哥夜戏现场，是续集较清晰的战衣路透之一。同段拍摄中战车车头加装防撞杠，在积雪路面做原地漂移，GCPD 车辆围捕。格拉斯哥道路通告显示 Broomielaw、Glasgow Bridge 等点将拍到 8 月 27–29 日，华盛顿街拍到 9 月 6 日前后。",
+    kind: "shoot",
+    source: "片场路透 · marcossabino / kt_perspective",
+    sourceUrl: "https://x.com/TheBatmanSagaNW/status/2092400275726254590",
+    sourceTier: "set",
+    verifiedAt: "2026.08.26",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-25-suit1.jpg",
+    images: [
+      "/media/log/p2-25-suit1.jpg",
+      "/media/log/p2-25-suit2.jpg",
+      "/media/log/p2-25-suit3.jpg",
+      "/media/log/p2-25-bumper.jpg",
+      "/media/log/p2-24-car.jpg",
+      "/media/p2-batman.jpg",
+    ],
   },
   {
     date: "2028.02.18",

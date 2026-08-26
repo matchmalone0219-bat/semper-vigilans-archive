@@ -209,44 +209,44 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》格拉斯哥外景片场记录。汇总冬季雪景、蝙蝠战车、特警围捕、战衣路透与副驾乘客等实拍线索。",
+      "《新蝙蝠侠2》格拉斯哥外景片场记录。汇总冬季雪景实拍、蝙蝠战车调度、特警围捕、战衣细节与副驾神秘乘客等现场线索。",
     stills: [
       {
         src: "/media/log/p2-25-suit1.jpg",
-        title: "续集战衣夜戏路透",
+        title: "续集战衣夜戏实拍",
         caption:
-          "特技替身 Rick English 身着全套蝙蝠战衣出现在格拉斯哥夜戏现场，是续集较清晰的战衣画面之一。",
+          "特技替身瑞克·英格利希（Rick English）身着全套蝙蝠战衣现身格拉斯哥夜戏现场，展现出续集战衣清晰的护甲细节与实材质感。",
         source: "片场路透 · marcossabino",
       },
       {
         src: "/media/log/p2-25-suit3.jpg",
-        title: "战衣与战车同框",
-        caption: "身着战衣的替身靠近蝙蝠战车，现场同时有 SWAT 车辆与摄影设备。",
+        title: "战衣替身与战车同框",
+        caption: "身着战衣的特技演员靠近蝙蝠战车，现场同时布设了 SWAT 装甲车辆与大型移动摄影设备。",
         source: "片场路透 · marcossabino",
       },
       {
         src: "/media/log/p2-24-swat1.jpg",
-        title: "特警装甲车包围战车",
-        caption: "GCPD SWAT 装甲车与多辆警车将蝙蝠战车围在积雪街道中央。",
+        title: "特警装甲车列阵围捕",
+        caption: "哥谭特警（SWAT）重型装甲车与多辆巡逻警车将蝙蝠战车围在积雪街道中央。",
         source: "片场路透 · ross_sneddon",
       },
       {
         src: "/media/log/p2-24-swat4.jpg",
-        title: "战车前脸与特警车",
-        caption: "近距离拍到战车前脸冲撞杠、雪地胎与右侧特警装甲车。",
+        title: "战车前脸与装甲车对峙",
+        caption: "近距离记录战车全钢冲撞前杠、防滑雪地胎，以及右侧待命的特警装甲车。",
         source: "片场路透 · ross_sneddon",
       },
       {
         src: "/media/log/p2-24-blonde.jpg",
-        title: "副驾金发女子",
+        title: "副驾驶神秘金发乘客",
         caption:
-          "路透拍到副驾驶坐着一名金发女子，身份官方未公布。网上猜测为新加盟演员所饰角色。",
+          "片场路透捕捉到战车副驾驶坐有一名金发女性，具体身份尚未公开，引发外界对新加盟演员角色的猜想。",
         source: "片场路透 · sydd.91",
       },
       {
         src: "/media/log/p2-25-bumper.jpg",
-        title: "加装防撞杠的漂移",
-        caption: "拍摄用防撞杠装在车头，战车在积雪路面做原地漂移，供围捕戏调度。",
+        title: "加装防撞杠的原地漂移",
+        caption: "车头加装了拍摄专用的冲撞防护杠，战车在积雪路面上完成原地定圆漂移，用于拍摄复杂的追车与围捕镜头。",
         source: "片场路透 · kt_perspective",
       },
       {

@@ -56,7 +56,7 @@ export const FACTS: {
   },
   {
     label: "公开外景",
-    value: "英国利物浦与苏格兰格拉斯哥。格拉斯哥市中心自 8 月 18 日起封街实拍，道路通告显示拍摄将持续到 9 月初",
+    value: "英国利物浦与苏格兰格拉斯哥。格拉斯哥市中心自 8 月 18 日起展开实景封街拍摄，道路通告显示外景将持续至 9 月上旬。",
     source: "STV News / The Herald · 道路限制通告",
     sourceUrl: "https://www.heraldscotland.com/news/26411083.glasgow-road-closures-place-batman-part-ii-filming/",
     sourceTier: "press",
@@ -549,8 +549,8 @@ export const LOG: LogEntry[] = [
   {
     date: "2026.08.24",
     iso: "2026-08-24",
-    title: "特警包围战车新角度，副驾出现金发女子",
-    body: "当地摄影师放出新一组夜间路透：蝙蝠战车停在 SWAT 装甲车与哥谭警车阵列中。另有路透拍到副驾驶坐着一名金发女子，身份官方未公布；网上猜测为斯嘉丽·约翰逊所饰角色，目前只能记为片场线索。未见帕丁森本人，驾驶者为特技替身 Rick English。",
+    title: "特警装甲车列阵围堵战车，副驾驶出现神秘金发乘客",
+    body: "现场记录了新一组夜戏实拍画面：蝙蝠战车停靠在哥谭特警（SWAT）装甲车与警车阵列之中。现场路透捕捉到战车副驾驶坐有一名金发女性，具体身份官方尚未公布，外界推测可能与新加盟演员（如斯嘉丽·约翰逊）的角色相关。当晚战车由特技替身瑞克·英格利希（Rick English）驾驶，帕丁森本人未现身外景。",
     kind: "shoot",
     source: "片场路透 · ross_sneddon / sydd.91",
     sourceUrl: "https://x.com/TheBatmanSagaNW/status/2092037411794497961",
@@ -571,8 +571,8 @@ export const LOG: LogEntry[] = [
   {
     date: "2026.08.25",
     iso: "2026-08-25",
-    title: "战衣路透：替身夜戏突围，战车加装防撞杠漂移",
-    body: "特技演员 Rick English 身着全套蝙蝠战衣出现在格拉斯哥夜戏现场，是续集较清晰的战衣路透之一。同段拍摄中战车车头加装防撞杠，在积雪路面做原地漂移，GCPD 车辆围捕。格拉斯哥道路通告显示 Broomielaw、Glasgow Bridge 等点将拍到 8 月 27–29 日，华盛顿街拍到 9 月 6 日前后。",
+    title: "战衣替身夜戏现身，战车加装前防撞杠完成雪地漂移",
+    body: "特技替身瑞克·英格利希（Rick English）身着全套蝙蝠战衣现身格拉斯哥夜戏现场，展现了续集战衣清晰的装甲细节。拍摄中，战车前脸加装了拍摄专用的冲撞防护杠，在积雪路面上完成原地定圆漂移以配合警队围捕调度。当地市政道路通告显示，布鲁米洛大道与格拉斯哥大桥的实拍将持续至 8 月底，华盛顿街的外景则将延续至 9 月上旬。",
     kind: "shoot",
     source: "片场路透 · marcossabino / kt_perspective",
     sourceUrl: "https://x.com/TheBatmanSagaNW/status/2092400275726254590",

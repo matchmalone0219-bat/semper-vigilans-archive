@@ -584,10 +584,10 @@ export const LOG: LogEntry[] = [
     images: [
       "/media/log/p2-25-suit1.jpg",
       "/media/log/p2-25-suit2.jpg",
-      "/media/log/p2-25-suit3.jpg",
       "/media/log/p2-25-bumper.jpg",
       "/media/log/p2-24-car.jpg",
       "/media/p2-batman.jpg",
+      "/media/log/p2-24-swat4.jpg",
     ],
   },
   {

@@ -219,9 +219,9 @@ export const GALLERIES: GalleryGroup[] = [
         source: "片场路透 · marcossabino",
       },
       {
-        src: "/media/log/p2-25-suit3.jpg",
-        title: "战衣替身与战车同框",
-        caption: "身着战衣的特技演员靠近蝙蝠战车，现场同时布设了 SWAT 装甲车辆与大型移动摄影设备。",
+        src: "/media/log/p2-25-suit2.jpg",
+        title: "夜戏街道上的战衣替身",
+        caption: "身着战衣的特技演员走在格拉斯哥封街路段，现场有摄制车与路灯，是当晚实际手机路透而非合成图。",
         source: "片场路透 · marcossabino",
       },
       {

@@ -29,7 +29,13 @@ function Craft() {
           <p className="mt-3 font-display text-lg tracking-[0.12em] text-muted uppercase">
             电影配乐 · 光影摄影 · 英国取景巡礼
           </p>
-          <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">{CRAFT_INTRO}</p>
+          <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
+            {CRAFT_INTRO} 主演与主创如何谈这三部作品，见{" "}
+            <Link to="/interviews" className="text-fg underline-offset-4 hover:underline">
+              人物访谈
+            </Link>
+            。
+          </p>
           <nav className="mt-8 flex flex-wrap gap-3">
             {[
               { href: "#score", label: "电影配乐" },

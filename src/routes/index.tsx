@@ -49,6 +49,7 @@ const QUICK_LINKS = [
   { to: "/cases", label: "重案卷宗", detail: "案件与物证" },
   { to: "/gear", label: "装备库", detail: "战衣与载具" },
   { to: "/gallery", label: "影像画廊", detail: "剧照与片场" },
+  { to: "/interviews", label: "人物访谈", detail: "主演采访摘录" },
   { to: "/roots", label: "原著溯源", detail: "漫画与影史" },
 ] as const;
 

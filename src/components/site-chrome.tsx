@@ -32,13 +32,14 @@ const NAV = [
   {
     to: "/craft",
     label: "幕后",
-    paths: ["/craft", "/gallery"],
+    paths: ["/craft", "/gallery", "/interviews"],
     children: [
       { to: "/craft", hash: "score", label: "电影配乐" },
       { to: "/craft", hash: "soundtrack-list", label: "插曲与古典乐" },
       { to: "/craft", hash: "lens", label: "光影摄影" },
       { to: "/craft", hash: "map", label: "取景巡礼" },
       { to: "/gallery", label: "剧照与片场画廊" },
+      { to: "/interviews", label: "人物访谈" },
     ],
   },
   {

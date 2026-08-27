@@ -7,6 +7,7 @@ import { resolveStills } from "@/lib/gallery";
 import { StillGrid } from "@/components/still-grid";
 import { cn } from "@/lib/cn";
 import { pageTitle } from "@/lib/film";
+import { interviewsByPerson, WORK_LABEL } from "@/lib/interviews";
 
 export const Route = createFileRoute("/people/$id")({
   head: ({ params }) => {
@@ -39,6 +40,7 @@ function PersonPage() {
   const related = relatedPeople(person.id);
   const stills = resolveStills(person.stills);
   const places = person.places.map((pid) => PLACE_MAP[pid]).filter(Boolean);
+  const quotes = interviewsByPerson(person.id);
   const personIndex = PEOPLE.findIndex((entry) => entry.id === person.id);
   const previous = PEOPLE[(personIndex - 1 + PEOPLE.length) % PEOPLE.length];
   const next = PEOPLE[(personIndex + 1) % PEOPLE.length];
@@ -160,6 +162,31 @@ function PersonPage() {
                   <p className="text-sm text-muted">{a.note}</p>
                 </li>
               ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {quotes.length > 0 ? (
+          <section>
+            <h2 className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
+              访谈摘录
+            </h2>
+            <ul className="mt-6 divide-y divide-fg/10 border-y border-fg/10">
+              {quotes.map((q) => (
+                  <li key={q.id} className="py-4">
+                    <p className="text-xs tracking-[0.18em] text-faint uppercase">
+                      {WORK_LABEL[q.work]} · {q.outlet} · {q.date}
+                    </p>
+                    <p className="mt-2 text-pretty leading-relaxed text-muted">{q.quoteZh}</p>
+                    <Link
+                      to="/interviews"
+                      hash={q.id}
+                      className="mt-2 inline-block text-xs text-fg underline-offset-4 hover:underline"
+                    >
+                      查看原文与出处
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </section>
         ) : null}

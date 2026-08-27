@@ -73,11 +73,26 @@ export const SPEAKERS: InterviewSpeaker[] = [
     portrait: "/media/portraits/sofia.jpg",
   },
   {
+    id: "feliz",
+    name: "伦齐·费利兹",
+    nameEn: "Rhenzy Feliz",
+    role: "维克托·阿吉拉尔",
+    personId: "victor",
+    portrait: "/media/portraits/victor.jpg",
+  },
+  {
     id: "reeves",
     name: "马特·里夫斯",
     nameEn: "Matt Reeves",
     role: "导演 / 编剧",
     portrait: "/media/still-bruce.jpg",
+  },
+  {
+    id: "fraser",
+    name: "格雷格·弗雷泽",
+    nameEn: "Greig Fraser",
+    role: "摄影指导",
+    portrait: "/media/street.jpg",
   },
 ];
 
@@ -300,6 +315,172 @@ export const INTERVIEWS: InterviewQuote[] = [
       "今年我们就要开拍了，我非常兴奋。中间发生了很多事，花的时间比我想的长，但我对我们正在做的东西超级兴奋，等不及拿出来给大家看。",
     quoteEn:
       "This year we're gonna be shooting and I'm very excited about it. There's been a lot of stuff going on and it's taking longer than I would have wanted, but I'm super-excited about what we're doing, so I really can't wait to share that with everybody.",
+  },
+  {
+    id: "pattinson-gq-detective",
+    speakerId: "pattinson",
+    work: "batman",
+    date: "2022.02",
+    iso: "2022-02-08",
+    outlet: "GQ",
+    sourceUrl: "https://www.gq.com/story/robert-pattinson-march-cover-profile",
+    quoteZh:
+      "马特第一次见面就说：我要拍一部七十年代黑色侦探片。这是侦探故事。说出来挺蠢，我以前居然不知道蝙蝠侠还有「世界最伟大侦探」这个称号——但这套真的立得住。平常你看到蝙蝠侠，他来了就把人打一顿；这部里他要跟人说话，还有情感戏。",
+    quoteEn:
+      "It was what Matt was saying from the first meeting I had with him: ‘I want to do a ’70s noir detective story.’ This is a detective story. And I feel like an idiot, because I didn't even know that Batman was ‘the world's greatest detective’; I hadn't heard that in my life before—but it really plays. Normally, when you see Batman he arrives and beats people up. But he's having conversations, and there are emotional scenes between them.",
+  },
+  {
+    id: "kravitz-complex-survivor",
+    speakerId: "kravitz",
+    work: "batman",
+    date: "2022.02",
+    iso: "2022-02-24",
+    outlet: "Complex",
+    sourceUrl:
+      "https://www.complex.com/pop-culture/a/khal/becoming-catwoman-the-batman-zoe-kravitz-featurette-exclusive",
+    quoteZh:
+      "我不会把她叫成反派，她做的事、以及为什么这么做，灰色太多了。我心疼她的故事、她的过去、她的力量。我找到的这个角色，不只是配角，也不只是紧身衣里的漂亮女孩。她是幸存者。",
+    quoteEn:
+      "Kravitz … dives into the character, who she “wouldn't call” a villain, because there is “so much in the gray.” Later, Kravitz says that she “felt” for Kyle's “story, her past, her strength. I really found a character who was more than just a sidekick or more than just a good-looking girl in a tight outfit. She's a survivor.”",
+  },
+  {
+    id: "wright-thr-comics",
+    speakerId: "wright",
+    work: "batman",
+    date: "2022.03",
+    iso: "2022-03-04",
+    outlet: "The Hollywood Reporter",
+    sourceUrl:
+      "https://www.hollywoodreporter.com/movies/movie-features/the-batman-jeffrey-wright-gordon-1235104401/",
+    quoteZh:
+      "我没有去拆以前银幕上的戈登。哥谭是按纽约来的，我看了当时的纽约市长埃里克·亚当斯，他以前当过警察。心理和情感弧光、以及他和蝙蝠侠的关系，我主要还是靠漫画。DC 第 27 期第一格就是布鲁斯和戈登，这条线从 1939 年一直拉到今天。",
+    quoteEn:
+      "I relied more on the comics because in the first panel of DC No. 27, May 1939, is Bruce Wayne and Gordon, so there's a long arc for Gordon from then until today. … Of course, Gotham is fashioned after New York City, so I looked at the current mayor of New York City, Eric Adams, who is a former cop I admired. … I largely relied on the comics for the underlying psychology and emotional journey that the character undergoes and for the relationship with the Batman.",
+  },
+  {
+    id: "wright-thr-fans",
+    speakerId: "wright",
+    work: "batman",
+    date: "2022.03",
+    iso: "2022-03-04",
+    outlet: "The Hollywood Reporter",
+    sourceUrl:
+      "https://www.hollywoodreporter.com/movies/movie-features/the-batman-jeffrey-wright-gordon-1235104401/",
+    quoteZh:
+      "这些故事真正的主人不是我们，甚至不是写出并拍出这部片的马特·里夫斯，而是粉丝。我从没在别的系列里遇到过这种强度的热情。",
+    quoteEn:
+      "There's a sense with this franchise that the true owners of these stories and these characters are not us. It's not those of us who take part in the making of these films. It's not even Matt Reeves, who so brilliantly crafted this script and realized it through his direction. But rather, this belongs to the fans. I've never experienced the level of passion and intensity for a franchise as I have with this.",
+  },
+  {
+    id: "fraser-iw-pov",
+    speakerId: "fraser",
+    work: "batman",
+    date: "2022.03",
+    iso: "2022-03-07",
+    outlet: "IndieWire",
+    sourceUrl:
+      "https://www.indiewire.com/features/general/the-batman-cinematography-greig-fraser-matt-reeves-interview-1234704530/",
+    quoteZh:
+      "马特要我们死死盯住主角。一切都得从布鲁斯·韦恩的视角出发。蝙蝠侠没有超能力，不能透视也不能飞，他有的是决心、意志和智力，所以镜头一动都必须非常克制、非常有意图。",
+    quoteEn:
+      "He wanted to make sure that we were extremely focused on our main character. Everything had to be driven by Bruce Wayne's point of view. … The fun thing to me about Batman is that he has no super powers. He doesn't have x-ray vision and he can't fly. What he has is incredible determination and will and intelligence, so any camera movement conveying that has to be very considered and intentional.",
+  },
+  {
+    id: "fraser-iw-darklight",
+    speakerId: "fraser",
+    work: "batman",
+    date: "2022.03",
+    iso: "2022-03-07",
+    outlet: "IndieWire",
+    sourceUrl:
+      "https://www.indiewire.com/features/general/the-batman-cinematography-greig-fraser-matt-reeves-interview-1234704530/",
+    quoteZh:
+      "布鲁斯活在阴影里，他不会白天逛商场。这是黑色电影，大部分在夜里。我担心会什么都看不见，就找了一批「暗但看得见」的参考图给马特，也给自己。所以画面里几乎总会留一块亮、一汪光。",
+    quoteEn:
+      "Bruce Wayne lives in the shadows — he isn't a guy who walks around shopping centers during the day. This is a noir film, and most of it is set at night. My concern was that it might be hard to see anything, so I scoured the internet for images that were dark but easy to see, and I collected them in a document for Matt — and for myself — that I called ‘Dark but Light.’",
+  },
+  {
+    id: "reeves-iw-chase",
+    speakerId: "reeves",
+    work: "batman",
+    date: "2022.03",
+    iso: "2022-03-07",
+    outlet: "IndieWire",
+    sourceUrl:
+      "https://www.indiewire.com/features/general/the-batman-cinematography-greig-fraser-matt-reeves-interview-1234704530/",
+    quoteZh:
+      "追车我要的是《法国贩毒网》那种内脏般的混乱。机位尽量硬固定在车上，完全主观，钉在这头在泥和雨里抖的野兽上。你感觉自己坐在发动机上，车随时会散架。",
+    quoteEn:
+      "I wanted to feel that kind of visceral chaos, so I wanted the cameras to be mounted, everything a hard mount as much as it could be. [The point of view] is totally subjective and hard fixed to this vibrating beast of a car driving through visceral elements of dirt and rain, and you feel like you're sitting on that engine with him, and the car could come apart at any minute.",
+  },
+  {
+    id: "feliz-time-oz",
+    speakerId: "feliz",
+    work: "penguin",
+    date: "2024.11",
+    iso: "2024-11-11",
+    outlet: "TIME",
+    sourceUrl: "https://time.com/7174484/the-penguin-finale-rhenzy-feliz-interview/",
+    quoteZh:
+      "维克和奥兹在镜头前第一次见面，他们的关系在长；我和科林也是在片场才认识，关系跟着戏一起长。片场我多半认识的是奥兹。他即使偶尔露出爱尔兰口音，里面也还夹着奥兹。我对着科林的脸说话大概不到十次。后来看到成片才反应过来：那才是我相处了好几个月的那个人。",
+    quoteEn:
+      "Victor and Oz are meeting each other on camera for the first time as well, and their relationship is growing, and that really resembled what me and Colin were going through. … I mostly got to know him as Oz. … I've spoken to Colin's face maybe less than seven times, six times. … When I saw Oz for the first time on camera, it kind of hit me, and I was like, “Oh my god, there's the guy I've been spending months and months and months with.”",
+  },
+  {
+    id: "feliz-time-stutter",
+    speakerId: "feliz",
+    work: "penguin",
+    date: "2024.11",
+    iso: "2024-11-11",
+    outlet: "TIME",
+    sourceUrl: "https://time.com/7174484/the-penguin-finale-rhenzy-feliz-interview/",
+    quoteZh:
+      "口吃是我最担心的部分，想做得诚实。我跟本身有口吃的流畅顾问马克·温斯基合作。口吃会变，但不是因为他变自信就消失。维克属于不会随着长大而消失的那种。没有固定规律：有时越愤怒越顺，有时越愤怒越卡。变的是他跟谁说话时的舒适程度。",
+    quoteEn:
+      "That was what I was most worried about: trying to do the stutter in a thoughtful, honest way. … The stutter does change throughout the show, but not because he gets more confident. That's a misconception. … Victor is one of the people whom it doesn't go away for. There's no rhyme or reason sometimes. What does change is your comfort with speaking in general.",
+  },
+  {
+    id: "farrell-collider-vic",
+    speakerId: "farrell",
+    work: "penguin",
+    date: "2024.11",
+    iso: "2024-11-11",
+    outlet: "Collider",
+    sourceUrl:
+      "https://collider.com/the-penguin-finale-victor-death-scene-explained-colin-farrell/",
+    quoteZh:
+      "法瑞尔后来承认，大结局勒死维克是他拍过最难的一场戏，他甚至一度想拦下这场。维克把奥兹当家人，奥兹却说亲情会让人变弱，他承受不起弱点。",
+    quoteEn:
+      "Colin Farrell has admitted that filming the darkest scene in The Penguin finale was the toughest scene he's ever filmed.",
+    note: "Collider 独家专访转述。大结局水边戏是奥兹登顶前切断所有软肋的关键场。",
+  },
+  {
+    id: "reeves-hsc-bruce",
+    speakerId: "reeves",
+    work: "part2",
+    date: "2025.09",
+    iso: "2025-09-18",
+    outlet: "Happy Sad Confused / ScreenRant",
+    sourceUrl:
+      "https://screenrant.com/the-batman-2-matt-reeves-teases-villain-robert-pattinson-in-dcu/",
+    quoteZh:
+      "第一部结束把我们留在悬崖边上，《企鹅人》里发生的事也要接着探。我想再往布鲁斯这个人里面推。第一部很大程度是关于蝙蝠侠；如果能拍到三部，我一直希望电影始终盯着他这个角色。很多我喜欢的蝙蝠侠片，过了起源故事就开始讲反派群像。我不想把罗伯从中心弄丢。选对那个能挖进他过去和生活的反派，才是讨论的核心。而且这件事，以前的蝙蝠侠电影还没真正做过。",
+    quoteEn:
+      "I knew with the way [The Batman] ended, it was leaving us on the precipice. Also, the way events happen in [The Penguin]. … One of the explorations for me was to do something that pushes even further into the character of Bruce Wayne. The first story is so much about The Batman. I always wanted … the movies to be focused on his character. … I never wanted to lose Rob at the center of these stories. Picking the right villain that digs into what that does and goes into his past and his life, that was what drove that discussion. … I will say, it's never really been done in a movie before.",
+  },
+  {
+    id: "reeves-hsc-elseworlds",
+    speakerId: "reeves",
+    work: "part2",
+    date: "2025.09",
+    iso: "2025-09-18",
+    outlet: "Happy Sad Confused / ScreenRant",
+    sourceUrl:
+      "https://screenrant.com/the-batman-2-matt-reeves-teases-villain-robert-pattinson-in-dcu/",
+    quoteZh:
+      "我们没谈过让帕丁森去演主宇宙蝙蝠侠那种事。当然会很好玩，但我想先把我们开了头的这些故事讲完，走到一开始就希望走到的结局。这是 Elseworlds，但它也是 DC 的。",
+    quoteEn:
+      "We haven't talked about anything like that. … What I really want to do is play out these stories that we began and arrive at the conclusion I've hoped we would arrive at from the beginning. … We're working with them on [The Batman 2]. I mean, it's a DC, so, like, it's Elseworld, but it is DC, so it's theirs as well.",
   },
 ];
 

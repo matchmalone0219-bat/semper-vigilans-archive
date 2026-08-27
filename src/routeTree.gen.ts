@@ -15,6 +15,7 @@ import { Route as CraftRouteImport } from './routes/craft'
 import { Route as DossierRouteImport } from './routes/dossier'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GearRouteImport } from './routes/gear'
+import { Route as InterviewsRouteImport } from './routes/interviews'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MerchRouteImport } from './routes/merch'
 import { Route as PeopleRouteImport } from './routes/people'
@@ -56,6 +57,11 @@ const GalleryRoute = GalleryRouteImport.update({
 const GearRoute = GearRouteImport.update({
   id: '/gear',
   path: '/gear',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InterviewsRoute = InterviewsRouteImport.update({
+  id: '/interviews',
+  path: '/interviews',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -126,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/dossier': typeof DossierRoute
   '/gallery': typeof GalleryRoute
   '/gear': typeof GearRoute
+  '/interviews': typeof InterviewsRoute
   '/login': typeof LoginRoute
   '/merch': typeof MerchRoute
   '/people': typeof PeopleRouteWithChildren
@@ -146,6 +153,7 @@ export interface FileRoutesByTo {
   '/dossier': typeof DossierRoute
   '/gallery': typeof GalleryRoute
   '/gear': typeof GearRoute
+  '/interviews': typeof InterviewsRoute
   '/login': typeof LoginRoute
   '/merch': typeof MerchRoute
   '/rataalada': typeof RataaladaRoute
@@ -165,6 +173,7 @@ export interface FileRoutesById {
   '/dossier': typeof DossierRoute
   '/gallery': typeof GalleryRoute
   '/gear': typeof GearRoute
+  '/interviews': typeof InterviewsRoute
   '/login': typeof LoginRoute
   '/merch': typeof MerchRoute
   '/people': typeof PeopleRouteWithChildren
@@ -187,6 +196,7 @@ export interface FileRouteTypes {
     | '/dossier'
     | '/gallery'
     | '/gear'
+    | '/interviews'
     | '/login'
     | '/merch'
     | '/people'
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/dossier'
     | '/gallery'
     | '/gear'
+    | '/interviews'
     | '/login'
     | '/merch'
     | '/rataalada'
@@ -225,6 +236,7 @@ export interface FileRouteTypes {
     | '/dossier'
     | '/gallery'
     | '/gear'
+    | '/interviews'
     | '/login'
     | '/merch'
     | '/people'
@@ -246,6 +258,7 @@ export interface RootRouteChildren {
   DossierRoute: typeof DossierRoute
   GalleryRoute: typeof GalleryRoute
   GearRoute: typeof GearRoute
+  InterviewsRoute: typeof InterviewsRoute
   LoginRoute: typeof LoginRoute
   MerchRoute: typeof MerchRoute
   PeopleRoute: typeof PeopleRouteWithChildren
@@ -298,6 +311,13 @@ declare module '@tanstack/react-router' {
       path: '/gear'
       fullPath: '/gear'
       preLoaderRoute: typeof GearRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/interviews': {
+      id: '/interviews'
+      path: '/interviews'
+      fullPath: '/interviews'
+      preLoaderRoute: typeof InterviewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -420,6 +440,7 @@ const rootRouteChildren: RootRouteChildren = {
   DossierRoute: DossierRoute,
   GalleryRoute: GalleryRoute,
   GearRoute: GearRoute,
+  InterviewsRoute: InterviewsRoute,
   LoginRoute: LoginRoute,
   MerchRoute: MerchRoute,
   PeopleRoute: PeopleRouteWithChildren,

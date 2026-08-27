@@ -22,7 +22,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Robert Pattinson",
     role: "布鲁斯·韦恩 / 蝙蝠侠",
     personId: "bruce",
-    portrait: "/media/portraits/bruce.jpg",
+    portrait: "/media/cast/pattinson.jpg",
   },
   {
     id: "kravitz",
@@ -30,7 +30,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Zoë Kravitz",
     role: "瑟琳娜·凯尔 / 猫女",
     personId: "selina",
-    portrait: "/media/portraits/selina.jpg",
+    portrait: "/media/cast/kravitz.jpg",
   },
   {
     id: "farrell",
@@ -38,7 +38,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Colin Farrell",
     role: "奥兹·科布 / 企鹅人",
     personId: "oz",
-    portrait: "/media/portraits/oz.jpg",
+    portrait: "/media/cast/farrell.jpg",
   },
   {
     id: "wright",
@@ -46,7 +46,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Jeffrey Wright",
     role: "吉姆·戈登",
     personId: "gordon",
-    portrait: "/media/portraits/gordon.jpg",
+    portrait: "/media/cast/wright.jpg",
   },
   {
     id: "serkis",
@@ -54,7 +54,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Andy Serkis",
     role: "阿尔弗雷德·潘尼沃斯",
     personId: "alfred",
-    portrait: "/media/portraits/alfred.jpg",
+    portrait: "/media/cast/serkis.jpg",
   },
   {
     id: "dano",
@@ -62,7 +62,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Paul Dano",
     role: "爱德华·纳什顿 / 谜语人",
     personId: "edward",
-    portrait: "/media/portraits/edward.jpg",
+    portrait: "/media/cast/dano.jpg",
   },
   {
     id: "milioti",
@@ -70,7 +70,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Cristin Milioti",
     role: "索菲亚·法尔科内",
     personId: "sofia",
-    portrait: "/media/portraits/sofia.jpg",
+    portrait: "/media/cast/milioti.jpg",
   },
   {
     id: "feliz",
@@ -78,21 +78,21 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Rhenzy Feliz",
     role: "维克托·阿吉拉尔",
     personId: "victor",
-    portrait: "/media/portraits/victor.jpg",
+    portrait: "/media/cast/feliz.jpg",
   },
   {
     id: "reeves",
     name: "马特·里夫斯",
     nameEn: "Matt Reeves",
     role: "导演 / 编剧",
-    portrait: "/media/still-bruce.jpg",
+    portrait: "/media/cast/reeves.jpg",
   },
   {
     id: "fraser",
     name: "格雷格·弗雷泽",
     nameEn: "Greig Fraser",
     role: "摄影指导",
-    portrait: "/media/street.jpg",
+    portrait: "/media/cast/fraser.jpg",
   },
 ];
 

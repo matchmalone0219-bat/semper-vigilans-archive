@@ -186,7 +186,7 @@ export const GALLERIES: GalleryGroup[] = [
       {
         src: "/media/peng-sofia.jpg",
         title: "索菲亚·法尔科内",
-        caption: "克里斯汀·米莉欧蒂饰演的索菲亚结束十年冤狱回归，强势重组家族势力。",
+        caption: "克里斯汀·米莉奥蒂饰演的索菲亚结束十年冤狱回归，强势重组家族势力。",
         source: "HBO 官方剧照 · Bleeding Cool",
       },
       {
@@ -215,25 +215,42 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-27-front.jpg",
         title: "驾驶席与金发副驾",
         caption:
-          "圣文森特街附近夜戏高清路透：战车挡风玻璃后可见头套轮廓与副驾金发女性，外界指认为帕丁森与约翰逊（或替身），官方尚未确认。",
+          "圣文森特街夜戏高清近景：挡风玻璃后可见清晰的蝙蝠头套轮廓与副驾驶座金发女性，外界普遍推测为帕丁森与约翰逊（或二人特技替身），目前官方尚未公布角色身份。",
         source: "片场路透 · hoeBread36",
       },
       {
         src: "/media/log/p2-27-rear.jpg",
-        title: "加装防撞杠的战损车尾",
-        caption: "车尾与侧翼泥污战损清晰，前脸仍加装拍摄用冲撞防护杠，用于警车包围后的撞击突围镜头。",
+        title: "加装防撞钢梁的战损车尾",
+        caption:
+          "车尾与侧翼实战泥污清晰可见，前脸加装特制防撞钢梁，用于完成在警车包围下的低速实拍冲撞突围镜头。",
         source: "片场路透 · hoeBread36",
       },
       {
         src: "/media/log/p2-27-wide.jpg",
-        title: "夜戏现场调度",
-        caption: "叉车、遮布与摄制组环绕战车，圣文森特街封街夜戏正在重置下一镜。",
+        title: "圣文森特街夜戏调度",
+        caption:
+          "升降机、大型照明设备与遮光布围绕战车就位，格拉斯哥圣文森特街封街夜戏正在重置机位。",
         source: "片场路透 · hoeBread36",
       },
       {
         src: "/media/log/p2-27-gcpd1.jpg",
-        title: "被撞损的哥谭警车",
-        caption: "哥谭市警局巡逻车车头严重凹陷变形，是战车撞击突围戏留下的现场残骸。",
+        title: "突围撞损的哥谭警车",
+        caption:
+          "哥谭市警局（GCPD）巡逻车车头严重凹陷挤压，为当晚战车正面硬碰硬冲撞戏留下的实拍残骸。",
+        source: "片场路透 · kt_perspective",
+      },
+      {
+        src: "/media/log/p2-27-gcpd2.jpg",
+        title: "警车撞损侧翼细节",
+        caption:
+          "巡逻车翼子板与保险杠深度挤压变形，展现战车低速硬碰硬撞击突围的实拍冲击力。",
+        source: "片场路透 · kt_perspective",
+      },
+      {
+        src: "/media/log/p2-27-gcpd3.jpg",
+        title: "日间清场停靠的破损警车",
+        caption:
+          "夜戏结束后停放在圣文森特街附近的 GCPD 巡逻车残骸，车前大灯与水箱框架损毁严重。",
         source: "片场路透 · kt_perspective",
       },
       {

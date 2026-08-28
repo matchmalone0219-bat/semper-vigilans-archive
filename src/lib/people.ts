@@ -232,7 +232,7 @@ export const FILES: Record<string, PersonFile> = {
     also: ["索菲亚·法尔科内", "绞刑吏"],
     appearances: [
       { work: "限定剧《企鹅人》", note: "核心主角之一，出狱后清洗家族并与奥兹展开生死火并。", href: "/recap", hash: "the-penguin" },
-      { work: "电影《新蝙蝠侠2》", note: "米莉奥蒂已公开表示不会回归续集。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "克里斯汀·米莉奥蒂已明确表示不会回归续集。", href: "/dossier" },
     ],
     places: ["arkham", "iceberg", "crown-point"],
     stills: ["/media/peng-sofia.jpg"],

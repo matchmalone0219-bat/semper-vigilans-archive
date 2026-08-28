@@ -12,7 +12,14 @@ export const Route = createFileRoute("/places/")({
 function PlacesIndex() {
   return (
     <main>
-      <header className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <header className="relative isolate overflow-hidden border-b border-fg/10">
+        <img
+          src="/media/places/wayne-tower.jpg"
+          alt=""
+          className="absolute inset-0 size-full object-cover opacity-50"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/75 to-bg/40" />
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
           Files / Places
         </p>
@@ -28,6 +35,7 @@ function PlacesIndex() {
           </Link>
           。
         </p>
+        </div>
       </header>
 
       <section className="border-t border-fg/10">

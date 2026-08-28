@@ -13,7 +13,14 @@ export const Route = createFileRoute("/gallery")({
 function Gallery() {
   return (
     <main>
-      <header className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <header className="relative isolate overflow-hidden border-b border-fg/10">
+        <img
+          src="/media/still-rain2.jpg"
+          alt=""
+          className="absolute inset-0 size-full object-cover opacity-45"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/75 to-bg/40" />
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
           Stills / Public
         </p>
@@ -32,6 +39,7 @@ function Gallery() {
             </a>
           ))}
         </nav>
+        </div>
       </header>
 
       {GALLERIES.map((group) => (

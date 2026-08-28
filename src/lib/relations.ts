@@ -336,7 +336,7 @@ export const PORTRAITS: Record<string, { src: string; note?: string }> = {
   oz: { src: "/media/portraits/oz.jpg", note: "科林·法瑞尔 饰 奥兹·科布" },
   victor: { src: "/media/portraits/victor.jpg", note: "伦齐·费利兹 饰 维克托·阿吉拉尔" },
   edward: { src: "/media/portraits/edward.jpg", note: "保罗·达诺 饰 谜语人" },
-  joker: { src: "/media/portraits/joker.jpg", note: "巴里·基奥甘 饰 阿卡姆神秘重犯" },
+  joker: { src: "/media/portraits/joker-v2.jpg", note: "巴里·基奥甘 饰 阿卡姆神秘重犯" },
 };
 
 export function edgesOf(id: string) {

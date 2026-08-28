@@ -431,7 +431,7 @@ export const LOG: LogEntry[] = [
     date: "2026.07.15",
     iso: "2026-07-15",
     title: "档期定为 2028 年 2 月 18 日，公布测试片段",
-    body: "华纳调整档期安排，续集定档 2028 年 2 月 18 日北美公映，全线登陆 IMAX。里夫斯同日公布了罗伯特·帕丁森的摄影测试片段。",
+    body: "华纳调整档期安排，续集定档 2028 年 2 月 18 日北美公映，全线登陆 IMAX。里夫斯同日公布罗伯特·帕丁森的摄影测试片段；影迷对照第一部剪影指出头套耳廓变长，导演回复「You are not crazy.」予以确认。",
     kind: "slate",
     source: "Variety · 视频转自 B 站",
     sourceUrl: "https://au.variety.com/2026/film/news/the-batman-2-release-date-2028-first-footage-pattinson-38605/",

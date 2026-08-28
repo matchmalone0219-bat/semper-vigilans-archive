@@ -62,7 +62,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Paul Dano",
     role: "爱德华·纳什顿 / 谜语人",
     personId: "edward",
-    portrait: "/media/cast/dano.jpg",
+    portrait: "/media/cast/dano-v2.jpg",
   },
   {
     id: "milioti",
@@ -78,7 +78,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Rhenzy Feliz",
     role: "维克托·阿吉拉尔",
     personId: "victor",
-    portrait: "/media/cast/feliz.jpg",
+    portrait: "/media/cast/feliz-v2.jpg",
   },
   {
     id: "reeves",
@@ -92,7 +92,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "格雷格·弗雷泽",
     nameEn: "Greig Fraser",
     role: "摄影指导",
-    portrait: "/media/cast/fraser.jpg",
+    portrait: "/media/cast/fraser-v2.jpg",
   },
 ];
 

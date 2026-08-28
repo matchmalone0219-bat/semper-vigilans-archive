@@ -14,8 +14,8 @@ function Gear() {
     <main>
       <header className="relative isolate overflow-hidden border-b border-fg/10 bg-elevated">
         <img
-          src="/media/gear-car.jpg"
-          alt="战车概念稿"
+          src="/media/gear-kit.jpg"
+          alt="战备铺陈：抓钩枪、蝙蝠镖、实用腰带与现场工具"
           className="absolute inset-0 size-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/75 to-bg/50" />

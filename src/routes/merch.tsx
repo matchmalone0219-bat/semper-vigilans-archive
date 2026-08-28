@@ -13,7 +13,14 @@ export const Route = createFileRoute("/merch")({
 function Merch() {
   return (
     <main>
-      <header className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <header className="relative isolate overflow-hidden border-b border-fg/10">
+        <img
+          src="/media/merch/hottoys.jpg"
+          alt=""
+          className="absolute inset-0 size-full object-cover opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/80 to-bg/50" />
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
           Merch / Licensed Collectibles
         </p>
@@ -34,6 +41,7 @@ function Merch() {
             </a>
           ))}
         </nav>
+        </div>
       </header>
 
       {MERCH.map((group) => (

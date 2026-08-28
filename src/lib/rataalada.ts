@@ -346,7 +346,7 @@ export const TESTS: Test[] = [
       "EVERY ENDING IS A NEW BEGINNING.",
     ],
     stills: [
-      still("INMATE.IMG", "/media/portraits/joker.jpg", "神秘囚徒", "阿卡姆疯人院邻近病房的神秘面孔。"),
+      still("INMATE.IMG", "/media/portraits/joker-v2.jpg", "神秘囚徒", "阿卡姆疯人院邻近病房的神秘面孔。"),
       still("CELL.IMG", "/media/still-morgue.jpg", "法医勘验", "第一部法医停尸间现场取证档案。"),
     ],
     texts: [

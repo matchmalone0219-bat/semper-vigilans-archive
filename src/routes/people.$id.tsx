@@ -51,10 +51,18 @@ function PersonPage() {
     if (random) void navigate({ to: "/people/$id", params: { id: random.id } });
   };
 
+  const hero = person.stills[0] ?? person.portrait?.src;
+
   return (
     <main>
-      <header className="border-b border-fg/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 sm:flex-row sm:items-end sm:px-6 sm:py-16">
+      <header className="relative isolate overflow-hidden border-b border-fg/10">
+        {hero ? (
+          <>
+            <img src={hero} alt="" className="absolute inset-0 size-full object-cover opacity-35" />
+            <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/80 to-bg/45" />
+          </>
+        ) : null}
+        <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 sm:flex-row sm:items-end sm:px-6 sm:py-16">
           {person.portrait ? (
             <img
               src={person.portrait.src}

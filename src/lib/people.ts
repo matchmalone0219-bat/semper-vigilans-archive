@@ -310,7 +310,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠2》", note: "传闻待定，官方尚未确认加盟。", href: "/dossier" },
     ],
     places: ["arkham"],
-    stills: ["/media/portraits/joker.jpg"],
+    stills: ["/media/portraits/joker-v2.jpg"],
     sections: [
       {
         heading: "阿卡姆高戒备病房的神秘低语",

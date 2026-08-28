@@ -147,7 +147,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "Esquire UK / DC FanDome",
     sourceUrl: "https://www.esquire.com/uk/culture/a33752700/what-is-the-batman-based-on/",
     quoteZh:
-      "最让我兴奋的是，他并非传统意义上的超级英雄。他身披斗篷却无法飞翔，与你我无异。如果说他真有什么超能力，那就是隐忍与承受——而且不仅是一种能力，更像一种被创伤强迫驱使的宿命，被无法释怀的过去死死推着向前。我想讲的不是他‘如何成为蝙蝠侠’，而是他在‘初为蝙蝠侠’的早期状态：他离完美还有很远。",
+      "最让我兴奋的是，他并非传统意义上的超级英雄。他身披斗篷却无法飞翔，与你我无异。如果说他真有什么超能力，那就是隐忍与承受——而且不仅是一种能力，更像一种被创伤强迫驱使的宿命，被无法释怀的过去死死推着向前。我想讲的不是他「如何成为蝙蝠侠」，而是他在「初为蝙蝠侠」的早期状态：他离完美还有很远。",
     quoteEn:
       "He isn't a superhero in the traditional sense. He has a cape but he can't fly. He's like you and me. But if he has a superpower, it's the ability to endure. And not just the ability, but the kind of compulsion. … To tell a version of Batman that wasn't about how he became Batman, but about the early days of how he is Batman — and he is so far from being perfect.",
   },
@@ -174,7 +174,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "Entertainment Weekly",
     sourceUrl: "https://ew.com/movies/the-batman-paul-dano-riddler-interview/",
     quoteZh:
-      "我当时参考了‘大学航空炸弹客’、俄克拉荷马城爆炸案，以及现实中那些在网络极端化温床中被异化的人。对我而言，他不是漫画里那种脸谱化的超级反派，而是一个被体制与社会彻底抛下、从而陷入狂热的边缘人。",
+      "我当时参考了「大学航空炸弹客」、俄克拉荷马城爆炸案，以及现实中那些在网络极端化温床中被异化的人。对我而言，他不是漫画里那种脸谱化的超级反派，而是一个被体制与社会彻底抛下、从而陷入狂热的边缘人。",
     quoteEn:
       "I was thinking about the Unabomber. I was thinking about Oklahoma City. I was thinking about the kind of people who get radicalized on the internet.",
   },
@@ -187,7 +187,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "IGN",
     sourceUrl: "https://www.ign.com/articles/the-batman-joker-scene-spoilers-barry-keoghan",
     quoteZh:
-      "这个角色是尚未完全成型的‘原型小丑’。妆容设计灵感回溯到了 1928 年默片经典《笑面人》。他先天患有无法停止微笑的疾病，从而形成了极度虚无的人生观，认为从他出生起生命就是一场残酷的玩笑。他与蝙蝠侠早已建立起宿敌羁绊，只是尚未正式自封为小丑。",
+      "这个角色是尚未完全成型的「原型小丑」。妆容设计灵感回溯到了 1928 年默片经典《笑面人》。他先天患有无法停止微笑的疾病，从而形成了极度虚无的人生观，认为从他出生起生命就是一场残酷的玩笑。他与蝙蝠侠早已建立起宿敌羁绊，只是尚未正式自封为小丑。",
     quoteEn:
       "And for me, I think [it's] this idea that the Joker is not yet the Joker, but they already have this relationship. ... It's this idea of him being very incisive and brilliant and being able to get into your mind and basically having this nihilistic point of view that's like from his inception, from his birth, life has been a cruel joke on him. And this is his response, and he's eventually going to declare himself as a clown, declare himself as the Joker.",
     note: "导演确认片尾阿卡姆无名囚徒即本宇宙小丑的雏形；基奥甘与帕丁森在阿卡姆的未公映审讯删减片段后续由官方完整发布。",
@@ -214,7 +214,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "Dark Knight News（转述 Josh Horowitz 访谈）",
     sourceUrl: "https://darkknightnews.com/2026/05/12/andy-serkis-on-alfreds-arc-in-the-batman-films/",
     quoteZh:
-      "我和马特一直在深入探讨‘父职’到底意味着什么。阿尔弗雷德身上缺乏与生俱来的父性本能，他渴望成为父亲，却始终无法跨越那道鸿沟。在布鲁斯最无助的时刻，他没能守护好韦恩夫妇，因此终生背负着强烈的愧疚。他能把军旅生涯练就的格斗与生存技能倾囊相授，却给不了情感上的慰藉与引导。",
+      "我和马特一直在深入探讨「父职」到底意味着什么。阿尔弗雷德身上缺乏与生俱来的父性本能，他渴望成为父亲，却始终无法跨越那道鸿沟。在布鲁斯最无助的时刻，他没能守护好韦恩夫妇，因此终生背负着强烈的愧疚。他能把军旅生涯练就的格斗与生存技能倾囊相授，却给不了情感上的慰藉与引导。",
     quoteEn:
       "Alfred represented a sort of… he had a lack of paternal instinct but wanted it, but couldn't ever get there. And at the moment of greatest need for Bruce, he wasn't there for his parents. And so he was carrying that guilt. … He could teach him skills … but not emotional skills.",
   },
@@ -242,7 +242,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://www.esquire.com/entertainment/tv/a62766673/cristin-milioti-the-penguin-sofia-falcone-interview/",
     quoteZh:
-      "这一切终究是心理上的凌迟。对索菲亚而言，向奥兹清算的终极一步是：‘我要彻底毁了你，就像你当年摧毁我的心智一样，让你余生都在精神折磨中度过。’杀了他反而是一种解脱，他夺走了我最挚爱的人，索菲亚内心的悲痛与怒火是一个永远填不满的深渊。",
+      "这一切终究是心理上的凌迟。对索菲亚而言，向奥兹清算的终极一步是：「我要彻底毁了你，就像你当年摧毁我的心智一样，让你余生都在精神折磨中度过。」杀了他反而是一种解脱，他夺走了我最挚爱的人，索菲亚内心的悲痛与怒火是一个永远填不满的深渊。",
     quoteEn:
       "And it's all psychological. I mean, it's violent, too. But for Sofia, the final step with Oz is: I'm gonna ruin you. I'm going to ruin your brain for life the way mine has been. Death would be a relief for him. Which is what he did to me. He took the person I loved the most away. There's a bottomless pit to her grief and anger.",
     note: "对应《企鹅人》第 7 集审讯戏与结局对峙。米莉奥蒂在 Esquire 专访中完整展开索菲亚源自阿卡姆创伤的复仇逻辑。",
@@ -325,7 +325,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "GQ",
     sourceUrl: "https://www.gq.com/story/robert-pattinson-march-cover-profile",
     quoteZh:
-      "从我跟马特第一次碰面起他就明确告诉我：‘我想拍一部 70 年代风格的黑色侦探电影。’这是一部真正的侦探片。说来惭愧，我以前甚至不知道蝙蝠侠在漫画里被称为‘世界上最伟大的侦探’——但这套路子在电影里非常奏效。以往银幕上的蝙蝠侠往往一登场就大打出手；而在这部电影里，他需要深入对话，彼此间有大量真实的情感碰撞戏份。",
+      "从我跟马特第一次碰面起他就明确告诉我：‘我想拍一部 70 年代风格的黑色侦探电影。’这是一部真正的侦探片。说来惭愧，我以前甚至不知道蝙蝠侠在漫画里被称为「世界上最伟大的侦探」——但这套路子在电影里非常奏效。以往银幕上的蝙蝠侠往往一登场就大打出手；而在这部电影里，他需要深入对话，彼此间有大量真实的情感碰撞戏份。",
     quoteEn:
       "It was what Matt was saying from the first meeting I had with him: ‘I want to do a ’70s noir detective story.’ This is a detective story. And I feel like an idiot, because I didn't even know that Batman was ‘the world's greatest detective’; I hadn't heard that in my life before—but it really plays. Normally, when you see Batman he arrives and beats people up. But he's having conversations, and there are emotional scenes between them.",
   },
@@ -395,7 +395,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://www.indiewire.com/features/general/the-batman-cinematography-greig-fraser-matt-reeves-interview-1234704530/",
     quoteZh:
-      "布鲁斯·韦恩隐匿于阴影之中——他绝不是大白天会在商场里闲逛的人。这是一部黑色电影，绝大部分场景发生在深夜。我起初最大的担忧是画面可能会暗到什么都看不清，于是我在网上搜寻了大量‘黑暗却极具辨识度’的摄影参考，整理成一份名为《暗中有光》（Dark but Light）的视觉备忘录给马特和我自己。正因如此，画面中总会保留那一抹具有导向性的光晕。",
+      "布鲁斯·韦恩隐匿于阴影之中——他绝不是大白天会在商场里闲逛的人。这是一部黑色电影，绝大部分场景发生在深夜。我起初最大的担忧是画面可能会暗到什么都看不清，于是我在网上搜寻了大量「黑暗却极具辨识度」的摄影参考，整理成一份名为《暗中有光》（Dark but Light）的视觉备忘录给马特和我自己。正因如此，画面中总会保留那一抹具有导向性的光晕。",
     quoteEn:
       "Bruce Wayne lives in the shadows — he isn't a guy who walks around shopping centers during the day. This is a noir film, and most of it is set at night. My concern was that it might be hard to see anything, so I scoured the internet for images that were dark but easy to see, and I collected them in a document for Matt — and for myself — that I called ‘Dark but Light.’",
   },
@@ -422,7 +422,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "TIME",
     sourceUrl: "https://time.com/7174484/the-penguin-finale-rhenzy-feliz-interview/",
     quoteZh:
-      "维克与奥兹在镜头前初次相遇，两人的羁绊逐渐加深；而在戏外，我和科林也是在片场结识，彼此的熟络完全同步于戏中关系的演进。在片场的大部分时间里，我接触到的完全就是‘奥兹’——我面对科林本人的真实面孔说话大概不超过六七次。直到后来在监视器里看到成片，我才猛然惊觉：‘天哪，原来这才是陪伴了我好几个月的那个搭档！’",
+      "维克与奥兹在镜头前初次相遇，两人的羁绊逐渐加深；而在戏外，我和科林也是在片场结识，彼此的熟络完全同步于戏中关系的演进。在片场的大部分时间里，我接触到的完全就是「奥兹」——我面对科林本人的真实面孔说话大概不超过六七次。直到后来在监视器里看到成片，我才猛然惊觉：「天哪，原来这才是陪伴了我好几个月的那个搭档！」",
     quoteEn:
       "Victor and Oz are meeting each other on camera for the first time as well, and their relationship is growing, and that really resembled what me and Colin were going through. … I mostly got to know him as Oz. … I've spoken to Colin's face maybe less than seven times, six times. … When I saw Oz for the first time on camera, it kind of hit me, and I was like, “Oh my god, there's the guy I've been spending months and months and months with.”",
   },
@@ -449,7 +449,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://collider.com/the-penguin-finale-victor-death-scene-explained-colin-farrell/",
     quoteZh:
-      "在内心深处，我有一部分其实很抗拒拍那场戏。但我明白主创的创作意图：在全剧尾声，必须亲手‘扼杀’电影里那个尚带一丝滑稽与可爱的奥兹。我们有一种创作上的责任感——绝不能让这个恶徒成为一个讨喜的角色。带着这种心理上的终局决断，去践行这场戏所展现出的极致冷酷与残忍，对我来说真的是最艰难的拍摄经历。",
+      "在内心深处，我有一部分其实很抗拒拍那场戏。但我明白主创的创作意图：在全剧尾声，必须亲手「扼杀」电影里那个尚带一丝滑稽与可爱的奥兹。我们有一种创作上的责任感——绝不能让这个恶徒成为一个讨喜的角色。带着这种心理上的终局决断，去践行这场戏所展现出的极致冷酷与残忍，对我来说真的是最艰难的拍摄经历。",
     quoteEn:
       "I mean, part of me didn't want to do it, you know? I knew that the general sentiment was that, by the end, they kind of wanted to, in a way, kill the Oz that we met in the film. I felt that there was a sense of creative responsibility that leaned towards, 'We cannot have this man as a likable character.' ... So, knowing that I was going into that kind of degree of psychological finality and embodying the character with a kind of a depth of cruelty that is articulated in that scene, it was tough, man.",
     note: "Collider 独家专访。大结局河畔勒死维克的戏份标志着奥兹在登顶哥谭黑帮王座前，彻底斩断了人性中仅存的软肋与温情。",
@@ -478,7 +478,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://screenrant.com/the-batman-2-matt-reeves-teases-villain-robert-pattinson-in-dcu/",
     quoteZh:
-      "我们从未探讨过让罗伯特版蝙蝠侠并入 DCU 主宇宙之类的事。尽管那也许会很有趣，但我真正想做的是把我亲手开启的故事完整讲完，抵达从最初就笃定的那个结局。我们正在与 DC 影业紧密合作推进《新蝙蝠侠2》，它虽然属于独立于主宇宙的‘异世界’（Elseworlds）系列，但始终是 DC 宏大宇宙中不可分割的篇章。",
+      "我们从未探讨过让罗伯特版蝙蝠侠并入 DCU 主宇宙之类的事。尽管那也许会很有趣，但我真正想做的是把我亲手开启的故事完整讲完，抵达从最初就笃定的那个结局。我们正在与 DC 影业紧密合作推进《新蝙蝠侠2》，它虽然属于独立于主宇宙的「异世界」（Elseworlds）系列，但始终是 DC 宏大宇宙中不可分割的篇章。",
     quoteEn:
       "We haven't talked about anything like that. … What I really want to do is play out these stories that we began and arrive at the conclusion I've hoped we would arrive at from the beginning. … We're working with them on [The Batman 2]. I mean, it's a DC, so, like, it's Elseworld, but it is DC, so it's theirs as well.",
   },

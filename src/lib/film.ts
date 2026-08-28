@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.08.26";
+export const CONTENT_REVIEWED_AT = "2026.08.28";
 
 export function pageTitle(page?: string) {
   return page ? `${page} · ${FILM.siteName}` : `${FILM.siteName} · 《${FILM.titleZh}》影迷档案站`;
@@ -186,7 +186,7 @@ export const CAST: {
     roleEn: "Undisclosed Role",
     name: "斯嘉丽·约翰逊",
     nameEn: "Scarlett Johansson",
-    note: "官方确认加盟。具体饰演角色目前保持保密。",
+    note: "官方确认加盟。具体饰演角色目前保持保密。8 月 27 日夜戏高清路透可见战车副驾金发女性，外界指认为约翰逊或其替身，尚未获官方证实。",
     status: "confirmed",
   },
   {
@@ -588,6 +588,28 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-24-car.jpg",
       "/media/p2-batman.jpg",
       "/media/log/p2-24-swat4.jpg",
+    ],
+  },
+  {
+    date: "2026.08.27",
+    iso: "2026-08-27",
+    title: "战车撞击警车突围，高清路透拍到驾驶席与金发副驾",
+    body: "剧组在圣文森特街附近继续夜戏。现场路透拍到蝙蝠战车被哥谭警车包围后撞击突围，车身泥污战损明显，前脸仍加装拍摄用防撞杠。高清近景可见驾驶席头套轮廓与副驾金发女性，外界指认为罗伯特·帕丁森与斯嘉丽·约翰逊（或二人替身），官方尚未确认。白天现场还停有被撞损的哥谭警车残骸。",
+    kind: "shoot",
+    source: "片场路透 · hoeBread36 / kt_perspective",
+    sourceUrl: "https://x.com/TheBatmanSagaNW/status/2093128181200945606",
+    sourceTier: "set",
+    verifiedAt: "2026.08.28",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-27-front.jpg",
+    images: [
+      "/media/log/p2-27-front.jpg",
+      "/media/log/p2-27-rear.jpg",
+      "/media/log/p2-27-wide.jpg",
+      "/media/log/p2-27-gcpd1.jpg",
+      "/media/log/p2-27-gcpd2.jpg",
+      "/media/log/p2-27-gcpd3.jpg",
     ],
   },
   {

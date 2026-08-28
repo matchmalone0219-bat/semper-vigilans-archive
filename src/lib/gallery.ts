@@ -209,8 +209,33 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》格拉斯哥外景片场记录。汇总冬季雪景实拍、蝙蝠战车调度、特警围捕、战衣细节与副驾神秘乘客等现场线索。",
+      "《新蝙蝠侠2》格拉斯哥外景片场记录。汇总冬季雪景实拍、蝙蝠战车调度、特警围捕、战车撞击突围、战衣细节与副驾神秘乘客等现场线索。",
     stills: [
+      {
+        src: "/media/log/p2-27-front.jpg",
+        title: "驾驶席与金发副驾",
+        caption:
+          "圣文森特街附近夜戏高清路透：战车挡风玻璃后可见头套轮廓与副驾金发女性，外界指认为帕丁森与约翰逊（或替身），官方尚未确认。",
+        source: "片场路透 · hoeBread36",
+      },
+      {
+        src: "/media/log/p2-27-rear.jpg",
+        title: "加装防撞杠的战损车尾",
+        caption: "车尾与侧翼泥污战损清晰，前脸仍加装拍摄用冲撞防护杠，用于警车包围后的撞击突围镜头。",
+        source: "片场路透 · hoeBread36",
+      },
+      {
+        src: "/media/log/p2-27-wide.jpg",
+        title: "夜戏现场调度",
+        caption: "叉车、遮布与摄制组环绕战车，圣文森特街封街夜戏正在重置下一镜。",
+        source: "片场路透 · hoeBread36",
+      },
+      {
+        src: "/media/log/p2-27-gcpd1.jpg",
+        title: "被撞损的哥谭警车",
+        caption: "哥谭市警局巡逻车车头严重凹陷变形，是战车撞击突围戏留下的现场残骸。",
+        source: "片场路透 · kt_perspective",
+      },
       {
         src: "/media/log/p2-25-suit1.jpg",
         title: "续集战衣夜戏实拍",

@@ -5,15 +5,15 @@ import {
   type WheelEvent as ReactWheelEvent,
 } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bomb, LocateFixed, Minus, Plus, RotateCcw } from "lucide-react";
+import { Bomb, LocateFixed, Minus, Plus, RotateCcw, X } from "lucide-react";
 import { pageTitle } from "@/lib/film";
-import { PLACE_MAP } from "@/lib/places";
+import { PLACE_MAP, PLACES } from "@/lib/places";
 
 export const Route = createFileRoute("/map")({
   head: () => ({
-    meta: [{ title: pageTitle("哥谭互动地图") }],
+    meta: [{ title: pageTitle("哥谭地点") }],
   }),
-  component: GothamMap,
+  component: GothamPlacesMap,
 });
 
 type Evidence = "map" | "screen" | "theory";
@@ -97,6 +97,13 @@ const FLOOD_POINTS = [
   { x: 49, y: 91 },
 ] as const;
 
+const MAPPED_PLACE_IDS = new Set(
+  Object.values(REGION_MARKERS)
+    .flat()
+    .map((marker) => marker.placeId),
+);
+const UNLOCATED_PLACES = PLACES.filter((place) => !MAPPED_PLACE_IDS.has(place.id as MapPlaceId));
+
 const EVIDENCE: Record<Evidence, { label: string; className: string }> = {
   map: { label: "地图标注", className: "bg-fg text-bg" },
   screen: { label: "影片定位", className: "bg-blood text-fg" },
@@ -112,7 +119,8 @@ const REGIONS = [
     image: "/media/gotham-uptown-map.webp",
     imageAlt: "依据哥谭全城轮廓与《企鹅人》剧中地图重绘的 Uptown 道路地图",
     aspectRatio: "1198 / 1313",
-    emptyNote: "Uptown 底图已经开放，更多地点需要等待可核对的影视画面后再落点。",
+    description:
+      "哥谭北部城区。现有资料只足以还原岛岸与道路结构，地点档案将在出现更清晰的影视地图后继续补充。",
   },
   {
     id: "midtown",
@@ -122,7 +130,8 @@ const REGIONS = [
     image: "/media/gotham-midtown-map.webp",
     imageAlt: "依据哥谭全城轮廓与《企鹅人》剧中地图重绘的 Midtown 道路地图",
     aspectRatio: "1250 / 1372",
-    emptyNote: "Midtown 的岛岸和道路结构已经重绘，但目前没有足够可靠的地点坐标，因此暂不添加标记。",
+    description:
+      "连接北部城区与 Downtown 的中部岛区。当前开放完整底图，暂不为缺少可靠坐标的地点强行落点。",
   },
   {
     id: "downtown",
@@ -132,7 +141,8 @@ const REGIONS = [
     image: "/media/gotham-downtown-map-v2.webp",
     imageAlt: "依据 Reeves 版哥谭 Downtown 地理结构重绘的暗色道路地图",
     aspectRatio: "1197 / 1314",
-    emptyNote: "",
+    description:
+      "市政、金融、娱乐与犯罪网络高度交叠的核心城区。电影与剧集现有资料可对应七处地点，并可切换谜语人洪灾计划图层。",
   },
 ] as const;
 
@@ -143,14 +153,12 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
 
-function GothamMap() {
+export function GothamPlacesMap() {
   const [regionId, setRegionId] = useState<RegionId>("downtown");
   const [floodPlan, setFloodPlan] = useState(false);
   const [scale, setScale] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [selectedId, setSelectedId] = useState<MapPlaceId | null>(
-    REGION_MARKERS.downtown[0].placeId,
-  );
+  const [selectedId, setSelectedId] = useState<MapPlaceId | null>(null);
   const pointers = useRef(new Map<number, { x: number; y: number }>());
   const gesture = useRef<{
     distance: number;
@@ -173,7 +181,7 @@ function GothamMap() {
   function selectRegion(nextRegion: RegionId) {
     setRegionId(nextRegion);
     if (nextRegion !== "downtown") setFloodPlan(false);
-    setSelectedId(REGION_MARKERS[nextRegion][0]?.placeId ?? null);
+    setSelectedId(null);
     pointers.current.clear();
     gesture.current = null;
     drag.current = null;
@@ -269,18 +277,15 @@ function GothamMap() {
 
   return (
     <main className="min-h-svh bg-bg">
-      <header className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
+      <header className="mx-auto max-w-7xl px-4 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10">
         <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
-          Gotham Cartography / 01
+          Gotham Places / Interactive Map
         </p>
-        <div className="mt-3 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mt-3 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <h1 className="font-sans text-4xl font-black tracking-tight sm:text-6xl">
-              哥谭互动地图
-            </h1>
-            <p className="mt-4 max-w-3xl text-pretty leading-relaxed text-muted">
-              结合 Reeves 宇宙公开的 Downtown
-              地图、哥谭全城轮廓与《企鹅人》剧中地图重新绘制。切换三大城区，拖动探索街区，缩放查看道路；推测位置会与影视画面可对应位置明确区分。
+            <h1 className="font-sans text-4xl font-black tracking-tight sm:text-5xl">哥谭地点</h1>
+            <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-muted sm:text-base">
+              切换城区并探索地图。点击地点标记即可调出简介，再进入完整档案查看关联人物与剧情。
             </p>
           </div>
           <div className="flex flex-wrap gap-2 text-xs">
@@ -296,14 +301,14 @@ function GothamMap() {
           </div>
         </div>
 
-        <ul className="mt-8 grid gap-2 sm:grid-cols-3">
+        <ul className="mt-6 grid gap-2 sm:grid-cols-3">
           {REGIONS.map((item) => (
             <li key={item.id}>
               <button
                 type="button"
                 onClick={() => selectRegion(item.id)}
                 aria-pressed={item.id === regionId}
-                className={`w-full p-4 text-left transition-colors ${
+                className={`w-full p-3 text-left transition-colors sm:p-4 ${
                   item.id === regionId
                     ? "border border-blood bg-blood/10 text-fg"
                     : "border border-fg/10 bg-surface text-faint hover:border-fg/30 hover:text-muted"
@@ -323,17 +328,27 @@ function GothamMap() {
       </header>
 
       <section className="border-y border-fg/10 bg-surface/40">
-        <div className="mx-auto grid max-w-7xl gap-5 px-4 py-5 sm:px-6 lg:grid-cols-[minmax(0,1fr)_21rem]">
+        <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
           <div>
-            <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-              <p className="font-display text-xs font-semibold tracking-[0.22em] text-faint uppercase">
-                Map of Gotham City {region.name}
-              </p>
+            <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="max-w-3xl">
+                <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
+                  Map of Gotham City {region.name}
+                </p>
+                <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <h2 className="font-sans text-2xl font-black tracking-tight">{region.zh}</h2>
+                  <span className="text-xs text-faint">{region.status}</span>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{region.description}</p>
+              </div>
               <div className="flex flex-wrap items-center justify-end gap-2">
                 {regionId === "downtown" ? (
                   <button
                     type="button"
-                    onClick={() => setFloodPlan((current) => !current)}
+                    onClick={() => {
+                      setFloodPlan((current) => !current);
+                      setSelectedId(null);
+                    }}
                     aria-pressed={floodPlan}
                     className={`flex h-10 items-center gap-2 border px-3 font-display text-[10px] font-semibold tracking-[0.16em] uppercase transition-colors ${
                       floodPlan
@@ -460,104 +475,149 @@ function GothamMap() {
                   7 points / film reconstruction
                 </p>
               ) : null}
+              {selectedMarker && selectedPlace && !floodPlan ? (
+                <aside
+                  className="absolute inset-x-3 bottom-12 z-20 max-h-[calc(100%-4rem)] select-text overflow-y-auto border border-fg/20 bg-bg/95 shadow-2xl backdrop-blur-md sm:bottom-auto sm:left-auto sm:right-3 sm:top-3 sm:w-80"
+                  onPointerDown={(event) => event.stopPropagation()}
+                  onWheel={(event) => event.stopPropagation()}
+                  aria-live="polite"
+                >
+                  <div className="relative h-24 overflow-hidden bg-elevated sm:h-28">
+                    <img
+                      src={selectedPlace.image}
+                      alt={selectedPlace.imageAlt}
+                      className="size-full object-cover"
+                    />
+                    <span
+                      className={`absolute left-3 top-3 px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] uppercase ${EVIDENCE[selectedMarker.evidence].className}`}
+                    >
+                      {EVIDENCE[selectedMarker.evidence].label}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedId(null)}
+                      className="absolute right-3 top-3 grid size-8 place-items-center border border-fg/20 bg-bg/90 text-muted hover:text-fg"
+                      aria-label="关闭地点介绍"
+                    >
+                      <X className="size-4" />
+                    </button>
+                  </div>
+                  <div className="p-4">
+                    <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-blood uppercase">
+                      {selectedPlace.nameEn}
+                    </p>
+                    <h3 className="mt-1 font-sans text-xl font-black tracking-tight">
+                      {selectedPlace.name}
+                    </h3>
+                    <p className="mt-1 text-xs text-faint">{selectedPlace.also}</p>
+                    <p className="mt-3 text-xs leading-relaxed text-muted">{selectedMarker.note}</p>
+                    <p className="mt-3 hidden border-t border-fg/10 pt-3 text-xs leading-relaxed text-faint sm:block">
+                      {selectedPlace.body[0]}
+                    </p>
+                    <Link
+                      to="/places/$id"
+                      params={{ id: selectedPlace.id }}
+                      className="mt-4 flex items-center justify-between border border-blood px-3 py-2.5 font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg"
+                    >
+                      调阅完整地点档案
+                      <LocateFixed className="size-4" />
+                    </Link>
+                  </div>
+                </aside>
+              ) : null}
+              {regionId === "downtown" && floodPlan ? (
+                <aside
+                  className="absolute inset-x-3 bottom-12 z-20 max-h-[calc(100%-4rem)] select-text overflow-y-auto border border-blood bg-bg/95 p-4 shadow-2xl backdrop-blur-md sm:bottom-auto sm:left-auto sm:right-3 sm:top-3 sm:w-80"
+                  onPointerDown={(event) => event.stopPropagation()}
+                  onWheel={(event) => event.stopPropagation()}
+                  aria-live="polite"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setFloodPlan(false)}
+                    className="absolute right-3 top-3 grid size-8 place-items-center border border-blood/50 text-blood hover:bg-blood hover:text-fg"
+                    aria-label="关闭洪灾计划介绍"
+                  >
+                    <X className="size-4" />
+                  </button>
+                  <Bomb className="size-10 text-blood" strokeWidth={1.4} />
+                  <p className="mt-4 font-display text-[10px] font-semibold tracking-[0.2em] text-blood uppercase">
+                    A Real Change / Final Plan
+                  </p>
+                  <h3 className="mt-1 pr-8 font-sans text-xl font-black tracking-tight">
+                    谜语人海堤爆破计划
+                  </h3>
+                  <div className="mt-4 grid grid-cols-2 gap-2 text-center">
+                    <div className="border border-fg/10 bg-surface p-2">
+                      <p className="font-display text-lg font-black text-blood">07</p>
+                      <p className="text-[10px] text-faint">爆破车辆</p>
+                    </div>
+                    <div className="border border-fg/10 bg-surface p-2">
+                      <p className="font-display text-lg font-black text-blood">SEA WALL</p>
+                      <p className="text-[10px] text-faint">目标设施</p>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-xs leading-relaxed text-muted">
+                    蝙蝠侠在谜语人公寓地板地图上发现七个
+                    X；随后的视频确认，七辆爆破车被部署在城市海堤沿线。图层依据电影画面复原分布关系，并非官方精确坐标。
+                  </p>
+                  <a
+                    href="https://movies.fandom.com/wiki/The_Batman/Transcript"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-4 flex items-center justify-between border border-blood px-3 py-2.5 font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg"
+                  >
+                    查看电影文字稿
+                    <LocateFixed className="size-4" />
+                  </a>
+                </aside>
+              ) : null}
             </div>
           </div>
-
-          {regionId === "downtown" && floodPlan ? (
-            <aside className="border border-blood bg-bg lg:sticky lg:top-20 lg:self-start">
-              <div className="relative grid aspect-[16/9] place-items-center overflow-hidden bg-blood/10">
-                <div className="absolute inset-x-6 top-1/2 border-t border-dashed border-blood/50" />
-                <Bomb className="relative size-14 text-blood" strokeWidth={1.4} />
-                <span className="absolute left-3 top-3 bg-blood px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] text-fg uppercase">
-                  Film reconstruction
-                </span>
-              </div>
-              <div className="p-5">
-                <p className="font-display text-xs font-semibold tracking-[0.2em] text-blood uppercase">
-                  A Real Change / Final Plan
-                </p>
-                <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">
-                  谜语人海堤爆破计划
-                </h2>
-                <div className="mt-5 grid grid-cols-2 gap-2 text-center">
-                  <div className="border border-fg/10 bg-surface p-3">
-                    <p className="font-display text-xl font-black text-blood">07</p>
-                    <p className="mt-1 text-[10px] text-faint">爆破车辆</p>
-                  </div>
-                  <div className="border border-fg/10 bg-surface p-3">
-                    <p className="font-display text-xl font-black text-blood">SEA WALL</p>
-                    <p className="mt-1 text-[10px] text-faint">目标设施</p>
-                  </div>
-                </div>
-                <p className="mt-5 text-sm leading-relaxed text-muted">
-                  蝙蝠侠在谜语人公寓地板地图上发现七个
-                  X；随后的视频确认，七辆爆破车被部署在城市海堤沿线。图层依据电影画面复原分布关系，并非官方精确坐标。
-                </p>
-                <a
-                  href="https://movies.fandom.com/wiki/The_Batman/Transcript"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-5 flex items-center justify-between border border-blood px-4 py-3 font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg"
-                >
-                  查看电影文字稿
-                  <LocateFixed className="size-4" />
-                </a>
-              </div>
-            </aside>
-          ) : selectedMarker && selectedPlace ? (
-            <aside className="border border-fg/15 bg-bg lg:sticky lg:top-20 lg:self-start">
-              <div className="relative aspect-[16/9] overflow-hidden bg-elevated">
-                <img
-                  src={selectedPlace.image}
-                  alt={selectedPlace.imageAlt}
-                  className="size-full object-cover"
-                />
-                <span
-                  className={`absolute left-3 top-3 px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] uppercase ${EVIDENCE[selectedMarker.evidence].className}`}
-                >
-                  {EVIDENCE[selectedMarker.evidence].label}
-                </span>
-              </div>
-              <div className="p-5">
-                <p className="font-display text-xs font-semibold tracking-[0.2em] text-blood uppercase">
-                  {selectedPlace.nameEn}
-                </p>
-                <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">
-                  {selectedPlace.name}
-                </h2>
-                <p className="mt-1 text-sm text-faint">{selectedPlace.also}</p>
-                <p className="mt-5 text-sm leading-relaxed text-muted">{selectedMarker.note}</p>
-                <p className="mt-4 border-t border-fg/10 pt-4 text-xs leading-relaxed text-faint">
-                  {selectedPlace.body[0]}
-                </p>
-                <Link
-                  to="/places/$id"
-                  params={{ id: selectedPlace.id }}
-                  className="mt-5 flex items-center justify-between border border-blood px-4 py-3 font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg"
-                >
-                  调阅完整地点档案
-                  <LocateFixed className="size-4" />
-                </Link>
-              </div>
-            </aside>
-          ) : (
-            <aside className="border border-fg/15 bg-bg p-5 lg:sticky lg:top-20 lg:self-start">
-              <p className="font-display text-xs font-semibold tracking-[0.2em] text-blood uppercase">
-                {region.name} / Map Layer
-              </p>
-              <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">{region.zh}</h2>
-              <p className="mt-5 text-sm leading-relaxed text-muted">{region.emptyNote}</p>
-              <Link
-                to="/places"
-                className="mt-6 flex items-center justify-between border border-fg/15 px-4 py-3 font-display text-xs font-semibold tracking-[0.18em] text-muted uppercase hover:border-blood hover:text-blood"
-              >
-                浏览全部地点档案
-                <LocateFixed className="size-4" />
-              </Link>
-            </aside>
-          )}
         </div>
       </section>
+
+      {UNLOCATED_PLACES.length > 0 ? (
+        <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 sm:pt-12">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
+                Unlocated Files
+              </p>
+              <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">
+                尚未落点的地点档案
+              </h2>
+            </div>
+            <p className="max-w-xl text-xs leading-relaxed text-faint">
+              这些地点已有内容档案，但现有设定图不足以支持精确落点，因此暂不放入地图。
+            </p>
+          </div>
+          <ul className="mt-5 flex snap-x gap-3 overflow-x-auto pb-3">
+            {UNLOCATED_PLACES.map((place) => (
+              <li key={place.id} className="w-64 shrink-0 snap-start">
+                <Link
+                  to="/places/$id"
+                  params={{ id: place.id }}
+                  className="group flex h-full items-center gap-3 border border-fg/10 bg-surface p-3 hover:border-blood"
+                >
+                  <img
+                    src={place.image}
+                    alt=""
+                    loading="lazy"
+                    className="size-16 shrink-0 object-cover"
+                  />
+                  <span className="min-w-0">
+                    <span className="block truncate font-sans text-sm font-black tracking-tight group-hover:text-blood">
+                      {place.name}
+                    </span>
+                    <span className="mt-1 block truncate text-[11px] text-faint">{place.also}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="grid gap-6 border-l-2 border-blood pl-5 sm:grid-cols-2 sm:gap-10">

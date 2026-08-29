@@ -8,7 +8,7 @@ const NAV = [
   {
     to: "/dossier",
     label: "电影档案",
-    paths: ["/dossier", "/people", "/places", "/cases"],
+    paths: ["/dossier", "/people", "/places", "/map", "/cases"],
     children: [
       { to: "/dossier", hash: "facts", label: "公开信息" },
       { to: "/dossier", hash: "plot", label: "故事线索" },
@@ -21,13 +21,12 @@ const NAV = [
   {
     to: "/recap",
     label: "世界观",
-    paths: ["/recap", "/roots", "/gear", "/map"],
+    paths: ["/recap", "/roots", "/gear"],
     children: [
       { to: "/recap", hash: "the-batman", label: "前作《新蝙蝠侠》" },
       { to: "/recap", hash: "the-penguin", label: "衍生剧《企鹅人》" },
       { to: "/recap", hash: "roots", label: "漫画原著" },
       { to: "/recap", hash: "gotham-timeline", label: "世界观时间线" },
-      { to: "/map", label: "哥谭互动地图" },
     ],
   },
   {

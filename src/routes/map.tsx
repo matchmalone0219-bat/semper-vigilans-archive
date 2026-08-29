@@ -5,7 +5,7 @@ import {
   type WheelEvent as ReactWheelEvent,
 } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { LocateFixed, Minus, Plus, RotateCcw } from "lucide-react";
+import { Bomb, LocateFixed, Minus, Plus, RotateCcw } from "lucide-react";
 import { pageTitle } from "@/lib/film";
 import { PLACE_MAP } from "@/lib/places";
 
@@ -88,6 +88,16 @@ const REGION_MARKERS: Record<RegionId, Marker[]> = {
   ],
 };
 
+const FLOOD_POINTS = [
+  { x: 11, y: 27 },
+  { x: 29, y: 11 },
+  { x: 52, y: 8 },
+  { x: 82, y: 17 },
+  { x: 91, y: 43 },
+  { x: 82, y: 76 },
+  { x: 49, y: 91 },
+] as const;
+
 const EVIDENCE: Record<Evidence, { label: string; className: string }> = {
   map: { label: "地图标注", className: "bg-fg text-bg" },
   screen: { label: "影片定位", className: "bg-blood text-fg" },
@@ -136,6 +146,7 @@ function clamp(value: number, min: number, max: number) {
 
 function GothamMap() {
   const [regionId, setRegionId] = useState<RegionId>("downtown");
+  const [floodPlan, setFloodPlan] = useState(false);
   const [scale, setScale] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [selectedId, setSelectedId] = useState<MapPlaceId | null>(
@@ -162,6 +173,7 @@ function GothamMap() {
 
   function selectRegion(nextRegion: RegionId) {
     setRegionId(nextRegion);
+    if (nextRegion !== "downtown") setFloodPlan(false);
     setSelectedId(REGION_MARKERS[nextRegion][0]?.placeId ?? null);
     pointers.current.clear();
     gesture.current = null;
@@ -318,34 +330,51 @@ function GothamMap() {
               <p className="font-display text-xs font-semibold tracking-[0.22em] text-faint uppercase">
                 Map of Gotham City {region.name}
               </p>
-              <div className="flex items-center border border-fg/10 bg-bg">
-                <button
-                  type="button"
-                  onClick={() => zoomBy(0.84)}
-                  className="grid size-10 place-items-center text-muted hover:bg-elevated hover:text-fg"
-                  aria-label="缩小地图"
-                >
-                  <Minus className="size-4" />
-                </button>
-                <span className="w-14 text-center font-mono text-xs text-faint">
-                  {Math.round(scale * 100)}%
-                </span>
-                <button
-                  type="button"
-                  onClick={() => zoomBy(1.18)}
-                  className="grid size-10 place-items-center text-muted hover:bg-elevated hover:text-fg"
-                  aria-label="放大地图"
-                >
-                  <Plus className="size-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={resetView}
-                  className="grid size-10 place-items-center border-l border-fg/10 text-muted hover:bg-elevated hover:text-fg"
-                  aria-label="重置地图视图"
-                >
-                  <RotateCcw className="size-4" />
-                </button>
+              <div className="flex flex-wrap items-center justify-end gap-2">
+                {regionId === "downtown" ? (
+                  <button
+                    type="button"
+                    onClick={() => setFloodPlan((current) => !current)}
+                    aria-pressed={floodPlan}
+                    className={`flex h-10 items-center gap-2 border px-3 font-display text-[10px] font-semibold tracking-[0.16em] uppercase transition-colors ${
+                      floodPlan
+                        ? "border-blood bg-blood text-fg"
+                        : "border-fg/10 bg-bg text-muted hover:border-blood hover:text-blood"
+                    }`}
+                  >
+                    <Bomb className="size-4" />
+                    谜语人洪灾计划
+                  </button>
+                ) : null}
+                <div className="flex items-center border border-fg/10 bg-bg">
+                  <button
+                    type="button"
+                    onClick={() => zoomBy(0.84)}
+                    className="grid size-10 place-items-center text-muted hover:bg-elevated hover:text-fg"
+                    aria-label="缩小地图"
+                  >
+                    <Minus className="size-4" />
+                  </button>
+                  <span className="w-14 text-center font-mono text-xs text-faint">
+                    {Math.round(scale * 100)}%
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => zoomBy(1.18)}
+                    className="grid size-10 place-items-center text-muted hover:bg-elevated hover:text-fg"
+                    aria-label="放大地图"
+                  >
+                    <Plus className="size-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={resetView}
+                    className="grid size-10 place-items-center border-l border-fg/10 text-muted hover:bg-elevated hover:text-fg"
+                    aria-label="重置地图视图"
+                  >
+                    <RotateCcw className="size-4" />
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -373,45 +402,110 @@ function GothamMap() {
                   draggable={false}
                   className="pointer-events-none size-full object-contain"
                 />
-                {markers.map((marker) => {
-                  const place = PLACE_MAP[marker.placeId];
-                  const evidence = EVIDENCE[marker.evidence];
-                  const active = marker.placeId === selectedId;
-                  return (
-                    <button
-                      key={marker.placeId}
-                      type="button"
-                      onPointerDown={(event) => event.stopPropagation()}
-                      onClick={() => setSelectedId(marker.placeId)}
-                      className="group absolute -translate-x-1/2 -translate-y-1/2"
-                      style={{ left: `${marker.x}%`, top: `${marker.y}%` }}
-                      aria-label={`查看${place.name}`}
-                    >
-                      <span
-                        className={`relative grid size-5 place-items-center border-2 border-bg shadow-[0_0_0_1px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-125 ${evidence.className} ${
-                          active ? "scale-125 ring-2 ring-fg/70 ring-offset-2 ring-offset-bg" : ""
-                        }`}
+                {(!floodPlan || regionId !== "downtown") &&
+                  markers.map((marker) => {
+                    const place = PLACE_MAP[marker.placeId];
+                    const evidence = EVIDENCE[marker.evidence];
+                    const active = marker.placeId === selectedId;
+                    return (
+                      <button
+                        key={marker.placeId}
+                        type="button"
+                        onPointerDown={(event) => event.stopPropagation()}
+                        onClick={() => setSelectedId(marker.placeId)}
+                        className="group absolute -translate-x-1/2 -translate-y-1/2"
+                        style={{ left: `${marker.x}%`, top: `${marker.y}%` }}
+                        aria-label={`查看${place.name}`}
                       >
-                        <span className="size-1 bg-current opacity-70" />
-                      </span>
+                        <span
+                          className={`relative grid size-5 place-items-center border-2 border-bg shadow-[0_0_0_1px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-125 ${evidence.className} ${
+                            active ? "scale-125 ring-2 ring-fg/70 ring-offset-2 ring-offset-bg" : ""
+                          }`}
+                        >
+                          <span className="size-1 bg-current opacity-70" />
+                        </span>
+                        <span
+                          className={`absolute left-1/2 top-7 hidden -translate-x-1/2 whitespace-nowrap border border-fg/15 bg-bg/95 px-2 py-1 font-sans text-[10px] font-bold text-fg shadow-xl group-hover:block ${
+                            active ? "sm:block" : ""
+                          }`}
+                        >
+                          {place.name}
+                        </span>
+                      </button>
+                    );
+                  })}
+                {regionId === "downtown" && floodPlan
+                  ? FLOOD_POINTS.map((point, index) => (
                       <span
-                        className={`absolute left-1/2 top-7 hidden -translate-x-1/2 whitespace-nowrap border border-fg/15 bg-bg/95 px-2 py-1 font-sans text-[10px] font-bold text-fg shadow-xl group-hover:block ${
-                          active ? "sm:block" : ""
-                        }`}
+                        key={`${point.x}-${point.y}`}
+                        className="pointer-events-none absolute grid size-7 -translate-x-1/2 -translate-y-1/2 place-items-center"
+                        style={{ left: `${point.x}%`, top: `${point.y}%` }}
+                        aria-hidden="true"
                       >
-                        {place.name}
+                        <span
+                          className="absolute inset-0 animate-ping border border-blood/80 bg-blood/20"
+                          style={{ animationDelay: `${index * 160}ms` }}
+                        />
+                        <span className="relative font-display text-2xl font-black leading-none text-blood drop-shadow-[0_0_5px_rgba(190,24,35,0.9)]">
+                          ×
+                        </span>
                       </span>
-                    </button>
-                  );
-                })}
+                    ))
+                  : null}
               </div>
               <p className="pointer-events-none absolute bottom-3 left-3 bg-bg/80 px-2 py-1 text-[10px] text-faint">
                 拖动地图 · 滚轮或双指缩放
               </p>
+              {regionId === "downtown" && floodPlan ? (
+                <p className="pointer-events-none absolute bottom-3 right-3 bg-blood px-2 py-1 font-display text-[10px] font-semibold tracking-[0.14em] text-fg uppercase">
+                  7 points / film reconstruction
+                </p>
+              ) : null}
             </div>
           </div>
 
-          {selectedMarker && selectedPlace ? (
+          {regionId === "downtown" && floodPlan ? (
+            <aside className="border border-blood bg-bg lg:sticky lg:top-20 lg:self-start">
+              <div className="relative grid aspect-[16/9] place-items-center overflow-hidden bg-blood/10">
+                <div className="absolute inset-x-6 top-1/2 border-t border-dashed border-blood/50" />
+                <Bomb className="relative size-14 text-blood" strokeWidth={1.4} />
+                <span className="absolute left-3 top-3 bg-blood px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] text-fg uppercase">
+                  Film reconstruction
+                </span>
+              </div>
+              <div className="p-5">
+                <p className="font-display text-xs font-semibold tracking-[0.2em] text-blood uppercase">
+                  A Real Change / Final Plan
+                </p>
+                <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">
+                  谜语人海堤爆破计划
+                </h2>
+                <div className="mt-5 grid grid-cols-2 gap-2 text-center">
+                  <div className="border border-fg/10 bg-surface p-3">
+                    <p className="font-display text-xl font-black text-blood">07</p>
+                    <p className="mt-1 text-[10px] text-faint">爆破车辆</p>
+                  </div>
+                  <div className="border border-fg/10 bg-surface p-3">
+                    <p className="font-display text-xl font-black text-blood">SEA WALL</p>
+                    <p className="mt-1 text-[10px] text-faint">目标设施</p>
+                  </div>
+                </div>
+                <p className="mt-5 text-sm leading-relaxed text-muted">
+                  蝙蝠侠在谜语人公寓地板地图上发现七个
+                  X；随后的视频确认，七辆爆破车被部署在城市海堤沿线。图层依据电影画面复原分布关系，并非官方精确坐标。
+                </p>
+                <a
+                  href="https://movies.fandom.com/wiki/The_Batman/Transcript"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-5 flex items-center justify-between border border-blood px-4 py-3 font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg"
+                >
+                  查看电影文字稿
+                  <LocateFixed className="size-4" />
+                </a>
+              </div>
+            </aside>
+          ) : selectedMarker && selectedPlace ? (
             <aside className="border border-fg/15 bg-bg lg:sticky lg:top-20 lg:self-start">
               <div className="relative aspect-[16/9] overflow-hidden bg-elevated">
                 <img
@@ -476,7 +570,9 @@ function GothamMap() {
           </div>
           <p className="text-sm leading-relaxed text-muted">
             Downtown 依据电影设定资料重绘；Uptown 与 Midtown
-            结合全城小图和《企鹅人》剧中交通地图画面重构，并校正了画面透视。三张底图均只保留岛岸、水系和道路结构，不复刻标题、文字、图例或标尺；它们属于影迷地图重构，并非官方制图。互动标记仍按影视定位与本站推测分层展示。
+            结合全城小图和《企鹅人》剧中交通地图画面重构，并校正了画面透视。三张底图均只保留岛岸、水系和道路结构，不复刻标题、文字、图例或标尺；它们属于影迷地图重构，并非官方制图。互动标记仍按影视定位与本站推测分层展示。Downtown
+            的“谜语人洪灾计划”图层按照电影中七个 X
+            与海堤沿线关系复原，爆破点为近似分布而非官方精确坐标。
           </p>
         </div>
       </section>

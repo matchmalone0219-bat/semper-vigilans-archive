@@ -247,23 +247,23 @@ export const GALLERIES: GalleryGroup[] = [
       },
       {
         src: "/media/log/p2-27-gcpd1.jpg",
-        title: "突围撞损的哥谭警车",
+        title: "撞损的哥谭警车",
         caption:
-          "哥谭市警局（GCPD）巡逻车车头严重凹陷挤压，为当晚战车正面硬碰硬冲撞戏留下的实拍残骸。",
+          "哥谭市警局（GCPD）巡逻车车头严重凹陷，为当晚战车冲撞戏留下的实拍道具车辆。",
         source: "片场路透 · kt_perspective",
       },
       {
         src: "/media/log/p2-27-gcpd2.jpg",
-        title: "警车撞损侧翼细节",
+        title: "警车受损细节",
         caption:
-          "巡逻车翼子板与保险杠深度挤压变形，展现战车低速硬碰硬撞击突围的实拍冲击力。",
+          "巡逻车翼子板与保险杠凹陷变形，记录了实拍撞击后的车身受损情况。",
         source: "片场路透 · kt_perspective",
       },
       {
         src: "/media/log/p2-27-gcpd3.jpg",
-        title: "日间清场停靠的破损警车",
+        title: "停靠路边的受损警车",
         caption:
-          "夜戏结束后停放在圣文森特街附近的 GCPD 巡逻车残骸，车前大灯与水箱框架损毁严重。",
+          "夜戏结束后停放在圣文森特街附近的 GCPD 巡逻车，车前大灯与车头部件损毁明显。",
         source: "片场路透 · kt_perspective",
       },
       {

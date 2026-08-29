@@ -86,7 +86,7 @@ function Home() {
             </p>
             <Countdown className="mt-8 max-w-lg" />
             <div className="mt-8 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3">
-              <Button asChild size="lg" className="h-14 w-full justify-between">
+              <Button asChild size="lg" className="h-14 w-full">
                 <Link to="/dossier">
                   查阅电影档案
                   <ArrowRight className="size-4" />
@@ -96,14 +96,14 @@ function Home() {
                 asChild
                 variant="ghost"
                 size="lg"
-                className="h-14 w-full justify-between bg-bg/90"
+                className="h-14 w-full bg-bg/90"
               >
                 <Link to="/places">
                   打开互动地图
                   <MapPin className="size-4" />
                 </Link>
               </Button>
-              <Button asChild variant="phosphor" size="lg" className="h-14 w-full justify-between">
+              <Button asChild variant="phosphor" size="lg" className="h-14 w-full">
                 <Link to="/rataalada">
                   rataalada
                   <Terminal className="size-4" />

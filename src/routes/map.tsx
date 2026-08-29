@@ -213,7 +213,7 @@ function GothamMap() {
             </h1>
             <p className="mt-4 max-w-3xl text-pretty leading-relaxed text-muted">
               以 Reeves 宇宙公开的 Downtown
-              地图为底图。拖动探索街区，缩放查看道路，点击标记调阅地点档案；推测位置会与地图和影片可对应位置明确区分。
+              地图结构为参考重新绘制。拖动探索街区，缩放查看道路，点击标记调阅地点档案；推测位置会与地图和影片可对应位置明确区分。
             </p>
           </div>
           <div className="flex flex-wrap gap-2 text-xs">
@@ -300,15 +300,15 @@ function GothamMap() {
               aria-label="可拖动和缩放的哥谭市中心地图"
             >
               <div
-                className="relative aspect-[1000/1098] w-[min(100%,692px)] shrink-0 cursor-grab active:cursor-grabbing"
+                className="relative aspect-[1197/1314] w-[min(100%,692px)] shrink-0 cursor-grab active:cursor-grabbing"
                 style={{
                   transform: `translate3d(${offset.x}px, ${offset.y}px, 0) scale(${scale})`,
                   transformOrigin: "center",
                 }}
               >
                 <img
-                  src="/media/gotham-downtown-map.webp"
-                  alt="Reeves 版哥谭市 Downtown 街道、地铁与区域地图"
+                  src="/media/gotham-downtown-map-v2.webp"
+                  alt="依据 Reeves 版哥谭 Downtown 地理结构重绘的暗色道路地图"
                   draggable={false}
                   className="pointer-events-none size-full object-contain"
                 />
@@ -397,8 +397,8 @@ function GothamMap() {
             <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">地图资料说明</h2>
           </div>
           <p className="text-sm leading-relaxed text-muted">
-            底图来自 Reeves 版哥谭的 Downtown
-            地图资料。图中原有街道、地铁与区域名称保持不变；互动标记依据地图文字、影视画面和影迷推测分层展示。Uptown
+            底图依据 Reeves 版哥谭的 Downtown
+            地图资料重新绘制，仅保留岛岸、水系和道路结构，不复刻原图的标题、文字、图例或标尺。互动标记依据参考地图、影视画面和影迷推测分层展示；本图并非官方制图。Uptown
             与 Midtown 将在取得足够清晰的《企鹅人》剧中地图画面后继续补全。
           </p>
         </div>

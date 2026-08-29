@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Countdown } from "@/components/countdown";
 import { Rain } from "@/components/atmosphere";
@@ -85,18 +85,24 @@ function Home() {
               导演：马特·里夫斯 · 北美定档：{FILM.releaseLabel} · {FILM.format}
             </p>
             <Countdown className="mt-8 max-w-lg" />
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild>
+            <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
+              <Button asChild size="lg" className="h-14 w-full justify-between">
                 <Link to="/dossier">
                   查阅电影档案
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
-              <Button asChild variant="ghost">
-                <Link to="/places">打开互动地图</Link>
+              <Button asChild variant="map" size="lg" className="h-14 w-full justify-between">
+                <Link to="/places">
+                  打开互动地图
+                  <MapPin className="size-4" />
+                </Link>
               </Button>
-              <Button asChild variant="phosphor">
-                <Link to="/rataalada">rataalada</Link>
+              <Button asChild variant="phosphor" size="lg" className="h-14 w-full justify-between">
+                <Link to="/rataalada">
+                  rataalada
+                  <Terminal className="size-4" />
+                </Link>
               </Button>
             </div>
           </div>

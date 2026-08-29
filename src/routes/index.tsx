@@ -85,14 +85,19 @@ function Home() {
               导演：马特·里夫斯 · 北美定档：{FILM.releaseLabel} · {FILM.format}
             </p>
             <Countdown className="mt-8 max-w-lg" />
-            <div className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
+            <div className="mt-8 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3">
               <Button asChild size="lg" className="h-14 w-full justify-between">
                 <Link to="/dossier">
                   查阅电影档案
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
-              <Button asChild variant="map" size="lg" className="h-14 w-full justify-between">
+              <Button
+                asChild
+                variant="ghost"
+                size="lg"
+                className="h-14 w-full justify-between bg-bg/90"
+              >
                 <Link to="/places">
                   打开互动地图
                   <MapPin className="size-4" />

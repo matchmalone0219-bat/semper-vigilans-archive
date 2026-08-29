@@ -9,7 +9,6 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: "bg-blood text-primary-fg hover:bg-blood/85",
-        map: "bg-fg/85 text-bg hover:bg-fg",
         ghost:
           "bg-transparent text-fg shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-fg)_22%,transparent)] hover:shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-fg)_40%,transparent)]",
         phosphor:

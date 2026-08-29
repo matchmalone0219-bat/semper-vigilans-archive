@@ -33,49 +33,49 @@ const REGION_MARKERS: Record<RegionId, Marker[]> = {
       x: 48.8,
       y: 40.8,
       evidence: "map",
-      note: "设定地图在市中心标有 Wayne Plaza；韦恩塔按该标注与成片天际线关系落点。",
+      note: "设定地图在市中心标有 Wayne Plaza；韦恩塔按该标注与成片天际线视线关系落点。",
     },
     {
       placeId: "gsg",
       x: 32.2,
       y: 25.8,
       evidence: "screen",
-      note: "对应设定地图的 Gotham Square；体育馆本身依据终幕场景推定在广场一带。",
+      note: "对应设定地图中的 Gotham Square；体育馆本身依据终幕大水与广场环境推定位于该区域。",
     },
     {
       placeId: "city-hall",
       x: 39.7,
       y: 31.1,
       evidence: "screen",
-      note: "依据市政厅外景与 Gotham Square Station 的相对位置定位。",
+      note: "依据市政厅外景实拍与 Gotham Square Station 地铁站的相对几何位置定位。",
     },
     {
       placeId: "gcpd",
       x: 57.8,
       y: 35.2,
       evidence: "theory",
-      note: "设定地图没有直接标出总部名称，位置按市中心警务街区作本站推测。",
+      note: "设定地图未直接标出总局字样，标记依据市中心警务调度街区与出警动线作本站推测。",
     },
     {
       placeId: "iceberg",
       x: 27.8,
       y: 72.4,
       evidence: "screen",
-      note: "制片设计将冰山俱乐部放在 Tricorner Bridge 一带；里夫斯宇宙亦记为 Tricorner 区 Shoreline Lofts 地下，不在老城或唐人街。",
+      note: "制片设计与概念图将冰山俱乐部置于 Tricorner Bridge 桥头；里夫斯宇宙设定集亦明确其位于 Tricorner 区 Shoreline Lofts 地下，不在老城或唐人街。",
     },
     {
       placeId: "riddler-room",
       x: 31.0,
       y: 69.6,
       evidence: "screen",
-      note: "成片中谜语人公寓正对冰山俱乐部入口，可监视法尔科内进出，故随俱乐部落在 Tricorner。",
+      note: "成片中谜语人公寓窗户正对冰山俱乐部正门，可直接架设长焦监视法尔科内进出，故随俱乐部落点于 Tricorner。",
     },
     {
       placeId: "crown-point",
       x: 77.2,
       y: 63.0,
       evidence: "map",
-      note: "设定地图将 Crown Point 标在 Downtown 东侧、East River Avenue 沿岸，而不是更靠南的码头。",
+      note: "设定地图将 Crown Point 标在 Downtown 东侧、紧邻 East River Avenue 沿岸，而非南部码头区。",
     },
   ],
 };
@@ -113,7 +113,7 @@ const REGIONS = [
     imageAlt: "依据《企鹅人》剧中全城地图重绘的 Uptown 道路地图",
     aspectRatio: "1198 / 1313",
     description:
-      "限定剧《企鹅人》剧中地图出现的北部城区。电影《新蝙蝠侠》没有展开此地，现有资料只足以还原岛岸与道路结构，暂不落点。",
+      "限定剧《企鹅人》全城交通地图中出现的北部岛区。电影《新蝙蝠侠》未展开该区域，现有公开资料仅足以复原海岸线与主干道路网，暂不设具体地点标记。",
   },
   {
     id: "midtown",
@@ -124,7 +124,7 @@ const REGIONS = [
     imageAlt: "依据《企鹅人》剧中全城地图重绘的 Midtown 道路地图",
     aspectRatio: "1250 / 1372",
     description:
-      "限定剧《企鹅人》补出的中部岛区，连接上城与下城。电影未单独展开，当前开放底图，暂不为缺少可靠坐标的地点强行落点。",
+      "限定剧《企鹅人》补完的中部岛区，承接南北交通。电影未单独展现，当前开放高清底图，暂不为缺少影视坐标的地点强行落点。",
   },
   {
     id: "downtown",
@@ -135,7 +135,7 @@ const REGIONS = [
     imageAlt: "依据电影《新蝙蝠侠》Downtown 设定地图重绘的暗色道路地图",
     aspectRatio: "1197 / 1314",
     description:
-      "电影《新蝙蝠侠》的主舞台。设定地图与成片外景都落在这座下城区：市政、金融、娱乐与犯罪网络高度交叠。可切换谜语人洪灾计划图层。",
+      "电影《新蝙蝠侠》核心主舞台。官方设定地图与主要外景皆汇聚于此：市政、金融、娱乐与黑帮巢穴在此交织。支持切换谜语人海堤爆破图层。",
   },
 ] as const;
 
@@ -278,7 +278,7 @@ export function GothamPlacesMap() {
           <div>
             <h1 className="font-sans text-4xl font-black tracking-tight sm:text-5xl">哥谭地点</h1>
             <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-muted sm:text-base">
-              下城区来自电影《新蝙蝠侠》设定地图；上城区与中城区由限定剧《企鹅人》剧中地图补出。点击地点标记可调出简介，再进入完整档案。
+              下城区基于电影《新蝙蝠侠》官方设定地图重绘；中城区与上城区由限定剧《企鹅人》剧中地图补完。点击地点标记可查看考据解析，并进入完整档案。
             </p>
           </div>
           <div className="flex flex-wrap gap-2 text-xs">
@@ -655,10 +655,7 @@ export function GothamPlacesMap() {
             <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">地图资料说明</h2>
           </div>
           <p className="text-sm leading-relaxed text-muted">
-            下城区 Downtown 依据电影《新蝙蝠侠》设定地图重绘。上城区 Uptown 与中城区 Midtown
-            并未在电影中展开，底图来自限定剧《企鹅人》的全城小图与交通地图，并校正了画面透视。三张底图均只保留岛岸、水系和道路结构，不复刻标题、文字、图例或标尺；它们属于影迷地图重构，并非官方制图。互动标记仍按影视定位与本站推测分层展示。Downtown
-            的“谜语人洪灾计划”图层按照电影中七个 X
-            与海堤沿线关系复原，爆破点为近似分布而非官方精确坐标。
+            下城区（Downtown）严格依据电影《新蝙蝠侠》官方设定资料与成片地理重绘；上城区（Uptown）与中城区（Midtown）在电影中未直接展开，底图基于限定剧《企鹅人》出现的全城路网与交通地图重构并校正了透视。三张底图均聚焦呈现岛岸、水系与道路骨架，属于影迷严谨重构；互动标记严格区分影视确凿定位与合理推测。“谜语人洪灾计划”图层依据成片中地板地图的 7 处爆破标记与海堤走向复原，旨在呈现灾难蔓延态势。
           </p>
         </div>
       </section>

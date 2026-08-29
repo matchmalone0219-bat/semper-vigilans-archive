@@ -85,7 +85,7 @@ function Home() {
               导演：马特·里夫斯 · 北美定档：{FILM.releaseLabel} · {FILM.format}
             </p>
             <Countdown className="mt-8 max-w-lg" />
-            <div className="mt-8 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3">
+            <div className="mt-8 grid max-w-3xl grid-cols-2 gap-3 sm:w-fit sm:grid-cols-[repeat(3,13rem)]">
               <Button asChild size="lg" className="h-14 w-full">
                 <Link to="/dossier">
                   查阅电影档案

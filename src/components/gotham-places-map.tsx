@@ -7,6 +7,7 @@ import {
 import { Link } from "@tanstack/react-router";
 import { Bomb, LocateFixed, Minus, Plus, RotateCcw, X } from "lucide-react";
 import { PLACE_MAP, PLACES, GOTHAM_CITY } from "@/lib/places";
+import { PlaceMark } from "@/components/place-marks";
 
 type Evidence = "map" | "screen" | "theory";
 
@@ -29,52 +30,52 @@ const REGION_MARKERS: Record<RegionId, Marker[]> = {
   downtown: [
     {
       placeId: "wayne-tower",
-      x: 50.4,
-      y: 42.2,
-      evidence: "screen",
-      note: "依据 Wayne Plaza 标注与电影中韦恩塔视线关系定位。",
+      x: 48.8,
+      y: 40.8,
+      evidence: "map",
+      note: "设定地图在市中心标有 Wayne Plaza；韦恩塔按该标注与成片天际线关系落点。",
     },
     {
       placeId: "gsg",
       x: 32.2,
       y: 25.8,
       evidence: "screen",
-      note: "对应 Gotham Square 一带；体育馆的具体街区位置依据终幕场景推定。",
+      note: "对应设定地图的 Gotham Square；体育馆本身依据终幕场景推定在广场一带。",
     },
     {
       placeId: "city-hall",
       x: 39.7,
       y: 31.1,
       evidence: "screen",
-      note: "依据市政厅、Gotham Square Station 与电影外景关系定位。",
+      note: "依据市政厅外景与 Gotham Square Station 的相对位置定位。",
     },
     {
       placeId: "gcpd",
       x: 57.8,
       y: 35.2,
       evidence: "theory",
-      note: "地图没有直接标出总部名称，位置按市中心警务线路作本站推测。",
+      note: "设定地图没有直接标出总部名称，位置按市中心警务街区作本站推测。",
     },
     {
       placeId: "iceberg",
-      x: 56.2,
-      y: 69.8,
-      evidence: "theory",
-      note: "暂放在 Tricorner 犯罪活动区；后续将以更清晰的剧中地图校正。",
+      x: 27.8,
+      y: 72.4,
+      evidence: "screen",
+      note: "制片设计将冰山俱乐部放在 Tricorner Bridge 一带；里夫斯宇宙亦记为 Tricorner 区 Shoreline Lofts 地下，不在老城或唐人街。",
     },
     {
       placeId: "riddler-room",
-      x: 52.4,
-      y: 65.7,
-      evidence: "theory",
-      note: "按照公寓可监视冰山俱乐部的剧情关系，作为相对位置展示。",
+      x: 31.0,
+      y: 69.6,
+      evidence: "screen",
+      note: "成片中谜语人公寓正对冰山俱乐部入口，可监视法尔科内进出，故随俱乐部落在 Tricorner。",
     },
     {
       placeId: "crown-point",
-      x: 80.8,
-      y: 71.5,
+      x: 77.2,
+      y: 63.0,
       evidence: "map",
-      note: "清晰设定地图将 Crown Point 标在 Downtown 东南侧；本站按地图右下方的沿河街区落点。",
+      note: "设定地图将 Crown Point 标在 Downtown 东侧、East River Avenue 沿岸，而不是更靠南的码头。",
     },
   ],
 };
@@ -107,34 +108,34 @@ const REGIONS = [
     id: "uptown",
     name: "Uptown",
     zh: "上城区",
-    status: "底图开放",
+    status: "剧集提及",
     image: "/media/gotham-uptown-map.webp",
-    imageAlt: "依据哥谭全城轮廓与《企鹅人》剧中地图重绘的 Uptown 道路地图",
+    imageAlt: "依据《企鹅人》剧中全城地图重绘的 Uptown 道路地图",
     aspectRatio: "1198 / 1313",
     description:
-      "哥谭北部城区。现有资料只足以还原岛岸与道路结构，地点档案将在出现更清晰的影视地图后继续补充。",
+      "限定剧《企鹅人》剧中地图出现的北部城区。电影《新蝙蝠侠》没有展开此地，现有资料只足以还原岛岸与道路结构，暂不落点。",
   },
   {
     id: "midtown",
     name: "Midtown",
     zh: "中城区",
-    status: "底图开放",
+    status: "剧集提及",
     image: "/media/gotham-midtown-map.webp",
-    imageAlt: "依据哥谭全城轮廓与《企鹅人》剧中地图重绘的 Midtown 道路地图",
+    imageAlt: "依据《企鹅人》剧中全城地图重绘的 Midtown 道路地图",
     aspectRatio: "1250 / 1372",
     description:
-      "连接北部城区与 Downtown 的中部岛区。当前开放完整底图，暂不为缺少可靠坐标的地点强行落点。",
+      "限定剧《企鹅人》补出的中部岛区，连接上城与下城。电影未单独展开，当前开放底图，暂不为缺少可靠坐标的地点强行落点。",
   },
   {
     id: "downtown",
     name: "Downtown",
     zh: "下城区",
-    status: "7 个地点档案",
+    status: "电影设定 · 7 处档案",
     image: "/media/gotham-downtown-map-v2.webp",
-    imageAlt: "依据 Reeves 版哥谭 Downtown 地理结构重绘的暗色道路地图",
+    imageAlt: "依据电影《新蝙蝠侠》Downtown 设定地图重绘的暗色道路地图",
     aspectRatio: "1197 / 1314",
     description:
-      "市政、金融、娱乐与犯罪网络高度交叠的核心城区。电影与剧集现有资料可对应七处地点，并可切换谜语人洪灾计划图层。",
+      "电影《新蝙蝠侠》的主舞台。设定地图与成片外景都落在这座下城区：市政、金融、娱乐与犯罪网络高度交叠。可切换谜语人洪灾计划图层。",
   },
 ] as const;
 
@@ -277,7 +278,7 @@ export function GothamPlacesMap() {
           <div>
             <h1 className="font-sans text-4xl font-black tracking-tight sm:text-5xl">哥谭地点</h1>
             <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-muted sm:text-base">
-              切换城区并探索地图。点击地点标记即可调出简介，再进入完整档案查看关联人物与剧情。
+              下城区来自电影《新蝙蝠侠》设定地图；上城区与中城区由限定剧《企鹅人》剧中地图补出。点击地点标记可调出简介，再进入完整档案。
             </p>
           </div>
           <div className="flex flex-wrap gap-2 text-xs">
@@ -317,6 +318,31 @@ export function GothamPlacesMap() {
             </li>
           ))}
         </ul>
+        {regionId === "downtown" ? (
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {markers.map((marker) => {
+              const place = PLACE_MAP[marker.placeId];
+              const active = marker.placeId === selectedId;
+              return (
+                <li key={marker.placeId}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedId(marker.placeId)}
+                    aria-pressed={active}
+                    className={`flex items-center gap-2 border px-2 py-1.5 text-left transition-colors ${
+                      active
+                        ? "border-blood bg-blood/10 text-fg"
+                        : "border-fg/10 bg-surface text-muted hover:border-fg/30 hover:text-fg"
+                    }`}
+                  >
+                    <PlaceMark id={marker.placeId} className="size-7 shrink-0" />
+                    <span className="font-sans text-xs font-bold tracking-tight">{place.name}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        ) : null}
       </header>
 
       <section className="border-y border-fg/10 bg-surface/40">
@@ -424,14 +450,17 @@ export function GothamPlacesMap() {
                         aria-label={`查看${place.name}`}
                       >
                         <span
-                          className={`relative grid size-5 place-items-center border-2 border-bg shadow-[0_0_0_1px_rgba(255,255,255,0.3)] transition-transform group-hover:scale-125 ${evidence.className} ${
-                            active ? "scale-125 ring-2 ring-fg/70 ring-offset-2 ring-offset-bg" : ""
+                          className={`relative block size-9 text-fg drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)] transition-transform group-hover:scale-110 ${
+                            active ? "scale-110 text-blood" : ""
                           }`}
                         >
-                          <span className="size-1 bg-current opacity-70" />
+                          <PlaceMark id={marker.placeId} className="size-9" />
+                          <span
+                            className={`absolute -bottom-0.5 -right-0.5 size-2 border border-bg ${evidence.className}`}
+                          />
                         </span>
                         <span
-                          className={`absolute left-1/2 top-7 hidden -translate-x-1/2 whitespace-nowrap border border-fg/15 bg-bg/95 px-2 py-1 font-sans text-[10px] font-bold text-fg shadow-xl group-hover:block ${
+                          className={`absolute left-1/2 top-10 hidden -translate-x-1/2 whitespace-nowrap border border-fg/15 bg-bg/95 px-2 py-1 font-sans text-[10px] font-bold text-fg shadow-xl group-hover:block ${
                             active ? "sm:block" : ""
                           }`}
                         >
@@ -480,8 +509,11 @@ export function GothamPlacesMap() {
                       alt={selectedPlace.imageAlt}
                       className="size-full object-cover"
                     />
+                    <span className="absolute left-3 top-3 size-10 text-fg drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)]">
+                      <PlaceMark id={selectedPlace.id} className="size-10" />
+                    </span>
                     <span
-                      className={`absolute left-3 top-3 px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] uppercase ${EVIDENCE[selectedMarker.evidence].className}`}
+                      className={`absolute bottom-3 left-3 px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] uppercase ${EVIDENCE[selectedMarker.evidence].className}`}
                     >
                       {EVIDENCE[selectedMarker.evidence].label}
                     </span>
@@ -590,7 +622,7 @@ export function GothamPlacesMap() {
                 <Link
                   to="/places/$id"
                   params={{ id: place.id }}
-                  className="group flex h-full items-center gap-3 border border-fg/10 bg-surface p-3 hover:border-blood"
+                  className="group relative flex h-full items-center gap-3 border border-fg/10 bg-surface p-3 hover:border-blood"
                 >
                   <img
                     src={place.image}
@@ -598,6 +630,9 @@ export function GothamPlacesMap() {
                     loading="lazy"
                     className="size-16 shrink-0 object-cover"
                   />
+                  <span className="absolute left-2 top-2 size-7 text-fg drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)]">
+                    <PlaceMark id={place.id} className="size-7" />
+                  </span>
                   <span className="min-w-0">
                     <span className="block truncate font-sans text-sm font-black tracking-tight group-hover:text-blood">
                       {place.name}
@@ -620,8 +655,8 @@ export function GothamPlacesMap() {
             <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">地图资料说明</h2>
           </div>
           <p className="text-sm leading-relaxed text-muted">
-            Downtown 依据电影设定资料重绘；Uptown 与 Midtown
-            结合全城小图和《企鹅人》剧中交通地图画面重构，并校正了画面透视。三张底图均只保留岛岸、水系和道路结构，不复刻标题、文字、图例或标尺；它们属于影迷地图重构，并非官方制图。互动标记仍按影视定位与本站推测分层展示。Downtown
+            下城区 Downtown 依据电影《新蝙蝠侠》设定地图重绘。上城区 Uptown 与中城区 Midtown
+            并未在电影中展开，底图来自限定剧《企鹅人》的全城小图与交通地图，并校正了画面透视。三张底图均只保留岛岸、水系和道路结构，不复刻标题、文字、图例或标尺；它们属于影迷地图重构，并非官方制图。互动标记仍按影视定位与本站推测分层展示。Downtown
             的“谜语人洪灾计划”图层按照电影中七个 X
             与海堤沿线关系复原，爆破点为近似分布而非官方精确坐标。
           </p>
@@ -637,6 +672,22 @@ export function GothamPlacesMap() {
           <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-muted">
             {GOTHAM_CITY.lede}
           </p>
+          <div className="mt-8 grid gap-px bg-border sm:grid-cols-3">
+            {GOTHAM_CITY.boroughs.map((b) => (
+              <div key={b.nameEn} className="bg-bg p-5">
+                <p className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase">
+                  {b.source}
+                </p>
+                <p className="mt-2 font-sans text-lg font-black tracking-tight">
+                  {b.name}{" "}
+                  <span className="font-display text-xs font-semibold tracking-wide text-muted">
+                    {b.nameEn}
+                  </span>
+                </p>
+                <p className="mt-1 text-sm text-muted">{b.note}</p>
+              </div>
+            ))}
+          </div>
           <dl className="mt-8 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
             {GOTHAM_CITY.facts.map((fact) => (
               <div key={fact.label} className="bg-bg p-5">

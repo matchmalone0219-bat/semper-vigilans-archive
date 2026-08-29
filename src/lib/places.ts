@@ -23,6 +23,11 @@ export const GOTHAM_CITY = {
     { label: "建城传说", value: "有记载称 1724 年由建筑师威廉·哥谭奠基，此说在宇宙内亦存争议" },
     { label: "取景参照", value: "纽约都会骨架 · 格拉斯哥天际线 · 利物浦与伦敦实景" },
   ],
+  boroughs: [
+    { name: "下城区", nameEn: "Downtown", source: "电影《新蝙蝠侠》", note: "成片主舞台，设定地图最完整" },
+    { name: "中城区", nameEn: "Midtown", source: "限定剧《企鹅人》", note: "剧中地图补出，电影未展开" },
+    { name: "上城区", nameEn: "Uptown", source: "限定剧《企鹅人》", note: "剧中地图补出，电影未展开" },
+  ],
   districts: [
     { name: "派克街", nameEn: "Park Row", note: "剧院后巷，韦恩夫妇遇刺处" },
     { name: "皇冠角", nameEn: "Crown Point", note: "洪水重创的贫民区，企鹅人火拼主场" },

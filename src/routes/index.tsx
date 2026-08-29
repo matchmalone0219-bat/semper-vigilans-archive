@@ -44,9 +44,8 @@ const CORE_LINKS = [
 ] as const;
 
 const QUICK_LINKS = [
-  { to: "/map", label: "哥谭地图", detail: "缩放与地点互动" },
   { to: "/people", label: "人物名册", detail: "角色与派系" },
-  { to: "/places", label: "哥谭地点", detail: "地标与据点" },
+  { to: "/places", label: "哥谭地点", detail: "互动地图与据点" },
   { to: "/cases", label: "重案卷宗", detail: "案件与物证" },
   { to: "/gear", label: "装备库", detail: "战衣与载具" },
   { to: "/gallery", label: "影像画廊", detail: "剧照与片场" },
@@ -94,7 +93,10 @@ function Home() {
                 </Link>
               </Button>
               <Button asChild variant="ghost">
-                <Link to="/rataalada">进入暗号终端</Link>
+                <Link to="/places">打开互动地图</Link>
+              </Button>
+              <Button asChild variant="phosphor">
+                <Link to="/rataalada">rataalada</Link>
               </Button>
             </div>
           </div>

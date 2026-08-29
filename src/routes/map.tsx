@@ -18,7 +18,10 @@ export const Route = createFileRoute("/map")({
 
 type Evidence = "map" | "screen" | "theory";
 
-type MapPlaceId = "wayne-tower" | "gsg" | "city-hall" | "gcpd" | "iceberg" | "riddler-room";
+type RegionId = "uptown" | "midtown" | "downtown";
+
+type MapPlaceId =
+  "wayne-tower" | "gsg" | "city-hall" | "gcpd" | "iceberg" | "riddler-room" | "crown-point";
 
 type Marker = {
   placeId: MapPlaceId;
@@ -28,50 +31,62 @@ type Marker = {
   note: string;
 };
 
-const MARKERS: Marker[] = [
-  {
-    placeId: "wayne-tower",
-    x: 50.4,
-    y: 42.2,
-    evidence: "screen",
-    note: "依据 Wayne Plaza 标注与电影中韦恩塔视线关系定位。",
-  },
-  {
-    placeId: "gsg",
-    x: 32.2,
-    y: 25.8,
-    evidence: "screen",
-    note: "对应 Gotham Square 一带；体育馆的具体街区位置依据终幕场景推定。",
-  },
-  {
-    placeId: "city-hall",
-    x: 39.7,
-    y: 31.1,
-    evidence: "screen",
-    note: "依据市政厅、Gotham Square Station 与电影外景关系定位。",
-  },
-  {
-    placeId: "gcpd",
-    x: 57.8,
-    y: 35.2,
-    evidence: "theory",
-    note: "地图没有直接标出总部名称，位置按市中心警务线路作本站推测。",
-  },
-  {
-    placeId: "iceberg",
-    x: 56.2,
-    y: 69.8,
-    evidence: "theory",
-    note: "暂放在 Tricorner 犯罪活动区；后续将以更清晰的剧中地图校正。",
-  },
-  {
-    placeId: "riddler-room",
-    x: 52.4,
-    y: 65.7,
-    evidence: "theory",
-    note: "按照公寓可监视冰山俱乐部的剧情关系，作为相对位置展示。",
-  },
-];
+const REGION_MARKERS: Record<RegionId, Marker[]> = {
+  uptown: [
+    {
+      placeId: "crown-point",
+      x: 76,
+      y: 58,
+      evidence: "screen",
+      note: "《企鹅人》确认 Crown Point 位于 Uptown 东部并临近通往 Bristol Township 的桥梁；标记按剧中地图关系落在东侧街区。",
+    },
+  ],
+  midtown: [],
+  downtown: [
+    {
+      placeId: "wayne-tower",
+      x: 50.4,
+      y: 42.2,
+      evidence: "screen",
+      note: "依据 Wayne Plaza 标注与电影中韦恩塔视线关系定位。",
+    },
+    {
+      placeId: "gsg",
+      x: 32.2,
+      y: 25.8,
+      evidence: "screen",
+      note: "对应 Gotham Square 一带；体育馆的具体街区位置依据终幕场景推定。",
+    },
+    {
+      placeId: "city-hall",
+      x: 39.7,
+      y: 31.1,
+      evidence: "screen",
+      note: "依据市政厅、Gotham Square Station 与电影外景关系定位。",
+    },
+    {
+      placeId: "gcpd",
+      x: 57.8,
+      y: 35.2,
+      evidence: "theory",
+      note: "地图没有直接标出总部名称，位置按市中心警务线路作本站推测。",
+    },
+    {
+      placeId: "iceberg",
+      x: 56.2,
+      y: 69.8,
+      evidence: "theory",
+      note: "暂放在 Tricorner 犯罪活动区；后续将以更清晰的剧中地图校正。",
+    },
+    {
+      placeId: "riddler-room",
+      x: 52.4,
+      y: 65.7,
+      evidence: "theory",
+      note: "按照公寓可监视冰山俱乐部的剧情关系，作为相对位置展示。",
+    },
+  ],
+};
 
 const EVIDENCE: Record<Evidence, { label: string; className: string }> = {
   map: { label: "地图标注", className: "bg-fg text-bg" },
@@ -80,9 +95,36 @@ const EVIDENCE: Record<Evidence, { label: string; className: string }> = {
 };
 
 const REGIONS = [
-  { name: "Uptown", zh: "上城区", status: "剧中地图待整理", active: false },
-  { name: "Midtown", zh: "中城区", status: "剧中地图待整理", active: false },
-  { name: "Downtown", zh: "下城区", status: "当前开放", active: true },
+  {
+    id: "uptown",
+    name: "Uptown",
+    zh: "上城区",
+    status: "1 个地点档案",
+    image: "/media/gotham-uptown-map.webp",
+    imageAlt: "依据哥谭全城轮廓与《企鹅人》剧中地图重绘的 Uptown 道路地图",
+    aspectRatio: "1198 / 1313",
+    emptyNote: "Uptown 底图已经开放，更多地点需要等待可核对的影视画面后再落点。",
+  },
+  {
+    id: "midtown",
+    name: "Midtown",
+    zh: "中城区",
+    status: "底图开放",
+    image: "/media/gotham-midtown-map.webp",
+    imageAlt: "依据哥谭全城轮廓与《企鹅人》剧中地图重绘的 Midtown 道路地图",
+    aspectRatio: "1250 / 1372",
+    emptyNote: "Midtown 的岛岸和道路结构已经重绘，但目前没有足够可靠的地点坐标，因此暂不添加标记。",
+  },
+  {
+    id: "downtown",
+    name: "Downtown",
+    zh: "下城区",
+    status: "6 个地点档案",
+    image: "/media/gotham-downtown-map-v2.webp",
+    imageAlt: "依据 Reeves 版哥谭 Downtown 地理结构重绘的暗色道路地图",
+    aspectRatio: "1197 / 1314",
+    emptyNote: "",
+  },
 ] as const;
 
 const MIN_SCALE = 1;
@@ -93,9 +135,12 @@ function clamp(value: number, min: number, max: number) {
 }
 
 function GothamMap() {
+  const [regionId, setRegionId] = useState<RegionId>("downtown");
   const [scale, setScale] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [selectedId, setSelectedId] = useState(MARKERS[0].placeId);
+  const [selectedId, setSelectedId] = useState<MapPlaceId | null>(
+    REGION_MARKERS.downtown[0].placeId,
+  );
   const pointers = useRef(new Map<number, { x: number; y: number }>());
   const gesture = useRef<{
     distance: number;
@@ -105,12 +150,23 @@ function GothamMap() {
   } | null>(null);
   const drag = useRef<{ x: number; y: number; offset: { x: number; y: number } } | null>(null);
 
-  const selectedMarker = MARKERS.find((marker) => marker.placeId === selectedId) ?? MARKERS[0];
-  const selectedPlace = PLACE_MAP[selectedMarker.placeId];
+  const region = REGIONS.find((item) => item.id === regionId) ?? REGIONS[2];
+  const markers = REGION_MARKERS[regionId];
+  const selectedMarker = markers.find((marker) => marker.placeId === selectedId);
+  const selectedPlace = selectedMarker ? PLACE_MAP[selectedMarker.placeId] : null;
 
   function resetView() {
     setScale(1);
     setOffset({ x: 0, y: 0 });
+  }
+
+  function selectRegion(nextRegion: RegionId) {
+    setRegionId(nextRegion);
+    setSelectedId(REGION_MARKERS[nextRegion][0]?.placeId ?? null);
+    pointers.current.clear();
+    gesture.current = null;
+    drag.current = null;
+    resetView();
   }
 
   function zoomBy(factor: number) {
@@ -212,8 +268,8 @@ function GothamMap() {
               哥谭互动地图
             </h1>
             <p className="mt-4 max-w-3xl text-pretty leading-relaxed text-muted">
-              以 Reeves 宇宙公开的 Downtown
-              地图结构为参考重新绘制。拖动探索街区，缩放查看道路，点击标记调阅地点档案；推测位置会与地图和影片可对应位置明确区分。
+              结合 Reeves 宇宙公开的 Downtown
+              地图、哥谭全城轮廓与《企鹅人》剧中地图重新绘制。切换三大城区，拖动探索街区，缩放查看道路；推测位置会与影视画面可对应位置明确区分。
             </p>
           </div>
           <div className="flex flex-wrap gap-2 text-xs">
@@ -230,22 +286,26 @@ function GothamMap() {
         </div>
 
         <ul className="mt-8 grid gap-2 sm:grid-cols-3">
-          {REGIONS.map((region) => (
-            <li
-              key={region.name}
-              className={
-                region.active
-                  ? "border border-blood bg-blood/10 p-4"
-                  : "border border-fg/10 bg-surface p-4 text-faint"
-              }
-            >
-              <p className="font-display text-xs font-semibold tracking-[0.24em] uppercase">
-                {region.name}
-              </p>
-              <div className="mt-1 flex items-end justify-between gap-3">
-                <p className="font-sans text-xl font-black tracking-tight">{region.zh}</p>
-                <p className="text-[11px]">{region.status}</p>
-              </div>
+          {REGIONS.map((item) => (
+            <li key={item.id}>
+              <button
+                type="button"
+                onClick={() => selectRegion(item.id)}
+                aria-pressed={item.id === regionId}
+                className={`w-full p-4 text-left transition-colors ${
+                  item.id === regionId
+                    ? "border border-blood bg-blood/10 text-fg"
+                    : "border border-fg/10 bg-surface text-faint hover:border-fg/30 hover:text-muted"
+                }`}
+              >
+                <p className="font-display text-xs font-semibold tracking-[0.24em] uppercase">
+                  {item.name}
+                </p>
+                <span className="mt-1 flex items-end justify-between gap-3">
+                  <span className="font-sans text-xl font-black tracking-tight">{item.zh}</span>
+                  <span className="text-[11px]">{item.status}</span>
+                </span>
+              </button>
             </li>
           ))}
         </ul>
@@ -256,7 +316,7 @@ function GothamMap() {
           <div>
             <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
               <p className="font-display text-xs font-semibold tracking-[0.22em] text-faint uppercase">
-                Map of Gotham City Downtown
+                Map of Gotham City {region.name}
               </p>
               <div className="flex items-center border border-fg/10 bg-bg">
                 <button
@@ -297,22 +357,23 @@ function GothamMap() {
               onPointerUp={endPointer}
               onPointerCancel={endPointer}
               role="application"
-              aria-label="可拖动和缩放的哥谭市中心地图"
+              aria-label={`可拖动和缩放的哥谭${region.zh}地图`}
             >
               <div
-                className="relative aspect-[1197/1314] w-[min(100%,692px)] shrink-0 cursor-grab active:cursor-grabbing"
+                className="relative w-[min(100%,692px)] shrink-0 cursor-grab active:cursor-grabbing"
                 style={{
+                  aspectRatio: region.aspectRatio,
                   transform: `translate3d(${offset.x}px, ${offset.y}px, 0) scale(${scale})`,
                   transformOrigin: "center",
                 }}
               >
                 <img
-                  src="/media/gotham-downtown-map-v2.webp"
-                  alt="依据 Reeves 版哥谭 Downtown 地理结构重绘的暗色道路地图"
+                  src={region.image}
+                  alt={region.imageAlt}
                   draggable={false}
                   className="pointer-events-none size-full object-contain"
                 />
-                {MARKERS.map((marker) => {
+                {markers.map((marker) => {
                   const place = PLACE_MAP[marker.placeId];
                   const evidence = EVIDENCE[marker.evidence];
                   const active = marker.placeId === selectedId;
@@ -350,41 +411,58 @@ function GothamMap() {
             </div>
           </div>
 
-          <aside className="border border-fg/15 bg-bg lg:sticky lg:top-20 lg:self-start">
-            <div className="relative aspect-[16/9] overflow-hidden bg-elevated">
-              <img
-                src={selectedPlace.image}
-                alt={selectedPlace.imageAlt}
-                className="size-full object-cover"
-              />
-              <span
-                className={`absolute left-3 top-3 px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] uppercase ${EVIDENCE[selectedMarker.evidence].className}`}
-              >
-                {EVIDENCE[selectedMarker.evidence].label}
-              </span>
-            </div>
-            <div className="p-5">
+          {selectedMarker && selectedPlace ? (
+            <aside className="border border-fg/15 bg-bg lg:sticky lg:top-20 lg:self-start">
+              <div className="relative aspect-[16/9] overflow-hidden bg-elevated">
+                <img
+                  src={selectedPlace.image}
+                  alt={selectedPlace.imageAlt}
+                  className="size-full object-cover"
+                />
+                <span
+                  className={`absolute left-3 top-3 px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] uppercase ${EVIDENCE[selectedMarker.evidence].className}`}
+                >
+                  {EVIDENCE[selectedMarker.evidence].label}
+                </span>
+              </div>
+              <div className="p-5">
+                <p className="font-display text-xs font-semibold tracking-[0.2em] text-blood uppercase">
+                  {selectedPlace.nameEn}
+                </p>
+                <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">
+                  {selectedPlace.name}
+                </h2>
+                <p className="mt-1 text-sm text-faint">{selectedPlace.also}</p>
+                <p className="mt-5 text-sm leading-relaxed text-muted">{selectedMarker.note}</p>
+                <p className="mt-4 border-t border-fg/10 pt-4 text-xs leading-relaxed text-faint">
+                  {selectedPlace.body[0]}
+                </p>
+                <Link
+                  to="/places/$id"
+                  params={{ id: selectedPlace.id }}
+                  className="mt-5 flex items-center justify-between border border-blood px-4 py-3 font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg"
+                >
+                  调阅完整地点档案
+                  <LocateFixed className="size-4" />
+                </Link>
+              </div>
+            </aside>
+          ) : (
+            <aside className="border border-fg/15 bg-bg p-5 lg:sticky lg:top-20 lg:self-start">
               <p className="font-display text-xs font-semibold tracking-[0.2em] text-blood uppercase">
-                {selectedPlace.nameEn}
+                {region.name} / Map Layer
               </p>
-              <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">
-                {selectedPlace.name}
-              </h2>
-              <p className="mt-1 text-sm text-faint">{selectedPlace.also}</p>
-              <p className="mt-5 text-sm leading-relaxed text-muted">{selectedMarker.note}</p>
-              <p className="mt-4 border-t border-fg/10 pt-4 text-xs leading-relaxed text-faint">
-                {selectedPlace.body[0]}
-              </p>
+              <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">{region.zh}</h2>
+              <p className="mt-5 text-sm leading-relaxed text-muted">{region.emptyNote}</p>
               <Link
-                to="/places/$id"
-                params={{ id: selectedPlace.id }}
-                className="mt-5 flex items-center justify-between border border-blood px-4 py-3 font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg"
+                to="/places"
+                className="mt-6 flex items-center justify-between border border-fg/15 px-4 py-3 font-display text-xs font-semibold tracking-[0.18em] text-muted uppercase hover:border-blood hover:text-blood"
               >
-                调阅完整地点档案
+                浏览全部地点档案
                 <LocateFixed className="size-4" />
               </Link>
-            </div>
-          </aside>
+            </aside>
+          )}
         </div>
       </section>
 
@@ -397,9 +475,8 @@ function GothamMap() {
             <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">地图资料说明</h2>
           </div>
           <p className="text-sm leading-relaxed text-muted">
-            底图依据 Reeves 版哥谭的 Downtown
-            地图资料重新绘制，仅保留岛岸、水系和道路结构，不复刻原图的标题、文字、图例或标尺。互动标记依据参考地图、影视画面和影迷推测分层展示；本图并非官方制图。Uptown
-            与 Midtown 将在取得足够清晰的《企鹅人》剧中地图画面后继续补全。
+            Downtown 依据电影设定资料重绘；Uptown 与 Midtown
+            结合全城小图和《企鹅人》剧中交通地图画面重构，并校正了画面透视。三张底图均只保留岛岸、水系和道路结构，不复刻标题、文字、图例或标尺；它们属于影迷地图重构，并非官方制图。互动标记仍按影视定位与本站推测分层展示。
           </p>
         </div>
       </section>

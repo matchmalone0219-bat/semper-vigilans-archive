@@ -32,15 +32,7 @@ type Marker = {
 };
 
 const REGION_MARKERS: Record<RegionId, Marker[]> = {
-  uptown: [
-    {
-      placeId: "crown-point",
-      x: 76,
-      y: 58,
-      evidence: "screen",
-      note: "《企鹅人》确认 Crown Point 位于 Uptown 东部并临近通往 Bristol Township 的桥梁；标记按剧中地图关系落在东侧街区。",
-    },
-  ],
+  uptown: [],
   midtown: [],
   downtown: [
     {
@@ -85,6 +77,13 @@ const REGION_MARKERS: Record<RegionId, Marker[]> = {
       evidence: "theory",
       note: "按照公寓可监视冰山俱乐部的剧情关系，作为相对位置展示。",
     },
+    {
+      placeId: "crown-point",
+      x: 80.8,
+      y: 71.5,
+      evidence: "map",
+      note: "清晰设定地图将 Crown Point 标在 Downtown 东南侧；本站按地图右下方的沿河街区落点。",
+    },
   ],
 };
 
@@ -109,7 +108,7 @@ const REGIONS = [
     id: "uptown",
     name: "Uptown",
     zh: "上城区",
-    status: "1 个地点档案",
+    status: "底图开放",
     image: "/media/gotham-uptown-map.webp",
     imageAlt: "依据哥谭全城轮廓与《企鹅人》剧中地图重绘的 Uptown 道路地图",
     aspectRatio: "1198 / 1313",
@@ -129,7 +128,7 @@ const REGIONS = [
     id: "downtown",
     name: "Downtown",
     zh: "下城区",
-    status: "6 个地点档案",
+    status: "7 个地点档案",
     image: "/media/gotham-downtown-map-v2.webp",
     imageAlt: "依据 Reeves 版哥谭 Downtown 地理结构重绘的暗色道路地图",
     aspectRatio: "1197 / 1314",

@@ -49,13 +49,13 @@ function PeopleIndex() {
                 {faction.label}
               </p>
               <p className="mt-2 max-w-2xl text-pretty text-sm text-muted">{faction.note}</p>
-              <ul className="mt-8 grid gap-px bg-border sm:grid-cols-2">
+              <ul className="mt-8 grid border-l border-t border-fg/10 sm:grid-cols-2">
                 {members.map((p) => (
-                  <li key={p.id} className="bg-bg">
+                  <li key={p.id} className="border-b border-r border-fg/10 bg-bg">
                     <Link
                       to="/people/$id"
                       params={{ id: p.id }}
-                      className="flex items-start gap-4 p-5 hover:bg-surface/60"
+                      className="flex items-start gap-4 p-5 hover:bg-surface/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blood/70"
                     >
                       {p.portrait ? (
                         <img

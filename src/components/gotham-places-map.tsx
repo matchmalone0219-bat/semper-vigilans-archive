@@ -1,4 +1,6 @@
 import {
+  useCallback,
+  useEffect,
   useRef,
   useState,
   type PointerEvent as ReactPointerEvent,
@@ -152,6 +154,8 @@ export function GothamPlacesMap() {
   const [scale, setScale] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [selectedId, setSelectedId] = useState<MapPlaceId | null>(null);
+  const panelCloseRef = useRef<HTMLButtonElement>(null);
+  const panelTriggerRef = useRef<HTMLButtonElement | null>(null);
   const pointers = useRef(new Map<number, { x: number; y: number }>());
   const gesture = useRef<{
     distance: number;
@@ -166,6 +170,31 @@ export function GothamPlacesMap() {
   const selectedMarker = markers.find((marker) => marker.placeId === selectedId);
   const selectedPlace = selectedMarker ? PLACE_MAP[selectedMarker.placeId] : null;
 
+  const closePanel = useCallback(() => {
+    setSelectedId(null);
+    setFloodPlan(false);
+    const trigger = panelTriggerRef.current;
+    panelTriggerRef.current = null;
+    window.requestAnimationFrame(() => trigger?.focus());
+  }, []);
+
+  useEffect(() => {
+    if (!selectedId && !floodPlan) return;
+
+    const focusFrame = window.requestAnimationFrame(() => panelCloseRef.current?.focus());
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      closePanel();
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [closePanel, floodPlan, selectedId]);
+
   function resetView() {
     setScale(1);
     setOffset({ x: 0, y: 0 });
@@ -175,10 +204,27 @@ export function GothamPlacesMap() {
     setRegionId(nextRegion);
     if (nextRegion !== "downtown") setFloodPlan(false);
     setSelectedId(null);
+    panelTriggerRef.current = null;
     pointers.current.clear();
     gesture.current = null;
     drag.current = null;
     resetView();
+  }
+
+  function openPlace(placeId: MapPlaceId, trigger: HTMLButtonElement) {
+    panelTriggerRef.current = trigger;
+    setFloodPlan(false);
+    setSelectedId(placeId);
+  }
+
+  function toggleFloodPlan(trigger: HTMLButtonElement) {
+    if (floodPlan) {
+      closePanel();
+      return;
+    }
+    panelTriggerRef.current = trigger;
+    setSelectedId(null);
+    setFloodPlan(true);
   }
 
   function zoomBy(factor: number) {
@@ -270,22 +316,22 @@ export function GothamPlacesMap() {
 
   return (
     <main className="min-h-svh bg-bg">
-      <header className="mx-auto max-w-7xl px-4 pb-6 pt-8 sm:px-6 sm:pb-8 sm:pt-10">
+      <header className="mx-auto max-w-7xl px-4 pb-4 pt-6 sm:px-6 sm:pb-8 sm:pt-10">
         <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
           Gotham Places / Interactive Map
         </p>
-        <div className="mt-3 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mt-3 flex flex-col gap-3 sm:gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <h1 className="font-sans text-4xl font-black tracking-tight sm:text-5xl">哥谭地点</h1>
-            <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-muted sm:text-base">
+            <p className="mt-2 max-w-3xl text-pretty text-sm leading-relaxed text-muted sm:mt-3 sm:text-base">
               下城区基于电影《新蝙蝠侠》官方设定地图重绘；中城区与上城区由限定剧《企鹅人》剧中地图补完。点击地点标记可查看考据解析，并进入完整档案。
             </p>
           </div>
-          <div className="flex flex-wrap gap-2 text-xs">
+          <div className="flex gap-2 overflow-x-auto pb-1 text-xs sm:flex-wrap sm:overflow-visible sm:pb-0">
             {Object.entries(EVIDENCE).map(([key, item]) => (
               <span
                 key={key}
-                className="inline-flex items-center gap-2 border border-fg/10 bg-surface px-3 py-2 text-muted"
+                className="inline-flex shrink-0 items-center gap-2 border border-fg/10 bg-surface px-2.5 py-1.5 text-muted sm:px-3 sm:py-2"
               >
                 <span className={`size-2 ${item.className}`} />
                 {item.label}
@@ -294,18 +340,18 @@ export function GothamPlacesMap() {
           </div>
         </div>
 
-        <ul className="mt-6 grid gap-2 sm:grid-cols-3">
+        <ul className="mt-4 flex snap-x gap-2 overflow-x-auto pb-1 sm:mt-6 sm:grid sm:grid-cols-3 sm:overflow-visible sm:pb-0">
           {REGIONS.map((item) => (
-            <li key={item.id}>
+            <li key={item.id} className="min-w-[10.5rem] flex-1 snap-start sm:min-w-0">
               <button
                 type="button"
                 onClick={() => selectRegion(item.id)}
                 aria-pressed={item.id === regionId}
                 className={`w-full p-3 text-left transition-colors sm:p-4 ${
                   item.id === regionId
-                    ? "border border-blood bg-blood/10 text-fg"
+                    ? "border border-blood bg-blood text-fg"
                     : "border border-fg/10 bg-surface text-faint hover:border-fg/30 hover:text-muted"
-                }`}
+                } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/70`}
               >
                 <p className="font-display text-xs font-semibold tracking-[0.24em] uppercase">
                   {item.name}
@@ -319,21 +365,23 @@ export function GothamPlacesMap() {
           ))}
         </ul>
         {regionId === "downtown" ? (
-          <ul className="mt-5 flex flex-wrap gap-2">
+          <ul className="mt-3 flex snap-x gap-2 overflow-x-auto pb-1 sm:mt-5 sm:flex-wrap sm:overflow-visible sm:pb-0">
             {markers.map((marker) => {
               const place = PLACE_MAP[marker.placeId];
               const active = marker.placeId === selectedId;
               return (
-                <li key={marker.placeId}>
+                <li key={marker.placeId} className="shrink-0 snap-start">
                   <button
                     type="button"
-                    onClick={() => setSelectedId(marker.placeId)}
+                    onClick={(event) => openPlace(marker.placeId, event.currentTarget)}
                     aria-pressed={active}
+                    aria-expanded={active}
+                    aria-controls="map-detail-card"
                     className={`flex items-center gap-2 border px-2 py-1.5 text-left transition-colors ${
                       active
-                        ? "border-blood bg-blood/10 text-fg"
+                        ? "border-blood bg-blood text-fg"
                         : "border-fg/10 bg-surface text-muted hover:border-fg/30 hover:text-fg"
-                    }`}
+                    } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/70`}
                   >
                     <PlaceMark id={marker.placeId} className="size-7 shrink-0" />
                     <span className="font-sans text-xs font-bold tracking-tight">{place.name}</span>
@@ -363,16 +411,15 @@ export function GothamPlacesMap() {
                 {regionId === "downtown" ? (
                   <button
                     type="button"
-                    onClick={() => {
-                      setFloodPlan((current) => !current);
-                      setSelectedId(null);
-                    }}
+                    onClick={(event) => toggleFloodPlan(event.currentTarget)}
                     aria-pressed={floodPlan}
+                    aria-expanded={floodPlan}
+                    aria-controls="map-detail-card"
                     className={`flex h-10 items-center gap-2 border px-3 font-display text-[10px] font-semibold tracking-[0.16em] uppercase transition-colors ${
                       floodPlan
                         ? "border-blood bg-blood text-fg"
                         : "border-fg/10 bg-bg text-muted hover:border-blood hover:text-blood"
-                    }`}
+                    } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/70`}
                   >
                     <Bomb className="size-4" />
                     谜语人洪灾计划
@@ -382,7 +429,7 @@ export function GothamPlacesMap() {
                   <button
                     type="button"
                     onClick={() => zoomBy(0.84)}
-                    className="grid size-10 place-items-center text-muted hover:bg-elevated hover:text-fg"
+                    className="grid size-10 place-items-center text-muted hover:bg-elevated hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blood/70"
                     aria-label="缩小地图"
                   >
                     <Minus className="size-4" />
@@ -393,7 +440,7 @@ export function GothamPlacesMap() {
                   <button
                     type="button"
                     onClick={() => zoomBy(1.18)}
-                    className="grid size-10 place-items-center text-muted hover:bg-elevated hover:text-fg"
+                    className="grid size-10 place-items-center text-muted hover:bg-elevated hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blood/70"
                     aria-label="放大地图"
                   >
                     <Plus className="size-4" />
@@ -401,7 +448,7 @@ export function GothamPlacesMap() {
                   <button
                     type="button"
                     onClick={resetView}
-                    className="grid size-10 place-items-center border-l border-fg/10 text-muted hover:bg-elevated hover:text-fg"
+                    className="grid size-10 place-items-center border-l border-fg/10 text-muted hover:bg-elevated hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blood/70"
                     aria-label="重置地图视图"
                   >
                     <RotateCcw className="size-4" />
@@ -444,10 +491,12 @@ export function GothamPlacesMap() {
                         key={marker.placeId}
                         type="button"
                         onPointerDown={(event) => event.stopPropagation()}
-                        onClick={() => setSelectedId(marker.placeId)}
-                        className="group absolute -translate-x-1/2 -translate-y-1/2"
+                        onClick={(event) => openPlace(marker.placeId, event.currentTarget)}
+                        className="group absolute -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/80"
                         style={{ left: `${marker.x}%`, top: `${marker.y}%` }}
                         aria-label={`查看${place.name}`}
+                        aria-expanded={active}
+                        aria-controls="map-detail-card"
                       >
                         <span
                           className={`relative block size-9 text-fg drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)] transition-transform group-hover:scale-110 ${
@@ -498,10 +547,13 @@ export function GothamPlacesMap() {
               ) : null}
               {selectedMarker && selectedPlace && !floodPlan ? (
                 <aside
+                  id="map-detail-card"
+                  role="dialog"
+                  aria-modal="false"
+                  aria-labelledby="map-detail-title"
                   className="absolute inset-x-3 bottom-12 z-20 max-h-[calc(100%-4rem)] select-text overflow-y-auto border border-fg/20 bg-bg/95 shadow-2xl backdrop-blur-md sm:bottom-auto sm:left-auto sm:right-3 sm:top-3 sm:w-80"
                   onPointerDown={(event) => event.stopPropagation()}
                   onWheel={(event) => event.stopPropagation()}
-                  aria-live="polite"
                 >
                   <div className="relative h-24 overflow-hidden bg-elevated sm:h-28">
                     <img
@@ -518,9 +570,10 @@ export function GothamPlacesMap() {
                       {EVIDENCE[selectedMarker.evidence].label}
                     </span>
                     <button
+                      ref={panelCloseRef}
                       type="button"
-                      onClick={() => setSelectedId(null)}
-                      className="absolute right-3 top-3 grid size-8 place-items-center border border-fg/20 bg-bg/90 text-muted hover:text-fg"
+                      onClick={closePanel}
+                      className="absolute right-3 top-3 grid size-8 place-items-center border border-fg/20 bg-bg/90 text-muted hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/80"
                       aria-label="关闭地点介绍"
                     >
                       <X className="size-4" />
@@ -530,7 +583,10 @@ export function GothamPlacesMap() {
                     <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-blood uppercase">
                       {selectedPlace.nameEn}
                     </p>
-                    <h3 className="mt-1 font-sans text-xl font-black tracking-tight">
+                    <h3
+                      id="map-detail-title"
+                      className="mt-1 font-sans text-xl font-black tracking-tight"
+                    >
                       {selectedPlace.name}
                     </h3>
                     <p className="mt-1 text-xs text-faint">{selectedPlace.also}</p>
@@ -541,7 +597,7 @@ export function GothamPlacesMap() {
                     <Link
                       to="/places/$id"
                       params={{ id: selectedPlace.id }}
-                      className="mt-4 flex items-center justify-between border border-blood px-3 py-2.5 font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg"
+                      className="mt-4 flex items-center justify-between border border-blood bg-blood px-3 py-2.5 font-display text-[10px] font-semibold tracking-[0.18em] text-fg uppercase hover:bg-blood/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fg/80"
                     >
                       调阅完整地点档案
                       <LocateFixed className="size-4" />
@@ -551,15 +607,19 @@ export function GothamPlacesMap() {
               ) : null}
               {regionId === "downtown" && floodPlan ? (
                 <aside
+                  id="map-detail-card"
+                  role="dialog"
+                  aria-modal="false"
+                  aria-labelledby="map-detail-title"
                   className="absolute inset-x-3 bottom-12 z-20 max-h-[calc(100%-4rem)] select-text overflow-y-auto border border-blood bg-bg/95 p-4 shadow-2xl backdrop-blur-md sm:bottom-auto sm:left-auto sm:right-3 sm:top-3 sm:w-80"
                   onPointerDown={(event) => event.stopPropagation()}
                   onWheel={(event) => event.stopPropagation()}
-                  aria-live="polite"
                 >
                   <button
+                    ref={panelCloseRef}
                     type="button"
-                    onClick={() => setFloodPlan(false)}
-                    className="absolute right-3 top-3 grid size-8 place-items-center border border-blood/50 text-blood hover:bg-blood hover:text-fg"
+                    onClick={closePanel}
+                    className="absolute right-3 top-3 grid size-8 place-items-center border border-blood/50 text-blood hover:bg-blood hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/80"
                     aria-label="关闭洪灾计划介绍"
                   >
                     <X className="size-4" />
@@ -568,7 +628,10 @@ export function GothamPlacesMap() {
                   <p className="mt-4 font-display text-[10px] font-semibold tracking-[0.2em] text-blood uppercase">
                     A Real Change / Final Plan
                   </p>
-                  <h3 className="mt-1 pr-8 font-sans text-xl font-black tracking-tight">
+                  <h3
+                    id="map-detail-title"
+                    className="mt-1 pr-8 font-sans text-xl font-black tracking-tight"
+                  >
                     谜语人海堤爆破计划
                   </h3>
                   <div className="mt-4 grid grid-cols-2 gap-2 text-center">
@@ -589,7 +652,7 @@ export function GothamPlacesMap() {
                     href="https://movies.fandom.com/wiki/The_Batman/Transcript"
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-4 flex items-center justify-between border border-blood px-3 py-2.5 font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg"
+                    className="mt-4 flex items-center justify-between border border-blood px-3 py-2.5 font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/80"
                   >
                     查看电影文字稿
                     <LocateFixed className="size-4" />
@@ -655,7 +718,8 @@ export function GothamPlacesMap() {
             <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">地图资料说明</h2>
           </div>
           <p className="text-sm leading-relaxed text-muted">
-            下城区（Downtown）严格依据电影《新蝙蝠侠》官方设定资料与成片地理重绘；上城区（Uptown）与中城区（Midtown）在电影中未直接展开，底图基于限定剧《企鹅人》出现的全城路网与交通地图重构并校正了透视。三张底图均聚焦呈现岛岸、水系与道路骨架，属于影迷严谨重构；互动标记严格区分影视确凿定位与合理推测。“谜语人洪灾计划”图层依据成片中地板地图的 7 处爆破标记与海堤走向复原，旨在呈现灾难蔓延态势。
+            下城区（Downtown）严格依据电影《新蝙蝠侠》官方设定资料与成片地理重绘；上城区（Uptown）与中城区（Midtown）在电影中未直接展开，底图基于限定剧《企鹅人》出现的全城路网与交通地图重构并校正了透视。三张底图均聚焦呈现岛岸、水系与道路骨架，属于影迷严谨重构；互动标记严格区分影视确凿定位与合理推测。“谜语人洪灾计划”图层依据成片中地板地图的
+            7 处爆破标记与海堤走向复原，旨在呈现灾难蔓延态势。
           </p>
         </div>
       </section>

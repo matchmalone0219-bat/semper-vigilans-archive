@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { GothamPlacesMap } from "@/components/gotham-places-map";
 import { pageTitle } from "@/lib/film";
-import { GothamPlacesMap } from "@/routes/map";
 
 export const Route = createFileRoute("/places/")({
   head: () => ({

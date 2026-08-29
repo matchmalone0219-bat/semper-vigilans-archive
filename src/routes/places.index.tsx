@@ -35,6 +35,12 @@ function PlacesIndex() {
           </Link>
           。
         </p>
+        <Link
+          to="/map"
+          className="mt-6 inline-flex border border-blood px-4 py-3 font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg"
+        >
+          打开哥谭互动地图
+        </Link>
         </div>
       </header>
 

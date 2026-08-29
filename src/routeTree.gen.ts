@@ -17,6 +17,7 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GearRouteImport } from './routes/gear'
 import { Route as InterviewsRouteImport } from './routes/interviews'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MapRouteImport } from './routes/map'
 import { Route as MerchRouteImport } from './routes/merch'
 import { Route as PeopleRouteImport } from './routes/people'
 import { Route as PlacesRouteImport } from './routes/places'
@@ -67,6 +68,11 @@ const InterviewsRoute = InterviewsRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MerchRoute = MerchRouteImport.update({
@@ -134,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/gear': typeof GearRoute
   '/interviews': typeof InterviewsRoute
   '/login': typeof LoginRoute
+  '/map': typeof MapRoute
   '/merch': typeof MerchRoute
   '/people': typeof PeopleRouteWithChildren
   '/places': typeof PlacesRouteWithChildren
@@ -155,6 +162,7 @@ export interface FileRoutesByTo {
   '/gear': typeof GearRoute
   '/interviews': typeof InterviewsRoute
   '/login': typeof LoginRoute
+  '/map': typeof MapRoute
   '/merch': typeof MerchRoute
   '/rataalada': typeof RataaladaRoute
   '/recap': typeof RecapRoute
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/gear': typeof GearRoute
   '/interviews': typeof InterviewsRoute
   '/login': typeof LoginRoute
+  '/map': typeof MapRoute
   '/merch': typeof MerchRoute
   '/people': typeof PeopleRouteWithChildren
   '/places': typeof PlacesRouteWithChildren
@@ -198,6 +207,7 @@ export interface FileRouteTypes {
     | '/gear'
     | '/interviews'
     | '/login'
+    | '/map'
     | '/merch'
     | '/people'
     | '/places'
@@ -219,6 +229,7 @@ export interface FileRouteTypes {
     | '/gear'
     | '/interviews'
     | '/login'
+    | '/map'
     | '/merch'
     | '/rataalada'
     | '/recap'
@@ -238,6 +249,7 @@ export interface FileRouteTypes {
     | '/gear'
     | '/interviews'
     | '/login'
+    | '/map'
     | '/merch'
     | '/people'
     | '/places'
@@ -260,6 +272,7 @@ export interface RootRouteChildren {
   GearRoute: typeof GearRoute
   InterviewsRoute: typeof InterviewsRoute
   LoginRoute: typeof LoginRoute
+  MapRoute: typeof MapRoute
   MerchRoute: typeof MerchRoute
   PeopleRoute: typeof PeopleRouteWithChildren
   PlacesRoute: typeof PlacesRouteWithChildren
@@ -325,6 +338,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/merch': {
@@ -442,6 +462,7 @@ const rootRouteChildren: RootRouteChildren = {
   GearRoute: GearRoute,
   InterviewsRoute: InterviewsRoute,
   LoginRoute: LoginRoute,
+  MapRoute: MapRoute,
   MerchRoute: MerchRoute,
   PeopleRoute: PeopleRouteWithChildren,
   PlacesRoute: PlacesRouteWithChildren,

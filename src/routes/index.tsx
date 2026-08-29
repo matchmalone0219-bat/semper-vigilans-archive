@@ -44,6 +44,7 @@ const CORE_LINKS = [
 ] as const;
 
 const QUICK_LINKS = [
+  { to: "/map", label: "哥谭地图", detail: "缩放与地点互动" },
   { to: "/people", label: "人物名册", detail: "角色与派系" },
   { to: "/places", label: "哥谭地点", detail: "地标与据点" },
   { to: "/cases", label: "重案卷宗", detail: "案件与物证" },

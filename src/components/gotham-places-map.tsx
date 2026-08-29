@@ -6,7 +6,7 @@ import {
 } from "react";
 import { Link } from "@tanstack/react-router";
 import { Bomb, LocateFixed, Minus, Plus, RotateCcw, X } from "lucide-react";
-import { PLACE_MAP, PLACES } from "@/lib/places";
+import { PLACE_MAP, PLACES, GOTHAM_CITY } from "@/lib/places";
 
 type Evidence = "map" | "screen" | "theory";
 
@@ -625,6 +625,61 @@ export function GothamPlacesMap() {
             的“谜语人洪灾计划”图层按照电影中七个 X
             与海堤沿线关系复原，爆破点为近似分布而非官方精确坐标。
           </p>
+        </div>
+      </section>
+
+      <section className="border-t border-fg/10">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
+          <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
+            City File · {GOTHAM_CITY.motto}
+          </p>
+          <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">哥谭市档案</h2>
+          <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-muted">
+            {GOTHAM_CITY.lede}
+          </p>
+          <dl className="mt-8 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {GOTHAM_CITY.facts.map((fact) => (
+              <div key={fact.label} className="bg-bg p-5">
+                <dt className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase">
+                  {fact.label}
+                </dt>
+                <dd className="mt-2 text-pretty text-sm leading-relaxed">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-10 grid gap-10 lg:grid-cols-2">
+            <div>
+              <h3 className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
+                成片点名的区划
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {GOTHAM_CITY.districts.map((d) => (
+                  <li key={d.nameEn}>
+                    <p className="font-sans text-base font-black tracking-tight">
+                      {d.name}{" "}
+                      <span className="font-display text-xs font-semibold tracking-wide text-muted">
+                        {d.nameEn}
+                      </span>
+                    </p>
+                    <p className="mt-0.5 text-sm text-muted">{d.note}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
+                地下秩序
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {GOTHAM_CITY.families.map((f) => (
+                  <li key={f.name}>
+                    <p className="font-sans text-base font-black tracking-tight">{f.name}</p>
+                    <p className="mt-0.5 text-sm text-muted">{f.note}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
     </main>

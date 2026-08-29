@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.08.28";
+export const CONTENT_REVIEWED_AT = "2026.08.29";
 
 export function pageTitle(page?: string) {
   return page ? `${page} · ${FILM.siteName}` : `${FILM.siteName} · 《${FILM.titleZh}》影迷档案站`;
@@ -101,6 +101,13 @@ export const PLOT: {
     sourceTier: "set",
   },
   {
+    tag: "hint",
+    text: "8 月 28 日格拉斯哥大桥日戏：阿尔弗雷德为倒地的布鲁斯做心肺复苏，金发女性怀抱男孩在旁观看；第二次拍摄中布鲁斯双手似被铐住。同场河面停有悬挂旗帜的游艇。",
+    source: "片场路透 · hoeBread36",
+    sourceUrl: "https://x.com/hoeBread36/status/2093421237095543188",
+    sourceTier: "set",
+  },
+  {
     tag: "rumor",
     text: "片场制作代号为「Semper Vigilans」（永远警惕）。这句拉丁格言被影迷广泛联想至哥谭古老势力，引发关于猫头鹰法庭等潜在剧情走向的讨论。",
   },
@@ -142,7 +149,7 @@ export const CAST: {
     roleEn: "Alfred Pennyworth",
     name: "安迪·瑟金斯",
     nameEn: "Andy Serkis",
-    note: "确认回归。布鲁斯的管家与导师，继续提供情报与后勤支援。",
+    note: "确认回归。布鲁斯的管家与导师。8 月 28 日格拉斯哥大桥日戏可见他为倒地的布鲁斯做心肺复苏，随后责备对方落到这步田地。",
     status: "confirmed",
     personId: "alfred",
   },
@@ -186,7 +193,7 @@ export const CAST: {
     roleEn: "Undisclosed Role",
     name: "斯嘉丽·约翰逊",
     nameEn: "Scarlett Johansson",
-    note: "官方确认加盟。具体饰演角色保持保密。8 月 27 日圣文森特街夜戏高清路透中，战车副驾驶现身金发女性乘客，外界普遍推断为约翰逊或其特技替身，官方尚未公布角色身份。",
+    note: "官方确认加盟。具体饰演角色保持保密。8 月 27 日圣文森特街夜戏高清路透中，战车副驾驶现身金发女性乘客；8 月 28 日大桥日戏又有金发女性怀抱男孩在复苏现场旁观。外界普遍推断为约翰逊或其特技替身，官方尚未公布角色身份。",
     status: "confirmed",
   },
   {
@@ -610,6 +617,28 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-27-gcpd1.jpg",
       "/media/log/p2-27-gcpd2.jpg",
       "/media/log/p2-27-gcpd3.jpg",
+    ],
+  },
+  {
+    date: "2026.08.28",
+    iso: "2026-08-28",
+    title: "大桥日戏：阿尔弗雷德为倒地的布鲁斯做心肺复苏",
+    body: "剧组转至格拉斯哥大桥（Glasgow Bridge）与克莱德河沿岸拍摄日戏。现场路透可见安迪·瑟金斯饰演的阿尔弗雷德跪在雪地上，为倒地的布鲁斯做心肺复苏，随后责备他落到这步田地；一旁金发女性怀抱一名男孩观看。第二次拍摄中布鲁斯双手似被铐住。同场河面停有悬挂旗帜的游艇，外界猜测或与新加盟角色有关，官方尚未说明。",
+    kind: "shoot",
+    source: "片场路透 · hoeBread36",
+    sourceUrl: "https://x.com/hoeBread36/status/2093421237095543188",
+    sourceTier: "set",
+    verifiedAt: "2026.08.29",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-28-cpr.jpg",
+    images: [
+      "/media/log/p2-28-cpr.jpg",
+      "/media/log/p2-28-boat1.jpg",
+      "/media/log/p2-28-boat2.jpg",
+      "/media/log/p2-28-flag.jpg",
+      "/media/log/p2-28-boat3.jpg",
+      "/media/log/p2-28-boat-night.jpg",
     ],
   },
   {

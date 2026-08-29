@@ -30,7 +30,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "漫画《谜语人元年》", note: "封口调查记者、玛莎家族精神病史、巷中遇害。", href: "/recap", hash: "year-one" },
       { work: "电影《新蝙蝠侠》", note: "作为核心背景人物出现，账本与录像带揭开历史内幕。", href: "/recap", hash: "the-batman" },
     ],
-    places: ["orphanage", "wayne-tower"],
+    places: ["orphanage", "wayne-tower", "park-row"],
     stills: ["/media/orphanage.jpg"],
     sections: [
       {
@@ -51,7 +51,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "限定剧《企鹅人》", note: "未正面出场，剧终蝙蝠信号灯再次照亮城市夜空。", href: "/recap", hash: "the-penguin" },
       { work: "电影《新蝙蝠侠2》", note: "罗伯特·帕丁森确认回归，深入展现面具下的内心抉择。", href: "/dossier" },
     ],
-    places: ["wayne-tower", "cave", "orphanage", "gcpd", "gsg"],
+    places: ["wayne-tower", "cave", "orphanage", "gcpd", "gsg", "park-row", "seawall"],
     stills: [
       "/media/gotham.jpg",
       "/media/still-bruce.jpg",
@@ -101,7 +101,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠》", note: "年轻改革派候选人，在枪击与洪灾浩劫中幸存并当选。", href: "/recap", hash: "the-batman" },
       { work: "电影《新蝙蝠侠2》", note: "洁米·劳森确认回归，预计身处灾后重建与警政冲突中心。", href: "/dossier" },
     ],
-    places: ["gsg", "city-hall"],
+    places: ["gsg", "city-hall", "seawall"],
     stills: ["/media/flood.jpg"],
     sections: [
       {
@@ -290,7 +290,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠》", note: "策划连环暗杀与大堤决口，现关押于阿卡姆疯人院。", href: "/recap", hash: "the-batman" },
       { work: "电影《新蝙蝠侠2》", note: "官方尚未宣布回归。", href: "/dossier" },
     ],
-    places: ["orphanage", "arkham", "riddler-room"],
+    places: ["orphanage", "arkham", "riddler-room", "seawall"],
     stills: ["/media/riddler.jpg", "/media/still-lair.jpg", "/media/still-riddler-unmask.jpg"],
     sections: [
       {

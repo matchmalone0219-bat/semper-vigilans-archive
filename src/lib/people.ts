@@ -23,23 +23,47 @@ export type PersonFile = {
 };
 
 export const FILES: Record<string, PersonFile> = {
-  waynes: {
-    also: ["托马斯·韦恩", "玛莎·韦恩", "阿卡姆家族"],
+  thomas: {
+    also: ["托马斯·韦恩", "韦恩家族", "参选市长"],
     appearances: [
       { work: "官方前传小说", note: "竞选市长、建立哥谭孤儿院、设立「新生」慈善基金。", href: "/recap", hash: "before" },
-      { work: "漫画《谜语人元年》", note: "封口调查记者、玛莎家族精神病史、巷中遇害。", href: "/recap", hash: "year-one" },
-      { work: "电影《新蝙蝠侠》", note: "作为核心背景人物出现，账本与录像带揭开历史内幕。", href: "/recap", hash: "the-batman" },
+      { work: "漫画《谜语人元年》", note: "委托法尔科内封口调查记者。", href: "/recap", hash: "year-one" },
+      { work: "电影《新蝙蝠侠》", note: "竞选录像、账本与后巷遇刺，揭开慈善黑幕。", href: "/recap", hash: "the-batman" },
     ],
-    places: ["orphanage", "wayne-tower", "park-row"],
-    stills: ["/media/orphanage.jpg"],
+    places: ["orphanage", "wayne-tower", "park-row", "arkham"],
+    stills: ["/media/orphanage.jpg", "/media/still-sunset.jpg"],
     sections: [
       {
-        heading: "名门慈善家背后的真相",
-        body: "托马斯·韦恩曾是哥谭备受尊敬的外科医生与慈善巨擘，他将老宅韦恩庄园捐出改建为哥谭孤儿院，并设立「新生」慈善基金。然而在后续调查中证实，该基金在托马斯遇害后沦为法尔科内买通政界与司法高层的洗钱工具。",
+        heading: "外科医生与慈善巨擘",
+        body: "托马斯·韦恩是哥谭备受尊敬的外科医生。他将老宅韦恩庄园捐出改建为哥谭孤儿院，并设立百亿美元规模的「新生」慈善基金，同时宣布竞选市长。",
       },
       {
-        heading: "家族隐秘与遇刺悲剧",
-        body: "玛莎·韦恩（原姓阿卡姆）拥有深厚的家族精神病史。托马斯在竞选期间曾设法阻止记者报道此事，间接卷入黑帮利益瓜葛。两人在剧院后巷遇刺身亡，成为布鲁斯走上义警之路的起点，也让哥谭陷入长达数十年的权力失序。",
+        heading: "封口交易与后巷遇刺",
+        body: "记者爱德华·埃利奥特要刊登玛莎的阿卡姆家世：灭门、住院、买通院方。托马斯为保住竞选与妻子名声，委托法尔科内只做恐吓；法尔科内把人做掉了。2002 年前后，托马斯与玛莎在派克街后巷遭枪杀。阿尔弗雷德怀疑是封口的余波。基金在其死后沦为法尔科内买通政界与司法高层的洗钱工具。",
+      },
+    ],
+  },
+  martha: {
+    also: ["玛莎·韦恩", "玛莎·阿卡姆", "阿卡姆家族"],
+    appearances: [
+      { work: "官方前传小说", note: "随托马斯走访即将改建的韦恩庄园。", href: "/recap", hash: "before" },
+      { work: "漫画《谜语人元年》", note: "阿卡姆家族精神病史被记者追查。", href: "/recap", hash: "year-one" },
+      { work: "电影《新蝙蝠侠》", note: "后巷遇刺；身世成为布鲁斯必须面对的家族阴影。", href: "/recap", hash: "the-batman" },
+    ],
+    places: ["orphanage", "park-row", "arkham"],
+    stills: ["/media/portraits/martha.jpg", "/media/orphanage.jpg"],
+    sections: [
+      {
+        heading: "阿卡姆家的女儿",
+        body: "本宇宙玛莎原姓阿卡姆，不是主宇宙常见的凯恩。韦恩与阿卡姆并列为哥谭旧豪门：一边办实业与慈善，一边在建城前后办起收治精神病人的州立医院。两家联姻，等于把哥谭最体面的姓氏和最忌讳的姓氏绑在同一张婚书上。",
+      },
+      {
+        heading: "灭门、住院、被压下去的姓",
+        body: "谜语人公开的记者旧稿写明：玛莎尚年幼时，母亲杀害父亲后自杀；阿卡姆家族用钱权把命案压下去。此后她多年进出自家创办的州立医院与市立精神病院，院方同样被买通封口。成片出现的档案照里，她被两名护工架在院墙外——那不是剧照，是这段病史留下的物证。托马斯竞选市长时，记者爱德华·埃利奥特要把它登出来；托马斯找法尔科内「吓一吓」，记者死了。",
+      },
+      {
+        heading: "剧院后巷",
+        body: "2002 年前后，玛莎与托马斯携幼年布鲁斯在君主剧院观影后，于派克街后巷遭持枪歹徒枪杀。阿尔弗雷德后来怀疑是法尔科内灭口。对布鲁斯来说，母亲的姓氏与关押谜语人、小丑的那栋医院是同一个词：阿卡姆。成片没有写他遗传了家族病，但把这件事摊开，本身就是对「韦恩神话」的一次切割。",
       },
     ],
   },
@@ -51,7 +75,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "限定剧《企鹅人》", note: "未正面出场，剧终蝙蝠信号灯再次照亮城市夜空。", href: "/recap", hash: "the-penguin" },
       { work: "电影《新蝙蝠侠2》", note: "罗伯特·帕丁森确认回归，深入展现面具下的内心抉择。", href: "/dossier" },
     ],
-    places: ["wayne-tower", "cave", "orphanage", "gcpd", "gsg", "park-row", "seawall"],
+    places: ["wayne-tower", "cave", "orphanage", "gcpd", "gsg", "park-row", "seawall", "arkham"],
     stills: [
       "/media/gotham.jpg",
       "/media/still-bruce.jpg",
@@ -67,7 +91,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "从复仇之火到希望之光",
-        body: "在与谜语人的交锋中，布鲁斯被迫面对家族历史的阴影，并在大洪水漫灌体育馆的危急时刻奋力救出受困平民。他由此领悟到，哥谭不仅需要对罪恶的惩戒，更需要象征光明与希望的守护者。",
+        body: "在与谜语人的交锋中，布鲁斯被迫面对家族历史的阴影：父亲把秘密交给黑帮，母亲的姓氏就是关押疯子的那栋医院。成片没有写他遗传了阿卡姆家的病，但把这件事摊开，等于拆掉「韦恩天生圣洁」的神话。他在大洪水里救出平民之后，才把「复仇」改写成守护。",
       },
       {
         heading: "续集展望：凛冬下的内心考验",

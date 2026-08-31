@@ -271,7 +271,8 @@ export const TESTS: Test[] = [
     prize: ["FILES UNLOCKED.", "THE ORPHAN AND THE HEIR."],
     stills: [
       still("WAYNE.IMG", "/media/still-bruce.jpg", "褪下头套", "布鲁斯·韦恩独处沉思的高清档案图。"),
-      still("SON.IMG", "/media/portraits/waynes.jpg", "韦恩夫妇遗像", "托马斯·韦恩与玛莎·韦恩肖像档案。"),
+      still("SON.IMG", "/media/portraits/thomas.jpg", "托马斯·韦恩", "托马斯·韦恩竞选演说档案。"),
+      still("ARKHAM.IMG", "/media/portraits/martha.jpg", "玛莎·韦恩", "玛莎·韦恩（原姓阿卡姆）档案照。"),
     ],
   },
   {

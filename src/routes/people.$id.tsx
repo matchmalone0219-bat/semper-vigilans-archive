@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, redirect } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Shuffle } from "lucide-react";
 import { getPerson, PEOPLE, relatedPeople } from "@/lib/people";
 import { PLACE_MAP } from "@/lib/places";
@@ -10,6 +10,9 @@ import { pageTitle } from "@/lib/film";
 import { interviewsByPerson, WORK_LABEL } from "@/lib/interviews";
 
 export const Route = createFileRoute("/people/$id")({
+  beforeLoad: ({ params }) => {
+    if (params.id === "waynes") throw redirect({ to: "/people/$id", params: { id: "thomas" } });
+  },
   head: ({ params }) => {
     const person = getPerson(params.id);
     return { meta: [{ title: pageTitle(person?.name ?? "人物") }] };

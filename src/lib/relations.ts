@@ -83,16 +83,31 @@ export const FACTIONS: {
 
 export const NODES: RelNode[] = [
   {
-    id: "waynes",
-    name: "韦恩夫妇",
-    sub: "托马斯 / 玛莎",
+    id: "thomas",
+    name: "托马斯·韦恩",
+    sub: "外科医生 / 参选市长",
     x: 140,
-    y: 118,
+    y: 108,
     status: "dead",
     faction: "wayne",
+    actor: "卢克·罗伯茨",
     bio: [
-      "托马斯·韦恩曾为知名外科医生与慈善巨擘，曾参选市长并设立「新生」慈善基金。但在第一部调查中被证实，该基金在其遇害后沦为法尔科内买通政界高层的洗钱管道；玛莎·韦恩（原姓阿卡姆）则隐瞒了家族精神病史。",
-      "两人在剧院后巷遇刺身亡，成为布鲁斯走上义警道路的起点，也让哥谭陷入长达数十年的权力失序。",
+      "哥谭知名外科医生与慈善巨擘，曾参选市长，将韦恩庄园捐建为孤儿院，并设立「新生」慈善基金。",
+      "为掩盖玛莎的阿卡姆家世（灭门、住院、买通院方），他委托法尔科内封口调查记者爱德华·埃利奥特。记者死了。2002 年前后他与玛莎在派克街剧院后巷遇刺。",
+    ],
+  },
+  {
+    id: "martha",
+    name: "玛莎·韦恩",
+    sub: "阿卡姆家族",
+    x: 140,
+    y: 198,
+    status: "dead",
+    faction: "wayne",
+    actor: "斯特拉·斯托克",
+    bio: [
+      "原姓阿卡姆。哥谭旧豪门阿卡姆家的女儿，与托马斯育有布鲁斯。幼年目睹母亲杀父后自尽，此后多年进出家族创办的州立医院，档案照里可见她被护工架住。",
+      "记者要揭这段病史时，托马斯找法尔科内封口。2002 年前后她与托马斯在派克街后巷一同遇害。本宇宙改掉主宇宙的凯恩姓，把她的姓和关押谜语人、小丑的医院写成同一个词。",
     ],
   },
   {
@@ -100,7 +115,7 @@ export const NODES: RelNode[] = [
     name: "布鲁斯·韦恩",
     sub: "蝙蝠侠",
     x: 140,
-    y: 214,
+    y: 300,
     status: "alive",
     faction: "wayne",
     actor: "罗伯特·帕丁森",
@@ -114,7 +129,7 @@ export const NODES: RelNode[] = [
     name: "阿尔弗雷德",
     sub: "潘尼沃斯",
     x: 140,
-    y: 340,
+    y: 408,
     status: "alive",
     faction: "wayne",
     actor: "安迪·瑟金斯",
@@ -293,7 +308,10 @@ export const NODES: RelNode[] = [
 ];
 
 export const EDGES: RelEdge[] = [
-  { a: "bruce", b: "waynes", label: "父母与遗志", kind: "blood" },
+  { a: "thomas", b: "martha", label: "夫妻", kind: "bond" },
+  { a: "bruce", b: "thomas", label: "父子", kind: "blood" },
+  { a: "bruce", b: "martha", label: "母子", kind: "blood" },
+  { a: "thomas", b: "carmine", label: "封口交易", kind: "foe" },
   { a: "bruce", b: "alfred", label: "抚养与导师", kind: "bond" },
   { a: "bruce", b: "gordon", label: "正义盟友", kind: "ally" },
   { a: "gordon", b: "martinez", label: "警局同僚", kind: "ally" },
@@ -321,7 +339,8 @@ export const EDGES: RelEdge[] = [
 export const NODE_MAP = Object.fromEntries(NODES.map((n) => [n.id, n]));
 
 export const PORTRAITS: Record<string, { src: string; note?: string }> = {
-  waynes: { src: "/media/portraits/waynes.jpg" },
+  thomas: { src: "/media/portraits/thomas.jpg", note: "卢克·罗伯茨 饰 托马斯·韦恩" },
+  martha: { src: "/media/portraits/martha.jpg", note: "斯特拉·斯托克 饰 玛莎·韦恩" },
   bruce: { src: "/media/portraits/bruce.jpg", note: "罗伯特·帕丁森 饰 布鲁斯·韦恩" },
   alfred: { src: "/media/portraits/alfred.jpg", note: "安迪·瑟金斯 饰 阿尔弗雷德" },
   bella: { src: "/media/portraits/bella.jpg", note: "洁米·劳森 饰 贝拉·蕾尔" },

@@ -213,15 +213,15 @@ export const GALLERIES: GalleryGroup[] = [
     stills: [
       {
         src: "/media/log/p2-30-suit5.jpg",
-        title: "替身未戴头套的战衣全身",
+        title: "替身战衣全身实拍",
         caption:
-          "4K 路透：瑞克·英格利希身着续集战衣，头套未戴、挂在斗篷后方。正脸、护颈与胸甲清晰。耳廓改款无法从本批照片确认。",
+          "4K 片场记录：特技替身瑞克·英格利希身着续集战衣走在格拉斯哥街头。现场未佩戴分体头套，清晰呈现出全身战术装甲布局与高领护颈剪裁。",
         source: "片场路透 · ScottishTravelGuides",
       },
       {
         src: "/media/log/p2-30-suit1.jpg",
         title: "战衣胸甲与护颈近景",
-        caption: "ross_sneddon 高清近景：替身未戴头套，胸甲蝙蝠标与护颈层次清楚。",
+        caption: "特写近景清晰记录了胸甲金属蝙蝠徽记、加厚护颈结构与装甲缝线细节，延续了前作冷硬实战的工业质感。",
         source: "片场路透 · ross_sneddon",
       },
       {

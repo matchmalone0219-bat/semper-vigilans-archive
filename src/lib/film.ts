@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.08.29";
+export const CONTENT_REVIEWED_AT = "2026.08.31";
 
 export function pageTitle(page?: string) {
   return page ? `${page} · ${FILM.siteName}` : `${FILM.siteName} · 《${FILM.titleZh}》影迷档案站`;
@@ -105,6 +105,13 @@ export const PLOT: {
     text: "8 月 28 日格拉斯哥大桥日戏：阿尔弗雷德跪在雪地中为倒地的布鲁斯紧急做心肺复苏，金发女性怀抱男孩在旁凝视；另一机位中布鲁斯双手疑似被手铐锁住。同场克莱德河面上停泊着一艘悬挂旗帜的游艇。",
     source: "片场路透 · hoeBread36",
     sourceUrl: "https://x.com/hoeBread36/status/2093421237095543188",
+    sourceTier: "set",
+  },
+  {
+    tag: "hint",
+    text: "8 月 29 日夜戏：战车在积雪路面躲避迎面货车，并与哥谭警车同框疾驰；航拍可见封街路段仍铺人造雪。市政通告显示拍摄转向牛顿街与金斯顿桥下北街，封路延至 9 月上旬。",
+    source: "片场路透 · hoeBread36 / aylissab",
+    sourceUrl: "https://x.com/TheBatmanSagaNW/status/2093832191796986009",
     sourceTier: "set",
   },
   {
@@ -640,6 +647,43 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-28-boat3.jpg",
       "/media/log/p2-28-boat-night.jpg",
     ],
+  },
+  {
+    date: "2026.08.29",
+    iso: "2026-08-29",
+    title: "战车夜戏躲避货车，航拍记录积雪封街追逐",
+    body: "格拉斯哥夜戏继续。现场路透拍到蝙蝠战车在积雪路面上躲避迎面驶来的货车，并与哥谭警车同框高速通过；航拍可见战车沿封街路段疾驰，路面积雪与节日灯饰仍在。市政通告显示拍摄重心转向牛顿街（Newton Street）与金斯顿桥下的北街（North Street），车辆禁行将延续至 9 月上旬。",
+    kind: "shoot",
+    source: "片场路透 · hoeBread36 / aylissab",
+    sourceUrl: "https://x.com/TheBatmanSagaNW/status/2093832191796986009",
+    sourceTier: "set",
+    verifiedAt: "2026.08.31",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-29-truck2.jpg",
+    images: [
+      "/media/log/p2-29-truck2.jpg",
+      "/media/log/p2-29-truck1.jpg",
+      "/media/log/p2-29-truck3.jpg",
+      "/media/log/p2-29-air1.jpg",
+      "/media/log/p2-29-air2.jpg",
+      "/media/log/p2-29-air3.jpg",
+    ],
+  },
+  {
+    date: "2026.08.30",
+    iso: "2026-08-30",
+    title: "替身战衣头套近景：耳廓加长改款清晰可见",
+    body: "特技替身瑞克·英格利希（Rick English）的战衣近景路透流出。头套耳廓明显加长、目镜与护颌结构清晰，与导演马特·里夫斯此前确认的第二部头套改款一致。此人仍为替身，并非帕丁森本人。",
+    kind: "shoot",
+    source: "片场路透 · ross_sneddon",
+    sourceUrl: "https://x.com/DCFilmNews/status/2094211575628369989",
+    sourceTier: "set",
+    verifiedAt: "2026.08.31",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-30-cowl.jpg",
+    images: ["/media/log/p2-30-cowl.jpg"],
   },
   {
     date: "2028.02.18",

@@ -209,8 +209,27 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》格拉斯哥外景片场记录。实时追踪苏格兰冬季雪景实拍、蝙蝠战车街头调度与突围、阿尔弗雷德雪地抢救戏、战衣细节以及副驾驶神秘金发乘客等一手线索。",
+      "《新蝙蝠侠2》格拉斯哥外景片场记录。实时追踪苏格兰冬季雪景实拍、蝙蝠战车街头追逐与突围、阿尔弗雷德雪地抢救戏、战衣头套改款以及副驾驶神秘金发乘客等一手线索。",
     stills: [
+      {
+        src: "/media/log/p2-30-cowl.jpg",
+        title: "替身战衣头套近景",
+        caption:
+          "瑞克·英格利希头套近景：耳廓明显加长，目镜与护颌结构清晰，与导演确认的第二部改款一致。此为替身而非帕丁森。",
+        source: "片场路透 · ross_sneddon",
+      },
+      {
+        src: "/media/log/p2-29-truck2.jpg",
+        title: "战车躲避迎面货车",
+        caption: "格拉斯哥夜戏：积雪路面上蝙蝠战车与迎面货车交错，哥谭警车同框。",
+        source: "片场路透 · hoeBread36",
+      },
+      {
+        src: "/media/log/p2-29-air1.jpg",
+        title: "航拍积雪封街追逐",
+        caption: "航拍可见战车沿封街路段疾驰，人造雪与节日灯饰仍铺在路面。",
+        source: "片场路透 · aylissab",
+      },
       {
         src: "/media/log/p2-28-cpr.jpg",
         title: "阿尔弗雷德雪地抢救布鲁斯",

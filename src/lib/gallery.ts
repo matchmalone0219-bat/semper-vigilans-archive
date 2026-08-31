@@ -215,19 +215,19 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-30-cowl.jpg",
         title: "替身战衣头套近景",
         caption:
-          "瑞克·英格利希头套近景：耳廓明显加长，目镜与护颌结构清晰，与导演确认的第二部改款一致。此为替身而非帕丁森。",
+          "特技替身瑞克·英格利希头套近景：耳廓明显加长，目镜与下颌结构分明，与导演此前确认的第二部改款一致。现场为替身拍摄。",
         source: "片场路透 · ross_sneddon",
       },
       {
         src: "/media/log/p2-29-truck2.jpg",
-        title: "战车躲避迎面货车",
-        caption: "格拉斯哥夜戏：积雪路面上蝙蝠战车与迎面货车交错，哥谭警车同框。",
+        title: "战车避让迎面货车",
+        caption: "8 月 29 日夜戏：积雪路面上蝙蝠战车与迎面货车错车避让，同框可见哥谭警车紧随。",
         source: "片场路透 · hoeBread36",
       },
       {
         src: "/media/log/p2-29-air1.jpg",
-        title: "航拍积雪封街追逐",
-        caption: "航拍可见战车沿封街路段疾驰，人造雪与节日灯饰仍铺在路面。",
+        title: "航拍积雪街道追逐",
+        caption: "航拍记录战车沿封街路段疾驰，路面覆盖人造积雪并保留了节日灯饰。",
         source: "片场路透 · aylissab",
       },
       {

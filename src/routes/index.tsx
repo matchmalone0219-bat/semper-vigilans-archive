@@ -39,7 +39,7 @@ const CORE_LINKS = [
     kicker: "04 / Collection",
     title: "收藏",
     description: "官方授权人偶、载具、出版物与艺术收藏品。",
-    image: "/media/merch/inart.jpg",
+    image: "/media/merch/p1s.jpg",
   },
 ] as const;
 

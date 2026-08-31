@@ -215,7 +215,7 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-30-cowl.jpg",
         title: "替身战衣头套近景",
         caption:
-          "特技替身瑞克·英格利希头套近景：耳廓明显加长，目镜与下颌结构分明，与导演此前确认的第二部改款一致。现场为替身拍摄。",
+          "特技替身瑞克·英格利希头套近景：耳廓明显加长，眼眶剪裁与下颌线条分明，与导演此前确认的第二部改款一致。现场为替身拍摄。",
         source: "片场路透 · ross_sneddon",
       },
       {

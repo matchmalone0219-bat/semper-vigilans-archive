@@ -115,6 +115,13 @@ export const PLOT: {
     sourceTier: "set",
   },
   {
+    tag: "hint",
+    text: "8 月 30 日战衣近景：特技替身瑞克·英格利希身着战衣的高清近景路透曝光，头套耳廓明显加长、眼眶剪裁与下颌线条分明，实物细节与导演马特·里夫斯此前确认的第二部头套改版一致。",
+    source: "片场路透 · ross_sneddon",
+    sourceUrl: "https://x.com/DCFilmNews/status/2094211575628369989",
+    sourceTier: "set",
+  },
+  {
     tag: "rumor",
     text: "片场制作代号为「Semper Vigilans」（永远警惕）。这句拉丁格言被影迷广泛联想至哥谭古老势力，引发关于猫头鹰法庭等潜在剧情走向的讨论。",
   },
@@ -674,7 +681,7 @@ export const LOG: LogEntry[] = [
     date: "2026.08.30",
     iso: "2026-08-30",
     title: "替身战衣头套近景：耳廓加长改款细节曝光",
-    body: "特技替身瑞克·英格利希（Rick English）身着战衣的高清近景路透流出。画面中头套耳廓明显加长、目镜与下颌护具线条分明，与导演马特·里夫斯此前在先导测试片后公开确认的第二部头套改版一致。现场演员为特技替身，帕丁森本人未现身外景。",
+    body: "特技替身瑞克·英格利希（Rick English）身着战衣的高清近景路透流出。画面中头套耳廓明显加长、眼眶剪裁与下颌线条分明，与导演马特·里夫斯此前在先导测试片后公开确认的第二部头套改版一致。现场演员为特技替身，帕丁森本人未现身外景。",
     kind: "shoot",
     source: "片场路透 · ross_sneddon",
     sourceUrl: "https://x.com/DCFilmNews/status/2094211575628369989",

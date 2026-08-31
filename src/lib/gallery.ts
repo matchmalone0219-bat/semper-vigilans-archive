@@ -209,13 +209,19 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》格拉斯哥外景片场记录。实时追踪苏格兰冬季雪景实拍、蝙蝠战车街头追逐与突围、阿尔弗雷德雪地抢救戏、战衣头套改款以及副驾驶神秘金发乘客等一手线索。",
+      "《新蝙蝠侠2》格拉斯哥外景片场记录。实时追踪苏格兰冬季雪景实拍、蝙蝠战车街头追逐与突围、阿尔弗雷德雪地抢救戏、战衣路透以及副驾驶神秘金发乘客等一手线索。",
     stills: [
       {
-        src: "/media/log/p2-30-cowl.jpg",
-        title: "替身战衣头套近景",
+        src: "/media/log/p2-30-suit5.jpg",
+        title: "替身未戴头套的战衣全身",
         caption:
-          "特技替身瑞克·英格利希头套近景：耳廓明显加长，眼眶剪裁与下颌线条分明，与导演此前确认的第二部改款一致。现场为替身拍摄。",
+          "4K 路透：瑞克·英格利希身着续集战衣，头套未戴、挂在斗篷后方。正脸、护颈与胸甲清晰。耳廓改款无法从本批照片确认。",
+        source: "片场路透 · ScottishTravelGuides",
+      },
+      {
+        src: "/media/log/p2-30-suit1.jpg",
+        title: "战衣胸甲与护颈近景",
+        caption: "ross_sneddon 高清近景：替身未戴头套，胸甲蝙蝠标与护颈层次清楚。",
         source: "片场路透 · ross_sneddon",
       },
       {

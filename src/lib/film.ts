@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.08.31";
+export const CONTENT_REVIEWED_AT = "2026.09.01";
 
 export function pageTitle(page?: string) {
   return page ? `${page} · ${FILM.siteName}` : `${FILM.siteName} · 《${FILM.titleZh}》影迷档案站`;
@@ -119,6 +119,13 @@ export const PLOT: {
     text: "8 月 30 日战衣细节：特技替身瑞克·英格利希身着续集战衣的高清近照流出。画面中替身未佩戴头套，清晰呈现出战衣的分体护颈、胸肩复合装甲纹理与实战做旧痕迹，印证了续集延续粗粝厚重的重装实战风格。",
     source: "片场路透 · ross_sneddon",
     sourceUrl: "https://x.com/DCFilmNews/status/2094211575628369989",
+    sourceTier: "set",
+  },
+  {
+    tag: "hint",
+    text: "8 月 31 日金斯顿桥下：战车已报废，车体压扁翻倒、挡风玻璃粉碎，停在人造雪与涂鸦桥墩之间。同场布置钢缆翻滚架与滑橇两套特技车；现场立有「KEEP GOTHAM GREEN / NO DUMPING」市政牌。北街、牛顿街夜戏延续至 9 月 1–4 日。",
+    source: "片场路透 · Fraser Wilson / mattatthecinema",
+    sourceUrl: "https://x.com/DCFilmNews/status/2094440334126145820",
     sourceTier: "set",
   },
   {
@@ -697,6 +704,28 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-30-suit4.jpg",
       "/media/log/p2-30-suit3.jpg",
       "/media/log/p2-30-suit6.jpg",
+    ],
+  },
+  {
+    date: "2026.08.31",
+    iso: "2026-08-31",
+    title: "金斯顿桥下战车报废：车体压扁，KEEP GOTHAM GREEN 标牌就位",
+    body: "Fraser Wilson 拍到的不是擦碰，是报废。金斯顿桥下那辆战车车体压扁翻倒，挡风玻璃粉碎，积雪压在车头上，损毁程度远重于此前圣文森特街的追击擦伤。同场还有两套特技车——钢缆翻滚架与滑橇——说明桥下这场戏会把车摔出去。现场布景也换成哥谭市政口吻：桥墩涂着 AWAKE，绿色铁柜贴满告示，立着「KEEP GOTHAM GREEN / NO DUMPING」罚款牌。华盛顿街停车场停有 GCPD、SWAT 与报废民用车。当天仍在搭景。市政通告：北街、牛顿街夜戏到 9 月 1–4 日，牛顿街封到 9 月 9 日。",
+    kind: "shoot",
+    source: "片场路透 · Fraser Wilson / mattatthecinema",
+    sourceUrl: "https://x.com/DCFilmNews/status/2094440334126145820",
+    sourceTier: "set",
+    verifiedAt: "2026.09.01",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-31-wreck1.jpg",
+    images: [
+      "/media/log/p2-31-wreck1.jpg",
+      "/media/log/p2-31-wreck2.jpg",
+      "/media/log/p2-31-rig1.jpg",
+      "/media/log/p2-31-rig2.jpg",
+      "/media/log/p2-31-rig3.jpg",
+      "/media/log/p2-31-rig4.jpg",
     ],
   },
   {

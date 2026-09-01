@@ -209,8 +209,21 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》格拉斯哥外景片场记录。实时追踪苏格兰冬季雪景实拍、蝙蝠战车街头追逐与突围、阿尔弗雷德雪地抢救戏、战衣路透以及副驾驶神秘金发乘客等一手线索。",
+      "《新蝙蝠侠2》格拉斯哥外景片场记录。实时追踪苏格兰冬季雪景实拍、蝙蝠战车街头追逐与桥下撞毁、阿尔弗雷德雪地抢救戏、战衣路透以及副驾驶神秘金发乘客等一手线索。",
     stills: [
+      {
+        src: "/media/log/p2-31-wreck1.jpg",
+        title: "金斯顿桥下报废的战车",
+        caption:
+          "8 月 31 日 Fraser Wilson 路透：车体压扁翻倒，挡风玻璃粉碎。桥下另有 KEEP GOTHAM GREEN 市政牌与 AWAKE 涂鸦。",
+        source: "片场路透 · Fraser Wilson",
+      },
+      {
+        src: "/media/log/p2-31-rig1.jpg",
+        title: "钢缆翻滚架上的特技战车",
+        caption: "同场布置两套特技车：一套外挂钢缆翻滚架，一套固定在滑橇上准备沿路面推移。",
+        source: "片场路透 · mattatthecinema",
+      },
       {
         src: "/media/log/p2-30-suit5.jpg",
         title: "替身战衣全身实拍",

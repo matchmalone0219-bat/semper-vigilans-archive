@@ -31,7 +31,7 @@ function Interviews() {
 
   const quotes = useMemo(() => {
     return INTERVIEWS.filter((q) => (work === "all" || q.work === work) && (speaker === "all" || q.speakerId === speaker)).sort(
-      (a, b) => a.iso.localeCompare(b.iso),
+      (a, b) => b.iso.localeCompare(a.iso),
     );
   }, [work, speaker]);
 

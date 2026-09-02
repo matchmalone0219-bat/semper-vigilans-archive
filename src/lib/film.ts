@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.09.01";
+export const CONTENT_REVIEWED_AT = "2026.09.02";
 
 export function pageTitle(page?: string) {
   return page ? `${page} · ${FILM.siteName}` : `${FILM.siteName} · 《${FILM.titleZh}》影迷档案站`;

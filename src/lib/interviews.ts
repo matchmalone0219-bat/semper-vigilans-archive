@@ -491,10 +491,10 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "GQ",
     sourceUrl: "https://www.gq.com/story/robert-pattinson-interview-jaeger-lecoultre-campaign",
     quoteZh:
-      "我要在伦敦待到年底拍蝙蝠侠续集。挺好的。打戏一多，确实感觉自己上年纪了。我真的会想：这他妈比以前难太多了。但很好玩。我觉得这部会很不错。演员阵容特别有意思，不过这是一场马拉松。",
+      "年底前我都会留在伦敦拍蝙蝠侠续集，进展挺顺利的。打戏一多，我确实真切感受到了自己的年纪。我真的会想：‘真要命，这可比以前吃力太多了。’ 但拍起来非常有意思，我也觉得这部电影会很棒。卡司阵容特别有趣，不过这确实是一场漫长的马拉松。",
     quoteEn:
       "I'm in London here till the end of the year doing a Batman sequel. It's good. I'm definitely feeling my age when fighting a lot. I'm literally like, 'Goddamn, this is significantly harder than it used to be.' But it's really fun. And I think the movie's going to be pretty great. It's got a really, really fun cast, but it's a marathon.",
-    note: "2026 年 9 月 1 日 GQ 积家代言专访。帕丁森当时 40 岁，确认续集拍摄持续到年底。网上有「第二部可能是他最后一部蝙蝠侠」的转述，原文并未这么说。",
+    note: "2026 年 9 月 1 日《GQ》专访。时年 40 岁的帕丁森谈及拍摄高强度动作戏的体能挑战，并确认《新蝙蝠侠2》的拍摄周期将持续至 2026 年底。针对网络上‘这可能是他最后一部蝙蝠侠’的过度解读，采访原文仅为调侃打斗吃力与周期漫长，未涉及任何退出系列的表态。",
   },
   {
     id: "pattinson-gq-2026-drifter",
@@ -505,10 +505,10 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "GQ",
     sourceUrl: "https://www.gq.com/story/robert-pattinson-interview-jaeger-lecoultre-campaign",
     quoteZh:
-      "（被问到雪地摩托路透是本人还是替身）我觉得那是替身。是利物浦还是苏格兰那边？……（对方提到有人说那是蝙蝠侠的另一个身份「流浪者」）对，是我！是我。（笑）",
+      "（被问及片场流出的骑摩托车路透是本人还是特技替身）我觉得那是替身。是在利物浦还是苏格兰那边拍的？……（记者提到有影迷推测那是布鲁斯的‘流浪者’便服身份）对，是我！那就是我。（笑）",
     quoteEn:
-      "I think that's a stunt double. Is that something in Liverpool or Scotland or something? … Yeah, it's me! It's me.",
-    note: "Cam Wolf 追问路透摩托。他先说是替身，被点到「流浪者」时又笑着认领。当作玩笑，不当成官方确认。",
+      "I think that's a stunt double. Is that something in Liverpool or Scotland or something? … [GQ: People were saying it was the drifter.] … Yeah, it's me! It's me. [Laughs]",
+    note: "《GQ》记者 Cam Wolf 就外景流出的摩托车路透向其求证。帕丁森最初直言是替身演员，在记者转述影迷推测为‘流浪者’（The Drifter）便服造型后幽默改口认领。此处为演员受访时的即兴调侃，实际高危骑行与特技均由特技替身完成。",
   },
 ];
 

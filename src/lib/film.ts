@@ -123,7 +123,7 @@ export const PLOT: {
   },
   {
     tag: "hint",
-    text: "8 月 31 日金斯顿桥下：战车已报废，车体压扁翻倒、挡风玻璃粉碎，停在人造雪与涂鸦桥墩之间。同场布置钢缆翻滚架与滑橇两套特技车；现场立有「KEEP GOTHAM GREEN / NO DUMPING」市政牌。北街、牛顿街夜戏延续至 9 月 1–4 日。",
+    text: "8 月 31 日金斯顿桥下外景：片场出现一辆车顶压陷、挡风玻璃碎裂的战车严重受损道具，同场停放有配备钢缆翻滚架与特技滑橇的两套改装车。现场立有「KEEP GOTHAM GREEN」市政标牌，北街与牛顿街的夜戏管制将持续至 9 月上旬。",
     source: "片场路透 · Fraser Wilson / mattatthecinema",
     sourceUrl: "https://x.com/DCFilmNews/status/2094440334126145820",
     sourceTier: "set",
@@ -709,8 +709,8 @@ export const LOG: LogEntry[] = [
   {
     date: "2026.08.31",
     iso: "2026-08-31",
-    title: "金斯顿桥下战车报废：车体压扁，KEEP GOTHAM GREEN 标牌就位",
-    body: "Fraser Wilson 拍到的不是擦碰，是报废。金斯顿桥下那辆战车车体压扁翻倒，挡风玻璃粉碎，积雪压在车头上，损毁程度远重于此前圣文森特街的追击擦伤。同场还有两套特技车——钢缆翻滚架与滑橇——说明桥下这场戏会把车摔出去。现场布景也换成哥谭市政口吻：桥墩涂着 AWAKE，绿色铁柜贴满告示，立着「KEEP GOTHAM GREEN / NO DUMPING」罚款牌。华盛顿街停车场停有 GCPD、SWAT 与报废民用车。当天仍在搭景。市政通告：北街、牛顿街夜戏到 9 月 1–4 日，牛顿街封到 9 月 9 日。",
+    title: "金斯顿桥下特技道具：受损战车与翻滚滑橇套件进驻片场",
+    body: "格拉斯哥金斯顿桥下外景现场出现严重损毁的蝙蝠战车实拍道具。车顶与车身结构深度挤压凹陷，挡风玻璃碎裂，车头覆盖人造积雪。现场同时配备了两套特技车辆套件：一套加装用于车身翻转的外部钢缆框架，另一套固定在特制滑橇上，用于拍摄重型车辆在冰雪路面失控滑移的动作特技。桥下布景增添了诸多哥谭城市细节，包括桥墩处的 AWAKE 喷涂涂鸦，以及立在路旁的「KEEP GOTHAM GREEN / NO DUMPING」市政告示牌。临近的华盛顿街停车场停放有 GCPD 巡逻车、SWAT 特警装甲车及多辆碰撞实拍用的民用道具车。市政封路通告显示，北街与牛顿街夜戏管制将持续至 9 月上旬。",
     kind: "shoot",
     source: "片场路透 · Fraser Wilson / mattatthecinema",
     sourceUrl: "https://x.com/DCFilmNews/status/2094440334126145820",

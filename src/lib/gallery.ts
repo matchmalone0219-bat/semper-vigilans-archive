@@ -209,8 +209,33 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》格拉斯哥外景片场记录。实时追踪苏格兰冬季雪景实拍、蝙蝠战车街头追逐与桥下特技受损道具、阿尔弗雷德雪地抢救戏、战衣细节以及副驾驶神秘金发乘客等一手线索。",
+      "《新蝙蝠侠2》格拉斯哥外景片场记录。实时追踪苏格兰冬季雪景实拍、蝙蝠战车街头追逐与桥下特技受损道具、GCPD 摩托夜戏、阿尔弗雷德雪地抢救戏、战衣细节以及副驾驶神秘金发乘客等一手线索。",
     stills: [
+      {
+        src: "/media/log/p2-04-blood.jpg",
+        title: "带血战衣近景（已戴头套）",
+        caption:
+          "9 月 4 日夜戏高清：头套、下颌与胸甲有血浆。耳廓较第一部更长。胸口黄色宽带是特技安全吊带，不是新腰带。",
+        source: "片场路透 · AFrazzledScot",
+      },
+      {
+        src: "/media/log/p2-04-walk.jpg",
+        title: "带血战衣走在积雪街上",
+        caption: "同场步行镜头。背景为 GCPD 巡逻车与人造雪。现场目击者指认骑手为特技替身瑞克·英格利希。",
+        source: "片场路透 · AFrazzledScot",
+      },
+      {
+        src: "/media/log/p2-04-cowl.jpg",
+        title: "续集头套全身实戴",
+        caption: "耳廓较第一部更长，与里夫斯 7 月确认的改款一致。现场目击者指认骑手为特技替身瑞克·英格利希。",
+        source: "片场路透 · DCFilmNews / Jasraj Sidhu",
+      },
+      {
+        src: "/media/log/p2-04-moto1.jpg",
+        title: "驾驶 GCPD 摩托车",
+        caption: "油箱印有 Gotham City Police。积雪路面穿插警车，未穿斗篷，斗篷预计后期合成。",
+        source: "片场路透 · ciaron97",
+      },
       {
         src: "/media/log/p2-31-wreck1.jpg",
         title: "金斯顿桥下受损战车道具",

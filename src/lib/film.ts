@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.09.02";
+export const CONTENT_REVIEWED_AT = "2026.09.05";
 
 export function pageTitle(page?: string) {
   return page ? `${page} · ${FILM.siteName}` : `${FILM.siteName} · 《${FILM.titleZh}》影迷档案站`;
@@ -126,6 +126,13 @@ export const PLOT: {
     text: "8 月 31 日金斯顿桥下外景：片场出现一辆车顶压陷、挡风玻璃碎裂的战车严重受损道具，同场停放有配备钢缆翻滚架与特技滑橇的两套改装车。现场立有「KEEP GOTHAM GREEN」市政标牌，北街与牛顿街的夜戏管制将持续至 9 月上旬。",
     source: "片场路透 · Fraser Wilson / mattatthecinema",
     sourceUrl: "https://x.com/DCFilmNews/status/2094440334126145820",
+    sourceTier: "set",
+  },
+  {
+    tag: "hint",
+    text: "9 月 4 日格拉斯哥夜戏：特技替身佩戴头套驾驶印有 Gotham City Police 的摩托车，在积雪路面穿插 GCPD 警车并跃过巡逻车。战衣胸口有血浆；未穿斗篷。胸口黄色宽带为特技安全吊带，不是新腰带。",
+    source: "片场路透 · ciaron97 / Jasraj Sidhu",
+    sourceUrl: "https://x.com/TheBatmanSagaNW/status/2096002496762175912",
     sourceTier: "set",
   },
   {
@@ -726,6 +733,28 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-31-rig2.jpg",
       "/media/log/p2-31-rig3.jpg",
       "/media/log/p2-31-rig4.jpg",
+    ],
+  },
+  {
+    date: "2026.09.04",
+    iso: "2026-09-04",
+    title: "夜戏：头套实戴、GCPD 摩托追逐与带血战衣",
+    body: "格拉斯哥 9 月 4 日外景（延至 5 日凌晨）。这是续集片场首次拍到佩戴头套的全身战衣，耳廓较第一部更长，与里夫斯 7 月确认的改款一致。特技替身（现场目击者指认为瑞克·英格利希）驾驶 Gotham City Police 摩托车，在积雪街道穿插警车，并骑车跃过一辆 GCPD 巡逻车。战衣胸腹有血浆。现场未穿斗篷，斗篷预计后期合成。胸口黄色宽带是特技安全吊带，不是新款腰带。DC 影业监制 Lars P. Winther 当日到场。",
+    kind: "shoot",
+    source: "片场路透 · AFrazzledScot / ciaron97 / Jasraj Sidhu",
+    sourceUrl: "https://x.com/TheBatmanSagaNW/status/2096083170072395872",
+    sourceTier: "set",
+    verifiedAt: "2026.09.05",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-04-blood.jpg",
+    images: [
+      "/media/log/p2-04-blood.jpg",
+      "/media/log/p2-04-walk.jpg",
+      "/media/log/p2-04-cowl.jpg",
+      "/media/log/p2-04-suit.jpg",
+      "/media/log/p2-04-moto1.jpg",
+      "/media/log/p2-04-moto2.jpg",
     ],
   },
   {

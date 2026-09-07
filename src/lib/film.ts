@@ -130,7 +130,7 @@ export const PLOT: {
   },
   {
     tag: "hint",
-    text: "9 月 4 日格拉斯哥夜戏：特技替身佩戴头套驾驶印有 Gotham City Police 的摩托车，在积雪路面穿插 GCPD 警车、跃过巡逻车，并与持枪警员对峙。战衣胸口与下颌有血浆；未穿斗篷。胸口黄色宽带为特技安全吊带，不是新腰带。STV 证实此组未见帕丁森。",
+    text: "9 月 4 日格拉斯哥夜戏：特技替身瑞克·英格利希佩戴改款头套，驾驶印有 Gotham City Police 标识的警用摩托在积雪街道穿行，完成飞跃巡逻车及与持枪警员对峙等特技镜头。战衣胸腹与下颌带有血渍战损涂装；胸前黄色绑带为特技安全吊带（未配挂实物斗篷，预计后期数字合成）。STV 证实帕丁森未在该组外景出镜。",
     source: "片场路透 · ciaron97 / Jasraj Sidhu",
     sourceUrl: "https://x.com/TheBatmanSagaNW/status/2096002496762175912",
     sourceTier: "set",
@@ -738,8 +738,8 @@ export const LOG: LogEntry[] = [
   {
     date: "2026.09.04",
     iso: "2026-09-04",
-    title: "夜戏：头套实戴、GCPD 摩托追逐与带血战衣",
-    body: "格拉斯哥 9 月 4 日外景（延至 5 日凌晨）。续集片场首次拍到佩戴头套的全身战衣，耳廓较第一部更长。特技替身（现场目击者与 STV 均指认为瑞克·英格利希，未见帕丁森本人）驾驶 Gotham City Police 摩托车穿插警车、跃过巡逻车，并与持枪 GCPD 警员对峙。战衣胸腹与下颌有血浆。现场未穿斗篷。胸口黄色宽带是特技安全吊带，不是新腰带。",
+    title: "夜戏实拍：改款头套全身亮相，GCPD 摩托追逐与带血战衣",
+    body: "格拉斯哥 9 月 4 日夜戏外景（持续至 5 日凌晨）：片场首次记录到佩戴改款头套的完整战衣造型，耳廓明显长于第一部。现场由特技替身瑞克·英格利希（Rick English）出镜（STV 证实帕丁森未在该组外景），驾驶油箱印有 Gotham City Police 标识的警用摩托车穿行于积雪街道，完成飞跃巡逻车及与持枪 GCPD 警员对峙等特技镜头。战衣胸腹与面罩下颌处带有大量血渍战损涂装；替身佩戴黄色特技安全吊带，现场未装配实物斗篷，预计将于后期数字合成呈现。",
     kind: "shoot",
     source: "片场路透 · AFrazzledScot / ciaron97 / Jasraj Sidhu",
     sourceUrl: "https://x.com/TheBatmanSagaNW/status/2096083170072395872",

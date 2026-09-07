@@ -213,39 +213,39 @@ export const GALLERIES: GalleryGroup[] = [
     stills: [
       {
         src: "/media/log/p2-04-blood.jpg",
-        title: "带血战衣近景（已戴头套）",
+        title: "战损战衣近景（改款头套实戴）",
         caption:
-          "9 月 4 日夜戏高清：头套、下颌与胸甲有血浆。耳廓较第一部更长。胸口黄色宽带是特技安全吊带，不是新腰带。",
+          "9 月 4 日夜戏高清近景：头套下颌与胸甲部位附有血渍战损，耳廓较第一部明显加长；胸前黄色绑带为特技安全吊带。",
         source: "片场路透 · AFrazzledScot",
       },
       {
         src: "/media/log/p2-04-walk.jpg",
-        title: "带血战衣走在积雪街上",
-        caption: "同场步行镜头。背景为 GCPD 巡逻车与人造雪。现场目击者指认骑手为特技替身瑞克·英格利希。",
+        title: "战损战衣地面镜头",
+        caption: "9 月 4 日实拍地面镜头。背景为 GCPD 巡逻车与积雪街景，出镜者为特技替身瑞克·英格利希。",
         source: "片场路透 · AFrazzledScot",
       },
       {
         src: "/media/log/p2-04-standoff.jpg",
         title: "与持枪 GCPD 警员对峙",
-        caption: "同一场夜戏：戴头套的蝙蝠侠面对持枪哥谭警员。STV 证实此组外景未见帕丁森，为替身拍摄。",
+        caption: "戴头套的蝙蝠侠与持枪哥谭警员对峙戏份。STV 证实该外景组由特技替身实拍，帕丁森未在现场。",
         source: "片场路透 · Dan Groundland / BoinkBuzz",
       },
       {
         src: "/media/log/p2-04-street.jpg",
         title: "积雪街道全景",
-        caption: "人造雪、GCPD 车辆与戴头套战衣同框。现场未穿斗篷。",
+        caption: "人造积雪、GCPD 巡逻车队与战衣同框全景。现场未配挂实物斗篷，留待后期特效添加。",
         source: "片场路透 · alastairneil29",
       },
       {
         src: "/media/log/p2-04-cowl.jpg",
-        title: "续集头套全身实戴",
-        caption: "耳廓较第一部更长，与里夫斯 7 月确认的改款一致。现场目击者指认骑手为特技替身瑞克·英格利希。",
+        title: "改款头套全身实戴",
+        caption: "头套耳廓线条修长挺拔，与 7 月摄影测试片曝光的改版一致。现场由特技替身瑞克·英格利希实戴测试。",
         source: "片场路透 · DCFilmNews / Jasraj Sidhu",
       },
       {
         src: "/media/log/p2-04-moto1.jpg",
-        title: "驾驶 GCPD 摩托车",
-        caption: "油箱印有 Gotham City Police。积雪路面穿插警车，未穿斗篷，斗篷预计后期合成。",
+        title: "驾驶 GCPD 警用摩托车",
+        caption: "油箱印有 Gotham City Police 标识。替身驾驶摩托在积雪街道穿行警车，斗篷预计后期合成。",
         source: "片场路透 · ciaron97",
       },
       {

@@ -516,14 +516,14 @@ export const INTERVIEWS: InterviewQuote[] = [
     work: "part2",
     date: "2026.09",
     iso: "2026-09-06",
-    outlet: "MyMovies（TikTok）",
+    outlet: "MYmovies.it",
     sourceUrl:
       "https://www.ign.com/articles/the-batman-part-2-goes-in-another-totally-different-direction-robert-pattinson-teases",
     quoteZh:
-      "马特写了一部非常出色的剧本。第一部已经很难把蝙蝠侠重新做成一件新东西，续集又往完全不同的方向走。我在片场看回放，感觉画面就跟第一部不一样。",
+      "马特写了一部非常棒的剧本。第一部要重新定义蝙蝠侠本身就很难，而续集又走向了截然不同的全新方向。我在片场看了一些镜头回放……视觉风格和质感确实跟第一部很不相同。",
     quoteEn:
       "Matt just wrote this amazing script. I think the first one was… it's difficult to reinvent Batman as this new thing. And then to go in another totally different direction. I'm just looking at the playback on certain things… it looks different to the first one.",
-    note: "宣传《Primetime》时对意大利站 MyMovies 所说。只谈方向不同，没有透露具体情节。",
+    note: "帕丁森在威尼斯电影节宣传新片《Primetime》期间接受意大利电影媒体 MYmovies.it 专访，透露在片场监视器回放中已能看出续集在视效与基调上走向了与第一部截然不同的全新方向。",
   },
   {
     id: "pattinson-mymovies-radical",
@@ -531,13 +531,14 @@ export const INTERVIEWS: InterviewQuote[] = [
     work: "part2",
     date: "2026.09",
     iso: "2026-09-06",
-    outlet: "MyMovies（TikTok）",
+    outlet: "MYmovies.it",
     sourceUrl:
       "https://www.ign.com/articles/the-batman-part-2-goes-in-another-totally-different-direction-robert-pattinson-teases",
     quoteZh:
-      "剧本改动相当大。华纳和 DC 都支持，这很疯狂。我觉得只有马特会被允许这么拍，因为这几乎是对蝙蝠侠的一次彻底重述。大家会兴奋的。",
+      "这真的很棒。剧本呈现出了相当颠覆且大胆的全新转向。华纳和 DC 都能全力支持，这太不可思议了。我想全行业也就只有马特能被允许这么拍，因为这几乎是对蝙蝠侠故事一次非常彻底的大胆重塑。我想大家看到成片后一定会为之振奋的。",
     quoteEn:
       "It's just amazing. It's a quite radical change of the script. It's cool that Warner's behind it, and DC. It's just crazy. I think Matt is the only person who anybody would allow to do it, because it's kind of a really radical retelling of Batman. I think people are going to be excited by it.",
+    note: "帕丁森强调第二部剧本并非延续首部的既定套路，而是在叙事与角色塑造上进行了大胆重塑；华纳与 DC 给予了马特·里夫斯极高创作自由度。谈话未涉及具体剧情与反派细节。",
   },
 ];
 

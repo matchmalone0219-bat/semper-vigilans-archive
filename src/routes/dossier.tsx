@@ -18,6 +18,8 @@ import { BiliPlayer } from "@/components/bili-player";
 import { PLACES } from "@/lib/places";
 import { cn } from "@/lib/cn";
 import { SourceLink } from "@/components/source-link";
+import { ChapterNav } from "@/components/chapter-nav";
+import { ArchiveDisclosure } from "@/components/archive-disclosure";
 
 export const Route = createFileRoute("/dossier")({
   head: () => ({
@@ -28,6 +30,14 @@ export const Route = createFileRoute("/dossier")({
 
 function Dossier() {
   const latest = latestLog();
+  const historyByMonth = new Map<string, (typeof LOG)[number][]>();
+  for (const event of [...LOG].sort((a, b) => b.iso.localeCompare(a.iso))) {
+    if (event === latest) continue;
+    const month = event.iso.slice(0, 7);
+    const entries = historyByMonth.get(month) ?? [];
+    entries.push(event);
+    historyByMonth.set(month, entries);
+  }
   const jump = [
     { href: "#facts", label: "信息" },
     { href: "#plot", label: "线索" },
@@ -63,21 +73,11 @@ function Dossier() {
           <p className="mt-4 max-w-xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
             追踪影片最新动态：汇总官方公告、媒体报道与公开片场路透。包含现场解析与剧情背景整理，提供全方位的电影资料参考。
           </p>
-          <nav className="mt-8 flex flex-wrap gap-3">
-            {jump.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="border border-fg/20 px-4 py-2 font-display text-xs font-semibold tracking-[0.28em] text-muted uppercase hover:border-blood hover:text-fg"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
         </div>
       </header>
+      <ChapterNav label="电影档案章节" items={jump} />
 
-      <div className="mx-auto max-w-6xl space-y-24 px-4 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-6xl space-y-24 px-4 py-16 sm:px-6 sm:py-24 [&>section]:scroll-mt-36">
         <section id="facts" className="scroll-mt-24">
           <SectionKicker n="01" title="基本信息" />
           <dl className="mt-8 divide-y divide-fg/10 border-y border-fg/10">
@@ -331,44 +331,60 @@ function Dossier() {
             </div>
           </article>
 
-          <ol className="mt-10 border-l border-fg/15 pl-6">
-            {[...LOG].reverse().map((event) => (
-              <li
-                key={event.iso}
-                className={cn("relative pb-10 last:pb-0", event.upcoming && "opacity-50")}
+          <div className="mt-8 space-y-3">
+            {[...historyByMonth].map(([month, events]) => (
+              <ArchiveDisclosure
+                key={month}
+                title={`${month.slice(0, 4)} 年 ${Number(month.slice(5))} 月`}
+                count={events.length}
               >
-                <span
-                  className={cn(
-                    "absolute top-1.5 -left-[29px] size-2 rounded-full",
-                    event.iso === latest.iso ? "bg-blood" : "bg-fg",
-                  )}
-                />
-                <p className="font-display text-sm font-semibold tabular-nums tracking-widest text-blood">
-                  {event.date}
-                  <span className="ml-3 tracking-[0.18em] text-faint">{LOG_KIND[event.kind]}</span>
-                  {event.upcoming ? (
-                    <span className="ml-2 tracking-[0.18em] text-faint">未到</span>
-                  ) : null}
-                </p>
-                <h3 className="mt-1 font-sans text-2xl font-black tracking-tight">{event.title}</h3>
-                <p className="mt-2 max-w-2xl text-pretty text-sm leading-relaxed text-muted">
-                  {event.body}
-                </p>
-                {logImages(event).length ? (
-                  <LogCarousel images={logImages(event)} className="mt-3 max-w-2xl" />
-                ) : null}
-                {event.video ? <BiliPlayer video={event.video} className="mt-3 max-w-2xl" /> : null}
-                {event.source ? (
-                  <SourceLink
-                    label={event.source}
-                    href={event.sourceUrl}
-                    tier={event.sourceTier}
-                    verifiedAt={event.verifiedAt}
-                  />
-                ) : null}
-              </li>
+                <ol className="mt-6 border-l border-fg/15 pl-6">
+                  {events.map((event) => (
+                    <li
+                      key={event.iso}
+                      className={cn("relative pb-10 last:pb-0", event.upcoming && "opacity-50")}
+                    >
+                      <span
+                        className={cn(
+                          "absolute top-1.5 -left-[29px] size-2 rounded-full",
+                          event.iso === latest.iso ? "bg-blood" : "bg-fg",
+                        )}
+                      />
+                      <p className="font-display text-sm font-semibold tabular-nums tracking-widest text-blood">
+                        {event.date}
+                        <span className="ml-3 tracking-[0.18em] text-faint">
+                          {LOG_KIND[event.kind]}
+                        </span>
+                        {event.upcoming ? (
+                          <span className="ml-2 tracking-[0.18em] text-faint">未到</span>
+                        ) : null}
+                      </p>
+                      <h3 className="mt-1 font-sans text-2xl font-black tracking-tight">
+                        {event.title}
+                      </h3>
+                      <p className="mt-2 max-w-2xl text-pretty text-sm leading-relaxed text-muted">
+                        {event.body}
+                      </p>
+                      {logImages(event).length ? (
+                        <LogCarousel images={logImages(event)} className="mt-3 max-w-2xl" />
+                      ) : null}
+                      {event.video ? (
+                        <BiliPlayer video={event.video} className="mt-3 max-w-2xl" />
+                      ) : null}
+                      {event.source ? (
+                        <SourceLink
+                          label={event.source}
+                          href={event.sourceUrl}
+                          tier={event.sourceTier}
+                          verifiedAt={event.verifiedAt}
+                        />
+                      ) : null}
+                    </li>
+                  ))}
+                </ol>
+              </ArchiveDisclosure>
             ))}
-          </ol>
+          </div>
         </section>
       </div>
     </main>

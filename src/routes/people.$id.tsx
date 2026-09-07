@@ -8,6 +8,8 @@ import { StillGrid } from "@/components/still-grid";
 import { cn } from "@/lib/cn";
 import { pageTitle } from "@/lib/film";
 import { interviewsByPerson, WORK_LABEL } from "@/lib/interviews";
+import { ChapterNav } from "@/components/chapter-nav";
+import { ArchiveDisclosure } from "@/components/archive-disclosure";
 
 export const Route = createFileRoute("/people/$id")({
   beforeLoad: ({ params }) => {
@@ -44,6 +46,29 @@ function PersonPage() {
   const stills = resolveStills(person.stills);
   const places = person.places.map((pid) => PLACE_MAP[pid]).filter(Boolean);
   const quotes = interviewsByPerson(person.id);
+  const chapters = [
+    { href: "#biography", label: "生平" },
+    ...(person.appearances.length ? [{ href: "#appearances", label: "出场" }] : []),
+    ...(quotes.length ? [{ href: "#quotes", label: "访谈" }] : []),
+    ...(related.length ? [{ href: "#relations", label: "关系" }] : []),
+    ...(places.length ? [{ href: "#places", label: "地点" }] : []),
+    ...(stills.length ? [{ href: "#stills", label: "剧照" }] : []),
+  ];
+  const renderQuote = (q: (typeof quotes)[number]) => (
+    <li key={q.id} className="py-4">
+      <p className="text-xs tracking-[0.18em] text-faint uppercase">
+        {WORK_LABEL[q.work]} · {q.outlet} · {q.date}
+      </p>
+      <p className="mt-2 text-pretty leading-relaxed text-muted">{q.quoteZh}</p>
+      <Link
+        to="/interviews"
+        hash={q.id}
+        className="mt-2 inline-block text-xs text-fg underline-offset-4 hover:underline"
+      >
+        查看原文与出处
+      </Link>
+    </li>
+  );
   const personIndex = PEOPLE.findIndex((entry) => entry.id === person.id);
   const previous = PEOPLE[(personIndex - 1 + PEOPLE.length) % PEOPLE.length];
   const next = PEOPLE[(personIndex + 1) % PEOPLE.length];
@@ -141,9 +166,10 @@ function PersonPage() {
           </Link>
         </div>
       </nav>
+      <ChapterNav label="人物档案章节" items={chapters} />
 
-      <div className="mx-auto max-w-6xl space-y-16 px-4 py-12 sm:px-6 sm:py-16">
-        <section className="max-w-3xl space-y-8">
+      <div className="mx-auto max-w-6xl space-y-16 px-4 py-12 sm:px-6 sm:py-16 [&>section]:scroll-mt-36">
+        <section id="biography" className="max-w-3xl space-y-8">
           {person.sections.map((s) => (
             <div key={s.heading}>
               <h2 className="font-sans text-2xl font-black tracking-tight">{s.heading}</h2>
@@ -153,7 +179,7 @@ function PersonPage() {
         </section>
 
         {person.appearances.length > 0 ? (
-          <section>
+          <section id="appearances">
             <h2 className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
               出场
             </h2>
@@ -178,32 +204,25 @@ function PersonPage() {
         ) : null}
 
         {quotes.length > 0 ? (
-          <section>
+          <section id="quotes">
             <h2 className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
               访谈摘录
             </h2>
             <ul className="mt-6 divide-y divide-fg/10 border-y border-fg/10">
-              {quotes.map((q) => (
-                  <li key={q.id} className="py-4">
-                    <p className="text-xs tracking-[0.18em] text-faint uppercase">
-                      {WORK_LABEL[q.work]} · {q.outlet} · {q.date}
-                    </p>
-                    <p className="mt-2 text-pretty leading-relaxed text-muted">{q.quoteZh}</p>
-                    <Link
-                      to="/interviews"
-                      hash={q.id}
-                      className="mt-2 inline-block text-xs text-fg underline-offset-4 hover:underline"
-                    >
-                      查看原文与出处
-                    </Link>
-                  </li>
-                ))}
+              {quotes.slice(0, 3).map(renderQuote)}
             </ul>
+            {quotes.length > 3 ? (
+              <div className="mt-4">
+                <ArchiveDisclosure key={person.id} title="更多访谈摘录" count={quotes.length - 3}>
+                  <ul className="divide-y divide-fg/10">{quotes.slice(3).map(renderQuote)}</ul>
+                </ArchiveDisclosure>
+              </div>
+            ) : null}
           </section>
         ) : null}
 
         {related.length > 0 ? (
-          <section>
+          <section id="relations">
             <h2 className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
               关系
             </h2>
@@ -253,7 +272,7 @@ function PersonPage() {
         ) : null}
 
         {places.length > 0 ? (
-          <section>
+          <section id="places">
             <h2 className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
               地点
             </h2>
@@ -278,7 +297,7 @@ function PersonPage() {
         ) : null}
 
         {stills.length > 0 ? (
-          <section>
+          <section id="stills">
             <h2 className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
               剧照
             </h2>

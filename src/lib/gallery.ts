@@ -225,6 +225,18 @@ export const GALLERIES: GalleryGroup[] = [
         source: "片场路透 · AFrazzledScot",
       },
       {
+        src: "/media/log/p2-04-standoff.jpg",
+        title: "与持枪 GCPD 警员对峙",
+        caption: "同一场夜戏：戴头套的蝙蝠侠面对持枪哥谭警员。STV 证实此组外景未见帕丁森，为替身拍摄。",
+        source: "片场路透 · Dan Groundland / BoinkBuzz",
+      },
+      {
+        src: "/media/log/p2-04-street.jpg",
+        title: "积雪街道全景",
+        caption: "人造雪、GCPD 车辆与戴头套战衣同框。现场未穿斗篷。",
+        source: "片场路透 · alastairneil29",
+      },
+      {
         src: "/media/log/p2-04-cowl.jpg",
         title: "续集头套全身实戴",
         caption: "耳廓较第一部更长，与里夫斯 7 月确认的改款一致。现场目击者指认骑手为特技替身瑞克·英格利希。",

@@ -510,6 +510,35 @@ export const INTERVIEWS: InterviewQuote[] = [
       "I think that's a stunt double. Is that something in Liverpool or Scotland or something? … [GQ: People were saying it was the drifter.] … Yeah, it's me! It's me. [Laughs]",
     note: "《GQ》记者 Cam Wolf 就外景流出的摩托车路透向其求证。帕丁森最初直言是替身演员，在记者转述影迷推测为‘流浪者’（The Drifter）便服造型后幽默改口认领。此处为演员受访时的即兴调侃，实际高危骑行与特技均由特技替身完成。",
   },
+  {
+    id: "pattinson-mymovies-direction",
+    speakerId: "pattinson",
+    work: "part2",
+    date: "2026.09",
+    iso: "2026-09-06",
+    outlet: "MyMovies（TikTok）",
+    sourceUrl:
+      "https://www.ign.com/articles/the-batman-part-2-goes-in-another-totally-different-direction-robert-pattinson-teases",
+    quoteZh:
+      "马特写了一部非常出色的剧本。第一部已经很难把蝙蝠侠重新做成一件新东西，续集又往完全不同的方向走。我在片场看回放，感觉画面就跟第一部不一样。",
+    quoteEn:
+      "Matt just wrote this amazing script. I think the first one was… it's difficult to reinvent Batman as this new thing. And then to go in another totally different direction. I'm just looking at the playback on certain things… it looks different to the first one.",
+    note: "宣传《Primetime》时对意大利站 MyMovies 所说。只谈方向不同，没有透露具体情节。",
+  },
+  {
+    id: "pattinson-mymovies-radical",
+    speakerId: "pattinson",
+    work: "part2",
+    date: "2026.09",
+    iso: "2026-09-06",
+    outlet: "MyMovies（TikTok）",
+    sourceUrl:
+      "https://www.ign.com/articles/the-batman-part-2-goes-in-another-totally-different-direction-robert-pattinson-teases",
+    quoteZh:
+      "剧本改动相当大。华纳和 DC 都支持，这很疯狂。我觉得只有马特会被允许这么拍，因为这几乎是对蝙蝠侠的一次彻底重述。大家会兴奋的。",
+    quoteEn:
+      "It's just amazing. It's a quite radical change of the script. It's cool that Warner's behind it, and DC. It's just crazy. I think Matt is the only person who anybody would allow to do it, because it's kind of a really radical retelling of Batman. I think people are going to be excited by it.",
+  },
 ];
 
 export function interviewsByPerson(personId: string): InterviewQuote[] {

@@ -60,7 +60,7 @@ function Craft() {
           <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
             01 / Original Score
           </p>
-          <h2 className="archive-title mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
+          <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
             迈克尔·吉亚奇诺 配乐解析
           </h2>
 
@@ -186,7 +186,7 @@ function Craft() {
           <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
             02 / Cinematography
           </p>
-          <h2 className="archive-title mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
+          <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
             光影摄影档案
           </h2>
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">{LENS.intro}</p>
@@ -232,7 +232,7 @@ function Craft() {
           <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
             03 / Filming Locations Map
           </p>
-          <h2 className="archive-title mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
+          <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
             英国取景巡礼地图
           </h2>
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">

@@ -396,7 +396,7 @@ function SectionKicker({ n, title }: { n: string; title: string }) {
       <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
         {n}
       </p>
-      <h2 className="archive-title mt-2 font-sans text-3xl font-black tracking-tight sm:text-4xl">{title}</h2>
+      <h2 className="mt-2 font-sans text-3xl font-black tracking-tight sm:text-4xl">{title}</h2>
     </div>
   );
 }

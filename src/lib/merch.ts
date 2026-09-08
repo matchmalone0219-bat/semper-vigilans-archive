@@ -581,7 +581,7 @@ export const MERCH: MerchGroup[] = [
         spec: "24×36 英寸胶印挂画",
         image: "/media/merch/poster-rays.jpg",
         imageAlt: "蝙蝠侠伫立于束光之下的艺术挂画",
-        body: "经典零售海报版本，蝙蝠侠伫立在一束垂直顶光之中，红黑渐变背景彰显出孤独守护者的沉稳气质。",
+        body: "经典零售海报版本，蝙蝠侠伫立在一束垂直顶光之中，红黑渐变背景烘托出孤独守护者的沉稳轮廓。",
       },
     ],
   },

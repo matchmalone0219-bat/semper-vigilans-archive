@@ -215,7 +215,7 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-04-blood.jpg",
         title: "战损战衣近景（改款头套实戴）",
         caption:
-          "9 月 4 日夜戏高清近景：头套下颌与胸甲部位附有血渍战损，耳廓较第一部明显加长；胸前黄色绑带为特技安全吊带。",
+          "9 月 4 日夜戏高清近景：头套下颌与胸甲部位附有明显道具血浆与重度战损痕迹，耳廓造型加长；腰间可见新换装的芥末黄色多功能战术腰带。",
         source: "片场路透 · AFrazzledScot",
       },
       {

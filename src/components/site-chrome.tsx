@@ -125,7 +125,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                         key={`${child.to}-${"hash" in child ? child.hash : child.label}`}
                         to={child.to}
                         hash={"hash" in child ? child.hash : undefined}
-                        className="block whitespace-nowrap px-3 py-2 text-xs tracking-[0.12em] text-muted hover:bg-surface hover:text-fg"
+                        className="block whitespace-nowrap px-3 py-2 text-sm tracking-[0.12em] text-muted hover:bg-surface hover:text-fg"
                       >
                         {child.label}
                       </Link>

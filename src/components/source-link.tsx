@@ -20,14 +20,14 @@ export function SourceLink({ label, href, tier, verifiedAt, className }: SourceL
     .join(" · ");
 
   return (
-    <p className={className ?? "mt-2 text-xs text-faint"}>
+    <p className={className ?? "mt-2 text-xs leading-relaxed text-muted"}>
       <span>{detail ? `${detail} · ` : "来源 · "}</span>
       {href ? (
         <a
           href={href}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-1 text-muted underline decoration-fg/30 underline-offset-4 hover:text-fg"
+          className="inline-flex items-center gap-1 text-fg underline decoration-fg/50 underline-offset-4 hover:decoration-fg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fg"
         >
           {label}
           <ExternalLink className="size-3" aria-hidden="true" />

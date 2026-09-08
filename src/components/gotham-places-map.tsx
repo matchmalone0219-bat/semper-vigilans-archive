@@ -316,18 +316,18 @@ export function GothamPlacesMap() {
 
   return (
     <main className="min-h-svh bg-bg">
-      <header className="mx-auto max-w-7xl px-4 pb-4 pt-6 sm:px-6 sm:pb-8 sm:pt-10">
+      <header className="mx-auto max-w-7xl px-4 pb-3 pt-4 sm:px-6 sm:pb-8 sm:pt-10">
         <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
           Gotham Places / Interactive Map
         </p>
         <div className="mt-3 flex flex-col gap-3 sm:gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <h1 className="font-sans text-4xl font-black tracking-tight sm:text-5xl">哥谭地点</h1>
-            <p className="mt-2 max-w-3xl text-pretty text-sm leading-relaxed text-muted sm:mt-3 sm:text-base">
+            <p className="mt-3 hidden max-w-3xl text-pretty text-base leading-relaxed text-muted sm:block">
               下城区基于电影《新蝙蝠侠》官方设定地图重绘；中城区与上城区由限定剧《企鹅人》剧中地图补完。点击地点标记可查看考据解析，并进入完整档案。
             </p>
           </div>
-          <div className="flex gap-2 overflow-x-auto pb-1 text-xs sm:flex-wrap sm:overflow-visible sm:pb-0">
+          <div className="hidden gap-2 text-xs sm:flex sm:flex-wrap">
             {Object.entries(EVIDENCE).map(([key, item]) => (
               <span
                 key={key}
@@ -340,25 +340,27 @@ export function GothamPlacesMap() {
           </div>
         </div>
 
-        <ul className="mt-4 flex snap-x gap-2 overflow-x-auto pb-1 sm:mt-6 sm:grid sm:grid-cols-3 sm:overflow-visible sm:pb-0">
+        <ul aria-label="地图区域" className="mt-3 grid grid-cols-3 gap-2 sm:mt-6">
           {REGIONS.map((item) => (
-            <li key={item.id} className="min-w-[10.5rem] flex-1 snap-start sm:min-w-0">
+            <li key={item.id} className="min-w-0">
               <button
                 type="button"
                 onClick={() => selectRegion(item.id)}
                 aria-pressed={item.id === regionId}
-                className={`w-full p-3 text-left transition-colors sm:p-4 ${
+                className={`min-h-11 w-full px-2 py-2 text-center transition-colors sm:p-4 sm:text-left ${
                   item.id === regionId
                     ? "border border-blood bg-blood text-fg"
-                    : "border border-fg/10 bg-surface text-faint hover:border-fg/30 hover:text-muted"
+                    : "border border-fg/20 bg-surface text-muted hover:border-fg/40 hover:text-fg"
                 } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/70`}
               >
-                <p className="font-display text-xs font-semibold tracking-[0.24em] uppercase">
+                <p className="hidden font-display text-xs font-semibold tracking-[0.24em] uppercase sm:block">
                   {item.name}
                 </p>
-                <span className="mt-1 flex items-end justify-between gap-3">
-                  <span className="font-sans text-xl font-black tracking-tight">{item.zh}</span>
-                  <span className="text-[11px]">{item.status}</span>
+                <span className="flex items-end justify-center gap-3 sm:mt-1 sm:justify-between">
+                  <span className="font-sans text-base font-black tracking-tight sm:text-xl">
+                    {item.zh}
+                  </span>
+                  <span className="hidden text-xs sm:inline">{item.status}</span>
                 </span>
               </button>
             </li>
@@ -396,16 +398,35 @@ export function GothamPlacesMap() {
       <section className="border-y border-fg/10 bg-surface/40">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
           <div>
-            <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="mb-3 flex flex-col gap-3 sm:mb-4 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-3xl">
-                <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
+                <p className="hidden font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase sm:block">
                   Map of Gotham City {region.name}
                 </p>
-                <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <div className="hidden flex-wrap items-baseline gap-x-3 gap-y-1 sm:mt-1 sm:flex">
                   <h2 className="font-sans text-2xl font-black tracking-tight">{region.zh}</h2>
                   <span className="text-xs text-faint">{region.status}</span>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{region.description}</p>
+                <p className="mt-2 hidden text-sm leading-relaxed text-muted sm:block">
+                  {region.description}
+                </p>
+                <details key={regionId} className="text-sm text-muted sm:hidden">
+                  <summary className="cursor-pointer py-1 font-semibold text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fg">
+                    {region.zh} · 区域介绍与地图说明
+                  </summary>
+                  <p className="mt-2 leading-relaxed">{region.description}</p>
+                  <p className="mt-2 leading-relaxed">
+                    下城区基于电影《新蝙蝠侠》官方设定地图重绘；中城区与上城区由限定剧《企鹅人》剧中地图补完。点击地点标记可查看考据解析，并进入完整档案。
+                  </p>
+                  <ul className="mt-3 flex flex-wrap gap-3 text-xs">
+                    {Object.entries(EVIDENCE).map(([key, item]) => (
+                      <li key={key} className="inline-flex items-center gap-2">
+                        <span className={`size-2 ${item.className}`} />
+                        {item.label}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
               </div>
               <div className="flex flex-wrap items-center justify-end gap-2">
                 {regionId === "downtown" ? (
@@ -415,7 +436,7 @@ export function GothamPlacesMap() {
                     aria-pressed={floodPlan}
                     aria-expanded={floodPlan}
                     aria-controls="map-detail-card"
-                    className={`flex h-10 items-center gap-2 border px-3 font-display text-[10px] font-semibold tracking-[0.16em] uppercase transition-colors ${
+                    className={`flex h-11 items-center gap-2 border px-2 font-sans text-sm font-semibold transition-colors ${
                       floodPlan
                         ? "border-blood bg-blood text-fg"
                         : "border-fg/10 bg-bg text-muted hover:border-blood hover:text-blood"
@@ -434,7 +455,7 @@ export function GothamPlacesMap() {
                   >
                     <Minus className="size-4" />
                   </button>
-                  <span className="w-14 text-center font-mono text-xs text-faint">
+                  <span className="w-12 text-center font-mono text-sm text-muted">
                     {Math.round(scale * 100)}%
                   </span>
                   <button
@@ -458,7 +479,7 @@ export function GothamPlacesMap() {
             </div>
 
             <div
-              className="relative flex h-[68svh] min-h-96 max-h-[760px] touch-none select-none items-center justify-center overflow-hidden border border-fg/15 bg-[#08090b]"
+              className="relative flex h-[52svh] min-h-80 max-h-[760px] touch-none select-none items-center justify-center overflow-hidden border border-fg/15 bg-[#08090b] sm:h-[68svh] sm:min-h-96"
               onWheel={onWheel}
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
@@ -537,7 +558,7 @@ export function GothamPlacesMap() {
                     ))
                   : null}
               </div>
-              <p className="pointer-events-none absolute bottom-3 left-3 bg-bg/80 px-2 py-1 text-[10px] text-faint">
+              <p className="pointer-events-none absolute bottom-3 left-3 bg-bg/90 px-2 py-1 text-xs text-muted">
                 拖动地图 · 滚轮或双指缩放
               </p>
               {regionId === "downtown" && floodPlan ? (

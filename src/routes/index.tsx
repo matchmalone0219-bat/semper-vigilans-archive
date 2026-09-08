@@ -170,22 +170,25 @@ function Home() {
           <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
             Core Archives
           </p>
-          <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
+          <h2 className="archive-title mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
             核心档案
           </h2>
         </div>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-          {CORE_LINKS.map((item) => (
+          {CORE_LINKS.map((item, index) => (
             <li key={item.to}>
-              <Link to={item.to} className="group relative isolate block min-h-72 overflow-hidden">
+              <Link to={item.to} className="archive-card group relative isolate block min-h-72 overflow-hidden border-t border-fg/25">
                 <img
                   src={item.image}
                   alt=""
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 size-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  className="absolute inset-0 size-full object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02] group-focus-visible:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/35 to-transparent" />
+                <span className="absolute left-5 top-4 border-b border-blood bg-bg/85 px-2 py-1 font-mono text-xs tracking-widest text-fg sm:left-6">
+                  FILE / {String(index + 1).padStart(2, "0")}
+                </span>
                 <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
                   <p className="font-display text-xs font-semibold tracking-[0.26em] text-fg/70 uppercase">
                     {item.kicker}

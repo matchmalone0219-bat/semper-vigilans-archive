@@ -45,9 +45,9 @@ function PeopleIndex() {
         return (
           <section key={faction.id} className="border-t border-fg/10">
             <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-              <p className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
+              <h2 className="archive-title font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
                 {faction.label}
-              </p>
+              </h2>
               <p className="mt-2 max-w-2xl text-pretty text-sm text-muted">{faction.note}</p>
               <ul className="mt-8 grid border-l border-t border-fg/10 sm:grid-cols-2">
                 {members.map((p) => (
@@ -55,7 +55,7 @@ function PeopleIndex() {
                     <Link
                       to="/people/$id"
                       params={{ id: p.id }}
-                      className="flex items-start gap-4 p-5 hover:bg-surface/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blood/70"
+                      className="archive-card flex h-full items-start gap-4 p-5"
                     >
                       {p.portrait ? (
                         <img
@@ -70,12 +70,13 @@ function PeopleIndex() {
                         />
                       ) : null}
                       <span>
+                        <p className="mb-2 font-mono text-xs tracking-widest text-faint">FILE / {String(PEOPLE.indexOf(p) + 1).padStart(2, "0")}</p>
                         <p className="font-display text-xs font-semibold tracking-[0.18em] text-faint uppercase">
                           {p.sub} · {STATUS_LABEL[p.status]}
                         </p>
-                        <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">
+                        <h3 className="mt-1 font-sans text-2xl font-black tracking-tight">
                           {p.name}
-                        </h2>
+                        </h3>
                         {p.actor ? <p className="mt-1 text-sm text-muted">{p.actor}</p> : null}
                       </span>
                     </Link>

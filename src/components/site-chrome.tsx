@@ -109,8 +109,8 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 <Link
                   to={item.to}
                   className={cn(
-                    "flex items-center gap-1 text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-150",
-                    navActive(item, pathname) ? "font-bold text-blood" : "text-muted hover:text-fg",
+                    "flex items-center gap-1 border-b-2 py-2 text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-150",
+                    navActive(item, pathname) ? "border-blood font-bold text-fg" : "border-transparent text-muted hover:border-blood hover:text-fg",
                   )}
                 >
                   {item.label}
@@ -119,13 +119,15 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                   ) : null}
                 </Link>
                 {"children" in item && item.children.length > 0 ? (
-                  <div className="pointer-events-none absolute left-1/2 top-[calc(100%-1px)] min-w-44 -translate-x-1/2 border border-fg/10 bg-bg/95 p-2 opacity-0 shadow-2xl backdrop-blur-md transition-opacity group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+                  <div className="pointer-events-none absolute left-1/2 top-[calc(100%-1px)] min-w-44 -translate-x-1/2 border border-fg/15 border-t-2 border-t-blood bg-surface p-2 opacity-0 shadow-2xl transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
                     {item.children.map((child) => (
                       <Link
                         key={`${child.to}-${"hash" in child ? child.hash : child.label}`}
                         to={child.to}
                         hash={"hash" in child ? child.hash : undefined}
-                        className="block whitespace-nowrap px-3 py-2 text-sm tracking-[0.12em] text-muted hover:bg-surface hover:text-fg"
+                        data-selected={pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === ("hash" in child ? child.hash : "")}
+                        activeOptions={{ exact: true, includeHash: true }}
+                        className="archive-nav-link block whitespace-nowrap px-3 py-2 text-sm tracking-[0.12em] text-muted focus-visible:outline-2 focus-visible:outline-fg"
                       >
                         {child.label}
                       </Link>
@@ -149,7 +151,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       </header>
 
       {open ? (
-        <div className="fixed inset-0 z-30 bg-bg/95 pt-16 md:hidden">
+        <div className="fixed inset-0 z-30 overflow-y-auto bg-surface pt-16 md:hidden">
           <nav className="flex flex-col gap-1 px-6 py-6">
             {NAV.map((item) => (
               <div key={item.to} className="border-b border-fg/10 py-3 last:border-0">
@@ -169,7 +171,9 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                         key={`${child.to}-${"hash" in child ? child.hash : child.label}`}
                         to={child.to}
                         hash={"hash" in child ? child.hash : undefined}
-                        className="text-sm tracking-[0.12em] text-faint hover:text-fg"
+                        data-selected={pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === ("hash" in child ? child.hash : "")}
+                        activeOptions={{ exact: true, includeHash: true }}
+                        className="archive-nav-link px-2 py-1 text-sm tracking-[0.12em] text-muted focus-visible:outline-2 focus-visible:outline-fg"
                       >
                         {child.label}
                       </Link>

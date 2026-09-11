@@ -1,5 +1,5 @@
 import { GEAR } from "@/lib/gear";
-import { LOG } from "@/lib/film";
+import { LOG } from "@/data/film";
 import { MERCH } from "@/lib/merch";
 import { PLACES } from "@/lib/places";
 import { PEOPLE } from "@/lib/people";

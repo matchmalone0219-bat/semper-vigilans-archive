@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { latestLog, logImages, pageTitle } from "@/lib/film";
 import {
   CERTAINTY_LABEL,
   CAST,
@@ -8,10 +9,7 @@ import {
   LOG,
   LOG_KIND,
   PLOT,
-  latestLog,
-  logImages,
-  pageTitle,
-} from "@/lib/film";
+} from "@/data/film";
 import { RelationMap } from "@/components/relation-map";
 import { LogCarousel } from "@/components/log-carousel";
 import { BiliPlayer } from "@/components/bili-player";

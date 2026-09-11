@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { pageTitle } from "@/lib/film";
+import { SPEAKER_MAP } from "@/lib/interviews";
 import {
   INTERVIEWS,
   SPEAKERS,
-  SPEAKER_MAP,
   WORK_LABEL,
   type InterviewWork,
-} from "@/lib/interviews";
+} from "@/data/interviews";
 import { SourceLink } from "@/components/source-link";
 import { cn } from "@/lib/cn";
 

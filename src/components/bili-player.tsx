@@ -1,5 +1,5 @@
 import { cn } from "@/lib/cn";
-import type { LogVideo } from "@/lib/film";
+import type { LogVideo } from "@/data/film";
 
 export function BiliPlayer({
   video,

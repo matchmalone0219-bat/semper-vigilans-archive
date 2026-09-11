@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FILM } from "@/lib/film";
+import { FILM } from "@/data/film";
 import { cn } from "@/lib/cn";
 
 type Remain = { days: number; hours: number; minutes: number; seconds: number };

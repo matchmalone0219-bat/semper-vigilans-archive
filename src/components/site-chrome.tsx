@@ -2,7 +2,7 @@ import { type ReactNode, useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { FILM } from "@/lib/film";
+import { FILM } from "@/data/film";
 
 const NAV = [
   {

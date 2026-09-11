@@ -7,7 +7,8 @@ import { resolveStills } from "@/lib/gallery";
 import { StillGrid } from "@/components/still-grid";
 import { cn } from "@/lib/cn";
 import { pageTitle } from "@/lib/film";
-import { interviewsByPerson, WORK_LABEL } from "@/lib/interviews";
+import { interviewsByPerson } from "@/lib/interviews";
+import { WORK_LABEL } from "@/data/interviews";
 import { ChapterNav } from "@/components/chapter-nav";
 import { ArchiveDisclosure } from "@/components/archive-disclosure";
 

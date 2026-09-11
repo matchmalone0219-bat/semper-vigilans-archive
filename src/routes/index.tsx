@@ -3,7 +3,8 @@ import { ArrowRight, MapPin, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Countdown } from "@/components/countdown";
 import { Rain } from "@/components/atmosphere";
-import { FILM, latestLog, pageTitle } from "@/lib/film";
+import { latestLog, pageTitle } from "@/lib/film";
+import { FILM } from "@/data/film";
 
 export const Route = createFileRoute("/")({
   head: () => ({

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ARKHAM_SCENE, BRUCE_JOURNALS, CASE_FILES } from "@/lib/cases";
 import { pageTitle } from "@/lib/film";
@@ -8,6 +9,32 @@ export const Route = createFileRoute("/cases")({
   }),
   component: Cases,
 });
+
+function CaseNumberButton({ caseNo, id }: { caseNo: string; id: string }) {
+  const [copied, setCopied] = useState(false);
+
+  function handleCopy() {
+    const url = `${window.location.origin}${window.location.pathname}#${id}`;
+    navigator.clipboard?.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      title="点击复制案卷永久锚点链接"
+      className="group/btn inline-flex items-center gap-2 font-display text-xs font-semibold tracking-[0.2em] text-blood uppercase transition-colors hover:text-fg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blood"
+    >
+      <span>{caseNo}</span>
+      <span className="font-mono text-[10px] tracking-normal text-faint transition-colors group-hover/btn:text-muted">
+        {copied ? "[已复制锚点]" : "[复制链接]"}
+      </span>
+    </button>
+  );
+}
 
 function Cases() {
   return (
@@ -74,9 +101,7 @@ function Cases() {
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-fg/10 pb-4">
                   <div>
-                    <span className="font-display text-xs font-semibold tracking-[0.2em] text-blood uppercase">
-                      {c.caseNo}
-                    </span>
+                    <CaseNumberButton caseNo={c.caseNo} id={c.id} />
                     <h3 className="mt-1 font-sans text-2xl font-black tracking-tight sm:text-3xl">
                       {c.title}
                     </h3>

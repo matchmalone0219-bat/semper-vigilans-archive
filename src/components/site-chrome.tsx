@@ -68,8 +68,24 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const hash = useRouterState({ select: (s) => s.location.hash });
   const [open, setOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const isHome = pathname === "/";
   const isRata = pathname.startsWith("/rataalada");
+
+  useEffect(() => {
+    function onScroll() {
+      const el = document.documentElement;
+      const total = el.scrollHeight - window.innerHeight;
+      if (total > 0) {
+        setScrollProgress(Math.min(1, Math.max(0, window.scrollY / total)));
+      } else {
+        setScrollProgress(0);
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname]);
 
   useEffect(() => {
     setOpen(false);
@@ -148,6 +164,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             </button>
           </div>
         </div>
+        {/* Crimson Scroll Reading Progress Indicator */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[1.5px] origin-left bg-blood transition-transform duration-75 ease-out"
+          style={{ transform: `scaleX(${scrollProgress})` }}
+          aria-hidden="true"
+        />
       </header>
 
       {open ? (

@@ -519,6 +519,12 @@ export function GothamPlacesMap() {
                         aria-expanded={active}
                         aria-controls="map-detail-card"
                       >
+                        {active ? (
+                          <span
+                            className="pointer-events-none absolute inset-0 -m-3 animate-ping rounded-full border border-blood bg-blood/25"
+                            aria-hidden="true"
+                          />
+                        ) : null}
                         <span
                           className={`relative block size-9 text-fg drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)] transition-transform group-hover:scale-110 ${
                             active ? "scale-110 text-blood" : ""
@@ -558,9 +564,14 @@ export function GothamPlacesMap() {
                     ))
                   : null}
               </div>
-              <p className="pointer-events-none absolute bottom-3 left-3 bg-bg/90 px-2 py-1 text-xs text-muted">
-                拖动地图 · 滚轮或双指缩放
-              </p>
+              <div className="pointer-events-none absolute bottom-3 left-3 border border-fg/10 bg-bg/90 px-2.5 py-1.5 backdrop-blur-xs">
+                <p className="text-xs text-muted">
+                  拖动地图 · 滚轮或双指缩放
+                </p>
+                <p className="mt-0.5 font-mono text-[9px] tracking-wider text-faint uppercase">
+                  GOTHAM BASIN // ELEV: -4.2M · HUD COORD LOCK
+                </p>
+              </div>
               {regionId === "downtown" && floodPlan ? (
                 <p className="pointer-events-none absolute bottom-3 right-3 bg-blood px-2 py-1 font-display text-[10px] font-semibold tracking-[0.14em] text-fg uppercase">
                   7 points / film reconstruction

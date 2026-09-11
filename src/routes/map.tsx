@@ -1,10 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { GothamPlacesMap } from "@/components/gotham-places-map";
-import { pageTitle } from "@/lib/film";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/map")({
-  head: () => ({
-    meta: [{ title: pageTitle("哥谭地点") }],
-  }),
-  component: GothamPlacesMap,
+  beforeLoad: () => {
+    throw redirect({
+      to: "/places",
+      search: true,
+      hash: true,
+      replace: true,
+    });
+  },
+  component: () => null,
 });

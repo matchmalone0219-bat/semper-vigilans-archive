@@ -61,7 +61,7 @@ const QUICK_LINKS = [
 function Home() {
   const [activeVideo, setActiveVideo] = useState<LogVideo | null>(null);
 
-  // 1. 最新视频/预告物料（优先最近一条带 B 站转载的日志）
+  // 1. 最新视频/预告物料（头条视频 + 3条精选）
   const videoLogs = LOG.filter((e) => e.video && !e.upcoming);
   const featuredVideoEntry = videoLogs[videoLogs.length - 1];
   const featuredVideo: LogVideo = featuredVideoEntry?.video ?? {
@@ -72,19 +72,24 @@ function Home() {
   const archiveVideos = (() => {
     const others = videoLogs.filter((e) => e !== featuredVideoEntry);
     const cameraTest = others.find((e) => e.iso === "2026-07-15");
-    const recent = others.filter((e) => e !== cameraTest).slice(-3).reverse();
+    const recent = others.filter((e) => e !== cameraTest).slice(-2).reverse();
     return cameraTest ? [...recent, cameraTest] : recent;
   })();
 
-  // 2. 最新片场实拍日志（头条 + 最近两条精简动态）
+  // 2. 最新片场实拍日志（头条实拍 + 最近三条动态）
   const shootLogs = LOG.filter((e) => e.kind === "shoot" && !e.upcoming);
   const latestShoot = shootLogs[shootLogs.length - 1] ?? LOG[0];
-  const recentShoots = shootLogs.slice(-3, -1).reverse();
+  const recentShoots = shootLogs.slice(-4, -1).reverse();
 
-  // 3. 最新人物访谈
+  // 3. 最新人物访谈（头条专访 + 2条核心主创观点）
   const sortedInterviews = [...INTERVIEWS].sort((a, b) => b.iso.localeCompare(a.iso));
   const latestInterview = sortedInterviews[0];
   const interviewSpeaker = latestInterview ? SPEAKER_MAP[latestInterview.speakerId] : null;
+
+  const secondaryInterviewIds = ["pattinson-mymovies-direction", "farrell-sr-part2"] as const;
+  const secondaryInterviews = secondaryInterviewIds
+    .map((id) => INTERVIEWS.find((q) => q.id === id))
+    .filter((q): q is NonNullable<typeof q> => Boolean(q));
 
   useEffect(() => {
     if (!activeVideo) return;
@@ -180,7 +185,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 02 / Signals Hub · 三栏联动情报看板 */}
+      {/* 02 / Signals Hub · 三栏联动情报看板（均衡内容密度优化） */}
       <section className="border-b border-fg/10 bg-surface/30">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-18">
           <div className="flex flex-col gap-4 border-b border-fg/10 pb-6 lg:flex-row lg:items-end lg:justify-between">
@@ -206,15 +211,15 @@ function Home() {
                     01 / Video · 预告与影音
                   </span>
                   <span className="border border-blood/40 bg-blood/10 px-2 py-0.5 font-display text-[10px] font-semibold tracking-[0.16em] text-blood uppercase">
-                    {videoLogs.length} 条
+                    官方物料
                   </span>
                 </div>
 
-                <h3 className="mt-4 font-sans text-xl font-black tracking-tight text-fg">
+                <h3 className="mt-4 line-clamp-1 font-sans text-lg font-black tracking-tight text-fg sm:text-xl">
                   {featuredVideoEntry?.title ?? "首曝镜头与定档前瞻"}
                 </h3>
                 <p className="mt-1 text-xs text-muted">
-                  {featuredVideoEntry?.date ?? FILM.releaseLabel} · B 站转载
+                  {featuredVideoEntry?.date ?? FILM.releaseLabel} · B 站高清转存
                 </p>
 
                 <div
@@ -252,14 +257,18 @@ function Home() {
                   </div>
                 </div>
 
-                {archiveVideos.length > 0 ? (
-                  <ul className="mt-3 space-y-1.5">
+                {/* 更多视频列表 */}
+                <div className="mt-3.5 border-t border-fg/10 pt-3">
+                  <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
+                    收录影像片段
+                  </p>
+                  <ul className="mt-2 space-y-1.5">
                     {archiveVideos.map((entry) => (
                       <li key={entry.iso}>
                         <button
                           type="button"
                           onClick={() => entry.video && setActiveVideo(entry.video)}
-                          className="flex w-full items-center gap-2 border border-transparent px-1 py-1 text-left hover:border-fg/15 hover:bg-elevated"
+                          className="flex w-full items-center gap-2 border border-transparent px-1 py-1 text-left transition-colors hover:border-fg/15 hover:bg-elevated"
                         >
                           <Play className="size-3 shrink-0 fill-current text-blood" />
                           <span className="min-w-0 flex-1 truncate text-[11px] text-muted">
@@ -270,11 +279,7 @@ function Home() {
                       </li>
                     ))}
                   </ul>
-                ) : null}
-
-                <p className="mt-3 text-xs leading-relaxed text-faint">
-                  收录官方测试镜头与格拉斯哥片场实拍转载。官方先行预告发布后会在此同步。
-                </p>
+                </div>
               </div>
 
               <div className="mt-6 border-t border-fg/10 pt-4">
@@ -283,13 +288,13 @@ function Home() {
                   onClick={() => setActiveVideo(featuredVideo)}
                   className="flex w-full items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
                 >
-                  <span>▶ 弹窗播放最新片场</span>
+                  <span>▶ 弹窗播放最新影像</span>
                   <ArrowRight className="size-4" />
                 </button>
               </div>
             </div>
 
-            {/* 板块 2：片场实拍动态 */}
+            {/* 板块 2：片场实拍动态（图文结合与近期时间线） */}
             <div className="flex flex-col justify-between border border-fg/15 bg-surface p-5 transition-colors hover:border-fg/30 sm:p-6">
               <div>
                 <div className="flex items-center justify-between">
@@ -301,24 +306,45 @@ function Home() {
                   </span>
                 </div>
 
+                <h3 className="mt-4 line-clamp-1 font-sans text-lg font-black tracking-tight text-fg sm:text-xl">
+                  {latestShoot.title}
+                </h3>
+                <p className="mt-1 text-xs text-muted">
+                  苏格兰格拉斯哥 · 实景封街夜战
+                </p>
+
+                {/* 片场高清配图缩略图 */}
                 <Link
                   to="/dossier"
                   hash="log"
-                  className="group/log mt-4 block"
+                  className="group/shoot relative mt-4 block aspect-video w-full overflow-hidden border border-fg/20 bg-elevated"
                 >
-                  <h3 className="font-sans text-xl font-black tracking-tight text-fg transition-colors group-hover/log:text-blood">
-                    {latestShoot.title}
-                  </h3>
-                  <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted">
-                    {latestShoot.body}
-                  </p>
+                  <img
+                    src={latestShoot.image ?? "/media/p2-snow1.jpg"}
+                    alt={latestShoot.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="size-full object-cover transition-transform duration-300 group-hover/shoot:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-3">
+                    <span className="line-clamp-1 font-sans text-[11px] font-bold text-fg/90">
+                      外景现场：{latestShoot.title}
+                    </span>
+                  </div>
                 </Link>
 
-                <div className="mt-4 border-t border-fg/10 pt-3">
+                {/* 核心段落摘要 */}
+                <p className="mt-2.5 line-clamp-2 text-xs leading-relaxed text-muted">
+                  {latestShoot.body}
+                </p>
+
+                {/* 近期关键进展列表 */}
+                <div className="mt-3.5 border-t border-fg/10 pt-3">
                   <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
                     近期关键进展
                   </p>
-                  <ul className="mt-2 space-y-2">
+                  <ul className="mt-2 space-y-1.5">
                     {recentShoots.map((entry) => (
                       <li key={entry.date + entry.title} className="text-xs">
                         <Link
@@ -345,13 +371,13 @@ function Home() {
                   hash="log"
                   className="flex items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
                 >
-                  <span>完整拍摄日志与来源</span>
+                  <span>查阅完整拍摄日志</span>
                   <ArrowRight className="size-4" />
                 </Link>
               </div>
             </div>
 
-            {/* 板块 3：人物访谈与核心金句 */}
+            {/* 板块 3：人物访谈（头条金句 + 更多核心主创原话） */}
             <div className="flex flex-col justify-between border border-fg/15 bg-surface p-5 transition-colors hover:border-fg/30 sm:p-6">
               <div>
                 <div className="flex items-center justify-between">
@@ -363,13 +389,14 @@ function Home() {
                   </span>
                 </div>
 
+                {/* 头条人物卡片 */}
                 {interviewSpeaker ? (
-                  <div className="mt-4 flex items-center gap-3">
+                  <div className="mt-4 flex items-center gap-3 border-b border-fg/10 pb-3">
                     {interviewSpeaker.portrait ? (
                       <img
                         src={interviewSpeaker.portrait}
                         alt={interviewSpeaker.name}
-                        className="size-11 shrink-0 object-cover border border-fg/20"
+                        className="size-11 shrink-0 border border-fg/20 object-cover"
                       />
                     ) : null}
                     <div>
@@ -381,19 +408,53 @@ function Home() {
                   </div>
                 ) : null}
 
+                {/* 焦点核心金句 */}
                 {latestInterview ? (
-                  <>
-                    <blockquote className="mt-3 border-l-2 border-blood pl-3 text-pretty text-xs leading-relaxed text-fg/90">
-                      “{latestInterview.quoteZh.length > 90
-                        ? `${latestInterview.quoteZh.slice(0, 90)}……`
+                  <div className="mt-3">
+                    <blockquote className="border-l-2 border-blood pl-3 text-pretty text-xs leading-relaxed text-fg/90">
+                      “{latestInterview.quoteZh.length > 76
+                        ? `${latestInterview.quoteZh.slice(0, 76)}……`
                         : latestInterview.quoteZh}”
                     </blockquote>
-
-                    <p className="mt-2 line-clamp-2 text-[11px] italic text-faint">
+                    <p className="mt-2 line-clamp-1 text-[11px] italic text-faint">
                       {latestInterview.quoteEn}
                     </p>
-                  </>
+                  </div>
                 ) : null}
+
+                {/* 更多主创观点精选 */}
+                <div className="mt-3.5 border-t border-fg/10 pt-3">
+                  <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
+                    更多主创观点精选
+                  </p>
+                  <ul className="mt-2 space-y-2">
+                    {secondaryInterviews.map((q) => {
+                      const spk = SPEAKER_MAP[q.speakerId];
+                      return (
+                        <li key={q.id} className="text-xs">
+                          <Link
+                            to="/interviews"
+                            hash={q.id}
+                            className="group/voice block text-muted hover:text-fg"
+                          >
+                            <div className="flex items-center justify-between text-[11px]">
+                              <span className="font-bold text-fg/90 transition-colors group-hover/voice:text-blood">
+                                {spk?.name ?? "主创"}
+                                <span className="ml-1.5 font-normal text-faint">
+                                  {spk?.role.split(" / ")[0]}
+                                </span>
+                              </span>
+                              <span className="font-mono text-[10px] text-faint">{q.date.slice(2)}</span>
+                            </div>
+                            <p className="mt-0.5 truncate text-[11px] text-muted transition-colors group-hover/voice:text-fg">
+                              “{q.quoteZh}”
+                            </p>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
               </div>
 
               <div className="mt-6 border-t border-fg/10 pt-4">
@@ -401,7 +462,7 @@ function Home() {
                   to="/interviews"
                   className="flex items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
                 >
-                  <span>人物访谈库（{INTERVIEWS.length} 条原话）</span>
+                  <span>查阅全部人物专访</span>
                   <ArrowRight className="size-4" />
                 </Link>
               </div>

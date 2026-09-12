@@ -94,6 +94,13 @@ export const SPEAKERS: InterviewSpeaker[] = [
     role: "摄影指导",
     portrait: "/media/cast/fraser-v2.jpg",
   },
+  {
+    id: "stan",
+    name: "塞巴斯蒂安·斯坦",
+    nameEn: "Sebastian Stan",
+    role: "《新蝙蝠侠2》主演（角色未公布）",
+    portrait: "/media/cast/stan.jpg",
+  },
 ];
 
 export type InterviewQuote = {
@@ -537,5 +544,61 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "It's just amazing. It's a quite radical change of the script. It's cool that Warner's behind it, and DC. It's just crazy. I think Matt is the only person who anybody would allow to do it, because it's kind of a really radical retelling of Batman. I think people are going to be excited by it.",
     note: "帕丁森强调第二部剧本并非延续首部的既定套路，而是在叙事与角色塑造上进行了大胆重塑；华纳与 DC 给予了马特·里夫斯极高创作自由度。谈话未涉及具体剧情与反派细节。",
+  },
+  {
+    id: "stan-variety-godfather",
+    speakerId: "stan",
+    work: "part2",
+    date: "2026.09",
+    iso: "2026-09-11",
+    outlet: "Variety",
+    sourceUrl:
+      "https://variety.com/2026/film/awards/sebastian-stan-fjord-maga-the-batman-2-godfather-1236859214/",
+    quoteZh:
+      "我有时走进片场四周一看，就会觉得：我们这是在拍他妈的《教父2》。我不想把话说太满，但我觉得会有回报。",
+    quoteEn:
+      "I go to set sometimes and I look around and I’m like, I think we’re making fucking ‘Godfather Part Two,’ I really don’t want to raise it up, but I do feel like it’s going to be a payoff.",
+    note: "2026 年 9 月 11 日《Variety》专访。斯坦未确认自己的角色；记者提起哈维·丹特传闻时他拒绝作答。",
+  },
+  {
+    id: "stan-variety-grounded",
+    speakerId: "stan",
+    work: "part2",
+    date: "2026.09",
+    iso: "2026-09-11",
+    outlet: "Variety",
+    sourceUrl:
+      "https://variety.com/2026/film/awards/sebastian-stan-fjord-maga-the-batman-2-godfather-1236859214/",
+    quoteZh:
+      "在看到成片之前，没人能真正搞清楚这部电影是什么样。大家在猜这些角色、猜这部电影是什么，但我觉得会有回报——它很落地、很真实，这也是我喜欢的地方。你当然想稍微透一点，可离上映还早。",
+    quoteEn:
+      "There’s no way people will fully grasp how this movie is until they see it. … There’s a lot of speculation about these roles, about what this movie is, but I think it’s going to be a good payoff — it’s really grounded and real, and that’s what I loved about it. You want to tease it a little, but we still have a long time.",
+    note: "同篇专访。里夫斯打磨剧本约三年。角色身份仍未公布。",
+  },
+  {
+    id: "stan-variety-gunn",
+    speakerId: "stan",
+    work: "part2",
+    date: "2026.09",
+    iso: "2026-09-11",
+    outlet: "Variety",
+    sourceUrl:
+      "https://variety.com/2026/film/awards/sebastian-stan-fjord-maga-the-batman-2-godfather-1236859214/",
+    quoteZh:
+      "两件事差不多同时发生。我接到电话去见马特·里夫斯，他看过《学徒》而且很喜欢，说想跟我谈谈这部新电影。同一时间我联系了詹姆斯·古恩，说我就在这儿，活得好好的，随时可以开工。然后这事就成了。",
+    quoteEn:
+      "Two things happened at the same time. I got a call to go meet Matt Reeves, who had seen The Apprentice and loved it and said, 'I want to talk to you about this new movie.' And at the same time, I'd reached out to James Gunn and said, 'Listen, man, I’m just letting you know — I’m here, I’m alive and well, I’m ready to rock.' And then it happened.",
+  },
+  {
+    id: "stan-screenrant-winter",
+    speakerId: "stan",
+    work: "part2",
+    date: "2026.09",
+    iso: "2026-09-11",
+    outlet: "ScreenRant（TIFF 红毯）",
+    sourceUrl: "https://www.superherohype.com/news/692533-sebastian-stan-provides-the-batman-2-production-timeline",
+    quoteZh: "还要拍很久。这是一个漫长的冬天。",
+    quoteEn: "A very long time. It's a long winter.",
+    note: "多伦多电影节宣传《Fjord》时被问及续集还要拍多久。与帕丁森《GQ》所说拍摄持续到年底一致。",
   },
 ];

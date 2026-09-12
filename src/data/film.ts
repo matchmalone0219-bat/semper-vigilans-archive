@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.09.07";
+export const CONTENT_REVIEWED_AT = "2026.09.12";
 
 export const FACTS: {
   label: string;
@@ -209,7 +209,7 @@ export const CAST: {
     roleEn: "Undisclosed Role",
     name: "塞巴斯蒂安·斯坦",
     nameEn: "Sebastian Stan",
-    note: "官方确认加盟。具体饰演角色目前保持保密。",
+    note: "官方确认加盟。具体角色未公布。2026 年 9 月 11 日《Variety》专访中，记者提起哈维·丹特传闻时他拒绝作答，并称续集仍在拍摄、还要经历一个漫长冬天。",
     status: "confirmed",
   },
   {

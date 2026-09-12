@@ -400,6 +400,13 @@ export const GOTHAM: GothamEra[] = [
         href: "/dossier",
       },
       {
+        when: "2026.09.11",
+        title: "斯坦谈片场感受与拍摄周期",
+        line: "塞巴斯蒂安·斯坦对《Variety》称走进片场会联想到《教父2》，并说成片落地、真实；记者问起哈维·丹特时他拒绝确认。TIFF 红毯上他说拍摄还要很久，「这是一个漫长的冬天」。角色仍未公布。",
+        source: "Variety / ScreenRant",
+        href: "/interviews",
+      },
+      {
         when: "2028.02.18",
         title: "现行北美院线档期",
         line: "影片现行北美档期为 2028 年 2 月 18 日；最终发行规格与剧情内容以片方后续信息为准。",

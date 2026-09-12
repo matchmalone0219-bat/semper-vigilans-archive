@@ -108,7 +108,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rain-layer,
+  .snow-layer {
+    display: none;
+  }
   .grain-layer {
     animation: none !important;
   }
@@ -124,7 +126,7 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
 }
 
-.rain-layer {
+.snow-layer {
   pointer-events: none;
   position: absolute;
   inset: 0;
@@ -132,26 +134,31 @@
   z-index: 2;
 }
 
-.rain-layer span {
+.snow-layer span {
   position: absolute;
-  top: -20%;
-  width: 1px;
-  height: 22px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    color-mix(in oklab, var(--color-fg) 35%, transparent)
-  );
-  animation: rainfall linear infinite;
-  opacity: 0.45;
+  top: -8%;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-fg) 88%, transparent);
+  box-shadow: 0 0 6px color-mix(in oklab, var(--color-fg) 28%, transparent);
+  animation: snowfall ease-in infinite;
+  opacity: 0.7;
+  will-change: transform;
 }
 
-@keyframes rainfall {
-  from {
+@keyframes snowfall {
+  0% {
     transform: translate3d(0, 0, 0);
+    opacity: 0;
   }
-  to {
-    transform: translate3d(-12px, 120vh, 0);
+  12% {
+    opacity: 0.75;
+  }
+  55% {
+    transform: translate3d(var(--drift, 16px), 58vh, 0);
+  }
+  100% {
+    transform: translate3d(calc(var(--drift, 16px) * -0.45), 108vh, 0);
+    opacity: 0.12;
   }
 }
 

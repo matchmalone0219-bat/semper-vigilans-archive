@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, MapPin, Terminal, Play, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Countdown } from "@/components/countdown";
-import { Rain } from "@/components/atmosphere";
+import { Snow } from "@/components/atmosphere";
 import { BiliPlayer } from "@/components/bili-player";
 import { pageTitle } from "@/lib/film";
 import { FILM, LOG, type LogVideo } from "@/data/film";
@@ -115,7 +115,7 @@ function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-bg/25" />
         <div className="absolute inset-0 bg-gradient-to-r from-bg/55 to-transparent" />
-        <Rain />
+        <Snow />
         <div className="relative z-10 mx-auto flex min-h-svh max-w-6xl flex-col justify-end px-4 pb-16 pt-28 sm:px-6 sm:pb-20">
           <div className="stagger-in max-w-3xl">
             <p className="font-display text-sm font-semibold tracking-[0.42em] text-fg/70 uppercase">

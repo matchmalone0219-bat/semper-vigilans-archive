@@ -29,7 +29,7 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: PUBLIC_URL },
-      { property: "og:image", content: `${PUBLIC_URL}media/gotham.jpg` },
+      { property: "og:image", content: `${PUBLIC_URL}media/hero-winter.jpg` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

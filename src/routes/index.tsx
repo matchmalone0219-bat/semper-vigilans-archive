@@ -109,9 +109,9 @@ function Home() {
     <main>
       <section className="relative isolate min-h-svh overflow-hidden">
         <img
-          src="/media/gotham.jpg"
-          alt="雨夜中的哥谭市全景"
-          className="absolute inset-0 size-full object-cover"
+          src="/media/hero-winter.jpg"
+          alt="蝙蝠侠立于屋顶，俯瞰暮色与积云下的哥谭"
+          className="absolute inset-0 size-full object-cover object-[68%_center]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-bg/25" />
         <div className="absolute inset-0 bg-gradient-to-r from-bg/55 to-transparent" />

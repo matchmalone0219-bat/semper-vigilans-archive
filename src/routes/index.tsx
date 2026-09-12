@@ -171,10 +171,10 @@ function Home() {
           aria-hidden="true"
           loading="lazy"
           decoding="async"
-          className="pointer-events-none absolute inset-0 size-full object-cover opacity-20 grayscale contrast-125"
+          className="pointer-events-none absolute inset-0 size-full object-cover opacity-55 brightness-110 contrast-110"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-bg via-bg/75 to-bg" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-bg via-bg/85 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-bg/80 via-bg/35 to-bg/85" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-bg/75 via-bg/20 to-transparent" />
 
         <div className="relative z-10 mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-16 lg:py-20">
           <div>
@@ -197,8 +197,8 @@ function Home() {
       </section>
 
       {/* 02 / Signals Hub · 三栏联动情报看板（均衡内容密度优化） */}
-      <section className="border-b border-fg/10 bg-surface/30">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-18">
+      <section className="overflow-x-hidden border-b border-fg/10 bg-surface/30">
+        <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-18">
           <div className="flex flex-col gap-4 border-b border-fg/10 pb-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="font-display text-xs font-semibold tracking-[0.32em] text-blood uppercase">
@@ -213,11 +213,11 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+          <div className="mt-8 grid min-w-0 gap-4 sm:gap-6 lg:grid-cols-3">
             {/* 板块 1：预告与首曝影音 */}
-            <div className="flex flex-col justify-between border border-fg/15 bg-surface p-5 transition-colors hover:border-fg/30 sm:p-6">
+            <div className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden border border-fg/15 bg-surface p-4 transition-colors hover:border-fg/30 sm:p-6">
               <div>
-                <div className="flex items-center justify-between">
+                <div className="flex min-w-0 items-center justify-between gap-2">
                   <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
                     01 / Video · 预告与影音
                   </span>
@@ -235,7 +235,7 @@ function Home() {
 
                 <div
                   onClick={() => setActiveVideo(featuredVideo)}
-                  className="group/video relative mt-4 block aspect-video w-full cursor-pointer overflow-hidden border border-fg/20 bg-elevated"
+                  className="group/video relative mt-3 block h-40 w-full min-w-0 cursor-pointer overflow-hidden border border-fg/20 bg-elevated sm:mt-4 sm:h-auto sm:aspect-video"
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
@@ -250,12 +250,12 @@ function Home() {
                     alt={featuredVideo.title}
                     loading="lazy"
                     decoding="async"
-                    className="size-full object-cover transition-transform duration-300 group-hover/video:scale-105"
+                    className="absolute inset-0 size-full object-cover transition-transform duration-300 group-hover/video:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="grid size-12 place-items-center rounded-full border border-fg/40 bg-bg/85 text-fg shadow-lg backdrop-blur-sm transition-all duration-200 group-hover/video:scale-110 group-hover/video:border-blood group-hover/video:bg-blood group-hover/video:text-white">
-                      <Play className="ml-0.5 size-5 fill-current" />
+                    <div className="grid size-9 place-items-center rounded-full border border-fg/40 bg-bg/85 text-fg shadow-lg backdrop-blur-sm transition-all duration-200 group-hover/video:scale-110 group-hover/video:border-blood group-hover/video:bg-blood group-hover/video:text-white sm:size-12">
+                      <Play className="ml-0.5 size-4 fill-current sm:size-5" />
                     </div>
                   </div>
                   <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-3">
@@ -274,8 +274,8 @@ function Home() {
                     收录影像片段
                   </p>
                   <ul className="mt-2 space-y-1.5">
-                    {archiveVideos.map((entry) => (
-                      <li key={entry.iso}>
+                    {archiveVideos.map((entry, i) => (
+                      <li key={entry.iso} className={i >= 2 ? "hidden sm:block" : undefined}>
                         <button
                           type="button"
                           onClick={() => entry.video && setActiveVideo(entry.video)}
@@ -306,9 +306,9 @@ function Home() {
             </div>
 
             {/* 板块 2：片场实拍动态（图文结合与近期时间线） */}
-            <div className="flex flex-col justify-between border border-fg/15 bg-surface p-5 transition-colors hover:border-fg/30 sm:p-6">
+            <div className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden border border-fg/15 bg-surface p-4 transition-colors hover:border-fg/30 sm:p-6">
               <div>
-                <div className="flex items-center justify-between">
+                <div className="flex min-w-0 items-center justify-between gap-2">
                   <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
                     02 / Production · 片场实拍
                   </span>
@@ -328,14 +328,14 @@ function Home() {
                 <Link
                   to="/dossier"
                   hash="log"
-                  className="group/shoot relative mt-4 block aspect-video w-full overflow-hidden border border-fg/20 bg-elevated"
+                  className="group/shoot relative mt-3 block h-40 w-full min-w-0 overflow-hidden border border-fg/20 bg-elevated sm:mt-4 sm:h-auto sm:aspect-video"
                 >
                   <img
                     src={latestShoot.image ?? "/media/p2-snow1.jpg"}
                     alt={latestShoot.title}
                     loading="lazy"
                     decoding="async"
-                    className="size-full object-cover transition-transform duration-300 group-hover/shoot:scale-105"
+                    className="absolute inset-0 size-full object-cover transition-transform duration-300 group-hover/shoot:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-3">
@@ -389,9 +389,9 @@ function Home() {
             </div>
 
             {/* 板块 3：人物访谈（头条金句 + 更多核心主创原话） */}
-            <div className="flex flex-col justify-between border border-fg/15 bg-surface p-5 transition-colors hover:border-fg/30 sm:p-6">
+            <div className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden border border-fg/15 bg-surface p-4 transition-colors hover:border-fg/30 sm:p-6">
               <div>
-                <div className="flex items-center justify-between">
+                <div className="flex min-w-0 items-center justify-between gap-2">
                   <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
                     03 / Voices · 人物专访
                   </span>

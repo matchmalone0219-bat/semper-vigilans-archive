@@ -515,6 +515,11 @@ export const LOG: LogEntry[] = [
     hash: "part2",
     image: "/media/p2-car19.jpg",
     images: ["/media/p2-car19.jpg", "/media/p2-dmg1.jpg", "/media/p2-dmg2.jpg", "/media/p2-snow1.jpg", "/media/p2-snow3.jpg", "/media/log/p2-crane-crew.jpg"],
+    video: {
+      platform: "bilibili",
+      bvid: "BV13g8u6pEvM",
+      title: "片场路透：战车雪地漂移特技",
+    },
   },
   {
     date: "2026.08.20",
@@ -529,6 +534,11 @@ export const LOG: LogEntry[] = [
     hash: "part2",
     image: "/media/p2-batman.jpg",
     images: ["/media/p2-batman.jpg", "/media/p2-snow4.jpg", "/media/p2-snow2.jpg", "/media/log/p2-swat-day.jpg", "/media/log/p2-firetruck.jpg", "/media/log/p2-us-flags.jpg"],
+    video: {
+      platform: "bilibili",
+      bvid: "BV1Gg8w6uE2e",
+      title: "片场路透：直升机探照灯与受损战车",
+    },
   },
   {
     date: "2026.08.21",
@@ -550,6 +560,11 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-fire-cops.jpg",
       "/media/log/p2-cop-close.jpg",
     ],
+    video: {
+      platform: "bilibili",
+      bvid: "BV1Gu8e6FEZB",
+      title: "片场路透：战车被特警警车追逐",
+    },
   },
   {
     date: "2026.08.22",
@@ -614,6 +629,11 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-24-car.jpg",
       "/media/log/p2-24-blonde.jpg",
     ],
+    video: {
+      platform: "bilibili",
+      bvid: "BV1Jr466DE3T",
+      title: "片场路透：SWAT 围堵与金发副驾",
+    },
   },
   {
     date: "2026.08.25",
@@ -680,6 +700,11 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-28-boat3.jpg",
       "/media/log/p2-28-boat-night.jpg",
     ],
+    video: {
+      platform: "bilibili",
+      bvid: "BV1fUtx6CEBy",
+      title: "片场路透：阿尔弗雷德雪地抢救布鲁斯",
+    },
   },
   {
     date: "2026.08.29",
@@ -746,6 +771,11 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-31-rig3.jpg",
       "/media/log/p2-31-rig4.jpg",
     ],
+    video: {
+      platform: "bilibili",
+      bvid: "BV1nBtg6NEgi",
+      title: "片场路透：金斯顿桥下受损战车",
+    },
   },
   {
     date: "2026.09.04",
@@ -768,6 +798,11 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-04-cowl.jpg",
       "/media/log/p2-04-bike.jpg",
     ],
+    video: {
+      platform: "bilibili",
+      bvid: "BV178tB65Ej9",
+      title: "片场路透：改款战衣骑乘 GCPD 摩托",
+    },
   },
   {
     date: "2026.09.11",

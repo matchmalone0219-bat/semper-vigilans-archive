@@ -61,14 +61,20 @@ const QUICK_LINKS = [
 function Home() {
   const [activeVideo, setActiveVideo] = useState<LogVideo | null>(null);
 
-  // 1. 最新视频/预告物料（优先官方首曝/预告片）
-  const videoLogs = LOG.filter((e) => e.video);
+  // 1. 最新视频/预告物料（优先最近一条带 B 站转载的日志）
+  const videoLogs = LOG.filter((e) => e.video && !e.upcoming);
   const featuredVideoEntry = videoLogs[videoLogs.length - 1];
   const featuredVideo: LogVideo = featuredVideoEntry?.video ?? {
     platform: "bilibili",
     bvid: "BV1BTKG6mEUQ",
     title: "DC《新蝙蝠侠2》首曝镜头 · 定档 2028 年 2 月 18 日",
   };
+  const archiveVideos = (() => {
+    const others = videoLogs.filter((e) => e !== featuredVideoEntry);
+    const cameraTest = others.find((e) => e.iso === "2026-07-15");
+    const recent = others.filter((e) => e !== cameraTest).slice(-3).reverse();
+    return cameraTest ? [...recent, cameraTest] : recent;
+  })();
 
   // 2. 最新片场实拍日志（头条 + 最近两条精简动态）
   const shootLogs = LOG.filter((e) => e.kind === "shoot" && !e.upcoming);
@@ -200,15 +206,15 @@ function Home() {
                     01 / Video · 预告与影音
                   </span>
                   <span className="border border-blood/40 bg-blood/10 px-2 py-0.5 font-display text-[10px] font-semibold tracking-[0.16em] text-blood uppercase">
-                    首发物料
+                    {videoLogs.length} 条
                   </span>
                 </div>
 
                 <h3 className="mt-4 font-sans text-xl font-black tracking-tight text-fg">
-                  首曝镜头与定档前瞻
+                  {featuredVideoEntry?.title ?? "首曝镜头与定档前瞻"}
                 </h3>
                 <p className="mt-1 text-xs text-muted">
-                  北美定档 {FILM.releaseLabel} · 全球公映
+                  {featuredVideoEntry?.date ?? FILM.releaseLabel} · B 站转载
                 </p>
 
                 <div
@@ -224,8 +230,8 @@ function Home() {
                   }}
                 >
                   <img
-                    src="/media/still-fire.jpg"
-                    alt="DC《新蝙蝠侠2》首发影像封面"
+                    src={featuredVideoEntry?.image ?? "/media/still-fire.jpg"}
+                    alt={featuredVideo.title}
                     loading="lazy"
                     decoding="async"
                     className="size-full object-cover transition-transform duration-300 group-hover/video:scale-105"
@@ -246,8 +252,28 @@ function Home() {
                   </div>
                 </div>
 
+                {archiveVideos.length > 0 ? (
+                  <ul className="mt-3 space-y-1.5">
+                    {archiveVideos.map((entry) => (
+                      <li key={entry.iso}>
+                        <button
+                          type="button"
+                          onClick={() => entry.video && setActiveVideo(entry.video)}
+                          className="flex w-full items-center gap-2 border border-transparent px-1 py-1 text-left hover:border-fg/15 hover:bg-elevated"
+                        >
+                          <Play className="size-3 shrink-0 fill-current text-blood" />
+                          <span className="min-w-0 flex-1 truncate text-[11px] text-muted">
+                            {entry.video?.title}
+                          </span>
+                          <span className="shrink-0 font-mono text-[10px] text-faint">{entry.date.slice(5)}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+
                 <p className="mt-3 text-xs leading-relaxed text-faint">
-                  里夫斯公布帕丁森首组测试片段并确认长耳廓头套；后续官方先行预告片发布时将在此同步首播。
+                  收录官方测试镜头与格拉斯哥片场实拍转载。官方先行预告发布后会在此同步。
                 </p>
               </div>
 
@@ -257,7 +283,7 @@ function Home() {
                   onClick={() => setActiveVideo(featuredVideo)}
                   className="flex w-full items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
                 >
-                  <span>▶ 弹窗播放测试镜头</span>
+                  <span>▶ 弹窗播放最新片场</span>
                   <ArrowRight className="size-4" />
                 </button>
               </div>

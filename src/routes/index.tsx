@@ -152,13 +152,35 @@ function Home() {
         </div>
       </section>
 
-      {/* 01 / Signals Hub · 三栏联动情报看板 */}
+      {/* 01 / Prologue · 完整背景序言保留 */}
+      <section className="border-b border-fg/10">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-16 lg:py-20">
+          <div>
+            <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
+              01 / Prologue
+            </p>
+            <h2 className="mt-3 font-sans text-3xl font-black leading-tight tracking-tight sm:text-5xl">
+              洪水退去，哥谭市即将迎来严苛寒冬。
+            </h2>
+          </div>
+          <div className="space-y-6">
+            <p className="text-pretty leading-relaxed text-muted sm:text-base">
+              前作《The Batman》以谜语人引爆炸坝、洪水漫灌哥谭落幕；而衍生剧《The Penguin》中奥兹·科布（Oz Cobb）夺取黑道王座数周后，整座城市步入寒冬，《The Batman Part II》的故事由此正式拉开帷幕。目前剧组正以「Semper Vigilans」（永远警惕）为项目代号，在苏格兰格拉斯哥展开大规模雪景实拍。
+            </p>
+            <p className="text-pretty leading-relaxed text-muted sm:text-base">
+              本站为影迷自发建立的中文资料库，为您持续汇总官方公开新闻、演职员名单、片场实拍线索与剧情推测。所有传闻均已明确标注来源，力求提供客观严谨的影视资讯。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 02 / Signals Hub · 三栏联动情报看板 */}
       <section className="border-b border-fg/10 bg-surface/30">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-18">
           <div className="flex flex-col gap-4 border-b border-fg/10 pb-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="font-display text-xs font-semibold tracking-[0.32em] text-blood uppercase">
-                01 / Signals Hub · 前线情报看板
+                02 / Signals Hub · 前线情报看板
               </p>
               <h2 className="mt-2 font-sans text-2xl font-black tracking-tight sm:text-4xl">
                 预告影像 · 片场快讯 · 人物专访

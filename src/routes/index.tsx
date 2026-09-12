@@ -163,9 +163,20 @@ function Home() {
         </div>
       </section>
 
-      {/* 01 / Prologue · 完整背景序言保留 */}
-      <section className="border-b border-fg/10">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-16 lg:py-20">
+      {/* 01 / Prologue · 完整背景序言（带暗调雪景氛围过渡） */}
+      <section className="relative isolate overflow-hidden border-b border-fg/10">
+        <img
+          src="/media/p2-snow1.jpg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          className="pointer-events-none absolute inset-0 size-full object-cover opacity-20 grayscale contrast-125"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-bg via-bg/75 to-bg" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-bg via-bg/85 to-transparent" />
+
+        <div className="relative z-10 mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-16 lg:py-20">
           <div>
             <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
               01 / Prologue

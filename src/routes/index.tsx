@@ -1,10 +1,14 @@
+import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, Terminal } from "lucide-react";
+import { ArrowRight, MapPin, Terminal, Play, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Countdown } from "@/components/countdown";
 import { Rain } from "@/components/atmosphere";
-import { latestLog, pageTitle } from "@/lib/film";
-import { FILM } from "@/data/film";
+import { BiliPlayer } from "@/components/bili-player";
+import { pageTitle } from "@/lib/film";
+import { FILM, LOG, type LogVideo } from "@/data/film";
+import { INTERVIEWS } from "@/data/interviews";
+import { SPEAKER_MAP } from "@/lib/interviews";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -55,7 +59,40 @@ const QUICK_LINKS = [
 ] as const;
 
 function Home() {
-  const latest = latestLog();
+  const [activeVideo, setActiveVideo] = useState<LogVideo | null>(null);
+
+  // 1. 最新视频/预告物料（优先官方首曝/预告片）
+  const videoLogs = LOG.filter((e) => e.video);
+  const featuredVideoEntry = videoLogs[videoLogs.length - 1];
+  const featuredVideo: LogVideo = featuredVideoEntry?.video ?? {
+    platform: "bilibili",
+    bvid: "BV1BTKG6mEUQ",
+    title: "DC《新蝙蝠侠2》首曝镜头 · 定档 2028 年 2 月 18 日",
+  };
+
+  // 2. 最新片场实拍日志（头条 + 最近两条精简动态）
+  const shootLogs = LOG.filter((e) => e.kind === "shoot" && !e.upcoming);
+  const latestShoot = shootLogs[shootLogs.length - 1] ?? LOG[0];
+  const recentShoots = shootLogs.slice(-3, -1).reverse();
+
+  // 3. 最新人物访谈
+  const sortedInterviews = [...INTERVIEWS].sort((a, b) => b.iso.localeCompare(a.iso));
+  const latestInterview = sortedInterviews[0];
+  const interviewSpeaker = latestInterview ? SPEAKER_MAP[latestInterview.speakerId] : null;
+
+  useEffect(() => {
+    if (!activeVideo) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveVideo(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [activeVideo]);
 
   return (
     <main>
@@ -115,57 +152,217 @@ function Home() {
         </div>
       </section>
 
-      <section className="border-b border-fg/10">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16 lg:py-20">
-          <div>
-            <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-              01 / Prologue
-            </p>
-            <h2 className="mt-3 font-sans text-3xl font-black leading-tight tracking-tight sm:text-5xl">
-              洪水退去，哥谭市即将迎来严苛寒冬。
-            </h2>
-            <p className="mt-8 max-w-xl text-pretty leading-relaxed text-muted">
-              前作《The Batman》以谜语人引爆炸坝、洪水漫灌哥谭落幕；而衍生剧《The Penguin》中奥兹·科布（Oz Cobb）夺取黑道王座数周后，整座城市步入寒冬，《The Batman Part II》的故事由此正式拉开帷幕。目前剧组正以「Semper Vigilans」（永远警惕）为项目代号，在苏格兰格拉斯哥展开大规模雪景实拍。
-            </p>
-            <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted">
-              本站为影迷自发建立的中文资料库，为您持续汇总官方公开新闻、演职员名单、片场实拍线索与剧情推测。所有传闻均已明确标注来源，力求提供客观严谨的影视资讯。
+      {/* 01 / Signals Hub · 三栏联动情报看板 */}
+      <section className="border-b border-fg/10 bg-surface/30">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-18">
+          <div className="flex flex-col gap-4 border-b border-fg/10 pb-6 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="font-display text-xs font-semibold tracking-[0.32em] text-blood uppercase">
+                01 / Signals Hub · 前线情报看板
+              </p>
+              <h2 className="mt-2 font-sans text-2xl font-black tracking-tight sm:text-4xl">
+                预告影像 · 片场快讯 · 人物专访
+              </h2>
+            </div>
+            <p className="max-w-md text-xs leading-relaxed text-muted sm:text-sm">
+              从苏格兰雪景实拍现场到主创深度专访，一站式同步《新蝙蝠侠2》最新官方公开线索。
             </p>
           </div>
-          <div>
-            <p className="mb-3 font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
-              Latest Signal · {latest.date}
-            </p>
-            <Link
-              to="/dossier"
-              hash="log"
-              className="group block overflow-hidden border border-fg/15 bg-surface hover:border-blood"
-            >
-              {latest.image ? (
-                <img
-                  src={latest.image}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[16/8] w-full object-cover"
-                />
-              ) : null}
-              <div className="p-5 sm:p-7">
-                <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
-                  最新拍摄动态 · {latest.date}
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {/* 板块 1：预告与首曝影音 */}
+            <div className="flex flex-col justify-between border border-fg/15 bg-surface p-5 transition-colors hover:border-fg/30 sm:p-6">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
+                    01 / Video · 预告与影音
+                  </span>
+                  <span className="border border-blood/40 bg-blood/10 px-2 py-0.5 font-display text-[10px] font-semibold tracking-[0.16em] text-blood uppercase">
+                    首发物料
+                  </span>
+                </div>
+
+                <h3 className="mt-4 font-sans text-xl font-black tracking-tight text-fg">
+                  首曝镜头与定档前瞻
+                </h3>
+                <p className="mt-1 text-xs text-muted">
+                  北美定档 {FILM.releaseLabel} · 全球公映
                 </p>
-                <p className="mt-2 font-sans text-xl font-black tracking-tight text-fg sm:text-2xl">
-                  {latest.title}
+
+                <div
+                  onClick={() => setActiveVideo(featuredVideo)}
+                  className="group/video relative mt-4 block aspect-video w-full cursor-pointer overflow-hidden border border-fg/20 bg-elevated"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActiveVideo(featuredVideo);
+                    }
+                  }}
+                >
+                  <img
+                    src="/media/still-fire.jpg"
+                    alt="DC《新蝙蝠侠2》首发影像封面"
+                    loading="lazy"
+                    decoding="async"
+                    className="size-full object-cover transition-transform duration-300 group-hover/video:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="grid size-12 place-items-center rounded-full border border-fg/40 bg-bg/85 text-fg shadow-lg backdrop-blur-sm transition-all duration-200 group-hover/video:scale-110 group-hover/video:border-blood group-hover/video:bg-blood group-hover/video:text-white">
+                      <Play className="ml-0.5 size-5 fill-current" />
+                    </div>
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-3">
+                    <span className="truncate pr-2 font-mono text-[11px] text-fg/90">
+                      {featuredVideo.title}
+                    </span>
+                    <span className="shrink-0 rounded bg-black/60 px-1.5 py-0.5 font-mono text-[10px] text-faint">
+                      Bilibili
+                    </span>
+                  </div>
+                </div>
+
+                <p className="mt-3 text-xs leading-relaxed text-faint">
+                  里夫斯公布帕丁森首组测试片段并确认长耳廓头套；后续官方先行预告片发布时将在此同步首播。
                 </p>
-                <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">{latest.body}</p>
-                <span className="mt-5 block font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase">
-                  完整日志与来源 →
-                </span>
               </div>
-            </Link>
+
+              <div className="mt-6 border-t border-fg/10 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setActiveVideo(featuredVideo)}
+                  className="flex w-full items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
+                >
+                  <span>▶ 弹窗播放测试镜头</span>
+                  <ArrowRight className="size-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* 板块 2：片场实拍动态 */}
+            <div className="flex flex-col justify-between border border-fg/15 bg-surface p-5 transition-colors hover:border-fg/30 sm:p-6">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
+                    02 / Production · 片场实拍
+                  </span>
+                  <span className="border border-fg/20 bg-fg/5 px-2 py-0.5 font-display text-[10px] font-semibold tracking-[0.16em] text-fg/80 uppercase">
+                    {latestShoot.date}
+                  </span>
+                </div>
+
+                <Link
+                  to="/dossier"
+                  hash="log"
+                  className="group/log mt-4 block"
+                >
+                  <h3 className="font-sans text-xl font-black tracking-tight text-fg transition-colors group-hover/log:text-blood">
+                    {latestShoot.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted">
+                    {latestShoot.body}
+                  </p>
+                </Link>
+
+                <div className="mt-4 border-t border-fg/10 pt-3">
+                  <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
+                    近期关键进展
+                  </p>
+                  <ul className="mt-2 space-y-2">
+                    {recentShoots.map((entry) => (
+                      <li key={entry.date + entry.title} className="text-xs">
+                        <Link
+                          to="/dossier"
+                          hash="log"
+                          className="group/sub flex items-baseline gap-2 text-muted hover:text-fg"
+                        >
+                          <span className="shrink-0 font-mono text-[11px] text-blood">
+                            {entry.date.slice(5)}
+                          </span>
+                          <span className="truncate transition-colors group-hover/sub:text-fg">
+                            {entry.title}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-6 border-t border-fg/10 pt-4">
+                <Link
+                  to="/dossier"
+                  hash="log"
+                  className="flex items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
+                >
+                  <span>完整拍摄日志与来源</span>
+                  <ArrowRight className="size-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* 板块 3：人物访谈与核心金句 */}
+            <div className="flex flex-col justify-between border border-fg/15 bg-surface p-5 transition-colors hover:border-fg/30 sm:p-6">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
+                    03 / Voices · 人物专访
+                  </span>
+                  <span className="border border-fg/20 bg-fg/5 px-2 py-0.5 font-display text-[10px] font-semibold tracking-[0.16em] text-fg/80 uppercase">
+                    {latestInterview?.outlet} · {latestInterview?.date}
+                  </span>
+                </div>
+
+                {interviewSpeaker ? (
+                  <div className="mt-4 flex items-center gap-3">
+                    {interviewSpeaker.portrait ? (
+                      <img
+                        src={interviewSpeaker.portrait}
+                        alt={interviewSpeaker.name}
+                        className="size-11 shrink-0 object-cover border border-fg/20"
+                      />
+                    ) : null}
+                    <div>
+                      <h3 className="font-sans text-base font-black tracking-tight text-fg">
+                        {interviewSpeaker.name}
+                      </h3>
+                      <p className="text-xs text-muted">{interviewSpeaker.role}</p>
+                    </div>
+                  </div>
+                ) : null}
+
+                {latestInterview ? (
+                  <>
+                    <blockquote className="mt-3 border-l-2 border-blood pl-3 text-pretty text-xs leading-relaxed text-fg/90">
+                      “{latestInterview.quoteZh.length > 90
+                        ? `${latestInterview.quoteZh.slice(0, 90)}……`
+                        : latestInterview.quoteZh}”
+                    </blockquote>
+
+                    <p className="mt-2 line-clamp-2 text-[11px] italic text-faint">
+                      {latestInterview.quoteEn}
+                    </p>
+                  </>
+                ) : null}
+              </div>
+
+              <div className="mt-6 border-t border-fg/10 pt-4">
+                <Link
+                  to="/interviews"
+                  className="flex items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
+                >
+                  <span>人物访谈库（{INTERVIEWS.length} 条原话）</span>
+                  <ArrowRight className="size-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* 核心档案导航 */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div>
           <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
@@ -223,6 +420,38 @@ function Home() {
           </ul>
         </div>
       </section>
+
+      {/* 预告片/视频模态播放弹窗 */}
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-bg/90 p-4 backdrop-blur-md"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setActiveVideo(null)}
+        >
+          <div
+            className="relative w-full max-w-4xl border border-fg/20 bg-surface p-3 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-fg/10 px-2 pb-2.5">
+              <p className="truncate font-sans text-sm font-bold tracking-tight text-fg">
+                {activeVideo.title}
+              </p>
+              <button
+                type="button"
+                onClick={() => setActiveVideo(null)}
+                className="grid size-8 place-items-center text-muted transition-colors hover:text-fg"
+                aria-label="关闭视频"
+              >
+                <X className="size-5" />
+              </button>
+            </div>
+            <div className="mt-2">
+              <BiliPlayer video={activeVideo} />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

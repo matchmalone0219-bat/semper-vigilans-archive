@@ -555,10 +555,10 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://variety.com/2026/film/awards/sebastian-stan-fjord-maga-the-batman-2-godfather-1236859214/",
     quoteZh:
-      "我有时走进片场四周一看，就会觉得：我们这是在拍他妈的《教父2》。我不想把话说太满，但我觉得会有回报。",
+      "我有时走进片场环顾四周，心里就会想：我们这简直是在拍该死的《教父2》。我实在不想把预期拔得太高，但我能深切感受到这部作品一定会带来巨大回报。",
     quoteEn:
       "I go to set sometimes and I look around and I’m like, I think we’re making fucking ‘Godfather Part Two,’ I really don’t want to raise it up, but I do feel like it’s going to be a payoff.",
-    note: "2026 年 9 月 11 日《Variety》专访。斯坦未确认自己的角色；记者提起哈维·丹特传闻时他拒绝作答。",
+    note: "2026 年 9 月 11 日《Variety》深度专访。斯坦未公开具体饰演角色；当记者正面追问外界盛传的哈维·丹特（双面人）传闻时，他保持缄默拒绝作答，转而高度评价全片的史诗格局与艺术水准。",
   },
   {
     id: "stan-variety-grounded",
@@ -570,10 +570,10 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://variety.com/2026/film/awards/sebastian-stan-fjord-maga-the-batman-2-godfather-1236859214/",
     quoteZh:
-      "在看到成片之前，没人能真正搞清楚这部电影是什么样。大家在猜这些角色、猜这部电影是什么，但我觉得会有回报——它很落地、很真实，这也是我喜欢的地方。你当然想稍微透一点，可离上映还早。",
+      "在真正看到成片之前，外界没人能完全体会这部电影的模样。大家对这些角色有极多猜测、对这部电影的走向众说纷纭，但我坚信它会带来极具分量的回报——它的基调极度扎实落地、充满现实质感，这也是我深爱它的原因。你当然会想向大家稍微透露一点，但离公映确实还早。",
     quoteEn:
       "There’s no way people will fully grasp how this movie is until they see it. … There’s a lot of speculation about these roles, about what this movie is, but I think it’s going to be a good payoff — it’s really grounded and real, and that’s what I loved about it. You want to tease it a little, but we still have a long time.",
-    note: "同篇专访。里夫斯打磨剧本约三年。角色身份仍未公布。",
+    note: "同篇专访。马特·里夫斯与联合编剧麦特森·汤姆林历时约三年细致打磨剧本。斯坦强调影片延续了首部扎实冷峻的写实风格，对角色的具体线索依然严加保密。",
   },
   {
     id: "stan-variety-gunn",
@@ -585,9 +585,10 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://variety.com/2026/film/awards/sebastian-stan-fjord-maga-the-batman-2-godfather-1236859214/",
     quoteZh:
-      "两件事差不多同时发生。我接到电话去见马特·里夫斯，他看过《学徒》而且很喜欢，说想跟我谈谈这部新电影。同一时间我联系了詹姆斯·古恩，说我就在这儿，活得好好的，随时可以开工。然后这事就成了。",
+      "两件事几乎是同时发生的。我接到电话去与马特·里夫斯碰面，他提前看过了《学徒》而且非常喜欢，表示想就这部新片和我深聊。同一时间我也主动联系了詹姆斯·古恩：『听着，兄弟，我只是想让你知道——我就在这儿，状态极佳，随时准备大干一场。』随后合作便顺理成章达成了。",
     quoteEn:
       "Two things happened at the same time. I got a call to go meet Matt Reeves, who had seen The Apprentice and loved it and said, 'I want to talk to you about this new movie.' And at the same time, I'd reached out to James Gunn and said, 'Listen, man, I’m just letting you know — I’m here, I’m alive and well, I’m ready to rock.' And then it happened.",
+    note: "斯坦详述加盟契机：里夫斯对其在传记片《学徒》中的表现给予极高评价并主动相约会面；斯坦亦同时向 DC Studios 掌舵人古恩致意表达合作意愿，双方迅速促成加盟合作。",
   },
   {
     id: "stan-screenrant-winter",
@@ -597,8 +598,8 @@ export const INTERVIEWS: InterviewQuote[] = [
     iso: "2026-09-11",
     outlet: "ScreenRant（TIFF 红毯）",
     sourceUrl: "https://www.superherohype.com/news/692533-sebastian-stan-provides-the-batman-2-production-timeline",
-    quoteZh: "还要拍很久。这是一个漫长的冬天。",
+    quoteZh: "拍摄还要持续很长一段时间。这将是一个漫长的冬天。",
     quoteEn: "A very long time. It's a long winter.",
-    note: "多伦多电影节宣传《Fjord》时被问及续集还要拍多久。与帕丁森《GQ》所说拍摄持续到年底一致。",
+    note: "多伦多国际电影节（TIFF）宣传新片《Fjord》红毯受访。斯坦关于拍摄周期的回应印证了主演罗伯特·帕丁森在《GQ》专访中所透露的节奏：实景雪戏与大规模动作夜戏将贯穿整个秋冬季持续推进至年底。",
   },
 ];

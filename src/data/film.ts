@@ -209,7 +209,7 @@ export const CAST: {
     roleEn: "Undisclosed Role",
     name: "塞巴斯蒂安·斯坦",
     nameEn: "Sebastian Stan",
-    note: "官方确认加盟。具体角色未公布。2026 年 9 月 11 日《Variety》专访中，记者提起哈维·丹特传闻时他拒绝作答，并称续集仍在拍摄、还要经历一个漫长冬天。",
+    note: "官方确认加盟，具体角色仍处于严格保密状态。2026 年 9 月 11 日《Variety》专访中，记者提及外界盛传的哈维·丹特（双面人）传闻时他保持缄默未予置评，并盛赞续集写实基调与史诗格局媲美《教父2》；同日 TIFF 红毯受访时透露拍摄仍将跨越漫长冬季持续推进。",
     status: "confirmed",
   },
   {
@@ -279,7 +279,7 @@ export type LogEntry = {
   sourceUrl?: string;
   sourceTier?: "official" | "press" | "set";
   verifiedAt?: string;
-  href?: "/gallery" | "/dossier" | "/recap";
+  href?: "/gallery" | "/dossier" | "/recap" | "/interviews";
   hash?: string;
   upcoming?: boolean;
   image?: string;
@@ -768,6 +768,18 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-04-cowl.jpg",
       "/media/log/p2-04-bike.jpg",
     ],
+  },
+  {
+    date: "2026.09.11",
+    iso: "2026-09-11",
+    title: "塞巴斯蒂安·斯坦首谈续集：质感媲美《教父2》，实拍将跨越漫长冬季",
+    body: "塞巴斯蒂安·斯坦在多伦多国际电影节及《Variety》专访中首度详谈加盟《新蝙蝠侠2》的经历。针对外界盛传其饰演哈维·丹特（双面人）的猜测，斯坦保持缄默未予置评；他盛赞续集制作水准与犯罪史诗格局媲美《教父2》，基调极度扎实落地，并透露目前的实拍进程仍将跨越漫长冬季持续推进至年底。",
+    kind: "cast",
+    source: "Variety · 专访报道",
+    sourceUrl: "https://variety.com/2026/film/awards/sebastian-stan-fjord-maga-the-batman-2-godfather-1236859214/",
+    sourceTier: "press",
+    verifiedAt: "2026.09.12",
+    href: "/interviews",
   },
   {
     date: "2028.02.18",

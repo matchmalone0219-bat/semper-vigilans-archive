@@ -852,13 +852,12 @@ export const LOG: LogEntry[] = [
     image: "/media/log/p2-13-bruce-cops.jpg",
     images: [
       "/media/log/p2-13-bruce-cops.jpg",
-      "/media/log/p2-13-bentley.jpg",
+      "/media/log/p2-13-bruce-crush.jpg",
+      "/media/log/p2-13-bruce-steps.jpg",
       "/media/log/p2-13-gordon.jpg",
       "/media/log/p2-13-alfred.jpg",
       "/media/log/p2-13-anarky.jpg",
       "/media/log/p2-13-signs.jpg",
-      "/media/log/p2-13-oligarchs.jpg",
-      "/media/log/p2-13-saveus.jpg",
       "/media/log/p2-13-crowd.jpg",
       "/media/log/p2-13-reeves.jpg",
     ],
@@ -866,6 +865,7 @@ export const LOG: LogEntry[] = [
       platform: "bilibili",
       bvid: "BV1TXYq6MEWV",
       title: "片场路透：布鲁斯被护送穿过抗议人群",
+      poster: "/media/log/p2-13-bentley.jpg",
     },
   },
   {

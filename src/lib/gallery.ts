@@ -214,8 +214,23 @@ export const GALLERIES: GalleryGroup[] = [
       {
         src: "/media/log/p2-13-bruce-cops.jpg",
         title: "GCPD 护送布鲁斯",
-        caption: "便装布鲁斯在多名警员护卫下穿过抗议群众，朝等候的宾利轿车走去。",
-        source: "片场路透 · 当地拍摄",
+        caption:
+          "便装布鲁斯在「GOTHAM CITY COURTS」背心警员护卫下走向等候的宾利（牌照 M30 5AB）。高清补档，前景可见车头与石墩。",
+        source: "片场路透 · 伦敦外景高清",
+      },
+      {
+        src: "/media/log/p2-13-bruce-crush.jpg",
+        title: "抗议人群中的布鲁斯",
+        caption:
+          "帕丁森被记者、闪光灯与纸板标语围在台阶上，表情紧绷。同框可见 GCPD 警帽与现场摄影机。",
+        source: "片场路透 · 伦敦外景高清",
+      },
+      {
+        src: "/media/log/p2-13-bruce-steps.jpg",
+        title: "石柱前的布鲁斯",
+        caption:
+          "圣保罗大教堂石柱前，便装布鲁斯在闪光灯与抗议纸板中被护送下行。布景为哥谭律师公会 / 法院台阶。",
+        source: "片场路透 · 伦敦外景高清",
       },
       {
         src: "/media/log/p2-13-bentley.jpg",

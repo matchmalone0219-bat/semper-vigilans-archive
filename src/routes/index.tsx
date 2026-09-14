@@ -332,7 +332,7 @@ function Home() {
                     alt={latestShoot.title}
                     loading="lazy"
                     decoding="async"
-                    className="absolute inset-0 size-full object-cover transition-transform duration-300 group-hover/shoot:scale-105"
+                    className="absolute inset-0 size-full object-cover object-[center_28%] transition-transform duration-300 group-hover/shoot:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-3">

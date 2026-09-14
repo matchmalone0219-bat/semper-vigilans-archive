@@ -3,6 +3,7 @@ import { LOG } from "@/data/film";
 import { MERCH } from "@/lib/merch";
 import { PLACES } from "@/lib/places";
 import { PEOPLE } from "@/lib/people";
+import { CINEMA_ROOTS, ROOTS, ROOT_KIND } from "@/lib/roots";
 
 export type SearchItem = {
   title: string;
@@ -81,6 +82,34 @@ export const SEARCH_ITEMS: SearchItem[] = [
       `/dossier#log`,
       "日志",
       entry.body,
+    ),
+  ),
+  ...ROOTS.map((work) =>
+    item(
+      work.title,
+      `${work.titleEn} · ${ROOT_KIND[work.kind]}`,
+      `/roots#${work.id}`,
+      "溯源",
+      `${work.creators} ${work.thesis} ${work.lede} ${work.quoteZh ?? ""} ${work.jump}`,
+    ),
+  ),
+  ...CINEMA_ROOTS.map((film) =>
+    item(
+      film.title,
+      `${film.titleEn} · ${film.year}`,
+      `/roots#${film.id}`,
+      "溯源",
+      [
+        film.director,
+        film.thesis,
+        film.lede,
+        film.quoteZh ?? "",
+        film.titleEn,
+        film.id === "phantasm" ? "phantom 动画电影 mask of the phantom 幻影面具" : "",
+        film.id === "klute" ? "克鲁特 猫女 selina" : "",
+        film.id === "christine" ? "克里斯汀的魅力 卡朋特 战车 金" : "",
+        film.id === "taxi-driver" ? "特拉维斯 比克尔 travis bickle 日记" : "",
+      ].join(" "),
     ),
   ),
 ];

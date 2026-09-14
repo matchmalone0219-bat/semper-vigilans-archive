@@ -28,13 +28,13 @@ function Roots() {
             艺术溯源
           </h1>
           <p className="mt-3 font-display text-lg tracking-[0.12em] text-muted uppercase">
-            四大漫画灵感 · 70年代新黑色电影拉片
+            四大漫画灵感 · 影史拉片
           </p>
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">{ROOTS_INTRO}</p>
           <nav className="mt-8 flex flex-wrap gap-3">
             {[
               { href: "#comics", label: "01 / 四大漫画考据" },
-              { href: "#cinema", label: "02 / 70年代新好莱坞拉片" },
+              { href: "#cinema", label: "02 / 影史拉片" },
               { href: "#method", label: "03 / 考据分级标准" },
             ].map((item) => (
               <a
@@ -178,38 +178,98 @@ function Roots() {
           </div>
         </section>
 
-        {/* Section 02: 1970s Cinema Lineage */}
+        {/* Section 02: Cinema lineage */}
         <section id="cinema" className="scroll-mt-24 border-t border-fg/10 pt-16 sm:pt-24">
           <div className="border-b border-blood/40 pb-4">
             <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-              02 / 70s Neo-Noir & Crime Cinema Lineage
+              02 / Cinema Lineage
             </p>
             <h2 className="mt-2 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-              1970年代新黑色电影拉片与致敬专栏
+              影史拉片：新好莱坞、动画长片与恐怖载具
             </h2>
             <p className="mt-2 text-sm text-muted">
-              马特·里夫斯多次强调，《新蝙蝠侠》的电影美学直接继承自 1970 年代新好莱坞与 90 年代硬汉派犯罪电影名作。
+              只收录主创点过名的电影。1970
+              年代犯罪片是底盘；帕丁森另点出《幻影的面具》，里夫斯把战车对标《克里斯汀》。
             </p>
           </div>
 
-          <div className="mt-10 space-y-16">
+          <div className="mt-8 divide-y divide-fg/10 border-y border-fg/10">
             {CINEMA_ROOTS.map((film) => (
-              <article key={film.id} id={film.id} className="scroll-mt-24 border border-fg/10 bg-surface/20 p-6 sm:p-8">
-                <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
+              <a
+                key={film.id}
+                href={`#${film.id}`}
+                className="grid gap-2 py-5 sm:grid-cols-12 sm:items-baseline sm:gap-6 hover:bg-surface/30"
+              >
+                <p className="font-display text-sm font-semibold tracking-[0.18em] text-blood sm:col-span-3">
+                  {film.kicker.split(" / ")[0]} / {film.titleEn}
+                </p>
+                <div className="sm:col-span-9">
+                  <p className="font-sans text-lg font-black tracking-tight">
+                    {film.title}
+                    <span className="ml-3 text-xs font-medium tracking-[0.18em] text-faint uppercase">
+                      {film.year}
+                    </span>
+                  </p>
+                  <p className="mt-1 text-pretty text-sm text-muted">{film.thesis}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div className="mt-16 space-y-20">
+            {CINEMA_ROOTS.map((film) => (
+              <article key={film.id} id={film.id} className="scroll-mt-24">
+                <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
                   {film.kicker}
                 </p>
-                <div className="mt-2 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                  <h3 className="font-sans text-3xl font-black tracking-tight sm:text-4xl">
-                    《{film.title}》
+                <div className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                  <h3 className="font-sans text-4xl font-black tracking-tight sm:text-5xl">
+                    {film.title}
                   </h3>
                   <span className="text-sm font-medium text-muted">
-                    {film.titleEn} ({film.year}) · 导演：{film.director}
+                    {film.titleEn} · {film.year}
                   </span>
                 </div>
-                <p className="mt-3 text-pretty text-sm leading-relaxed text-fg">{film.lede}</p>
+                <p className="mt-2 text-sm text-muted">导演：{film.director}</p>
 
-                <div className="mt-8 border-t border-fg/10 pt-6">
-                  <h4 className="font-sans text-lg font-black tracking-tight text-blood">
+                <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:gap-12">
+                  {film.image ? (
+                    <div className="lg:col-span-4">
+                      <img
+                        src={film.image}
+                        alt={film.imageAlt ?? film.title}
+                        className="mx-auto max-h-[28rem] w-full bg-elevated object-contain"
+                      />
+                      {film.quote ? (
+                        <blockquote className="mt-6 border-l border-blood/50 pl-4 text-sm leading-relaxed text-muted">
+                          <p>“{film.quote}”</p>
+                          {film.quoteZh ? (
+                            <p className="mt-3 text-pretty font-medium text-fg">“{film.quoteZh}”</p>
+                          ) : null}
+                          {film.quoteSrc ? (
+                            <footer className="mt-2 text-xs tracking-wide text-faint">
+                              —— {film.quoteSrc}
+                            </footer>
+                          ) : null}
+                        </blockquote>
+                      ) : null}
+                    </div>
+                  ) : null}
+                  <div className={film.image ? "lg:col-span-8" : "lg:col-span-12"}>
+                    <p className="text-pretty leading-relaxed text-fg">{film.lede}</p>
+                    <div className="mt-8 space-y-6">
+                      {film.breakdown.map((b) => (
+                        <section key={b.heading}>
+                          <h4 className="font-sans text-xl font-black tracking-tight">{b.heading}</h4>
+                          <p className="mt-2 text-pretty text-sm leading-relaxed text-muted">{b.body}</p>
+                        </section>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-12 border-t border-fg/10 pt-6">
+                  <h4 className="font-sans text-lg font-black tracking-tight">
                     影史经典 vs 《新蝙蝠侠》 镜头与母题对照
                   </h4>
                   <div className="mt-4 divide-y divide-fg/10 border-y border-fg/10">
@@ -220,19 +280,15 @@ function Roots() {
                     {film.parallels.map((p) => (
                       <div key={p.cinema} className="grid gap-2 py-4 sm:grid-cols-2 sm:gap-8">
                         <p className="text-pretty text-sm leading-relaxed text-muted">{p.cinema}</p>
-                        <p className="text-pretty text-sm leading-relaxed text-fg/90">{p.batman}</p>
+                        <p className="text-pretty text-sm leading-relaxed text-fg/90">
+                          <span className="mb-1 block text-xs tracking-[0.2em] text-faint uppercase sm:hidden">
+                            电影呈现
+                          </span>
+                          {p.batman}
+                        </p>
                       </div>
                     ))}
                   </div>
-                </div>
-
-                <div className="mt-6 space-y-4">
-                  {film.breakdown.map((b) => (
-                    <div key={b.heading}>
-                      <h5 className="font-sans text-base font-black tracking-tight">{b.heading}</h5>
-                      <p className="mt-1 text-pretty text-sm leading-relaxed text-muted">{b.body}</p>
-                    </div>
-                  ))}
                 </div>
               </article>
             ))}

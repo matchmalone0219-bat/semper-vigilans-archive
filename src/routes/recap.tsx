@@ -386,7 +386,7 @@ function Recap() {
             原著渊源与致敬考据
           </h2>
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            深度解析《蝙蝠侠：自我》、《漫长的万圣节》、《元年》与《零年》对电影创作的灵感启发。完整专题考据请查阅{" "}
+            深度解析《蝙蝠侠：自我》、《漫长的万圣节》、《元年》与《零年》对电影创作的灵感启发；影史拉片另收《出租车司机》《幻影的面具》《克里斯汀》等主创点名的电影。完整专题请查阅{" "}
             <Link to="/roots" className="text-fg underline-offset-4 hover:underline">
               原著渊源
             </Link>

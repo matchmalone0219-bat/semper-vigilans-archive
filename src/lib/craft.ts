@@ -7,8 +7,11 @@ export type ThemeCue = {
   title: string;
   titleEn: string;
   kind: string;
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
+  quote?: string;
+  quoteZh?: string;
+  quoteSrc?: string;
   when: string;
   lede: string;
   sections: { heading: string; body: string }[];
@@ -83,19 +86,28 @@ export const THEMES: ThemeCue[] = [
     jump: "Nirvana 经典",
     title: "涅槃乐队《Something in the Way》",
     titleEn: "Something in the Way by Nirvana",
-    kind: "官方精选插曲（1991 年经典名作）",
+    kind: "官方精选插曲（1991 · Nevermind）",
     image: "/media/still-bruce.jpg",
     imageAlt: "布鲁斯·韦恩卸下头套后的落寞神情",
-    when: "影片序幕布鲁斯独白与终局大洪水救援",
-    lede: "涅槃乐队（Nirvana）主唱柯特·柯本（Kurt Cobain）的经典原声吉他低吟，成为全片最具辨识度的灵魂插曲，定调了布鲁斯孤独、迷茫却矢志不渝的心路历程。",
+    when: "2020 年首支预告；序幕夜巡日记；终局洪水体育馆救援",
+    lede: "这首歌不是配上预告的情绪垫乐，而是里夫斯写第一幕时的工作曲。柯特·柯本（Kurt Cobain）由此变成帕丁森版布鲁斯的人物塑形：拒绝花花公子面具、把自己关在衰败庄园里的隐士。格斯·范·桑特的《最后的日子》（Last Days）只提供庄园意象，不是犯罪片叙事蓝本，所以不单列进艺术溯源。",
+    quote:
+      "When I write, I listen to music, and as I was writing the first act, I put on Nirvana's 'Something In The Way.' That's when it came to me that, rather than make Bruce Wayne the playboy version we've seen before, there's another version who had gone through a great tragedy and become a recluse.",
+    quoteZh:
+      "我写剧本时会听音乐。写第一幕时我放上了涅槃的《Something in the Way》。那一刻我想到：与其再做一个花花公子版布鲁斯，不如写一个经历巨创后把自己关起来的人。",
+    quoteSrc: "马特·里夫斯，《Empire》杂志专访",
     sections: [
       {
-        heading: "角色塑造的核心精神锚点",
-        body: "导演马特·里夫斯在编写剧本时频繁聆听涅槃乐队的作品，柯特·柯本那种兼具脆弱感与毁灭性爆发力的摇滚气质，直接启发了罗伯特·帕丁森版布鲁斯·韦恩的形象定位——一个深居高楼、沉溺于伤痛与执念的摇滚隐士。",
+        heading: "先是写作用曲，然后才进预告和正片",
+        body: "里夫斯后来说明：第一支预告用这首歌，是因为它本来就在电影里。序幕随着夜巡日记低声响起，终局洪水体育馆救援再回来一次——同一条吉他线，先定隐士的孤独，再托住他走向人群。它不是吉亚奇诺的主题动机，却是全片听感上最容易被记住的锚。",
+      },
+      {
+        heading: "柯本是人物塑形，不是又一部犯罪片",
+        body: "同一采访里，里夫斯把这首歌接到格斯·范·桑特《最后的日子》：一个虚构的柯本住在衰败庄园里。对 Esquire 他说得更直白：「他就是一种瘾君子。他的药，是对复仇的成瘾。他像一个蝙蝠侠版的柯特·柯本。」他又补了一句界限：不是觉得柯本就是蝙蝠侠，而是柯本与名声相处得很别扭，给布鲁斯加一层摇滚明星的锋芒说得通。帕丁森在《Good Time》里那股脆弱、绝望又有力量的气质，被他形容成「也有那种柯本的感觉：看起来像摇滚明星，但你也觉得他可以彻底隐居」。",
       },
       {
         heading: "全片情绪的首尾呼应",
-        body: "歌曲在开场伴随布鲁斯的夜巡日记独白缓缓流淌，勾勒出哥谭街头的凋敝与主角内心的孤独；在终局洪灾救援中再度响起时，低沉的大提琴声伴随着蝙蝠侠走向被困民众的身影，完成了从暗夜迷茫向点亮希望的精神转变。",
+        body: "开场是雨夜车窗与日记体独白，结尾是体育馆里的照明弹。歌没有变，人变了。这条线写在布鲁斯的人物档案里，配乐条目只负责把原话和出场位置钉死。",
       },
     ],
   },
@@ -199,15 +211,56 @@ export type LensNote = {
   body: string;
 };
 
+export type LensStill = {
+  src: string;
+  caption: string;
+  alt: string;
+  credit: string;
+  posted: string;
+  href: string;
+};
+
 export const LENS = {
   intro:
-    "《新蝙蝠侠》由奥斯卡摄影大师格雷格·弗雷泽（Greig Fraser）掌镜，开创了极具辨识度的新黑色电影摄影风格；续作《新蝙蝠侠2》则由奥斯卡最佳摄影得主埃里克·梅塞施密特（Erik Messerschmidt，《曼克》《心灵猎人》）接任。以下从光学镜头、照明设计与构图美学三个维度深度解析本系列的光影艺术。",
+    "《新蝙蝠侠》由奥斯卡摄影大师格雷格·弗雷泽（Greig Fraser）掌镜，开创了极具辨识度的新黑色电影摄影风格；续作《新蝙蝠侠2》改由奥斯卡最佳摄影得主埃里克·梅塞施密特（Erik Messerschmidt，《曼克》《心灵猎人》）接任。正式开机前，梅塞施密特在 Instagram 连发 northwest、LEDs、spring、mist 四张取景地勘景照，是目前公开可见的续集光影样本。以下对照第一部光学方案，并归档这批开拍前勘景——不是第一部剧照。",
   stills: [
-    { src: "/media/street.jpg", caption: "雨夜高反差：湿滑柏油路面将钠灯反射为条状高光" },
-    { src: "/media/still-rain2.jpg", caption: "大光圈浅景深：特制变形宽银幕镜头呈现出锐利的中心画质与柔美的边缘光斑" },
-    { src: "/media/gotham.jpg", caption: "哥谭全景纵深：低照度环境下以城市自身灯火作为唯美光源" },
-    { src: "/media/p2-snow1.jpg", caption: "格拉斯哥冬季实拍：续集的摄影焦点由深秋暴雨转向凛冽风雪" },
-  ],
+    {
+      src: "/media/craft/lens-northwest.jpg",
+      caption:
+        "northwest：湿冷街面把青绿色现场灯拉成长条高光。影迷比对为英格兰西北兰康（Runcorn）一带；同年 7 月剧组确在兰康桥实拍。",
+      alt: "埃里克·梅塞施密特 Instagram 勘景照 northwest：雨夜湿滑街面与青绿色灯光",
+      credit: "Instagram · @emesserschmidt",
+      posted: "2026.02.27",
+      href: "https://www.instagram.com/p/DVRP7hDAj15/",
+    },
+    {
+      src: "/media/craft/lens-leds.jpg",
+      caption:
+        "LEDs：LED 灯海与车流中的哥谭街景。评论区有人写成「Wayne tower」，官方未确认这座灯塔式高层的戏中身份。",
+      alt: "埃里克·梅塞施密特 Instagram 勘景照 LEDs：夜间 LED 灯海与湿滑街面",
+      credit: "Instagram · @emesserschmidt",
+      posted: "2026.03.02",
+      href: "https://www.instagram.com/p/DVYSCutAvZ_/",
+    },
+    {
+      src: "/media/craft/lens-spring.jpg",
+      caption:
+        "spring：褐灰色雾气里的工业天际与尖塔。SuperHeroHype 等站 3 月据此讨论续集更暗、更脏的调性。",
+      alt: "埃里克·梅塞施密特 Instagram 勘景照 spring：雾中工业天际与尖塔",
+      credit: "Instagram · @emesserschmidt",
+      posted: "2026.03.06",
+      href: "https://www.instagram.com/p/DVjEysyjbEl/",
+    },
+    {
+      src: "/media/craft/lens-mist.jpg",
+      caption:
+        "mist：林荫车道没入浓雾。评论区有人写成 Wayne Manor / Scotch mist，官方未确认这处外景身份。",
+      alt: "埃里克·梅塞施密特 Instagram 勘景照 mist：雾中林荫车道",
+      credit: "Instagram · @emesserschmidt",
+      posted: "2026.05.21",
+      href: "https://www.instagram.com/p/DYmeDIDuZEu/",
+    },
+  ] satisfies LensStill[],
   fraser: [
     {
       heading: "ARRI 特制定制变形宽银幕镜头",
@@ -225,14 +278,23 @@ export const LENS = {
   messerschmidt: [
     {
       heading: "奥斯卡得主接棒掌镜续作",
-      body: "埃里克·梅塞施密特曾凭借《曼克》斩获奥斯卡最佳摄影奖，并以《心灵猎人》《杀手》中严谨精准的用光与冷峻克制的构图著称。他的加盟预示着《新蝙蝠侠2》会在前作新黑色电影质感之上，进一步强化硬核悬疑与心理压迫感。",
+      body: "埃里克·梅塞施密特曾凭借《曼克》斩获奥斯卡最佳摄影奖，并以《心灵猎人》《杀手》中严谨精准的用光与冷峻克制的构图著称。2025 年 12 月确认接替格雷格·弗雷泽掌镜《新蝙蝠侠2》；其硬核悬疑与心理压迫感，会叠在前作新黑色电影质感之上。",
+    },
+    {
+      heading: "开拍前 Instagram 勘景四连",
+      body: "2026 年 2 月 27 日至 5 月 21 日，梅塞施密特在 @emesserschmidt 先后发布 northwest、LEDs、spring、mist 四张取景地勘景照，均早于马特·里夫斯 6 月 12 日的 #FirstShot。northwest 被影迷比对为兰康（Runcorn）一带，同年 7 月剧组确在兰康桥拍摄；LEDs、mist 的评论区分别出现过「Wayne tower」「Wayne Manor」的猜测，官方均未确认。这四张是目前能公开核验的续集外景光影样本，不是第一部剧照。",
     },
     {
       heading: "冬日风雪下的全新光影挑战",
       body: "格拉斯哥片场铺设了大量积雪，并动用雾气设备、探照灯矩阵与湿地反光。梅塞施密特延续了前作的高反差用光，让白雪、阴云与红蓝警灯形成冷峻对比，呈现冬日哥谭特有的视觉质感。",
     },
+    {
+      heading: "球形镜头？仅是评论区观察",
+      body: "勘景照评论区有影迷写道，续集若改用球形镜头（spherical），会与第一部及《企鹅人》的变形宽银幕（anamorphic）形成对照。这是观众推测，官方尚未公布《新蝙蝠侠2》的光学方案。",
+    },
   ] satisfies LensNote[],
 };
+
 
 export type LocationPin = {
   id: string;
@@ -291,8 +353,8 @@ export const CITIES: LocationCity[] = [
         nameEn: "Anfield Cemetery",
         filmAs: "哥谭墓园哥特式地下隧道",
         work: "电影《新蝙蝠侠》",
-        image: "/media/still-cat-bike.jpg",
-        imageAlt: "猫女骑行机车穿过墓园隧道",
+        image: "/media/craft/anfield.jpg",
+        imageAlt: "利物浦安菲尔德公墓入口的哥特式石砌隧道",
         body: "公墓入口区域拥有静谧古朴的维多利亚哥特式石砌隧道，在电影中作为蝙蝠侠与瑟琳娜完成墓地会面后骑行机车离开的隐秘通道。",
         visit: "位于利物浦北部 Cherry Lane，为历史悠久的公共墓园，日间开放公众步入参观，请保持安静与庄重。",
       },
@@ -302,8 +364,8 @@ export const CITIES: LocationCity[] = [
         nameEn: "Queensway Tunnel",
         filmAs: "《新蝙蝠侠2》冬季隧道追车线索",
         work: "电影《新蝙蝠侠2》",
-        image: "/media/p2-trailer.jpg",
-        imageAlt: "隧道外景实拍准备中的蝙蝠战车",
+        image: "/media/craft/queensway.jpg",
+        imageAlt: "利物浦王后通道隧道入口",
         body: "横跨默西河连接利物浦与伯肯黑德的著名公路隧道。摄制组深入隧道内部拍摄，结合蝙蝠战车的动态调度，这里可能用于拍摄冬夜极速追车或地下交通网穿行的动作段落。",
         visit: "正常通行城市主要交通干道，日常驾车可通过该隧道体验与电影同款的工业管道回廊感。",
       },
@@ -332,8 +394,8 @@ export const CITIES: LocationCity[] = [
         nameEn: "Glasgow Bridge",
         filmAs: "冬日哥谭大桥片场",
         work: "电影《新蝙蝠侠2》",
-        image: "/media/p2-snow2.jpg",
-        imageAlt: "铺满人造积雪的格拉斯哥大桥实拍现场",
+        image: "/media/craft/glasgow-bridge.jpg",
+        imageAlt: "横跨克莱德河的格拉斯哥大桥（牙买加街桥）",
         body: "横跨克莱德河（River Clyde）的标志性桥梁被改建为冬日哥谭交通要道。在积雪与警车封锁调度下，这里预计将成为车辆追逐戏的重要取景节点。",
         visit: "跨河主要市政桥梁，行人可通过宽阔的人行步道步行过桥，轻松打卡片场同款机位视角。",
       },
@@ -343,8 +405,8 @@ export const CITIES: LocationCity[] = [
         nameEn: "Broomielaw",
         filmAs: "哥谭冬日商业街与警匪对峙区",
         work: "电影《新蝙蝠侠2》",
-        image: "/media/p2-snow1.jpg",
-        imageAlt: "布鲁米洛街区雪景实拍俯瞰图",
+        image: "/media/craft/broomielaw.jpg",
+        imageAlt: "格拉斯哥布鲁米洛滨河大道与克莱德河",
         body: "克莱德河北岸著名的历史沿河大道。剧组将整条街区的沿街商铺重新装修改装为哥谭市的百货大楼与餐厅，并在此完成了装甲特警车队与战车对峙的夜战实拍。",
         visit: "位于格拉斯哥核心滨河区域，沿途拥有开阔的步行绿道与现代咖啡厅，交通极为便利。",
       },
@@ -354,8 +416,19 @@ export const CITIES: LocationCity[] = [
     id: "london",
     city: "伦敦",
     cityEn: "London",
-    note: "英国首都伦敦为第一部提供了丰富的古老哥特府邸、废弃工业遗址与地下铁路车间内景支撑。",
+    note: "伦敦为第一部提供哥特府邸、废弃工业遗址与地下电车隧道；2026 年 9 月起，圣保罗大教堂成为第二部最新确认的大型外景点。",
     pins: [
+      {
+        id: "st-pauls",
+        name: "圣保罗大教堂",
+        nameEn: "St Paul's Cathedral",
+        filmAs: "哥谭律师公会外景 / 抗议戏台阶",
+        work: "电影《新蝙蝠侠2》",
+        image: "/media/craft/st-pauls.jpg",
+        imageAlt: "伦敦圣保罗大教堂西立面与台阶",
+        body: "2026 年 9 月 12–13 日，剧组在圣保罗大教堂西立面台阶拍摄抗议戏：罗伯特·帕丁森以布鲁斯·韦恩身份由 GCPD 护送穿过人群，登上等候的宾利；杰弗里·怀特以戈登造型同场，阿尔弗雷德由替身出演，马特·里夫斯与埃里克·梅塞施密特在场调度。多家片场报道称此处作为「哥谭律师公会」（Gotham Bar Association），并动用审判厅与会议厅内景；华纳未单独发表官方场记确认该剧情地名。抗议标语出现 Court of Fowls、Court of Oligarchs、SAVE US 等字样，部分群众佩戴白面罩；猫头鹰法庭与无政府客相关解读仅为影迷推测。",
+        visit: "位于伦敦金融城 Ludgate Hill。西立面广场与台阶全天可外拍；教堂内部需购票参观，请勿打扰礼拜。最近地铁站为 St Paul's（中央线）。",
+      },
       {
         id: "two-temple",
         name: "双殿官邸",
@@ -373,8 +446,8 @@ export const CITIES: LocationCity[] = [
         nameEn: "Kingsway Tramway Subway",
         filmAs: "地下车间 / 战车出入通道",
         work: "电影《新蝙蝠侠》",
-        image: "/media/still-lair.jpg",
-        imageAlt: "地下电车隧道改建的工作车间",
+        image: "/media/craft/kingsway.jpg",
+        imageAlt: "霍尔本国王通道废弃电车隧道入口",
         placeId: "cave",
         body: "伦敦霍尔本地下长达数百米的一处废弃有轨电车隧道，其粗犷斑驳的混凝土拱门与铁轨被改建为蝙蝠侠驶入地下车间的隐秘通道。",
         visit: "属于伦敦历史地下保护遗迹，平时不对外开放，但伦敦交通博物馆（London Transport Museum）每年会定期组织专属探秘导览项目。",
@@ -385,8 +458,8 @@ export const CITIES: LocationCity[] = [
         nameEn: "Lethaby Building",
         filmAs: "哥谭警局室内",
         work: "电影《新蝙蝠侠》",
-        image: "/media/still-gordon.jpg",
-        imageAlt: "吉姆·戈登。",
+        image: "/media/craft/lethaby.jpg",
+        imageAlt: "霍尔本莱瑟比楼（原中央圣马丁艺术学校）外立面",
         placeId: "gcpd",
         body: "霍尔本 Southampton Row 与 Theobalds Road 转角，原圣马丁艺术学校。六边形楼梯对应蝙蝠侠逃上屋顶的室内。屋顶跳跃外景则用了利物浦皇家利物大厦钟楼，两城拼在同一栋「GCPD」上。",
         visit: "建筑在用。只能拍外立面，不能当警局参观。",
@@ -397,8 +470,8 @@ export const CITIES: LocationCity[] = [
         nameEn: "Millennium Mills",
         filmAs: "废弃码头工业厂房 / 审讯企鹅人现场",
         work: "电影《新蝙蝠侠》",
-        image: "/media/still-mud.jpg",
-        imageAlt: "工业水泥立柱构筑的阴暗审讯现场",
+        image: "/media/craft/mills.jpg",
+        imageAlt: "东伦敦皇家维多利亚码头对岸的千年磨坊工业遗址",
         body: "位于东伦敦皇家维多利亚码头的巨型废弃面粉厂工业遗址。其极具包豪斯与粗野主义风格的水泥立柱矩阵，正是蝙蝠侠与戈登在飞车追逐后将企鹅人倒吊审讯的名场面取景地。",
         visit: "坐落于 Royal Victoria Dock 码头区，游客可在隔江步道与对岸缆车上近距离饱览这座标志性工业历史遗迹。",
       },
@@ -408,8 +481,8 @@ export const CITIES: LocationCity[] = [
         nameEn: "Printworks London",
         filmAs: "冰山俱乐部大厅内景",
         work: "电影《新蝙蝠侠》",
-        image: "/media/lounge.jpg",
-        imageAlt: "冰山俱乐部灯光幽暗的酒吧大厅",
+        image: "/media/craft/printworks.jpg",
+        imageAlt: "南伦敦 Printworks 原报业印刷厂工业大厅",
         placeId: "iceberg",
         body: "伦敦著名的老报业印刷厂改建的文化场地。其狭长幽深的工业大厅与昏暗的走廊结构，被剧组精心改造为法尔科内掌控的冰山俱乐部内景，还原出纸醉金迷的黑帮巢穴氛围。",
         visit: "位于南伦敦 Surrey Quays，目前作为综合性音乐与文化艺术中心运营，可关注官方排期参与各项文化活动。",
@@ -419,6 +492,11 @@ export const CITIES: LocationCity[] = [
 ];
 
 export const ALIASES: { heard: string; mapsTo: string; body: string }[] = [
+  {
+    heard: "哥谭律师公会 / 圣保罗大教堂",
+    mapsTo: "st-pauls",
+    body: "2026 年 9 月伦敦抗议戏外景实拍于圣保罗大教堂西立面台阶。片场报道称此处作为「哥谭律师公会」；华纳未单独确认该剧情地名。猫头鹰法庭相关解读仅为影迷推测。",
+  },
   {
     heard: "利物浦大教堂",
     mapsTo: "st-georges",

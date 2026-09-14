@@ -188,8 +188,13 @@ function Roots() {
               影史拉片：新好莱坞、动画长片与恐怖载具
             </h2>
             <p className="mt-2 text-sm text-muted">
-              只收录主创点过名的电影。1970
-              年代犯罪片是底盘；帕丁森另点出《幻影的面具》，里夫斯把战车对标《克里斯汀》。
+              只收录被主创拿来支撑案件、人物关系或载具哲学的电影。1970
+              年代犯罪片是底盘；帕丁森另点出《幻影的面具》，里夫斯把战车对标《克里斯汀》。布鲁斯的柯本隐士塑形来自涅槃《Something
+              in the Way》与《最后的日子》的庄园意象，那是人物与配乐线索，不单列为叙事蓝本——见{" "}
+              <Link to="/craft" hash="nirvana" className="text-fg underline-offset-4 hover:underline">
+                幕后视听
+              </Link>
+              。
             </p>
           </div>
 

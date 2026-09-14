@@ -4,6 +4,7 @@ import { MERCH } from "@/lib/merch";
 import { PLACES } from "@/lib/places";
 import { PEOPLE } from "@/lib/people";
 import { CINEMA_ROOTS, ROOTS, ROOT_KIND } from "@/lib/roots";
+import { CITIES, LENS, THEMES } from "@/lib/craft";
 
 export type SearchItem = {
   title: string;
@@ -49,7 +50,7 @@ export const SEARCH_ITEMS: SearchItem[] = [
       [person.sub, person.actor].filter(Boolean).join(" · "),
       `/people/${person.id}`,
       "人物",
-      person.bio.join(" "),
+      `${person.bio.join(" ")} ${person.also.join(" ")}`,
     ),
   ),
   ...PLACES.map((place) =>
@@ -110,6 +111,50 @@ export const SEARCH_ITEMS: SearchItem[] = [
         film.id === "christine" ? "克里斯汀的魅力 卡朋特 战车 金" : "",
         film.id === "taxi-driver" ? "特拉维斯 比克尔 travis bickle 日记" : "",
       ].join(" "),
+    ),
+  ),
+  ...THEMES.map((theme) =>
+    item(
+      theme.title,
+      theme.titleEn,
+      `/craft#${theme.id}`,
+      "视听",
+      [
+        theme.kind,
+        theme.lede,
+        theme.quoteZh ?? "",
+        theme.sections.map((section) => `${section.heading} ${section.body}`).join(" "),
+        theme.id === "nirvana"
+          ? "Kurt Cobain 柯特·柯本 柯本 Nirvana Last Days 最后的日子 Something in the Way 隐士"
+          : "",
+      ].join(" "),
+    ),
+  ),
+  ...LENS.stills.map((still) =>
+    item(
+      still.caption.split("：")[0] ?? still.posted,
+      `${still.credit} · ${still.posted}`,
+      "/craft#lens",
+      "光影",
+      `梅塞施密特 Messerschmidt 勘景 光影摄影 ${still.caption} ${still.alt} spherical 球形镜头 Runcorn 兰康`,
+    ),
+  ),
+  item(
+    "光影摄影档案",
+    "弗雷泽与梅塞施密特 · 开拍前勘景",
+    "/craft#lens",
+    "栏目",
+    "cinematography Greig Fraser Erik Messerschmidt northwest LEDs spring mist 球形镜头 变形宽银幕 勘景照 Instagram",
+  ),
+  ...CITIES.flatMap((city) =>
+    city.pins.map((pin) =>
+      item(
+        pin.name,
+        `${pin.nameEn} · ${pin.filmAs}`,
+        `/craft#${pin.id}`,
+        "取景",
+        `${city.city} ${city.cityEn} ${pin.work} ${pin.body} ${pin.visit} ${pin.nameEn}`,
+      ),
     ),
   ),
 ];

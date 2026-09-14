@@ -124,13 +124,28 @@ function Craft() {
                   <span className="text-faint"> · {theme.when}</span>
                 </p>
                 <div className="mt-6 grid gap-8 lg:grid-cols-12">
-                  <img
-                    src={theme.image}
-                    alt={theme.imageAlt}
-                    className="aspect-[16/9] w-full object-cover lg:col-span-5"
-                  />
-                  <div className="lg:col-span-7">
+                  {theme.image ? (
+                    <img
+                      src={theme.image}
+                      alt={theme.imageAlt ?? ""}
+                      className="aspect-[16/9] w-full object-cover lg:col-span-5"
+                    />
+                  ) : null}
+                  <div className={theme.image ? "lg:col-span-7" : "lg:col-span-12"}>
                     <p className="text-pretty leading-relaxed text-fg">{theme.lede}</p>
+                    {theme.quote ? (
+                      <blockquote className="mt-6 border-l border-blood/50 pl-4 text-sm leading-relaxed text-muted">
+                        <p>“{theme.quote}”</p>
+                        {theme.quoteZh ? (
+                          <p className="mt-3 text-pretty font-medium text-fg">“{theme.quoteZh}”</p>
+                        ) : null}
+                        {theme.quoteSrc ? (
+                          <footer className="mt-2 text-xs tracking-wide text-faint">
+                            —— {theme.quoteSrc}
+                          </footer>
+                        ) : null}
+                      </blockquote>
+                    ) : null}
                     <div className="mt-6 space-y-6">
                       {theme.sections.map((section) => (
                         <div key={section.heading}>
@@ -143,6 +158,23 @@ function Craft() {
                         </div>
                       ))}
                     </div>
+                    {theme.id === "nirvana" ? (
+                      <p className="mt-6 text-sm text-faint">
+                        人物塑形写在{" "}
+                        <Link
+                          to="/people/$id"
+                          params={{ id: "bruce" }}
+                          className="text-muted underline-offset-4 hover:text-fg hover:underline"
+                        >
+                          布鲁斯·韦恩
+                        </Link>
+                        ；犯罪片与漫画蓝本见{" "}
+                        <Link to="/roots" className="text-muted underline-offset-4 hover:text-fg hover:underline">
+                          艺术溯源
+                        </Link>
+                        ，不把《最后的日子》单列为叙事灵感。
+                      </p>
+                    ) : null}
                   </div>
                 </div>
               </article>
@@ -193,8 +225,18 @@ function Craft() {
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {LENS.stills.map((still) => (
               <li key={still.src}>
-                <img src={still.src} alt="" className="aspect-[16/9] w-full object-cover" />
+                <img src={still.src} alt={still.alt} className="aspect-[16/9] w-full object-cover" />
                 <p className="mt-2 text-xs leading-relaxed text-faint">{still.caption}</p>
+                <p className="mt-1 text-[11px] tracking-wide text-faint">
+                  <a
+                    href={still.href}
+                    rel="noreferrer"
+                    className="text-muted underline-offset-4 hover:text-fg hover:underline"
+                  >
+                    {still.credit}
+                  </a>
+                  <span> · {still.posted}</span>
+                </p>
               </li>
             ))}
           </ul>
@@ -214,7 +256,7 @@ function Craft() {
             </div>
             <div>
               <h3 className="font-sans text-2xl font-black tracking-tight">
-                埃里克·梅塞施密特（Erik Messerschmidt）· 第二部展望
+                埃里克·梅塞施密特（Erik Messerschmidt）· 第二部勘景
               </h3>
               <div className="mt-6 space-y-6">
                 {LENS.messerschmidt.map((note) => (

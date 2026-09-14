@@ -33,17 +33,18 @@ function Roots() {
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">{ROOTS_INTRO}</p>
           <nav className="mt-8 flex flex-wrap gap-3">
             {[
-              { href: "#comics", label: "01 / 四大漫画考据" },
-              { href: "#cinema", label: "02 / 影史拉片" },
-              { href: "#method", label: "03 / 考据分级标准" },
+              { hash: "comics", label: "01 / 四大漫画考据" },
+              { hash: "cinema", label: "02 / 影史拉片" },
+              { hash: "method", label: "03 / 考据分级标准" },
             ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
+              <Link
+                key={item.hash}
+                to="/roots"
+                hash={item.hash}
                 className="shrink-0 border border-fg/20 px-4 py-2 font-display text-xs font-semibold tracking-[0.22em] text-muted uppercase whitespace-nowrap hover:border-blood hover:text-fg"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
@@ -66,9 +67,10 @@ function Roots() {
 
           <div className="mt-8 divide-y divide-fg/10 border-y border-fg/10">
             {ROOTS.map((work) => (
-              <a
+              <Link
                 key={work.id}
-                href={`#${work.id}`}
+                to="/roots"
+                hash={work.id}
                 className="grid gap-2 py-5 sm:grid-cols-12 sm:items-baseline sm:gap-6 hover:bg-surface/30"
               >
                 <p className="font-display text-sm font-semibold tracking-[0.18em] text-blood sm:col-span-3">
@@ -83,7 +85,7 @@ function Roots() {
                   </p>
                   <p className="mt-1 text-pretty text-sm text-muted">{work.thesis}</p>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -200,9 +202,10 @@ function Roots() {
 
           <div className="mt-8 divide-y divide-fg/10 border-y border-fg/10">
             {CINEMA_ROOTS.map((film) => (
-              <a
+              <Link
                 key={film.id}
-                href={`#${film.id}`}
+                to="/roots"
+                hash={film.id}
                 className="grid gap-2 py-5 sm:grid-cols-12 sm:items-baseline sm:gap-6 hover:bg-surface/30"
               >
                 <p className="font-display text-sm font-semibold tracking-[0.18em] text-blood sm:col-span-3">
@@ -217,7 +220,7 @@ function Roots() {
                   </p>
                   <p className="mt-1 text-pretty text-sm text-muted">{film.thesis}</p>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 

@@ -567,3 +567,10 @@ export const CINEMA_ROOTS: CinemaWork[] = [
     ],
   },
 ];
+
+/** `/roots` hash → top-nav parent. Comics default to 世界观; cinema lineage to 幕后. */
+export function rootsNavSection(hash: string): "world" | "craft" {
+  const id = hash.replace(/^#/, "");
+  if (id === "cinema" || CINEMA_ROOTS.some((work) => work.id === id)) return "craft";
+  return "world";
+}

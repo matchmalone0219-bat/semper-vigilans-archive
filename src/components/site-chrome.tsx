@@ -3,6 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { FILM } from "@/data/film";
+import { rootsNavSection } from "@/lib/roots";
 
 const NAV = [
   {
@@ -33,7 +34,7 @@ const NAV = [
   {
     to: "/craft",
     label: "幕后",
-    paths: ["/craft", "/roots", "/gallery", "/interviews"],
+    paths: ["/craft", "/gallery", "/interviews"],
     children: [
       { to: "/roots", hash: "cinema", label: "影史黑色拉片" },
       { to: "/craft", hash: "score", label: "电影配乐" },
@@ -61,7 +62,13 @@ const NAV = [
   { to: "/rataalada", label: "暗号" },
 ] as const;
 
-function navActive(item: (typeof NAV)[number], pathname: string) {
+function navActive(item: (typeof NAV)[number], pathname: string, hash: string) {
+  if (pathname === "/roots" || pathname.startsWith("/roots/")) {
+    const section = rootsNavSection(hash);
+    if (item.to === "/recap") return section === "world";
+    if (item.to === "/craft") return section === "craft";
+    return false;
+  }
   const paths = "paths" in item ? item.paths : [item.to];
   return paths.some((path) => pathname === path || pathname.startsWith(`${path}/`));
 }
@@ -128,7 +135,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                   to={item.to}
                   className={cn(
                     "flex items-center gap-1 border-b-2 py-2 text-xs font-medium tracking-[0.18em] uppercase transition-colors duration-150",
-                    navActive(item, pathname) ? "border-blood font-bold text-fg" : "border-transparent text-muted hover:border-blood hover:text-fg",
+                    navActive(item, pathname, hash) ? "border-blood font-bold text-fg" : "border-transparent text-muted hover:border-blood hover:text-fg",
                   )}
                 >
                   {item.label}
@@ -183,7 +190,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                   to={item.to}
                   className={cn(
                     "font-sans text-2xl font-black tracking-tight",
-                    navActive(item, pathname) ? "text-blood" : "text-muted",
+                    navActive(item, pathname, hash) ? "text-blood" : "text-muted",
                   )}
                 >
                   {item.label}

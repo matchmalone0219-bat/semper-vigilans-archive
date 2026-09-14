@@ -281,7 +281,7 @@ function Dossier() {
         <section id="log" className="scroll-mt-24">
           <SectionKicker n="07" title="拍摄日志" />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            按时间倒序汇总电影从立项、开机到最新外景实拍的完整制片历程。查阅哥谭宇宙剧情故事线请前往{" "}
+            汇总影片从立项、演员确认、档期变化到实景拍摄的现实制作记录。查阅哥谭宇宙剧情故事线请前往{" "}
             <Link
               to="/recap"
               hash="gotham-timeline"

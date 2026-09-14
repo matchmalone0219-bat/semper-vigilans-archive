@@ -1,13 +1,8 @@
-import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BOARD, GOTHAM, RECAPS, TIMELINE } from "@/data/recap";
 import { PLACES } from "@/lib/places";
 import { ROOTS, ROOT_KIND } from "@/lib/roots";
-import { LOG, LOG_KIND, type LogKind } from "@/data/film";
-import { logCarouselImages, logVideoPoster, pageTitle } from "@/lib/film";
-import { LogCarousel } from "@/components/log-carousel";
-import { BiliPlayer } from "@/components/bili-player";
-import { cn } from "@/lib/cn";
+import { pageTitle } from "@/lib/film";
 
 export const Route = createFileRoute("/recap")({
   head: () => ({
@@ -17,13 +12,6 @@ export const Route = createFileRoute("/recap")({
 });
 
 function Recap() {
-  const [timelineMode, setTimelineMode] = useState<"universe" | "production">("universe");
-  const [filterKind, setFilterKind] = useState<LogKind | "all">("all");
-  const [prodSortAsc, setProdSortAsc] = useState<boolean>(true);
-
-  const filteredLogs = LOG.filter((e) => filterKind === "all" || e.kind === filterKind);
-  const displayedLogs = prodSortAsc ? [...filteredLogs] : [...filteredLogs].reverse();
-
   return (
     <main>
       <header className="relative isolate overflow-hidden border-b border-fg/10">
@@ -35,15 +23,19 @@ function Recap() {
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-bg/40" />
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
           <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
-            UNIVERSE TIMELINE & RECAPS
+            GOTHAM TIMELINE & RECAPS
           </p>
           <h1 className="mt-4 font-sans text-5xl font-black leading-none tracking-tight sm:text-7xl">
             前作回顾与时间线
           </h1>
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-            全景梳理《新蝙蝠侠》系列的多维时间线：既包含从 1997 年韦恩悲剧直至第二部凛冬的「哥谭故事编年史」，也完整记录了自 2017 年立项至今的「现实制片历程」；关于原著漫画的致敬与考据，请查阅{" "}
-            <Link to="/roots" className="text-fg underline-offset-4 hover:underline">
-              原著渊源
+            梳理《新蝙蝠侠》犯罪传奇的故事时间线：从韦恩家族旧案、谜语人事件、大洪水到《企鹅人》的黑道重组，再接到第二部的凛冬时期。现实世界中的立项、演员、档期与拍摄记录，请查阅{" "}
+            <Link to="/dossier" hash="log" className="text-fg underline-offset-4 hover:underline">
+              拍摄日志
+            </Link>
+            ；原著漫画的致敬与考据见{" "}
+            <Link to="/roots" hash="comics" className="text-fg underline-offset-4 hover:underline">
+              DC 漫画原著
             </Link>
             。
           </p>
@@ -51,222 +43,100 @@ function Recap() {
       </header>
 
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-        {/* Timeline Section with Dual Switcher */}
         <section id="gotham-timeline" className="scroll-mt-24 pb-16 sm:pb-24">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-                00 / Timeline
+          <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
+            00 / Gotham Timeline
+          </p>
+          <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
+            哥谭故事时间线
+          </h2>
+          <p className="mt-2 max-w-2xl text-pretty text-sm text-muted">
+            按故事发生顺序排列韦恩旧案、谜语人事件、大洪水、《企鹅人》与第二部凛冬节点。现实世界中的立项、演员、档期与拍摄记录，请查阅{" "}
+            <Link to="/dossier" hash="log" className="text-fg underline-offset-4 hover:underline">
+              电影档案 · 拍摄日志
+            </Link>
+            。
+          </p>
+
+          <div className="mt-10">
+            <div className="rounded-none border border-fg/10 bg-surface/30 p-4">
+              <p className="text-xs font-semibold tracking-wider text-blood uppercase">
+                作品快捷导航
               </p>
-              <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-                故事年表与制片历程
-              </h2>
-              <p className="mt-2 max-w-2xl text-pretty text-sm text-muted">
-                提供「哥谭故事时间线」与「现实制片拍摄历程」两种视图。
-              </p>
-            </div>
-
-            {/* Switcher Buttons */}
-            <div className="inline-flex rounded-none border border-fg/20 bg-surface/50 p-1">
-              <button
-                type="button"
-                onClick={() => setTimelineMode("universe")}
-                className={cn(
-                  "px-4 py-2 text-xs font-semibold tracking-wider transition-colors",
-                  timelineMode === "universe"
-                    ? "bg-blood text-fg shadow-sm"
-                    : "text-muted hover:text-fg",
-                )}
-              >
-                哥谭故事时间线 (剧情)
-              </button>
-              <button
-                type="button"
-                onClick={() => setTimelineMode("production")}
-                className={cn(
-                  "px-4 py-2 text-xs font-semibold tracking-wider transition-colors",
-                  timelineMode === "production"
-                    ? "bg-blood text-fg shadow-sm"
-                    : "text-muted hover:text-fg",
-                )}
-              >
-                现实制片历程 (幕后)
-              </button>
-            </div>
-          </div>
-
-          {/* VIEW 1: IN-UNIVERSE TIMELINE */}
-          {timelineMode === "universe" ? (
-            <div className="mt-10">
-              <div className="rounded-none border border-fg/10 bg-surface/30 p-4">
-                <p className="text-xs font-semibold tracking-wider text-blood uppercase">
-                  作品快捷导航
-                </p>
-                <ol className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-3 sm:gap-y-2">
-                  {TIMELINE.map((beat, i) => (
-                    <li key={beat.id} className="flex items-baseline gap-1.5 text-xs sm:text-sm">
-                      {beat.href ? (
-                        <Link to={beat.href} className="font-semibold text-fg hover:underline">
-                          {beat.when}
-                        </Link>
-                      ) : (
-                        <a href={`#${beat.id}`} className="font-semibold text-fg hover:underline">
-                          {beat.when}
-                        </a>
-                      )}
-                      <span className="text-muted">({beat.title})</span>
-                      {i < TIMELINE.length - 1 ? (
-                        <span className="hidden text-faint sm:inline" aria-hidden="true">
-                          →
-                        </span>
-                      ) : null}
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              <div className="mt-12 space-y-14">
-                {GOTHAM.map((block) => (
-                  <section key={block.era}>
-                    <div className="border-b border-blood/40 pb-3">
-                      <h3 className="font-sans text-2xl font-black tracking-tight">{block.era}</h3>
-                      <p className="mt-1 text-sm text-faint">{block.note}</p>
-                    </div>
-                    <ol>
-                      {block.beats.map((beat) => {
-                        const sourceEl = beat.href ? (
-                          <Link
-                            to={beat.href}
-                            className="text-faint underline-offset-4 hover:text-fg hover:underline"
-                          >
-                            {beat.source}
-                          </Link>
-                        ) : beat.recapId ? (
-                          <a
-                            href={`#${beat.recapId}`}
-                            className="text-faint underline-offset-4 hover:text-fg hover:underline"
-                          >
-                            {beat.source}
-                          </a>
-                        ) : (
-                          <span className="text-faint">{beat.source}</span>
-                        );
-                        return (
-                          <li
-                            key={beat.title}
-                            className="grid gap-1 border-b border-fg/10 py-5 sm:grid-cols-12 sm:gap-6"
-                          >
-                            <p className="font-display text-sm font-semibold tracking-[0.12em] text-blood sm:col-span-3">
-                              {beat.when}
-                            </p>
-                            <div className="sm:col-span-9">
-                              <p className="font-sans text-lg font-black tracking-tight">
-                                {beat.title}
-                                <span className="ml-2 text-sm font-medium tracking-normal">
-                                  [{sourceEl}]
-                                </span>
-                              </p>
-                              <p className="mt-2 text-pretty text-muted leading-relaxed">{beat.line}</p>
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ol>
-                  </section>
-                ))}
-              </div>
-            </div>
-          ) : null}
-
-          {/* VIEW 2: REAL-WORLD PRODUCTION TIMELINE */}
-          {timelineMode === "production" ? (
-            <div className="mt-10">
-              {/* Filter and Sort Toolbar */}
-              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-fg/10 pb-4">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-semibold tracking-wider text-muted">分类筛选：</span>
-                  {(["all", "slate", "shoot", "cast", "release"] as const).map((kind) => (
-                    <button
-                      key={kind}
-                      type="button"
-                      onClick={() => setFilterKind(kind)}
-                      className={cn(
-                        "px-2.5 py-1 text-xs font-medium tracking-wider uppercase transition-colors",
-                        filterKind === kind
-                          ? "bg-blood text-fg"
-                          : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
-                      )}
-                    >
-                      {kind === "all" ? "全部" : LOG_KIND[kind]}
-                    </button>
-                  ))}
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setProdSortAsc((prev) => !prev)}
-                  className="text-xs text-muted underline-offset-4 hover:text-fg hover:underline"
-                >
-                  排序方式：{prodSortAsc ? "时间正序 (2017 → 2028)" : "时间倒序 (最新在前)"}
-                </button>
-              </div>
-
-              {/* Production Events List */}
-              <ol className="mt-10 border-l border-fg/15 pl-6">
-                {displayedLogs.map((event) => (
-                  <li
-                    key={event.iso + event.title}
-                    className={cn("relative pb-12 last:pb-0", event.upcoming && "opacity-60")}
-                  >
-                    <span className="absolute top-1.5 -left-[29px] size-2 rounded-full bg-blood" />
-                    <div className="flex flex-wrap items-center gap-3">
-                      <p className="font-display text-sm font-semibold tabular-nums tracking-widest text-blood">
-                        {event.date}
-                      </p>
-                      <span className="border border-fg/20 px-1.5 py-0.5 text-[10px] tracking-wider text-muted uppercase">
-                        {LOG_KIND[event.kind]}
+              <ol className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-3 sm:gap-y-2">
+                {TIMELINE.map((beat, i) => (
+                  <li key={beat.id} className="flex items-baseline gap-1.5 text-xs sm:text-sm">
+                    {beat.href ? (
+                      <Link to={beat.href} className="font-semibold text-fg hover:underline">
+                        {beat.when}
+                      </Link>
+                    ) : (
+                      <a href={`#${beat.id}`} className="font-semibold text-fg hover:underline">
+                        {beat.when}
+                      </a>
+                    )}
+                    <span className="text-muted">({beat.title})</span>
+                    {i < TIMELINE.length - 1 ? (
+                      <span className="hidden text-faint sm:inline" aria-hidden="true">
+                        →
                       </span>
-                      {event.upcoming ? (
-                        <span className="bg-blood/20 px-1.5 py-0.5 text-[10px] tracking-wider text-blood uppercase">
-                          待上映
-                        </span>
-                      ) : null}
-                    </div>
-
-                    <h3 className="mt-2 font-sans text-2xl font-black tracking-tight">{event.title}</h3>
-                    <p className="mt-2 max-w-3xl text-pretty text-sm leading-relaxed text-muted sm:text-base">
-                      {event.body}
-                    </p>
-
-                    {logCarouselImages(event).length ? (
-                      <LogCarousel images={logCarouselImages(event)} className="mt-4 max-w-2xl" />
                     ) : null}
-
-                    {event.video ? (
-                      <BiliPlayer
-                        video={event.video}
-                        poster={logVideoPoster(event)}
-                        className="mt-4 max-w-2xl"
-                      />
-                    ) : null}
-
-                    <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-faint">
-                      {event.source ? <span>来源：{event.source}</span> : null}
-                      {event.href ? (
-                        <Link
-                          to={event.href}
-                          hash={event.hash}
-                          className="font-display text-xs font-semibold tracking-wider text-blood uppercase hover:underline"
-                        >
-                          查看相关资料 →
-                        </Link>
-                      ) : null}
-                    </div>
                   </li>
                 ))}
               </ol>
             </div>
-          ) : null}
+
+            <div className="mt-12 space-y-14">
+              {GOTHAM.map((block) => (
+                <section key={block.era}>
+                  <div className="border-b border-blood/40 pb-3">
+                    <h3 className="font-sans text-2xl font-black tracking-tight">{block.era}</h3>
+                    <p className="mt-1 text-sm text-faint">{block.note}</p>
+                  </div>
+                  <ol>
+                    {block.beats.map((beat) => {
+                      const sourceEl = beat.href ? (
+                        <Link
+                          to={beat.href}
+                          className="text-faint underline-offset-4 hover:text-fg hover:underline"
+                        >
+                          {beat.source}
+                        </Link>
+                      ) : beat.recapId ? (
+                        <a
+                          href={`#${beat.recapId}`}
+                          className="text-faint underline-offset-4 hover:text-fg hover:underline"
+                        >
+                          {beat.source}
+                        </a>
+                      ) : (
+                        <span className="text-faint">{beat.source}</span>
+                      );
+                      return (
+                        <li
+                          key={beat.title}
+                          className="grid gap-1 border-b border-fg/10 py-5 sm:grid-cols-12 sm:gap-6"
+                        >
+                          <p className="font-display text-sm font-semibold tracking-[0.12em] text-blood sm:col-span-3">
+                            {beat.when}
+                          </p>
+                          <div className="sm:col-span-9">
+                            <p className="font-sans text-lg font-black tracking-tight">
+                              {beat.title}
+                              <span className="ml-2 text-sm font-medium tracking-normal">
+                                [{sourceEl}]
+                              </span>
+                            </p>
+                            <p className="mt-2 text-pretty text-muted leading-relaxed">{beat.line}</p>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </section>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* Places Section */}

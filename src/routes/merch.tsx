@@ -154,7 +154,7 @@ function Merch() {
                         <SourceLink
                           label={item.sourceLabel}
                           href={item.sourceUrl}
-                          tier="official"
+                          tier={item.sourceTier}
                           verifiedAt={item.verifiedAt}
                         />
                       ) : null}

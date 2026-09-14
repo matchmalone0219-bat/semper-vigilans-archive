@@ -5,6 +5,7 @@ import {
   isValidDisplayDate,
   checkSourceFields,
   checkLocalMedia,
+  checkMerch,
   formatReport,
 } from "./content-check.mjs";
 
@@ -112,4 +113,115 @@ test("formatReport formats success and failure outputs correctly", () => {
   assert.match(formatted, /\[people\]/);
   assert.match(formatted, /- bruce: unknown place id "wayne-cave-x"/);
   assert.match(formatted, /Total errors: 2/);
+});
+
+function collectMerchErrors(merch) {
+  const errors = [];
+  checkMerch(merch, ".", (cat, msg) => errors.push(`${cat}: ${msg}`));
+  return errors;
+}
+
+const validCover = {
+  id: "movie-variant-sample",
+  title: "Batman #1",
+  issue: "#1",
+  coverArtist: "Test",
+  releaseDate: "2022.03.01",
+  iso: "2022-03-01",
+  image: "/media/signal.jpg",
+  imageAlt: "test",
+  variantType: "movie",
+};
+
+const validItem = {
+  id: "sample-item",
+  name: "Sample",
+  image: "/media/signal.jpg",
+  sourceUrl: "https://example.com/item",
+  sourceLabel: "Example",
+  sourceTier: "press",
+};
+
+test("checkMerch flags duplicate group, item, and cover ids plus invalid fields", () => {
+  const errors = collectMerchErrors({
+    MERCH: [
+      {
+        id: "fashion",
+        items: [
+          { ...validItem, id: "dup-item", covers: [validCover] },
+          {
+            ...validItem,
+            id: "dup-item",
+            image: "/media/merch/does-not-exist.jpg",
+            sourceUrl: "ftp://example.com/bad",
+            sourceTier: "rumor",
+          },
+        ],
+      },
+      {
+        id: "fashion",
+        items: [
+          {
+            ...validItem,
+            id: "cover-collision",
+            covers: [
+              { ...validCover, id: "dup-item" },
+              {
+                ...validCover,
+                id: "bad-cover",
+                iso: "2022-13-40",
+                releaseDate: "March 1",
+                variantType: "reprint",
+                image: "/media/merch/missing-cover.jpg",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  });
+
+  assert.ok(errors.some((e) => e.includes('merch/groups: duplicate merch group id: "fashion"')));
+  assert.ok(errors.some((e) => e.includes('merch/items: duplicate merch item id: "dup-item"')));
+  assert.ok(errors.some((e) => e.includes("merch/items: dup-item: missing media file")));
+  assert.ok(errors.some((e) => e.includes("invalid sourceUrl")));
+  assert.ok(errors.some((e) => e.includes('invalid sourceTier "rumor"')));
+  assert.ok(errors.some((e) => e.includes('merch/covers: duplicate merch cover id: "dup-item"')));
+  assert.ok(errors.some((e) => e.includes("bad-cover: invalid iso date")));
+  assert.ok(errors.some((e) => e.includes("bad-cover: invalid display date format")));
+  assert.ok(errors.some((e) => e.includes("bad-cover: missing media file")));
+  assert.ok(errors.some((e) => e.includes('invalid variantType "reprint"')));
+});
+
+test("checkMerch accepts a valid catalog and treats sourceTier as optional", () => {
+  const errors = collectMerchErrors({
+    MERCH: [
+      {
+        id: "print",
+        items: [
+          {
+            id: "with-tier",
+            image: "/media/signal.jpg",
+            sourceUrl: "https://www.dc.com/blog",
+            sourceLabel: "DC",
+            sourceTier: "official",
+            covers: [validCover],
+          },
+          {
+            id: "no-source",
+            image: "/media/signal.jpg",
+          },
+          {
+            id: "label-only-needs-url",
+            image: "/media/signal.jpg",
+            sourceLabel: "Retailer",
+          },
+        ],
+      },
+    ],
+  });
+
+  assert.ok(errors.some((e) => e.includes("label-only-needs-url: missing sourceUrl")));
+  assert.equal(errors.some((e) => e.includes("no-source")), false);
+  assert.equal(errors.some((e) => e.includes("with-tier")), false);
 });

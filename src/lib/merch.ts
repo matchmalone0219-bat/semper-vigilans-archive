@@ -22,6 +22,7 @@ export type MerchItem = {
   body: string;
   sourceUrl?: string;
   sourceLabel?: string;
+  sourceTier?: "official" | "press" | "set";
   verifiedAt?: string;
   covers?: MerchCover[];
 };
@@ -141,7 +142,7 @@ export const THE_BATMAN_MOVIE_VARIANTS: MerchCover[] = [
     iso: "2022-03-22",
     image: "/media/merch/comics/the-batman-variants/harley-quinn-13-bianchi.jpg",
     imageAlt:
-      "Simone Bianchi 为 Harley Quinn #13 绘制的电影变体封面：蝙蝠侠、猫女、谜语人与企鹅人拼贴",
+      "Simone Bianchi 为 Harley Quinn #13 绘制的电影变体封面：蝙蝠侠、猫女、谜语人与企鹅人拼贴成蝙蝠徽，压在哥谭天际线上",
     variantType: "movie",
   },
 ];
@@ -153,7 +154,7 @@ export const MERCH: MerchGroup[] = [
     title: "可动人偶",
     titleEn: "Action Figures",
     intro:
-      "收录官方授权的 1/6 收藏级可动、1/12 日系与美系小比例可动、1/9 中档量产与 7 寸零售可动，注重头雕还原、战衣剪裁与把玩配件。大众货架玩具见第 13 栏。",
+      "收录官方授权的 1/6 收藏级可动、1/12 日系与美系小比例可动、1/9 中档量产与 7 寸零售可动，注重头雕还原、战衣剪裁与把玩配件。大众货架玩具见第 12 栏。",
     items: [
       {
         id: "inart-action",
@@ -167,6 +168,7 @@ export const MERCH: MerchGroup[] = [
         body: "INART 小比例线 INART Action 推出的华纳授权电影版蝙蝠侠。三款头雕（戴面罩平静、戴面罩愤怒、露脸布鲁斯），可替换胸甲，十三只手型，铁丝布料披风。配件含空头套、抓钩发射器开合两态、黏弹枪、肾上腺素、手电筒、紫外灯、笔记本电脑与两款蝙蝠镖。含地台约 15×15×16.9 cm。",
         sourceUrl: "https://global.inart.studio/products/the-batman-batman-action-figure",
         sourceLabel: "INART 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.08",
       },
       {
@@ -209,6 +211,7 @@ export const MERCH: MerchGroup[] = [
         body: "2024 年 11 月 15 日发售的 TAMASHII NATIONS STORE 限定版，比早期店售 SHF 更贴近剧中配色。PVC／ABS／布制，全高约 160 毫米。套装含本体、可替换胸甲、左右各 5 种手型、左右抓钩发射器与 Bat Knife；披风内置铁丝，可做出被风掀起的姿态。",
         sourceUrl: "https://tamashiiweb.com/item/15022/",
         sourceLabel: "魂ウェブ官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -223,6 +226,7 @@ export const MERCH: MerchGroup[] = [
         body: "Mezco 软服路线的 1/12 集体系列。约 17 厘米，超过 30 处关节，四款头雕含罗伯特·帕丁森露脸布鲁斯。战衣含铁丝披风、可拆翼装、护臂、工具腰带与大腿袋。配件含黏弹发射器、蝙蝠镖、手铐、紫外灯、收放两态抓钩、肾上腺素、烟雾弹等，是与 MAFEX、SHF 硬塑路线对照的代表性电影授权款。",
         sourceUrl: "https://www.mezcotoyz.com/one-12-collective-the-batman",
         sourceLabel: "Mezco Toyz 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -237,6 +241,7 @@ export const MERCH: MerchGroup[] = [
         body: "台湾野獸國 Dynamic 8ction Heroes 中档量产线。全高约 21 厘米、约 22 处关节，布制披风，头雕按帕丁森面容塑造。配件含三组替换手型、蝙蝠镖，以及收起／展开两态抓钩发射器。日本地区 2025 年 2 月发售，包装纪念蝙蝠侠八十五周年。补上 2022 高端线之外的中档授权可动。",
         sourceUrl: "https://beast-kingdom.us/dah-117-batman-the-batman.html",
         sourceLabel: "Beast Kingdom 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -251,6 +256,7 @@ export const MERCH: MerchGroup[] = [
         body: "Queen Studios 旗下高端可动厂牌 INART 出品。配备独立可动眼球系统与多款替换表情，豪华版特别附带手工植发头雕。战衣严格按照电影多层结构剪裁制作，细致还原防弹护甲与布料质感。",
         sourceUrl: "https://queenstudios.shop/products/batman-1-6-collectible-figure",
         sourceLabel: "Queen Studios / INART 产品页",
+        sourceTier: "official",
         verifiedAt: "2026.08.24",
       },
       {
@@ -287,6 +293,7 @@ export const MERCH: MerchGroup[] = [
         body: "DC Multiverse 第二波推出的便装／头套掀起造型。还原帕丁森版布鲁斯的眼妆与战术甲，约 22 处可动，附蝙蝠镖与地台。官方产品页标注为 Batman Unmasked (The Batman)。",
         sourceUrl: "https://mcfarlane.com/toys/batman-unmasked-batman/",
         sourceLabel: "McFarlane Toys 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -301,6 +308,7 @@ export const MERCH: MerchGroup[] = [
         body: "按保罗·达诺在电影中的战斗服与雨衣造型制作。7 寸、约 22 处可动，配件为破冰锥（ice picker）与地台，附角色收藏卡。与雕像区的 1/6 树脂谜语人是同一角色的不同产品线。",
         sourceUrl: "https://mcfarlane.com/toys/riddler-the-batman-movie/",
         sourceLabel: "McFarlane Toys 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -315,6 +323,7 @@ export const MERCH: MerchGroup[] = [
         body: "按科林·法瑞尔在冰山俱乐部时期的企鹅人还原。7 寸、约 22 处可动，附替换手型与地台，以及正面摄影、背面角色小传的收藏卡。官方产品页将他写作 Oswald Cobblepot，Gotham 夜场老板。",
         sourceUrl: "https://mcfarlane.com/toys/the-penguin/",
         sourceLabel: "McFarlane Toys 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -364,6 +373,7 @@ export const MERCH: MerchGroup[] = [
         body: "根据《新蝙蝠侠》制片组提供的原始数字资产打造。全尺寸纯金属铸造，表面施以手工战损与做旧效果，还原大银幕质感；附带专属编号金属铭牌与展示盒。",
         sourceUrl: "https://factoryent.com/products/the-batman-batarang-limited-edition-prop-replica",
         sourceLabel: "Factory Entertainment 产品页",
+        sourceTier: "official",
         verifiedAt: "2026.08.24",
       },
       {
@@ -378,6 +388,7 @@ export const MERCH: MerchGroup[] = [
         body: "同一道具的入门档：7 英寸（约 18×11×0.5 厘米）实心金属铸造，收藏包装并附展示架。不是 1:1 复刻，价格与体量都低于限量全尺寸版，用来把「道具复刻」从 1:1 金属件补成完整谱系。货号 408894，官方产品页仍在线。",
         sourceUrl: "https://factoryent.com/products/the-batman-batarang-scaled-prop-replica",
         sourceLabel: "Factory Entertainment 产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -392,6 +403,7 @@ export const MERCH: MerchGroup[] = [
         body: "由 Paragon 依据电影道具原件 STL 文件 1:1 打造。全金属实心结构，忠实还原了胸甲徽记表面的细微机械纹理，并可按电影设定拆卸展开为双刃折叠战术刀。",
         sourceUrl: "https://paragonfxgroup.com/products/thebatman2022",
         sourceLabel: "Paragon FX 产品页",
+        sourceTier: "official",
         verifiedAt: "2026.08.24",
       },
       {
@@ -406,6 +418,7 @@ export const MERCH: MerchGroup[] = [
         body: "全尺寸 1:1 电影实体道具复刻，尺寸约 10×21×5 厘米。采用实心合金精密压铸，细致呈现了钢缆线轴、握把机械制动结构与战损涂装，配有展示盒与独立编号收藏证书。",
         sourceUrl: "https://factoryent.com/products/the-batman-grapple-launcher-limited-edition-prop-replica",
         sourceLabel: "Factory Entertainment 产品页",
+        sourceTier: "official",
         verifiedAt: "2026.08.24",
       },
     ],
@@ -430,6 +443,7 @@ export const MERCH: MerchGroup[] = [
         body: "由开天工作室（Infinity Studio）与 Penguin Toys 联合打造。采用铂金硅胶头雕与医用级硅胶皮肤，战衣使用真皮与定制织物。全高约 93 厘米，地台按电影视觉做成哥谭滴水兽建筑，滴水兽可磁吸拆卸单独展示。全球限量 500 尊。",
         sourceUrl: "https://www.sideshow.com/collectibles/dc-comics-batman-infinity-studio-infinity-studio-910677",
         sourceLabel: "Sideshow 产品页",
+        sourceTier: "official",
         verifiedAt: "2026.08.24",
       },
       {
@@ -466,6 +480,7 @@ export const MERCH: MerchGroup[] = [
         body: "按 2022 年电影战术甲制作的 Art Scale 1/10。Sideshow 公布全高约 10.2 英寸（约 26 厘米），宝丽石手绘，地台做成哥谭混凝土建筑并带蝙蝠徽。Prime 1 / Infinity 是万元级巨物，这一档把中小比例雕像补进档案。",
         sourceUrl: "https://www.sideshow.com/collectibles/dc-comics-the-batman-iron-studios-910601",
         sourceLabel: "Sideshow 产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -480,6 +495,7 @@ export const MERCH: MerchGroup[] = [
         body: "按吉姆·李为电影绘制的红黑宣传海报配色，而不是写实战衣涂装。12 寸摆件（非可动），附滴水兽地台、风格化背景板，以及正反面收藏卡。接近「电影宣传视觉实体化」，体量低于 Prime 1，更适合作为档案向展品。",
         sourceUrl: "https://mcfarlane.com/toys/batman-12-posed-statue-gold-label/",
         sourceLabel: "McFarlane Toys 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -494,6 +510,7 @@ export const MERCH: MerchGroup[] = [
         body: "按电影谜语人服装制作的 1/6 树脂像，电影 Logo 直接作为底座。雕像区此前几乎全是蝙蝠侠，这一尊把达诺版谜语人补进陈列。与 7 寸可动是同一造型的不同产品，DC Direct 系列包装。",
         sourceUrl: "https://mcfarlane.com/toys/riddler-16-resin-statue-batman/",
         sourceLabel: "McFarlane Toys 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
     ],
@@ -518,6 +535,7 @@ export const MERCH: MerchGroup[] = [
         body: "美泰风火轮推出的全功能遥控电影战车（货号 HCD19）。1:10 比例，手枪式遥控手柄，后驱带悬挂系统，最高时速约 16 公里；前大灯与尾喷口可通电发光，驾驶舱可放入约 6 寸人偶。",
         sourceUrl: "https://creations.mattel.com/products/hot-wheels-rc-the-batman-the-original-batmobile-hcd19",
         sourceLabel: "Mattel Creations 产品页 HCD19",
+        sourceTier: "official",
         verifiedAt: "2026.08.24",
       },
       {
@@ -532,6 +550,7 @@ export const MERCH: MerchGroup[] = [
         body: "荷兰 Jazzinc 依据电影实车图纸打造的 1/6 收藏级战车，适配 Hot Toys、INART 等 12 寸人偶。全车包含钢架结构与上千个零件，V8 引擎、仪表台与轮胎花纹按比例精准还原，配备灯光地台、车灯照明、排气烟雾与引擎音效系统。",
         sourceUrl: "https://jazzincdioramas.com/vehicles/16-scale-batmobile-from-the-batman-2022-clean-version",
         sourceLabel: "Jazzinc 普通版产品页",
+        sourceTier: "official",
         verifiedAt: "2026.08.24",
       },
       {
@@ -546,6 +565,7 @@ export const MERCH: MerchGroup[] = [
         body: "与普通版同比例及同电子功能配置（含灯光、烟雾、音效与遥控），涂装重点还原企鹅人追逐战后的重度战损状态：车身布满泥泞溅痕、撞击刮痕与积尘。",
         sourceUrl: "https://jazzincdioramas.com/vehicles/batmobile2022weathered",
         sourceLabel: "Jazzinc 战损版产品页",
+        sourceTier: "official",
         verifiedAt: "2026.08.24",
       },
       {
@@ -560,6 +580,7 @@ export const MERCH: MerchGroup[] = [
         body: "Movie Masterpiece MMS642，2023 年发售。全长约 42×19×19 厘米，还原上整流罩、带后视镜的车把、座下引擎与排气管、轮胎花纹。头灯与尾灯可 LED 发光，车把可左右转动，橡胶轮胎可转，附两款展示地台。蝙蝠侠人偶另售，专门配 1/6 Batman；补上 Jazzinc 战车之外的另一台电影载具。",
         sourceUrl: "https://www.sideshow.com/collectibles/dc-comics-batcycle-hot-toys-910637",
         sourceLabel: "Sideshow 产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -675,7 +696,7 @@ export const MERCH: MerchGroup[] = [
   },
   {
     id: "print",
-    kicker: "07",
+    kicker: "06",
     title: "出版与漫画",
     titleEn: "Books & Comics",
     intro:
@@ -727,6 +748,7 @@ export const MERCH: MerchGroup[] = [
         sourceUrl:
           "https://www.dc.com/blog/2022/02/03/march-variant-covers-featuring-art-inspired-by-warner-bros-pictures-the-batman-available-for-pre-order-now",
         sourceLabel: "DC 官方 · 2022.02.03 电影变体封面公告",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
         covers: THE_BATMAN_MOVIE_VARIANTS,
       },
@@ -739,10 +761,11 @@ export const MERCH: MerchGroup[] = [
         spec: "2022.03.01 · IMAX 提前场一人一册 · 送完即止",
         image: "/media/merch/comics/the-batman-variants/long-halloween-imax.jpg",
         imageAlt:
-          "Simone Bianchi 为 IMAX Fan First Premiere 绘制的《Batman: The Long Halloween #1》Special Edition 封面，蝙蝠徽压在哥谭天际线上",
-        body: "2022 年 3 月 1 日 IMAX Fan First Premiere 提前场向持票观众发放的实体赠刊，内容为 Jeph Loeb / Tim Sale《Batman: The Long Halloween》第一期，每张票一册、送完即止。封面由西莫内·比安基（Simone Bianchi）绘制：画师本人于 2022 年 2 月 9 日发文确认，这张图同时是 Harley Quinn #13 电影变体封面。该刊仅在 IMAX 提前场发放。",
+          "Simone Bianchi 为 IMAX Fan First Premiere《Batman: The Long Halloween #1》Special Edition 绘制的封面：与 Harley Quinn #13 电影变体共用同一构图，蝙蝠侠、猫女、谜语人与企鹅人拼贴成蝙蝠徽",
+        body: "2022 年 3 月 1 日 IMAX Fan First Premiere 提前场向持票观众发放的实体赠刊，内容为 Jeph Loeb / Tim Sale《Batman: The Long Halloween》第一期，每张票一册、送完即止。封面由西莫内·比安基（Simone Bianchi）绘制。画师本人于 2022 年 2 月 9 日发文确认，这张构图同时是 Harley Quinn #13 电影变体封面；院线赠刊加上 Special Edition 与 IMAX Fan First Premiere 刊头。该刊仅在 IMAX 提前场发放。",
         sourceUrl: "https://x.com/SBianchiArt/status/1491418935144886275",
         sourceLabel: "Simone Bianchi · IMAX 赠刊封面确认",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -758,13 +781,14 @@ export const MERCH: MerchGroup[] = [
         sourceUrl:
           "https://comicbook.com/movies/news/the-batman-box-set-dc-comics-inspired-matt-reeves-movie-2022/",
         sourceLabel: "ComicBook · DC Connect 征订",
+        sourceTier: "press",
         verifiedAt: "2026.09.14",
       },
     ],
   },
   {
     id: "media",
-    kicker: "08",
+    kicker: "07",
     title: "影音与原声",
     titleEn: "Home Video & Soundtrack",
     intro:
@@ -804,13 +828,14 @@ export const MERCH: MerchGroup[] = [
         body: "奥斯卡获奖作曲家迈克尔·吉亚奇诺操刀，Mondo 与 WaterTower Music 合作推出三碟 180 克黑胶，近两小时配乐，三折封套，封面由 Henry Abrams 新绘。店限还有 Mondo 独家彩胶，同时有纯黑胶版本。数字流媒体与双 CD 仍是同一份配乐的其他载体；厚重四音符铜管与 Tiffin Boys 合唱的谜语人主题，是这一代蝙蝠侠最容易辨认的声音。",
         sourceUrl: "https://mondoshop.com/products/the-batman-original-motion-picture-soundtrack-3xlp",
         sourceLabel: "Mondo 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
     ],
   },
   {
     id: "posters",
-    kicker: "09",
+    kicker: "08",
     title: "院线限定与观影特典",
     titleEn: "Theatrical Exclusives & Cinema Premiums",
     intro:
@@ -828,6 +853,7 @@ export const MERCH: MerchGroup[] = [
         body: "2022 年 2 月由 IMAX 与华纳公布的正式专属视觉，作者为比尔·辛凯维奇（Bill Sienkiewicz）。红色蝙蝠轮廓里叠入谜语人、猫女、企鹅人、戈登与阿尔弗雷德，蝙蝠侠披风压住整幅构图。IGN 采访确认该三联画曾在部分 IMAX 开画场发放；日本 IMAX 官方则从 3 月 11 日起，向 IMAX 场次观众发放同一视觉的 A3「IMAXエクスクルーシブ・ビジュアル ミニポスター」，数量限定、一人一枚。后来的 Sideshow 收藏级石版画基于同一原稿，作为独立授权印刷发行。",
         sourceUrl: "https://www.ign.com/articles/how-the-batman-poster-was-made-bill-sienkiewicz",
         sourceLabel: "IGN · Sienkiewicz IMAX 海报访谈",
+        sourceTier: "press",
         verifiedAt: "2026.09.14",
       },
       {
@@ -842,6 +868,7 @@ export const MERCH: MerchGroup[] = [
         body: "杜比影院与华纳在 2022 年 2 月 10 日预售开启时发布的专属海报。蝙蝠侠背对镜头立在雨夜中，身后蝙蝠信号灯打亮夜空，左右被 Dolby 的「D」形外框切开。画面写有 Discover It At Dolby Cinema，对应杜比视界与全景声厅的宣传视觉。",
         sourceUrl: "https://comicbook.com/dc/news/the-batman-dolby-exclusive-poster-tickets-on-sale/",
         sourceLabel: "ComicBook · Dolby Cinema 专属海报",
+        sourceTier: "press",
         verifiedAt: "2026.09.14",
       },
       {
@@ -856,6 +883,7 @@ export const MERCH: MerchGroup[] = [
         body: "ScreenX 官方账号于 2022 年 2 月 10 日公布的 exclusive artwork。蝙蝠侠与猫女在暮色哥谭天际线前对望，猫女摩托在前、蝙蝠战车在后，ScreenX 标志嵌进城市剪影，上方是 Unmask The Truth。CJ 4DPLEX 新闻稿确认本片是第一部同时以 ScreenX 与 4DX 上映的蝙蝠侠电影。目前核实到的正式构图即此一套。",
         sourceUrl: "https://www.prnewswire.com/news-releases/the-batman-debuts-in-the-visually-immersive-270-degree-panoramic-screenx-theaters-301496149.html",
         sourceLabel: "CJ 4DPLEX 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -870,6 +898,7 @@ export const MERCH: MerchGroup[] = [
         body: "华纳兄弟墨西哥官方账号在 2022 年 2 月作为「póster exclusivo de 4DX」发布。蝙蝠侠张开披风立在雨夜街道，身后是肌肉车造型的蝙蝠战车，画面带 4DX 标志与仅在影院上映的字样。这是全球 4DX 宣传用的正式 artwork；日本 4DX 入场发放的 A3 实体是另一套雨夜全身构图，见下条。",
         sourceUrl: "https://x.com/WBPictures_Mx/status/1492302433455902721",
         sourceLabel: "Warner Bros. Pictures México",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -884,6 +913,7 @@ export const MERCH: MerchGroup[] = [
         body: "DC Presents The Batman Fan First Premieres Exclusively in IMAX，2022 年 3 月 1 日在美国超过一百座城市的 IMAX 厅提前放映。导演马特·里夫斯与 Fandango、IMAX 同步公布这张雨夜屋顶剪影的活动视觉。官方确认每张票附赠一册《Batman: The Long Halloween #1》独家封面漫画（一人一份，送完即止），赠刊见出版栏。画面为该场活动海报 artwork。",
         sourceUrl: "https://comicbook.com/movies/news/how-to-get-tickets-the-batman-early-access-screening-batman-fan-first-premieres-imax/",
         sourceLabel: "ComicBook · Fan First Premiere 购票说明",
+        sourceTier: "press",
         verifiedAt: "2026.09.14",
       },
       {
@@ -898,6 +928,7 @@ export const MERCH: MerchGroup[] = [
         body: "DC 日本官方宣布：3 月 10 日在全国 IMAX 与 Dolby Cinema 举行公开日前夜特别上映，两厅各有不同先着入场礼物。IMAX 场次发放这张原创艺术海报，画面是暴雨中的蝙蝠侠头套特写，上书 Unmask the Truth。官方原文写作「オリジナルアートポスター」，与 3 月 11 日起发放的 IMAX 迷你海报（Sienkiewicz 视觉）不是同一张。",
         sourceUrl: "https://x.com/dc_jp/status/1499293647158018051",
         sourceLabel: "DC 日本官方",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -984,13 +1015,14 @@ export const MERCH: MerchGroup[] = [
         body: "华纳、AMC 与 Dolby 把《新蝙蝠侠》带回大银幕，作为 8 月 28 日一夜场，并加映《企鹅人》制作特辑。美国约 100 块 Dolby Cinema at AMC 银幕，英国、法国、西班牙、沙特、瑞典与韩国等地的杜比厅也有参与。官方新闻稿写明观众可获 mini-poster featuring exclusive new art，送完即止；官方账号同步称为 special edition mini-poster。主图用华纳活动主视觉归档，完整实体扫描仍待补。",
         sourceUrl: "https://www.ign.com/articles/the-batman-theaters-the-penuin-sneak-peek",
         sourceLabel: "IGN · 2024 重映与《企鹅人》加映",
+        sourceTier: "press",
         verifiedAt: "2026.09.14",
       },
     ],
   },
   {
     id: "prints",
-    kicker: "10",
+    kicker: "09",
     title: "官方授权艺术印刷",
     titleEn: "Official Art Prints",
     intro:
@@ -1008,6 +1040,7 @@ export const MERCH: MerchGroup[] = [
         body: "Mondo 为电影发行的第一张授权丝网。弗朗切斯科·弗兰卡维拉绘制，Lady Lazarus 印刷，24×36 英寸。常规版是 Timed Edition：2022 年 3 月 3 日 11:00 CT 至 3 月 6 日 23:59 CT，印量由该时段销量决定。红黑两色勾出雨夜战车尾焰与义警剪影。",
         sourceUrl: "https://mondoshop.com/blogs/news/the-batman-by-francesco-francavilla-on-sale-info",
         sourceLabel: "Mondo 官方发售说明",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1022,6 +1055,7 @@ export const MERCH: MerchGroup[] = [
         body: "与限时常规版同日开售的变体。Mondo 官方写明 Edition of 325，同样 24×36、Lady Lazarus 印刷。画面改成暴雨与红光里的头套特写。325 这个数字来自 Mondo 发售页，不是二手转述。",
         sourceUrl: "https://mondoshop.com/blogs/news/the-batman-by-francesco-francavilla-on-sale-info",
         sourceLabel: "Mondo 官方发售说明",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1036,6 +1070,7 @@ export const MERCH: MerchGroup[] = [
         body: "Sideshow 与 Bill Sienkiewicz Art 发行的 DC 授权石版画。构图来自他为 IMAX 绘制的电影群像，作为后来单独出售的收藏级印刷：18×24 英寸、限量 150、艺术家手签并附证书。",
         sourceUrl: "https://www.sideshow.com/collectibles/dc-comics-batman-unmask-the-truth-bill-sienkiewicz-art-501966U",
         sourceLabel: "Sideshow 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1050,6 +1085,7 @@ export const MERCH: MerchGroup[] = [
         body: "Bottleneck Gallery 于 2023 年 3 月 7 日发售。Sam Green 把电影场面做成谜语人式侦探板：雨夜哥谭、战车、猫女、企鹅人与剪报钉在同一张 24×36 英寸 Giclée 上。常规版手编号 175 张；另有变体版 100 张。",
         sourceUrl: "https://bottleneckgallery.com/blogs/news/new-batman-prints-by-dayne-henry-sam-green-mike-mcgee-on-sale-info",
         sourceLabel: "Bottleneck Gallery 发售说明",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1078,7 +1114,7 @@ export const MERCH: MerchGroup[] = [
   },
   {
     id: "fashion",
-    kicker: "11",
+    kicker: "10",
     title: "时装、首饰与配饰",
     titleEn: "Fashion, Jewelry & Accessories",
     intro:
@@ -1096,6 +1132,7 @@ export const MERCH: MerchGroup[] = [
         body: "华纳 2022 年 1 月 10 日新闻稿把 LANVIN 列为电影奢侈时装合作方，也是蝙蝠侠形象首次交给该屋做完整胶囊。布鲁诺·西勒尔（Bruno Sialelli）2021 秋巴黎时装周发布的 2022 春夏系列，把深蓝、紫色与装饰艺术线条叠进成衣、金属网眼裙、双面泰迪外套，以及按蝙蝠战车轮廓做的 Curbs 鞋与 minaudière 手拿包。Saks 实体店 3 月 2 日起售，saks.com 3 月 15 日上线，涵盖高级成衣、金属网眼裙与战车轮廓包袋，呈现哥谭暗黑美学。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1110,6 +1147,7 @@ export const MERCH: MerchGroup[] = [
         body: "Carhartt 官方新闻稿写明，这是该品牌与 DC 的首次合作，2022 年 4 月 6 日在 carhartt-x-thebatman 专页开售。系列含帽、帽衫、T 恤、夹克与熨烫贴章；代表性单品是带生产编号、胸袋反光蝙蝠徽的 chore coat，肩部加弹、肘部打褶，对应电影战衣的机能剪裁。定价约 24.99–129.99 美元。胸袋点缀反光电影蝙蝠徽标，兼具美式硬派工装剪裁与电影战术机能质感。",
         sourceUrl: "https://www.carhartt.com/inspired-by-the-batman",
         sourceLabel: "Carhartt 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1124,6 +1162,7 @@ export const MERCH: MerchGroup[] = [
         body: "PUMA 官方新闻稿确认，电影训练与潮流胶囊于 2022 年 2 月 26 日上线，成人与儿童尺码。服饰含连帽衫、T 恤、T7 套装、短裤、紧身裤与帽；鞋款后继上架 Suede、瑟琳娜主题 Fierce 2、黑红 RS-X、红色 formstrip 的 Mayze，以及蝙蝠侠／猫女 Court Rider，另有 Ultra 与 Future Z 足球靴。全线五十余个 SKU，通体采用电影标志性的暗黑与血红对比配色，呼应夜巡战术风格。",
         sourceUrl: "https://about.puma.com/en/newsroom/news/batman-steps-spotlight-when-limited-edition-collection-puma-warner-bros-consumer",
         sourceLabel: "PUMA 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1138,6 +1177,7 @@ export const MERCH: MerchGroup[] = [
         body: "华纳 2022 年 1 月新闻稿把维纳斯·威廉姆斯的 EleVen 列为电影运动服饰合作方。系列按哥谭夜雨与霓虹来做：黑白单色加一点红，暴露拉链、绑带气眼，以及带铆钉、网眼与湿感印花的猫女指向单品。Saks、Tennis Warehouse 与欧洲 Zalando 有售。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1152,6 +1192,7 @@ export const MERCH: MerchGroup[] = [
         body: "华纳新闻稿把 TomboyX 写进电影服饰名单，产品为 T 恤和内衣。实物可见电影版蝙蝠徽与 Vengeance 字样，对应 Reeves 版口号而非黄色椭圆经典标。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1166,6 +1207,7 @@ export const MERCH: MerchGroup[] = [
         body: "Fossil 胶囊 2022 年 2 月 28 日上线。蝙蝠侠自动机械表（LE1142SET）42 毫米黑离子电镀钢壳，半镂空表盘饰蝙蝠徽，透底可见红色自动陀，随附四条快拆表带与抽屉式收纳盒。同系列谜语人石英表用棋盘纹表带，六点位问号小盘可转，官方限量 1595 枚、定价 160 美元。",
         sourceUrl: "https://www.fossilgroup.com/fossil-launches-the-batman-capsule-collection/",
         sourceLabel: "Fossil Group 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1180,6 +1222,7 @@ export const MERCH: MerchGroup[] = [
         body: "Fossil 官方新闻稿把三件首饰写成「白天是首饰、夜里有第二功能」。离子电镀哑光黑钢狗牌项链可当开瓶器，定价 75 美元；熔岩珠手链可吸附精油，55 美元；哑光黑钢火漆戒指随附蜡棒，可盖出蝙蝠徽火漆，45 美元。三件各限量 1000。",
         sourceUrl: "https://www.fossilgroup.com/fossil-launches-the-batman-capsule-collection/",
         sourceLabel: "Fossil Group 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1194,6 +1237,7 @@ export const MERCH: MerchGroup[] = [
         body: "同一胶囊的皮具线。Fossil 官方名单含 The Batman Backpack、Waistpack、Zipper Card Case、2-in-1 Bifold Wallet 与 Card Case，按电影战衣的哑光黑与装甲剪裁来做。采用哑光黑皮革搭配战术护甲剪裁，细致呼应电影战甲设计语言。",
         sourceUrl: "https://www.fossilgroup.com/fossil-launches-the-batman-capsule-collection/",
         sourceLabel: "Fossil Group 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1208,6 +1252,7 @@ export const MERCH: MerchGroup[] = [
         body: "华纳合作名单里的 MobyFox，在电影上映同期推出智能表带。确认过的电影款是按新战甲做的 Shadow Armor 3D 硅胶带，以及红色 Red Justice；官方拆箱还带一条 Night of Noir 压纹皮表带。盒内两套表耳，可配 Apple Watch 各代与 22 毫米针扣表，另用二维码解锁主题表盘。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1222,6 +1267,7 @@ export const MERCH: MerchGroup[] = [
         body: "瑞士独立制表品牌 Kross Studio 与华纳联合推出的高级制表套装。腕表采用 45 毫米 5 级钛金属 DLC 黑化表壳，中央陀飞轮框架巧妙融入蝙蝠徽格栅设计，搭载 KS 7'000 手动上链机芯，具备 5 天动力储存；随表附带全尺寸可通电发光的蝙蝠信号灯铝合金表盒雕塑。",
         sourceUrl: "https://kross-studio.com/the-batman-collector-set",
         sourceLabel: "Kross Studio 产品页",
+        sourceTier: "official",
         verifiedAt: "2026.08.24",
       },
       {
@@ -1240,7 +1286,7 @@ export const MERCH: MerchGroup[] = [
   },
   {
     id: "lifestyle",
-    kicker: "12",
+    kicker: "11",
     title: "生活方式与奇特联名",
     titleEn: "Lifestyle & Novelty Collaborations",
     intro:
@@ -1258,6 +1304,7 @@ export const MERCH: MerchGroup[] = [
         body: "高定香水品牌 House of Sillage 在 2022 年 3 月电影公映同期推出的官方限定美妆系列，涵盖「The Batman Hero」香水（镶嵌施华洛世奇水晶蝙蝠徽与手工抛光法国玻璃）、「The Batman Vengeance」乌木香水、蝴蝶结造型口红套及香氛蜡烛，完美呼应电影深沉浓烈的黑红视觉风格。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1272,6 +1319,7 @@ export const MERCH: MerchGroup[] = [
         body: "华纳新闻稿写明 2022 年 2 月 15 日在 emilieheathe.com 上线。三支角色色是 The Dark Night、Vengeance 与 Madness；另有 Knight Out 工具套，含贴纸、蝙蝠装饰水晶锉刀与夹。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1286,6 +1334,7 @@ export const MERCH: MerchGroup[] = [
         body: "男士个护品牌 Dr. Squatch 在电影公映档推出的限定天然冷制香皂套装，包含采用活性炭与浮石配方的黑红包装「The Batman Bricc」，以及绿色问号封套的「The Riddler Enigma」，设计深度融入哥谭黑暗侦探基调。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1300,6 +1349,7 @@ export const MERCH: MerchGroup[] = [
         body: "亿滋在欧洲多个国家推出的《新蝙蝠侠》电影限定联名版奥利奥。特制饼干表面浮雕冲压了罗伯特·帕丁森版蝙蝠侠的侧影面罩图案，包装附带专属二维码可联动开启线上虚拟蝙蝠洞解谜互动。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1314,6 +1364,7 @@ export const MERCH: MerchGroup[] = [
         body: "华纳 DC 官方商店为电影公映推出的韦恩家族定制酒具，包含木盒威士忌醒酒器套装与高球杯套组。杯体与木盒均精致镌刻韦恩家族经典花体「W」暗纹，质感沉稳厚重。",
         sourceUrl: "https://shop.dc.com/products/the-batman-wayne-monogram-beverage-glass-gift-set",
         sourceLabel: "DC Shop 官方产品页",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1332,7 +1383,7 @@ export const MERCH: MerchGroup[] = [
   },
   {
     id: "toys",
-    kicker: "13",
+    kicker: "12",
     title: "大众玩具与服装周边",
     titleEn: "Mass-Market Toys & Costumes",
     intro:
@@ -1350,6 +1401,7 @@ export const MERCH: MerchGroup[] = [
         body: "Spin Master 在电影上映期推出的 4 英寸入门级可动人偶系列，包含战甲版蝙蝠侠、翼装版、猫女瑟琳娜与企鹅人，每款角色均附带专属装备配件与破案揭秘线索卡。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1364,6 +1416,7 @@ export const MERCH: MerchGroup[] = [
         body: "Spin Master 推出的 12 英寸大比例基础可动人偶，精准还原 2022 年大银幕中蝙蝠侠战甲胸徽与披风造型，具备扎实的关节结构，主打量产把玩与陈列展示。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1378,6 +1431,7 @@ export const MERCH: MerchGroup[] = [
         body: "华纳新闻稿写明的 4 寸比例战车，定价约 32.99 美元。车灯、底盘可亮，带音效，车门可开，可放入 4 寸人偶；套装含一款全黑战衣的独家 4 寸蝙蝠侠。货架级声光玩具战车，比例与电子结构均不同于美泰 Hot Wheels 1:10 遥控车与 Jazzinc 1/6 收藏车模。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1392,6 +1446,7 @@ export const MERCH: MerchGroup[] = [
         body: "华纳新闻稿单独列出的 Turbo Boost 遥控战车，定价约 48.99 美元，强调加速与翘头。造型按 2022 年肌肉车蝙蝠战车，电子结构独立于美泰 Hot Wheels R/C 1:10（HCD19）。",
         sourceUrl: "https://www.dc.com/blog/2022/01/10/warner-media-global-brands-and-experiences-to-launch-robust-batman-film-product-collection",
         sourceLabel: "DC / WarnerMedia 官方新闻稿",
+        sourceTier: "official",
         verifiedAt: "2026.09.14",
       },
       {

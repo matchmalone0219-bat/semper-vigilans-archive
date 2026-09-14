@@ -10,6 +10,7 @@ const DEFAULT_ROOT = resolve(__dirname, "..");
 export const VALID_SOURCE_TIERS = new Set(["official", "press", "set"]);
 export const VALID_EDGE_KINDS = new Set(["blood", "bond", "ally", "foe", "kill", "rumor"]);
 export const VALID_NODE_STATUS = new Set(["alive", "dead", "gone", "arkham", "rumor"]);
+export const VALID_MERCH_VARIANT_TYPES = new Set(["movie", "cinema-exclusive", "film-inspiration"]);
 
 export function isValidIsoDate(str) {
   if (typeof str !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(str)) return false;
@@ -58,6 +59,85 @@ export function checkSourceFields(item, category, identifier, addError) {
   }
 }
 
+export function checkMerchSourceFields(item, identifier, addError) {
+  const { sourceUrl, sourceLabel, sourceTier } = item;
+  const hasAny = Boolean(sourceUrl || sourceLabel || sourceTier);
+  if (!hasAny) return;
+
+  if (!sourceUrl) {
+    addError("merch/items", `${identifier}: missing sourceUrl`);
+  } else if (!/^https?:\/\//.test(sourceUrl)) {
+    addError("merch/items", `${identifier}: invalid sourceUrl "${sourceUrl}" (must start with http:// or https://)`);
+  }
+  if (!sourceLabel) {
+    addError("merch/items", `${identifier}: missing sourceLabel`);
+  }
+  if (sourceTier && !VALID_SOURCE_TIERS.has(sourceTier)) {
+    addError("merch/items", `${identifier}: invalid sourceTier "${sourceTier}" (must be official | press | set)`);
+  }
+}
+
+export function checkMerch(merchExport, rootDir, addError) {
+  const groups = merchExport?.MERCH || [];
+  const seenGroupIds = new Set();
+  const seenIds = new Set();
+
+  groups.forEach((group) => {
+    if (group?.id) {
+      if (seenGroupIds.has(group.id)) {
+        addError("merch/groups", `duplicate merch group id: "${group.id}"`);
+      }
+      seenGroupIds.add(group.id);
+    }
+
+    (group?.items || []).forEach((item) => {
+      const itemId = item?.id || "(missing-id)";
+      if (item?.id) {
+        if (seenIds.has(item.id)) {
+          addError("merch/items", `duplicate merch item id: "${item.id}"`);
+        }
+        seenIds.add(item.id);
+      }
+
+      if (!item?.image) {
+        addError("merch/items", `${itemId}: missing image`);
+      } else {
+        checkLocalMedia(item.image, "merch/items", itemId, rootDir, addError);
+      }
+
+      checkMerchSourceFields(item || {}, itemId, addError);
+
+      (item?.covers || []).forEach((cover) => {
+        const coverId = cover?.id || `${itemId}-cover`;
+        if (cover?.id) {
+          if (seenIds.has(cover.id)) {
+            addError("merch/covers", `duplicate merch cover id: "${cover.id}"`);
+          }
+          seenIds.add(cover.id);
+        }
+        if (!cover?.image) {
+          addError("merch/covers", `${coverId}: missing image`);
+        } else {
+          checkLocalMedia(cover.image, "merch/covers", coverId, rootDir, addError);
+        }
+        if (!cover?.iso) {
+          addError("merch/covers", `${coverId}: missing iso date`);
+        } else if (!isValidIsoDate(cover.iso)) {
+          addError("merch/covers", `${coverId}: invalid iso date "${cover.iso}"`);
+        }
+        if (!cover?.releaseDate) {
+          addError("merch/covers", `${coverId}: missing releaseDate`);
+        } else if (!isValidDisplayDate(cover.releaseDate)) {
+          addError("merch/covers", `${coverId}: invalid display date format "${cover.releaseDate}" (expected YYYY.MM or YYYY.MM.DD)`);
+        }
+        if (!VALID_MERCH_VARIANT_TYPES.has(cover?.variantType)) {
+          addError("merch/covers", `${coverId}: invalid variantType "${cover?.variantType}"`);
+        }
+      });
+    });
+  });
+}
+
 export function runContentCheck(options = {}) {
   const rootDir = resolve(options.rootDir || DEFAULT_ROOT);
   const jiti = createJiti(import.meta.url, {
@@ -68,6 +148,7 @@ export function runContentCheck(options = {}) {
   const people = jiti(join(rootDir, "src/lib/people.ts"));
   const places = jiti(join(rootDir, "src/lib/places.ts"));
   const relations = jiti(join(rootDir, "src/lib/relations.ts"));
+  const merchMod = jiti(join(rootDir, "src/lib/merch.ts"));
 
   /** @type {Record<string, string[]>} */
   const errorsByCategory = {};
@@ -189,6 +270,9 @@ export function runContentCheck(options = {}) {
       addError("relations", `edge #${idx} (${edgeLabel}): invalid edge kind "${edge.kind}"`);
     }
   });
+
+  // 5. Merch
+  checkMerch(merchMod, rootDir, addError);
 
   const totalErrors = Object.values(errorsByCategory).reduce((acc, list) => acc + list.length, 0);
 

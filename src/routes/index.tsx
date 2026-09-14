@@ -182,7 +182,7 @@ function Home() {
           </div>
           <div className="space-y-6">
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
-              前作《The Batman》以谜语人引爆炸坝、洪水漫灌哥谭落幕；而衍生剧《The Penguin》中奥兹·科布（Oz Cobb）夺取黑道王座数周后，整座城市步入寒冬，《The Batman Part II》的故事由此正式拉开帷幕。目前剧组正以「Semper Vigilans」（永远警惕）为项目代号，在苏格兰格拉斯哥展开大规模雪景实拍。
+              前作《The Batman》以谜语人引爆炸坝、洪水漫灌哥谭落幕；而衍生剧《The Penguin》中奥兹·科布（Oz Cobb）夺取黑道王座数周后，整座城市步入寒冬，《The Batman Part II》的故事由此正式拉开帷幕。目前剧组正以「Semper Vigilans」（永远警惕）为项目代号，在苏格兰格拉斯哥、英格兰伦敦等英国多地展开大规模实拍。
             </p>
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
               本站为影迷自发建立的中文资料库，为您持续汇总官方公开新闻、演职员名单、片场实拍线索与剧情推测。所有传闻均已明确标注来源，力求提供客观严谨的影视资讯。
@@ -204,7 +204,7 @@ function Home() {
               </h2>
             </div>
             <p className="max-w-md text-xs leading-relaxed text-muted sm:text-sm">
-              从苏格兰雪景实拍现场到主创深度专访，一站式同步《新蝙蝠侠2》最新官方公开线索。
+              从英国多地外景实拍到主创深度专访，一站式同步《新蝙蝠侠2》最新官方公开线索。
             </p>
           </div>
 

@@ -1,3 +1,15 @@
+export type MerchCover = {
+  id: string;
+  title: string;
+  issue: string;
+  coverArtist: string;
+  releaseDate: string;
+  iso: string;
+  image: string;
+  imageAlt: string;
+  variantType: "movie" | "cinema-exclusive" | "film-inspiration";
+};
+
 export type MerchItem = {
   id: string;
   name: string;
@@ -11,6 +23,7 @@ export type MerchItem = {
   sourceUrl?: string;
   sourceLabel?: string;
   verifiedAt?: string;
+  covers?: MerchCover[];
 };
 
 export type MerchGroup = {
@@ -21,6 +34,117 @@ export type MerchGroup = {
   intro: string;
   items: MerchItem[];
 };
+
+export const THE_BATMAN_MOVIE_VARIANTS: MerchCover[] = [
+  {
+    id: "movie-variant-batman-121",
+    title: "Batman #121",
+    issue: "#121",
+    coverArtist: "Lee Bermejo",
+    releaseDate: "2022.03.01",
+    iso: "2022-03-01",
+    image: "/media/merch/comics/the-batman-variants/batman-121-bermejo.jpg",
+    imageAlt:
+      "Lee Bermejo 为 Batman #121 绘制的《新蝙蝠侠》电影变体封面：雨夜石像鬼旁的电影版蝙蝠侠",
+    variantType: "movie",
+  },
+  {
+    id: "movie-variant-killing-time-1",
+    title: "Batman: Killing Time #1",
+    issue: "#1",
+    coverArtist: "Carlos D’Anda",
+    releaseDate: "2022.03.01",
+    iso: "2022-03-01",
+    image: "/media/merch/comics/the-batman-variants/killing-time-1-danda.jpg",
+    imageAlt:
+      "Carlos D’Anda 为 Batman: Killing Time #1 绘制的电影变体封面：电影版蝙蝠侠骑在蝙蝠摩托上",
+    variantType: "movie",
+  },
+  {
+    id: "movie-variant-batgirls-4",
+    title: "Batgirls #4",
+    issue: "#4",
+    coverArtist: "Jonboy Meyers",
+    releaseDate: "2022.03.08",
+    iso: "2022-03-08",
+    image: "/media/merch/comics/the-batman-variants/batgirls-4-meyers.jpg",
+    imageAlt:
+      "Jonboy Meyers 为 Batgirls #4 绘制的电影变体封面：电影版蝙蝠侠与侧翻的蝙蝠摩托",
+    variantType: "movie",
+  },
+  {
+    id: "movie-variant-detective-1056",
+    title: "Detective Comics #1056",
+    issue: "#1056",
+    coverArtist: "Puppeteer Lee",
+    releaseDate: "2022.03.08",
+    iso: "2022-03-08",
+    image: "/media/merch/comics/the-batman-variants/detective-1056-puppeteer-lee.jpg",
+    imageAlt:
+      "Puppeteer Lee 为 Detective Comics #1056 绘制的电影变体封面：蝙蝠侠立在蝙蝠战车引擎盖上",
+    variantType: "movie",
+  },
+  {
+    id: "movie-variant-the-knight-3",
+    title: "Batman: The Knight #3",
+    issue: "#3",
+    coverArtist: "Rafael Albuquerque",
+    releaseDate: "2022.03.08",
+    iso: "2022-03-08",
+    image: "/media/merch/comics/the-batman-variants/the-knight-3-albuquerque.jpg",
+    imageAlt:
+      "Rafael Albuquerque 为 Batman: The Knight #3 绘制的电影变体封面：红黑对比的电影版蝙蝠侠近景",
+    variantType: "movie",
+  },
+  {
+    id: "movie-variant-catwoman-41",
+    title: "Catwoman #41",
+    issue: "#41",
+    coverArtist: "Jenny Frison",
+    releaseDate: "2022.03.15",
+    iso: "2022-03-15",
+    image: "/media/merch/comics/the-batman-variants/catwoman-41-frison.jpg",
+    imageAlt:
+      "Jenny Frison 为 Catwoman #41 绘制的电影变体封面：电影版猫女手持自行车链条",
+    variantType: "movie",
+  },
+  {
+    id: "movie-variant-justice-league-74",
+    title: "Justice League #74",
+    issue: "#74",
+    coverArtist: "Ben Oliver",
+    releaseDate: "2022.03.15",
+    iso: "2022-03-15",
+    image: "/media/merch/comics/the-batman-variants/justice-league-74-oliver.jpg",
+    imageAlt:
+      "Ben Oliver 为 Justice League #74 绘制的电影变体封面：电影版蝙蝠侠立于蝙蝠战车前",
+    variantType: "movie",
+  },
+  {
+    id: "movie-variant-nightwing-90",
+    title: "Nightwing #90",
+    issue: "#90",
+    coverArtist: "Riccardo Federici",
+    releaseDate: "2022.03.15",
+    iso: "2022-03-15",
+    image: "/media/merch/comics/the-batman-variants/nightwing-90-federici.jpg",
+    imageAlt:
+      "Riccardo Federici 为 Nightwing #90 绘制的电影变体封面：电影版蝙蝠侠、谜语人面具与蝙蝠战车",
+    variantType: "movie",
+  },
+  {
+    id: "movie-variant-harley-13",
+    title: "Harley Quinn #13",
+    issue: "#13",
+    coverArtist: "Simone Bianchi",
+    releaseDate: "2022.03.22",
+    iso: "2022-03-22",
+    image: "/media/merch/comics/the-batman-variants/harley-quinn-13-bianchi.jpg",
+    imageAlt:
+      "Simone Bianchi 为 Harley Quinn #13 绘制的电影变体封面：蝙蝠侠、猫女、谜语人与企鹅人拼贴",
+    variantType: "movie",
+  },
+];
 
 export const MERCH: MerchGroup[] = [
   {
@@ -552,10 +676,10 @@ export const MERCH: MerchGroup[] = [
   {
     id: "print",
     kicker: "07",
-    title: "出版书籍",
+    title: "出版与漫画",
     titleEn: "Books & Comics",
     intro:
-      "收录官方艺术设定集、前传小说以及主演保罗·达诺亲笔编剧的衍生漫画，作为深入了解电影世界观与视觉设计的实体文献。",
+      "收录官方艺术设定集、前传小说、保罗·达诺编剧的衍生漫画，以及 2022 年公映同期由 DC 推出的电影变体封面、院线赠刊与灵感原著套书。只收能核对 DC / IMAX 官方或同期征订的 Reeves 电影 campaign，不把普通蝙蝠侠变体封面算进来。",
     items: [
       {
         id: "artbook",
@@ -589,6 +713,52 @@ export const MERCH: MerchGroup[] = [
         image: "/media/merch/riddler-book.jpg",
         imageAlt: "《The Riddler: Year One》漫画封面",
         body: "由电影谜语人饰演者保罗·达诺亲自编剧、DC Black Label 出版的成人向限定漫画，以司法会计视角展现了「新生」基金贪腐黑幕与谜语人的黑化历程。",
+      },
+      {
+        id: "the-batman-movie-variant-covers",
+        name: "DC《The Batman》2022 电影变体封面系列",
+        nameEn: "The Batman Movie Variant Cover Collection",
+        maker: "DC Comics",
+        year: "2022",
+        spec: "9 期电影灵感变体封面 · 2022 年 3 月发行",
+        image: "/media/merch/comics/the-batman-variants/batman-121-bermejo.jpg",
+        imageAlt: "Lee Bermejo 为 Batman #121 绘制的《新蝙蝠侠》电影变体封面，作为九期系列代表图",
+        body: "DC 于 2022 年 2 月 3 日公布一套配合华纳《新蝙蝠侠》上映的三月变体封面，官方名单共九期，画师为 Lee Bermejo、Carlos D’Anda、Jonboy Meyers、Puppeteer Lee、Rafael Albuquerque、Jenny Frison、Ben Oliver、Riccardo Federici、Simone Bianchi。发售窗口为 2022 年 3 月 1 日至 22 日；只收录这条电影灵感变体线，不含同期 Daniel Johnston 等非电影合作封面。Simone Bianchi 为 Harley Quinn #13 绘制的构图，后被用作 IMAX Fan First Premiere《The Long Halloween #1》赠刊封面，见本栏院线赠刊条。",
+        sourceUrl:
+          "https://www.dc.com/blog/2022/02/03/march-variant-covers-featuring-art-inspired-by-warner-bros-pictures-the-batman-available-for-pre-order-now",
+        sourceLabel: "DC 官方 · 2022.02.03 电影变体封面公告",
+        verifiedAt: "2026.09.14",
+        covers: THE_BATMAN_MOVIE_VARIANTS,
+      },
+      {
+        id: "imax-long-halloween-1",
+        name: "IMAX Fan First Premiere《The Long Halloween #1》限定变体版",
+        nameEn: "Batman: The Long Halloween #1 — The Batman IMAX Fan First Premiere Exclusive",
+        maker: "DC Comics · IMAX · Warner Bros.",
+        year: "2022",
+        spec: "2022.03.01 · IMAX 提前场一人一册 · 送完即止",
+        image: "/media/merch/comics/the-batman-variants/long-halloween-imax.jpg",
+        imageAlt:
+          "Simone Bianchi 为 IMAX Fan First Premiere 绘制的《Batman: The Long Halloween #1》Special Edition 封面，蝙蝠徽压在哥谭天际线上",
+        body: "2022 年 3 月 1 日 IMAX Fan First Premiere 提前场向持票观众发放的实体赠刊，内容为 Jeph Loeb / Tim Sale《Batman: The Long Halloween》第一期，每张票一册、送完即止。封面由西莫内·比安基（Simone Bianchi）绘制：画师本人于 2022 年 2 月 9 日发文确认，这张图同时是 Harley Quinn #13 电影变体封面。本条是院线独占赠刊，不并入上方九期零售电影变体。",
+        sourceUrl: "https://x.com/SBianchiArt/status/1491418935144886275",
+        sourceLabel: "Simone Bianchi · IMAX 赠刊封面确认",
+        verifiedAt: "2026.09.14",
+      },
+      {
+        id: "the-batman-box-set",
+        name: "《The Batman》电影灵感漫画盒装套书",
+        nameEn: "The Batman Box Set",
+        maker: "DC Comics · Jim Lee 外盒艺术",
+        year: "2022",
+        spec: "3 册平装套书 · Jim Lee 外盒艺术 · ISBN 978-1-77951-429-5",
+        image: "/media/merch/comics/the-batman-variants/the-batman-box-set.jpg",
+        imageAlt: "《The Batman》电影灵感漫画盒装套书，Jim Lee 绘制的红黑蝙蝠侠外盒",
+        body: "DC 为配合电影上映推出的三册平装套装，外盒艺术由 Jim Lee 绘制，ISBN 978-1-77951-429-5，收录导演马特·里夫斯公开提到的主要漫画灵感来源：《Batman: Year One》《Batman: The Long Halloween》《Batman: Ego and Other Tails》。DC Connect / DC Spotlight 征订标注 ON SALE 3/1/22、定价 63 美元；漫画店 Diamond 渠道约 3 月下旬上架，图书渠道多见 3 月 29 日。本条是电影灵感再版套书，不是变体封面。",
+        sourceUrl:
+          "https://comicbook.com/movies/news/the-batman-box-set-dc-comics-inspired-matt-reeves-movie-2022/",
+        sourceLabel: "ComicBook · DC Connect 征订",
+        verifiedAt: "2026.09.14",
       },
     ],
   },
@@ -711,21 +881,7 @@ export const MERCH: MerchGroup[] = [
         spec: "2022.03.01 · IMAX 提前场 · 活动宣传视觉",
         image: "/media/merch/theatrical/thebatman-imax-fan-first.jpg",
         imageAlt: "IMAX Fan First Premiere 活动视觉，雨夜屋顶上的蝙蝠侠剪影，标注 3 月 1 日 IMAX 提前场",
-        body: "DC Presents The Batman Fan First Premieres Exclusively in IMAX，2022 年 3 月 1 日在美国超过一百座城市的 IMAX 厅提前放映。导演马特·里夫斯与 Fandango、IMAX 同步公布这张雨夜屋顶剪影的活动视觉。官方确认每张票附赠一张《Batman: The Long Halloween #1》独家封面漫画（一人一份，送完即止）。本条归档的是活动海报 artwork，不能写成所有观众都获赠实体海报。",
-        sourceUrl: "https://comicbook.com/movies/news/how-to-get-tickets-the-batman-early-access-screening-batman-fan-first-premieres-imax/",
-        sourceLabel: "ComicBook · Fan First Premiere 购票说明",
-        verifiedAt: "2026.09.14",
-      },
-      {
-        id: "imax-fan-first-comic",
-        name: "IMAX Fan First Premiere《The Long Halloween #1》限定封面漫画",
-        nameEn: "Batman: The Long Halloween #1 Fan First Premiere Exclusive",
-        maker: "DC Comics · IMAX · Warner Bros.",
-        year: "2022",
-        spec: "2022.03.01 · IMAX 提前场一人一册 · 送完即止",
-        image: "/media/merch/cinema/imax-fan-first-comic.jpg",
-        imageAlt: "Simone Bianchi 为 IMAX Fan First Premiere 绘制的《The Long Halloween #1》限定封面，蝙蝠徽与哥谭天际线",
-        body: "DC Presents The Batman Fan First Premieres 在 2022 年 3 月 1 日 IMAX 提前场向持票观众发放的实体漫画，不是零售刊。内容是杰夫·勒布与蒂姆·塞尔的《Batman: The Long Halloween》第一期，封面由西莫内·比安基（Simone Bianchi）绘制：蝙蝠徽压在哥谭天际线上。官方说明为每张票一册、送完即止。本条归档的是影院赠刊，不并入出版栏。",
+        body: "DC Presents The Batman Fan First Premieres Exclusively in IMAX，2022 年 3 月 1 日在美国超过一百座城市的 IMAX 厅提前放映。导演马特·里夫斯与 Fandango、IMAX 同步公布这张雨夜屋顶剪影的活动视觉。官方确认每张票附赠一册《Batman: The Long Halloween #1》独家封面漫画（一人一份，送完即止）；赠刊已移至出版栏，见 IMAX Long Halloween 限定变体版。本条只归档活动海报 artwork，不能写成所有观众都获赠实体海报。",
         sourceUrl: "https://comicbook.com/movies/news/how-to-get-tickets-the-batman-early-access-screening-batman-fan-first-premieres-imax/",
         sourceLabel: "ComicBook · Fan First Premiere 购票说明",
         verifiedAt: "2026.09.14",

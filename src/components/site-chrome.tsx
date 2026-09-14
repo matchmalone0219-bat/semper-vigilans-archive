@@ -55,7 +55,7 @@ const NAV = [
       { to: "/merch", hash: "statues", label: "收藏雕像" },
       { to: "/merch", hash: "vehicles", label: "载具模型" },
       { to: "/merch", hash: "lego", label: "乐高套组" },
-      { to: "/merch", hash: "print", label: "出版读物" },
+      { to: "/merch", hash: "print", label: "出版漫画" },
       { to: "/merch", hash: "media", label: "影音收藏" },
       { to: "/merch", hash: "posters", label: "院线特典" },
       { to: "/merch", hash: "prints", label: "艺术印刷" },

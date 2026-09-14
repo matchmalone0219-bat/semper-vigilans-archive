@@ -66,7 +66,7 @@ export const SEARCH_ITEMS: SearchItem[] = [
     item(gear.name, gear.nameEn, `/gear#${gear.id}`, "装备", `${gear.seen} ${gear.lede}`),
   ),
   ...MERCH.flatMap((group) =>
-    group.items.map((merch) =>
+    group.items.flatMap((merch) => [
       item(
         merch.name,
         `${merch.maker} · ${merch.year}`,
@@ -74,7 +74,16 @@ export const SEARCH_ITEMS: SearchItem[] = [
         "收藏",
         `${merch.nameEn} ${merch.spec}`,
       ),
-    ),
+      ...(merch.covers ?? []).map((cover) =>
+        item(
+          cover.title,
+          `${cover.coverArtist} · ${cover.releaseDate}`,
+          `/merch#${cover.id}`,
+          "收藏",
+          `${cover.coverArtist} ${cover.issue} ${merch.nameEn} movie variant`,
+        ),
+      ),
+    ]),
   ),
   ...LOG.map((entry) =>
     item(

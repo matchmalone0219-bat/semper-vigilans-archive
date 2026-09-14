@@ -21,12 +21,11 @@ const NAV = [
   {
     to: "/recap",
     label: "世界观",
-    paths: ["/recap", "/roots", "/gear"],
+    paths: ["/recap", "/gear"],
     children: [
       { to: "/recap", hash: "the-batman", label: "前作《新蝙蝠侠》" },
       { to: "/recap", hash: "the-penguin", label: "衍生剧《企鹅人》" },
-      { to: "/roots", label: "原著与影史溯源" },
-      { to: "/roots", hash: "cinema", label: "影史黑色拉片" },
+      { to: "/roots", hash: "comics", label: "DC 漫画原著" },
       { to: "/recap", hash: "gotham-timeline", label: "世界观时间线" },
       { to: "/gear", label: "蝙蝠侠装备库" },
     ],
@@ -34,8 +33,9 @@ const NAV = [
   {
     to: "/craft",
     label: "幕后",
-    paths: ["/craft", "/gallery", "/interviews"],
+    paths: ["/craft", "/roots", "/gallery", "/interviews"],
     children: [
+      { to: "/roots", hash: "cinema", label: "影史黑色拉片" },
       { to: "/craft", hash: "score", label: "电影配乐" },
       { to: "/craft", hash: "soundtrack-list", label: "插曲与古典乐" },
       { to: "/craft", hash: "lens", label: "光影摄影" },

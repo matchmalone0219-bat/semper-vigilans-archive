@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, Terminal, Play, X } from "lucide-react";
+import { ArrowRight, MapPin, Terminal, Play, X, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Countdown } from "@/components/countdown";
 import { Snow } from "@/components/atmosphere";
@@ -422,7 +422,8 @@ function Home() {
                 {/* 焦点核心金句 */}
                 {latestInterview ? (
                   <div className="mt-3">
-                    <blockquote className="border-l-2 border-blood pl-3 text-pretty text-xs leading-relaxed text-fg/90">
+                    <Quote className="size-3.5 fill-current text-blood/70" />
+                    <blockquote className="mt-1.5 text-pretty text-xs leading-relaxed text-fg/90">
                       “{latestInterview.quoteZh.length > 76
                         ? `${latestInterview.quoteZh.slice(0, 76)}……`
                         : latestInterview.quoteZh}”

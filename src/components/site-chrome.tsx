@@ -25,8 +25,10 @@ const NAV = [
     children: [
       { to: "/recap", hash: "the-batman", label: "前作《新蝙蝠侠》" },
       { to: "/recap", hash: "the-penguin", label: "衍生剧《企鹅人》" },
-      { to: "/recap", hash: "roots", label: "漫画原著" },
+      { to: "/roots", label: "原著与影史溯源" },
+      { to: "/roots", hash: "cinema", label: "影史黑色拉片" },
       { to: "/recap", hash: "gotham-timeline", label: "世界观时间线" },
+      { to: "/gear", label: "蝙蝠侠装备库" },
     ],
   },
   {

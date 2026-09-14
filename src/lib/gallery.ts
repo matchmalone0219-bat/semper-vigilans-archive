@@ -209,8 +209,76 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》格拉斯哥外景片场记录。实时追踪苏格兰冬季雪景实拍、蝙蝠战车街头追逐与桥下特技受损道具、GCPD 摩托夜戏、阿尔弗雷德雪地抢救戏、战衣细节以及副驾驶神秘金发乘客等一手线索。",
+      "《新蝙蝠侠2》外景片场记录。苏格兰格拉斯哥冬季雪景、战车追逐与改款战衣之后，9 月剧组转至伦敦圣保罗大教堂拍摄法院外抗议场面：帕丁森以布鲁斯身份出镜，戈登同场，抗议标语引发猫头鹰法庭等推测（官方未确认）。",
     stills: [
+      {
+        src: "/media/log/p2-13-bruce-cops.jpg",
+        title: "GCPD 护送布鲁斯",
+        caption: "便装布鲁斯在多名警员护卫下穿过抗议群众，朝等候的宾利轿车走去。",
+        source: "片场路透 · 当地拍摄",
+      },
+      {
+        src: "/media/log/p2-13-bentley.jpg",
+        title: "布鲁斯登上宾利",
+        caption:
+          "护送结束后，帕丁森以布鲁斯身份在阿尔弗雷德替身旁登上黑色宾利。瑟金斯本人未到场。",
+        source: "片场路透 · RayChand006 / Mark around london",
+      },
+      {
+        src: "/media/log/p2-13-gordon.jpg",
+        title: "戈登抵达伦敦片场",
+        caption: "杰弗里·怀特以吉姆·戈登造型现身续集外景，为目前确认的戈登片场第一组照片。",
+        source: "片场路透 · FinlayParker16",
+      },
+      {
+        src: "/media/log/p2-13-alfred.jpg",
+        title: "阿尔弗雷德替身与宾利",
+        caption:
+          "安迪·瑟金斯的替身以阿尔弗雷德造型立于宾利旁等候。瑟金斯本人当时在新西兰筹备《猎魔》，未到场。",
+        source: "片场路透 · luke_laroy",
+      },
+      {
+        src: "/media/log/p2-13-anarky.jpg",
+        title: "白面罩与 A 字夹克",
+        caption:
+          "抗议群众中一人佩戴遮脸白面罩，夹克绘有无政府主义 A 字符号。影迷据此联想无政府客（Anarky），官方未确认任何反派身份。",
+        source: "片场路透 · RayChand006",
+      },
+      {
+        src: "/media/log/p2-13-signs.jpg",
+        title: "Court of Fowls 抗议标语",
+        caption:
+          "抗议纸板上写有 Court of Fowls 字样。影迷据此推测猫头鹰法庭可能入局，官方未确认任何反派身份。",
+        source: "片场路透 · robymav_ / DCU Argentina",
+      },
+      {
+        src: "/media/log/p2-13-oligarchs.jpg",
+        title: "Court of Oligarchs 标语",
+        caption:
+          "同场另一块纸板写有 Court of Oligarchs。与 Court of Fowls 一样，目前只能视为抗议道具，不能当作官方确认。",
+        source: "片场路透 · At Horse Guards",
+      },
+      {
+        src: "/media/log/p2-13-saveus.jpg",
+        title: "SAVE US 蝙蝠头套标语",
+        caption:
+          "纸板绘有蝙蝠侠头套剪影，下方写 SAVE US。抗议者把蝙蝠侠当作反抗符号，同时将布鲁斯本人视为权贵一方。",
+        source: "片场路透 · At Horse Guards / erikmts123",
+      },
+      {
+        src: "/media/log/p2-13-crowd.jpg",
+        title: "法院台阶前的抗议人群",
+        caption:
+          "圣保罗大教堂台阶下聚集大量群众演员与标语牌，其中可见疑似《未来蝙蝠侠》剪影的纸板道具。",
+        source: "片场路透 · The Batman Film News",
+      },
+      {
+        src: "/media/log/p2-13-reeves.jpg",
+        title: "里夫斯与梅塞施密特调度",
+        caption:
+          "导演马特·里夫斯与摄影指导埃里克·梅塞施密特在圣保罗大教堂外景机位旁现场调度抗议戏。",
+        source: "片场路透 · alesialon / benstrefford",
+      },
       {
         src: "/media/log/p2-04-blood.jpg",
         title: "战损战衣近景（改款头套实戴）",

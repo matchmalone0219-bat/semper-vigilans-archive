@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { latestLog, logImages, pageTitle } from "@/lib/film";
+import { latestLog, logCarouselImages, logVideoPoster, pageTitle } from "@/lib/film";
 import {
   CERTAINTY_LABEL,
   CAST,
@@ -297,10 +297,16 @@ function Dossier() {
           </p>
 
           <article className="mt-8 border border-blood/40 bg-surface/40 p-5 sm:p-6">
-            {logImages(latest).length ? (
-              <LogCarousel images={logImages(latest)} className="mb-4" />
+            {logCarouselImages(latest).length ? (
+              <LogCarousel images={logCarouselImages(latest)} className="mb-4" />
             ) : null}
-            {latest.video ? <BiliPlayer video={latest.video} className="mb-4" /> : null}
+            {latest.video ? (
+              <BiliPlayer
+                video={latest.video}
+                poster={logVideoPoster(latest)}
+                className="mb-4"
+              />
+            ) : null}
             <div>
               <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
                 最新 · {LOG_KIND[latest.kind]} · {latest.date}
@@ -363,11 +369,15 @@ function Dossier() {
                       <p className="mt-2 max-w-2xl text-pretty text-sm leading-relaxed text-muted">
                         {event.body}
                       </p>
-                      {logImages(event).length ? (
-                        <LogCarousel images={logImages(event)} className="mt-3 max-w-2xl" />
+                      {logCarouselImages(event).length ? (
+                        <LogCarousel images={logCarouselImages(event)} className="mt-3 max-w-2xl" />
                       ) : null}
                       {event.video ? (
-                        <BiliPlayer video={event.video} className="mt-3 max-w-2xl" />
+                        <BiliPlayer
+                          video={event.video}
+                          poster={logVideoPoster(event)}
+                          className="mt-3 max-w-2xl"
+                        />
                       ) : null}
                       {event.source ? (
                         <SourceLink

@@ -4,7 +4,7 @@ import { BOARD, GOTHAM, RECAPS, TIMELINE } from "@/data/recap";
 import { PLACES } from "@/lib/places";
 import { ROOTS, ROOT_KIND } from "@/lib/roots";
 import { LOG, LOG_KIND, type LogKind } from "@/data/film";
-import { logImages, pageTitle } from "@/lib/film";
+import { logCarouselImages, logVideoPoster, pageTitle } from "@/lib/film";
 import { LogCarousel } from "@/components/log-carousel";
 import { BiliPlayer } from "@/components/bili-player";
 import { cn } from "@/lib/cn";
@@ -238,12 +238,16 @@ function Recap() {
                       {event.body}
                     </p>
 
-                    {logImages(event).length ? (
-                      <LogCarousel images={logImages(event)} className="mt-4 max-w-2xl" />
+                    {logCarouselImages(event).length ? (
+                      <LogCarousel images={logCarouselImages(event)} className="mt-4 max-w-2xl" />
                     ) : null}
 
                     {event.video ? (
-                      <BiliPlayer video={event.video} className="mt-4 max-w-2xl" />
+                      <BiliPlayer
+                        video={event.video}
+                        poster={logVideoPoster(event)}
+                        className="mt-4 max-w-2xl"
+                      />
                     ) : null}
 
                     <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-faint">

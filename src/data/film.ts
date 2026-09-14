@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.09.12";
+export const CONTENT_REVIEWED_AT = "2026.09.14";
 
 export const FACTS: {
   label: string;
@@ -52,7 +52,7 @@ export const FACTS: {
   },
   {
     label: "公开外景",
-    value: "英国利物浦与苏格兰格拉斯哥。格拉斯哥市中心自 8 月 18 日起展开实景封街拍摄，道路通告显示外景将持续至 9 月上旬。",
+    value: "英国利物浦、苏格兰格拉斯哥与伦敦。格拉斯哥市中心自 8 月 18 日起展开雪景封街拍摄；9 月 13 日剧组转至伦敦圣保罗大教堂一带拍摄法院外抗议场面。",
     source: "STV News / The Herald · 道路限制通告",
     sourceUrl: "https://www.heraldscotland.com/news/26411083.glasgow-road-closures-place-batman-part-ii-filming/",
     sourceTier: "press",
@@ -132,8 +132,19 @@ export const PLOT: {
     sourceTier: "set",
   },
   {
+    tag: "hint",
+    text: "9 月 13 日伦敦圣保罗大教堂外景：罗伯特·帕丁森以布鲁斯·韦恩身份由 GCPD 护送穿过抗议人群，登上等候的宾利；同场可见杰弗里·怀特（戈登）、阿尔弗雷德替身，以及导演马特·里夫斯与摄影指导埃里克·梅塞施密特现场调度。抗议标语出现 Court of Fowls、Court of Oligarchs、Eat the rich、Re$i$t、SAVE US 等字样；部分群众佩戴白面罩，其中一人夹克绘有无政府主义 A 字符号。",
+    source: "片场路透 · IGN / The Batman Saga News",
+    sourceUrl: "https://www.ign.com/articles/the-batman-part-2-set-photos-court-of-owls-anarky",
+    sourceTier: "set",
+  },
+  {
     tag: "rumor",
     text: "片场制作代号为「Semper Vigilans」（永远警惕）。这句拉丁格言被影迷广泛联想至哥谭古老势力，引发关于猫头鹰法庭等潜在剧情走向的讨论。",
+  },
+  {
+    tag: "rumor",
+    text: "伦敦抗议戏标语出现「Court of Fowls / Court of Fouls」字样，影迷据此推测猫头鹰法庭（Court of Owls）可能入局；亦有白面罩与无政府主义符号引发对无政府客（Anarky）的联想。以上均为片场道具引发的推测，官方未确认任何反派身份。",
   },
   {
     tag: "rumor",
@@ -164,7 +175,7 @@ export const CAST: {
     roleEn: "Jim Gordon",
     name: "杰弗里·怀特",
     nameEn: "Jeffrey Wright",
-    note: "确认回归。片场出现警队围堵战车的场面，戈登在警局内部的角色与立场将是一大看点。",
+    note: "确认回归。9 月 13 日伦敦圣保罗大教堂外景中，怀特以戈登造型现身法院外抗议戏；此前格拉斯哥夜戏已拍到警队围捕战车。",
     status: "confirmed",
     personId: "gordon",
   },
@@ -173,7 +184,7 @@ export const CAST: {
     roleEn: "Alfred Pennyworth",
     name: "安迪·瑟金斯",
     nameEn: "Andy Serkis",
-    note: "确认回归。布鲁斯的管家与导师。8 月 28 日格拉斯哥大桥日戏中，可见他跪在雪地中为倒地的布鲁斯紧急进行心肺复苏，并在救醒后严厉责备对方落到这步田地。",
+    note: "确认回归。布鲁斯的管家与导师。8 月 28 日格拉斯哥大桥日戏中，可见他跪在雪地中为倒地的布鲁斯紧急进行心肺复苏，并在救醒后严厉责备对方落到这步田地。9 月 13 日伦敦抗议戏中由替身出演——瑟金斯本人当时在新西兰筹备《猎魔》。",
     status: "confirmed",
     personId: "alfred",
   },
@@ -267,6 +278,8 @@ export type LogVideo = {
   platform: "bilibili";
   bvid: string;
   title: string;
+  /** Distinct from the log's set stills — used as the video card poster. */
+  poster?: string;
 };
 
 export type LogEntry = {
@@ -481,10 +494,12 @@ export const LOG: LogEntry[] = [
     sourceUrl: "https://au.variety.com/2026/film/news/the-batman-2-release-date-2028-first-footage-pattinson-38605/",
     sourceTier: "press",
     verifiedAt: "2026.08.24",
+    image: "/media/log/p2-camera-test.jpg",
     video: {
       platform: "bilibili",
       bvid: "BV1BTKG6mEUQ",
       title: "DC《新蝙蝠侠2》首曝镜头 · 定档 2028 年 2 月 18 日",
+      poster: "/media/log/p2-camera-test.jpg",
     },
   },
   {
@@ -815,6 +830,43 @@ export const LOG: LogEntry[] = [
     sourceTier: "press",
     verifiedAt: "2026.09.12",
     href: "/interviews",
+    video: {
+      platform: "bilibili",
+      bvid: "BV1tvYS6MESm",
+      title: "斯坦谈与约翰逊加盟《新蝙蝠侠2》",
+      poster: "/media/cast/stan.jpg",
+    },
+  },
+  {
+    date: "2026.09.13",
+    iso: "2026-09-13",
+    title: "伦敦法院外抗议戏：帕丁森以布鲁斯身份穿过人群，戈登同场",
+    body: "剧组转至伦敦圣保罗大教堂一带（布景为哥谭律师公会 / 法院台阶）。罗伯特·帕丁森本人以便装布鲁斯·韦恩出镜，由 GCPD 警员护送穿过抗议人群，随后登上等候的宾利轿车。同场拍到杰弗里·怀特以吉姆·戈登身份抵达；阿尔弗雷德由安迪·瑟金斯的替身出演（瑟金斯本人当时在新西兰筹备《猎魔》）。导演马特·里夫斯与摄影指导埃里克·梅塞施密特在场调度。抗议标语可见 Court of Fowls、Court of Oligarchs、Eat the rich、Re$i$t、Your Greed is Killing Us、SAVE US 等，部分群众佩戴遮脸白面罩，其中一人夹克绘有无政府主义 A 字符号；另有「SAVE US」蝙蝠头套图案与疑似《未来蝙蝠侠》剪影的纸板道具。猫头鹰法庭、无政府客等角色均为影迷据此作出的推测，官方未予确认。",
+    kind: "shoot",
+    source: "片场路透 · IGN / The Batman Saga News",
+    sourceUrl: "https://www.ign.com/articles/the-batman-part-2-set-photos-court-of-owls-anarky",
+    sourceTier: "set",
+    verifiedAt: "2026.09.14",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-13-bruce-cops.jpg",
+    images: [
+      "/media/log/p2-13-bruce-cops.jpg",
+      "/media/log/p2-13-bentley.jpg",
+      "/media/log/p2-13-gordon.jpg",
+      "/media/log/p2-13-alfred.jpg",
+      "/media/log/p2-13-anarky.jpg",
+      "/media/log/p2-13-signs.jpg",
+      "/media/log/p2-13-oligarchs.jpg",
+      "/media/log/p2-13-saveus.jpg",
+      "/media/log/p2-13-crowd.jpg",
+      "/media/log/p2-13-reeves.jpg",
+    ],
+    video: {
+      platform: "bilibili",
+      bvid: "BV1TXYq6MEWV",
+      title: "片场路透：布鲁斯被护送穿过抗议人群",
+    },
   },
   {
     date: "2028.02.18",

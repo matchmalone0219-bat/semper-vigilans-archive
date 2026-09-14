@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Countdown } from "@/components/countdown";
 import { Snow } from "@/components/atmosphere";
 import { BiliPlayer } from "@/components/bili-player";
-import { pageTitle } from "@/lib/film";
+import { logVideoPoster, pageTitle } from "@/lib/film";
 import { FILM, LOG, type LogVideo } from "@/data/film";
 import { INTERVIEWS } from "@/data/interviews";
 import { SPEAKER_MAP } from "@/lib/interviews";
@@ -61,25 +61,30 @@ const QUICK_LINKS = [
 function Home() {
   const [activeVideo, setActiveVideo] = useState<LogVideo | null>(null);
 
-  // 1. 最新视频/预告物料（头条视频 + 3条精选）
+  // 2. 最新片场实拍（先算，避免和视频头条抢同一条、同一张图）
+  const shootLogs = LOG.filter((e) => e.kind === "shoot" && !e.upcoming);
+  const latestShoot = shootLogs[shootLogs.length - 1] ?? LOG[0];
+  const recentShoots = shootLogs.slice(-4, -1).reverse();
+
+  // 1. 预告与影音：官方测试/预告优先，且不复用片场头条的封面
   const videoLogs = LOG.filter((e) => e.video && !e.upcoming);
-  const featuredVideoEntry = videoLogs[videoLogs.length - 1];
+  const featuredVideoEntry =
+    [...videoLogs].reverse().find((e) => e.kind === "slate" || e.kind === "release") ??
+    [...videoLogs].reverse().find((e) => e !== latestShoot && e.kind !== "shoot") ??
+    [...videoLogs].reverse().find((e) => e !== latestShoot) ??
+    videoLogs[videoLogs.length - 1];
   const featuredVideo: LogVideo = featuredVideoEntry?.video ?? {
     platform: "bilibili",
     bvid: "BV1BTKG6mEUQ",
     title: "DC《新蝙蝠侠2》首曝镜头 · 定档 2028 年 2 月 18 日",
   };
-  const archiveVideos = (() => {
-    const others = videoLogs.filter((e) => e !== featuredVideoEntry);
-    const cameraTest = others.find((e) => e.iso === "2026-07-15");
-    const recent = others.filter((e) => e !== cameraTest).slice(-2).reverse();
-    return cameraTest ? [...recent, cameraTest] : recent;
-  })();
-
-  // 2. 最新片场实拍日志（头条实拍 + 最近三条动态）
-  const shootLogs = LOG.filter((e) => e.kind === "shoot" && !e.upcoming);
-  const latestShoot = shootLogs[shootLogs.length - 1] ?? LOG[0];
-  const recentShoots = shootLogs.slice(-4, -1).reverse();
+  const featuredVideoPoster = featuredVideoEntry
+    ? logVideoPoster(featuredVideoEntry)
+    : "/media/log/p2-camera-test.jpg";
+  const archiveVideos = videoLogs
+    .filter((e) => e !== featuredVideoEntry)
+    .slice(-3)
+    .reverse();
 
   // 3. 最新人物访谈（头条专访 + 2条核心主创观点）
   const sortedInterviews = [...INTERVIEWS].sort((a, b) => b.iso.localeCompare(a.iso));
@@ -246,7 +251,7 @@ function Home() {
                   }}
                 >
                   <img
-                    src={featuredVideoEntry?.image ?? "/media/still-fire.jpg"}
+                    src={featuredVideoPoster}
                     alt={featuredVideo.title}
                     loading="lazy"
                     decoding="async"
@@ -321,7 +326,9 @@ function Home() {
                   {latestShoot.title}
                 </h3>
                 <p className="mt-1 text-xs text-muted">
-                  苏格兰格拉斯哥 · 实景封街夜战
+                  {latestShoot.iso >= "2026-09-13"
+                    ? "伦敦圣保罗大教堂 · 法院外日戏"
+                    : "苏格兰格拉斯哥 · 实景封街夜战"}
                 </p>
 
                 {/* 片场高清配图缩略图 */}

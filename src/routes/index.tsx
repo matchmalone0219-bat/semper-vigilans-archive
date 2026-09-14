@@ -48,16 +48,6 @@ const CORE_LINKS = [
   },
 ] as const;
 
-const QUICK_LINKS = [
-  { to: "/people", label: "人物名册", detail: "角色与派系" },
-  { to: "/places", label: "哥谭地点", detail: "互动地图与据点" },
-  { to: "/cases", label: "重案卷宗", detail: "案件与物证" },
-  { to: "/gear", label: "装备库", detail: "战衣与载具" },
-  { to: "/gallery", label: "影像画廊", detail: "剧照与片场" },
-  { to: "/interviews", label: "人物访谈", detail: "主演采访摘录" },
-  { to: "/roots", label: "原著溯源", detail: "漫画与影史" },
-] as const;
-
 function Home() {
   const [activeVideo, setActiveVideo] = useState<LogVideo | null>(null);
 
@@ -525,28 +515,6 @@ function Home() {
             </li>
           ))}
         </ul>
-
-        <div className="mt-8 border-y border-fg/10 py-4">
-          <p className="mb-3 font-display text-[10px] font-semibold tracking-[0.22em] text-faint uppercase">
-            Quick Access · 横向浏览
-          </p>
-          <ul className="flex snap-x gap-3 overflow-x-auto pb-2">
-            {QUICK_LINKS.map((item) => (
-              <li key={item.to} className="min-w-48 flex-1 snap-start">
-                <Link
-                  to={item.to}
-                  className="flex h-full items-center justify-between gap-4 border border-fg/10 bg-surface p-4 hover:border-blood"
-                >
-                  <span>
-                    <span className="block font-sans font-black tracking-tight">{item.label}</span>
-                    <span className="mt-1 block text-xs text-faint">{item.detail}</span>
-                  </span>
-                  <ArrowRight className="size-4 shrink-0 text-blood" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
       </section>
 
       {/* 预告片/视频模态播放弹窗 */}

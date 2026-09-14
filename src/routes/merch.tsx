@@ -28,7 +28,7 @@ function Merch() {
           官方周边与收藏品
         </h1>
         <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-          收录《新蝙蝠侠》上映期间及之后推出的官方授权衍生品与实体收藏物料，涵盖 1/6 与 1/12 可动人偶、1:1 道具复刻、高端雕像、车模、乐高套组、跨界联名、出版与影音海报。第二部电影周边尚未公布。
+          收录《新蝙蝠侠》上映期间及之后推出的官方授权衍生品，涵盖 1/6 与 1/12 可动、1/9 中档量产、7 寸零售、1:1 与缩比道具、雕像、载具、乐高、跨界联名、出版与影音海报。只收 Reeves 版电影授权，不拿泛蝙蝠侠产品充数。第二部电影周边尚未公布。
         </p>
         <nav className="mt-8 flex flex-wrap gap-3">
           {MERCH.map((g) => (
@@ -105,7 +105,8 @@ function Merch() {
 
       <p className="mx-auto max-w-6xl px-4 pb-16 text-sm text-faint sm:px-6">
         本站为影迷非商业资料库，不提供任何商品购买与销售服务。产品展示图与技术规格均整理自
-        INART、良品制造、Hot Toys、Infinity Studio、Prime 1 Studio、Jazzinc、乐高、Mondo、Abrams
+        Medicom Toy、BANDAI SPIRITS、Mezco、Beast Kingdom、INART、良品制造、Hot Toys、McFarlane、
+        Iron Studios、Infinity Studio、Prime 1 Studio、Factory Entertainment、Jazzinc、Spin Master、乐高、Mondo、Abrams
         及华纳家庭娱乐等授权厂牌公开物料。查阅电影装备设定请前往{" "}
         <Link to="/gear" className="text-fg underline-offset-4 hover:underline">
           装备

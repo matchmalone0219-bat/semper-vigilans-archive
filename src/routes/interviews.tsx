@@ -52,7 +52,7 @@ function Interviews() {
             人物访谈
           </h1>
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-            整理主演与主创在采访里谈第一部、《企鹅人》和续集的原话。中文为档案译文，以出处原文为准。角色尚未公开的新演员，暂不收录猜测。
+            收录主演与核心主创在公开深度专访中关于《新蝙蝠侠》三部曲与《企鹅人》剧集的关键谈话实录。中文经档案整理核对，以媒体一手出处为准。
           </p>
           <p className="mt-4 max-w-2xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
             可按作品或发言人筛选。人物档案页也会链到对应条目。

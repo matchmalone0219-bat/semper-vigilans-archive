@@ -148,25 +148,33 @@ export const PLOT: PlotItem[] = [
   },
   {
     tag: "rumor",
-    text: "片场制作代号为「Semper Vigilans」（永远警惕）。这句拉丁格言被影迷广泛联想至哥谭古老势力，引发关于猫头鹰法庭等潜在剧情走向的讨论。",
+    text: "片场制作代号为「Semper Vigilans」（永远警惕）。这句拉丁格言被影迷广泛联想至哥谭古老统治家族，引发关于猫头鹰法庭（Court of Owls）等潜在剧情主线的深入讨论。",
   },
   {
     tag: "rumor",
-    text: "伦敦抗议戏标语出现「Court of Fowls / Court of Fouls」字样，影迷据此推测猫头鹰法庭（Court of Owls）可能入局；亦有白面罩与无政府主义符号引发对无政府客（Anarky）的联想。以上均为片场道具引发的推测，官方未确认任何反派身份。",
+    text: "伦敦圣保罗大教堂抗议戏外景中，示威牌出现「Court of Fowls / Court of Fouls」字样，影迷据此推测猫头鹰法庭可能作为幕后黑手登场；同场亦有暴徒佩戴惨白面具并涂画无政府主义符号，引发对激进反派「无政府客」（Anarky）的广泛联想。以上细节均源自现场道具，官方尚未公布任何反派身份。",
   },
   {
     tag: "rumor",
-    text: "斯嘉丽·约翰逊、塞巴斯蒂安·斯坦等新演员加盟后，关于哈维·丹特、急冻人、泥脸或猫头鹰法庭登场的传闻较为集中，具体角色有待官方正式揭晓。",
+    text: "斯嘉丽·约翰逊、塞巴斯蒂安·斯坦等重量级演员加盟后，关于哈维·丹特（双面人）、急冻人、泥脸或猫头鹰法庭成员的选角猜测集中爆发，官方目前仍对所有新角色的具体身份处于严格保密状态。",
+  },
+  {
+    tag: "rumor",
+    text: "8 月 28 日格拉斯哥大桥的双手受缚机位，配合 9 月 13 日伦敦圣保罗大教堂（外景被改造为哥谭皇家法院、台阶遍布愤怒抗议群众）布鲁斯·韦恩由警队护送撤离的路透，引发广泛推测续集中布鲁斯或韦恩企业将遭遇重大涉腐指控或司法听证，而塞巴斯蒂安·斯坦或将饰演主导起诉的地方检察官哈维·丹特。",
+  },
+  {
+    tag: "rumor",
+    text: "结合导演公开的战车雪地胎监视器画面（#SnowTires）与格拉斯哥全城厚重积雪布景，再对照第一部海堤爆炸导致哥谭大水漫灌的灾后背景，网络持续盛传极度写实化的急冻人（维克多·弗里斯）可能利用断电冰封的城市废墟展开报复，成为续集另一大潜在威胁。",
   },
   {
     tag: "debunked",
-    text: "因剧本长期未交、档期多次推迟，网络一度流传《新蝙蝠侠2》已被华纳兄弟或 DC Studios 悄悄取消。",
-    source: "Newsweek 对取消传闻的报道",
+    text: "因剧本长期未交、档期多次推迟，网络一度流传《新蝙蝠侠2》已被华纳兄弟或 DC Studios 悄悄取消制作。",
+    source: "Newsweek · 取消传闻报道",
     sourceUrl: "https://www.newsweek.com/entertainment/comics/james-gunn-reacts-rumors-batman-2-canceled-2086139",
     sourceTier: "press",
     debunkedNote:
-      "DC Studios 联席主席詹姆斯·古恩在《Rolling Stone》访谈中明确表示 The Batman Part II is not canceled。导演随后公布剧本完成，并于 2026 年 6 月开拍，取消说与官方立场及制作事实冲突。",
-    debunkedSource: "Rolling Stone · James Gunn 访谈",
+      "DC Studios 联席主席詹姆斯·古恩在《Rolling Stone》专访中斩钉截铁反驳（“《新蝙蝠侠2》绝没有被取消”）。随后导演马特·里夫斯公布剧本正式完成，剧组并于 2026 年 6 月在英国如期开机，取消流言不攻自破。",
+    debunkedSource: "Rolling Stone · James Gunn 专访",
     debunkedSourceUrl:
       "https://www.rollingstone.com/tv-movies/tv-movie-features/superman-director-james-gunn-dc-studios-interview-1235356450/",
     debunkedSourceTier: "official",
@@ -174,12 +182,12 @@ export const PLOT: PlotItem[] = [
   },
   {
     tag: "debunked",
-    text: "有传闻称马特·里夫斯原计划在续集使用写实版泥脸（Clayface），詹姆斯·古恩因 DCU《生物突击队》已用该角色而要求删改，并因此拖累剧本。",
+    text: "有传闻称马特·里夫斯原计划在续集使用写实版泥脸（Clayface），詹姆斯·古恩因 DCU《生物突击队》已用该角色而要求删改，并因此拖累剧本交付。",
     source: "社交平台转述 · Culture Crave",
     sourceUrl: "https://x.com/CultureCrave/status/2003247876776853739",
     sourceTier: "press",
     debunkedNote:
-      "古恩在 Threads 回应：Where does this stuff come from? No it's the same exact script it has been from the beginning。他否认因泥脸改写或干预剧本。这不等于官方确认或否定泥脸是否出现在片中。",
+      "古恩在 Threads 亲自辟谣：“这些谣言到底从何而来？剧本自始至终都是原版那一份。”他明确否认因泥脸角色改写或干预里夫斯的剧本创作，但该回应仅针对干涉剧本的不实传言，官方并未对泥脸是否在片中出场做出实质定性。",
     debunkedSource: "James Gunn · Threads",
     debunkedSourceUrl: "https://www.threads.com/@jamesgunn/post/DSlSiTKEUFt/",
     debunkedSourceTier: "official",
@@ -187,16 +195,55 @@ export const PLOT: PlotItem[] = [
   },
   {
     tag: "debunked",
-    text: "影迷根据经过改动的 Part III 海报数字与拍摄周期，推测剧组正在将《新蝙蝠侠2》与尚未官宣的第三部背靠背同时拍摄。",
-    source: "MovieWeb（转述 Batman On Film / 社交传闻）",
+    text: "影迷根据经过改动的 Part III 海报数字与实拍周期推测，剧组正在将《新蝙蝠侠2》与尚未官宣的第三部背靠背同时套拍。",
+    source: "MovieWeb · 社交传闻报道",
     sourceUrl: "https://movieweb.com/james-gunn-the-batman-part-ii-major-rumor/",
     sourceTier: "press",
     debunkedNote:
-      "2026 年 8 月，古恩在 Threads 被问到是否正在同时拍摄 Part II 与 Part III 时回复 I can deny。官方未宣布第三部进入拍摄。",
+      "2026 年 8 月，针对外界关于第二部与第三部是否正在秘密套拍的提问，古恩在 Threads 直截了当回复：“我明确予以否认（I can deny）。”目前官方尚未启动第三部的拍摄与立项排期。",
     debunkedSource: "James Gunn · Threads（MovieWeb 引述）",
     debunkedSourceUrl: "https://www.threads.com/@jamesgunn/post/DbtPsqvkYn1/",
     debunkedSourceTier: "official",
     debunkedAt: "2026.08.07",
+  },
+  {
+    tag: "debunked",
+    text: "2025 年 8 月，业内爆料人 Jeff Sneider 等散播传闻，声称马特·里夫斯刚递交的续集剧本迎来重大飞跃，将正式引入蝙蝠侠经典拍档「神奇小子」罗宾（迪克·格雷森）。",
+    source: "IGN · 行业传闻报道",
+    sourceUrl: "https://www.ign.com/articles/the-batman-2-wont-feature-robin-james-gunn-confirms",
+    sourceTier: "press",
+    debunkedNote:
+      "DC Studios 联席主席詹姆斯·古恩在 Threads 亲自辟谣驳斥为无稽之谈（Nonsense），强调当时仅有包括他在内的六个人读过刚定稿的剧本，外界宣称掌握具体角色配置的爆料均不可信。",
+    debunkedSource: "James Gunn · Threads（IGN 引述）",
+    debunkedSourceUrl: "https://www.ign.com/articles/the-batman-2-wont-feature-robin-james-gunn-confirms",
+    debunkedSourceTier: "official",
+    debunkedAt: "2025.08.08",
+  },
+  {
+    tag: "debunked",
+    text: "因第一部谜语人揭密视频中曾闪烁「HUSH!」字样，网络多次盛传经典反派静默（托马斯·埃利奥特）已被内定为续集主反派，甚至流出试镜名单。",
+    source: "ComicBook · 传闻报道",
+    sourceUrl: "https://comicbook.com/movies/news/the-batman-2-rumors-robin-james-gunn-response-comments/",
+    sourceTier: "press",
+    debunkedNote:
+      "詹姆斯·古恩多次在社交平台公开回复澄清，直言关于静默作为续集主反派的爆料纯属无端臆测（Totally made up）；马特·里夫斯亦强调续集反派将紧扣布鲁斯内心深处，从未确认过静默登场。",
+    debunkedSource: "James Gunn · Threads（ComicBook 引述）",
+    debunkedSourceUrl: "https://comicbook.com/movies/news/the-batman-2-rumors-robin-james-gunn-response-comments/",
+    debunkedSourceTier: "official",
+    debunkedAt: "2025.08.06",
+  },
+  {
+    tag: "debunked",
+    text: "在 DC Studios 成立与重组初期，外界盛传华纳高层施压试图让马特·里夫斯执导的《新蝙蝠侠》并入主宇宙 DCU，使罗伯特·帕丁森成为 DCU 的唯一正统蝙蝠侠。",
+    source: "Variety · 行业传闻报道",
+    sourceUrl: "https://variety.com/2022/film/news/batman-robert-pattinson-james-gunn-dcu-1235461159/",
+    sourceTier: "press",
+    debunkedNote:
+      "詹姆斯·古恩与马特·里夫斯双双明确否认合并传闻：古恩公开澄清该报道毫无根据，并正式宣布《新蝙蝠侠》系列保持独立，归入 DC 异世界（Elseworlds）品牌，DCU 将单独开发属于自己主宇宙的蝙蝠侠电影《英勇与无畏》（The Brave and the Bold）。",
+    debunkedSource: "DC Studios · 官方战略发布",
+    debunkedSourceUrl: "https://www.dc.com/blog/2023/01/31/james-gunn-and-peter-safran-on-building-a-new-dc-universe",
+    debunkedSourceTier: "official",
+    debunkedAt: "2023.01.31",
   },
 ];
 

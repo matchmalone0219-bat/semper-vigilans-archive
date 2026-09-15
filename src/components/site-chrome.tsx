@@ -62,6 +62,7 @@ const NAV = [
       { to: "/merch", hash: "fashion", label: "时装配饰" },
       { to: "/merch", hash: "lifestyle", label: "生活联名" },
       { to: "/merch", hash: "toys", label: "大众玩具" },
+      { to: "/merch", hash: "miniatures", label: "桌游战棋" },
     ],
   },
   { to: "/rataalada", label: "暗号" },

@@ -57,6 +57,7 @@ export function plotToSearchItem(plot: PlotItem): SearchItem {
       plot.tag === "debunked" ? "DEBUNKED" : "",
       plot.debunkedNote ?? "",
       plot.debunkedSource ?? "",
+      plot.text.includes("缄默") ? "静默 Hush" : "",
     ].join(" "),
   );
 }

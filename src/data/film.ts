@@ -221,12 +221,12 @@ export const PLOT: PlotItem[] = [
   },
   {
     tag: "debunked",
-    text: "因第一部谜语人揭密视频中曾闪烁「HUSH!」字样，网络多次盛传经典反派静默（托马斯·埃利奥特）已被内定为续集主反派，甚至流出试镜名单。",
+    text: "网络多次盛传经典反派「缄默」（Hush / 托马斯·埃利奥特）已被内定为续集主反派。该说法源于第一部谜语人揭密视频中曾闪烁「HUSH!」字样，甚至一度流出试镜名单。",
     source: "ComicBook · 传闻报道",
     sourceUrl: "https://comicbook.com/movies/news/the-batman-2-rumors-robin-james-gunn-response-comments/",
     sourceTier: "press",
     debunkedNote:
-      "詹姆斯·古恩多次在社交平台公开回复澄清，直言关于静默作为续集主反派的爆料纯属无端臆测（Totally made up）；马特·里夫斯亦强调续集反派将紧扣布鲁斯内心深处，从未确认过静默登场。",
+      "詹姆斯·古恩多次在社交平台公开回复澄清，直言关于缄默作为续集主反派的爆料纯属无端臆测（Totally made up）；马特·里夫斯亦强调续集反派将紧扣布鲁斯内心深处，从未确认过缄默登场。",
     debunkedSource: "James Gunn · Threads（ComicBook 引述）",
     debunkedSourceUrl: "https://comicbook.com/movies/news/the-batman-2-rumors-robin-james-gunn-response-comments/",
     debunkedSourceTier: "official",

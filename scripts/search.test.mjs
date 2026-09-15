@@ -43,3 +43,14 @@ test("site search still returns current plot rumors", () => {
   const hits = search.searchSite("Semper Vigilans");
   assert.ok(hits.some((hit) => hit.kind === "线索" && hit.href === "/dossier#plot"));
 });
+
+test("searching for 缄默, 静默, or Hush matches the debunked clue", () => {
+  const hitsJianmo = search.searchSite("缄默");
+  assert.ok(hitsJianmo.some((hit) => hit.kind === "线索" && hit.title.includes("缄默")));
+
+  const hitsJingmo = search.searchSite("静默");
+  assert.ok(hitsJingmo.some((hit) => hit.kind === "线索" && hit.title.includes("缄默")));
+
+  const hitsHush = search.searchSite("Hush");
+  assert.ok(hitsHush.some((hit) => hit.kind === "线索" && hit.title.includes("缄默")));
+});

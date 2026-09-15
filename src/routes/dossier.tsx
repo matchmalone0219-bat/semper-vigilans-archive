@@ -101,29 +101,81 @@ function Dossier() {
         <section id="plot" className="scroll-mt-24">
           <SectionKicker n="02" title="故事线索" />
           <ul className="mt-8 space-y-4">
-            {PLOT.map((item) => (
-              <li key={item.text} className="border border-fg/10 bg-surface/40 p-5 sm:p-6">
-                <span
-                  className={cn(
-                    "inline-block text-[10px] tracking-[0.28em] uppercase",
-                    item.tag === "confirmed" && "text-fg",
-                    item.tag === "hint" && "text-muted",
-                    item.tag === "rumor" && "text-faint",
-                  )}
+            {PLOT.map((item) => {
+              const debunked = item.tag === "debunked";
+              return (
+                <li
+                  key={item.text}
+                  className="border border-fg/10 bg-surface/40 p-5 sm:p-6"
                 >
-                  {CERTAINTY_LABEL[item.tag]}
-                </span>
-                <p className="mt-3 text-pretty leading-relaxed">{item.text}</p>
-                {item.source ? (
-                  <SourceLink
-                    label={item.source}
-                    href={item.sourceUrl}
-                    tier={item.sourceTier}
-                    verifiedAt={CONTENT_REVIEWED_AT}
-                  />
-                ) : null}
-              </li>
-            ))}
+                  <div className="flex flex-wrap items-baseline gap-3">
+                    <span
+                      className={cn(
+                        "inline-block text-[10px] tracking-[0.28em] uppercase",
+                        item.tag === "confirmed" && "text-fg",
+                        item.tag === "hint" && "text-muted",
+                        item.tag === "rumor" && "text-faint",
+                        debunked && "text-faint",
+                      )}
+                    >
+                      {CERTAINTY_LABEL[item.tag]}
+                      {debunked ? " / DEBUNKED" : null}
+                    </span>
+                    {debunked ? (
+                      <span
+                        className="font-display text-[10px] tracking-[0.36em] text-faint/50 uppercase"
+                        aria-hidden="true"
+                      >
+                        VOID
+                      </span>
+                    ) : null}
+                  </div>
+                  <p
+                    className={cn(
+                      "mt-3 text-pretty leading-relaxed",
+                      debunked && "text-muted/80 decoration-fg/25 line-through",
+                    )}
+                  >
+                    {item.text}
+                  </p>
+                  {item.source ? (
+                    <SourceLink
+                      label={item.source}
+                      href={item.sourceUrl}
+                      tier={item.sourceTier}
+                      verifiedAt={CONTENT_REVIEWED_AT}
+                    />
+                  ) : null}
+                  {debunked ? (
+                    <div className="mt-5 border-t border-dashed border-fg/15 pt-4">
+                      <p className="font-display text-[10px] tracking-[0.28em] text-faint uppercase">
+                        后续核验
+                      </p>
+                      {item.debunkedNote ? (
+                        <p className="mt-3 text-pretty text-sm leading-relaxed text-muted">
+                          {item.debunkedNote}
+                        </p>
+                      ) : null}
+                      {item.debunkedSource ? (
+                        <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                          <SourceLink
+                            label={item.debunkedSource}
+                            href={item.debunkedSourceUrl}
+                            tier={item.debunkedSourceTier}
+                            className="mt-0"
+                          />
+                          {item.debunkedAt ? (
+                            <span className="font-mono text-[10px] tracking-wider text-faint">
+                              证伪 {item.debunkedAt}
+                            </span>
+                          ) : null}
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </li>
+              );
+            })}
           </ul>
         </section>
 

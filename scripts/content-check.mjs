@@ -8,6 +8,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = resolve(__dirname, "..");
 
 export const VALID_SOURCE_TIERS = new Set(["official", "press", "set"]);
+export const VALID_PLOT_TAGS = new Set(["confirmed", "hint", "rumor", "debunked"]);
+export const PLOT_DEBUNKED_FIELDS = [
+  "debunkedNote",
+  "debunkedSource",
+  "debunkedSourceUrl",
+  "debunkedAt",
+  "debunkedSourceTier",
+];
 export const VALID_EDGE_KINDS = new Set(["blood", "bond", "ally", "foe", "kill", "rumor"]);
 export const VALID_NODE_STATUS = new Set(["alive", "dead", "gone", "arkham", "rumor"]);
 export const VALID_MERCH_VARIANT_TYPES = new Set(["movie", "cinema-exclusive", "film-inspiration"]);
@@ -56,6 +64,58 @@ export function checkSourceFields(item, category, identifier, addError) {
     addError(category, `${identifier}: missing sourceTier`);
   } else if (!VALID_SOURCE_TIERS.has(sourceTier)) {
     addError(category, `${identifier}: invalid sourceTier "${sourceTier}" (must be official | press | set)`);
+  }
+}
+
+export function checkPlotItem(plot, identifier, addError) {
+  if (!VALID_PLOT_TAGS.has(plot?.tag)) {
+    addError(
+      "film/plot",
+      `${identifier}: invalid tag "${plot?.tag}" (must be confirmed | hint | rumor | debunked)`,
+    );
+  }
+
+  checkSourceFields(plot, "film/plot", identifier, addError);
+
+  const leaked = PLOT_DEBUNKED_FIELDS.filter((key) => plot?.[key] != null && plot[key] !== "");
+
+  if (plot?.tag === "debunked") {
+    if (!plot.debunkedNote) {
+      addError("film/plot", `${identifier}: missing debunkedNote`);
+    }
+    if (!plot.debunkedSource) {
+      addError("film/plot", `${identifier}: missing debunkedSource`);
+    }
+    if (!plot.debunkedSourceUrl) {
+      addError("film/plot", `${identifier}: missing debunkedSourceUrl`);
+    } else if (!/^https?:\/\//.test(plot.debunkedSourceUrl)) {
+      addError(
+        "film/plot",
+        `${identifier}: invalid debunkedSourceUrl "${plot.debunkedSourceUrl}" (must start with http:// or https://)`,
+      );
+    }
+    if (!plot.debunkedAt) {
+      addError("film/plot", `${identifier}: missing debunkedAt`);
+    } else if (!isValidDisplayDate(plot.debunkedAt)) {
+      addError(
+        "film/plot",
+        `${identifier}: invalid debunkedAt "${plot.debunkedAt}" (expected YYYY.MM or YYYY.MM.DD)`,
+      );
+    }
+    if (plot.debunkedSourceTier && !VALID_SOURCE_TIERS.has(plot.debunkedSourceTier)) {
+      addError(
+        "film/plot",
+        `${identifier}: invalid debunkedSourceTier "${plot.debunkedSourceTier}" (must be official | press | set)`,
+      );
+    }
+    return;
+  }
+
+  if (leaked.length) {
+    addError(
+      "film/plot",
+      `${identifier}: debunked fields (${leaked.join(", ")}) are only allowed when tag is "debunked"`,
+    );
   }
 }
 
@@ -223,7 +283,7 @@ export function runContentCheck(options = {}) {
   });
   (film.PLOT || []).forEach((p, idx) => {
     const plotId = `plot-${idx} (${p.tag})`;
-    checkSourceFields(p, "film/plot", plotId, addError);
+    checkPlotItem(p, plotId, addError);
   });
 
   // 2. People

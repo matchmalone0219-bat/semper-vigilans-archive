@@ -1,5 +1,5 @@
 import { GEAR } from "@/lib/gear";
-import { LOG } from "@/data/film";
+import { CERTAINTY_LABEL, LOG, PLOT, type PlotItem } from "@/data/film";
 import { MERCH } from "@/lib/merch";
 import { PLACES } from "@/lib/places";
 import { PEOPLE } from "@/lib/people";
@@ -42,8 +42,28 @@ const PAGES = [
   item("谜语人暗号终端", "互动谜题 Rataalada", "/rataalada", "互动"),
 ];
 
+export function plotToSearchItem(plot: PlotItem): SearchItem {
+  const title = plot.text.length > 36 ? `${plot.text.slice(0, 36)}…` : plot.text;
+  return item(
+    title,
+    `${CERTAINTY_LABEL[plot.tag]} · 故事线索`,
+    "/dossier#plot",
+    "线索",
+    [
+      plot.text,
+      plot.source ?? "",
+      CERTAINTY_LABEL[plot.tag],
+      plot.tag,
+      plot.tag === "debunked" ? "DEBUNKED" : "",
+      plot.debunkedNote ?? "",
+      plot.debunkedSource ?? "",
+    ].join(" "),
+  );
+}
+
 export const SEARCH_ITEMS: SearchItem[] = [
   ...PAGES,
+  ...PLOT.map(plotToSearchItem),
   ...PEOPLE.map((person) =>
     item(
       person.name,

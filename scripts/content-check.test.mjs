@@ -4,6 +4,7 @@ import {
   isValidIsoDate,
   isValidDisplayDate,
   checkSourceFields,
+  checkPlotItem,
   checkLocalMedia,
   checkMerch,
   formatReport,
@@ -75,6 +76,79 @@ test("checkSourceFields reports missing fields when any source field is present"
     addError
   );
   assert.equal(errors.length, 0);
+});
+
+const validDebunked = {
+  tag: "debunked",
+  text: "曾经流传猫头鹰法庭将作为主反派出场。",
+  source: "影迷论坛汇总",
+  sourceUrl: "https://example.com/rumor",
+  sourceTier: "press",
+  debunkedNote: "官方阵容与该说法冲突，传闻已失效。",
+  debunkedSource: "Warner Bros. 官方公告",
+  debunkedSourceUrl: "https://www.warnerbros.com/movies",
+  debunkedSourceTier: "official",
+  debunkedAt: "2026.09.15",
+};
+
+function collectPlotErrors(plot) {
+  const errors = [];
+  checkPlotItem(plot, "plot-test", (cat, msg) => errors.push(`${cat}: ${msg}`));
+  return errors;
+}
+
+test("checkPlotItem accepts a complete debunked entry", () => {
+  assert.equal(collectPlotErrors(validDebunked).length, 0);
+});
+
+test("checkPlotItem treats confirmed, hint, and rumor as valid tags", () => {
+  for (const tag of ["confirmed", "hint", "rumor"]) {
+    assert.equal(collectPlotErrors({ tag, text: "一条线索" }).length, 0);
+  }
+});
+
+test("checkPlotItem rejects unknown tags", () => {
+  const errors = collectPlotErrors({ tag: "void", text: "x" });
+  assert.ok(errors.some((e) => e.includes('invalid tag "void"')));
+});
+
+test("checkPlotItem fails when a debunked entry is missing required fields", () => {
+  const errors = collectPlotErrors({ tag: "debunked", text: "旧传闻" });
+  assert.ok(errors.some((e) => e.includes("missing debunkedNote")));
+  assert.ok(errors.some((e) => e.includes("missing debunkedSource")));
+  assert.ok(errors.some((e) => e.includes("missing debunkedSourceUrl")));
+  assert.ok(errors.some((e) => e.includes("missing debunkedAt")));
+});
+
+test("checkPlotItem fails when a debunked entry is missing debunkedSourceUrl", () => {
+  const errors = collectPlotErrors({ ...validDebunked, debunkedSourceUrl: undefined });
+  assert.ok(errors.some((e) => e.includes("missing debunkedSourceUrl")));
+});
+
+test("checkPlotItem fails when a non-debunked entry still carries debunked fields", () => {
+  const errors = collectPlotErrors({
+    tag: "rumor",
+    text: "未证实传闻",
+    debunkedNote: "不该出现",
+    debunkedAt: "2026.09.15",
+  });
+  assert.ok(errors.some((e) => e.includes("debunked fields")));
+  assert.ok(errors.some((e) => e.includes("debunkedNote")));
+});
+
+test("checkPlotItem fails on invalid debunkedSourceTier", () => {
+  const errors = collectPlotErrors({ ...validDebunked, debunkedSourceTier: "rumor" });
+  assert.ok(errors.some((e) => e.includes('invalid debunkedSourceTier "rumor"')));
+});
+
+test("checkPlotItem fails on invalid debunkedAt", () => {
+  const errors = collectPlotErrors({ ...validDebunked, debunkedAt: "2026-09-15" });
+  assert.ok(errors.some((e) => e.includes("invalid debunkedAt")));
+});
+
+test("checkPlotItem fails on invalid debunkedSourceUrl scheme", () => {
+  const errors = collectPlotErrors({ ...validDebunked, debunkedSourceUrl: "ftp://example.com" });
+  assert.ok(errors.some((e) => e.includes("invalid debunkedSourceUrl")));
 });
 
 test("checkLocalMedia verifies existing files and ignores external urls", () => {

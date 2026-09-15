@@ -66,15 +66,23 @@ export const FACTS: {
   },
 ];
 
-export type Certainty = "confirmed" | "hint" | "rumor";
+export type Certainty = "confirmed" | "hint" | "rumor" | "debunked";
+export type PlotSourceTier = "official" | "press" | "set";
 
-export const PLOT: {
+export type PlotItem = {
   tag: Certainty;
   text: string;
   source?: string;
   sourceUrl?: string;
-  sourceTier?: "official" | "press" | "set";
-}[] = [
+  sourceTier?: PlotSourceTier;
+  debunkedNote?: string;
+  debunkedSource?: string;
+  debunkedSourceUrl?: string;
+  debunkedSourceTier?: PlotSourceTier;
+  debunkedAt?: string;
+};
+
+export const PLOT: PlotItem[] = [
   {
     tag: "confirmed",
     text: "故事紧承第一部与限定剧《企鹅人》。科林·法瑞尔透露，续集大约从企鹅人夺取黑道控制权数周后的冬季接续。",
@@ -149,6 +157,46 @@ export const PLOT: {
   {
     tag: "rumor",
     text: "斯嘉丽·约翰逊、塞巴斯蒂安·斯坦等新演员加盟后，关于哈维·丹特、急冻人、泥脸或猫头鹰法庭登场的传闻较为集中，具体角色有待官方正式揭晓。",
+  },
+  {
+    tag: "debunked",
+    text: "因剧本长期未交、档期多次推迟，网络一度流传《新蝙蝠侠2》已被华纳兄弟或 DC Studios 悄悄取消。",
+    source: "Newsweek 对取消传闻的报道",
+    sourceUrl: "https://www.newsweek.com/entertainment/comics/james-gunn-reacts-rumors-batman-2-canceled-2086139",
+    sourceTier: "press",
+    debunkedNote:
+      "DC Studios 联席主席詹姆斯·古恩在《Rolling Stone》访谈中明确表示 The Batman Part II is not canceled。导演随后公布剧本完成，并于 2026 年 6 月开拍，取消说与官方立场及制作事实冲突。",
+    debunkedSource: "Rolling Stone · James Gunn 访谈",
+    debunkedSourceUrl:
+      "https://www.rollingstone.com/tv-movies/tv-movie-features/superman-director-james-gunn-dc-studios-interview-1235356450/",
+    debunkedSourceTier: "official",
+    debunkedAt: "2025.06.16",
+  },
+  {
+    tag: "debunked",
+    text: "有传闻称马特·里夫斯原计划在续集使用写实版泥脸（Clayface），詹姆斯·古恩因 DCU《生物突击队》已用该角色而要求删改，并因此拖累剧本。",
+    source: "社交平台转述 · Culture Crave",
+    sourceUrl: "https://x.com/CultureCrave/status/2003247876776853739",
+    sourceTier: "press",
+    debunkedNote:
+      "古恩在 Threads 回应：Where does this stuff come from? No it's the same exact script it has been from the beginning。他否认因泥脸改写或干预剧本。这不等于官方确认或否定泥脸是否出现在片中。",
+    debunkedSource: "James Gunn · Threads",
+    debunkedSourceUrl: "https://www.threads.com/@jamesgunn/post/DSlSiTKEUFt/",
+    debunkedSourceTier: "official",
+    debunkedAt: "2025.12.22",
+  },
+  {
+    tag: "debunked",
+    text: "影迷根据经过改动的 Part III 海报数字与拍摄周期，推测剧组正在将《新蝙蝠侠2》与尚未官宣的第三部背靠背同时拍摄。",
+    source: "MovieWeb（转述 Batman On Film / 社交传闻）",
+    sourceUrl: "https://movieweb.com/james-gunn-the-batman-part-ii-major-rumor/",
+    sourceTier: "press",
+    debunkedNote:
+      "2026 年 8 月，古恩在 Threads 被问到是否正在同时拍摄 Part II 与 Part III 时回复 I can deny。官方未宣布第三部进入拍摄。",
+    debunkedSource: "James Gunn · Threads（MovieWeb 引述）",
+    debunkedSourceUrl: "https://www.threads.com/@jamesgunn/post/DbtPsqvkYn1/",
+    debunkedSourceTier: "official",
+    debunkedAt: "2026.08.07",
   },
 ];
 
@@ -882,4 +930,5 @@ export const CERTAINTY_LABEL: Record<Certainty, string> = {
   confirmed: "官方确认",
   hint: "片场线索",
   rumor: "传闻推测",
+  debunked: "已证伪",
 };

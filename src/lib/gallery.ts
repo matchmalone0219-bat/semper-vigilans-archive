@@ -209,14 +209,35 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》外景片场记录。苏格兰格拉斯哥冬季雪景、战车追逐与改款战衣之后，9 月剧组转至伦敦圣保罗大教堂拍摄法院外抗议场面：帕丁森以布鲁斯身份出镜，戈登同场，抗议标语引发猫头鹰法庭等推测（官方未确认）。",
+      "《新蝙蝠侠2》外景片场记录。苏格兰格拉斯哥冬季雪景、战车追逐与改款战衣之后，9 月剧组转至伦敦圣保罗大教堂拍摄法院外抗议场面：帕丁森以布鲁斯身份出镜，戈登同场，抗议标语引发猫头鹰法庭等推测（官方未确认）。9 月 14–15 日补入同一组更高清护送与登车照片。",
     stills: [
+      {
+        src: "/media/log/p2-13-bruce-walk.jpg",
+        title: "GCPD 护送广角",
+        caption:
+          "9 月 14 日补档高清：便装布鲁斯在两名「GOTHAM CITY COURTS」背心警员之间走向宾利，圣保罗大教堂石柱与抗议人群同框。",
+        source: "片场路透 · UnBoxPHD / The Batman Saga News",
+      },
+      {
+        src: "/media/log/p2-13-bruce-profile.jpg",
+        title: "布鲁斯侧影",
+        caption:
+          "侧分头、深色西装的布鲁斯在闪光灯与人群中被护送。发型比第一部更整齐，影迷据此联想到《Year One》时期的韦恩。",
+        source: "片场路透 · UnBoxPHD / The Batman Saga News",
+      },
+      {
+        src: "/media/log/p2-13-bentley-door.jpg",
+        title: "手扶宾利车门",
+        caption:
+          "护送结束后的登车特写：帕丁森以布鲁斯身份握住黑色宾利车门，身旁安保伸手护栏。比先前远景更清楚。",
+        source: "片场路透 · UnBoxPHD / The Batman Saga News",
+      },
       {
         src: "/media/log/p2-13-bruce-cops.jpg",
         title: "GCPD 护送布鲁斯",
         caption:
-          "便装布鲁斯在「GOTHAM CITY COURTS」背心警员护卫下走向等候的宾利（牌照 M30 5AB）。高清补档，前景可见车头与石墩。",
-        source: "片场路透 · 伦敦外景高清",
+          "便装布鲁斯在「GOTHAM CITY COURTS」背心警员护卫下走向等候的宾利。9 月 14 日高清替换。",
+        source: "片场路透 · UnBoxPHD / The Batman Saga News",
       },
       {
         src: "/media/log/p2-13-bruce-crush.jpg",
@@ -291,8 +312,8 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-13-reeves.jpg",
         title: "里夫斯与梅塞施密特调度",
         caption:
-          "导演马特·里夫斯与摄影指导埃里克·梅塞施密特在圣保罗大教堂外景机位旁现场调度抗议戏。",
-        source: "片场路透 · alesialon / benstrefford",
+          "导演马特·里夫斯与摄影指导埃里克·梅塞施密特在圣保罗大教堂外景机位旁现场调度抗议戏。9 月 15 日高清替换。",
+        source: "片场路透 · UnBoxPHD / The Batman Saga News",
       },
       {
         src: "/media/log/p2-04-blood.jpg",

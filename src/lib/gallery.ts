@@ -209,34 +209,34 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》外景片场记录。苏格兰格拉斯哥冬季雪景、战车追逐与改款战衣之后，9 月剧组转至伦敦圣保罗大教堂拍摄法院外抗议场面：帕丁森以布鲁斯身份出镜，戈登同场，抗议标语引发猫头鹰法庭等推测（官方未确认）。9 月 16 日补发数周前格拉斯哥日戏：GCPD 厢式车押送一名面目无法辨认的人员。",
+      "《新蝙蝠侠2》外景实拍画廊。完整记录苏格兰格拉斯哥的冬日雪景追逐、改装战车与升级版战衣细节，以及 9 月中旬剧组移师伦敦圣保罗大教堂拍摄的哥谭法院外群众示威大戏（罗伯特·帕丁森以考究西装造型现身，戈登同场调度；抗议标语引发对猫头鹰法庭与无政府客的推测）。并同步收录博思韦尔街警方秘密押送人员的日戏补档。",
     stills: [
       {
         src: "/media/log/p2-13-bruce-walk.jpg",
         title: "GCPD 护送广角",
         caption:
-          "9 月 14 日补档高清：便装布鲁斯在两名「GOTHAM CITY COURTS」背心警员之间走向宾利，圣保罗大教堂石柱与抗议人群同框。",
+          "摄影师 UnBoxPHD 释出高清特写：身着深色正装西服的布鲁斯·韦恩在两名身穿「GOTHAM CITY COURTS」反光背心的警员护卫下穿过示威台阶走向宾利，背景可见圣保罗大教堂高耸石柱与群情激愤的抗议人群。",
         source: "片场路透 · UnBoxPHD / The Batman Saga News",
       },
       {
         src: "/media/log/p2-13-bruce-profile.jpg",
         title: "布鲁斯侧影",
         caption:
-          "侧分头、深色西装的布鲁斯在闪光灯与人群中被护送。发型比第一部更整齐，影迷据此联想到《Year One》时期的韦恩。",
+          "布鲁斯·韦恩近景侧颜：修剪整肃的三七分油头与剪裁精良的深色双排扣西装，神情冷峻坚毅。相较第一部颓丧不羁的过眉长发，造型明显向漫画《第一年》（Year One）中作为公众名流姿态回归哥谭的成熟布鲁斯靠拢。",
         source: "片场路透 · UnBoxPHD / The Batman Saga News",
       },
       {
         src: "/media/log/p2-13-bentley-door.jpg",
         title: "手扶宾利车门",
         caption:
-          "护送结束后的登车特写：帕丁森以布鲁斯身份握住黑色宾利车门，身旁安保伸手护栏。比先前远景更清楚。",
+          "登车特写：布鲁斯·韦恩在保镖与便衣警员拦护下握住黑色宾利轿车后门把手。现场高清镜头清晰捕捉到帕丁森的面部神情与西装暗纹细节。",
         source: "片场路透 · UnBoxPHD / The Batman Saga News",
       },
       {
         src: "/media/log/p2-13-bruce-cops.jpg",
         title: "GCPD 护送布鲁斯",
         caption:
-          "便装布鲁斯在「GOTHAM CITY COURTS」背心警员护卫下走向等候的宾利。9 月 14 日高清替换。",
+          "布鲁斯·韦恩在哥谭法院法警与持械特警的严密护送下缓步下台阶，神情凝重，四周闪光灯与抗议标语密集交织。",
         source: "片场路透 · UnBoxPHD / The Batman Saga News",
       },
       {
@@ -270,7 +270,7 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-13-alfred.jpg",
         title: "阿尔弗雷德替身与宾利",
         caption:
-          "安迪·瑟金斯的替身以阿尔弗雷德造型立于宾利旁等候。瑟金斯本人当时在新西兰筹备《猎魔》，未到场。",
+          "安迪·瑟金斯的特技替身以管家阿尔弗雷德经典风衣造型立于宾利轿车旁守候（瑟金斯本人同期在新西兰筹备执导《指环王：猎捕咕噜》，故由替身出镜完成外景远景调度）。",
         source: "片场路透 · luke_laroy",
       },
       {
@@ -312,32 +312,32 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-13-reeves.jpg",
         title: "里夫斯与梅塞施密特调度",
         caption:
-          "导演马特·里夫斯与摄影指导埃里克·梅塞施密特在圣保罗大教堂外景机位旁现场调度抗议戏。9 月 15 日高清替换。",
+          "导演马特·里夫斯与奥斯卡最佳摄影埃里克·梅塞施密特于圣保罗大教堂外景摄影机位旁深入研讨镜头构图，指挥协调大型示威群戏走位。",
         source: "片场路透 · UnBoxPHD / The Batman Saga News",
       },
       {
         src: "/media/log/p2-16-load.jpg",
         title: "GCPD 押上厢式车",
         caption:
-          "9 月 16 日补发的格拉斯哥日戏：积雪街道上，两名警员将一名面目无法辨认的人员押入哥谭特警厢式车后厢。透过临街窗户拍摄，身份无法确认。",
+          "格拉斯哥博思韦尔街日戏补充视角：两名身着 GCPD 深色战术警服的警员押解一名未公开身份的目标人员进入特警押运车后厢，街道覆满人造积雪。",
         source: "片场路透 · cp_allan / The Batman Saga News",
       },
       {
         src: "/media/log/p2-16-rear.jpg",
         title: "厢式车后厢与警员",
-        caption: "两名 GCPD 警员立于厢式车打开的后厢旁。博思韦尔街雪景布景，与 8 月中下旬封街外景同一街区。",
+        caption: "两名持械 GCPD 警员驻守在押运车敞开的尾门前警戒，周边街区挂有圣诞常青花环，保留了 8 月中下旬冬夜封街实拍的原貌布景。",
         source: "片场路透 · cp_allan / The Batman Saga News",
       },
       {
         src: "/media/log/p2-16-drive.jpg",
         title: "押送车辆驶离",
-        caption: "厢式车关门后沿积雪街道驶离，同框可见节日花环与巡逻车。",
+        caption: "押送完成后特警厢式车关紧尾门启动，在哥谭警局巡逻车伴行下沿积雪覆面的单行道驶离外景现场。",
         source: "片场路透 · cp_allan / The Batman Saga News",
       },
       {
         src: "/media/log/p2-16-swat.jpg",
         title: "特警厢式车停靠雪街",
-        caption: "日间停在博思韦尔街转角的哥谭特警厢式车，路面铺人造雪，远处可见节日装饰。",
+        caption: "白天停驻于博思韦尔街拐角处的哥谭特警（SWAT）重型勤务车辆，周围地面铺设了厚实的防滑雪道，沿街商铺点缀着节日灯饰。",
         source: "片场路透 · cp_allan / The Batman Saga News",
       },
       {

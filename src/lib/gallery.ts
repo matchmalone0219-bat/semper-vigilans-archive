@@ -209,7 +209,7 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》外景片场记录。苏格兰格拉斯哥冬季雪景、战车追逐与改款战衣之后，9 月剧组转至伦敦圣保罗大教堂拍摄法院外抗议场面：帕丁森以布鲁斯身份出镜，戈登同场，抗议标语引发猫头鹰法庭等推测（官方未确认）。9 月 14–15 日补入同一组更高清护送与登车照片。",
+      "《新蝙蝠侠2》外景片场记录。苏格兰格拉斯哥冬季雪景、战车追逐与改款战衣之后，9 月剧组转至伦敦圣保罗大教堂拍摄法院外抗议场面：帕丁森以布鲁斯身份出镜，戈登同场，抗议标语引发猫头鹰法庭等推测（官方未确认）。9 月 16 日补发数周前格拉斯哥日戏：GCPD 厢式车押送一名面目无法辨认的人员。",
     stills: [
       {
         src: "/media/log/p2-13-bruce-walk.jpg",
@@ -314,6 +314,31 @@ export const GALLERIES: GalleryGroup[] = [
         caption:
           "导演马特·里夫斯与摄影指导埃里克·梅塞施密特在圣保罗大教堂外景机位旁现场调度抗议戏。9 月 15 日高清替换。",
         source: "片场路透 · UnBoxPHD / The Batman Saga News",
+      },
+      {
+        src: "/media/log/p2-16-load.jpg",
+        title: "GCPD 押上厢式车",
+        caption:
+          "9 月 16 日补发的格拉斯哥日戏：积雪街道上，两名警员将一名面目无法辨认的人员押入哥谭特警厢式车后厢。透过临街窗户拍摄，身份无法确认。",
+        source: "片场路透 · cp_allan / The Batman Saga News",
+      },
+      {
+        src: "/media/log/p2-16-rear.jpg",
+        title: "厢式车后厢与警员",
+        caption: "两名 GCPD 警员立于厢式车打开的后厢旁。博思韦尔街雪景布景，与 8 月中下旬封街外景同一街区。",
+        source: "片场路透 · cp_allan / The Batman Saga News",
+      },
+      {
+        src: "/media/log/p2-16-drive.jpg",
+        title: "押送车辆驶离",
+        caption: "厢式车关门后沿积雪街道驶离，同框可见节日花环与巡逻车。",
+        source: "片场路透 · cp_allan / The Batman Saga News",
+      },
+      {
+        src: "/media/log/p2-16-swat.jpg",
+        title: "特警厢式车停靠雪街",
+        caption: "日间停在博思韦尔街转角的哥谭特警厢式车，路面铺人造雪，远处可见节日装饰。",
+        source: "片场路透 · cp_allan / The Batman Saga News",
       },
       {
         src: "/media/log/p2-04-blood.jpg",

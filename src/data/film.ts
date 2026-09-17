@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.09.14";
+export const CONTENT_REVIEWED_AT = "2026.09.17";
 
 export const FACTS: {
   label: string;
@@ -144,6 +144,13 @@ export const PLOT: PlotItem[] = [
     text: "9 月 13 日伦敦圣保罗大教堂外景：罗伯特·帕丁森以布鲁斯·韦恩身份由 GCPD 护送穿过抗议人群，登上等候的宾利；同场可见杰弗里·怀特（戈登）、阿尔弗雷德替身，以及导演马特·里夫斯与摄影指导埃里克·梅塞施密特现场调度。抗议标语出现 Court of Fowls、Court of Oligarchs、Eat the rich、Re$i$t、SAVE US 等字样；部分群众佩戴白面罩，其中一人夹克绘有无政府主义 A 字符号。",
     source: "片场路透 · IGN / The Batman Saga News",
     sourceUrl: "https://www.ign.com/articles/the-batman-part-2-set-photos-court-of-owls-anarky",
+    sourceTier: "set",
+  },
+  {
+    tag: "hint",
+    text: "9 月 16 日补发数周前格拉斯哥日戏：积雪街道上，哥谭特警厢式车停靠后，两名 GCPD 警员将一名无法辨认面目的人员押上后厢，车辆随即驶离。拍摄地点为博思韦尔街一带的雪景布景，与 8 月中下旬外景同一街区。被押送者身份官方未确认。",
+    source: "片场路透 · cp_allan / The Batman Saga News",
+    sourceUrl: "https://x.com/TheBatmanSagaNW/status/2100270486336729187",
     sourceTier: "set",
   },
   {
@@ -965,6 +972,26 @@ export const LOG: LogEntry[] = [
       title: "片场路透：布鲁斯被护送穿过抗议人群",
       poster: "/media/log/p2-13-bentley.jpg",
     },
+  },
+  {
+    date: "2026.09.16",
+    iso: "2026-09-16",
+    title: "补发格拉斯哥日戏：GCPD 厢式车押送人员",
+    body: "9 月 16 日补出数周前格拉斯哥市中心日戏片段（透过临街窗户拍摄）。积雪街道上停有哥谭特警厢式车与巡逻车；两名身着深色制服的 GCPD 警员将一名面目无法辨认的人员押上后厢，车辆随即驶离。外景为博思韦尔街一带，可见节日花环与人造积雪，与 8 月中下旬雪景封街为同一街区。被押送者身份目前无法从画面确认，官方亦未说明。此段与 8 月 29 日战车避让货车的夜戏不是同一场。",
+    kind: "shoot",
+    source: "片场路透 · cp_allan / The Batman Saga News",
+    sourceUrl: "https://x.com/TheBatmanSagaNW/status/2100270486336729187",
+    sourceTier: "set",
+    verifiedAt: "2026.09.17",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-16-load.jpg",
+    images: [
+      "/media/log/p2-16-load.jpg",
+      "/media/log/p2-16-rear.jpg",
+      "/media/log/p2-16-drive.jpg",
+      "/media/log/p2-16-swat.jpg",
+    ],
   },
   {
     date: "2028.02.18",

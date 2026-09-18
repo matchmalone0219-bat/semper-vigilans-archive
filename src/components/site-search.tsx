@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Search, X } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { searchSite, type SearchItem } from "@/lib/search";
@@ -22,7 +23,7 @@ export function SiteSearchButton({
     <button
       type="button"
       onClick={onClick}
-      className="inline-flex size-10 items-center justify-center text-muted transition-colors hover:text-fg md:h-auto md:w-auto md:gap-2 md:border md:border-fg/15 md:px-3 md:py-2"
+      className="relative z-[91] inline-flex size-10 shrink-0 pointer-events-auto items-center justify-center text-muted transition-colors hover:text-fg md:h-auto md:w-auto md:gap-2 md:border md:border-fg/15 md:px-3 md:py-2"
       aria-label="搜索全站"
       aria-expanded={open}
     >
@@ -30,7 +31,7 @@ export function SiteSearchButton({
       <span className="hidden font-display text-[10px] font-semibold tracking-[0.18em] uppercase md:inline">
         搜索
       </span>
-      <kbd className="hidden font-mono text-[10px] text-faint md:inline border border-fg/15 px-1 py-0.5 ml-1">
+      <kbd className="ml-1 hidden border border-fg/15 px-1 py-0.5 font-mono text-[10px] text-faint md:inline">
         /
       </kbd>
     </button>
@@ -110,24 +111,21 @@ export function SiteSearchModal({ onClose }: { onClose: () => void }) {
     }
   };
 
-  return (
+  const dialog = (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center p-3 sm:p-6 sm:pt-20"
+      className="fixed inset-0 z-[100] flex items-start justify-center p-3 sm:p-6 sm:pt-20"
       role="dialog"
       aria-modal="true"
       aria-label="全站搜索"
       onKeyDown={onKeyDown}
     >
-      {/* Backdrop overlay */}
       <div
         className="fixed inset-0 bg-bg/85 backdrop-blur-md transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Modal Card */}
       <div className="relative z-10 flex max-h-[82vh] w-full max-w-2xl flex-col border border-fg/20 bg-surface shadow-2xl">
-        {/* Input bar */}
         <div className="flex items-center gap-3 border-b border-fg/10 px-4 py-3 sm:px-5">
           <Search className="size-5 shrink-0 text-blood" aria-hidden="true" />
           <input
@@ -160,7 +158,6 @@ export function SiteSearchModal({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        {/* Results Area */}
         <div className="flex-1 overflow-y-auto p-2">
           {!trimmed ? (
             <div className="px-4 py-8 text-center sm:py-10">
@@ -225,7 +222,6 @@ export function SiteSearchModal({ onClose }: { onClose: () => void }) {
           )}
         </div>
 
-        {/* Footer info bar */}
         <div className="flex items-center justify-between border-t border-fg/10 px-4 py-2.5 font-mono text-[11px] text-faint">
           <span>共 {trimmed ? results.length : 0} 条匹配</span>
           <span className="hidden sm:inline">
@@ -238,35 +234,7 @@ export function SiteSearchModal({ onClose }: { onClose: () => void }) {
       </div>
     </div>
   );
-}
 
-export function SiteSearch() {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      const target = event.target as HTMLElement | null;
-      const typing =
-        target?.tagName === "INPUT" || target?.tagName === "TEXTAREA" || target?.isContentEditable;
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault();
-        setOpen((prev) => !prev);
-      } else if (event.key === "/" && !typing && !open) {
-        event.preventDefault();
-        setOpen(true);
-      } else if (event.key === "Escape" && open) {
-        event.preventDefault();
-        setOpen(false);
-      }
-    }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
-
-  return (
-    <>
-      <SiteSearchButton open={open} onClick={() => setOpen((prev) => !prev)} />
-      {open ? <SiteSearchModal onClose={() => setOpen(false)} /> : null}
-    </>
-  );
+  if (typeof document === "undefined") return null;
+  return createPortal(dialog, document.body);
 }

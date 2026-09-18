@@ -158,7 +158,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           >
             {FILM.siteName}
           </Link>
-          <nav className="hidden items-center gap-3 lg:gap-5 md:ml-auto md:flex">
+          <nav className="relative z-10 hidden min-w-0 items-center gap-3 lg:gap-5 md:ml-auto md:flex">
             {NAV.map((item) => (
               <div key={item.to} className="group relative flex h-16 items-center">
                 <Link
@@ -192,7 +192,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               </div>
             ))}
           </nav>
-          <div className="flex items-center gap-1 md:ml-4">
+          <div className="relative z-[91] flex shrink-0 items-center gap-1 md:ml-4">
             <SiteSearchButton
               open={searchOpen}
               onClick={() => setSearchOpen((prev) => !prev)}

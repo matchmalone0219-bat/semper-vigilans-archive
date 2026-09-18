@@ -45,10 +45,8 @@ export function BiliPlayer({
           <iframe
             src={src}
             title={video.title}
-            className="size-full"
+            className="size-full border-0"
             allowFullScreen
-            scrolling="no"
-            frameBorder={0}
             allow="fullscreen; picture-in-picture; autoplay"
           />
         )}

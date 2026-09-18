@@ -92,7 +92,10 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const isSearch = pathname === "/search";
 
   useEffect(() => {
-    function onScroll() {
+    let rafId: number | null = null;
+
+    function updateProgress() {
+      rafId = null;
       const el = document.documentElement;
       const total = el.scrollHeight - window.innerHeight;
       if (total > 0) {
@@ -101,9 +104,20 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         setScrollProgress(0);
       }
     }
+
+    function onScroll() {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(updateProgress);
+    }
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    updateProgress();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+    };
   }, [pathname]);
 
   useEffect(() => {

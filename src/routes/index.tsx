@@ -316,9 +316,7 @@ function Home() {
                   {latestShoot.title}
                 </h3>
                 <p className="mt-1 text-xs text-muted">
-                  {latestShoot.iso >= "2026-09-13"
-                    ? "伦敦圣保罗大教堂 · 法院外日戏"
-                    : "苏格兰格拉斯哥 · 实景封街夜战"}
+                  {latestShoot.locationLabel}
                 </p>
 
                 {/* 片场高清配图缩略图 */}

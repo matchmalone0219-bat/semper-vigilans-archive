@@ -1,4 +1,3 @@
-import { createPortal } from "react-dom";
 import { Search } from "lucide-react";
 
 export function searchLinkProps(href: string) {
@@ -35,8 +34,7 @@ export function SiteSearchButton({
 }
 
 export function SiteSearchModal({ onClose }: { onClose: () => void }) {
-  if (typeof document === "undefined") return null;
-  return createPortal(
+  return (
     <div
       className="fixed inset-0 z-[100] bg-bg"
       role="dialog"
@@ -50,7 +48,6 @@ export function SiteSearchModal({ onClose }: { onClose: () => void }) {
       >
         关闭搜索测试
       </button>
-    </div>,
-    document.body,
+    </div>
   );
 }

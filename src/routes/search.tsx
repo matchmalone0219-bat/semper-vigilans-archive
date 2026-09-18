@@ -97,26 +97,29 @@ function SearchPage() {
 
   return (
     <main>
-      <header className="border-b border-fg/10 bg-elevated">
-        <div className="mx-auto grid max-w-4xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-[minmax(0,1fr)_14rem] lg:grid-cols-[minmax(0,1fr)_16rem]">
-          <div>
+      <header className="relative isolate overflow-hidden border-b border-fg/10 bg-elevated">
+        <div className="mx-auto grid max-w-6xl items-center px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:py-6">
+          <div className="relative z-10 py-6 lg:py-10">
             <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
               SEARCH ARCHIVE
             </p>
             <h1 className="mt-4 font-sans text-5xl font-black leading-none tracking-tight sm:text-7xl">
               全站档案检索
             </h1>
-            <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
+            <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted">
               检索人物、地点、装备、拍摄日志、剧情线索与收藏档案。
             </p>
           </div>
-          <img
-            src="/media/search-gazette.jpg"
-            alt="《新蝙蝠侠》片中哥谭公报头版：Gotham Terrorized / Who is the Batman?"
-            width={736}
-            height={736}
-            className="w-full border border-fg/15 object-cover"
-          />
+          <div className="relative mt-6 min-h-56 sm:min-h-72 lg:mt-0 lg:min-h-[22rem] lg:-mr-6">
+            <img
+              src="/media/search-gazette.jpg"
+              alt="《新蝙蝠侠》片中哥谭公报头版：Gotham Terrorized / Who is the Batman?"
+              width={736}
+              height={736}
+              className="search-gazette absolute inset-0 size-full object-cover object-[center_42%] opacity-80"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-elevated via-elevated/35 to-transparent" />
+          </div>
         </div>
       </header>
 

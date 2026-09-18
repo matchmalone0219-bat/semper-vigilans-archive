@@ -4,7 +4,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { FILM } from "@/data/film";
 import { rootsNavSection } from "@/lib/roots";
-import { SiteSearch } from "@/components/site-search";
+import { SiteSearchButton, SiteSearchModal } from "@/components/site-search";
 
 const NAV = [
   {
@@ -85,6 +85,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const hash = useRouterState({ select: (s) => s.location.hash });
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const isHome = pathname === "/";
   const isRata = pathname.startsWith("/rataalada");
@@ -105,15 +106,36 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   }, [pathname]);
 
   useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      const target = event.target as HTMLElement | null;
+      const typing =
+        target?.tagName === "INPUT" || target?.tagName === "TEXTAREA" || target?.isContentEditable;
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setSearchOpen((prev) => !prev);
+      } else if (event.key === "/" && !typing && !searchOpen) {
+        event.preventDefault();
+        setSearchOpen(true);
+      } else if (event.key === "Escape" && searchOpen) {
+        event.preventDefault();
+        setSearchOpen(false);
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [searchOpen]);
+
+  useEffect(() => {
     setOpen(false);
+    setSearchOpen(false);
   }, [pathname, hash]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    document.body.style.overflow = open || searchOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [open]);
+  }, [open, searchOpen]);
 
   if (isRata) {
     return <div className="relative min-h-svh">{children}</div>;
@@ -171,7 +193,10 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             ))}
           </nav>
           <div className="flex items-center gap-1 md:ml-4">
-            <SiteSearch />
+            <SiteSearchButton
+              open={searchOpen}
+              onClick={() => setSearchOpen((prev) => !prev)}
+            />
             <button
               type="button"
               className="relative grid size-11 place-items-center text-fg md:hidden"
@@ -189,6 +214,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           aria-hidden="true"
         />
       </header>
+
+      {/* Global Search Modal */}
+      {searchOpen ? (
+        <SiteSearchModal onClose={() => setSearchOpen(false)} />
+      ) : null}
 
       {open ? (
         <div className="fixed inset-0 z-30 overflow-y-auto bg-surface pt-16 md:hidden">

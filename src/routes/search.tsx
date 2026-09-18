@@ -110,7 +110,7 @@ function SearchPage() {
               检索人物、地点、装备、拍摄日志、剧情线索与收藏档案。
             </p>
           </div>
-          <div className="relative hidden h-40 w-40 shrink-0 sm:block lg:h-48 lg:w-48">
+          <div className="relative hidden h-60 w-60 shrink-0 sm:block lg:h-72 lg:w-72">
             <img
               src="/media/search-gazette.jpg"
               alt="《新蝙蝠侠》片中哥谭公报头版：Gotham Terrorized / Who is the Batman?"

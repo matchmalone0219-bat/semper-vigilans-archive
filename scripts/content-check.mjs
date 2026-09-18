@@ -7,8 +7,20 @@ import { createJiti } from "jiti";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ROOT = resolve(__dirname, "..");
 
-export const VALID_SOURCE_TIERS = new Set(["official", "press", "set"]);
+export const VALID_SOURCE_TIERS = new Set(["official", "press", "set", "archive"]);
+export const PRESS_URL_HOSTS = new Set([
+  "ign.com",
+  "comicbook.com",
+  "variety.com",
+  "rollingstone.com",
+  "newsweek.com",
+  "movieweb.com",
+  "comingsoon.net",
+  "superherohype.com",
+  "gamesradar.com",
+]);
 export const VALID_PLOT_TAGS = new Set(["confirmed", "hint", "rumor", "debunked"]);
+export const PLOT_ID_PATTERN = /^[a-z][a-z0-9-]*$/;
 export const PLOT_DEBUNKED_FIELDS = [
   "debunkedNote",
   "debunkedSource",
@@ -47,6 +59,33 @@ export function checkLocalMedia(mediaPath, category, identifier, rootDir, addErr
   }
 }
 
+export function urlHost(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "").toLowerCase();
+  } catch {
+    return "";
+  }
+}
+
+export function isPressHost(host) {
+  if (!host) return false;
+  for (const pressHost of PRESS_URL_HOSTS) {
+    if (host === pressHost || host.endsWith(`.${pressHost}`)) return true;
+  }
+  return false;
+}
+
+export function checkTierMatchesUrl(url, tier, category, identifier, field, addError) {
+  if (!url || !tier || tier !== "official") return;
+  const host = urlHost(url);
+  if (isPressHost(host)) {
+    addError(
+      category,
+      `${identifier}: ${field} "official" does not match linked page (${host}); use press`,
+    );
+  }
+}
+
 export function checkSourceFields(item, category, identifier, addError) {
   const { source, sourceUrl, sourceTier } = item;
   const hasAny = Boolean(source || sourceUrl || sourceTier);
@@ -63,11 +102,21 @@ export function checkSourceFields(item, category, identifier, addError) {
   if (!sourceTier) {
     addError(category, `${identifier}: missing sourceTier`);
   } else if (!VALID_SOURCE_TIERS.has(sourceTier)) {
-    addError(category, `${identifier}: invalid sourceTier "${sourceTier}" (must be official | press | set)`);
+    addError(category, `${identifier}: invalid sourceTier "${sourceTier}" (must be official | press | set | archive)`);
   }
+  checkTierMatchesUrl(sourceUrl, sourceTier, category, identifier, "sourceTier", addError);
 }
 
 export function checkPlotItem(plot, identifier, addError) {
+  if (!plot?.id) {
+    addError("film/plot", `${identifier}: missing id`);
+  } else if (!PLOT_ID_PATTERN.test(plot.id)) {
+    addError(
+      "film/plot",
+      `${identifier}: invalid id "${plot.id}" (use kebab-case like debunked-hush-main-villain)`,
+    );
+  }
+
   if (!VALID_PLOT_TAGS.has(plot?.tag)) {
     addError(
       "film/plot",
@@ -105,9 +154,17 @@ export function checkPlotItem(plot, identifier, addError) {
     if (plot.debunkedSourceTier && !VALID_SOURCE_TIERS.has(plot.debunkedSourceTier)) {
       addError(
         "film/plot",
-        `${identifier}: invalid debunkedSourceTier "${plot.debunkedSourceTier}" (must be official | press | set)`,
+        `${identifier}: invalid debunkedSourceTier "${plot.debunkedSourceTier}" (must be official | press | set | archive)`,
       );
     }
+    checkTierMatchesUrl(
+      plot.debunkedSourceUrl,
+      plot.debunkedSourceTier,
+      "film/plot",
+      identifier,
+      "debunkedSourceTier",
+      addError,
+    );
     return;
   }
 
@@ -133,7 +190,7 @@ export function checkMerchSourceFields(item, identifier, addError) {
     addError("merch/items", `${identifier}: missing sourceLabel`);
   }
   if (sourceTier && !VALID_SOURCE_TIERS.has(sourceTier)) {
-    addError("merch/items", `${identifier}: invalid sourceTier "${sourceTier}" (must be official | press | set)`);
+    addError("merch/items", `${identifier}: invalid sourceTier "${sourceTier}" (must be official | press | set | archive)`);
   }
 }
 
@@ -281,9 +338,16 @@ export function runContentCheck(options = {}) {
   (film.FACTS || []).forEach((f) => {
     checkSourceFields(f, "film/facts", f.label, addError);
   });
+  const seenPlotIds = new Set();
   (film.PLOT || []).forEach((p, idx) => {
-    const plotId = `plot-${idx} (${p.tag})`;
+    const plotId = p.id || `plot-${idx} (${p.tag})`;
     checkPlotItem(p, plotId, addError);
+    if (p.id) {
+      if (seenPlotIds.has(p.id)) {
+        addError("film/plot", `${plotId}: duplicate plot id "${p.id}"`);
+      }
+      seenPlotIds.add(p.id);
+    }
   });
 
   // 2. People

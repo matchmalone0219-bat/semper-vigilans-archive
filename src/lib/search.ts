@@ -42,14 +42,19 @@ const PAGES = [
   item("谜语人暗号终端", "互动谜题 Rataalada", "/rataalada", "互动"),
 ];
 
+export function plotHref(plot: PlotItem) {
+  return plot.id ? `/dossier#${plot.id}` : "/dossier#plot";
+}
+
 export function plotToSearchItem(plot: PlotItem): SearchItem {
   const title = plot.text.length > 36 ? `${plot.text.slice(0, 36)}…` : plot.text;
   return item(
     title,
     `${CERTAINTY_LABEL[plot.tag]} · 故事线索`,
-    "/dossier#plot",
+    plotHref(plot),
     "线索",
     [
+      plot.id ?? "",
       plot.text,
       plot.source ?? "",
       CERTAINTY_LABEL[plot.tag],

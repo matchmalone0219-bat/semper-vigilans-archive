@@ -19,7 +19,7 @@ export const FACTS: {
   value: string;
   source?: string;
   sourceUrl?: string;
-  sourceTier?: "official" | "press" | "set";
+  sourceTier?: "official" | "press" | "set" | "archive";
 }[] = [
   { label: "片名", value: "The Batman: Part II / 《新蝙蝠侠2》" },
   {
@@ -67,9 +67,10 @@ export const FACTS: {
 ];
 
 export type Certainty = "confirmed" | "hint" | "rumor" | "debunked";
-export type PlotSourceTier = "official" | "press" | "set";
+export type PlotSourceTier = "official" | "press" | "set" | "archive";
 
 export type PlotItem = {
+  id: string;
   tag: Certainty;
   text: string;
   source?: string;
@@ -84,6 +85,7 @@ export type PlotItem = {
 
 export const PLOT: PlotItem[] = [
   {
+    id: "confirmed-after-penguin",
     tag: "confirmed",
     text: "故事紧承第一部与限定剧《企鹅人》。科林·法瑞尔透露，续集大约从企鹅人夺取黑道控制权数周后的冬季接续。",
     source: "GamesRadar（引述科林·法瑞尔）",
@@ -91,6 +93,7 @@ export const PLOT: PlotItem[] = [
     sourceTier: "press",
   },
   {
+    id: "confirmed-bruce-center",
     tag: "confirmed",
     text: "导演马特·里夫斯表示，罗伯特·帕丁森饰演的布鲁斯·韦恩将继续作为故事核心，剧情会进一步深入面具之下的人物内心。",
     source: "Variety（导演访谈）",
@@ -98,6 +101,7 @@ export const PLOT: PlotItem[] = [
     sourceTier: "press",
   },
   {
+    id: "set-glasgow-snow-chase",
     tag: "hint",
     text: "2026 年 8 月格拉斯哥外景现场铺设了人造雪与节日装饰，蝙蝠战车在警车与 SWAT 装甲车包围下进行高速漂移与追逐戏拍摄，呈现出冬夜警队围捕蝙蝠侠的动作场面。",
     source: "The Independent / PA · 片场报道",
@@ -105,6 +109,7 @@ export const PLOT: PlotItem[] = [
     sourceTier: "set",
   },
   {
+    id: "set-alfred-cpr",
     tag: "hint",
     text: "8 月 28 日格拉斯哥大桥日戏：阿尔弗雷德跪在雪地中为倒地的布鲁斯紧急做心肺复苏，金发女性怀抱男孩在旁凝视；另一机位中布鲁斯双手疑似被手铐锁住。同场克莱德河面上停泊着一艘悬挂旗帜的游艇。",
     source: "片场路透 · hoeBread36",
@@ -112,6 +117,7 @@ export const PLOT: PlotItem[] = [
     sourceTier: "set",
   },
   {
+    id: "set-batmobile-avoids-truck",
     tag: "hint",
     text: "8 月 29 日夜戏：战车在积雪路面上避让迎面驶来的货车，并与哥谭警车同框疾驰；航拍视角清晰记录了封街路段的积雪与节日灯饰。市政通告显示拍摄重心转向牛顿街与金斯顿桥下的北街，封路将延续至 9 月上旬。",
     source: "片场路透 · hoeBread36 / aylissab",
@@ -119,6 +125,7 @@ export const PLOT: PlotItem[] = [
     sourceTier: "set",
   },
   {
+    id: "set-suit-details",
     tag: "hint",
     text: "8 月 30 日战衣细节：特技替身瑞克·英格利希身着续集战衣的高清近照流出。画面中替身未佩戴头套，清晰呈现出战衣的分体护颈、胸肩复合装甲纹理与实战做旧痕迹，印证了续集延续粗粝厚重的重装实战风格。",
     source: "片场路透 · ross_sneddon",
@@ -126,6 +133,7 @@ export const PLOT: PlotItem[] = [
     sourceTier: "set",
   },
   {
+    id: "set-wrecked-batmobile",
     tag: "hint",
     text: "8 月 31 日金斯顿桥下外景：片场出现一辆车顶压陷、挡风玻璃碎裂的战车严重受损道具，同场停放有配备钢缆翻滚架与特技滑橇的两套改装车。现场立有「KEEP GOTHAM GREEN」市政标牌，北街与牛顿街的夜戏管制将持续至 9 月上旬。",
     source: "片场路透 · Fraser Wilson / mattatthecinema",
@@ -133,6 +141,7 @@ export const PLOT: PlotItem[] = [
     sourceTier: "set",
   },
   {
+    id: "set-gcpd-motorcycle",
     tag: "hint",
     text: "9 月 4 日格拉斯哥夜戏：特技替身瑞克·英格利希佩戴改款头套，驾驶印有 Gotham City Police 标识的警用摩托在积雪街道穿行，完成飞跃巡逻车及与持枪警员对峙等特技镜头。战衣胸腹与下颌带有明显的道具血浆与重度战损痕迹，腰间换装了更具辨识度的芥末黄色战术腰带（类似漫画与《阿卡姆》系列经典设定；未佩戴实物斗篷，预计后期数字合成）。STV 证实帕丁森未在该组外景出镜。",
     source: "片场路透 · ciaron97 / Jasraj Sidhu",
@@ -140,6 +149,7 @@ export const PLOT: PlotItem[] = [
     sourceTier: "set",
   },
   {
+    id: "set-london-protests",
     tag: "hint",
     text: "9 月 13 日伦敦圣保罗大教堂外景：罗伯特·帕丁森以布鲁斯·韦恩身份由 GCPD 护送穿过抗议人群，登上等候的宾利；同场可见杰弗里·怀特（戈登）、阿尔弗雷德替身，以及导演马特·里夫斯与摄影指导埃里克·梅塞施密特现场调度。抗议标语出现 Court of Fowls、Court of Oligarchs、Eat the rich、Re$i$t、SAVE US 等字样；部分群众佩戴白面罩，其中一人夹克绘有无政府主义 A 字符号。",
     source: "片场路透 · IGN / The Batman Saga News",
@@ -147,6 +157,7 @@ export const PLOT: PlotItem[] = [
     sourceTier: "set",
   },
   {
+    id: "set-glasgow-prisoner-van",
     tag: "hint",
     text: "9 月 16 日补发数周前格拉斯哥日戏：积雪街道上，哥谭特警厢式车停靠后，两名 GCPD 警员将一名无法辨认面目的人员押上后厢，车辆随即驶离。拍摄地点为博思韦尔街一带的雪景布景，与 8 月中下旬外景同一街区。被押送者身份官方未确认。",
     source: "片场路透 · cp_allan / The Batman Saga News",
@@ -154,26 +165,32 @@ export const PLOT: PlotItem[] = [
     sourceTier: "set",
   },
   {
+    id: "rumor-semper-vigilans-court",
     tag: "rumor",
     text: "片场制作代号为「Semper Vigilans」（永远警惕）。这句拉丁格言被影迷广泛联想至哥谭古老统治家族，引发关于猫头鹰法庭（Court of Owls）等潜在剧情主线的深入讨论。",
   },
   {
+    id: "rumor-court-of-fowls",
     tag: "rumor",
     text: "伦敦圣保罗大教堂抗议戏外景中，示威牌出现「Court of Fowls / Court of Fouls」字样，影迷据此推测猫头鹰法庭可能作为幕后黑手登场；同场亦有暴徒佩戴惨白面具并涂画无政府主义符号，引发对激进反派「无政府客」（Anarky）的广泛联想。以上细节均源自现场道具，官方尚未公布任何反派身份。",
   },
   {
+    id: "rumor-new-cast-identities",
     tag: "rumor",
     text: "斯嘉丽·约翰逊、塞巴斯蒂安·斯坦等重量级演员加盟后，关于哈维·丹特（双面人）、急冻人、泥脸或猫头鹰法庭成员的选角猜测集中爆发，官方目前仍对所有新角色的具体身份处于严格保密状态。",
   },
   {
+    id: "rumor-bruce-on-trial",
     tag: "rumor",
     text: "8 月 28 日格拉斯哥大桥的双手受缚机位，配合 9 月 13 日伦敦圣保罗大教堂（外景被改造为哥谭皇家法院、台阶遍布愤怒抗议群众）布鲁斯·韦恩由警队护送撤离的路透，引发广泛推测续集中布鲁斯或韦恩企业将遭遇重大涉腐指控或司法听证，而塞巴斯蒂安·斯坦或将饰演主导起诉的地方检察官哈维·丹特。",
   },
   {
+    id: "rumor-mr-freeze",
     tag: "rumor",
     text: "结合导演公开的战车雪地胎监视器画面（#SnowTires）与格拉斯哥全城厚重积雪布景，再对照第一部海堤爆炸导致哥谭大水漫灌的灾后背景，网络持续盛传极度写实化的急冻人（维克多·弗里斯）可能利用断电冰封的城市废墟展开报复，成为续集另一大潜在威胁。",
   },
   {
+    id: "debunked-cancelled",
     tag: "debunked",
     text: "因剧本长期未交、档期多次推迟，网络一度流传《新蝙蝠侠2》已被华纳兄弟或 DC Studios 悄悄取消制作。",
     source: "Newsweek · 取消传闻报道",
@@ -184,10 +201,11 @@ export const PLOT: PlotItem[] = [
     debunkedSource: "Rolling Stone · James Gunn 专访",
     debunkedSourceUrl:
       "https://www.rollingstone.com/tv-movies/tv-movie-features/superman-director-james-gunn-dc-studios-interview-1235356450/",
-    debunkedSourceTier: "official",
+    debunkedSourceTier: "press",
     debunkedAt: "2025.06.16",
   },
   {
+    id: "debunked-clayface-script",
     tag: "debunked",
     text: "有传闻称马特·里夫斯原计划在续集使用写实版泥脸（Clayface），詹姆斯·古恩因 DCU《生物突击队》已用该角色而要求删改，并因此拖累剧本交付。",
     source: "社交平台转述 · Culture Crave",
@@ -201,6 +219,7 @@ export const PLOT: PlotItem[] = [
     debunkedAt: "2025.12.22",
   },
   {
+    id: "debunked-back-to-back",
     tag: "debunked",
     text: "影迷根据经过改动的 Part III 海报数字与实拍周期推测，剧组正在将《新蝙蝠侠2》与尚未官宣的第三部背靠背同时套拍。",
     source: "MovieWeb · 社交传闻报道",
@@ -208,12 +227,13 @@ export const PLOT: PlotItem[] = [
     sourceTier: "press",
     debunkedNote:
       "2026 年 8 月，针对外界关于第二部与第三部是否正在秘密套拍的提问，古恩在 Threads 直截了当回复：“我明确予以否认（I can deny）。”目前官方尚未启动第三部的拍摄与立项排期。",
-    debunkedSource: "James Gunn · Threads（MovieWeb 引述）",
+    debunkedSource: "James Gunn · Threads",
     debunkedSourceUrl: "https://www.threads.com/@jamesgunn/post/DbtPsqvkYn1/",
     debunkedSourceTier: "official",
     debunkedAt: "2026.08.07",
   },
   {
+    id: "debunked-robin-2025",
     tag: "debunked",
     text: "2025 年 8 月，业内爆料人 Jeff Sneider 等散播传闻，声称马特·里夫斯刚递交的续集剧本迎来重大飞跃，将正式引入蝙蝠侠经典拍档「神奇小子」罗宾（迪克·格雷森）。",
     source: "IGN · 行业传闻报道",
@@ -221,12 +241,13 @@ export const PLOT: PlotItem[] = [
     sourceTier: "press",
     debunkedNote:
       "DC Studios 联席主席詹姆斯·古恩在 Threads 亲自辟谣驳斥为无稽之谈（Nonsense），强调当时仅有包括他在内的六个人读过刚定稿的剧本，外界宣称掌握具体角色配置的爆料均不可信。",
-    debunkedSource: "James Gunn · Threads（IGN 引述）",
+    debunkedSource: "IGN · 引述 James Gunn",
     debunkedSourceUrl: "https://www.ign.com/articles/the-batman-2-wont-feature-robin-james-gunn-confirms",
-    debunkedSourceTier: "official",
+    debunkedSourceTier: "press",
     debunkedAt: "2025.08.08",
   },
   {
+    id: "debunked-hush-main-villain",
     tag: "debunked",
     text: "网络多次盛传经典反派「缄默」（Hush / 托马斯·埃利奥特）已被内定为续集主反派。该说法源于第一部谜语人揭密视频中曾闪烁「HUSH!」字样，甚至一度流出试镜名单。",
     source: "ComicBook · 传闻报道",
@@ -234,12 +255,13 @@ export const PLOT: PlotItem[] = [
     sourceTier: "press",
     debunkedNote:
       "詹姆斯·古恩多次在社交平台公开回复澄清，直言关于缄默作为续集主反派的爆料纯属无端臆测（Totally made up）；马特·里夫斯亦强调续集反派将紧扣布鲁斯内心深处，从未确认过缄默登场。",
-    debunkedSource: "James Gunn · Threads（ComicBook 引述）",
+    debunkedSource: "ComicBook · 引述 James Gunn",
     debunkedSourceUrl: "https://comicbook.com/movies/news/the-batman-2-rumors-robin-james-gunn-response-comments/",
-    debunkedSourceTier: "official",
+    debunkedSourceTier: "press",
     debunkedAt: "2025.08.06",
   },
   {
+    id: "debunked-merge-into-dcu",
     tag: "debunked",
     text: "在 DC Studios 成立与重组初期，外界盛传华纳高层施压试图让马特·里夫斯执导的《新蝙蝠侠》并入主宇宙 DCU，使罗伯特·帕丁森成为 DCU 的唯一正统蝙蝠侠。",
     source: "Variety · 行业传闻报道",
@@ -392,7 +414,7 @@ export type LogEntry = {
   kind: LogKind;
   source?: string;
   sourceUrl?: string;
-  sourceTier?: "official" | "press" | "set";
+  sourceTier?: "official" | "press" | "set" | "archive";
   verifiedAt?: string;
   href?: "/gallery" | "/dossier" | "/recap" | "/interviews";
   hash?: string;

@@ -22,7 +22,7 @@ export type MerchItem = {
   body: string;
   sourceUrl?: string;
   sourceLabel?: string;
-  sourceTier?: "official" | "press" | "set";
+  sourceTier?: "official" | "press" | "set" | "archive";
   verifiedAt?: string;
   covers?: MerchCover[];
 };
@@ -898,7 +898,7 @@ export const MERCH: MerchGroup[] = [
         body: "全球 4DX 影厅专属宣发海报。画面聚焦于暮色暗影中蝙蝠侠与猫女的载具对峙，底部醒目标注「FEEL IT IN 4DX」动感影厅标识，生动传递雨夜机车轰鸣与战车追逐的沉浸式体感观影体验。",
         sourceUrl: "https://ameblo.jp/uzakiron/entry-12732418740.html",
         sourceLabel: "日本观众 2022.03 4DX 实体海报实拍",
-        sourceTier: "set",
+        sourceTier: "archive",
         verifiedAt: "2026.09.14",
       },
       {
@@ -1069,6 +1069,7 @@ export const MERCH: MerchGroup[] = [
         body: "韩国 CGV 经典胶片书签（Film Mark）系列第 52 号。一套包含两款不同画面的胶片卡，每张以真实电影胶片比例呈现四格经典场景截帧，并配有专属保护封套。",
         sourceUrl: "https://m.namu.moe/w/%ED%95%84%EB%A6%84%EB%A7%88%ED%81%AC",
         sourceLabel: "Namu Film Mark · No.52 资料记录",
+        sourceTier: "archive",
         verifiedAt: "2026.09.15",
       },
       {
@@ -1098,6 +1099,7 @@ export const MERCH: MerchGroup[] = [
         body: "韩国 Megabox 院线最具代表性的 Original Ticket 电影票根系列第 48 号。包含红底蝙蝠侠肖像款与黑底蝙蝠徽影两款造型，票面融合局部凹凸浮雕、烫银与透明光油工艺，为极具美感的高人气纸质特典。",
         sourceUrl: "https://juto.tistory.com/473",
         sourceLabel: "Juto · Megabox Original Ticket No.48 实物与官方规则记录",
+        sourceTier: "archive",
         verifiedAt: "2026.09.15",
       },
       {
@@ -1112,6 +1114,7 @@ export const MERCH: MerchGroup[] = [
         body: "2022 年 3 月中国大陆各大影院卖品部同期推出的电影主题饮料杯。杯身印有红黑主视觉海报，杯盖上配备立体造型公仔，包含战服蝙蝠侠、猫女、蝙蝠徽与蝙蝠战车等多款主题配件。",
         sourceUrl: "https://www.batcavecn.com/?p=17514",
         sourceLabel: "Batman 小站 · 大陆院线周边汇总",
+        sourceTier: "archive",
         verifiedAt: "2026.09.15",
       },
       {
@@ -1126,6 +1129,7 @@ export const MERCH: MerchGroup[] = [
         body: "中国大陆院线于公映期推出的官方限定观影周边礼品套组。成套包含宣发海报、主题笔记本电脑包、战术机能手套、反光折叠伞与定制艺术拼图等实用收藏物料。",
         sourceUrl: "https://www.batcavecn.com/?p=17514",
         sourceLabel: "Batman 小站 · 大陆院线周边汇总",
+        sourceTier: "archive",
         verifiedAt: "2026.09.15",
       },
       {
@@ -1711,7 +1715,7 @@ export const MERCH: MerchGroup[] = [
         body: "Knight Models 官方 3D 打印数字工坊（MyMiniFactory Gotham Lord 部落）于 2026 年 7 月发行的官方数字 STL 雕模。按 32–35mm 桌面战棋标准比例制作，数字版提供预加支撑与原始无支撑两种高精度 STL 文件，专供玩家通过光固化树脂打印自行涂装。",
         sourceUrl: "https://miniset.net/sets/km-mmf841290",
         sourceLabel: "Miniset · Knight Models Gotham Lord STL",
-        sourceTier: "press",
+        sourceTier: "archive",
         verifiedAt: "2026.09.15",
       },
       {
@@ -1726,7 +1730,7 @@ export const MERCH: MerchGroup[] = [
         body: "官方 2026 年数字再发行的猫女 3D 打印模型。忠实重现佐伊·克罗维兹在电影中的利落短发、猫耳滑雪面罩与皮质紧身作战服轮廓，手握皮鞭处于伺机突袭姿态，为高精度光固化打印提供完善支撑切片。",
         sourceUrl: "https://miniset.net/sets/km-mmf841291",
         sourceLabel: "Miniset · Knight Models Gotham Lord STL",
-        sourceTier: "press",
+        sourceTier: "archive",
         verifiedAt: "2026.09.15",
       },
       {
@@ -1741,7 +1745,7 @@ export const MERCH: MerchGroup[] = [
         body: "杰弗里·怀特版吉姆·戈登副中尉的官方 3D 打印数字模型。模型还原了戈登身穿侦探经典防雨风衣、佩戴标志性框架眼镜并在暴雨夜持枪戒备的正义刑警姿态，细节丰富锐利。",
         sourceUrl: "https://miniset.net/sets/km-mmf841293",
         sourceLabel: "Miniset · Knight Models Gotham Lord STL",
-        sourceTier: "press",
+        sourceTier: "archive",
         verifiedAt: "2026.09.15",
       },
       {
@@ -1771,7 +1775,7 @@ export const MERCH: MerchGroup[] = [
         body: "2026 年官方数字发布的重载机车战棋模型。完整继承了 2022 年实体版 35DC358 的精湛雕模，高精度重现美式复古改装机车外露引擎细节与蝙蝠侠披风随风飘拂的动态，提供树脂打印专用支撑切片。",
         sourceUrl: "https://miniset.net/sets/km-mmf836162",
         sourceLabel: "Miniset · Knight Models Gotham Lord STL",
-        sourceTier: "press",
+        sourceTier: "archive",
         verifiedAt: "2026.09.15",
       },
       {

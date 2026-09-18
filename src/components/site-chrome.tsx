@@ -4,6 +4,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { FILM } from "@/data/film";
 import { rootsNavSection } from "@/lib/roots";
+import { SiteSearch } from "@/components/site-search";
 
 const NAV = [
   {
@@ -17,6 +18,7 @@ const NAV = [
       { to: "/dossier", hash: "log", label: "拍摄日志" },
       { to: "/people", label: "人物名册" },
       { to: "/places", label: "哥谭地点" },
+      { to: "/cases", label: "重案卷宗" },
     ],
   },
   {
@@ -169,6 +171,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             ))}
           </nav>
           <div className="flex items-center gap-1 md:ml-4">
+            <SiteSearch />
             <button
               type="button"
               className="relative grid size-11 place-items-center text-fg md:hidden"

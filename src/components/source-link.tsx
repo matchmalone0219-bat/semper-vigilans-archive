@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn";
 type SourceLinkProps = {
   label: string;
   href?: string;
-  tier?: "official" | "press" | "set";
+  tier?: "official" | "press" | "set" | "archive";
   verifiedAt?: string;
   className?: string;
 };
@@ -24,6 +24,11 @@ const TIER_META = {
     label: "片场记录",
     dot: "bg-amber-400",
     tooltip: "片场记录 // 外景目击路透、特技拍摄影像或市政交通管制记录",
+  },
+  archive: {
+    label: "实物记录",
+    dot: "bg-violet-400",
+    tooltip: "收藏档案 // 二手实物、藏家实拍、历史零售页或收藏目录",
   },
 } as const;
 

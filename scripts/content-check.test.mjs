@@ -79,6 +79,7 @@ test("checkSourceFields reports missing fields when any source field is present"
 });
 
 const validDebunked = {
+  id: "debunked-court-of-owls-test",
   tag: "debunked",
   text: "曾经流传猫头鹰法庭将作为主反派出场。",
   source: "影迷论坛汇总",
@@ -103,17 +104,26 @@ test("checkPlotItem accepts a complete debunked entry", () => {
 
 test("checkPlotItem treats confirmed, hint, and rumor as valid tags", () => {
   for (const tag of ["confirmed", "hint", "rumor"]) {
-    assert.equal(collectPlotErrors({ tag, text: "一条线索" }).length, 0);
+    assert.equal(collectPlotErrors({ id: `${tag}-sample`, tag, text: "一条线索" }).length, 0);
   }
 });
 
 test("checkPlotItem rejects unknown tags", () => {
-  const errors = collectPlotErrors({ tag: "void", text: "x" });
+  const errors = collectPlotErrors({ id: "void-x", tag: "void", text: "x" });
   assert.ok(errors.some((e) => e.includes('invalid tag "void"')));
 });
 
+test("checkPlotItem fails when a plot id is missing or invalid", () => {
+  assert.ok(collectPlotErrors({ tag: "rumor", text: "无 id" }).some((e) => e.includes("missing id")));
+  assert.ok(
+    collectPlotErrors({ id: "Hush Main", tag: "rumor", text: "坏 id" }).some((e) =>
+      e.includes("invalid id"),
+    ),
+  );
+});
+
 test("checkPlotItem fails when a debunked entry is missing required fields", () => {
-  const errors = collectPlotErrors({ tag: "debunked", text: "旧传闻" });
+  const errors = collectPlotErrors({ id: "debunked-old", tag: "debunked", text: "旧传闻" });
   assert.ok(errors.some((e) => e.includes("missing debunkedNote")));
   assert.ok(errors.some((e) => e.includes("missing debunkedSource")));
   assert.ok(errors.some((e) => e.includes("missing debunkedSourceUrl")));
@@ -127,6 +137,7 @@ test("checkPlotItem fails when a debunked entry is missing debunkedSourceUrl", (
 
 test("checkPlotItem fails when a non-debunked entry still carries debunked fields", () => {
   const errors = collectPlotErrors({
+    id: "rumor-unverified",
     tag: "rumor",
     text: "未证实传闻",
     debunkedNote: "不该出现",
@@ -149,6 +160,15 @@ test("checkPlotItem fails on invalid debunkedAt", () => {
 test("checkPlotItem fails on invalid debunkedSourceUrl scheme", () => {
   const errors = collectPlotErrors({ ...validDebunked, debunkedSourceUrl: "ftp://example.com" });
   assert.ok(errors.some((e) => e.includes("invalid debunkedSourceUrl")));
+});
+
+test("checkPlotItem fails when official tier is attached to a press URL", () => {
+  const errors = collectPlotErrors({
+    ...validDebunked,
+    debunkedSourceUrl: "https://www.ign.com/articles/the-batman-2-wont-feature-robin-james-gunn-confirms",
+    debunkedSourceTier: "official",
+  });
+  assert.ok(errors.some((e) => e.includes("debunkedSourceTier") && e.includes("ign.com")));
 });
 
 test("checkLocalMedia verifies existing files and ignores external urls", () => {
@@ -280,6 +300,13 @@ test("checkMerch accepts a valid catalog and treats sourceTier as optional", () 
             sourceLabel: "DC",
             sourceTier: "official",
             covers: [validCover],
+          },
+          {
+            id: "archive-listing",
+            image: "/media/signal.jpg",
+            sourceUrl: "https://example.com/collector-photo",
+            sourceLabel: "藏家实拍",
+            sourceTier: "archive",
           },
           {
             id: "no-source",

@@ -105,8 +105,9 @@ function Dossier() {
               const debunked = item.tag === "debunked";
               return (
                 <li
-                  key={item.text}
-                  className="border border-fg/10 bg-surface/40 p-5 sm:p-6"
+                  key={item.id}
+                  id={item.id}
+                  className="scroll-mt-24 border border-fg/10 bg-surface/40 p-5 sm:p-6"
                 >
                   <div className="flex flex-wrap items-baseline gap-3">
                     <span

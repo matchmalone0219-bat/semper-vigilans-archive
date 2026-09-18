@@ -10,6 +10,7 @@ const film = jiti(join(rootDir, "src/data/film.ts"));
 const search = jiti(join(rootDir, "src/lib/search.ts"));
 
 const fakeDebunked = {
+  id: "debunked-court-of-owls-test",
   tag: "debunked",
   text: "猫头鹰法庭将作为《新蝙蝠侠2》主反派出场。",
   source: "早期传闻汇总",
@@ -30,7 +31,7 @@ test("search indexes every current PLOT clue", () => {
 test("a debunked clue stays searchable with an explicit 已证伪 subtitle", () => {
   const indexed = search.plotToSearchItem(fakeDebunked);
   assert.equal(indexed.kind, "线索");
-  assert.equal(indexed.href, "/dossier#plot");
+  assert.equal(indexed.href, "/dossier#debunked-court-of-owls-test");
   assert.equal(indexed.subtitle, `${film.CERTAINTY_LABEL.debunked} · 故事线索`);
   assert.match(indexed.subtitle, /已证伪/);
   assert.ok(indexed.searchText.includes("猫头鹰法庭"));
@@ -41,16 +42,18 @@ test("a debunked clue stays searchable with an explicit 已证伪 subtitle", () 
 
 test("site search still returns current plot rumors", () => {
   const hits = search.searchSite("Semper Vigilans");
-  assert.ok(hits.some((hit) => hit.kind === "线索" && hit.href === "/dossier#plot"));
+  assert.ok(hits.some((hit) => hit.kind === "线索" && hit.href === "/dossier#rumor-semper-vigilans-court"));
 });
 
 test("searching for 缄默, 静默, or Hush matches the debunked clue", () => {
   const hitsJianmo = search.searchSite("缄默");
-  assert.ok(hitsJianmo.some((hit) => hit.kind === "线索" && hit.title.includes("缄默")));
+  assert.ok(
+    hitsJianmo.some((hit) => hit.kind === "线索" && hit.href === "/dossier#debunked-hush-main-villain"),
+  );
 
   const hitsJingmo = search.searchSite("静默");
-  assert.ok(hitsJingmo.some((hit) => hit.kind === "线索" && hit.title.includes("缄默")));
+  assert.ok(hitsJingmo.some((hit) => hit.href === "/dossier#debunked-hush-main-villain"));
 
   const hitsHush = search.searchSite("Hush");
-  assert.ok(hitsHush.some((hit) => hit.kind === "线索" && hit.title.includes("缄默")));
+  assert.ok(hitsHush.some((hit) => hit.href === "/dossier#debunked-hush-main-villain"));
 });

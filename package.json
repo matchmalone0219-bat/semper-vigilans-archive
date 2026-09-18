@@ -17,6 +17,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test 'scripts/**/*.test.mjs'",
     "content:check": "node scripts/content-check.mjs",
+    "media:check": "node scripts/media-check.mjs",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

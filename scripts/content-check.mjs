@@ -18,6 +18,10 @@ export const PRESS_URL_HOSTS = new Set([
   "comingsoon.net",
   "superherohype.com",
   "gamesradar.com",
+  "the-independent.com",
+  "independent.co.uk",
+  "stv.tv",
+  "heraldscotland.com",
 ]);
 export const VALID_PLOT_TAGS = new Set(["confirmed", "hint", "rumor", "debunked"]);
 export const PLOT_ID_PATTERN = /^[a-z][a-z0-9-]*$/;
@@ -76,12 +80,12 @@ export function isPressHost(host) {
 }
 
 export function checkTierMatchesUrl(url, tier, category, identifier, field, addError) {
-  if (!url || !tier || tier !== "official") return;
+  if (!url || !tier) return;
   const host = urlHost(url);
-  if (isPressHost(host)) {
+  if (isPressHost(host) && tier !== "press") {
     addError(
       category,
-      `${identifier}: ${field} "official" does not match linked page (${host}); use press`,
+      `${identifier}: ${field} "${tier}" does not match linked page (${host}); use press`,
     );
   }
 }

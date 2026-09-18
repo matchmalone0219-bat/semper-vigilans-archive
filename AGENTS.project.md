@@ -12,5 +12,6 @@ CONTENT_GUIDE.md
 npm run typecheck
 npm test
 npm run content:check
+npm run media:check
 npm run build:github-pages
 ```

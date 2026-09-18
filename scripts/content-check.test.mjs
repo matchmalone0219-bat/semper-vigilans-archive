@@ -171,6 +171,18 @@ test("checkPlotItem fails when official tier is attached to a press URL", () => 
   assert.ok(errors.some((e) => e.includes("debunkedSourceTier") && e.includes("ign.com")));
 });
 
+test("checkPlotItem fails when set tier is attached to an IGN URL", () => {
+  const errors = collectPlotErrors({
+    id: "set-london-protests-test",
+    tag: "hint",
+    text: "片场抗议戏",
+    source: "IGN",
+    sourceUrl: "https://www.ign.com/articles/the-batman-part-2-set-photos-court-of-owls-anarky",
+    sourceTier: "set",
+  });
+  assert.ok(errors.some((e) => e.includes("sourceTier") && e.includes("use press")));
+});
+
 test("checkLocalMedia verifies existing files and ignores external urls", () => {
   const errors = [];
   const addError = (cat, msg) => errors.push({ cat, msg });

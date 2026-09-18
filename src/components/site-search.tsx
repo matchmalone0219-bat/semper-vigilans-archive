@@ -1,9 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { Link } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
 import { searchSite } from "@/lib/search";
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+function searchLinkProps(href: string) {
+  const hashIndex = href.indexOf("#");
+  const pathname = (hashIndex === -1 ? href : href.slice(0, hashIndex)) || "/";
+  const hash = hashIndex === -1 ? undefined : href.slice(hashIndex + 1);
+  return { to: pathname as "/", hash };
+}
 
 export function SiteSearch() {
   const [open, setOpen] = useState(false);
@@ -77,25 +83,29 @@ export function SiteSearch() {
                   <p className="px-4 py-10 text-center text-sm text-muted">输入关键词检索档案</p>
                 ) : results.length ? (
                   <ul>
-                    {results.map((result) => (
-                      <li key={`${result.kind}-${result.href}-${result.title}`}>
-                        <a
-                          href={`${base}${result.href}`}
-                          className="grid grid-cols-[4rem_1fr] gap-3 px-3 py-3 hover:bg-elevated"
-                          onClick={() => setOpen(false)}
-                        >
-                          <span className="pt-1 font-display text-[10px] font-semibold tracking-[0.16em] text-blood uppercase">
-                            {result.kind}
-                          </span>
-                          <span>
-                            <span className="block font-sans font-black tracking-tight text-fg">
-                              {result.title}
+                    {results.map((result) => {
+                      const link = searchLinkProps(result.href);
+                      return (
+                        <li key={`${result.kind}-${result.href}-${result.title}`}>
+                          <Link
+                            to={link.to}
+                            hash={link.hash}
+                            className="grid grid-cols-[4rem_1fr] gap-3 px-3 py-3 hover:bg-elevated"
+                            onClick={() => setOpen(false)}
+                          >
+                            <span className="pt-1 font-display text-[10px] font-semibold tracking-[0.16em] text-blood uppercase">
+                              {result.kind}
                             </span>
-                            <span className="mt-0.5 block text-xs text-muted">{result.subtitle}</span>
-                          </span>
-                        </a>
-                      </li>
-                    ))}
+                            <span>
+                              <span className="block font-sans font-black tracking-tight text-fg">
+                                {result.title}
+                              </span>
+                              <span className="mt-0.5 block text-xs text-muted">{result.subtitle}</span>
+                            </span>
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 ) : (
                   <p className="px-4 py-10 text-center text-sm text-muted">

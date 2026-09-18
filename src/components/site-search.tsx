@@ -120,7 +120,7 @@ export function SiteSearchModal({ onClose }: { onClose: () => void }) {
       onKeyDown={onKeyDown}
     >
       <div
-        className="fixed inset-0 bg-bg/85 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 bg-bg/95"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -188,7 +188,6 @@ export function SiteSearchModal({ onClose }: { onClose: () => void }) {
                     <button
                       type="button"
                       onClick={() => handleSelect(result)}
-                      onMouseEnter={() => setSelectedIndex(idx)}
                       className={cn(
                         "grid w-full grid-cols-[4.5rem_1fr] items-start gap-3 px-3 py-3 text-left transition-colors",
                         isSelected

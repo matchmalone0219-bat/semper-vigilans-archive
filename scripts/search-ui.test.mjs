@@ -95,4 +95,60 @@ test("desktop, mobile, and keyboard search interactions", { timeout: 120000 }, a
     await page.waitForSelector("#debunked-hush-main-villain");
     await page.close();
   });
+
+  await t.test("desktop 1720×900 suggested tag, hover, and navigate stay responsive", async () => {
+    const page = await browser.newPage({ viewport: { width: 1720, height: 900 } });
+    page.setDefaultTimeout(5000);
+    await page.goto(BASE, { waitUntil: "networkidle" });
+    await page.getByRole("button", { name: "搜索全站" }).click();
+    const dialog = page.getByRole("dialog", { name: "全站搜索" });
+    await dialog.waitFor({ state: "visible" });
+
+    const grainDisplay = await page.evaluate(() => {
+      const el = document.querySelector(".grain-layer");
+      return el ? getComputedStyle(el).display : "missing";
+    });
+    assert.equal(grainDisplay, "none");
+    assert.equal(await page.evaluate(() => document.body.dataset.searchOpen), "true");
+
+    await page.evaluate(() => {
+      window.__searchLongTasks = [];
+      try {
+        const observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            window.__searchLongTasks.push(entry.duration);
+          }
+        });
+        observer.observe({ type: "longtask", buffered: true });
+        window.__searchLongObserver = observer;
+      } catch {
+        /* longtask not available */
+      }
+    });
+
+    const started = await page.evaluate(() => performance.now());
+    await dialog.getByRole("button", { name: "蝙蝠战车" }).click();
+    await dialog.getByRole("listitem").first().waitFor({ state: "visible" });
+    const elapsed = await page.evaluate((mark) => performance.now() - mark, started);
+    const longTasks = await page.evaluate(() => window.__searchLongTasks ?? []);
+    console.log(
+      JSON.stringify({
+        suggestedTagToResultsMs: Math.round(elapsed),
+        longTaskCount: longTasks.length,
+        longestTaskMs: Math.round(Math.max(0, ...longTasks)),
+      }),
+    );
+    assert.ok(elapsed < 500, `suggested tag → results took ${Math.round(elapsed)}ms`);
+
+    const items = dialog.getByRole("listitem");
+    const hoverCount = Math.min(await items.count(), 6);
+    for (let i = 0; i < hoverCount; i++) {
+      await items.nth(i).hover();
+    }
+
+    await items.first().getByRole("button").click();
+    await dialog.waitFor({ state: "hidden" });
+    await page.waitForFunction(() => location.pathname !== "/" || location.hash.length > 1);
+    await page.close();
+  });
 });

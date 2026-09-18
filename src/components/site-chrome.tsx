@@ -1,10 +1,10 @@
 import { type ReactNode, useEffect, useState } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { FILM } from "@/data/film";
 import { rootsNavSection } from "@/lib/roots";
-import { SiteSearchButton, SiteSearchModal } from "@/components/site-search";
+import { SiteSearchButton } from "@/components/site-search";
 
 const NAV = [
   {
@@ -84,11 +84,12 @@ function navActive(item: (typeof NAV)[number], pathname: string, hash: string) {
 export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const hash = useRouterState({ select: (s) => s.location.hash });
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const isHome = pathname === "/";
   const isRata = pathname.startsWith("/rataalada");
+  const isSearch = pathname === "/search";
 
   useEffect(() => {
     function onScroll() {
@@ -110,24 +111,27 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       const target = event.target as HTMLElement | null;
       const typing =
         target?.tagName === "INPUT" || target?.tagName === "TEXTAREA" || target?.isContentEditable;
+      const goSearch = () => {
+        if (isSearch) {
+          document.querySelector<HTMLInputElement>("[data-site-search-input]")?.focus();
+          return;
+        }
+        navigate({ to: "/search" });
+      };
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
-        setSearchOpen((prev) => !prev);
-      } else if (event.key === "/" && !typing && !searchOpen) {
+        goSearch();
+      } else if (event.key === "/" && !typing) {
         event.preventDefault();
-        setSearchOpen(true);
-      } else if (event.key === "Escape" && searchOpen) {
-        event.preventDefault();
-        setSearchOpen(false);
+        goSearch();
       }
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [searchOpen]);
+  }, [isSearch, navigate]);
 
   useEffect(() => {
     setOpen(false);
-    setSearchOpen(false);
   }, [pathname, hash]);
 
   useEffect(() => {
@@ -193,10 +197,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             ))}
           </nav>
           <div className="relative z-[91] flex shrink-0 items-center gap-1 md:ml-4">
-            <SiteSearchButton
-              open={searchOpen}
-              onClick={() => setSearchOpen((prev) => !prev)}
-            />
+            <SiteSearchButton />
             <button
               type="button"
               className="relative grid size-11 place-items-center text-fg md:hidden"
@@ -213,11 +214,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           style={{ transform: `scaleX(${scrollProgress})` }}
           aria-hidden="true"
         />
-        {searchOpen ? (
-          <div className="absolute inset-x-0 top-full z-50 px-4 py-3 sm:px-6">
-            <SiteSearchModal onClose={() => setSearchOpen(false)} />
-          </div>
-        ) : null}
       </header>
 
       {open ? (

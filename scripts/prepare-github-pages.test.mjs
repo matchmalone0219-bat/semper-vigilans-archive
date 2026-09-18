@@ -11,12 +11,13 @@ import {
 
 test("sitemap includes the homepage and public archive routes", () => {
   const xml = buildSitemap(
-    sitemapUrls(["dossier", "people/bruce", "places/iceberg-lounge", "login"]),
+    sitemapUrls(["dossier", "search", "people/bruce", "places/iceberg-lounge", "login"]),
   );
 
   assert.match(xml, /xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9"/);
   assert.match(xml, new RegExp(`<loc>${publicBase}</loc>`));
   assert.match(xml, /<loc>https:\/\/matchmalone0219-bat.github.io\/semper-vigilans-archive\/dossier\/<\/loc>/);
+  assert.match(xml, /<loc>https:\/\/matchmalone0219-bat.github.io\/semper-vigilans-archive\/search\/<\/loc>/);
   assert.match(xml, /<loc>https:\/\/matchmalone0219-bat.github.io\/semper-vigilans-archive\/people\/bruce\/<\/loc>/);
   assert.doesNotMatch(xml, /\/login\//);
   assert.equal(SITEMAP_SKIP.has("login"), true);

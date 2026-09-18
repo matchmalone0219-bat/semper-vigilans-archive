@@ -29,7 +29,7 @@ function waitForServer(url, timeoutMs = 30000) {
   });
 }
 
-test("desktop, mobile, and keyboard search interactions", { timeout: 120000 }, async (t) => {
+test("desktop, mobile, and keyboard search page", { timeout: 120000 }, async (t) => {
   const server = spawn("npx", ["vite", "dev", "--host", "127.0.0.1", "--port", String(PORT)], {
     stdio: "pipe",
     detached: true,
@@ -50,68 +50,45 @@ test("desktop, mobile, and keyboard search interactions", { timeout: 120000 }, a
   await waitForServer(BASE);
   browser = await chromium.launch({ headless: true });
 
-  await t.test("desktop 1280×800 click opens search, types, Esc closes", async () => {
-    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  await t.test("desktop 1720×900 nav search, type, and follow hash", async () => {
+    const page = await browser.newPage({ viewport: { width: 1720, height: 900 } });
+    page.setDefaultTimeout(8000);
     await page.goto(BASE, { waitUntil: "networkidle" });
-    await page.getByRole("button", { name: "搜索全站" }).click();
-    const dialog = page.getByRole("dialog", { name: "全站搜索" });
-    await dialog.waitFor({ state: "visible" });
+    await page.getByRole("link", { name: "搜索全站" }).click();
+    await page.waitForURL(/\/search\/?$/);
+    const input = page.getByPlaceholder("搜索人物、地点、装备、日志、线索……");
+    await input.waitFor({ state: "visible" });
+    assert.notEqual(await page.evaluate(() => document.body.style.overflow), "hidden");
     assert.equal(
-      await dialog.evaluate((el) => getComputedStyle(el).position),
-      "static",
+      await page.evaluate(() => document.querySelector("[role=dialog]")),
+      null,
     );
-    await page.getByPlaceholder("搜索人物、地点、装备、日志、线索……").fill("蝙蝠侠");
-    await assert.notEqual(await dialog.getByRole("listitem").count(), 0);
-    await page.keyboard.press("Escape");
-    await dialog.waitFor({ state: "hidden" });
-    await page.close();
-  });
-
-  await t.test("mobile 390×844 click opens search", async () => {
-    const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
-    await page.goto(BASE, { waitUntil: "networkidle" });
-    await page.getByRole("button", { name: "搜索全站" }).click();
-    await page.getByRole("dialog", { name: "全站搜索" }).waitFor({ state: "visible" });
-    await page.close();
-  });
-
-  await t.test("desktop / opens search and Escape closes it", async () => {
-    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
-    await page.goto(BASE, { waitUntil: "networkidle" });
-    await page.keyboard.press("/");
-    const dialog = page.getByRole("dialog", { name: "全站搜索" });
-    await dialog.waitFor({ state: "visible" });
-    await page.keyboard.press("Escape");
-    await dialog.waitFor({ state: "hidden" });
-    await page.close();
-  });
-
-  await t.test("search result click closes panel and follows hash deep link", async () => {
-    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
-    await page.goto(BASE, { waitUntil: "networkidle" });
-    await page.getByRole("button", { name: "搜索全站" }).click();
-    const dialog = page.getByRole("dialog", { name: "全站搜索" });
-    await dialog.waitFor({ state: "visible" });
-    await page.getByPlaceholder("搜索人物、地点、装备、日志、线索……").fill("缄默");
-    await dialog.getByRole("button").filter({ hasText: "缄默" }).first().click();
-    await dialog.waitFor({ state: "hidden" });
+    await input.fill("缄默");
+    const hush = page.getByRole("button").filter({ hasText: "缄默" }).first();
+    await hush.waitFor({ state: "visible" });
+    await hush.click();
     await page.waitForURL(/\/dossier#debunked-hush-main-villain/);
     await page.waitForSelector("#debunked-hush-main-villain");
     await page.close();
   });
 
-  await t.test("desktop 1720×900 suggested tag and navigate", async () => {
-    const page = await browser.newPage({ viewport: { width: 1720, height: 900 } });
-    page.setDefaultTimeout(5000);
+  await t.test("desktop / from any page opens /search", async () => {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    await page.goto(`${BASE}/dossier`, { waitUntil: "networkidle" });
+    await page.keyboard.press("/");
+    await page.waitForURL(/\/search\/?$/);
+    await page.getByPlaceholder("搜索人物、地点、装备、日志、线索……").waitFor({ state: "visible" });
+    await page.close();
+  });
+
+  await t.test("mobile click opens /search and shows results", async () => {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
     await page.goto(BASE, { waitUntil: "networkidle" });
-    await page.getByRole("button", { name: "搜索全站" }).click();
-    const dialog = page.getByRole("dialog", { name: "全站搜索" });
-    await dialog.waitFor({ state: "visible" });
-    await dialog.getByRole("button", { name: "蝙蝠战车" }).click();
-    await dialog.getByRole("listitem").first().waitFor({ state: "visible" });
-    await dialog.getByRole("listitem").first().getByRole("button").click();
-    await dialog.waitFor({ state: "hidden" });
-    await page.waitForFunction(() => location.pathname !== "/" || location.hash.length > 1);
+    await page.getByRole("link", { name: "搜索全站" }).click();
+    await page.waitForURL(/\/search\/?$/);
+    const input = page.getByPlaceholder("搜索人物、地点、装备、日志、线索……");
+    await input.fill("蝙蝠战车");
+    await assert.notEqual(await page.getByRole("listitem").count(), 0);
     await page.close();
   });
 });

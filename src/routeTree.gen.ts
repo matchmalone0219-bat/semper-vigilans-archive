@@ -24,6 +24,7 @@ import { Route as PlacesRouteImport } from './routes/places'
 import { Route as RataaladaRouteImport } from './routes/rataalada'
 import { Route as RecapRouteImport } from './routes/recap'
 import { Route as RootsRouteImport } from './routes/roots'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as TheoriesRouteImport } from './routes/theories'
 import { Route as PeopleIndexRouteImport } from './routes/people.index'
 import { Route as PeopleIdRouteImport } from './routes/people.$id'
@@ -105,6 +106,11 @@ const RootsRoute = RootsRouteImport.update({
   path: '/roots',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TheoriesRoute = TheoriesRouteImport.update({
   id: '/theories',
   path: '/theories',
@@ -147,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/rataalada': typeof RataaladaRoute
   '/recap': typeof RecapRoute
   '/roots': typeof RootsRoute
+  '/search': typeof SearchRoute
   '/theories': typeof TheoriesRoute
   '/people/$id': typeof PeopleIdRoute
   '/places/$id': typeof PlacesIdRoute
@@ -167,6 +174,7 @@ export interface FileRoutesByTo {
   '/rataalada': typeof RataaladaRoute
   '/recap': typeof RecapRoute
   '/roots': typeof RootsRoute
+  '/search': typeof SearchRoute
   '/theories': typeof TheoriesRoute
   '/people/$id': typeof PeopleIdRoute
   '/places/$id': typeof PlacesIdRoute
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   '/rataalada': typeof RataaladaRoute
   '/recap': typeof RecapRoute
   '/roots': typeof RootsRoute
+  '/search': typeof SearchRoute
   '/theories': typeof TheoriesRoute
   '/people/$id': typeof PeopleIdRoute
   '/places/$id': typeof PlacesIdRoute
@@ -214,6 +223,7 @@ export interface FileRouteTypes {
     | '/rataalada'
     | '/recap'
     | '/roots'
+    | '/search'
     | '/theories'
     | '/people/$id'
     | '/places/$id'
@@ -234,6 +244,7 @@ export interface FileRouteTypes {
     | '/rataalada'
     | '/recap'
     | '/roots'
+    | '/search'
     | '/theories'
     | '/people/$id'
     | '/places/$id'
@@ -256,6 +267,7 @@ export interface FileRouteTypes {
     | '/rataalada'
     | '/recap'
     | '/roots'
+    | '/search'
     | '/theories'
     | '/people/$id'
     | '/places/$id'
@@ -279,6 +291,7 @@ export interface RootRouteChildren {
   RataaladaRoute: typeof RataaladaRoute
   RecapRoute: typeof RecapRoute
   RootsRoute: typeof RootsRoute
+  SearchRoute: typeof SearchRoute
   TheoriesRoute: typeof TheoriesRoute
 }
 
@@ -389,6 +402,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RootsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/theories': {
       id: '/theories'
       path: '/theories'
@@ -469,8 +489,18 @@ const rootRouteChildren: RootRouteChildren = {
   RataaladaRoute: RataaladaRoute,
   RecapRoute: RecapRoute,
   RootsRoute: RootsRoute,
+  SearchRoute: SearchRoute,
   TheoriesRoute: TheoriesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

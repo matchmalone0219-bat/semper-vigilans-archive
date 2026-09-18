@@ -213,12 +213,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           style={{ transform: `scaleX(${scrollProgress})` }}
           aria-hidden="true"
         />
+        {searchOpen ? (
+          <div className="absolute inset-x-0 top-full z-50 px-4 py-3 sm:px-6">
+            <SiteSearchModal onClose={() => setSearchOpen(false)} />
+          </div>
+        ) : null}
       </header>
-
-      {/* Global Search Modal */}
-      {searchOpen ? (
-        <SiteSearchModal onClose={() => setSearchOpen(false)} />
-      ) : null}
 
       {open ? (
         <div className="fixed inset-0 z-30 overflow-y-auto bg-surface pt-16 md:hidden">

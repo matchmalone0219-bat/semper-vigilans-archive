@@ -131,11 +131,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   }, [pathname, hash]);
 
   useEffect(() => {
-    document.body.style.overflow = open || searchOpen ? "hidden" : "";
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [open, searchOpen]);
+  }, [open]);
 
   if (isRata) {
     return <div className="relative min-h-svh">{children}</div>;

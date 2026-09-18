@@ -56,6 +56,7 @@ test("desktop, mobile, and keyboard search interactions", { timeout: 120000 }, a
     await page.getByRole("button", { name: "搜索全站" }).click();
     const dialog = page.getByRole("dialog", { name: "全站搜索" });
     await dialog.waitFor({ state: "visible" });
+    assert.notEqual(await page.evaluate(() => document.body.style.overflow), "hidden");
     await page.getByPlaceholder("搜索人物、地点、装备、日志、线索……").fill("蝙蝠侠");
     await assert.notEqual(await dialog.getByRole("listitem").count(), 0);
     await page.keyboard.press("Escape");
@@ -68,6 +69,7 @@ test("desktop, mobile, and keyboard search interactions", { timeout: 120000 }, a
     await page.goto(BASE, { waitUntil: "networkidle" });
     await page.getByRole("button", { name: "搜索全站" }).click();
     await page.getByRole("dialog", { name: "全站搜索" }).waitFor({ state: "visible" });
+    assert.notEqual(await page.evaluate(() => document.body.style.overflow), "hidden");
     await page.close();
   });
 
@@ -103,6 +105,7 @@ test("desktop, mobile, and keyboard search interactions", { timeout: 120000 }, a
     await page.getByRole("button", { name: "搜索全站" }).click();
     const dialog = page.getByRole("dialog", { name: "全站搜索" });
     await dialog.waitFor({ state: "visible" });
+    assert.notEqual(await page.evaluate(() => document.body.style.overflow), "hidden");
 
     await page.evaluate(() => {
       window.__searchLongTasks = [];

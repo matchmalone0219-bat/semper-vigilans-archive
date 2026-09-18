@@ -104,13 +104,6 @@ test("desktop, mobile, and keyboard search interactions", { timeout: 120000 }, a
     const dialog = page.getByRole("dialog", { name: "全站搜索" });
     await dialog.waitFor({ state: "visible" });
 
-    const grainDisplay = await page.evaluate(() => {
-      const el = document.querySelector(".grain-layer");
-      return el ? getComputedStyle(el).display : "missing";
-    });
-    assert.equal(grainDisplay, "none");
-    assert.equal(await page.evaluate(() => document.body.dataset.searchOpen), "true");
-
     await page.evaluate(() => {
       window.__searchLongTasks = [];
       try {

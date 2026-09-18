@@ -132,14 +132,8 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.body.style.overflow = open || searchOpen ? "hidden" : "";
-    if (searchOpen) {
-      document.body.dataset.searchOpen = "true";
-    } else {
-      delete document.body.dataset.searchOpen;
-    }
     return () => {
       document.body.style.overflow = "";
-      delete document.body.dataset.searchOpen;
     };
   }, [open, searchOpen]);
 

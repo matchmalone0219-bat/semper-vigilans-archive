@@ -1011,7 +1011,7 @@ export const MERCH: MerchGroup[] = [
         year: "2022",
         spec: "No.5 · 2022.03.01 · 金条盒 / 磁贴 / 特制票 / 2D 观影券",
         image: "/media/merch/cinema/cgv-golden-ticket.jpg",
-        imageAlt: "CGV Golden Ticket No.5 开盒实物：金条造型收藏票、磁贴、特制票与 2D 观影券",
+        imageAlt: "CGV《더 배트맨》Golden Ticket No.5 宣传图：金条造型收藏票、特制票与磁贴",
         body: "CGV 电影收藏票线的第五号，对应韩国 2022 年 3 月 1 日公映的《더 배트맨》。套装是金条造型包装，内含磁贴、一张电影主题特制票，以及一张 CGV 普通厅 2D 观影券（券码另以短信发送）。CGV 在 2 月 17 日 Kakao 购物直播「무비오픈런」首卖，当时标价 1 万 3 千韩元。",
         verifiedAt: "2026.09.14",
       },

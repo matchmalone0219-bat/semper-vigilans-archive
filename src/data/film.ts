@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.09.17";
+export const CONTENT_REVIEWED_AT = "2026.09.19";
 
 export const FACTS: {
   label: string;
@@ -1035,6 +1035,21 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-16-drive.jpg",
       "/media/log/p2-16-swat.jpg",
     ],
+  },
+  {
+    date: "2026.09.19",
+    iso: "2026-09-19",
+    title: "蝙蝠侠日：导演从伦敦发出续集蝙蝠侠静帧",
+    body: "2026 年蝙蝠侠日落在 9 月 19 日。马特·里夫斯于伦敦发出官方贴文「Happy Batman Day to everyone from London!」，并附一张加了画框的宽银幕静帧：蝙蝠侠背对镜头立在落雪与橙月之间，两侧是岩壁或冰雪峡谷般的暗部。导演未标明这是成片截帧、摄影测试还是概念静帧；也没有点名角色或场次。同日有人问第一部的 film-out 胶片输出流程是否回归，里夫斯回复「Indeed.」",
+    kind: "shoot",
+    locationLabel: "伦敦 · 导演公开静帧",
+    source: "马特·里夫斯 @mattreevesLA",
+    sourceUrl: "https://x.com/mattreevesLA/status/2101304010649055555",
+    sourceTier: "official",
+    verifiedAt: "2026.09.19",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-19-batman-day.jpg",
   },
   {
     date: "2028.02.18",

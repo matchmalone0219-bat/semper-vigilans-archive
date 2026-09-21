@@ -442,13 +442,7 @@ export const GALLERIES: GalleryGroup[] = [
           "圣文森特街夜戏高清近景：挡风玻璃后可见清晰的蝙蝠头套轮廓与副驾驶座金发女性，外界普遍推测为帕丁森与约翰逊（或二人特技替身），目前官方尚未公布角色身份。",
         source: "片场路透 · hoeBread36",
       },
-      {
-        src: "/media/log/p2-27-rear.jpg",
-        title: "加装防撞钢梁的战损车尾",
-        caption:
-          "车尾与侧翼实战泥污清晰可见，前脸加装特制防撞钢梁，用于完成在警车包围下的低速实拍冲撞突围镜头。",
-        source: "片场路透 · hoeBread36",
-      },
+
       {
         src: "/media/log/p2-27-wide.jpg",
         title: "圣文森特街夜戏调度",

@@ -825,7 +825,6 @@ export const LOG: LogEntry[] = [
     image: "/media/log/p2-27-front.jpg",
     images: [
       "/media/log/p2-27-front.jpg",
-      "/media/log/p2-27-rear.jpg",
       "/media/log/p2-27-wide.jpg",
       "/media/log/p2-27-gcpd1.jpg",
       "/media/log/p2-27-gcpd2.jpg",

@@ -336,6 +336,7 @@ export const CITIES: LocationCity[] = [
         work: "电影《新蝙蝠侠》 · 电影《新蝙蝠侠2》",
         image: "/media/craft/st-georges.jpg",
         imageAlt: "利物浦圣乔治大厅新古典主义宏伟柱廊",
+        placeId: "city-hall",
         body: "圣乔治大厅东立面在第一部中作为市长唐·米切尔追悼会外景。2026 年 5 月剧组再次携带大规模灯光与制作车辆回到周边；若这里继续代表哥谭市政核心，它很可能承接灾后政治、官方集会或夜间突发事件的大场面。",
         visit: "位于利物浦市中心 Lime Street 车站对面，为英国一级保护建筑，外部广场常年开放供游客与影迷拍照打卡。",
       },

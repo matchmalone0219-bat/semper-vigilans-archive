@@ -4,18 +4,22 @@ import { ChevronDown } from "lucide-react";
 export function ArchiveDisclosure({
   title,
   count,
+  open: controlledOpen,
   children,
 }: {
   title: string;
   count: number;
+  open?: boolean;
   children: ReactNode;
 }) {
-  const [open, setOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen;
 
   return (
     <details
+      open={isOpen}
       className="group border border-fg/15 bg-surface/30 transition-colors duration-200 open:border-fg/25 open:bg-surface/50"
-      onToggle={(event) => setOpen(event.currentTarget.open)}
+      onToggle={(event) => setInternalOpen(event.currentTarget.open)}
     >
       <summary className="flex min-h-14 cursor-pointer list-none select-none items-center gap-3 px-4 py-3 text-sm text-fg transition-colors hover:bg-surface/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blood [&::-webkit-details-marker]:hidden">
         <span className="flex-1 font-semibold tracking-wide">{title}</span>
@@ -27,7 +31,7 @@ export function ArchiveDisclosure({
       </summary>
       <div
         className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
-          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         }`}
       >
         <div className="overflow-hidden">

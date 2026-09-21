@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Search } from "lucide-react";
-import { searchSite, type SearchItem } from "@/lib/search";
+import { Clock, Search, X } from "lucide-react";
+import { SEARCH_ITEMS, searchSite, type SearchItem } from "@/lib/search";
 import { searchLinkProps } from "@/components/site-search";
 import { cn } from "@/lib/cn";
 
@@ -15,6 +15,76 @@ const SUGGESTED_TAGS = [
   "圣保罗大教堂",
   "格拉斯哥外景",
 ];
+
+type SearchCategory =
+  | "all"
+  | "people"
+  | "places"
+  | "plot"
+  | "log"
+  | "gear"
+  | "merch"
+  | "craft";
+
+const CATEGORIES: {
+  id: SearchCategory;
+  label: string;
+  matches: (kind: string) => boolean;
+}[] = [
+  { id: "all", label: "全部", matches: () => true },
+  { id: "people", label: "人物", matches: (k) => k === "人物" },
+  { id: "places", label: "地点", matches: (k) => k === "地点" },
+  { id: "plot", label: "线索", matches: (k) => k === "线索" },
+  { id: "log", label: "日志", matches: (k) => k === "日志" },
+  { id: "gear", label: "装备", matches: (k) => k === "装备" },
+  { id: "merch", label: "周边", matches: (k) => k === "收藏" },
+  {
+    id: "craft",
+    label: "幕后视听",
+    matches: (k) => k === "视听" || k === "取景" || k === "光影" || k === "溯源",
+  },
+];
+
+const RECENT_KEY = "semper_vigilans_recent_searches";
+
+function getRecentSearches(): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(RECENT_KEY);
+    return raw ? (JSON.parse(raw) as string[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveRecentSearch(term: string) {
+  const t = term.trim();
+  if (!t) return;
+  try {
+    const prev = getRecentSearches().filter((x) => x.toLowerCase() !== t.toLowerCase());
+    const next = [t, ...prev].slice(0, 8);
+    localStorage.setItem(RECENT_KEY, JSON.stringify(next));
+  } catch {
+    // ignore
+  }
+}
+
+function removeRecentSearch(term: string) {
+  try {
+    const prev = getRecentSearches().filter((x) => x !== term);
+    localStorage.setItem(RECENT_KEY, JSON.stringify(prev));
+  } catch {
+    // ignore
+  }
+}
+
+function clearAllRecentSearches() {
+  try {
+    localStorage.removeItem(RECENT_KEY);
+  } catch {
+    // ignore
+  }
+}
 
 export const Route = createFileRoute("/search")({
   head: () => ({
@@ -31,21 +101,41 @@ export const Route = createFileRoute("/search")({
 
 function SearchPage() {
   const [query, setQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState<SearchCategory>("all");
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
-  const results = searchSite(query);
-  const trimmed = query.trim();
   const navigate = useNavigate();
 
   useEffect(() => {
     inputRef.current?.focus();
+    setRecentSearches(getRecentSearches());
   }, []);
+
+  const trimmed = query.trim();
+  const currentCategory = CATEGORIES.find((c) => c.id === activeCategory) ?? CATEGORIES[0];
+
+  const results = useMemo(() => {
+    if (trimmed) {
+      const searched = searchSite(query, 50);
+      return activeCategory === "all"
+        ? searched.slice(0, 16)
+        : searched.filter((item) => currentCategory.matches(item.kind)).slice(0, 16);
+    }
+    if (activeCategory !== "all") {
+      return SEARCH_ITEMS.filter((item) => currentCategory.matches(item.kind)).slice(0, 16);
+    }
+    return [];
+  }, [trimmed, query, activeCategory, currentCategory]);
 
   useEffect(() => {
     setSelectedIndex(0);
-  }, [query]);
+  }, [query, activeCategory]);
 
   const handleSelect = (item: SearchItem) => {
+    saveRecentSearch(trimmed || item.title);
+    setRecentSearches(getRecentSearches());
+
     const link = searchLinkProps(item.href);
     navigate({
       to: link.to,
@@ -63,6 +153,24 @@ function SearchPage() {
         setTimeout(() => el.classList.remove("ring-2", "ring-blood"), 2500);
       }, 120);
     }
+  };
+
+  const pickSearchTerm = (term: string) => {
+    setQuery(term);
+    saveRecentSearch(term);
+    setRecentSearches(getRecentSearches());
+    inputRef.current?.focus();
+  };
+
+  const removeSearchHistory = (e: React.MouseEvent, term: string) => {
+    e.stopPropagation();
+    removeRecentSearch(term);
+    setRecentSearches(getRecentSearches());
+  };
+
+  const clearHistory = () => {
+    clearAllRecentSearches();
+    setRecentSearches([]);
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -91,6 +199,9 @@ function SearchPage() {
       e.preventDefault();
       if (results.length > 0 && results[selectedIndex]) {
         handleSelect(results[selectedIndex]);
+      } else if (trimmed) {
+        saveRecentSearch(trimmed);
+        setRecentSearches(getRecentSearches());
       }
     }
   };
@@ -124,6 +235,7 @@ function SearchPage() {
 
       <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="border border-fg/20 bg-surface" onKeyDown={onKeyDown}>
+          {/* Search Input Bar */}
           <div className="flex items-center gap-3 border-b border-fg/10 px-4 py-3 sm:px-5">
             <Search className="size-5 shrink-0 text-blood" aria-hidden="true" />
             <input
@@ -152,29 +264,102 @@ function SearchPage() {
             ) : null}
           </div>
 
+          {/* Category Tabs */}
+          <div className="flex items-center gap-1.5 overflow-x-auto border-b border-fg/10 px-3 py-2 scrollbar-none sm:px-4">
+            <span className="mr-1 shrink-0 font-display text-[10px] font-semibold tracking-wider text-faint uppercase">
+              分类:
+            </span>
+            {CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={cn(
+                    "shrink-0 px-2.5 py-1 text-xs font-mono transition-colors whitespace-nowrap",
+                    isActive
+                      ? "bg-blood font-bold text-bg"
+                      : "text-muted hover:bg-elevated/80 hover:text-fg",
+                  )}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Body Content */}
           <div className="p-2">
-            {!trimmed ? (
-              <div className="px-4 py-8 text-center">
-                <p className="text-sm font-medium text-muted">输入关键词检索档案库 260+ 项资料</p>
-                <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-                  <span className="text-xs text-faint">推荐搜索：</span>
-                  {SUGGESTED_TAGS.map((tag) => (
-                    <button
-                      key={tag}
-                      type="button"
-                      onClick={() => {
-                        setQuery(tag);
-                        inputRef.current?.focus();
-                      }}
-                      className="border border-fg/15 bg-elevated/60 px-2.5 py-1 text-xs text-muted hover:border-blood hover:text-fg"
-                    >
-                      {tag}
-                    </button>
-                  ))}
+            {!trimmed && activeCategory === "all" ? (
+              <div className="space-y-6 px-4 py-8">
+                {/* Recent Searches */}
+                {recentSearches.length > 0 ? (
+                  <div>
+                    <div className="flex items-center justify-between pb-2">
+                      <span className="inline-flex items-center gap-1.5 font-mono text-xs text-faint">
+                        <Clock className="size-3.5 text-blood" /> 最近搜索
+                      </span>
+                      <button
+                        type="button"
+                        onClick={clearHistory}
+                        className="font-mono text-[11px] text-faint hover:text-blood"
+                      >
+                        清空历史
+                      </button>
+                    </div>
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {recentSearches.map((term) => (
+                        <span
+                          key={term}
+                          onClick={() => pickSearchTerm(term)}
+                          className="group inline-flex cursor-pointer items-center gap-1.5 border border-fg/15 bg-elevated/80 px-2.5 py-1 text-xs text-muted transition-colors hover:border-blood hover:text-fg"
+                        >
+                          <span>{term}</span>
+                          <button
+                            type="button"
+                            onClick={(e) => removeSearchHistory(e, term)}
+                            className="text-faint hover:text-blood"
+                            aria-label={`删除历史记录 ${term}`}
+                          >
+                            <X className="size-3" />
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+
+                {/* Recommended Searches */}
+                <div>
+                  <div className="pb-2">
+                    <span className="font-mono text-xs text-faint">推荐探索标签</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {SUGGESTED_TAGS.map((tag) => (
+                      <button
+                        key={tag}
+                        type="button"
+                        onClick={() => pickSearchTerm(tag)}
+                        className="border border-fg/15 bg-elevated/60 px-2.5 py-1 text-xs text-muted transition-colors hover:border-blood hover:text-fg"
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
                 </div>
+
+                <p className="pt-2 text-center text-xs text-faint">
+                  输入关键词或点选上方分类检索档案库 260+ 项资料
+                </p>
               </div>
             ) : results.length ? (
               <ul className="space-y-1">
+                {!trimmed && (
+                  <li className="border-b border-fg/5 px-3 py-1.5 font-mono text-[11px] text-faint">
+                    正在浏览「{currentCategory.label}」分类档案（输入关键词可直接过滤）
+                  </li>
+                )}
                 {results.map((result, idx) => {
                   const isSelected = idx === selectedIndex;
                   return (
@@ -183,7 +368,7 @@ function SearchPage() {
                         type="button"
                         onClick={() => handleSelect(result)}
                         className={cn(
-                          "grid w-full grid-cols-[4.5rem_1fr] items-start gap-3 px-3 py-3 text-left",
+                          "grid w-full grid-cols-[4.5rem_1fr] items-start gap-3 px-3 py-3 text-left transition-colors",
                           isSelected
                             ? "border-l-2 border-blood bg-elevated text-fg"
                             : "border-l-2 border-transparent hover:bg-elevated/60",
@@ -207,8 +392,20 @@ function SearchPage() {
               </ul>
             ) : (
               <div className="px-4 py-10 text-center text-sm text-muted">
-                未找到与「<span className="text-blood">{trimmed}</span>」匹配的档案内容。
-                <p className="mt-2 text-xs text-faint">
+                未在「{currentCategory.label}」中找到与「
+                <span className="text-blood">{trimmed}</span>」匹配的档案内容。
+                {activeCategory !== "all" ? (
+                  <div className="mt-3">
+                    <button
+                      type="button"
+                      onClick={() => setActiveCategory("all")}
+                      className="border border-blood px-3 py-1 text-xs text-blood transition-colors hover:bg-blood hover:text-bg"
+                    >
+                      切换至「全部」分类重试
+                    </button>
+                  </div>
+                ) : null}
+                <p className="mt-4 text-xs text-faint">
                   提示：支持中文全名、角色英文名、缩写（如“戈登”、“法庭”、“战车”、“Hush”）。
                 </p>
               </div>
@@ -216,7 +413,7 @@ function SearchPage() {
           </div>
 
           <div className="flex items-center justify-between border-t border-fg/10 px-4 py-2.5 font-mono text-[11px] text-faint">
-            <span>共 {trimmed ? results.length : 0} 条匹配</span>
+            <span>共 {results.length} 条匹配</span>
             <span className="hidden sm:inline">
               <kbd className="border border-fg/15 bg-elevated px-1 py-0.5">↑</kbd>{" "}
               <kbd className="border border-fg/15 bg-elevated px-1 py-0.5">↓</kbd> 切换 ·{" "}

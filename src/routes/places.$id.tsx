@@ -1,9 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { PLACE_MAP } from "@/lib/places";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { ArrowLeft, ArrowRight, MapPin, Shuffle } from "lucide-react";
+import { PLACE_MAP, PLACES } from "@/lib/places";
 import { getPerson } from "@/lib/people";
 import { STATUS_LABEL } from "@/lib/relations";
 import { cn } from "@/lib/cn";
 import { pageTitle } from "@/lib/film";
+import { CITIES } from "@/lib/craft";
 
 export const Route = createFileRoute("/places/$id")({
   head: ({ params }) => {
@@ -15,6 +17,7 @@ export const Route = createFileRoute("/places/$id")({
 
 function PlacePage() {
   const { id } = Route.useParams();
+  const navigate = useNavigate();
   const place = PLACE_MAP[id];
   if (!place) {
     return (
@@ -33,6 +36,21 @@ function PlacePage() {
   }
 
   const people = place.people.map((pid) => getPerson(pid)).filter(Boolean);
+  const placeIndex = PLACES.findIndex((p) => p.id === place.id);
+  const previous = PLACES[(placeIndex - 1 + PLACES.length) % PLACES.length];
+  const next = PLACES[(placeIndex + 1) % PLACES.length];
+
+  const openRandomPlace = () => {
+    const choices = PLACES.filter((entry) => entry.id !== place.id);
+    const random = choices[Math.floor(Math.random() * choices.length)];
+    if (random) void navigate({ to: "/places/$id", params: { id: random.id } });
+  };
+
+  const filmingLocations = CITIES.flatMap((city) =>
+    city.pins
+      .filter((pin) => pin.placeId === place.id)
+      .map((pin) => ({ ...pin, cityName: city.city, cityEn: city.cityEn })),
+  );
 
   return (
     <main>
@@ -45,15 +63,65 @@ function PlacePage() {
           </p>
           <h1 className="mt-4 font-sans text-5xl font-black tracking-tight sm:text-6xl">{place.name}</h1>
           <p className="mt-3 text-lg text-muted">{place.also}</p>
-          <p className="mt-6 text-sm text-faint">
-            <Link to="/places" className="hover:text-fg">
-              地点
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-faint">
+            <span>
+              <Link to="/places" className="hover:text-fg">
+                地点
+              </Link>
+              <span className="mx-2">/</span>
+              <span>{place.works}</span>
+            </span>
+            <span className="text-fg/20">|</span>
+            <Link
+              to="/craft"
+              hash="map"
+              className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-blood"
+            >
+              <MapPin className="size-3.5" />
+              英国取景巡礼地图
             </Link>
-            <span className="mx-2">/</span>
-            <span>{place.works}</span>
-          </p>
+          </div>
         </div>
       </header>
+
+      <nav aria-label="地点档案浏览" className="border-b border-fg/10 bg-surface/50">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 px-4 sm:grid-cols-[1fr_auto_1fr] sm:px-6">
+          <Link
+            to="/places/$id"
+            params={{ id: previous.id }}
+            className="flex items-center gap-3 border-r border-fg/10 py-4 pr-4 hover:text-blood"
+          >
+            <ArrowLeft className="size-4 shrink-0" />
+            <span className="min-w-0">
+              <span className="block text-[10px] tracking-[0.18em] text-faint uppercase">
+                上一地点
+              </span>
+              <span className="block truncate font-sans text-sm font-black">{previous.name}</span>
+            </span>
+          </Link>
+          <button
+            type="button"
+            onClick={openRandomPlace}
+            className="order-3 col-span-2 flex items-center justify-center gap-2 border-t border-fg/10 px-6 py-3 text-xs tracking-[0.16em] text-muted uppercase hover:text-fg sm:order-none sm:col-span-1 sm:border-x sm:border-t-0"
+          >
+            <Shuffle className="size-4" />
+            随机地点
+          </button>
+          <Link
+            to="/places/$id"
+            params={{ id: next.id }}
+            className="flex items-center justify-end gap-3 py-4 pl-4 text-right hover:text-blood"
+          >
+            <span className="min-w-0">
+              <span className="block text-[10px] tracking-[0.18em] text-faint uppercase">
+                下一地点
+              </span>
+              <span className="block truncate font-sans text-sm font-black">{next.name}</span>
+            </span>
+            <ArrowRight className="size-4 shrink-0" />
+          </Link>
+        </div>
+      </nav>
 
       <div className="mx-auto max-w-6xl space-y-16 px-4 py-12 sm:px-6 sm:py-16">
         <section className="max-w-3xl space-y-5">
@@ -99,6 +167,49 @@ function PlacePage() {
                   </li>
                 ) : null,
               )}
+            </ul>
+          </section>
+        ) : null}
+
+        {filmingLocations.length > 0 ? (
+          <section>
+            <div className="flex items-center justify-between">
+              <h2 className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
+                英国实景取景巡礼
+              </h2>
+              <Link
+                to="/craft"
+                hash="map"
+                className="inline-flex items-center gap-1 text-xs text-muted hover:text-fg"
+              >
+                <MapPin className="size-3.5" /> 查看完整巡礼地图
+              </Link>
+            </div>
+            <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+              {filmingLocations.map((loc) => (
+                <li
+                  key={loc.id}
+                  className="border border-fg/10 bg-surface/40 p-5 transition-colors hover:border-fg/25"
+                >
+                  <Link to="/craft" hash={loc.id} className="group block">
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="font-display text-xs font-semibold tracking-wider text-blood uppercase">
+                        {loc.cityName} · {loc.cityEn}
+                      </span>
+                      <span className="font-mono text-[10px] text-faint">{loc.work}</span>
+                    </div>
+                    <h3 className="mt-2 font-sans text-lg font-black tracking-tight group-hover:text-blood">
+                      {loc.name}
+                      <span className="ml-2 text-sm font-normal text-muted">({loc.nameEn})</span>
+                    </h3>
+                    <p className="mt-1 font-mono text-xs text-faint">戏中设定：{loc.filmAs}</p>
+                    <p className="mt-3 line-clamp-3 text-pretty text-xs leading-relaxed text-muted">
+                      {loc.body}
+                    </p>
+                    <p className="mt-3 text-[11px] text-faint">📍 {loc.visit}</p>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </section>
         ) : null}

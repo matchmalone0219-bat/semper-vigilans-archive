@@ -1,4 +1,6 @@
+import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ChevronsUpDown } from "lucide-react";
 import { latestLog, logCarouselImages, logVideoPoster, pageTitle } from "@/lib/film";
 import {
   CERTAINTY_LABEL,
@@ -28,14 +30,47 @@ export const Route = createFileRoute("/dossier")({
 
 function Dossier() {
   const latest = latestLog();
-  const historyByMonth = new Map<string, (typeof LOG)[number][]>();
-  for (const event of [...LOG].sort((a, b) => b.iso.localeCompare(a.iso))) {
-    if (event === latest) continue;
-    const month = event.iso.slice(0, 7);
-    const entries = historyByMonth.get(month) ?? [];
-    entries.push(event);
-    historyByMonth.set(month, entries);
-  }
+  const [plotFilter, setPlotFilter] = useState<"all" | "confirmed" | "hint" | "rumor" | "debunked">("all");
+  const [logFilter, setLogFilter] = useState<string>("all");
+  const [expandAllMonths, setExpandAllMonths] = useState<boolean | null>(null);
+
+  const plotCounts = useMemo(() => {
+    const counts = { all: PLOT.length, confirmed: 0, hint: 0, rumor: 0, debunked: 0 };
+    for (const p of PLOT) counts[p.tag]++;
+    return counts;
+  }, []);
+
+  const filteredPlot = useMemo(() => {
+    if (plotFilter === "all") return PLOT;
+    return PLOT.filter((p) => p.tag === plotFilter);
+  }, [plotFilter]);
+
+  const filteredHistoryByMonth = useMemo(() => {
+    const map = new Map<string, (typeof LOG)[number][]>();
+    for (const event of [...LOG].sort((a, b) => b.iso.localeCompare(a.iso))) {
+      if (event === latest) continue;
+      if (logFilter === "shoot" && event.kind !== "shoot") continue;
+      if (logFilter === "release" && event.kind !== "release") continue;
+      if (logFilter === "slate" && event.kind !== "slate") continue;
+      if (logFilter === "cast" && event.kind !== "cast") continue;
+      if (logFilter === "video" && !event.video) continue;
+
+      const month = event.iso.slice(0, 7);
+      const entries = map.get(month) ?? [];
+      entries.push(event);
+      map.set(month, entries);
+    }
+    return map;
+  }, [latest, logFilter]);
+
+  const totalFilteredLogs = useMemo(() => {
+    let count = 0;
+    for (const list of filteredHistoryByMonth.values()) {
+      count += list.length;
+    }
+    return count;
+  }, [filteredHistoryByMonth]);
+
   const jump = [
     { href: "#facts", label: "基本信息", count: FACTS.length },
     { href: "#plot", label: "故事线索", count: PLOT.length },
@@ -103,8 +138,76 @@ function Dossier() {
 
         <section id="plot" className="scroll-mt-24">
           <SectionKicker n="02" title="故事线索" />
-          <ul className="mt-8 space-y-4">
-            {PLOT.map((item) => {
+
+          {/* Plot Certainty Filter */}
+          <div className="mt-6 flex flex-wrap items-center gap-2">
+            <span className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase mr-1">
+              确信度筛选:
+            </span>
+            <button
+              type="button"
+              onClick={() => setPlotFilter("all")}
+              className={cn(
+                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
+                plotFilter === "all"
+                  ? "bg-blood text-fg font-bold"
+                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
+              )}
+            >
+              全部线索 ({plotCounts.all})
+            </button>
+            <button
+              type="button"
+              onClick={() => setPlotFilter("confirmed")}
+              className={cn(
+                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
+                plotFilter === "confirmed"
+                  ? "bg-blood text-fg font-bold"
+                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
+              )}
+            >
+              官方证实 ({plotCounts.confirmed})
+            </button>
+            <button
+              type="button"
+              onClick={() => setPlotFilter("hint")}
+              className={cn(
+                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
+                plotFilter === "hint"
+                  ? "bg-blood text-fg font-bold"
+                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
+              )}
+            >
+              片场印证 ({plotCounts.hint})
+            </button>
+            <button
+              type="button"
+              onClick={() => setPlotFilter("rumor")}
+              className={cn(
+                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
+                plotFilter === "rumor"
+                  ? "bg-blood text-fg font-bold"
+                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
+              )}
+            >
+              传闻推测 ({plotCounts.rumor})
+            </button>
+            <button
+              type="button"
+              onClick={() => setPlotFilter("debunked")}
+              className={cn(
+                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
+                plotFilter === "debunked"
+                  ? "bg-blood text-fg font-bold"
+                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
+              )}
+            >
+              辟谣证伪 ({plotCounts.debunked})
+            </button>
+          </div>
+
+          <ul className="mt-6 space-y-4">
+            {filteredPlot.map((item) => {
               const debunked = item.tag === "debunked";
               return (
                 <li
@@ -387,12 +490,58 @@ function Dossier() {
             </div>
           </article>
 
-          <div className="mt-8 space-y-3">
-            {[...historyByMonth].map(([month, events]) => (
+          {/* Log Controls: Filter & Expand All */}
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-fg/10 pb-4">
+            <div className="flex flex-wrap items-center gap-1.5 text-xs">
+              <span className="font-display font-semibold tracking-widest text-faint uppercase mr-1">
+                日志分类:
+              </span>
+              {[
+                { id: "all", label: "全部" },
+                { id: "shoot", label: "片场实拍" },
+                { id: "release", label: "官方公告" },
+                { id: "slate", label: "镜头测试" },
+                { id: "cast", label: "演职员" },
+                { id: "video", label: "含视频" },
+              ].map((k) => (
+                <button
+                  key={k.id}
+                  type="button"
+                  onClick={() => setLogFilter(k.id)}
+                  className={cn(
+                    "px-2.5 py-1 font-display tracking-wider uppercase transition-colors",
+                    logFilter === k.id
+                      ? "bg-blood text-fg font-bold"
+                      : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
+                  )}
+                >
+                  {k.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-xs text-faint">
+                {totalFilteredLogs} 条历史记录
+              </span>
+              <button
+                type="button"
+                onClick={() => setExpandAllMonths((prev) => (prev ? false : true))}
+                className="flex items-center gap-1.5 border border-fg/15 px-3 py-1 font-display text-xs tracking-wider text-muted hover:text-fg hover:border-fg/40 uppercase transition-colors"
+              >
+                <ChevronsUpDown className="size-3.5 text-blood" />
+                <span>{expandAllMonths ? "折叠全部月份" : "展开全部月份"}</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-6 space-y-3">
+            {[...filteredHistoryByMonth].map(([month, events]) => (
               <ArchiveDisclosure
                 key={month}
                 title={`${month.slice(0, 4)} 年 ${Number(month.slice(5))} 月`}
                 count={events.length}
+                open={expandAllMonths !== null ? expandAllMonths : undefined}
               >
                 <ol className="mt-6 border-l border-fg/15 pl-6">
                   {events.map((event) => (

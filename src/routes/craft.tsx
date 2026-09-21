@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ALIASES, CITIES, CRAFT_INTRO, LENS, SOUNDTRACK_TRACKS, THEMES } from "@/lib/craft";
 import { pageTitle } from "@/lib/film";
+import { ChapterNav } from "@/components/chapter-nav";
 
 export const Route = createFileRoute("/craft")({
   head: () => ({
@@ -36,24 +37,17 @@ function Craft() {
             </Link>
             。
           </p>
-          <nav className="mt-8 flex flex-wrap gap-3">
-            {[
-              { href: "#score", label: "电影配乐" },
-              { href: "#soundtrack-list", label: "插曲与古典乐" },
-              { href: "#lens", label: "光影摄影" },
-              { href: "#map", label: "取景巡礼地图" },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="shrink-0 border border-fg/20 px-4 py-2 font-display text-xs font-semibold tracking-[0.22em] text-muted uppercase whitespace-nowrap hover:border-blood hover:text-fg"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
         </div>
       </header>
+      <ChapterNav
+        label="幕后视听章节"
+        items={[
+          { href: "#score", label: "电影配乐" },
+          { href: "#soundtrack-list", label: "插曲与古典乐", count: SOUNDTRACK_TRACKS.length },
+          { href: "#lens", label: "光影摄影" },
+          { href: "#map", label: "取景巡礼地图", count: CITIES.length },
+        ]}
+      />
 
       <div className="mx-auto max-w-6xl space-y-24 px-4 py-16 sm:px-6 sm:py-24">
         <section id="score" className="scroll-mt-24">

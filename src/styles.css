@@ -319,3 +319,43 @@ body:has(.crt-page) .grain-layer {
     transform: none;
   }
 }
+
+.crimson-glow-card {
+  transition: border-color 220ms ease, box-shadow 220ms ease, background-color 180ms ease;
+}
+
+.crimson-glow-card:hover {
+  border-color: color-mix(in oklab, var(--color-blood) 60%, var(--color-border));
+  box-shadow: 0 0 24px -6px color-mix(in oklab, var(--color-blood) 28%, transparent);
+}
+
+.classified-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-blood);
+  border: 1.5px dashed color-mix(in oklab, var(--color-blood) 75%, transparent);
+  background: color-mix(in oklab, var(--color-blood) 8%, transparent);
+  transform: rotate(-2deg);
+  user-select: none;
+}
+
+.evidence-tape {
+  position: relative;
+}
+
+.evidence-tape::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-blood) 0%, color-mix(in oklab, var(--color-blood) 40%, transparent) 40%, transparent 80%);
+}

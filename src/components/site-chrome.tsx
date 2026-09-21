@@ -5,6 +5,7 @@ import { cn } from "@/lib/cn";
 import { FILM } from "@/data/film";
 import { rootsNavSection } from "@/lib/roots";
 import { SiteSearchButton } from "@/components/site-search";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 const NAV = [
   {
@@ -372,6 +373,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           </div>
         </div>
       </footer>
+      {!isRata && <ScrollToTop />}
     </div>
   );
 }

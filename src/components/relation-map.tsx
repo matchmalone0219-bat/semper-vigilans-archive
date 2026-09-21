@@ -59,22 +59,201 @@ function labelAnchor(a: RelNode, b: RelNode, dup: boolean) {
   return { x, y };
 }
 
+function RelationSvg({
+  lit,
+  active,
+  onSelect,
+}: {
+  lit: { ids: Set<string>; edgeIdx: Set<number> } | null;
+  active: string | null;
+  onSelect: (id: string) => void;
+}) {
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      className="w-full min-w-[760px] bg-surface text-fg select-none"
+      role="img"
+      aria-label="哥谭人物关系图"
+    >
+      <defs>
+        <filter id="rel-gray">
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+      </defs>
+
+      {FACTIONS.map((f) => (
+        <text
+          key={f.id}
+          x={f.x}
+          y={f.y}
+          fill="var(--color-blood)"
+          fontSize="12"
+          letterSpacing="0.28em"
+          fontFamily="var(--font-display)"
+        >
+          {f.label}
+        </text>
+      ))}
+
+      {EDGES.map((e, i) => {
+        const a = NODE_MAP[e.a];
+        const b = NODE_MAP[e.b];
+        if (!a || !b) return null;
+        const on = !lit || lit.edgeIdx.has(i);
+        const dashed = e.kind === "rumor" || e.kind === "foe";
+        return (
+          <g
+            key={`line-${e.a}-${e.b}-${e.label}`}
+            opacity={on ? 1 : 0.12}
+            className="transition-opacity duration-150"
+          >
+            <line
+              x1={a.x}
+              y1={a.y}
+              x2={b.x}
+              y2={b.y}
+              stroke={STROKE[e.kind]}
+              strokeWidth={e.kind === "kill" ? 2.2 : 1.2}
+              strokeDasharray={dashed ? "5 4" : undefined}
+            />
+          </g>
+        );
+      })}
+
+      {NODES.map((n) => {
+        const box = nodeBox(n);
+        const on = !lit || lit.ids.has(n.id);
+        const selected = active === n.id;
+        const pic = PORTRAITS[n.id];
+        const muted = n.status === "dead" || n.status === "rumor";
+        return (
+          <g
+            key={n.id}
+            opacity={on ? 1 : 0.22}
+            className="cursor-pointer transition-opacity duration-150"
+            onClick={() => onSelect(n.id)}
+          >
+            <rect
+              x={box.x}
+              y={box.y}
+              width={box.w}
+              height={box.h}
+              fill="var(--color-bg)"
+              stroke={selected ? "var(--color-blood)" : "var(--color-border)"}
+              strokeWidth={selected ? 2 : 1}
+            />
+            {pic ? (
+              <image
+                href={pic.src}
+                x={box.x}
+                y={box.y}
+                width={PH}
+                height={NH}
+                preserveAspectRatio="xMidYMid slice"
+                filter={muted ? "url(#rel-gray)" : undefined}
+              />
+            ) : null}
+            <text
+              x={box.x + PH + 10}
+              y={n.y - 4}
+              fill="var(--color-fg)"
+              fontSize="13"
+              fontWeight="800"
+              fontFamily="var(--font-sans)"
+              textDecoration={n.status === "dead" ? "line-through" : undefined}
+            >
+              {n.name}
+            </text>
+            <text
+              x={box.x + PH + 10}
+              y={n.y + 14}
+              fill="var(--color-faint)"
+              fontSize="10"
+              fontFamily="var(--font-display)"
+              letterSpacing="0.06em"
+            >
+              {STATUS_LABEL[n.status]}
+            </text>
+          </g>
+        );
+      })}
+
+      {EDGES.map((e, i) => {
+        const a = NODE_MAP[e.a];
+        const b = NODE_MAP[e.b];
+        if (!a || !b) return null;
+        const on = !lit || lit.edgeIdx.has(i);
+        const dup = EDGES.findIndex((x) => x.a === e.a && x.b === e.b) !== i;
+        const pos = labelAnchor(a, b, dup);
+        const tw = e.label.length * 7.4 + 12;
+        return (
+          <g
+            key={`label-${e.a}-${e.b}-${e.label}`}
+            opacity={on ? 1 : 0.12}
+            className="pointer-events-none transition-opacity duration-150"
+          >
+            <rect
+              x={pos.x - tw / 2}
+              y={pos.y - 12}
+              width={tw}
+              height={16}
+              fill="var(--color-surface)"
+            />
+            <text
+              x={pos.x}
+              y={pos.y}
+              textAnchor="middle"
+              fill={e.kind === "kill" || e.kind === "foe" ? "var(--color-blood)" : "var(--color-muted)"}
+              fontSize="11"
+              fontFamily="var(--font-sans)"
+            >
+              {e.label}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 export function RelationMap() {
   const [active, setActive] = useState<string | null>("bruce");
+  const [activeFaction, setActiveFaction] = useState<string | null>(null);
+  const [showMobileGraph, setShowMobileGraph] = useState(false);
 
   const lit = useMemo(() => {
-    if (!active) return null;
-    const ids = new Set<string>([active]);
-    const edgeIdx = new Set<number>();
-    EDGES.forEach((e, i) => {
-      if (e.a === active || e.b === active) {
-        ids.add(e.a);
-        ids.add(e.b);
-        edgeIdx.add(i);
-      }
-    });
-    return { ids, edgeIdx };
-  }, [active]);
+    if (active) {
+      const ids = new Set<string>([active]);
+      const edgeIdx = new Set<number>();
+      EDGES.forEach((e, i) => {
+        if (e.a === active || e.b === active) {
+          ids.add(e.a);
+          ids.add(e.b);
+          edgeIdx.add(i);
+        }
+      });
+      return { ids, edgeIdx };
+    }
+    if (activeFaction) {
+      const factionNodes = nodesIn(activeFaction).map((n) => n.id);
+      const ids = new Set<string>(factionNodes);
+      const edgeIdx = new Set<number>();
+      EDGES.forEach((e, i) => {
+        if (ids.has(e.a) || ids.has(e.b)) {
+          ids.add(e.a);
+          ids.add(e.b);
+          edgeIdx.add(i);
+        }
+      });
+      return { ids, edgeIdx };
+    }
+    return null;
+  }, [active, activeFaction]);
+
+  const visibleNodes = useMemo(() => {
+    if (!activeFaction) return NODES;
+    return nodesIn(activeFaction);
+  }, [activeFaction]);
 
   const person = active ? NODE_MAP[active] : null;
   const related = person ? edgesOf(person.id) : [];
@@ -86,6 +265,54 @@ export function RelationMap() {
         点击头像或名称可高亮查看人物关系网络。红线代表对立与敌对关系，白线代表血缘与同盟羁绊；已身亡或离城的角色均已特别标注，支持直接进入独立角色档案。
       </p>
 
+      {/* Faction Filter Buttons */}
+      <div className="mt-5 flex flex-wrap items-center gap-2">
+        <span className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase mr-1">
+          阵营筛选:
+        </span>
+        <button
+          type="button"
+          onClick={() => {
+            setActiveFaction(null);
+            if (!active) setActive("bruce");
+          }}
+          className={cn(
+            "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
+            !activeFaction
+              ? "bg-blood text-fg font-bold"
+              : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
+          )}
+        >
+          全部阵营 ({NODES.length})
+        </button>
+        {FACTIONS.map((f) => {
+          const count = nodesIn(f.id).length;
+          const isSelected = activeFaction === f.id;
+          return (
+            <button
+              key={f.id}
+              type="button"
+              onClick={() => {
+                const next = isSelected ? null : f.id;
+                setActiveFaction(next);
+                if (next) {
+                  const firstNode = nodesIn(next)[0];
+                  if (firstNode) setActive(firstNode.id);
+                }
+              }}
+              className={cn(
+                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
+                isSelected
+                  ? "bg-blood text-fg font-bold"
+                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
+              )}
+            >
+              {f.label} ({count})
+            </button>
+          );
+        })}
+      </div>
+
       <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-[11px] tracking-[0.18em] text-faint uppercase">
         <li>在世</li>
         <li className="line-through">已死</li>
@@ -94,173 +321,84 @@ export function RelationMap() {
         <li className="opacity-60">传闻</li>
       </ul>
 
-      <div className="mt-8 hidden overflow-x-auto md:block">
-        <svg
-          viewBox={`0 0 ${W} ${H}`}
-          className="w-full min-w-[760px] bg-surface text-fg"
-          role="img"
-          aria-label="哥谭人物关系图"
-        >
-          <defs>
-            <filter id="rel-gray">
-              <feColorMatrix type="saturate" values="0" />
-            </filter>
-          </defs>
-
-          {FACTIONS.map((f) => (
-            <text
-              key={f.id}
-              x={f.x}
-              y={f.y}
-              fill="var(--color-blood)"
-              fontSize="12"
-              letterSpacing="0.28em"
-              fontFamily="var(--font-display)"
-            >
-              {f.label}
-            </text>
-          ))}
-
-          {EDGES.map((e, i) => {
-            const a = NODE_MAP[e.a];
-            const b = NODE_MAP[e.b];
-            if (!a || !b) return null;
-            const on = !lit || lit.edgeIdx.has(i);
-            const dashed = e.kind === "rumor" || e.kind === "foe";
-            return (
-              <g
-                key={`line-${e.a}-${e.b}-${e.label}`}
-                opacity={on ? 1 : 0.12}
-                className="transition-opacity duration-150"
-              >
-                <line
-                  x1={a.x}
-                  y1={a.y}
-                  x2={b.x}
-                  y2={b.y}
-                  stroke={STROKE[e.kind]}
-                  strokeWidth={e.kind === "kill" ? 2.2 : 1.2}
-                  strokeDasharray={dashed ? "5 4" : undefined}
-                />
-              </g>
-            );
-          })}
-
-          {NODES.map((n) => {
-            const box = nodeBox(n);
-            const on = !lit || lit.ids.has(n.id);
-            const selected = active === n.id;
-            const pic = PORTRAITS[n.id];
-            const muted = n.status === "dead" || n.status === "rumor";
-            return (
-              <g
-                key={n.id}
-                opacity={on ? 1 : 0.22}
-                className="cursor-pointer transition-opacity duration-150"
-                onClick={() => setActive(n.id)}
-              >
-                <rect
-                  x={box.x}
-                  y={box.y}
-                  width={box.w}
-                  height={box.h}
-                  fill="var(--color-bg)"
-                  stroke={selected ? "var(--color-blood)" : "var(--color-border)"}
-                  strokeWidth={selected ? 2 : 1}
-                />
-                {pic ? (
-                  <image
-                    href={pic.src}
-                    x={box.x}
-                    y={box.y}
-                    width={PH}
-                    height={NH}
-                    preserveAspectRatio="xMidYMid slice"
-                    filter={muted ? "url(#rel-gray)" : undefined}
-                  />
-                ) : null}
-                <text
-                  x={box.x + PH + 10}
-                  y={n.y - 4}
-                  fill="var(--color-fg)"
-                  fontSize="13"
-                  fontWeight="800"
-                  fontFamily="var(--font-sans)"
-                  textDecoration={n.status === "dead" ? "line-through" : undefined}
-                >
-                  {n.name}
-                </text>
-                <text
-                  x={box.x + PH + 10}
-                  y={n.y + 14}
-                  fill="var(--color-faint)"
-                  fontSize="10"
-                  fontFamily="var(--font-display)"
-                  letterSpacing="0.06em"
-                >
-                  {STATUS_LABEL[n.status]}
-                </text>
-              </g>
-            );
-          })}
-
-          {EDGES.map((e, i) => {
-            const a = NODE_MAP[e.a];
-            const b = NODE_MAP[e.b];
-            if (!a || !b) return null;
-            const on = !lit || lit.edgeIdx.has(i);
-            const dup = EDGES.findIndex((x) => x.a === e.a && x.b === e.b) !== i;
-            const pos = labelAnchor(a, b, dup);
-            const tw = e.label.length * 7.4 + 12;
-            return (
-              <g
-                key={`label-${e.a}-${e.b}-${e.label}`}
-                opacity={on ? 1 : 0.12}
-                className="pointer-events-none transition-opacity duration-150"
-              >
-                <rect
-                  x={pos.x - tw / 2}
-                  y={pos.y - 12}
-                  width={tw}
-                  height={16}
-                  fill="var(--color-surface)"
-                />
-                <text
-                  x={pos.x}
-                  y={pos.y}
-                  textAnchor="middle"
-                  fill={e.kind === "kill" || e.kind === "foe" ? "var(--color-blood)" : "var(--color-muted)"}
-                  fontSize="11"
-                  fontFamily="var(--font-sans)"
-                >
-                  {e.label}
-                </text>
-              </g>
-            );
-          })}
-        </svg>
+      {/* Desktop SVG Relationship Map */}
+      <div className="mt-8 hidden overflow-x-auto md:block border border-fg/10">
+        <RelationSvg lit={lit} active={active} onSelect={setActive} />
       </div>
 
-      <div className="mt-8 md:hidden">
-        <label className="sr-only" htmlFor="rel-select">
-          选择人物
-        </label>
-        <select
-          id="rel-select"
-          className="h-11 w-full border border-fg/15 bg-bg px-3 text-sm"
-          value={active ?? "bruce"}
-          onChange={(ev) => setActive(ev.target.value)}
-        >
-          {NODES.map((n) => (
-            <option key={n.id} value={n.id}>
-              {n.name} · {STATUS_LABEL[n.status]}
-            </option>
-          ))}
-        </select>
+      {/* Mobile Experience: Avatar Ribbon & Full Map Drawer */}
+      <div className="mt-8 md:hidden space-y-4">
+        <div className="flex items-center justify-between text-xs">
+          <span className="text-faint">
+            滑动选择角色 ({visibleNodes.length})
+          </span>
+          <button
+            type="button"
+            onClick={() => setShowMobileGraph((v) => !v)}
+            className="font-display font-semibold tracking-wider text-blood uppercase hover:underline"
+          >
+            {showMobileGraph ? "收起全景拓扑图 ↑" : "展开全景拓扑图 ↓"}
+          </button>
+        </div>
+
+        {showMobileGraph ? (
+          <div className="overflow-x-auto border border-fg/15 bg-surface/50 p-2">
+            <RelationSvg lit={lit} active={active} onSelect={setActive} />
+          </div>
+        ) : null}
+
+        {/* Horizontal Character Ribbon */}
+        <div className="flex gap-2 overflow-x-auto pb-2 pt-1">
+          {visibleNodes.map((n) => {
+            const isSel = active === n.id;
+            const pic = PORTRAITS[n.id];
+            return (
+              <button
+                key={n.id}
+                type="button"
+                onClick={() => setActive(n.id)}
+                className={cn(
+                  "flex flex-col items-center shrink-0 w-24 p-2.5 border transition-all text-center",
+                  isSel
+                    ? "border-blood bg-surface shadow-md ring-1 ring-blood"
+                    : "border-fg/10 bg-surface/40 hover:border-fg/30",
+                )}
+              >
+                <div className="relative size-14 overflow-hidden bg-elevated">
+                  {pic ? (
+                    <img
+                      src={pic.src}
+                      alt={n.name}
+                      className={cn(
+                        "size-full object-cover",
+                        (n.status === "dead" || n.status === "rumor") && "grayscale",
+                      )}
+                    />
+                  ) : (
+                    <div className="grid size-full place-items-center font-display text-xs text-muted">
+                      {n.name.slice(0, 2)}
+                    </div>
+                  )}
+                  {n.status === "dead" ? (
+                    <span className="absolute inset-x-0 bottom-0 bg-black/80 py-0.5 text-[8px] text-faint">
+                      已故
+                    </span>
+                  ) : null}
+                </div>
+                <span className="mt-2 font-sans text-xs font-bold truncate w-full text-fg">
+                  {n.name}
+                </span>
+                <span className="mt-0.5 text-[10px] text-faint truncate w-full scale-95">
+                  {STATUS_LABEL[n.status]}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {person ? (
-        <div id={`person-${person.id}`} className="mt-6 scroll-mt-24 border border-fg/10 bg-bg p-5 sm:p-6">
+        <div id={`person-${person.id}`} className="mt-6 scroll-mt-24 border border-fg/10 bg-bg p-5 sm:p-6 crimson-glow-card">
           <div className="flex flex-col gap-5 sm:flex-row">
             {portrait ? (
               <div className="shrink-0">

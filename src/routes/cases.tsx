@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ARKHAM_SCENE, BRUCE_JOURNALS, CASE_FILES } from "@/lib/cases";
 import { pageTitle } from "@/lib/film";
+import { ChapterNav } from "@/components/chapter-nav";
 
 export const Route = createFileRoute("/cases")({
   head: () => ({
@@ -47,9 +48,12 @@ function Cases() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/75 to-bg/40" />
         <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-          <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
-            GCPD FORENSIC ARCHIVE & DETECTIVE'S LOG
-          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
+              GCPD FORENSIC ARCHIVE & DETECTIVE'S LOG
+            </p>
+            <span className="classified-stamp">CONFIDENTIAL / GCPD EYES ONLY</span>
+          </div>
           <h1 className="mt-4 font-sans text-5xl font-black leading-none tracking-tight sm:text-7xl">
             重案卷宗与物证
           </h1>
@@ -59,23 +63,16 @@ function Cases() {
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
             以严密法医物证与警局侦查卷宗视角，全面复盘第一部连环暗杀大案的现场线索、致命凶器、录像密码与终局大坝决堤物证；同时收录布鲁斯·韦恩夜巡日记《哥谭项目》全文与阿卡姆 5 分钟删减审讯深度拉片。
           </p>
-          <nav className="mt-8 flex flex-wrap gap-3">
-            {[
-              { href: "#case-files", label: "五大凶案卷宗" },
-              { href: "#journal", label: "夜巡日记手稿" },
-              { href: "#arkham", label: "阿卡姆审讯纪要" },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="shrink-0 border border-fg/20 px-4 py-2 font-display text-xs font-semibold tracking-[0.22em] text-muted uppercase whitespace-nowrap hover:border-blood hover:text-fg"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
         </div>
       </header>
+      <ChapterNav
+        label="重案卷宗章节"
+        items={[
+          { href: "#case-files", label: "五大凶案卷宗", count: CASE_FILES.length },
+          { href: "#journal", label: "夜巡日记手稿", count: BRUCE_JOURNALS.length },
+          { href: "#arkham", label: "阿卡姆审讯纪要" },
+        ]}
+      />
 
       <div className="mx-auto max-w-6xl space-y-24 px-4 py-16 sm:px-6 sm:py-24">
         {/* Section 01: Case Files */}
@@ -97,7 +94,7 @@ function Cases() {
               <article
                 key={c.id}
                 id={c.id}
-                className="scroll-mt-24 border border-fg/15 bg-surface/30 p-6 sm:p-8"
+                className="scroll-mt-28 border border-fg/15 bg-surface/30 p-6 sm:p-8 crimson-glow-card evidence-tape"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-fg/10 pb-4">
                   <div>
@@ -195,7 +192,7 @@ function Cases() {
 
           <div className="mt-10 space-y-12">
             {BRUCE_JOURNALS.map((j) => (
-              <article key={j.id} className="border-l-2 border-blood bg-surface/20 p-6 sm:p-8">
+              <article key={j.id} className="border-l-2 border-blood bg-surface/20 p-6 sm:p-8 crimson-glow-card">
                 <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-fg/10 pb-3">
                   <div>
                     <span className="font-display text-xs font-semibold tracking-[0.2em] text-blood uppercase">

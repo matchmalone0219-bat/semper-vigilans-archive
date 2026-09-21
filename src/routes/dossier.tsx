@@ -37,12 +37,12 @@ function Dossier() {
     historyByMonth.set(month, entries);
   }
   const jump = [
-    { href: "#facts", label: "信息" },
-    { href: "#plot", label: "线索" },
-    { href: "#cast", label: "演员" },
-    { href: "#relations", label: "关系" },
-    { href: "#places", label: "地点" },
-    { href: "#log", label: "拍摄日志" },
+    { href: "#facts", label: "基本信息", count: FACTS.length },
+    { href: "#plot", label: "故事线索", count: PLOT.length },
+    { href: "#cast", label: "演员阵容", count: CAST.length },
+    { href: "#relations", label: "人物关系" },
+    { href: "#places", label: "哥谭地点", count: PLACES.length },
+    { href: "#log", label: "拍摄日志", count: LOG.length },
   ];
   return (
     <main>
@@ -54,9 +54,12 @@ function Dossier() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-bg/40" />
         <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-          <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
-            DOSSIER / {FILM.workingTitle}
-          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
+              DOSSIER / {FILM.workingTitle}
+            </p>
+            <span className="classified-stamp">ACTIVE INVESTIGATION</span>
+          </div>
           <h1 className="mt-4 font-sans text-5xl font-black leading-none tracking-tight sm:text-7xl">
             档案
           </h1>
@@ -107,9 +110,9 @@ function Dossier() {
                 <li
                   key={item.id}
                   id={item.id}
-                  className="scroll-mt-24 border border-fg/10 bg-surface/40 p-5 sm:p-6"
+                  className="scroll-mt-24 border border-fg/10 bg-surface/40 p-5 sm:p-6 crimson-glow-card"
                 >
-                  <div className="flex flex-wrap items-baseline gap-3">
+                  <div className="flex flex-wrap items-center gap-3">
                     <span
                       className={cn(
                         "inline-block text-[10px] tracking-[0.28em] uppercase",
@@ -120,14 +123,10 @@ function Dossier() {
                       )}
                     >
                       {CERTAINTY_LABEL[item.tag]}
-                      {debunked ? " / DEBUNKED" : null}
                     </span>
                     {debunked ? (
-                      <span
-                        className="font-display text-[10px] tracking-[0.36em] text-faint/50 uppercase"
-                        aria-hidden="true"
-                      >
-                        VOID
+                      <span className="classified-stamp text-[10px] py-0.5 px-2">
+                        VOID / 已证伪
                       </span>
                     ) : null}
                   </div>

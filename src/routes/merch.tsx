@@ -164,7 +164,7 @@ function Merch() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="检索藏品名称 / 厂牌 / 规格规格..."
+                placeholder="检索藏品名称 / 厂牌 / 规格..."
                 className="h-9 w-full border border-fg/15 bg-surface/70 pl-9 pr-8 text-xs text-fg placeholder:text-faint focus:border-blood focus:outline-none"
               />
               {query ? (

@@ -162,8 +162,7 @@ function SearchPage() {
     inputRef.current?.focus();
   };
 
-  const removeSearchHistory = (e: React.MouseEvent, term: string) => {
-    e.stopPropagation();
+  const removeSearchHistory = (term: string) => {
     removeRecentSearch(term);
     setRecentSearches(getRecentSearches());
   };
@@ -310,21 +309,26 @@ function SearchPage() {
                     </div>
                     <div className="flex flex-wrap gap-2 pt-1">
                       {recentSearches.map((term) => (
-                        <span
+                        <div
                           key={term}
-                          onClick={() => pickSearchTerm(term)}
-                          className="group inline-flex cursor-pointer items-center gap-1.5 border border-fg/15 bg-elevated/80 px-2.5 py-1 text-xs text-muted transition-colors hover:border-blood hover:text-fg"
+                          className="group inline-flex items-center border border-fg/15 bg-elevated/80 text-xs text-muted transition-colors hover:border-blood hover:text-fg"
                         >
-                          <span>{term}</span>
                           <button
                             type="button"
-                            onClick={(e) => removeSearchHistory(e, term)}
-                            className="text-faint hover:text-blood"
+                            onClick={() => pickSearchTerm(term)}
+                            className="px-2.5 py-1 text-left transition-colors hover:text-fg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blood"
+                          >
+                            {term}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => removeSearchHistory(term)}
+                            className="py-1 pl-0.5 pr-2 text-faint transition-colors hover:text-blood focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blood"
                             aria-label={`删除历史记录 ${term}`}
                           >
                             <X className="size-3" />
                           </button>
-                        </span>
+                        </div>
                       ))}
                     </div>
                   </div>

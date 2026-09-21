@@ -71,14 +71,17 @@ function Dossier() {
     return count;
   }, [filteredHistoryByMonth]);
 
-  const jump = [
-    { href: "#facts", label: "基本信息", count: FACTS.length },
-    { href: "#plot", label: "故事线索", count: PLOT.length },
-    { href: "#cast", label: "演员阵容", count: CAST.length },
-    { href: "#relations", label: "人物关系" },
-    { href: "#places", label: "哥谭地点", count: PLACES.length },
-    { href: "#log", label: "拍摄日志", count: LOG.length },
-  ];
+  const jump = useMemo(
+    () => [
+      { href: "#facts", label: "基本信息", count: FACTS.length },
+      { href: "#plot", label: "故事线索", count: PLOT.length },
+      { href: "#cast", label: "演员阵容", count: CAST.length },
+      { href: "#relations", label: "人物关系" },
+      { href: "#places", label: "哥谭地点", count: PLACES.length },
+      { href: "#log", label: "拍摄日志", count: LOG.length },
+    ],
+    [],
+  );
   return (
     <main>
       <header className="relative isolate overflow-hidden border-b border-fg/10">
@@ -166,7 +169,7 @@ function Dossier() {
                   : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
               )}
             >
-              官方证实 ({plotCounts.confirmed})
+              已确认 ({plotCounts.confirmed})
             </button>
             <button
               type="button"
@@ -500,7 +503,7 @@ function Dossier() {
                 { id: "all", label: "全部" },
                 { id: "shoot", label: "片场实拍" },
                 { id: "release", label: "官方公告" },
-                { id: "slate", label: "镜头测试" },
+                { id: "slate", label: "档期变化" },
                 { id: "cast", label: "演职员" },
                 { id: "video", label: "含视频" },
               ].map((k) => (

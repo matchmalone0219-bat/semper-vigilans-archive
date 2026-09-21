@@ -219,6 +219,20 @@ export const GALLERIES: GalleryGroup[] = [
         source: "马特·里夫斯 @mattreevesLA",
       },
       {
+        src: "/media/log/p2-20-gcpd-201.jpg",
+        title: "GCPD 摩托 GC-201",
+        caption:
+          "9 月 20 日伦敦夜戏：哥谭警局警用摩托尾牌 GC-201 / CITY OF GOTHAM，边箱编号 201。与格拉斯哥追逐戏同款。",
+        source: "片场路透 · UnBoxPHD",
+      },
+      {
+        src: "/media/log/p2-20-cam-bike.jpg",
+        title: "多机位跟拍越野车",
+        caption:
+          "同场黑色越野车上加装多机位支架与监视器。这是摄影跟拍设备，不是蝙蝠摩托或流浪者机车。",
+        source: "片场路透 · UnBoxPHD",
+      },
+      {
         src: "/media/log/p2-13-bruce-walk.jpg",
         title: "GCPD 护送广角",
         caption:

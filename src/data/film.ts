@@ -12,7 +12,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.09.19";
+export const CONTENT_REVIEWED_AT = "2026.09.21";
 
 export const FACTS: {
   label: string;
@@ -162,6 +162,14 @@ export const PLOT: PlotItem[] = [
     text: "9 月 16 日补发数周前格拉斯哥日戏：积雪街道上，哥谭特警厢式车停靠后，两名 GCPD 警员将一名无法辨认面目的人员押上后厢，车辆随即驶离。拍摄地点为博思韦尔街一带的雪景布景，与 8 月中下旬外景同一街区。被押送者身份官方未确认。",
     source: "片场路透 · cp_allan / The Batman Saga News",
     sourceUrl: "https://x.com/TheBatmanSagaNW/status/2100270486336729187",
+    sourceTier: "set",
+  },
+  {
+    id: "set-london-gcpd-motorcycle",
+    tag: "hint",
+    text: "9 月 20 日伦敦夜戏：片场再次出现格拉斯哥追逐戏同款 GCPD 警用摩托，尾牌 GC-201 / CITY OF GOTHAM。同场有一辆加装多机位支架的黑色越野跟拍车，是摄影设备，不是角色座驾。具体街道未公开。",
+    source: "片场路透 · UnBoxPHD / The Batman Saga News",
+    sourceUrl: "https://x.com/UnBoxPHD/status/2101786527118536962",
     sourceTier: "set",
   },
   {
@@ -1039,7 +1047,7 @@ export const LOG: LogEntry[] = [
     date: "2026.09.19",
     iso: "2026-09-19",
     title: "蝙蝠侠日：导演从伦敦发出续集蝙蝠侠静帧",
-    body: "2026 年蝙蝠侠日落在 9 月 19 日。马特·里夫斯于伦敦发出官方贴文「Happy Batman Day to everyone from London!」，并附一张加了画框的宽银幕静帧：蝙蝠侠背对镜头立在落雪与橙月之间，两侧是岩壁或冰雪峡谷般的暗部。导演未标明这是成片截帧、摄影测试还是概念静帧；也没有点名角色或场次。同日有人问第一部的 film-out 胶片输出流程是否回归，里夫斯回复「Indeed.」",
+    body: "2026 年蝙蝠侠日落在 9 月 19 日。马特·里夫斯于伦敦发出官方贴文「Happy Batman Day to everyone from London!」，并附一张加了画框的宽银幕静帧：蝙蝠侠背对镜头立在落雪与橙月之间，两侧是岩壁或冰雪峡谷般的暗部。导演未标明这是成片截帧、摄影测试还是概念静帧；也没有点名角色或场次。同日有人问第一部的 film-out 胶片输出流程是否回归，里夫斯先回复「Indeed.」，随后解释：数字拍摄的精度与可控性不可替代，再经 film-out 与镜头选择把有机、模拟的质感补回去，「一种美丽的、被精心发展出来的不完美」。",
     kind: "shoot",
     locationLabel: "伦敦 · 导演公开静帧",
     source: "马特·里夫斯 @mattreevesLA",
@@ -1049,6 +1057,26 @@ export const LOG: LogEntry[] = [
     href: "/gallery",
     hash: "part2",
     image: "/media/log/p2-19-batman-day.jpg",
+  },
+  {
+    date: "2026.09.20",
+    iso: "2026-09-20",
+    title: "伦敦夜戏：GCPD 摩托 GC-201 与摄影跟拍车再次出现",
+    body: "蝙蝠侠日后一天，剧组继续在伦敦拍摄。UnBoxPHD 拍到格拉斯哥追逐戏同款 GCPD 警用摩托：尾牌 GC-201、CITY OF GOTHAM，边箱编号 201。同场还有一辆加装多机位支架的黑色越野跟拍车，是摄影设备，不是角色座驾。具体街道未公开，现场画面被拍得很近，地点无法辨认。未见帕丁森或战衣出镜。",
+    kind: "shoot",
+    locationLabel: "伦敦 · 夜戏载具",
+    source: "片场路透 · UnBoxPHD / The Batman Saga News",
+    sourceUrl: "https://x.com/UnBoxPHD/status/2101786527118536962",
+    sourceTier: "set",
+    verifiedAt: "2026.09.21",
+    href: "/gallery",
+    hash: "part2",
+    image: "/media/log/p2-20-gcpd-201.jpg",
+    images: [
+      "/media/log/p2-20-gcpd-201.jpg",
+      "/media/log/p2-20-gcpd-201b.jpg",
+      "/media/log/p2-20-cam-bike.jpg",
+    ],
   },
   {
     date: "2028.02.18",

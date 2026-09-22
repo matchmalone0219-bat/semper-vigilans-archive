@@ -57,3 +57,26 @@ test("searching for 缄默, 静默, or Hush matches the debunked clue", () => {
   const hitsHush = search.searchSite("Hush");
   assert.ok(hitsHush.some((hit) => hit.href === "/dossier#debunked-hush-main-villain"));
 });
+
+
+
+test("exact titles outrank keyword-only matches", () => {
+  for (const title of ["蝙蝠侠装备库", "马特·里夫斯接任导演与编剧"]) {
+    assert.equal(search.searchSite(title, 1000)[0].title, title);
+  }
+});
+
+test("every log has a unique permanent anchor and exact search destination", () => {
+  const ids = film.LOG.map(entry => entry.id);
+  assert.equal(new Set(ids).size, ids.length);
+  for (const entry of film.LOG) {
+    assert.match(entry.id, /^log-[a-z0-9-]+$/);
+    assert.ok(search.SEARCH_ITEMS.some(item => item.kind === "日志" && item.href === `/dossier#${entry.id}` && item.title === entry.title));
+  }
+});
+
+test("search URL state accepts valid filters and rejects malformed values", () => {
+  const { parseSearchState } = jiti(join(rootDir, "src/lib/search-state.ts"));
+  assert.deepEqual(parseSearchState({ q: "蝙蝠侠", category: "log", shown: "32" }), { q: "蝙蝠侠", category: "log", shown: 32 });
+  assert.deepEqual(parseSearchState({ q: [], category: "invalid", shown: -1 }), { q: undefined, category: undefined, shown: undefined });
+});

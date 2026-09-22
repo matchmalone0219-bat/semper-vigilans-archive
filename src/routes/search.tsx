@@ -4,6 +4,7 @@ import { Clock, Search, X } from "lucide-react";
 import { SEARCH_ITEMS, searchSite, type SearchItem } from "@/lib/search";
 import { searchLinkProps } from "@/components/site-search";
 import { cn } from "@/lib/cn";
+import { parseSearchState, SEARCH_PAGE_SIZE } from "@/lib/search-state";
 
 const SUGGESTED_TAGS = [
   "布鲁斯·韦恩",
@@ -87,6 +88,7 @@ function clearAllRecentSearches() {
 }
 
 export const Route = createFileRoute("/search")({
+  validateSearch: parseSearchState,
   head: () => ({
     meta: [
       { title: "全站搜索 · Semper Vigilans" },
@@ -100,12 +102,22 @@ export const Route = createFileRoute("/search")({
 });
 
 function SearchPage() {
-  const [query, setQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<SearchCategory>("all");
+  const search = Route.useSearch();
+  const query = search.q ?? "";
+  const activeCategory = search.category ?? "all";
+  const visibleCount = search.shown ?? SEARCH_PAGE_SIZE;
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const setQuery = (q: string) => {
+    setSelectedIndex(0);
+    void navigate({ to: "/search", search: (prev) => ({ ...prev, q: q || undefined, shown: undefined }), replace: true, resetScroll: false });
+  };
+  const setActiveCategory = (category: SearchCategory) => {
+    setSelectedIndex(0);
+    void navigate({ to: "/search", search: (prev) => ({ ...prev, category: category === "all" ? undefined : category, shown: undefined }), replace: true, resetScroll: false });
+  };
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -115,18 +127,19 @@ function SearchPage() {
   const trimmed = query.trim();
   const currentCategory = CATEGORIES.find((c) => c.id === activeCategory) ?? CATEGORIES[0];
 
-  const results = useMemo(() => {
+  const matches = useMemo(() => {
     if (trimmed) {
-      const searched = searchSite(query, 50);
+      const searched = searchSite(query, SEARCH_ITEMS.length);
       return activeCategory === "all"
-        ? searched.slice(0, 16)
-        : searched.filter((item) => currentCategory.matches(item.kind)).slice(0, 16);
+        ? searched
+        : searched.filter((item) => currentCategory.matches(item.kind));
     }
     if (activeCategory !== "all") {
-      return SEARCH_ITEMS.filter((item) => currentCategory.matches(item.kind)).slice(0, 16);
+      return SEARCH_ITEMS.filter((item) => currentCategory.matches(item.kind));
     }
     return [];
   }, [trimmed, query, activeCategory, currentCategory]);
+  const results = matches.slice(0, visibleCount);
 
   useEffect(() => {
     setSelectedIndex(0);
@@ -141,18 +154,6 @@ function SearchPage() {
       to: link.to,
       hash: link.hash,
     });
-
-    if (link.hash) {
-      setTimeout(() => {
-        const el = document.getElementById(link.hash!);
-        if (!el) return;
-        const details = el.closest("details");
-        if (details && !details.open) details.open = true;
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-        el.classList.add("ring-2", "ring-blood");
-        setTimeout(() => el.classList.remove("ring-2", "ring-blood"), 2500);
-      }, 120);
-    }
   };
 
   const pickSearchTerm = (term: string) => {
@@ -173,6 +174,8 @@ function SearchPage() {
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
+    // Let the IME handle candidate selection before applying search shortcuts.
+    if (e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229) return;
     if (e.key === "Escape") {
       e.preventDefault();
       if (query) {
@@ -416,8 +419,25 @@ function SearchPage() {
             )}
           </div>
 
+          {results.length < matches.length ? (
+            <div className="px-4 pb-4 text-center">
+              <button
+                type="button"
+                onClick={() => void navigate({
+                  to: "/search",
+                  search: (prev) => ({ ...prev, shown: Math.min(visibleCount + SEARCH_PAGE_SIZE, matches.length) }),
+                  replace: true,
+                  resetScroll: false,
+                })}
+                className="border border-fg/20 px-4 py-2 text-sm text-muted hover:border-blood hover:text-fg"
+              >
+                加载更多
+              </button>
+            </div>
+          ) : null}
+
           <div className="flex items-center justify-between border-t border-fg/10 px-4 py-2.5 font-mono text-[11px] text-faint">
-            <span>共 {results.length} 条匹配</span>
+            <span>共 {matches.length} 条匹配 · 已显示 {results.length} 条</span>
             <span className="hidden sm:inline">
               <kbd className="border border-fg/15 bg-elevated px-1 py-0.5">↑</kbd>{" "}
               <kbd className="border border-fg/15 bg-elevated px-1 py-0.5">↓</kbd> 切换 ·{" "}

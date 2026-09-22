@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { ChevronsUpDown } from "lucide-react";
 import { latestLog, logCarouselImages, logVideoPoster } from "@/lib/film";
 import { LOG, LOG_KIND } from "@/data/film";
@@ -13,8 +13,16 @@ import { cn } from "@/lib/cn";
 
 export function DossierShootLog() {
   const latest = latestLog();
+  const hash = useRouterState({ select: (state) => state.location.hash });
   const [logFilter, setLogFilter] = useState<string>("all");
-  const [expandAllMonths, setExpandAllMonths] = useState<boolean | null>(null);
+  const [openMonths, setOpenMonths] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const target = LOG.find((entry) => entry.id === hash);
+    if (!target) return;
+    setLogFilter("all");
+    setOpenMonths((prev) => ({ ...prev, [target.iso.slice(0, 7)]: true }));
+  }, [hash]);
 
   const filteredHistoryByMonth = useMemo(() => {
     const map = new Map<string, (typeof LOG)[number][]>();
@@ -33,6 +41,10 @@ export function DossierShootLog() {
     }
     return map;
   }, [latest, logFilter]);
+
+  const visibleMonths = [...filteredHistoryByMonth.keys()];
+  const allMonthsExpanded =
+    visibleMonths.length > 0 && visibleMonths.every((month) => openMonths[month]);
 
   const totalFilteredLogs = useMemo(() => {
     let count = 0;
@@ -61,7 +73,7 @@ export function DossierShootLog() {
       </p>
 
       {/* Latest Highlight Entry */}
-      <Card variant="dossier" showCorners className="mt-8 border-blood/40 bg-surface/40 p-5 sm:p-6">
+      <Card id={latest.id} variant="dossier" showCorners className="scroll-mt-36 mt-8 border-blood/40 bg-surface/40 p-5 sm:p-6">
         {logCarouselImages(latest).length ? (
           <LogCarousel images={logCarouselImages(latest)} className="mb-4" />
         ) : null}
@@ -139,11 +151,16 @@ export function DossierShootLog() {
           </span>
           <button
             type="button"
-            onClick={() => setExpandAllMonths((prev) => (prev ? false : true))}
+            onClick={() =>
+              setOpenMonths((prev) => ({
+                ...prev,
+                ...Object.fromEntries(visibleMonths.map((month) => [month, !allMonthsExpanded])),
+              }))
+            }
             className="flex items-center gap-1.5 border border-fg/15 px-3 py-1 font-display text-xs tracking-wider text-muted hover:text-fg hover:border-fg/40 uppercase transition-colors"
           >
             <ChevronsUpDown className="size-3.5 text-blood" />
-            <span>{expandAllMonths ? "折叠全部月份" : "展开全部月份"}</span>
+            <span>{allMonthsExpanded ? "折叠全部月份" : "展开全部月份"}</span>
           </button>
         </div>
       </div>
@@ -154,13 +171,17 @@ export function DossierShootLog() {
             key={month}
             title={`${month.slice(0, 4)} 年 ${Number(month.slice(5))} 月`}
             count={events.length}
-            open={expandAllMonths !== null ? expandAllMonths : undefined}
+            open={openMonths[month] ?? false}
+            onOpenChange={(open) =>
+              setOpenMonths((prev) => ({ ...prev, [month]: open }))
+            }
           >
             <ol className="mt-6 border-l border-fg/15 pl-6">
               {events.map((event) => (
                 <li
-                  key={event.iso}
-                  className={cn("relative pb-10 last:pb-0", event.upcoming && "opacity-50")}
+                  key={event.id}
+                  id={event.id}
+                  className={cn("scroll-mt-36 relative pb-10 last:pb-0", event.upcoming && "opacity-50")}
                 >
                   <span
                     className={cn(

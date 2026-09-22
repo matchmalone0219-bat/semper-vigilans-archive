@@ -59,10 +59,16 @@ export function Lightbox({
   if (!item) return null;
 
   function handleTouchStart(e: React.TouchEvent) {
-    touchStartX.current = e.touches[0]?.clientX ?? null;
+    touchStartX.current = !isZoomed && e.touches.length === 1
+      ? e.touches[0]?.clientX ?? null
+      : null;
   }
 
   function handleTouchEnd(e: React.TouchEvent) {
+    if (isZoomed) {
+      touchStartX.current = null;
+      return;
+    }
     if (touchStartX.current === null) return;
     const touchEndX = e.changedTouches[0]?.clientX ?? null;
     if (touchEndX === null) return;
@@ -85,6 +91,7 @@ export function Lightbox({
       aria-label={item.title}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onTouchCancel={() => { touchStartX.current = null; }}
     >
       {/* Top bar */}
       <div className="flex items-center justify-between border-b border-fg/10 bg-surface/60 px-4 py-3 sm:px-6">

@@ -116,7 +116,7 @@ export const SEARCH_ITEMS: SearchItem[] = [
     item(
       entry.title,
       `${entry.date} · ${entry.source ?? "拍摄日志"}`,
-      `/dossier#log`,
+      `/dossier#${entry.id}`,
       "日志",
       entry.body,
     ),
@@ -196,9 +196,20 @@ export const SEARCH_ITEMS: SearchItem[] = [
 ];
 
 export function searchSite(query: string, limit = 12) {
-  const terms = query.trim().toLocaleLowerCase("zh-CN").split(/\s+/).filter(Boolean);
+  const normalized = query.trim().toLocaleLowerCase("zh-CN");
+  const terms = normalized.split(/\s+/).filter(Boolean);
   if (!terms.length) return PAGES.slice(0, limit);
+
+  const score = (entry: SearchItem) => {
+    const title = entry.title.toLocaleLowerCase("zh-CN");
+    if (title === normalized) return 5;
+    if (title.startsWith(normalized)) return 4;
+    if (title.includes(normalized)) return 3;
+    if (terms.every((term) => title.includes(term))) return 2;
+    if (entry.subtitle.toLocaleLowerCase("zh-CN").includes(normalized)) return 1;
+    return 0;
+  };
   return SEARCH_ITEMS.filter((entry) =>
     terms.every((term) => entry.searchText.includes(term)),
-  ).slice(0, limit);
+  ).sort((a, b) => score(b) - score(a)).slice(0, limit);
 }

@@ -5,11 +5,13 @@ export function ArchiveDisclosure({
   title,
   count,
   open: controlledOpen,
+  onOpenChange,
   children,
 }: {
   title: string;
   count: number;
   open?: boolean;
+  onOpenChange?: (open: boolean) => void;
   children: ReactNode;
 }) {
   const [internalOpen, setInternalOpen] = useState(false);
@@ -19,7 +21,11 @@ export function ArchiveDisclosure({
     <details
       open={isOpen}
       className="group border border-fg/15 bg-surface/30 transition-colors duration-200 open:border-fg/25 open:bg-surface/50"
-      onToggle={(event) => setInternalOpen(event.currentTarget.open)}
+      onToggle={(event) => {
+        const nextOpen = event.currentTarget.open;
+        if (controlledOpen === undefined) setInternalOpen(nextOpen);
+        if (nextOpen !== isOpen) onOpenChange?.(nextOpen);
+      }}
     >
       <summary className="flex min-h-14 cursor-pointer list-none select-none items-center gap-3 px-4 py-3 text-sm text-fg transition-colors hover:bg-surface/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blood [&::-webkit-details-marker]:hidden">
         <span className="flex-1 font-semibold tracking-wide">{title}</span>

@@ -8,7 +8,8 @@
 
 1. **数据与展现分离**：内容数据应优先放在 `src/data/`（如 `film.ts`、`interviews.ts`、`recap.ts`）或稳定的实体库（如 `src/lib/people.ts`、`src/lib/places.ts`、`src/lib/relations.ts`）。
 2. **禁止在组件中硬编码**：页面组件仅负责渲染与交互，严禁在 React 组件内硬编码新增新闻、路透或图文资料。
-3. **拍摄日志结构约束**：新增拍摄日志必须严格遵循当前 `LOG` 数据结构（包含 `date`、`iso`、`title`、`body`、`kind`，可选 `source`、`sourceUrl`、`sourceTier`、`image`、`images`、`video` 等）。
+3. **拍摄日志结构约束**：新增拍摄日志必须严格遵循当前 `LOG` 数据结构（包含 `id`、`date`、`iso`、`title`、`body`、`kind`，可选 `source`、`sourceUrl`、`sourceTier`、`image`、`images`、`video` 等）。
+   - 日志 `id` 是永久锚点，须唯一并以 `log-` 开头；更新标题、日期或排序时保留原 ID，同一天多条记录使用不同后缀。
 4. **日期字段规范**：
    - `iso` 字段必须遵循 `YYYY-MM-DD` 格式且必须为有效日历日期（如平年 2 月 29 日、2 月 30 日等均会被校验器拦截）。
    - 展示日期 `date` 遵循项目约定（如 `YYYY.MM.DD` 或无明确日期时的 `YYYY.MM`）。

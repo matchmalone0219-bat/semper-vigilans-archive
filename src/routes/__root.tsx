@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { HashTarget } from "@/components/hash-target";
 import { Atmosphere } from "@/components/atmosphere";
 import { SiteChrome } from "@/components/site-chrome";
 import { Toaster } from "sonner";
@@ -62,6 +63,7 @@ function RootDocument() {
       <body className="bg-bg font-sans text-fg">
         <PreviewHostBridge />
         <AuthProvider>
+          <HashTarget />
           <Atmosphere />
           <SiteChrome>
             <Outlet />

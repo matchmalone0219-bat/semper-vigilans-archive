@@ -1,25 +1,14 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronsUpDown } from "lucide-react";
-import { latestLog, logCarouselImages, logVideoPoster, pageTitle } from "@/lib/film";
-import {
-  CERTAINTY_LABEL,
-  CAST,
-  CONTENT_REVIEWED_AT,
-  FACTS,
-  FILM,
-  LOG,
-  LOG_KIND,
-  PLOT,
-} from "@/data/film";
+import { pageTitle } from "@/lib/film";
+import { CAST, FACTS, FILM, LOG, PLOT } from "@/data/film";
 import { RelationMap } from "@/components/relation-map";
-import { LogCarousel } from "@/components/log-carousel";
-import { BiliPlayer } from "@/components/bili-player";
 import { PLACES } from "@/lib/places";
-import { cn } from "@/lib/cn";
-import { SourceLink } from "@/components/source-link";
 import { ChapterNav } from "@/components/chapter-nav";
-import { ArchiveDisclosure } from "@/components/archive-disclosure";
+import { DossierFacts } from "@/components/dossier/dossier-facts";
+import { DossierPlot } from "@/components/dossier/dossier-plot";
+import { DossierCast } from "@/components/dossier/dossier-cast";
+import { DossierShootLog } from "@/components/dossier/dossier-shoot-log";
 
 export const Route = createFileRoute("/dossier")({
   head: () => ({
@@ -29,48 +18,6 @@ export const Route = createFileRoute("/dossier")({
 });
 
 function Dossier() {
-  const latest = latestLog();
-  const [plotFilter, setPlotFilter] = useState<"all" | "confirmed" | "hint" | "rumor" | "debunked">("all");
-  const [logFilter, setLogFilter] = useState<string>("all");
-  const [expandAllMonths, setExpandAllMonths] = useState<boolean | null>(null);
-
-  const plotCounts = useMemo(() => {
-    const counts = { all: PLOT.length, confirmed: 0, hint: 0, rumor: 0, debunked: 0 };
-    for (const p of PLOT) counts[p.tag]++;
-    return counts;
-  }, []);
-
-  const filteredPlot = useMemo(() => {
-    if (plotFilter === "all") return PLOT;
-    return PLOT.filter((p) => p.tag === plotFilter);
-  }, [plotFilter]);
-
-  const filteredHistoryByMonth = useMemo(() => {
-    const map = new Map<string, (typeof LOG)[number][]>();
-    for (const event of [...LOG].sort((a, b) => b.iso.localeCompare(a.iso))) {
-      if (event === latest) continue;
-      if (logFilter === "shoot" && event.kind !== "shoot") continue;
-      if (logFilter === "release" && event.kind !== "release") continue;
-      if (logFilter === "slate" && event.kind !== "slate") continue;
-      if (logFilter === "cast" && event.kind !== "cast") continue;
-      if (logFilter === "video" && !event.video) continue;
-
-      const month = event.iso.slice(0, 7);
-      const entries = map.get(month) ?? [];
-      entries.push(event);
-      map.set(month, entries);
-    }
-    return map;
-  }, [latest, logFilter]);
-
-  const totalFilteredLogs = useMemo(() => {
-    let count = 0;
-    for (const list of filteredHistoryByMonth.values()) {
-      count += list.length;
-    }
-    return count;
-  }, [filteredHistoryByMonth]);
-
   const jump = useMemo(
     () => [
       { href: "#facts", label: "基本信息", count: FACTS.length },
@@ -82,6 +29,7 @@ function Dossier() {
     ],
     [],
   );
+
   return (
     <main>
       <header className="relative isolate overflow-hidden border-b border-fg/10">
@@ -114,229 +62,29 @@ function Dossier() {
           </p>
         </div>
       </header>
+
       <ChapterNav label="电影档案章节" items={jump} />
 
       <div className="mx-auto max-w-6xl space-y-24 px-4 py-16 sm:px-6 sm:py-24 [&>section]:scroll-mt-36">
+        {/* 01 / 基本信息 */}
         <section id="facts" className="scroll-mt-24">
           <SectionKicker n="01" title="基本信息" />
-          <dl className="mt-8 divide-y divide-fg/10 border-y border-fg/10">
-            {FACTS.map((fact) => (
-              <div key={fact.label} className="grid gap-2 py-4 sm:grid-cols-12 sm:gap-6">
-                <dt className="text-sm tracking-widest text-muted sm:col-span-3">{fact.label}</dt>
-                <dd className="text-pretty sm:col-span-9">
-                  {fact.value}
-                  {fact.source ? (
-                    <SourceLink
-                      label={fact.source}
-                      href={fact.sourceUrl}
-                      tier={fact.sourceTier}
-                      verifiedAt={CONTENT_REVIEWED_AT}
-                    />
-                  ) : null}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <DossierFacts />
         </section>
 
+        {/* 02 / 故事线索 */}
         <section id="plot" className="scroll-mt-24">
           <SectionKicker n="02" title="故事线索" />
-
-          {/* Plot Certainty Filter */}
-          <div className="mt-6 flex flex-wrap items-center gap-2">
-            <span className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase mr-1">
-              确信度筛选:
-            </span>
-            <button
-              type="button"
-              onClick={() => setPlotFilter("all")}
-              className={cn(
-                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
-                plotFilter === "all"
-                  ? "bg-blood text-fg font-bold"
-                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
-              )}
-            >
-              全部线索 ({plotCounts.all})
-            </button>
-            <button
-              type="button"
-              onClick={() => setPlotFilter("confirmed")}
-              className={cn(
-                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
-                plotFilter === "confirmed"
-                  ? "bg-blood text-fg font-bold"
-                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
-              )}
-            >
-              已确认 ({plotCounts.confirmed})
-            </button>
-            <button
-              type="button"
-              onClick={() => setPlotFilter("hint")}
-              className={cn(
-                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
-                plotFilter === "hint"
-                  ? "bg-blood text-fg font-bold"
-                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
-              )}
-            >
-              片场印证 ({plotCounts.hint})
-            </button>
-            <button
-              type="button"
-              onClick={() => setPlotFilter("rumor")}
-              className={cn(
-                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
-                plotFilter === "rumor"
-                  ? "bg-blood text-fg font-bold"
-                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
-              )}
-            >
-              传闻推测 ({plotCounts.rumor})
-            </button>
-            <button
-              type="button"
-              onClick={() => setPlotFilter("debunked")}
-              className={cn(
-                "px-3 py-1 font-display text-xs tracking-[0.14em] uppercase transition-colors",
-                plotFilter === "debunked"
-                  ? "bg-blood text-fg font-bold"
-                  : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
-              )}
-            >
-              辟谣证伪 ({plotCounts.debunked})
-            </button>
-          </div>
-
-          <ul className="mt-6 space-y-4">
-            {filteredPlot.map((item) => {
-              const debunked = item.tag === "debunked";
-              return (
-                <li
-                  key={item.id}
-                  id={item.id}
-                  className="scroll-mt-24 border border-fg/10 bg-surface/40 p-5 sm:p-6 crimson-glow-card"
-                >
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span
-                      className={cn(
-                        "inline-block text-[10px] tracking-[0.28em] uppercase",
-                        item.tag === "confirmed" && "text-fg",
-                        item.tag === "hint" && "text-muted",
-                        item.tag === "rumor" && "text-faint",
-                        debunked && "text-faint",
-                      )}
-                    >
-                      {CERTAINTY_LABEL[item.tag]}
-                    </span>
-                    {debunked ? (
-                      <span className="classified-stamp text-[10px] py-0.5 px-2">
-                        VOID / 已证伪
-                      </span>
-                    ) : null}
-                  </div>
-                  <p
-                    className={cn(
-                      "mt-3 text-pretty leading-relaxed",
-                      debunked && "text-muted/80 decoration-fg/25 line-through",
-                    )}
-                  >
-                    {item.text}
-                  </p>
-                  {item.source ? (
-                    <SourceLink
-                      label={item.source}
-                      href={item.sourceUrl}
-                      tier={item.sourceTier}
-                      verifiedAt={CONTENT_REVIEWED_AT}
-                    />
-                  ) : null}
-                  {debunked ? (
-                    <div className="mt-5 border-t border-dashed border-fg/15 pt-4">
-                      <p className="font-display text-[10px] tracking-[0.28em] text-faint uppercase">
-                        后续核验
-                      </p>
-                      {item.debunkedNote ? (
-                        <p className="mt-3 text-pretty text-sm leading-relaxed text-muted">
-                          {item.debunkedNote}
-                        </p>
-                      ) : null}
-                      {item.debunkedSource ? (
-                        <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
-                          <SourceLink
-                            label={item.debunkedSource}
-                            href={item.debunkedSourceUrl}
-                            tier={item.debunkedSourceTier}
-                            className="mt-0"
-                          />
-                          {item.debunkedAt ? (
-                            <span className="font-mono text-[10px] tracking-wider text-faint">
-                              证伪 {item.debunkedAt}
-                            </span>
-                          ) : null}
-                        </div>
-                      ) : null}
-                    </div>
-                  ) : null}
-                </li>
-              );
-            })}
-          </ul>
+          <DossierPlot />
         </section>
 
+        {/* 03 / 演职员 */}
         <section id="cast" className="scroll-mt-24">
           <SectionKicker n="03" title="演职员" />
-          <SourceLink
-            label="Variety · 导演公开确认回归与新加盟阵容"
-            href="https://au.variety.com/2026/film/news/the-batman-part-2-scarlett-johansson-sebastian-stan-36609/"
-            tier="press"
-            verifiedAt={CONTENT_REVIEWED_AT}
-            className="mt-3 text-xs text-faint"
-          />
-          <ul className="mt-8 grid gap-px bg-border sm:grid-cols-2">
-            {CAST.map((person) => {
-              const inner = (
-                <>
-                  <div className="flex items-start justify-between gap-3">
-                    <p className="text-[11px] tracking-[0.22em] text-muted uppercase">
-                      {person.roleEn}
-                    </p>
-                    <span className="shrink-0 text-[10px] tracking-[0.2em] text-faint uppercase">
-                      {person.status === "confirmed" ? "确认" : "传闻"}
-                    </span>
-                  </div>
-                  <h3 className="mt-3 font-sans text-2xl font-black leading-snug tracking-tight">
-                    {person.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted">{person.role}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{person.note}</p>
-                  {person.personId ? (
-                    <p className="mt-3 font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase">
-                      打开档案 →
-                    </p>
-                  ) : null}
-                </>
-              );
-              return (
-                <li key={person.roleEn + person.nameEn} className="bg-bg">
-                  {person.personId ? (
-                    <Link
-                      to="/people/$id"
-                      params={{ id: person.personId }}
-                      className="archive-card block p-6"
-                    >
-                      {inner}
-                    </Link>
-                  ) : (
-                    <div className="p-6">{inner}</div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+          <DossierCast />
         </section>
 
+        {/* 04 / 人物关系 */}
         <section id="relations" className="scroll-mt-24">
           <SectionKicker n="04" title="人物关系" />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
@@ -351,6 +99,7 @@ function Dossier() {
           </div>
         </section>
 
+        {/* 05 / 哥谭地点 */}
         <section id="places" className="scroll-mt-24">
           <SectionKicker n="05" title="哥谭地点" />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
@@ -381,6 +130,7 @@ function Dossier() {
           </ul>
         </section>
 
+        {/* 06 / 幕后与视听 */}
         <section className="scroll-mt-24">
           <SectionKicker n="06" title="幕后与视听" />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
@@ -436,172 +186,16 @@ function Dossier() {
           </ul>
         </section>
 
+        {/* 07 / 拍摄日志 */}
         <section id="log" className="scroll-mt-24">
           <SectionKicker n="07" title="拍摄日志" />
-          <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            汇总影片从立项、演员确认、档期变化到实景拍摄的现实制作记录。查阅哥谭宇宙剧情故事线请前往{" "}
-            <Link
-              to="/recap"
-              hash="gotham-timeline"
-              className="text-fg underline-offset-4 hover:underline"
-            >
-              回顾 · 哥谭编年史
-            </Link>
-            。片场实拍图集请查阅{" "}
-            <Link to="/gallery" hash="part2" className="text-fg underline-offset-4 hover:underline">
-              剧照 · 第二部路透
-            </Link>
-            。
-          </p>
-
-          <article className="mt-8 border border-blood/40 bg-surface/40 p-5 sm:p-6">
-            {logCarouselImages(latest).length ? (
-              <LogCarousel images={logCarouselImages(latest)} className="mb-4" />
-            ) : null}
-            {latest.video ? (
-              <BiliPlayer
-                video={latest.video}
-                poster={logVideoPoster(latest)}
-                className="mb-4"
-              />
-            ) : null}
-            <div>
-              <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
-                最新 · {LOG_KIND[latest.kind]} · {latest.date}
-              </p>
-              <h3 className="mt-2 font-sans text-2xl font-black tracking-tight">{latest.title}</h3>
-              <p className="mt-3 text-pretty text-sm leading-relaxed text-muted">{latest.body}</p>
-              {latest.source ? (
-                <SourceLink
-                  label={latest.source}
-                  href={latest.sourceUrl}
-                  tier={latest.sourceTier}
-                  verifiedAt={latest.verifiedAt}
-                />
-              ) : null}
-              {latest.href ? (
-                <p className="mt-3">
-                  <Link
-                    to={latest.href}
-                    hash={latest.hash}
-                    className="font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase hover:text-fg"
-                  >
-                    查看物料 →
-                  </Link>
-                </p>
-              ) : null}
-            </div>
-          </article>
-
-          {/* Log Controls: Filter & Expand All */}
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-fg/10 pb-4">
-            <div className="flex flex-wrap items-center gap-1.5 text-xs">
-              <span className="font-display font-semibold tracking-widest text-faint uppercase mr-1">
-                日志分类:
-              </span>
-              {[
-                { id: "all", label: "全部" },
-                { id: "shoot", label: "片场实拍" },
-                { id: "release", label: "官方公告" },
-                { id: "slate", label: "档期变化" },
-                { id: "cast", label: "演职员" },
-                { id: "video", label: "含视频" },
-              ].map((k) => (
-                <button
-                  key={k.id}
-                  type="button"
-                  onClick={() => setLogFilter(k.id)}
-                  className={cn(
-                    "px-2.5 py-1 font-display tracking-wider uppercase transition-colors",
-                    logFilter === k.id
-                      ? "bg-blood text-fg font-bold"
-                      : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
-                  )}
-                >
-                  {k.label}
-                </button>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-xs text-faint">
-                {totalFilteredLogs} 条历史记录
-              </span>
-              <button
-                type="button"
-                onClick={() => setExpandAllMonths((prev) => (prev ? false : true))}
-                className="flex items-center gap-1.5 border border-fg/15 px-3 py-1 font-display text-xs tracking-wider text-muted hover:text-fg hover:border-fg/40 uppercase transition-colors"
-              >
-                <ChevronsUpDown className="size-3.5 text-blood" />
-                <span>{expandAllMonths ? "折叠全部月份" : "展开全部月份"}</span>
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-6 space-y-3">
-            {[...filteredHistoryByMonth].map(([month, events]) => (
-              <ArchiveDisclosure
-                key={month}
-                title={`${month.slice(0, 4)} 年 ${Number(month.slice(5))} 月`}
-                count={events.length}
-                open={expandAllMonths !== null ? expandAllMonths : undefined}
-              >
-                <ol className="mt-6 border-l border-fg/15 pl-6">
-                  {events.map((event) => (
-                    <li
-                      key={event.iso}
-                      className={cn("relative pb-10 last:pb-0", event.upcoming && "opacity-50")}
-                    >
-                      <span
-                        className={cn(
-                          "absolute top-1.5 -left-[29px] size-2 rounded-full",
-                          event.iso === latest.iso ? "bg-blood" : "bg-fg",
-                        )}
-                      />
-                      <p className="font-display text-sm font-semibold tabular-nums tracking-widest text-blood">
-                        {event.date}
-                        <span className="ml-3 tracking-[0.18em] text-faint">
-                          {LOG_KIND[event.kind]}
-                        </span>
-                        {event.upcoming ? (
-                          <span className="ml-2 tracking-[0.18em] text-faint">未到</span>
-                        ) : null}
-                      </p>
-                      <h3 className="mt-1 font-sans text-2xl font-black tracking-tight">
-                        {event.title}
-                      </h3>
-                      <p className="mt-2 max-w-2xl text-pretty text-sm leading-relaxed text-muted">
-                        {event.body}
-                      </p>
-                      {logCarouselImages(event).length ? (
-                        <LogCarousel images={logCarouselImages(event)} className="mt-3 max-w-2xl" />
-                      ) : null}
-                      {event.video ? (
-                        <BiliPlayer
-                          video={event.video}
-                          poster={logVideoPoster(event)}
-                          className="mt-3 max-w-2xl"
-                        />
-                      ) : null}
-                      {event.source ? (
-                        <SourceLink
-                          label={event.source}
-                          href={event.sourceUrl}
-                          tier={event.sourceTier}
-                          verifiedAt={event.verifiedAt}
-                        />
-                      ) : null}
-                    </li>
-                  ))}
-                </ol>
-              </ArchiveDisclosure>
-            ))}
-          </div>
+          <DossierShootLog />
         </section>
       </div>
     </main>
   );
 }
+
 function SectionKicker({ n, title }: { n: string; title: string }) {
   return (
     <div>

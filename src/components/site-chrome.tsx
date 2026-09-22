@@ -193,7 +193,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                   ) : null}
                 </Link>
                 {"children" in item && item.children.length > 0 ? (
-                  <div className="pointer-events-none absolute left-1/2 top-[calc(100%-1px)] min-w-44 -translate-x-1/2 border border-fg/15 border-t-2 border-t-blood bg-surface p-2 opacity-0 shadow-2xl transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+                  <div className="pointer-events-none absolute left-1/2 top-[calc(100%-1px)] min-w-48 -translate-x-1/2 border border-fg/15 border-t-2 border-t-blood bg-surface/95 p-1.5 opacity-0 shadow-[0_12px_36px_rgba(0,0,0,0.85),0_0_16px_color-mix(in_oklab,var(--color-blood)_12%,transparent)] backdrop-blur-md transition-all duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
                     {item.children.map((child) => (
                       <Link
                         key={`${child.to}-${"hash" in child ? child.hash : child.label}`}
@@ -201,7 +201,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                         hash={"hash" in child ? child.hash : undefined}
                         data-selected={pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === ("hash" in child ? child.hash : "")}
                         activeOptions={{ exact: true, includeHash: true }}
-                        className="archive-nav-link block whitespace-nowrap px-3 py-2 text-sm tracking-[0.12em] text-muted focus-visible:outline-2 focus-visible:outline-fg"
+                        className="archive-nav-link block whitespace-nowrap px-3 py-2 text-xs font-medium tracking-[0.14em] text-muted transition-colors hover:bg-elevated hover:text-fg focus-visible:outline-2 focus-visible:outline-fg"
                       >
                         {child.label}
                       </Link>

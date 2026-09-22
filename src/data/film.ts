@@ -962,6 +962,8 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-04-street.jpg",
       "/media/log/p2-04-cowl.jpg",
       "/media/log/p2-04-bike.jpg",
+      "/media/log/p2-04-suit.jpg",
+      "/media/log/p2-04-moto2.jpg",
     ],
     video: {
       platform: "bilibili",
@@ -980,6 +982,7 @@ export const LOG: LogEntry[] = [
     sourceTier: "press",
     verifiedAt: "2026.09.12",
     href: "/interviews",
+    image: "/media/cast/stan.jpg",
     video: {
       platform: "bilibili",
       bvid: "BV1tvYS6MESm",

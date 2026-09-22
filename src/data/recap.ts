@@ -560,8 +560,8 @@ export const RECAPS: RecapWork[] = [
     published: "2024 年",
     form: "HBO 原创限定剧集（全 8 集）",
     meta: "主创：劳伦·勒弗朗克 · 制片：马特·里夫斯 · 主演：科林·法瑞尔",
-    image: "/media/lounge.jpg",
-    imageAlt: "科林·法瑞尔饰演的企鹅人奥兹剧照",
+    image: "/media/peng-coat.jpg",
+    imageAlt: "HBO 原创限定剧《企鹅人》官方剧照：科林·法瑞尔饰演奥兹·科布",
     lede: "紧接电影《新蝙蝠侠》大洪水发生约一周后的时间线。全剧深刻展现了在法尔科内帝国崩溃后，企鹅人奥兹·科布如何凭借惊人的生存智慧、残酷手段与心理博弈登上哥谭黑道权力顶峰。",
     sections: [
       {

@@ -311,7 +311,7 @@ export const TESTS: Test[] = [
     ],
     stills: [
       still("LEDGER.IMG", "/media/ledger.jpg", "黑金账簿", "第一部核心物证：被审计拆解的洗钱账本。"),
-      still("MANOR.IMG", "/media/orphanage.jpg", "哥谭孤儿院", "旧韦恩庄园改建的哥谭孤儿院外景。"),
+      still("MANOR.IMG", "/media/places/orphanage.jpg", "哥谭孤儿院", "旧韦恩庄园改建的哥谭孤儿院礼堂与调查现场。"),
     ],
   },
   {

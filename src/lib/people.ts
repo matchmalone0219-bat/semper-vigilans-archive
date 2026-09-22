@@ -31,7 +31,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠》", note: "竞选录像、账本与后巷遇刺，揭开慈善黑幕。", href: "/recap", hash: "the-batman" },
     ],
     places: ["orphanage", "wayne-tower", "park-row", "arkham"],
-    stills: ["/media/orphanage.jpg", "/media/still-sunset.jpg"],
+    stills: ["/media/portraits/thomas.jpg", "/media/portraits/waynes.jpg"],
     sections: [
       {
         heading: "外科医生与慈善巨擘",
@@ -51,7 +51,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "电影《新蝙蝠侠》", note: "后巷遇刺；身世成为布鲁斯必须面对的家族阴影。", href: "/recap", hash: "the-batman" },
     ],
     places: ["orphanage", "park-row", "arkham"],
-    stills: ["/media/portraits/martha.jpg", "/media/orphanage.jpg"],
+    stills: ["/media/portraits/martha.jpg"],
     sections: [
       {
         heading: "旧日豪门与阿卡姆血脉",

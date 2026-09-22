@@ -394,7 +394,7 @@ function Dossier() {
             {[
               {
                 href: "/craft#score",
-                image: "/media/gotham.jpg",
+                image: "/media/craft/score.jpg",
                 kicker: "Score",
                 title: "吉亚奇诺四主题",
                 body: "解析吉亚奇诺创作的核心主题动机、猫女弦乐与经典插曲。",

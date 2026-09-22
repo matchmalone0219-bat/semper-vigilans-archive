@@ -127,15 +127,27 @@ export const GALLERIES: GalleryGroup[] = [
       },
       {
         src: "/media/orphanage.jpg",
-        title: "孤儿院追思",
-        caption: "布鲁斯·韦恩罕见地以家族继承人身份在白天公开露面，出席旧庄园改建的孤儿院活动。",
+        title: "市政追悼会",
+        caption: "布鲁斯·韦恩罕见地以家族继承人身份在白天公开露面，出席已故市长唐·米切尔的市政大教堂追悼会，在人群中暗中观察各方政要与警方疑点。",
         source: "华纳官方剧照 · MovieWeb",
+      },
+      {
+        src: "/media/still-fire.jpg",
+        title: "烈焰缓步",
+        caption: "经典公路追击终局：蝙蝠侠从翻覆起火的爆炸火海中逆光缓步走出，走向企鹅人倒扣的座驾。",
+        source: "华纳官方剧照 · Rolling Stone",
       },
       {
         src: "/media/flood.jpg",
         title: "洪灾救援",
         caption: "大坝决堤后，布鲁斯在哥谭体育馆跳入水中救援受困民众，完成了向正义守护者的精神跨越。",
         source: "华纳官方剧照 · CinemaBlend",
+      },
+      {
+        src: "/media/still-mud.jpg",
+        title: "泥泞微光",
+        caption: "在体育馆深水中斩断高压电缆后，满身泥浆与水渍的蝙蝠侠仰望穹顶，完成了从复仇者向守护者的升华。",
+        source: "华纳官方剧照 · Total Film",
       },
       {
         src: "/media/signal.jpg",

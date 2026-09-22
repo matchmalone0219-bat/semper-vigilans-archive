@@ -242,8 +242,8 @@ function Cases() {
             <div className="grid gap-8 lg:grid-cols-12">
               <div className="lg:col-span-5">
                 <img
-                  src="/media/riddler.jpg"
-                  alt="阿卡姆疯人院病房"
+                  src="/media/places/arkham.jpg"
+                  alt="阿卡姆州立医院：神秘囚犯背影与隔着铁丝防暴玻璃的蝙蝠侠"
                   className="aspect-[16/9] w-full object-cover"
                 />
                 <p className="mt-3 text-xs text-faint leading-relaxed">

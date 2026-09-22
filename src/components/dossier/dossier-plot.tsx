@@ -68,14 +68,15 @@ export function DossierPlot() {
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex flex-wrap items-center gap-2">
-                    <Badge variant={item.tag}>
-                      {CERTAINTY_LABEL[item.tag]}
-                    </Badge>
                     {debunked ? (
                       <span className="classified-stamp text-[10px] py-0.5 px-2">
                         VOID / 已证伪
                       </span>
-                    ) : null}
+                    ) : (
+                      <Badge variant={item.tag}>
+                        {CERTAINTY_LABEL[item.tag]}
+                      </Badge>
+                    )}
                   </div>
                   <span className="font-mono text-[10px] tracking-wider text-faint select-none uppercase">
                     FILE // {item.id.replace(/-/g, "_").slice(0, 18)}

@@ -24,7 +24,7 @@ export function SiteSearchButton() {
     <Link
       to="/search"
       className="group relative z-[91] inline-flex size-10 shrink-0 pointer-events-auto items-center justify-center border border-transparent text-muted transition-all duration-150 hover:border-fg/25 hover:bg-surface/80 hover:text-fg md:h-9 md:w-auto md:gap-2.5 md:border-fg/15 md:bg-surface/40 md:px-3 md:py-1.5"
-      aria-label={t.search.title}
+      aria-label={locale === "zh" ? "搜索全站" : "Search Archive"}
     >
       <Search className="size-3.5 text-blood transition-transform duration-150 group-hover:scale-110" />
       <span className="hidden font-display text-[10px] font-semibold tracking-[0.2em] text-fg/80 uppercase md:inline">

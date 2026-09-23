@@ -589,8 +589,8 @@ export const PORTRAITS: Record<string, { src: string; note?: string }> = {
   victor: { src: "/media/portraits/victor.jpg", note: "伦齐·费利兹 饰 维克托·阿吉拉尔" },
   edward: { src: "/media/portraits/edward.jpg", note: "保罗·达诺 饰 谜语人" },
   joker: { src: "/media/portraits/joker-v2.jpg", note: "巴里·基奥甘 饰 阿卡姆神秘重犯" },
-  kenzie: { src: "/media/still-morgue.jpg", note: "彼得·麦克唐纳 饰 威廉·肯齐" },
-  twins: { src: "/media/lounge.jpg", note: "查理 & 麦克斯·卡维尔 饰 双胞胎门卫" },
+  kenzie: { src: "/media/portraits/kenzie.jpg", note: "彼得·麦克唐纳 饰 威廉·肯齐" },
+  twins: { src: "/media/portraits/twins.jpg", note: "查理 & 麦克斯·卡维尔 饰 双胞胎门卫" },
 };
 
 export function edgesOf(id: string) {

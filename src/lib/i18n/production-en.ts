@@ -82,7 +82,7 @@ export const PRODUCTION_PHASES_EN: Record<
     tag: "Reboot & Casting Duel",
     title: "DCEU Separation, the Elseworlds Pivot & Final Screen Tests",
     summary:
-      "In January 2019, Affleck officially retired from the cowl, and Warner Bros. scheduled a 2021 release date. Reeves decoupled the story into an autonomous 'Elseworlds' saga. After a months-long global search, Robert Pattinson and Nicholas Hoult competed in a high-stakes 35mm screen test wearing vintage Batsuits.",
+      "In January 2019, Affleck stepped away from the role and Warner Bros. dated a new version of the film. After months of casting, Robert Pattinson and Nicholas Hoult reached the final round and underwent screen tests for Reeves' reworked project.",
     bulletPoints: [
       "On January 30, 2019, Warner Bros. announced the revised release window; Affleck tweeted his blessing to the new filmmakers, marking the definitive conclusion of the DCEU Batman era.",
       "Reeves conceived his young Bruce Wayne while writing with Robert Pattinson in mind, inspired by his frantic, brooding, and dangerous turn in the Safdie brothers' 'Good Time' (2017).",
@@ -101,8 +101,8 @@ export const PRODUCTION_PHASES_EN: Record<
       {
         speaker: "Nicholas Hoult",
         role: "Finalist Screen Test Actor (now DCU Lex Luthor)",
-        text: "Of course it's an emotional blow. But you accept it. Matt's vision was crystal clear, and Rob did a magnificent job. I respect the entire creative journey.",
-        source: "Happy Sad Confused Podcast",
+        text: "I think Matt Reeves’ ideas were fantastic and he made a brilliant movie. Rob did an amazing job with the character.",
+        source: "Variety · GQ España interview",
         sourceUrl: "https://variety.com/2023/film/news/nicholas-hoult-lost-batman-top-gun-maverick-mission-impossible-7-1235586687/",
       },
     ],

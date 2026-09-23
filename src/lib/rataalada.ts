@@ -15,11 +15,19 @@ export type PrizeText = {
 
 export type Prize = PrizeStill | PrizeText;
 
+export type RiddleOption = {
+  key: "A" | "B" | "C" | "D";
+  labelEn: string;
+  labelZh: string;
+  value: string;
+};
+
 export type Riddle = {
   id: string;
   prompt: string[];
   answers: string[];
   ok: string;
+  options?: RiddleOption[];
 };
 
 export type Test = {
@@ -92,18 +100,36 @@ export const TESTS: Test[] = [
         prompt: ["I CAN BE EASY OR A DEAD END.", "BE CAREFUL WHEN YOU CROSS ME."],
         answers: ["street", "astreet", "streets", "thestreet", "街道", "路", "马路"],
         ok: "STREET.",
+        options: [
+          { key: "A", labelEn: "Crime Alley", labelZh: "犯罪小巷", value: "alley" },
+          { key: "B", labelEn: "Street", labelZh: "街道 / 马路", value: "street" },
+          { key: "C", labelEn: "Gotham Bridge", labelZh: "哥谭大桥", value: "bridge" },
+          { key: "D", labelEn: "The Shadows", labelZh: "城市阴影", value: "shadows" },
+        ],
       },
       {
         id: "law",
         prompt: ["THOSE WHO MAKE ME ARE LIKELY TO BREAK ME."],
         answers: ["law", "thelaw", "laws", "法律"],
         ok: "THE LAW.",
+        options: [
+          { key: "A", labelEn: "A Promise", labelZh: "政客诺言", value: "promise" },
+          { key: "B", labelEn: "Corruption", labelZh: "警队腐败", value: "corruption" },
+          { key: "C", labelEn: "The Law", labelZh: "法律", value: "the law" },
+          { key: "D", labelEn: "Order", labelZh: "哥谭秩序", value: "order" },
+        ],
       },
       {
         id: "batman",
         prompt: ["WHAT IS BLACK AND BLUE AND DEAD ALL OVER?"],
         answers: ["batman", "thebatman", "蝙蝠侠"],
         ok: "BATMAN.",
+        options: [
+          { key: "A", labelEn: "The Batman", labelZh: "蝙蝠侠", value: "batman" },
+          { key: "B", labelEn: "A Corpse", labelZh: "受害尸体", value: "corpse" },
+          { key: "C", labelEn: "The Night", labelZh: "暗夜", value: "night" },
+          { key: "D", labelEn: "Vigilante", labelZh: "私刑者", value: "vigilante" },
+        ],
       },
     ],
     prize: [
@@ -144,18 +170,36 @@ export const TESTS: Test[] = [
         ],
         answers: ["iceberg", "aniceberg", "theiceberg", "icebergs", "冰山"],
         ok: "ICEBERG.",
+        options: [
+          { key: "A", labelEn: "Sunken Ship", labelZh: "沉船游艇", value: "ship" },
+          { key: "B", labelEn: "Iceberg", labelZh: "冰山 / 冰山俱乐部", value: "iceberg" },
+          { key: "C", labelEn: "Dirty Money", labelZh: "地下黑钱", value: "money" },
+          { key: "D", labelEn: "Diamond", labelZh: "走私钻石", value: "diamond" },
+        ],
       },
       {
         id: "secret",
         prompt: ["THE MORE I'M REVEALED, THE LESS I EXIST."],
         answers: ["secret", "asecret", "secrets", "thesecret", "秘密"],
         ok: "SECRET.",
+        options: [
+          { key: "A", labelEn: "A Secret", labelZh: "秘密", value: "secret" },
+          { key: "B", labelEn: "A Lie", labelZh: "谎言", value: "lie" },
+          { key: "C", labelEn: "Silence", labelZh: "沉默", value: "silence" },
+          { key: "D", labelEn: "Darkness", labelZh: "暗夜", value: "darkness" },
+        ],
       },
       {
         id: "bribe",
         prompt: ["PAYBACK COMES TO ALL WHO ACCEPT ONE."],
         answers: ["bribe", "abribe", "bribes", "thebribe", "贿赂", "受贿", "贿"],
         ok: "BRIBE.",
+        options: [
+          { key: "A", labelEn: "Gang Contract", labelZh: "黑帮契约", value: "contract" },
+          { key: "B", labelEn: "A Bribe", labelZh: "贿赂 / 赃款", value: "bribe" },
+          { key: "C", labelEn: "Campaign Gift", labelZh: "竞选献金", value: "gift" },
+          { key: "D", labelEn: "Betrayal", labelZh: "背叛", value: "betrayal" },
+        ],
       },
     ],
     prize: ["FILES UNLOCKED.", "THE ICEBERG LOUNGE IS JUST THE BEGINNING."],
@@ -178,12 +222,24 @@ export const TESTS: Test[] = [
         ],
         answers: ["feelings", "feeling", "感情", "感觉"],
         ok: "FEELINGS.",
+        options: [
+          { key: "A", labelEn: "Tears", labelZh: "眼泪", value: "tears" },
+          { key: "B", labelEn: "Voices", labelZh: "声音", value: "voices" },
+          { key: "C", labelEn: "Feelings", labelZh: "感情 / 感觉", value: "feelings" },
+          { key: "D", labelEn: "Souls", labelZh: "灵魂", value: "souls" },
+        ],
       },
       {
         id: "power",
         prompt: ["WHEN THE GAME IS ON, WHAT CORRUPTS ABSOLUTELY?"],
         answers: ["power", "powers", "权力", "权"],
         ok: "POWER.",
+        options: [
+          { key: "A", labelEn: "Greed", labelZh: "贪婪", value: "greed" },
+          { key: "B", labelEn: "Power", labelZh: "权力", value: "power" },
+          { key: "C", labelEn: "Drops Drug", labelZh: "滴眼剂毒品", value: "drops" },
+          { key: "D", labelEn: "Gold", labelZh: "黄金", value: "gold" },
+        ],
       },
       {
         id: "shadows",
@@ -193,6 +249,12 @@ export const TESTS: Test[] = [
         ],
         answers: ["shadows", "shadow", "theshadows", "theshadow", "阴影", "暗处"],
         ok: "THE SHADOWS.",
+        options: [
+          { key: "A", labelEn: "Penthouse", labelZh: "顶层豪宅", value: "penthouse" },
+          { key: "B", labelEn: "Sewers", labelZh: "地下暗渠", value: "sewers" },
+          { key: "C", labelEn: "The Shadows", labelZh: "阴影之中", value: "the shadows" },
+          { key: "D", labelEn: "City Hall", labelZh: "市政大楼", value: "cityhall" },
+        ],
       },
     ],
     prize: ["FILES UNLOCKED.", "POWER CORRUPTS. THE SHADOWS KEEP THE RECEIPT."],
@@ -214,12 +276,24 @@ export const TESTS: Test[] = [
         ],
         answers: ["darkness", "thedarkness", "dark", "thedark", "黑暗"],
         ok: "DARKNESS.",
+        options: [
+          { key: "A", labelEn: "Darkness", labelZh: "黑暗", value: "darkness" },
+          { key: "B", labelEn: "Fear", labelZh: "恐惧", value: "fear" },
+          { key: "C", labelEn: "Gotham Empire", labelZh: "哥谭帝国", value: "empire" },
+          { key: "D", labelEn: "Midnight", labelZh: "午夜钟声", value: "midnight" },
+        ],
       },
       {
         id: "clue",
         prompt: ["GIVING YOU THIS WOULD BE GIVING YOU THE ANSWER."],
         answers: ["clue", "aclue", "clues", "theclue", "线索"],
         ok: "A CLUE.",
+        options: [
+          { key: "A", labelEn: "The Key", labelZh: "钥匙", value: "key" },
+          { key: "B", labelEn: "A Clue", labelZh: "线索", value: "clue" },
+          { key: "C", labelEn: "The Answer", labelZh: "破案答案", value: "answer" },
+          { key: "D", labelEn: "Evidence", labelZh: "现场物证", value: "evidence" },
+        ],
       },
       {
         id: "enigma",
@@ -230,6 +304,12 @@ export const TESTS: Test[] = [
         ],
         answers: ["enigma", "anenigma", "theenigma", "谜", "谜团"],
         ok: "ENIGMA.",
+        options: [
+          { key: "A", labelEn: "The Sphinx", labelZh: "斯芬克斯", value: "sphinx" },
+          { key: "B", labelEn: "The Oracle", labelZh: "先知神谕", value: "oracle" },
+          { key: "C", labelEn: "A Cipher", labelZh: "密码暗号", value: "cipher" },
+          { key: "D", labelEn: "Enigma", labelZh: "谜团 / 谜语人", value: "enigma" },
+        ],
       },
     ],
     prize: ["FILES UNLOCKED.", "HE NAMED HIMSELF AFTER THE WORD."],
@@ -251,12 +331,24 @@ export const TESTS: Test[] = [
         ],
         answers: ["puzzle", "apuzzle", "puzzles", "thepuzzle", "谜题", "拼图"],
         ok: "A PUZZLE.",
+        options: [
+          { key: "A", labelEn: "A Puzzle", labelZh: "谜题 / 拼图", value: "puzzle" },
+          { key: "B", labelEn: "A Maze", labelZh: "迷宫", value: "maze" },
+          { key: "C", labelEn: "A Mirror", labelZh: "双面镜像", value: "mirror" },
+          { key: "D", labelEn: "Labyrinth", labelZh: "地下暗道", value: "labyrinth" },
+        ],
       },
       {
         id: "bruce",
         prompt: ["A MAN WORTH BILLIONS, IN A MANOR OF SPEAKING."],
         answers: ["brucewayne", "bruce", "wayne", "布鲁斯", "韦恩", "布鲁斯韦恩"],
         ok: "BRUCE WAYNE.",
+        options: [
+          { key: "A", labelEn: "Carmine Falcone", labelZh: "卡尔迈恩·法尔科内", value: "falcone" },
+          { key: "B", labelEn: "Bruce Wayne", labelZh: "布鲁斯·韦恩", value: "bruce wayne" },
+          { key: "C", labelEn: "Thomas Wayne", labelZh: "托马斯·韦恩", value: "thomas wayne" },
+          { key: "D", labelEn: "Don Mitchell", labelZh: "市长唐·米切尔", value: "mitchell" },
+        ],
       },
       {
         id: "son",
@@ -266,6 +358,12 @@ export const TESTS: Test[] = [
         ],
         answers: ["son", "ason", "theson", "儿子"],
         ok: "A SON.",
+        options: [
+          { key: "A", labelEn: "An Orphan", labelZh: "孤儿", value: "orphan" },
+          { key: "B", labelEn: "An Heir", labelZh: "继承人", value: "heir" },
+          { key: "C", labelEn: "A Son", labelZh: "儿子", value: "son" },
+          { key: "D", labelEn: "A Brother", labelZh: "手足", value: "brother" },
+        ],
       },
     ],
     prize: ["FILES UNLOCKED.", "THE ORPHAN AND THE HEIR."],
@@ -286,12 +384,24 @@ export const TESTS: Test[] = [
         prompt: ["WHAT WAS NEW, IS NEW AGAIN.", "REBIRTH.", "RESTORATION.", "REFORMATION."],
         answers: ["renewal", "新生", "复兴"],
         ok: "RENEWAL.",
+        options: [
+          { key: "A", labelEn: "Vengeance", labelZh: "复仇誓约", value: "vengeance" },
+          { key: "B", labelEn: "Renewal", labelZh: "「新生」救赎基金", value: "renewal" },
+          { key: "C", labelEn: "Justice", labelZh: "哥谭正义", value: "justice" },
+          { key: "D", labelEn: "Revolution", labelZh: "街头革命", value: "revolution" },
+        ],
       },
       {
         id: "mask",
         prompt: ["FEAR HE WHO HIDES BEHIND ONE."],
         answers: ["mask", "amask", "masks", "themask", "面具"],
         ok: "A MASK.",
+        options: [
+          { key: "A", labelEn: "A Mask", labelZh: "面具", value: "mask" },
+          { key: "B", labelEn: "Tactical Armor", labelZh: "防弹战甲", value: "armor" },
+          { key: "C", labelEn: "False Identity", labelZh: "伪装身份", value: "identity" },
+          { key: "D", labelEn: "A Cloak", labelZh: "黑色披风", value: "cloak" },
+        ],
       },
       {
         id: "confusion",
@@ -302,6 +412,12 @@ export const TESTS: Test[] = [
         ],
         answers: ["confusion", "困惑", "混淆"],
         ok: "CONFUSION.",
+        options: [
+          { key: "A", labelEn: "Conspiracy", labelZh: "政商阴谋", value: "conspiracy" },
+          { key: "B", labelEn: "Illusion", labelZh: "虚假幻觉", value: "illusion" },
+          { key: "C", labelEn: "Confusion", labelZh: "困惑 / 混淆", value: "confusion" },
+          { key: "D", labelEn: "Gotham Chaos", labelZh: "全城暴动", value: "chaos" },
+        ],
       },
     ],
     prize: [
@@ -327,18 +443,36 @@ export const TESTS: Test[] = [
         ],
         answers: ["ha", "haha", "hahaha", "哈", "哈哈"],
         ok: "HA.",
+        options: [
+          { key: "A", labelEn: "Boom", labelZh: "炸堤爆鸣", value: "boom" },
+          { key: "B", labelEn: "Ha (Ha Ha)", labelZh: "哈（哈哈）", value: "haha" },
+          { key: "C", labelEn: "No", labelZh: "绝望哀求", value: "no" },
+          { key: "D", labelEn: "Help", labelZh: "求救呼喊", value: "help" },
+        ],
       },
       {
         id: "punchline",
         prompt: ["ONCE YOU'VE BEEN SET UP, IT HITS AT THE END.", "STRAIGHT UP."],
         answers: ["punchline", "thepunchline", "apunchline", "笑点", "包袱"],
         ok: "PUNCHLINE.",
+        options: [
+          { key: "A", labelEn: "A Bullet", labelZh: "致命子弹", value: "bullet" },
+          { key: "B", labelEn: "The Verdict", labelZh: "终审判决", value: "verdict" },
+          { key: "C", labelEn: "The Punchline", labelZh: "笑点 / 妙语包袱", value: "punchline" },
+          { key: "D", labelEn: "Execution", labelZh: "处刑机关", value: "execution" },
+        ],
       },
       {
         id: "joker",
         prompt: [["TO WIT: A WILDCARD IN THE TRUEST SENSE."][0]],
         answers: ["joker", "thejoker", "小丑"],
         ok: "JOKER.",
+        options: [
+          { key: "A", labelEn: "The Penguin", labelZh: "企鹅人", value: "penguin" },
+          { key: "B", labelEn: "Two-Face", labelZh: "双面人", value: "twoface" },
+          { key: "C", labelEn: "The Scarecrow", labelZh: "稻草人", value: "scarecrow" },
+          { key: "D", labelEn: "The Joker", labelZh: "小丑 / 狂笑王牌", value: "joker" },
+        ],
       },
     ],
     prize: [

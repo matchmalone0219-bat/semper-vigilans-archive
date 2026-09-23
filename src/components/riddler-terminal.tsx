@@ -25,6 +25,7 @@ import {
   type PrizeStill,
   type Progress,
   type Riddle,
+  type RiddleOption,
   type Test,
 } from "@/lib/rataalada";
 import { cn } from "@/lib/cn";
@@ -52,6 +53,7 @@ export function RiddlerTerminal({
   const [busy, setBusy] = useState(true);
   const [progress, setProgress] = useState<Progress>(EMPTY_PROGRESS);
   const [history, setHistory] = useState<string[]>([]);
+  const [showCli, setShowCli] = useState(false);
   const histPos = useRef(-1);
   const box = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
@@ -81,14 +83,16 @@ export function RiddlerTerminal({
 
   useEffect(() => {
     form.current?.scrollIntoView({ block: "end" });
-    box.current?.scrollTo({ top: box.current.scrollHeight });
-  }, [lines, busy]);
+    box.current?.scrollTo({ top: box.current.scrollHeight, behavior: "smooth" });
+  }, [lines, busy, progress.solved.length, progress.started, progress.lounge]);
 
   useEffect(() => {
-    if (!busy) {
+    const currentBeat = nextBeat(progress);
+    const hasChoices = currentBeat.kind === "riddle" || currentBeat.kind === "invite" || currentBeat.kind === "lounge";
+    if (!busy && (showCli || !hasChoices)) {
       input.current?.focus();
     }
-  }, [busy]);
+  }, [busy, showCli, progress]);
 
   useEffect(() => {
     const onGlobalKeyDown = (event: KeyboardEvent) => {
@@ -101,13 +105,51 @@ export function RiddlerTerminal({
       ) {
         return;
       }
-      if (event.key.length === 1 || event.key === "Backspace" || event.key === "Enter") {
-        input.current?.focus();
+
+      const key = event.key.toUpperCase();
+      const current = progressRef.current;
+      const currentBeat = nextBeat(current);
+
+      if (currentBeat.kind === "riddle" && currentBeat.riddle.options) {
+        let selectedOpt: RiddleOption | undefined = undefined;
+        if (key === "A" || key === "1") selectedOpt = currentBeat.riddle.options[0];
+        else if (key === "B" || key === "2") selectedOpt = currentBeat.riddle.options[1];
+        else if (key === "C" || key === "3") selectedOpt = currentBeat.riddle.options[2];
+        else if (key === "D" || key === "4") selectedOpt = currentBeat.riddle.options[3];
+
+        if (selectedOpt) {
+          event.preventDefault();
+          const label = isEn
+            ? `[${selectedOpt.key}] ${selectedOpt.labelEn}`
+            : `[${selectedOpt.key}] ${selectedOpt.labelZh} (${selectedOpt.labelEn})`;
+          void onSubmit(selectedOpt.value, label);
+          return;
+        }
+      } else if (currentBeat.kind === "invite" || currentBeat.kind === "lounge") {
+        if (key === "Y" || key === "A" || key === "1") {
+          event.preventDefault();
+          const label = isEn ? "[Y] YES" : "[Y] 准备好了 / 是 (YES)";
+          void onSubmit("Y", label);
+          return;
+        }
+        if (key === "N" || key === "B" || key === "2") {
+          event.preventDefault();
+          const label = isEn ? "[N] NO" : "[N] 暂不开启 / 否 (NO)";
+          void onSubmit("N", label);
+          return;
+        }
+      }
+
+      const hasChoices = currentBeat.kind === "riddle" || currentBeat.kind === "invite" || currentBeat.kind === "lounge";
+      if (showCli || !hasChoices) {
+        if (event.key.length === 1 || event.key === "Backspace" || event.key === "Enter") {
+          input.current?.focus();
+        }
       }
     };
     window.addEventListener("keydown", onGlobalKeyDown);
     return () => window.removeEventListener("keydown", onGlobalKeyDown);
-  }, []);
+  }, [isEn, showCli]);
 
   function push(next: Line[]) {
     setLines((prev) => [...prev, ...next]);
@@ -223,7 +265,7 @@ export function RiddlerTerminal({
     commit({ ...current, seizure: true });
   }
 
-  async function onSubmit(raw: string) {
+  async function onSubmit(raw: string, displayText?: string) {
     const command = raw.trim();
     if (!command) return;
     if (busy) {
@@ -233,9 +275,12 @@ export function RiddlerTerminal({
     setValue("");
     histPos.current = -1;
     setHistory((prev) => [command, ...prev].slice(0, 40));
-    push([{ id: ++lineId, text: `> ${command.toUpperCase()}`, tone: "in" }]);
+    const echo = displayText ? displayText.toUpperCase() : command.toUpperCase();
+    push([{ id: ++lineId, text: `> ${echo}`, tone: "in" }]);
     await handle(command);
-    input.current?.focus();
+    if (showCli) {
+      input.current?.focus();
+    }
   }
 
   async function handle(raw: string) {
@@ -440,36 +485,34 @@ export function RiddlerTerminal({
 
   const seized = progress.seizure;
   const beat = nextBeat(progress);
+  const hasChoices = beat.kind === "riddle" || beat.kind === "invite" || beat.kind === "lounge";
 
   const quickActions = useMemo(() => {
     const list: { cmd: string; label: string }[] = [];
     if (beat.kind === "invite") {
       list.push(
-        { cmd: "Y", label: isEn ? "▶ Y (Start Game)" : "▶ Y (开启互动)" },
-        { cmd: "N", label: isEn ? "✕ N (Exit)" : "✕ N (暂不开启)" },
-        { cmd: "HELP", label: isEn ? "? HELP" : "? HELP (指令帮助)" },
-        { cmd: "SPOILER", label: isEn ? "⚡ SPOILER (Unlock All)" : "⚡ SPOILER (一键全解)" },
+        { cmd: "HELP", label: isEn ? "? HELP" : "? 指令帮助" },
+        { cmd: "SPOILER", label: isEn ? "⚡ SPOILER (Unlock All)" : "⚡ 一键全解" },
       );
     } else if (beat.kind === "riddle") {
       list.push(
-        { cmd: "HINT", label: isEn ? "💡 HINT (Get Clue)" : "💡 HINT (获取线索)" },
-        { cmd: "RIDDLE", label: isEn ? "📜 RIDDLE (Re-read)" : "📜 RIDDLE (重显谜题)" },
-        { cmd: "LS", label: isEn ? "📁 LS (View Files)" : "📁 LS (已解锁文件)" },
-        { cmd: "SPOILER", label: isEn ? "⚡ SPOILER (Skip/All)" : "⚡ SPOILER (跳过本题)" },
+        { cmd: "HINT", label: isEn ? "💡 HINT (Get Clue)" : "💡 获取线索" },
+        { cmd: "RIDDLE", label: isEn ? "📜 RIDDLE (Re-read)" : "📜 重现谜面" },
+        { cmd: "LS", label: isEn ? "📁 LS (Files)" : "📁 查看文件" },
+        { cmd: "SPOILER", label: isEn ? "⚡ SPOILER (Skip)" : "⚡ 跳过本题" },
       );
     } else if (beat.kind === "lounge") {
       list.push(
-        { cmd: "Y", label: isEn ? "🍸 Y (Been to Lounge)" : "🍸 Y (去过俱乐部)" },
-        { cmd: "N", label: isEn ? "✕ N (Never been)" : "✕ N (没去过)" },
+        { cmd: "CLEAR", label: isEn ? "CLEAR" : "清屏" },
       );
     } else {
       list.push(
-        { cmd: "LS", label: isEn ? "📁 LS (Files)" : "📁 LS (查看文件)" },
-        { cmd: "ABOUT", label: isEn ? "ℹ ABOUT" : "ℹ ABOUT (关于终端)" },
-        { cmd: "RESET", label: isEn ? "🔄 RESET" : "🔄 RESET (重置挑战)" },
+        { cmd: "LS", label: isEn ? "📁 LS (Files)" : "📁 查看文件" },
+        { cmd: "ABOUT", label: isEn ? "ℹ ABOUT" : "ℹ 关于终端" },
+        { cmd: "RESET", label: isEn ? "🔄 RESET" : "🔄 重置挑战" },
       );
     }
-    list.push({ cmd: "CLEAR", label: isEn ? "CLEAR" : "CLEAR (清屏)" });
+    list.push({ cmd: "CLEAR", label: isEn ? "CLEAR" : "清屏" });
     return list;
   }, [beat.kind, isEn]);
 
@@ -479,7 +522,11 @@ export function RiddlerTerminal({
         "crt-shell relative flex min-h-[32rem] flex-1 flex-col sm:min-h-[40rem]",
         seized && "crt-seized",
       )}
-      onClick={() => input.current?.focus()}
+      onClick={() => {
+        if (showCli || !hasChoices) {
+          input.current?.focus();
+        }
+      }}
     >
       <div className="crt-watermark" aria-hidden="true">
         ?
@@ -503,76 +550,259 @@ export function RiddlerTerminal({
             {line.text.length ? line.text : " "}
           </p>
         ))}
-        <form
-          ref={form}
-          className="mt-3 flex min-h-11 items-center gap-2 border-b border-phosphor/20 pb-2 font-mono text-sm sm:text-base"
-          onSubmit={(event) => {
-            event.preventDefault();
-            void onSubmit(value);
-          }}
-        >
-          <span className="shrink-0 font-mono font-bold text-phosphor/80 select-none">{">"}</span>
-          <div className="relative flex-1 flex items-center">
-            <input
-              ref={input}
-              value={value}
-              autoFocus
-              autoComplete="off"
-              autoCapitalize="off"
-              spellCheck={false}
-              aria-label={isEn ? "Terminal command" : "终端指令"}
-              placeholder={
-                busy
-                  ? isEn
-                    ? "SIGNAL TRANSMITTING... (TYPE OR CLICK CHIPS)"
-                    : "信号传输中...（可直接键盘输入或点击下方按键）"
-                  : isEn
-                  ? "TYPE Y TO START, OR CHOOSE BELOW..."
-                  : "输入 Y 开启互动，或点击下方快捷指令..."
-              }
-              className="w-full bg-transparent font-mono text-sm uppercase text-phosphor outline-none placeholder:text-phosphor/35 placeholder:normal-case sm:text-base"
-              style={{ caretColor: "var(--color-phosphor, #33ff33)" }}
-              onChange={(event) => setValue(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "ArrowUp") {
-                  event.preventDefault();
-                  const next = history[histPos.current + 1];
-                  if (next !== undefined) {
-                    histPos.current += 1;
-                    setValue(next);
-                  }
-                }
-                if (event.key === "ArrowDown") {
-                  event.preventDefault();
-                  if (histPos.current <= 0) {
-                    histPos.current = -1;
-                    setValue("");
-                  } else {
-                    histPos.current -= 1;
-                    setValue(history[histPos.current] ?? "");
-                  }
-                }
-              }}
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={!value.trim()}
-            className={cn(
-              "shrink-0 border border-phosphor/40 px-2.5 py-1 font-mono text-xs tracking-wider uppercase transition-all",
-              value.trim()
-                ? "cursor-pointer bg-phosphor/15 opacity-100 hover:bg-phosphor/30 active:bg-phosphor/40"
-                : "pointer-events-none opacity-0",
-            )}
-          >
-            {isEn ? "SEND ↵" : "发送 ↵"}
-          </button>
-        </form>
 
-        {/* 快捷指令交互芯片栏 */}
+        {/* 谜题 4 选 1 选择题卡片区域 */}
+        {beat.kind === "riddle" && beat.riddle.options && (
+          <div className="mt-4 border-t border-phosphor/25 pt-3 select-none">
+            <div className="mb-2.5 flex items-center justify-between font-mono text-xs text-phosphor/75">
+              <span className="flex items-center gap-1.5 font-bold tracking-wider uppercase">
+                <span className="inline-block h-2 w-2 animate-pulse bg-phosphor" />
+                {isEn ? "SELECT AN ANSWER [OR PRESS A / B / C / D]:" : "选择你的答案 [点击或按键盘 A / B / C / D]："}
+              </span>
+              <span className="text-[11px] text-phosphor/50">
+                {isEn ? "CLICK TO SUBMIT" : "单选即时作答"}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              {beat.riddle.options.map((opt) => {
+                const displayLabel = isEn
+                  ? `[${opt.key}] ${opt.labelEn}`
+                  : `[${opt.key}] ${opt.labelZh} (${opt.labelEn})`;
+                return (
+                  <button
+                    key={opt.key}
+                    type="button"
+                    disabled={busy}
+                    onClick={() => void onSubmit(opt.value, displayLabel)}
+                    className={cn(
+                      "group relative flex min-h-[3.25rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
+                      "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
+                      "active:scale-[0.99] active:bg-phosphor/35",
+                      busy && "cursor-not-allowed opacity-60",
+                    )}
+                  >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-phosphor/60 bg-phosphor/20 text-xs font-bold text-phosphor shadow-[0_0_6px_rgba(51,255,51,0.2)] transition-colors group-hover:border-phosphor group-hover:bg-phosphor group-hover:text-black">
+                      {opt.key}
+                    </span>
+                    <div className="flex min-w-0 flex-col">
+                      <span className="truncate text-sm font-bold tracking-wide text-phosphor">
+                        {isEn ? opt.labelEn : opt.labelZh}
+                      </span>
+                      <span className="truncate text-xs tracking-wider text-phosphor/55">
+                        {isEn ? opt.labelZh : opt.labelEn}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* 开启挑战 Y / N 选择题卡片区域 */}
+        {beat.kind === "invite" && (
+          <div className="mt-4 border-t border-phosphor/25 pt-3 select-none">
+            <div className="mb-2.5 flex items-center justify-between font-mono text-xs text-phosphor/75">
+              <span className="flex items-center gap-1.5 font-bold tracking-wider uppercase">
+                <span className="inline-block h-2 w-2 animate-pulse bg-phosphor" />
+                {isEn ? "START CHALLENGE [SELECT OR PRESS Y / N]:" : "启动谜题挑战 [点击或按键盘 Y / N]："}
+              </span>
+              <span className="text-[11px] text-phosphor/50">
+                {isEn ? "INTERACTIVE TERMINAL" : "即时交互终端"}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void onSubmit("Y", isEn ? "[Y] YES — READY TO PLAY" : "[Y] 准备好了 — 开启互动 (YES)")}
+                className={cn(
+                  "group relative flex min-h-[3.25rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
+                  "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
+                  "active:scale-[0.99] active:bg-phosphor/35",
+                  busy && "cursor-not-allowed opacity-60",
+                )}
+              >
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-phosphor/60 bg-phosphor/20 text-xs font-bold text-phosphor shadow-[0_0_6px_rgba(51,255,51,0.2)] transition-colors group-hover:border-phosphor group-hover:bg-phosphor group-hover:text-black">
+                  Y
+                </span>
+                <div className="flex min-w-0 flex-col">
+                  <span className="truncate text-sm font-bold tracking-wide text-phosphor">
+                    {isEn ? "YES — READY TO PLAY" : "准备好了 — 开启互动"}
+                  </span>
+                  <span className="truncate text-xs tracking-wider text-phosphor/55">
+                    {isEn ? "Start Riddler trial" : "进入测试第一阶段"}
+                  </span>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void onSubmit("N", isEn ? "[N] NO — NOT YET" : "[N] 暂不开启 — 稍后再来 (NO)")}
+                className={cn(
+                  "group relative flex min-h-[3.25rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
+                  "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
+                  "active:scale-[0.99] active:bg-phosphor/35",
+                  busy && "cursor-not-allowed opacity-60",
+                )}
+              >
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-phosphor/60 bg-phosphor/20 text-xs font-bold text-phosphor shadow-[0_0_6px_rgba(51,255,51,0.2)] transition-colors group-hover:border-phosphor group-hover:bg-phosphor group-hover:text-black">
+                  N
+                </span>
+                <div className="flex min-w-0 flex-col">
+                  <span className="truncate text-sm font-bold tracking-wide text-phosphor">
+                    {isEn ? "NO — NOT YET" : "暂不开启 — 稍后再来"}
+                  </span>
+                  <span className="truncate text-xs tracking-wider text-phosphor/55">
+                    {isEn ? "Decline prompt" : "暂不进入谜题测试"}
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* 冰山俱乐部 Y / N 现场问答卡片区域 */}
+        {beat.kind === "lounge" && (
+          <div className="mt-4 border-t border-phosphor/25 pt-3 select-none">
+            <div className="mb-2.5 flex items-center justify-between font-mono text-xs text-phosphor/75">
+              <span className="flex items-center gap-1.5 font-bold tracking-wider uppercase">
+                <span className="inline-block h-2 w-2 animate-pulse bg-phosphor" />
+                {isEn ? "ICEBERG INQUIRY [SELECT OR PRESS Y / N]:" : "冰山俱乐部问询 [点击或按键盘 Y / N]："}
+              </span>
+              <span className="text-[11px] text-phosphor/50">
+                {isEn ? "SPECIAL EVIDENCE" : "特殊现场证物"}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void onSubmit("Y", isEn ? "[Y] YES — I HAVE BEEN THERE" : "[Y] 去过 — 曾踏足俱乐部 (YES)")}
+                className={cn(
+                  "group relative flex min-h-[3.25rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
+                  "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
+                  "active:scale-[0.99] active:bg-phosphor/35",
+                  busy && "cursor-not-allowed opacity-60",
+                )}
+              >
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-phosphor/60 bg-phosphor/20 text-xs font-bold text-phosphor shadow-[0_0_6px_rgba(51,255,51,0.2)] transition-colors group-hover:border-phosphor group-hover:bg-phosphor group-hover:text-black">
+                  Y
+                </span>
+                <div className="flex min-w-0 flex-col">
+                  <span className="truncate text-sm font-bold tracking-wide text-phosphor">
+                    {isEn ? "YES — I HAVE BEEN THERE" : "去过 — 曾踏足俱乐部"}
+                  </span>
+                  <span className="truncate text-xs tracking-wider text-phosphor/55">
+                    {isEn ? "Unlock lounge.img" : "解锁机密现场图片"}
+                  </span>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void onSubmit("N", isEn ? "[N] NO — NEVER" : "[N] 没去过 — 从未涉足 (NO)")}
+                className={cn(
+                  "group relative flex min-h-[3.25rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
+                  "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
+                  "active:scale-[0.99] active:bg-phosphor/35",
+                  busy && "cursor-not-allowed opacity-60",
+                )}
+              >
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-phosphor/60 bg-phosphor/20 text-xs font-bold text-phosphor shadow-[0_0_6px_rgba(51,255,51,0.2)] transition-colors group-hover:border-phosphor group-hover:bg-phosphor group-hover:text-black">
+                  N
+                </span>
+                <div className="flex min-w-0 flex-col">
+                  <span className="truncate text-sm font-bold tracking-wide text-phosphor">
+                    {isEn ? "NO — NEVER" : "没去过 — 从未涉足"}
+                  </span>
+                  <span className="truncate text-xs tracking-wider text-phosphor/55">
+                    {isEn ? "Proceed with caution" : "接受警示并继续"}
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* 仅在非问答状态或用户手动开启时呈现命令行输入 */}
+        {(showCli || !hasChoices) && (
+          <form
+            ref={form}
+            className="mt-3 flex min-h-11 items-center gap-2 border-b border-phosphor/20 pb-2 font-mono text-sm sm:text-base"
+            onSubmit={(event) => {
+              event.preventDefault();
+              void onSubmit(value);
+            }}
+          >
+            <span className="shrink-0 font-mono font-bold text-phosphor/80 select-none">{">"}</span>
+            <div className="relative flex-1 flex items-center">
+              <input
+                ref={input}
+                value={value}
+                autoFocus
+                autoComplete="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                aria-label={isEn ? "Terminal command" : "终端指令"}
+                placeholder={
+                  busy
+                    ? isEn
+                      ? "SIGNAL TRANSMITTING..."
+                      : "信号传输中..."
+                    : isEn
+                    ? "ENTER COMMAND (E.G. HELP, LS, CAT, SPOILER)..."
+                    : "输入终端指令 (如 HELP, LS, CAT, SPOILER)..."
+                }
+                className="w-full bg-transparent font-mono text-sm uppercase text-phosphor outline-none placeholder:text-phosphor/35 placeholder:normal-case sm:text-base"
+                style={{ caretColor: "var(--color-phosphor, #33ff33)" }}
+                onChange={(event) => setValue(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "ArrowUp") {
+                    event.preventDefault();
+                    const next = history[histPos.current + 1];
+                    if (next !== undefined) {
+                      histPos.current += 1;
+                      setValue(next);
+                    }
+                  }
+                  if (event.key === "ArrowDown") {
+                    event.preventDefault();
+                    if (histPos.current <= 0) {
+                      histPos.current = -1;
+                      setValue("");
+                    } else {
+                      histPos.current -= 1;
+                      setValue(history[histPos.current] ?? "");
+                    }
+                  }
+                }}
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={!value.trim()}
+              className={cn(
+                "shrink-0 border border-phosphor/40 px-2.5 py-1 font-mono text-xs tracking-wider uppercase transition-all",
+                value.trim()
+                  ? "cursor-pointer bg-phosphor/15 opacity-100 hover:bg-phosphor/30 active:bg-phosphor/40"
+                  : "pointer-events-none opacity-0",
+              )}
+            >
+              {isEn ? "SEND ↵" : "发送 ↵"}
+            </button>
+          </form>
+        )}
+
+        {/* 快捷操作栏 */}
         <div className="mt-3 flex flex-wrap items-center gap-2 pt-1 select-none">
           <span className="mr-1 font-mono text-[11px] uppercase tracking-wider text-phosphor/50">
-            {isEn ? "QUICK ACTIONS:" : "快捷指令:"}
+            {isEn ? "ACTIONS:" : "快捷操作:"}
           </span>
           {quickActions.map((action) => (
             <button
@@ -584,6 +814,22 @@ export function RiddlerTerminal({
               {action.label}
             </button>
           ))}
+          {hasChoices && (
+            <button
+              type="button"
+              onClick={() => {
+                setShowCli((v) => !v);
+                if (!showCli) {
+                  setTimeout(() => input.current?.focus(), 50);
+                }
+              }}
+              className="cursor-pointer border border-phosphor/25 bg-phosphor/5 px-2.5 py-1 font-mono text-xs tracking-wider text-phosphor/60 uppercase transition-colors hover:border-phosphor/50 hover:bg-phosphor/15 hover:text-phosphor"
+            >
+              {showCli
+                ? (isEn ? "[-] HIDE CLI" : "[-] 收起命令行")
+                : (isEn ? "[>] CLI MODE" : "[>] 命令行模式")}
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -233,6 +233,8 @@ export const LOG_EN: Record<
     body: string;
     locationLabel?: string;
     source?: string;
+    /** Optional short English label for a log's video thumbnail. */
+    videoTitle?: string;
   }
 > = {
   "log-2013-08-22": {
@@ -352,6 +354,7 @@ export const LOG_EN: Record<
   },
   "log-2026-07-15": {
     title: "Release Date Slated for Feb 18, 2028 with Test Footage",
+    videoTitle: "The Batman: Part II - First Teaser Footage · Feb 18, 2028",
     body: "Warner Bros. set the worldwide theatrical release date for February 18, 2028, in IMAX and Dolby formats. Reeves unveiled camera test footage of Pattinson suited up in the updated cowl.",
     source: "Variety",
   },
@@ -422,31 +425,38 @@ export const LOG_EN: Record<
   },
   "log-2026-09-04": {
     title: "Night Stunts: Updated Cowl & GCPD Tactical Motorcycle",
+    videoTitle: "Set Leak: Modified Batsuit Riding GCPD Motorcycle",
     body: "Stunt rider Rick English operated a custom GCPD police motorcycle through snow-dusted streets, displaying the modified cowl, stage blood on the suit, and a yellow utility belt.",
     source: "Set Leak / ciaron97 / Jasraj Sidhu",
   },
   "log-2026-09-11": {
     title: "Sebastian Stan Praises Sequel: 'Godfather Part II' Ambition",
+    videoTitle: "Stan on Joining The Batman Part II with Johnson",
     body: "At TIFF, Sebastian Stan lauded Matt Reeves' uncompromising vision, comparing the sequel's scope to The Godfather Part II and confirming filming would span a lengthy winter schedule.",
     source: "Variety TIFF Interview",
   },
   "log-2026-09-13": {
     title: "London Courthouse Protest: Bruce Escorted Outside St Paul's",
+    videoTitle: "Set Leak: Bruce Wayne Escorted Through Protesters",
+    locationLabel: "London · St. Paul's Cathedral Exterior",
     body: "Robert Pattinson as Bruce Wayne was escorted by GCPD through angry demonstrators outside St Paul's Cathedral. Crowd signs read 'Court of Fowls' and 'Anarky'. Jeffrey Wright was also on set.",
     source: "IGN London Set Report",
   },
   "log-2026-09-16": {
     title: "Glasgow Day Shoot Archive: GCPD SWAT Prisoner Transport",
+    locationLabel: "Glasgow, Scotland · Bothwell Street SWAT Transport",
     body: "High-angle window footage from Bothwell Street documented GCPD officers loading an unidentified detainee into a police SWAT van on snow-covered roads.",
     source: "Set Leak / The Batman Saga News",
   },
   "log-2026-09-19": {
     title: "Batman Day: Director Shares Sequel Frame from London",
+    locationLabel: "London · Official Production Still",
     body: "On Batman Day 2026, Matt Reeves shared an official framed widescreen still from London showing Batman against snowfall and an orange moon, confirming the tactile film-out process.",
     source: "Matt Reeves Social Dispatch",
   },
   "log-2026-09-20": {
     title: "London Night Shoot: GCPD Patrol Bike GC-201 & Camera Chase Rig",
+    locationLabel: "London · Night Action Vehicle Unit",
     body: "Production resumed on a secure London street for night filming, with photographer UnBoxPHD capturing the GCPD patrol motorcycle alongside a heavy gyro-stabilized camera pursuit vehicle.",
     source: "Set Leak / UnBoxPHD",
   },
@@ -531,6 +541,14 @@ export function getLocalizedLog(event: LogEntry, locale: Locale): LogEntry {
     locationLabel: en.locationLabel ?? event.locationLabel,
     source: en.source ?? event.source,
   };
+}
+
+/** Home video cards use the same translations as the dossier; only short video labels are optional. */
+export function getLocalizedLogVideoTitle(event: LogEntry, locale: Locale): string {
+  const originalTitle = event.video?.title ?? event.title;
+  if (locale === "zh") return originalTitle;
+  const en = LOG_EN[event.id];
+  return en?.videoTitle ?? en?.title ?? originalTitle;
 }
 
 const MONTH_NAMES = [

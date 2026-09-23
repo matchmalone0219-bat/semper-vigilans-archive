@@ -64,6 +64,27 @@ export const FACTS: {
     sourceUrl: "https://www.dc.com/blog/2023/01/31/james-gunn-and-peter-safran-on-building-a-new-dc-universe",
     sourceTier: "official",
   },
+  {
+    label: "前作全球票房",
+    value: "$770,836,163（约 7.71 亿美元）。北美本土票房 $369,345,583（47.9%），海外国际票房 $401,490,580（52.1%）；制作预算约 $1.85 亿–$2.0 亿美元；院线上映 45 天后登陆 HBO Max，创下首周 410 万户观看的平台纪录。",
+    source: "Box Office Mojo / Warner Bros.",
+    sourceUrl: "https://www.boxofficemojo.com/title/tt1877830/",
+    sourceTier: "official",
+  },
+  {
+    label: "电影工业与学院奖项",
+    value: "荣获第 95 届奥斯卡金像奖 3 项大奖提名（最佳化妆与发型设计、最佳视觉效果、最佳音效）；第 76 届英国电影学院奖（BAFTA）4 项提名（最佳摄影、最佳艺术指导、最佳化妆发型、最佳特技视效）；第 50 届土星奖最佳服装设计奖；美国电影摄影师协会（ASC）最佳长片摄影提名。",
+    source: "Academy of Motion Picture Arts and Sciences / BAFTA",
+    sourceUrl: "https://www.oscars.org/oscars/ceremonies/2023",
+    sourceTier: "official",
+  },
+  {
+    label: "实体蓝光与重磅特辑",
+    value: "已发行 4K Ultra HD、蓝光与数字典藏版。核心特别收录包括长达 53 分钟的官方制作长片纪录片《Vengeance In The Making》、导演马特·里夫斯全片逐帧解说音轨、两段未公映删减片段（Scene 52 阿卡姆小丑对谈、Scene 56 猫女冰山俱乐部对峙），以及科林·法瑞尔 4 小时翻模特效化妆特辑《A Transformation: The Penguin》、雨夜追车解构《Anatomy of the Car Chase》等。",
+    source: "Warner Bros. Home Entertainment",
+    sourceUrl: "https://www.warnerbros.com/movies/the-batman",
+    sourceTier: "official",
+  },
 ];
 
 export type Certainty = "confirmed" | "hint" | "rumor" | "debunked";

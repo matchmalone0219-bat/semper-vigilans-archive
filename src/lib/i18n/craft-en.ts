@@ -125,6 +125,10 @@ export const LENS_EN = {
       heading: "Dramatic Geometric Silhouette Framing",
       body: "Fraser deployed single-point perspective and striking silhouettes, fusing Batman's cowl with Gotham's Gothic towers. During the iconic car chase, anamorphic blue horizontal lens flares pierced through pouring rain for kinetic visual shock.",
     },
+    {
+      heading: "StageCraft LED Virtual Production Breakthrough",
+      body: "Following COVID-19 filming interruptions in 2020, Fraser and Reeves pioneered the adoption of Industrial Light & Magic's StageCraft LED Volume at Warner Bros. Studios Leavesden. High-peril sequences—including the unfinished skyscraper balcony, the rainy City Hall rooftop, and GCPD dusk panoramas—were staged within the real-time Unreal Engine LED volume, bathing the actors and Batsuit in photorealistic practical reflections while eliminating green screen spill and pandemic crowd liabilities.",
+    },
   ],
   messerschmidt: [
     {

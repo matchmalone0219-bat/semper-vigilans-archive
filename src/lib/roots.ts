@@ -568,6 +568,80 @@ export const CINEMA_ROOTS: CinemaWork[] = [
   },
 ];
 
+export type LoreEasterEgg = {
+  id: string;
+  name: string;
+  nameEn: string;
+  category: "corp" | "character" | "geography";
+  categoryZh: string;
+  categoryEn: string;
+  discovery: string;
+  discoveryEn: string;
+  comicSignificance: string;
+  comicSignificanceEn: string;
+  loreImpact: string;
+  loreImpactEn: string;
+};
+
+export const LORE_EASTER_EGGS: LoreEasterEgg[] = [
+  {
+    id: "gothcorp",
+    name: "急冻人企业暗线（GothCorp）",
+    nameEn: "GothCorp Industrial Clue",
+    category: "corp",
+    categoryZh: "城市工业暗线",
+    categoryEn: "Corporate Lore",
+    discovery: "影片中哥谭街道与废弃仓库外墙的背景广告牌上，多次显现跨国科技财阀「GothCorp」的专属公司标识。",
+    discoveryEn: "Prominently featured across background billboards and industrial wall postings throughout urban Gotham.",
+    comicSignificance: "在经典漫画与《蝙蝠侠动画系列》（BTAS）设定中，GothCorp 是低温冷冻生物学巨头，也是维克多·弗里斯博士（Victor Fries）遭遇事故黑化为经典反派「急冻人（Mr. Freeze）」的发源地。",
+    comicSignificanceEn: "In DC lore and BTAS canon, GothCorp is the cryogenic conglomerate where Dr. Victor Fries suffered the lab disaster transforming him into Mr. Freeze.",
+    loreImpact: "导演马特·里夫斯曾多次在访谈中提到，希望在写实基调下探索急冻人的可行性，GothCorp 的实体存在为未来的冷酷反派登场埋下了极具说服力的环境伏笔。",
+    loreImpactEn: "Reeves has repeatedly expressed interest in grounding Mr. Freeze within this realistic world, making GothCorp's corporate footprint a compelling narrative seed.",
+  },
+  {
+    id: "ace-chemicals",
+    name: "艾斯化工厂（Ace Chemicals）",
+    nameEn: "Ace Chemicals Industrial Landmark",
+    category: "corp",
+    categoryZh: "标志性工业地标",
+    categoryEn: "Industrial Landmark",
+    discovery: "出现在哥谭港口工业区背景海报与货运装箱单上的化工厂名录中。",
+    discoveryEn: "Appears on shipping crates, port manifest posters, and background industrial harbor signage.",
+    comicSignificance: "DC 漫画历史上最著名的犯罪地标之一，在《致命玩笑》（The Killing Joke）中作为红头罩（Red Hood）跌入化学废料池蜕变为「小丑（Joker）」的标志性原点。",
+    comicSignificanceEn: "One of the most fateful locations in DC lore: the chemical processing plant where the Red Hood tumbled into a vat of toxic waste, birthing the Joker.",
+    loreImpact: "确立了哥谭高污染、缺乏监管的重化工业带历史，与阿卡姆牢房里关押的神秘小丑遥相呼应。",
+    loreImpactEn: "Validates Gotham's corrosive and unregulated industrial underbelly, serving as a dark geographic twin to the Joker imprisoned within Arkham.",
+  },
+  {
+    id: "edward-elliot",
+    name: "爱德华·埃利奥特与缄默暗线（Edward Elliot / Hush）",
+    nameEn: "Edward Elliot & The Hush Clue",
+    category: "character",
+    categoryZh: "家族渊源与宿怨",
+    categoryEn: "Family Lineage",
+    discovery: "谜语人揭发韦恩家族丑闻的视频中，被法尔科内谋杀的独立记者名为爱德华·埃利奥特（Edward Elliot），视频画面更在托马斯·韦恩脸上闪现巨大的红色英文单词「HUSH」（封口/缄默）。",
+    discoveryEn: "Riddler's expose video names the slain journalist as Edward Elliot, with the word 'HUSH' flashing violently in blood-red text over Thomas Wayne's face.",
+    comicSignificance: "在漫画中，埃利奥特家族是与韦恩、凯恩、阿卡姆齐名的哥谭建城四大望族之一。爱德华·埃利奥特正是经典反派「缄默」（Hush / 托马斯·埃利奥特）的曾祖父。",
+    comicSignificanceEn: "In DC lore, the Elliots are one of Gotham's founding elite dynasties. Edward Elliot is the direct great-grandfather of Thomas Elliot, aka the villain Hush.",
+    loreImpact: "电影不仅揭开了法尔科内介入韦恩家族的黑历史，更通过'HUSH'血字彩蛋为未来可能的家族复仇线索预埋了戏剧张力。",
+    loreImpactEn: "Directly bridges Falcone's illicit protection of Thomas Wayne with the generational blood feud that defines the classic Hush storyline.",
+  },
+  {
+    id: "sister-cities",
+    name: "姊妹城市互文：布鲁德海文与大都会（Blüdhaven & Metropolis）",
+    nameEn: "Sister Cities: Blüdhaven & Metropolis",
+    category: "geography",
+    categoryZh: "DC 地理宇宙坐标",
+    categoryEn: "Geographic Expansion",
+    discovery: "片中报纸提及邻近都会「大都会（Metropolis）」；片尾瑟琳娜在公墓骑机车与蝙蝠侠分道扬镳时，明确提出自己准备搬往「布鲁德海文（Blüdhaven）」。",
+    discoveryEn: "Local newspapers reference Metropolis, while Selina explicitly informs Batman during their cemetery farewell that she is departing for Blüdhaven.",
+    comicSignificance: "大都会为超人守护的理想城邦；布鲁德海文则是哥谭南郊充斥工业污染与黑道统治的姊妹港口城，漫画中亦是夜翼（Nightwing / 迪克·格雷森）的驻守之地。",
+    comicSignificanceEn: "Metropolis stands as the shining home of Superman, while Blüdhaven is the gritty industrial harbor to the south, famously guarded by Nightwing (Dick Grayson).",
+    loreImpact: "表明马特·里夫斯构建的虽是独立写实的犯罪传奇，但世界观依然严谨根植于 DC 经典地理版图之中。",
+    loreImpactEn: "Demonstrates that while Reeves' universe remains a grounded crime epic, it is precisely anchored within the broader DC geographic universe.",
+  },
+];
+
 /** `/roots` hash → top-nav parent. Comics default to 世界观; cinema lineage to 幕后. */
 export function rootsNavSection(hash: string): "world" | "craft" {
   const id = hash.replace(/^#/, "");

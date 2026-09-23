@@ -274,16 +274,16 @@ export const PEOPLE_EN: Record<string, LocalizedPersonData> = {
     actor: "Hana Hrzic",
     sections: [
       {
-        heading: "The Doomed Witness",
-        body: "Waitress at 44 Below and Selina Kyle's roommate who witnessed Mayor Mitchell discussing Falcone's illicit secrets.",
+        heading: "The Innocent Witness at 44 Below",
+        body: "An Estonian immigrant and waitress at the subterranean club 44 Below, Annika was Selina Kyle's intimate roommate and confidante. While accompanying Mayor Don Mitchell Jr., she inadvertently learned that Carmine Falcone was the GCPD's secret informant ('the rat') who betrayed Salvatore Maroni.",
       },
       {
-        heading: "Murder & Trunk Discovery",
-        body: "Abducted and strangled by Carmine Falcone, her body was discarded inside a car trunk at the docks, setting Selina on an unyielding path of vengeance.",
+        heading: "Trunk Discovery & Catalyst for Vengeance",
+        body: "Silenced and strangled by Falcone, her body was hidden in the trunk of a car at the docks. Discovered by Batman and Selina during the drug bust investigation, Annika's brutal murder shattered Selina's remaining ties to Gotham, pushing her to draw a gun on her biological father.",
       },
     ],
     appearances: [
-      { work: "The Batman (2022)", note: "Disappearance investigated by Batman and Selina; discovered deceased in trunk." },
+      { work: "The Batman (2022)", note: "Waitress at 44 Below; abducted and murdered by Falcone after discovering the informant's identity." },
     ],
   },
   sofia: {

@@ -237,6 +237,7 @@ export const NODES: RelNode[] = [
     y: 660,
     status: "dead",
     faction: "falcone",
+    actor: "哈娜·赫尔齐奇",
     bio: [
       "瑟琳娜的室友兼挚友。因意外得知法尔科内是告密者的机密遭到法尔科内亲手灭口，成为激发猫女反抗黑帮的导火索。",
     ],

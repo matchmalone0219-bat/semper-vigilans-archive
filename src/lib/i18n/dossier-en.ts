@@ -55,6 +55,24 @@ export const FACTS_EN: Record<
       "Direct sequel to The Batman (2022), part of Matt Reeves' standalone 'The Batman Epic Crime Saga', distinct and separate from James Gunn's DCU.",
     source: "DC Studios Official Statement",
   },
+  "前作全球票房": {
+    label: "First Film Global Box Office",
+    value:
+      "$770,836,163 worldwide ($369,345,583 domestic, 47.9%; $401,490,580 international, 52.1%) against a $185M–$200M production budget. Debuted on HBO Max 45 days post-release, drawing 4.1 million smart TV households in its opening week.",
+    source: "Box Office Mojo / Warner Bros.",
+  },
+  "电影工业与学院奖项": {
+    label: "Industry Honors & Academy Awards",
+    value:
+      "Nominated for 3 Academy Awards at the 95th Oscars (Best Makeup & Hairstyling, Best Visual Effects, Best Sound); 4 BAFTA nominations (Cinematography, Production Design, Makeup & Hair, Special Visual Effects); Saturn Award winner for Best Costume Design; ASC Award nominee for Feature Film Cinematography.",
+    source: "Academy of Motion Picture Arts and Sciences / BAFTA",
+  },
+  "实体蓝光与重磅特辑": {
+    label: "Home Video & Bonus Featurettes",
+    value:
+      "Released on 4K Ultra HD, Blu-ray, and Digital. Key bonus materials include the 53-minute comprehensive documentary 'Vengeance In The Making', feature-length commentary by director Matt Reeves, two deleted scenes (Scene 52 Arkham Joker interrogation and Scene 56 Selina lounge standoff), Colin Farrell's 4-hour prosthetic makeup doc 'A Transformation: The Penguin', and stunt breakdown 'Anatomy of the Car Chase'.",
+    source: "Warner Bros. Home Entertainment",
+  },
 };
 
 export const PLOT_EN: Record<

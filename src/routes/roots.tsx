@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CINEMA_ROOTS, ROOTS, ROOTS_INTRO, ROOT_KIND, ROOT_METHOD } from "@/lib/roots";
+import { CINEMA_ROOTS, LORE_EASTER_EGGS, ROOTS, ROOTS_INTRO, ROOT_KIND, ROOT_METHOD } from "@/lib/roots";
 import { pageTitle } from "@/lib/film";
 import { cn } from "@/lib/cn";
 import {
@@ -39,7 +39,7 @@ function Roots() {
             {isEn ? "Roots & Lineage" : "艺术溯源"}
           </h1>
           <p className="mt-3 font-display text-lg tracking-[0.12em] text-muted uppercase">
-            {isEn ? "Four Core Comics · Film Lineage" : "四大漫画灵感 · 影史拉片"}
+            {isEn ? "Four Core Comics · Film Lineage · City Lore" : "四大漫画灵感 · 影史拉片 · 城市暗线"}
           </p>
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
             {isEn ? ROOTS_INTRO_EN : ROOTS_INTRO}
@@ -48,7 +48,8 @@ function Roots() {
             {[
               { hash: "comics", label: isEn ? "01 / Comic Inspirations" : "01 / 四大漫画考据" },
               { hash: "cinema", label: isEn ? "02 / Cinema Lineage" : "02 / 影史拉片" },
-              { hash: "method", label: isEn ? "03 / Reference Tiers" : "03 / 考据分级标准" },
+              { hash: "lore", label: isEn ? "03 / City Lore & Clues" : "03 / 城市暗线与彩蛋" },
+              { hash: "method", label: isEn ? "04 / Reference Tiers" : "04 / 考据分级标准" },
             ].map((item) => (
               <Link
                 key={item.hash}
@@ -376,9 +377,67 @@ function Roots() {
         </section>
 
         {/* Section 03: Reference Tiers */}
+        {/* Section 03: In-Universe Lore & Easter Eggs */}
+        <section id="lore" className="scroll-mt-24 border-t border-fg/10 pt-16 sm:pt-24">
+          <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
+            03 / In-Universe City Lore & Clues
+          </p>
+          <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
+            {isEn ? "Gotham City Lore & Hidden Screen Clues" : "哥谭城市暗线与隐藏彩蛋"}
+          </h2>
+          <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
+            {isEn
+              ? "Beyond the central murder investigation, Matt Reeves wove vital DC lore into background billboards, shipping manifests, and dialogue—planting deliberate seeds for Gotham's expanding rogue's gallery:"
+              : "在主线侦探悬案之外，马特·里夫斯在哥谭街头海报、货运单据与角色台词中埋下了大量硬核原著彩蛋，勾勒出冰山一角下的宏大城市暗网："}
+          </p>
+
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            {LORE_EASTER_EGGS.map((item) => (
+              <div
+                key={item.id}
+                className="border border-fg/10 bg-fg/[0.02] p-6 transition-colors hover:border-blood/40"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="font-mono text-xs font-semibold tracking-wider text-blood uppercase">
+                    {isEn ? item.categoryEn : item.categoryZh}
+                  </span>
+                  <span className="font-mono text-[10px] tracking-widest text-faint uppercase">
+                    {item.id}
+                  </span>
+                </div>
+                <h3 className="mt-3 font-sans text-xl font-bold tracking-tight">
+                  {isEn ? item.nameEn : item.name}
+                </h3>
+                <div className="mt-4 space-y-3 text-xs leading-relaxed">
+                  <div>
+                    <span className="font-semibold text-fg/80">
+                      {isEn ? "Screen Clue: " : "片中发现："}
+                    </span>
+                    <span className="text-muted">{isEn ? item.discoveryEn : item.discovery}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-fg/80">
+                      {isEn ? "Comic Canon: " : "原著渊源："}
+                    </span>
+                    <span className="text-muted">
+                      {isEn ? item.comicSignificanceEn : item.comicSignificance}
+                    </span>
+                  </div>
+                  <div className="border-t border-fg/5 pt-2">
+                    <span className="font-semibold text-blood/90">
+                      {isEn ? "Narrative Significance: " : "暗线影响："}
+                    </span>
+                    <span className="text-muted">{isEn ? item.loreImpactEn : item.loreImpact}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section id="method" className="scroll-mt-24 border-t border-fg/10 pt-16 sm:pt-24">
           <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-            03 / Reference Tiers
+            04 / Reference Tiers
           </p>
           <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
             {isEn ? "Reference Tier Standards" : "考据分级标准"}

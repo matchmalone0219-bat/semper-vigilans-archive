@@ -28,6 +28,8 @@ function Dossier() {
       { href: "#cast", label: locale === "zh" ? "演员阵容" : "Cast Roster", count: CAST.length },
       { href: "#relations", label: locale === "zh" ? "人物关系" : "Character Network" },
       { href: "#places", label: locale === "zh" ? "哥谭地点" : "Gotham Locations", count: PLACES.length },
+      { href: "#craft", label: locale === "zh" ? "幕后视听" : "Craft & Cinema" },
+      { href: "#features", label: locale === "zh" ? "实体收录与特辑" : "Home Video & Extras" },
       { href: "#log", label: locale === "zh" ? "拍摄日志" : "Shoot Log", count: LOG.length },
     ],
     [locale],
@@ -179,7 +181,7 @@ function Dossier() {
         </section>
 
         {/* 06 / 幕后与视听 */}
-        <section className="scroll-mt-24">
+        <section id="craft" className="scroll-mt-24">
           <SectionKicker n="06" title={locale === "zh" ? "幕后与视听" : "Behind the Scenes"} />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
             {locale === "zh" ? (
@@ -255,9 +257,80 @@ function Dossier() {
           </ul>
         </section>
 
-        {/* 07 / 拍摄日志 */}
+        {/* 07 / 实体典藏与幕后特辑 */}
+        <section id="features" className="scroll-mt-24">
+          <SectionKicker
+            n="07"
+            title={locale === "zh" ? "实体典藏与官方特辑" : "Home Media & Bonus Featurettes"}
+          />
+          <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
+            {locale === "zh"
+              ? "《新蝙蝠侠》4K UHD 蓝光与数字典藏版收录了超过两小时的高清制作花絮、未公映删减片段与主创逐帧视听讲评，是研究本片电影工业与幕后工艺的重要视听档案："
+              : "The Batman 4K UHD Blu-ray and digital editions include over two hours of exclusive making-of documentaries, unreleased deleted scenes, and full-length filmmaker commentary:"}
+          </p>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="border border-fg/10 bg-fg/[0.02] p-5">
+              <span className="font-mono text-[10px] tracking-widest text-blood uppercase">
+                DOCUMENTARY · 53 MIN
+              </span>
+              <h3 className="mt-2 font-sans text-base font-bold tracking-tight">
+                {locale === "zh" ? "《复仇诞生：完整长片特辑》" : "Vengeance In The Making"}
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-muted">
+                {locale === "zh"
+                  ? "53 分钟重磅长片，全景记录从剧本重构、疫情两度停摆到利维斯登与芝加哥实拍的全过程。"
+                  : "53-minute deep-dive doc tracing script origins, pandemic halts, Leavesden volume shoots, and Chicago stunts."}
+              </p>
+            </div>
+
+            <div className="border border-fg/10 bg-fg/[0.02] p-5">
+              <span className="font-mono text-[10px] tracking-widest text-blood uppercase">
+                DELETED SCENE · 5 MIN
+              </span>
+              <h3 className="mt-2 font-sans text-base font-bold tracking-tight">
+                {locale === "zh" ? "《场景 52：阿卡姆小丑对谈》" : "Scene 52: Arkham Joker Scene"}
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-muted">
+                {locale === "zh"
+                  ? "蝙蝠侠携谜语人档案赴阿卡姆审讯巴里·基奥甘饰演的小丑，包含马特·里夫斯随片导演讲评。"
+                  : "Batman visits Arkham to profile the Riddler with Barry Keoghan's Joker, featuring Matt Reeves' audio commentary."}
+              </p>
+            </div>
+
+            <div className="border border-fg/10 bg-fg/[0.02] p-5">
+              <span className="font-mono text-[10px] tracking-widest text-blood uppercase">
+                PROSTHETICS & FX
+              </span>
+              <h3 className="mt-2 font-sans text-base font-bold tracking-tight">
+                {locale === "zh" ? "《企鹅人蜕变：特效化妆实录》" : "A Transformation: The Penguin"}
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-muted">
+                {locale === "zh"
+                  ? "好莱坞顶级特效化妆师 Mike Marino 记录单次 4 小时将科林·法瑞尔塑造成奥兹·科布的全流程。"
+                  : "Mike Marino's Oscar-nominated prosthetic artistry documenting Colin Farrell's 4-hour daily transformation."}
+              </p>
+            </div>
+
+            <div className="border border-fg/10 bg-fg/[0.02] p-5">
+              <span className="font-mono text-[10px] tracking-widest text-blood uppercase">
+                ACTION CHOREOGRAPHY
+              </span>
+              <h3 className="mt-2 font-sans text-base font-bold tracking-tight">
+                {locale === "zh" ? "《雨夜追车场面解构》" : "Anatomy of the Car Chase"}
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-muted">
+                {locale === "zh"
+                  ? "实拍撞击机位、特技驾驶员视角与火焰喷射器战车在高速雨夜实测的惊险机位拆解。"
+                  : "Practical collision rigs, stunt driver perspective, and the flame-throwing Batmobile's rain-slicked highway chase."}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 08 / 拍摄日志 */}
         <section id="log" className="scroll-mt-24">
-          <SectionKicker n="07" title={locale === "zh" ? "拍摄日志" : "Production Log"} />
+          <SectionKicker n="08" title={locale === "zh" ? "拍摄日志" : "Production Log"} />
           <DossierShootLog />
         </section>
       </div>

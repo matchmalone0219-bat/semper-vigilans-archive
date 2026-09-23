@@ -224,4 +224,45 @@ test("desktop, mobile, and keyboard search page", { timeout: 180000 }, async (t)
     await page.close();
   });
 
+
+  await t.test("homepage latest and recent shoot cards deep-link to exact expandable log entries", async () => {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    page.setDefaultTimeout(10000);
+
+    await page.goto(BASE, { waitUntil: "networkidle" });
+    const shootLinks = page.locator('main a[href^="/dossier#log-"]');
+    assert.ok((await shootLinks.count()) >= 2, "Expected latest and recent shoot links");
+    const latestHref = await shootLinks.first().getAttribute("href");
+    const latestId = latestHref?.split("#")[1];
+    assert.match(latestId ?? "", /^log-/);
+    await shootLinks.first().click();
+    await page.waitForURL(new RegExp("#" + latestId + "$"));
+    await page.waitForFunction((id) => {
+      const target = document.getElementById(id);
+      return target?.classList.contains("ring-blood") && target.getBoundingClientRect().height > 0;
+    }, latestId);
+
+    await page.goto(BASE, { waitUntil: "networkidle" });
+    const recentHref = await page.locator('main a[href^="/dossier#log-"]').nth(1).getAttribute("href");
+    const recentId = recentHref?.split("#")[1];
+    assert.match(recentId ?? "", /^log-/);
+    assert.notEqual(recentId, latestId, "Recent dispatch should open a different log entry");
+    await page.locator('main a[href^="/dossier#log-"]').nth(1).click();
+    await page.waitForURL(new RegExp("#" + recentId + "$"));
+    const waitForExpandedTarget = () => page.waitForFunction((id) => {
+      const target = document.getElementById(id);
+      const details = target?.closest("details");
+      const content = details?.querySelector(":scope > div");
+      return details?.open && target.classList.contains("ring-blood") &&
+        target.getBoundingClientRect().height > 0 &&
+        content && getComputedStyle(content).opacity === "1";
+    }, recentId);
+    await waitForExpandedTarget();
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await waitForExpandedTarget();
+    await page.close();
+  });
+
 });

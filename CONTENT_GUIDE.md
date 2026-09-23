@@ -48,17 +48,24 @@
    ```
    该命令会自动核查日期合法性、信源三要素、媒体文件存在性以及关联实体 ID。
 
-2. **图片资产预警（不阻断）**：
+2. **双语覆盖校验（必须通过）**：
+   ```bash
+   npm run i18n:check
+   ```
+   新增日志、人物和其他档案时检查对应英文条目；PR 检查及 GitHub Pages 部署均执行此项。
+
+3. **图片资产预警（不阻断）**：
    ```bash
    npm run media:check
    ```
    只报告重复图、孤儿图、过大/过小图和 MIME 错配，退出码始终为 0。
 
-3. **完整提交前验证（建议执行）**：
+4. **完整提交前验证（建议执行）**：
    ```bash
    npm run typecheck
    npm run test
    npm run content:check
+   npm run i18n:check
    npm run media:check
    npm run build:github-pages
    ```

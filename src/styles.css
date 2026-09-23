@@ -320,6 +320,7 @@ body:has(.crt-page) .grain-layer {
 }
 
 .gcpd-seizure-stage {
+  --font-sans: Arial, Helvetica, sans-serif;
   background:
     radial-gradient(circle at 50% 42%, rgba(28, 45, 122, 0.68) 0%, rgba(5, 18, 74, 0.88) 38%, rgba(1, 7, 35, 0.98) 72%),
     linear-gradient(180deg, #02030b 0%, #06134f 48%, #01030d 100%);

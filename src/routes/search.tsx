@@ -112,11 +112,11 @@ function SearchPage() {
   const navigate = useNavigate();
   const setQuery = (q: string) => {
     setSelectedIndex(0);
-    void navigate({ to: "/search", search: (prev) => ({ ...prev, q: q || undefined, shown: undefined }), replace: true, resetScroll: false });
+    void navigate({ to: "/search", search: { ...search, q: q || undefined, shown: undefined }, replace: true, resetScroll: false });
   };
   const setActiveCategory = (category: SearchCategory) => {
     setSelectedIndex(0);
-    void navigate({ to: "/search", search: (prev) => ({ ...prev, category: category === "all" ? undefined : category, shown: undefined }), replace: true, resetScroll: false });
+    void navigate({ to: "/search", search: { ...search, category: category === "all" ? undefined : category, shown: undefined }, replace: true, resetScroll: false });
   };
 
   useEffect(() => {
@@ -425,7 +425,7 @@ function SearchPage() {
                 type="button"
                 onClick={() => void navigate({
                   to: "/search",
-                  search: (prev) => ({ ...prev, shown: Math.min(visibleCount + SEARCH_PAGE_SIZE, matches.length) }),
+                  search: { ...search, shown: Math.min(visibleCount + SEARCH_PAGE_SIZE, matches.length) },
                   replace: true,
                   resetScroll: false,
                 })}

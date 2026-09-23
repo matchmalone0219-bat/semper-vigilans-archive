@@ -110,7 +110,7 @@ export const PRODUCTION_PHASES: ProductionPhase[] = [
     tag: "重构与角逐",
     title: "脱离 DCEU 独立立项，帕丁森与霍尔特进入最终试镜",
     summary:
-      "2019 年 1 月大本正式挂袍，华纳宣布影片定档 2021 年。里夫斯打造了完全独立的“蝙蝠侠史诗犯罪传奇”（Elseworlds）。在长达数月的秘密遴选中，罗伯特·帕丁森与尼古拉斯·霍尔特身穿历代战衣展开最终全装实拍试镜。",
+      "2019 年 1 月大本正式挂袍，华纳宣布影片定档 2021 年。里夫斯将项目重构为独立于既有 DCEU 故事线的新版本。经过数月遴选，罗伯特·帕丁森与尼古拉斯·霍尔特进入最终竞争并接受镜头测试。",
     bulletPoints: [
       "2019 年 1 月 30 日，华纳宣布新版《蝙蝠侠》定档，大本在社交媒体转发并祝福新团队，宣告 DCEU 蝙蝠侠时代正式告一段落。",
       "里夫斯在撰写剧本时便以罗伯特·帕丁森在独立电影《好时光》（Good Time）中癫狂、脆弱且专注的银幕特质作为布鲁斯·韦恩的原型参考。",
@@ -129,8 +129,8 @@ export const PRODUCTION_PHASES: ProductionPhase[] = [
       {
         speaker: "尼古拉斯·霍尔特",
         role: "决选试镜演员（现 DCU 莱克斯·卢瑟）",
-        text: "那是一次巨大的情感过山车。虽然没能拿下蝙蝠侠，但我完全理解并钦佩马特和罗伯特的构想，帕丁森的表现卓越非凡。",
-        source: "Variety / Happy Sad Confused 播客",
+        text: "我认为马特·里夫斯的想法非常棒，他拍出了一部很出色的电影；罗伯特对这个角色的演绎也非常精彩。",
+        source: "Variety · GQ España 访谈转述",
         sourceUrl: "https://variety.com/2023/film/news/nicholas-hoult-lost-batman-top-gun-maverick-mission-impossible-7-1235586687/",
       },
     ],

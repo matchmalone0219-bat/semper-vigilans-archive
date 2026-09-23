@@ -42,6 +42,12 @@ import {
 import { cn } from "@/lib/cn";
 import { Badge } from "@/components/ui/badge";
 import { useI18n } from "@/lib/i18n";
+import {
+  FACTIONS_EN,
+  PEOPLE_EN,
+  RELATION_DESCS_EN,
+  RELATION_LABELS_EN,
+} from "@/lib/i18n/people-en";
 
 const W = 1100;
 const H = 800;
@@ -199,15 +205,15 @@ function RelationSvg({
         const fLabel =
           f.id === "wayne"
             ? t.relations.factions.wayne
-            : f.id === "gcpd"
+            : f.id === "city" || f.id === "gcpd"
               ? t.relations.factions.gcpd
               : f.id === "falcone"
                 ? t.relations.factions.falcone
-                : f.id === "underground"
+                : f.id === "under" || f.id === "underground"
                   ? t.relations.factions.underground
                   : f.id === "arkham"
                     ? t.relations.factions.arkham
-                    : f.label;
+                    : (FACTIONS_EN[f.id]?.label ?? f.label);
         return (
           <g key={f.id} className="pointer-events-none">
             <text
@@ -377,7 +383,7 @@ function RelationSvg({
               fontFamily="var(--font-sans)"
               textDecoration={n.status === "dead" ? "line-through" : undefined}
             >
-              {n.name}
+              {locale === "zh" ? n.name : (PEOPLE_EN[n.id]?.name ?? n.name)}
             </text>
 
             {/* Role / Subtitle */}
@@ -389,7 +395,7 @@ function RelationSvg({
               fontFamily="var(--font-display)"
               letterSpacing="0.04em"
             >
-              {n.sub.split("/")[0]?.trim()}
+              {(locale === "zh" ? n.sub : (PEOPLE_EN[n.id]?.sub ?? n.sub)).split("/")[0]?.trim()}
             </text>
 
             {/* Status & Connection Count Badge */}
@@ -867,7 +873,7 @@ export function RelationMap() {
                 {t.relations.kinds[edgeDetail.kind] || KIND_META[edgeDetail.kind].label}
               </Badge>
               <span className="font-sans text-xs font-black text-blood">
-                {edgeDetail.label}
+                {locale === "zh" ? edgeDetail.label : (RELATION_LABELS_EN[edgeDetail.label] ?? edgeDetail.label)}
               </span>
             </div>
             <button
@@ -891,9 +897,11 @@ export function RelationMap() {
               ) : null}
               <div className="truncate">
                 <span className="block truncate font-sans text-xs font-bold group-hover:text-blood">
-                  {edgeNodeA.name}
+                  {locale === "zh" ? edgeNodeA.name : (PEOPLE_EN[edgeNodeA.id]?.name ?? edgeNodeA.name)}
                 </span>
-                <span className="block text-[10px] text-faint truncate">{edgeNodeA.sub}</span>
+                <span className="block text-[10px] text-faint truncate">
+                  {locale === "zh" ? edgeNodeA.sub : (PEOPLE_EN[edgeNodeA.id]?.sub ?? edgeNodeA.sub)}
+                </span>
               </div>
             </button>
 
@@ -906,9 +914,11 @@ export function RelationMap() {
             >
               <div className="truncate">
                 <span className="block truncate font-sans text-xs font-bold group-hover:text-blood">
-                  {edgeNodeB.name}
+                  {locale === "zh" ? edgeNodeB.name : (PEOPLE_EN[edgeNodeB.id]?.name ?? edgeNodeB.name)}
                 </span>
-                <span className="block text-[10px] text-faint truncate">{edgeNodeB.sub}</span>
+                <span className="block text-[10px] text-faint truncate">
+                  {locale === "zh" ? edgeNodeB.sub : (PEOPLE_EN[edgeNodeB.id]?.sub ?? edgeNodeB.sub)}
+                </span>
               </div>
               {edgePortraitB ? (
                 <img src={edgePortraitB.src} alt="" className="size-9 object-cover shrink-0 border border-fg/10" />
@@ -918,7 +928,7 @@ export function RelationMap() {
 
           {edgeDetail.desc ? (
             <p className="mt-2.5 text-pretty text-xs leading-relaxed text-muted border-t border-fg/5 pt-2">
-              {edgeDetail.desc}
+              {locale === "zh" ? edgeDetail.desc : (RELATION_DESCS_EN[edgeDetail.label] ?? edgeDetail.desc)}
             </p>
           ) : null}
         </div>
@@ -941,12 +951,16 @@ export function RelationMap() {
               ) : null}
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="font-sans text-sm font-black truncate">{person.name}</span>
+                  <span className="font-sans text-sm font-black truncate">
+                    {locale === "zh" ? person.name : (PEOPLE_EN[person.id]?.name ?? person.name)}
+                  </span>
                   <Badge variant="outline" size="sm">
                     {getStatusLabel(person.status)}
                   </Badge>
                 </div>
-                <p className="text-[11px] text-faint truncate">{person.sub}</p>
+                <p className="text-[11px] text-faint truncate">
+                  {locale === "zh" ? person.sub : (PEOPLE_EN[person.id]?.sub ?? person.sub)}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-1">
@@ -987,9 +1001,9 @@ export function RelationMap() {
                       e.kind === "kill" || e.kind === "foe" ? "text-blood" : "text-fg/80",
                     )}
                   >
-                    {e.label}
+                    {locale === "zh" ? e.label : (RELATION_LABELS_EN[e.label] ?? e.label)}
                   </span>
-                  <span>{other.name}</span>
+                  <span>{locale === "zh" ? other.name : (PEOPLE_EN[other.id]?.name ?? other.name)}</span>
                 </button>
               );
             })}
@@ -1235,8 +1249,10 @@ export function RelationMap() {
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="font-display text-sm font-semibold tracking-[0.22em] text-blood uppercase">
-                  {person.sub}
-                  {person.actor ? ` · ${person.actor}` : null}
+                  {locale === "zh" ? person.sub : (PEOPLE_EN[person.id]?.sub ?? person.sub)}
+                  {(locale === "zh" ? person.actor : (PEOPLE_EN[person.id]?.actor ?? person.actor))
+                    ? ` · ${locale === "zh" ? person.actor : (PEOPLE_EN[person.id]?.actor ?? person.actor)}`
+                    : null}
                 </p>
                 <button
                   type="button"
@@ -1249,13 +1265,16 @@ export function RelationMap() {
               </div>
 
               <h3 className="mt-2 font-sans text-2xl font-black tracking-tight">
-                {person.name}
+                {locale === "zh" ? person.name : (PEOPLE_EN[person.id]?.name ?? person.name)}
                 <span className="ml-2 text-sm font-medium tracking-normal text-faint">
                   {getStatusLabel(person.status)}
                 </span>
               </h3>
               <div className="mt-4 space-y-3 text-pretty text-base leading-relaxed text-muted">
-                {person.bio.map((p) => (
+                {(locale === "zh" || !PEOPLE_EN[person.id]?.sections
+                  ? person.bio
+                  : PEOPLE_EN[person.id].sections.map((s) => s.body)
+                ).map((p) => (
                   <p key={p.slice(0, 24)}>{p}</p>
                 ))}
               </div>
@@ -1302,18 +1321,20 @@ export function RelationMap() {
                       ) : null}
                       <div>
                         <span className="group-hover:text-blood transition-colors">
-                          {other.name}
+                          {locale === "zh" ? other.name : (PEOPLE_EN[other.id]?.name ?? other.name)}
                         </span>
                         <span className="ml-2 text-sm font-medium text-faint">
                           {getStatusLabel(other.status)}
                         </span>
-                        <span className="block text-xs font-normal text-faint">{other.sub}</span>
+                        <span className="block text-xs font-normal text-faint">
+                          {locale === "zh" ? other.sub : (PEOPLE_EN[other.id]?.sub ?? other.sub)}
+                        </span>
                       </div>
                     </button>
                     <div className="flex items-center justify-between sm:justify-end gap-3 pl-13 sm:pl-0">
                       {e.desc ? (
                         <span className="text-xs text-faint max-w-sm text-pretty hidden md:inline">
-                          {e.desc}
+                          {locale === "zh" ? e.desc : (RELATION_DESCS_EN[e.label] ?? e.desc)}
                         </span>
                       ) : null}
                       <span
@@ -1322,7 +1343,7 @@ export function RelationMap() {
                           e.kind === "kill" || e.kind === "foe" ? "text-blood" : "text-muted",
                         )}
                       >
-                        {e.label}
+                        {locale === "zh" ? e.label : (RELATION_LABELS_EN[e.label] ?? e.label)}
                         <span className="ml-2 text-xs font-normal text-faint">
                           {t.relations.kinds[e.kind] || KIND_LABEL[e.kind]}
                         </span>
@@ -1341,12 +1362,22 @@ export function RelationMap() {
         {FACTIONS.map((faction) => (
           <section key={faction.id} id={`cluster-${faction.id}`} className="scroll-mt-24">
             <p className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
-              {t.relations.factions[faction.id as keyof typeof t.relations.factions] || faction.label}
+              {t.relations.factions[faction.id as keyof typeof t.relations.factions] ||
+                (locale === "zh" ? faction.label : (FACTIONS_EN[faction.id]?.label ?? faction.label))}
             </p>
-            <p className="mt-2 max-w-2xl text-pretty text-muted">{faction.note}</p>
+            <p className="mt-2 max-w-2xl text-pretty text-muted">
+              {locale === "zh" ? faction.note : (FACTIONS_EN[faction.id]?.note ?? faction.note)}
+            </p>
             <ul className="mt-8 space-y-10">
               {nodesIn(faction.id).map((n) => {
                 const pic = PORTRAITS[n.id];
+                const displayName = locale === "zh" ? n.name : (PEOPLE_EN[n.id]?.name ?? n.name);
+                const displaySub = locale === "zh" ? n.sub : (PEOPLE_EN[n.id]?.sub ?? n.sub);
+                const displayActor = locale === "zh" ? n.actor : (PEOPLE_EN[n.id]?.actor ?? n.actor);
+                const displayBio =
+                  locale === "zh" || !PEOPLE_EN[n.id]?.sections
+                    ? n.bio
+                    : PEOPLE_EN[n.id].sections.map((s) => s.body);
                 return (
                   <li key={n.id} className="border-t border-fg/10 pt-6">
                     <button
@@ -1357,7 +1388,7 @@ export function RelationMap() {
                       {pic ? (
                         <img
                           src={pic.src}
-                          alt={n.name}
+                          alt={displayName}
                           className={cn(
                             "size-20 shrink-0 object-cover sm:size-24 border border-fg/10",
                             (n.status === "dead" || n.status === "rumor") && "grayscale",
@@ -1366,12 +1397,12 @@ export function RelationMap() {
                       ) : null}
                       <span>
                         <p className="text-sm text-faint">
-                          {n.sub}
-                          {n.actor ? ` · ${n.actor}` : null}
+                          {displaySub}
+                          {displayActor ? ` · ${displayActor}` : null}
                           <span className="ml-2">{getStatusLabel(n.status)}</span>
                         </p>
                         <h4 className="mt-1 font-sans text-2xl font-black tracking-tight hover:text-blood">
-                          {n.name}
+                          {displayName}
                         </h4>
                         {pic?.note ? (
                           <p className="mt-1 text-xs text-faint">{pic.note}</p>
@@ -1388,7 +1419,7 @@ export function RelationMap() {
                       </Link>
                     </p>
                     <div className="mt-3 max-w-3xl space-y-3 text-pretty text-sm leading-relaxed text-muted sm:text-base">
-                      {n.bio.map((p) => (
+                      {displayBio.map((p) => (
                         <p key={p.slice(0, 24)}>{p}</p>
                       ))}
                     </div>

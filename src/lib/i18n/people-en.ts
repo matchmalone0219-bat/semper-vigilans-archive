@@ -228,6 +228,24 @@ export const PEOPLE_EN: Record<string, LocalizedPersonData> = {
       { work: "The Batman (2022)", note: "Abducted by the Riddler and detonated at the City Hall funeral service." },
     ],
   },
+  kenzie: {
+    name: "Detective William Kenzie",
+    sub: "Corrupt GCPD Detective",
+    actor: "Peter McDonald",
+    sections: [
+      {
+        heading: "Falcone's Inside Operative",
+        body: "A veteran GCPD detective operating as Carmine Falcone's high-level precinct mole, Kenzie fed crime syndicate bosses confidential investigation logs while drawing dirty payout kickbacks from the drops-drug pipeline.",
+      },
+      {
+        heading: "Abduction of Annika & Trunk Interrogation",
+        body: "Tasked with tracking down Annika after she overheard Falcone's rat informant secret, Kenzie was ambushed at the docks by Batman and Selina Kyle. Swiftly beaten and shoved into a car trunk for interrogation, his capture provided physical proof linking precinct corruption directly to Falcone.",
+      },
+    ],
+    appearances: [
+      { work: "The Batman (2022)", note: "Mob mole in GCPD; participates in Annika's capture and gets locked in a car trunk." },
+    ],
+  },
   carmine: {
     name: "Carmine Falcone",
     sub: "Former Crime Patriarch ('The Roman')",
@@ -306,6 +324,24 @@ export const PEOPLE_EN: Record<string, LocalizedPersonData> = {
     ],
     appearances: [
       { work: "The Penguin (2024)", note: "Primary protagonist-antagonist battling Oz Cobb across eight episodes." },
+    ],
+  },
+  twins: {
+    name: "The Twins (Iceberg Bouncers)",
+    sub: "Lounge Door Enforcers",
+    actor: "Charlie & Max Carver",
+    sections: [
+      {
+        heading: "Gatekeepers of the Underworld",
+        body: "Portrayed by real-life twin brothers Charlie and Max Carver, the imposing duo guard both the main entrance of the Iceberg Lounge and the inner VIP sanctuary '44 Below', filtering out unauthorized intruders on behalf of Falcone and the Penguin.",
+      },
+      {
+        heading: "Checkpoints & Close-Quarters Brawls",
+        body: "The Twins serve as physical gatekeepers during Batman's direct incursions into the Iceberg Lounge: first when the Dark Knight punches through the rainy front door to interrogate Oz, and later when Gordon and Batman storm the building to drag Falcone out into the light.",
+      },
+    ],
+    appearances: [
+      { work: "The Batman (2022)", note: "Stand guard at the Iceberg Lounge and 44 Below; engage Batman in multiple hallway brawls." },
     ],
   },
   oz: {
@@ -395,9 +431,44 @@ export const PEOPLE_EN: Record<string, LocalizedPersonData> = {
 };
 
 export const RELATION_LABELS_EN: Record<string, string> = {
+  "韦恩家族": "Wayne Family",
+  "市政与警方 (GCPD)": "City Administration & GCPD",
+  "法尔科内家族": "Falcone Crime Family",
+  "地下黑道": "The Underworld",
+  "阿卡姆疯人院": "Arkham State Hospital",
   "父子": "Father & Son",
   "母子": "Mother & Son",
   "夫妻": "Husband & Wife",
+  "封口交易": "Silencing Deal",
+  "抚养与导师": "Guardian & Mentor",
+  "正义盟友": "Justice Allies",
+  "警局同僚": "Precinct Colleagues",
+  "线索互信": "Crucial Clue & Mutual Trust",
+  "警队内鬼": "Precinct Mole",
+  "黑金买通": "Bribed & Controlled",
+  "制服后备箱": "Subdued in Car Boot",
+  "市政合作": "Municipal Cooperation",
+  "洪灾救援": "Flood Evacuation & Rescue",
+  "复杂情感 / 前搭档": "Complex Ties & Former Partners",
+  "密友与室友": "Close Friends & Roommates",
+  "杀人灭口": "Silenced & Murdered",
+  "贴身守卫": "Personal Enforcers",
+  "入口肉搏": "Vestibule Brawl",
+  "门禁控制": "Club Gatekeeping",
+  "首桩暗杀": "First Assassination",
+  "项圈炸弹处决": "Collar-Bomb Execution",
+  "黑金贿赂控制": "Dirty Payouts & Control",
+  "父女血缘": "Father & Daughter",
+  "同父异母姐妹": "Half-Sisters",
+  "狱中信件联络": "Prison Correspondence",
+  "旧部反噬": "Former Enforcer Rebellion",
+  "夺权死敌": "Mortal Turf Rivals",
+  "灭口清除": "Ruthless Sacrificial Murder",
+  "潜在冲突对立": "Simmering Cold Conflict",
+  "互为宿敌": "Archnemeses",
+  "狙击暗杀": "Sniper Assassination",
+  "邻格囚徒": "Neighboring Cellmates",
+  // Legacy aliases
   "委托杀人": "Commissioned Mob Hit",
   "隐瞒精神病史": "Covered Up Psychiatric History",
   "收留与监护": "Guardian & Confidant",
@@ -422,6 +493,41 @@ export const RELATION_LABELS_EN: Record<string, string> = {
   "知音挑衅": "Ciphered Provocation",
   "破案与抓捕": "Hunted Down & Apprehended",
   "牢房共鸣": "Asylum Cellblock Kinship",
+};
+
+export const RELATION_DESCS_EN: Record<string, string> = {
+  "夫妻": "High-society alliance between Gotham's Wayne and Arkham dynasties, tragically murdered in the alley outside the Monarch Theater circa 2002.",
+  "父子": "Inheriting the Wayne family legacy and subterranean workshop, Bruce bears the unresolved shadow of Thomas's past moral compromise.",
+  "母子": "Haunted by Martha's tragic family trauma and hidden Arkham lineage, driving Bruce's solitary psychological crusade.",
+  "封口交易": "Thomas Wayne turned to Falcone to intimidate investigative journalist Edward Elliot, unwittingly triggering Elliot's murder.",
+  "抚养与导师": "Bruce's sole guardian, mentor, and intelligence anchor who survived the parcel bombing and disclosed the truth about the Waynes.",
+  "正义盟友": "The only incorruptible GCPD officer who summons Batman via the Bat-Signal to crack serial homicides and challenge systemic graft.",
+  "警局同僚": "Principled frontline patrol officer who assists Gordon and Batman in evidence recovery and perimeter containment.",
+  "线索互信": "From initial precinct friction to identifying the carpet tucker weapon and defending flood victims together, forging battlefield trust.",
+  "警队内鬼": "A veteran detective secretly reporting to Falcone, embodying the deep institutional corruption rotting the GCPD.",
+  "黑金买通": "Falcone's paid informant and enforcer inside the precinct, bribed with drops-drug money to suppress warrants and bury evidence.",
+  "制服后备箱": "Involved in Annika's abduction, Kenzie was ambushed at the docks by Batman and Selina and stuffed into a trunk for interrogation.",
+  "市政合作": "Newly elected Mayor Bella Reál relies on Jim Gordon to spearhead police reform and rebuild municipal order after the seawall breach.",
+  "洪灾救援": "When Riddler loyalists sniped at the Gotham Square Garden rally, Batman severed the high-voltage cable and carried stranded citizens to safety.",
+  "复杂情感 / 前搭档": "Allies brought together during the 44 Below and Falcone probes who developed an intimate bond before Selina departed for Blüdhaven.",
+  "密友与室友": "Selina's beloved roommate and confidante whose murder after learning Falcone's informant secret drove Selina to exact lethal vengeance.",
+  "杀人灭口": "Learning that Annika overheard his secret betrayal of Maroni, Carmine Falcone personally strangled her and dumped her in a trunk.",
+  "贴身守卫": "Personal enforcers stationed at the entrance of 44 Below and Carmine's loft, enforcing strict access and armed pat-downs.",
+  "入口肉搏": "Batman twice forced his way through Iceberg Lounge checkpoints, engaging the Twins in bone-crunching close-quarters brawls.",
+  "门禁控制": "Guarding the ground vestibule and screening VIP patrons for Oz Cobb, forming the core security perimeter of the Iceberg Lounge.",
+  "首桩暗杀": "Mayor Mitchell was bludgeoned to death in his study on Halloween night, exposing municipal kickbacks and inaugurating Riddler's crusade.",
+  "项圈炸弹处决": "Kidnapped and fitted with a collar bomb, District Attorney Colson was detonated live when he refused to name Falcone on camera.",
+  "黑金贿赂控制": "Falcone controlled municipal funds, judges, and prosecutors for decades through the corrupt multi-billion dollar Renewal Trust.",
+  "父女血缘": "Selina Kyle is Falcone's estranged illegitimate daughter, driven by vengeance for her mother Maria's abandonment and murder.",
+  "同父异母姐妹": "Half-sisters through Carmine Falcone, their brief encounter at the cemetery marked by intense psychological tension.",
+  "狱中信件联络": "While locked away in Arkham, Sofia received letters from Selina; upon release, their shared bloodline remains an explosive wildcard.",
+  "旧部反噬": "Serving as Falcone's longtime lieutenant and club manager, Oz seized the power vacuum immediately following Falcone's death.",
+  "夺权死敌": "After Carmine's death, Sofia and Oz waged a bloody war across Gotham's underworld for ultimate control of the drug trade.",
+  "灭口清除": "After defeating Sofia and consolidating power, Oz ruthlessly strangled his young protégé Victor to eliminate any emotional vulnerability.",
+  "潜在冲突对立": "Reigning from the diamond district penthouse, Oz's subterranean empire is on a direct collision course with Batman in the sequel.",
+  "互为宿敌": "The Riddler used Batman as a tool for his anti-corruption crusade, only for Batman to reject vengeance and embrace hope.",
+  "狙击暗杀": "Edward Nashton sniper-assassinated Carmine Falcone from an apartment across from the Iceberg Lounge as he stepped into the light.",
+  "邻格囚徒": "Locked in neighboring cells in Arkham's high-security ward, whispering cryptic words about Gotham's love for a comeback story.",
 };
 
 export function getLocalizedPerson<

@@ -115,7 +115,7 @@ export const PLACES: Place[] = [
     image: "/media/places/gcpd.jpg",
     imageAlt: "哥谭市警局屋顶亮起的蝙蝠信号灯",
     status: "正常运转",
-    people: ["gordon", "martinez", "bruce", "bella", "colson"],
+    people: ["gordon", "martinez", "kenzie", "bruce", "bella", "colson"],
     works: "电影《新蝙蝠侠》 · 电影《新蝙蝠侠2》",
     body: [
       "哥谭治安的核心指挥中枢，但在前作中暴露出系统性腐败问题。吉姆·戈登中尉在此任职，并多次力排众议将蝙蝠侠带入物证室与停尸间协助勘验线索。",
@@ -130,7 +130,7 @@ export const PLACES: Place[] = [
     image: "/media/lounge.jpg",
     imageAlt: "冰山俱乐部华丽幽暗的内部大厅",
     status: "已被企鹅人接管",
-    people: ["carmine", "oz", "selina", "sofia", "annika"],
+    people: ["carmine", "oz", "selina", "sofia", "annika", "twins", "kenzie"],
     works: "漫画《谜语人元年》 · 电影《新蝙蝠侠》 · 限定剧《企鹅人》",
     body: [
       "哥谭市最著名的高端地下夜总会，表面上是政商名流寻欢作乐的场所，地下隐秘夹层「44 Below」则是法尔科内掌控毒品交易与政客受贿的秘密据点。",

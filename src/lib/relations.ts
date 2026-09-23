@@ -174,7 +174,7 @@ export const NODES: RelNode[] = [
     faction: "city",
     actor: "吉尔·佩雷斯-亚伯拉罕",
     bio: [
-      "恪尽职守的基层警官，在第一部多次协助戈登与蝙蝠侠维持现场秩序与物证调查，已确认在续集中回归。",
+      "哥谭警局基层正直巡警，对义警最初抱有强烈戒备，但在搜查中凭专业经验识别出地毯裁刀关键凶器，并在体育馆洪灾中并肩疏散受困市民，已确认在续集中回归。",
     ],
   },
   {
@@ -201,6 +201,19 @@ export const NODES: RelNode[] = [
     actor: "彼得·萨斯加德",
     bio: [
       "前任哥谭地方检察官，深度卷入法尔科内黑金网络。在市长葬礼上被项圈炸弹劫持，因拒绝供出告密者被当众引爆身亡。",
+    ],
+  },
+  {
+    id: "kenzie",
+    name: "威廉·肯齐",
+    sub: "GCPD 涉黑警探",
+    x: 680,
+    y: 340,
+    status: "alive",
+    faction: "city",
+    actor: "彼得·麦克唐纳",
+    bio: [
+      "哥谭警局深涉黑金的资深警探，暗中为法尔科内效力并参与绑架安妮卡，最终在码头被蝙蝠侠制服关入汽车后备箱。",
     ],
   },
   {
@@ -253,6 +266,19 @@ export const NODES: RelNode[] = [
     actor: "克里斯汀·米莉奥蒂",
     bio: [
       "卡尔迈恩之女，曾被父亲陷害关押阿卡姆十年。在《企鹅人》中出狱后发动家族清洗，但在与奥兹的夺权中落败，再次被收押回阿卡姆。",
+    ],
+  },
+  {
+    id: "twins",
+    name: "双胞胎门卫",
+    sub: "冰山俱乐部保镖",
+    x: 340,
+    y: 440,
+    status: "alive",
+    faction: "falcone",
+    actor: "查理 & 麦克斯·卡维尔",
+    bio: [
+      "冰山俱乐部与地下会所 44 Below 的标志性双胞胎贴身守卫，曾两度在入口与蝙蝠侠爆发正面对决。",
     ],
   },
   {
@@ -360,6 +386,34 @@ export const EDGES: RelEdge[] = [
     desc: "基层正直巡警，多次在命案现场与物证调查中协助戈登与蝙蝠侠维持秩序。",
   },
   {
+    a: "bruce",
+    b: "martinez",
+    label: "线索互信",
+    kind: "ally",
+    desc: "从最初警局总部的敌对阻拦，到谜语人公寓认出关键地毯铲凶器并合力救援洪灾民众，建立起战壕互信。",
+  },
+  {
+    a: "kenzie",
+    b: "gordon",
+    label: "警队内鬼",
+    kind: "foe",
+    desc: "身处同一警局却暗中为法尔科内通风报信，代表了哥谭警局深层体制性腐败。",
+  },
+  {
+    a: "kenzie",
+    b: "carmine",
+    label: "黑金买通",
+    kind: "foe",
+    desc: "法尔科内安插在警局的涉黑耳目与打手，长期领取高额封口费并在法庭与街头为黑帮扫除障碍。",
+  },
+  {
+    a: "bruce",
+    b: "kenzie",
+    label: "制服后备箱",
+    kind: "foe",
+    desc: "参与绑架安妮卡并在冰山俱乐部后门被蝙蝠侠和瑟琳娜截获制服，塞入汽车后备箱严加审讯。",
+  },
+  {
     a: "gordon",
     b: "bella",
     label: "市政合作",
@@ -444,6 +498,27 @@ export const EDGES: RelEdge[] = [
     desc: "在限定剧《企鹅人》结局中，远在布鲁德海文的瑟琳娜向阿卡姆重度病房中的索菲亚寄去了关键信件。",
   },
   {
+    a: "twins",
+    b: "carmine",
+    label: "贴身守卫",
+    kind: "ally",
+    desc: "法尔科内设立在 44 Below 私人顶层包厢入口的最严密守门人，执行严苛的面部识别与搜身。",
+  },
+  {
+    a: "bruce",
+    b: "twins",
+    label: "入口肉搏",
+    kind: "foe",
+    desc: "布鲁斯两度硬闯冰山俱乐部正门与 44 Below，均在门厅与双胞胎爆发激烈的近身肉搏与骨裂格斗。",
+  },
+  {
+    a: "twins",
+    b: "oz",
+    label: "门禁控制",
+    kind: "ally",
+    desc: "协助奥兹·科布维持俱乐部地面迎宾与地下VIP会员筛选，是冰山俱乐部安保防线的绝对中枢。",
+  },
+  {
     a: "oz",
     b: "carmine",
     label: "旧部反噬",
@@ -514,6 +589,8 @@ export const PORTRAITS: Record<string, { src: string; note?: string }> = {
   victor: { src: "/media/portraits/victor.jpg", note: "伦齐·费利兹 饰 维克托·阿吉拉尔" },
   edward: { src: "/media/portraits/edward.jpg", note: "保罗·达诺 饰 谜语人" },
   joker: { src: "/media/portraits/joker-v2.jpg", note: "巴里·基奥甘 饰 阿卡姆神秘重犯" },
+  kenzie: { src: "/media/still-morgue.jpg", note: "彼得·麦克唐纳 饰 威廉·肯齐" },
+  twins: { src: "/media/lounge.jpg", note: "查理 & 麦克斯·卡维尔 饰 双胞胎门卫" },
 };
 
 export function edgesOf(id: string) {

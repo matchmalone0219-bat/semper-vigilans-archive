@@ -35,6 +35,8 @@ type SearchCategory =
   | "places"
   | "plot"
   | "log"
+  | "interviews"
+  | "cases"
   | "gear"
   | "merch"
   | "craft";
@@ -50,6 +52,8 @@ const CATEGORIES: {
   { id: "places", labelZh: "地点", labelEn: "Places", matches: (k) => k === "地点" },
   { id: "plot", labelZh: "线索", labelEn: "Clues", matches: (k) => k === "线索" },
   { id: "log", labelZh: "日志", labelEn: "Logs", matches: (k) => k === "日志" },
+  { id: "interviews", labelZh: "访谈", labelEn: "Interviews", matches: (k) => k === "访谈" },
+  { id: "cases", labelZh: "案件与日记", labelEn: "Cases & Journals", matches: (k) => k === "案件" || k === "日记" },
   { id: "gear", labelZh: "装备", labelEn: "Gear", matches: (k) => k === "装备" },
   { id: "merch", labelZh: "周边", labelEn: "Merch", matches: (k) => k === "收藏" },
   {
@@ -65,6 +69,9 @@ const KIND_MAP_EN: Record<string, string> = {
   地点: "PLACES",
   线索: "CLUES",
   日志: "LOGS",
+  访谈: "INTERVIEWS",
+  案件: "CASES",
+  日记: "JOURNALS",
   装备: "GEAR",
   收藏: "MERCH",
   视听: "SCORE",

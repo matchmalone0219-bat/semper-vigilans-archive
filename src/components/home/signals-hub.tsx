@@ -201,7 +201,7 @@ export function SignalsHub({
               {/* 片场高清配图缩略图 */}
               <Link
                 to="/dossier"
-                hash="log"
+                hash={latestShoot.id}
                 className="group/shoot relative mt-3 block h-40 w-full min-w-0 overflow-hidden border border-fg/20 bg-elevated sm:mt-4 sm:h-auto sm:aspect-video"
               >
                 <img
@@ -236,7 +236,7 @@ export function SignalsHub({
                     <li key={entry.date + entry.title} className="text-xs">
                       <Link
                         to="/dossier"
-                        hash="log"
+                        hash={entry.id}
                         className="group/item flex items-center justify-between gap-2 text-muted hover:text-fg"
                       >
                         <span className="truncate transition-colors group-hover/item:text-blood">

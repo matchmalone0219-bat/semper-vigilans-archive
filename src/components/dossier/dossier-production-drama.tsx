@@ -238,7 +238,7 @@ export function DossierProductionDrama() {
           <span className="border border-fg/10 bg-elevated px-2 py-0.5 font-display text-[10px] tracking-widest text-faint uppercase">
             {screenTest.location}
           </span>
-          <span className="classified-stamp">{isZh ? "试镜绝密复盘" : "SCREEN TEST DECLASSIFIED"}</span>
+          <span className="classified-stamp">{isZh ? "试镜资料复盘" : "SCREEN TEST ARCHIVE"}</span>
         </div>
 
         <h3 className="mt-4 font-sans text-xl font-bold tracking-tight text-fg sm:text-2xl">
@@ -286,7 +286,7 @@ export function DossierProductionDrama() {
         {/* 幕后细节列表 */}
         <div className="mt-6 space-y-2 rounded border border-fg/10 bg-elevated/40 p-4">
           <p className="font-display text-[10px] font-semibold tracking-widest text-faint uppercase">
-            {isZh ? "胶片试镜未公开核心细节" : "UNRELEASED CAMERA TEST DETAILS"}
+            {isZh ? "公开试镜资料核对" : "DOCUMENTED SCREEN-TEST NOTES"}
           </p>
           <ul className="space-y-1.5 text-xs text-muted list-disc pl-4">
             {screenTest.details.map((detail, dIdx) => (

@@ -269,7 +269,10 @@ export function RiddlerTerminal({
     if (!prefersReducedMotion()) {
       await wait(1200);
     }
-    onSeizedRef.current?.();
+    // RESET may have happened while the takeover was waiting.
+    if (progressRef.current.seizure) {
+      onSeizedRef.current?.();
+    }
   }
 
   async function onSubmit(raw: string, displayText?: string) {
@@ -371,6 +374,12 @@ export function RiddlerTerminal({
         ),
         { text: "ALL FILES UNLOCKED." },
       ]);
+      if (!prefersReducedMotion()) {
+        await wait(1200);
+      }
+      if (progressRef.current.seizure) {
+        onSeizedRef.current?.();
+      }
       return;
     }
     if (upper === "RESET") {

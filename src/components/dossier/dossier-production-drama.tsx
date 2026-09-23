@@ -15,7 +15,7 @@ export function DossierProductionDrama() {
 
   const [expandedPhases, setExpandedPhases] = useState<Record<string, boolean>>({
     "affleck-era": true,
-    "creative-shift": true,
+    "creative-crisis": true,
     "screen-test-reboot": true,
     "pandemic-crucible": true,
   });
@@ -40,11 +40,11 @@ export function DossierProductionDrama() {
         <p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-muted sm:text-base">
           {isZh ? (
             <>
-              从 2013 年本·阿弗莱克签约加盟 DCEU，到 2022 年马特·里夫斯执导的独立新黑色悬疑巨制全球公映，《新蝙蝠侠》走过了长达近十年的制作演变。项目历经阿弗莱克以阿卡姆疯人院为舞台的“丧钟”复仇原案、主创健康危机与创作理念分歧、里夫斯接任后坚决推翻剧本的独立重构，以及帕丁森与尼古拉斯·霍尔特的世纪试镜决战，最终在疫情风暴与虚拟技术突破中破茧而出。
+              从 2013 年本·阿弗莱克签约加盟 DCEU，到 2022 年马特·里夫斯执导的独立新黑色悬疑巨制全球公映，《新蝙蝠侠》走过了长达近十年的制作演变。项目历经阿弗莱克以阿卡姆疯人院为舞台的“丧钟”复仇原案、主创健康危机与创作理念分歧、里夫斯接任后坚决推翻剧本的独立重构，以及帕丁森与尼古拉斯·霍尔特进入最终试镜的选角阶段，最终在疫情风暴与虚拟技术突破中完成制作。
             </>
           ) : (
             <>
-              From Ben Affleck's initial 2013 DCEU casting to Matt Reeves' 2022 neo-noir triumph, <em>The Batman</em> traversed a transformative decade of creative evolution. The production weathered Affleck's Arkham-set Deathstroke script, personal health crises, Reeves' absolute refusal to use the original screenplay, a legendary 35mm Batsuit screen test showdown between Robert Pattinson and Nicholas Hoult, and grueling pandemic halts before emerging into cinematic history.
+              From Ben Affleck's initial 2013 DCEU casting to Matt Reeves' 2022 neo-noir triumph, <em>The Batman</em> traversed a transformative decade of creative evolution. The production weathered Affleck's Arkham-set Deathstroke script, personal health crises, Reeves' absolute refusal to use the original screenplay, the final Batman casting round between Robert Pattinson and Nicholas Hoult, and grueling pandemic-era shutdowns before release.
             </>
           )}
         </p>
@@ -226,7 +226,7 @@ export function DossierProductionDrama() {
         </div>
       </div>
 
-      {/* 2019 伯班克 35mm 决选试镜深度特辑 */}
+      {/* 2019 伯班克最终试镜资料 */}
       <div className="border border-blood/40 bg-fg/[0.02] p-6 sm:p-8">
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-1.5 text-blood">

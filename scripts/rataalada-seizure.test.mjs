@@ -101,6 +101,16 @@ test("final puzzle reveals seizure page; files remain accessible; restart resets
   const stored = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)), STORAGE_KEY);
   assert.equal(stored.seizure, true);
 
+  // Leaving the GCPD ending must keep solved puzzles; only restart clears progress.
+  await page.getByRole("link", { name: "返回档案站" }).click();
+  await page.waitForURL((url) => url.pathname === "/");
+  assert.deepEqual(
+    await page.evaluate((key) => JSON.parse(localStorage.getItem(key)), STORAGE_KEY),
+    stored,
+  );
+  await page.goto(`${BASE}/rataalada`, { waitUntil: "domcontentloaded" });
+  await seizureScreenshot.waitFor({ state: "visible" });
+
   await page.getByRole("button", { name: "重新启动档案" }).click();
   await page.getByText("RATAALADA.COM TERMINAL").waitFor({ state: "visible" });
   assert.equal(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY), null);

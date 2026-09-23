@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 250" role="img" aria-labelledby="title desc">
+  <title id="title">City of Gotham Police Department emblem</title>
+  <desc id="desc">A monochrome shield inspired by Gotham police signage, with a bridge and keyhole motif.</desc>
+  <path d="M22 24h176v112c0 54-34 82-88 101-54-19-88-47-88-101V24Z" fill="#f5f5f5"/>
+  <path d="M31 34h158v99c0 47-29 70-79 88-50-18-79-41-79-88V34Z" fill="#090b13"/>
+  <text x="110" y="56" text-anchor="middle" fill="#f5f5f5" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="800" letter-spacing="1.4">CITY OF GOTHAM</text>
+  <text x="110" y="75" text-anchor="middle" fill="#f5f5f5" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="800" letter-spacing="1.1">POLICE DEPARTMENT</text>
+  <path d="M43 91h134v62H43z" fill="#f5f5f5"/>
+  <path d="M48 96h124v7H48zm0 14h124v5H48zm0 12h124v5H48zm0 12h124v5H48z" fill="#090b13"/>
+  <path d="M57 151c17-34 34-52 53-52s36 18 53 52" fill="none" stroke="#090b13" stroke-width="8"/>
+  <path d="M66 151c13-26 27-40 44-40s31 14 44 40" fill="none" stroke="#090b13" stroke-width="4"/>
+  <path d="M79 105v52m62-52v52M110 103v54" stroke="#090b13" stroke-width="4"/>
+  <path d="M92 151h36v34H92z" fill="#f5f5f5" stroke="#090b13" stroke-width="5"/>
+  <circle cx="110" cy="164" r="5" fill="#090b13"/>
+  <path d="M107 168h6l4 12h-14l4-12Z" fill="#090b13"/>
+  <path d="M47 160h126" stroke="#f5f5f5" stroke-width="5"/>
+  <text x="110" y="207" text-anchor="middle" fill="#f5f5f5" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="900" letter-spacing="5">GCPD</text>
+</svg>

@@ -80,14 +80,14 @@ export const PRODUCTION_PHASES_EN: Record<
   },
   "screen-test-reboot": {
     tag: "Reboot & Casting Duel",
-    title: "DCEU Separation, The Elseworlds Pivot & The 35mm Screen Test Duel",
+    title: "DCEU Separation, the Elseworlds Pivot & Final Screen Tests",
     summary:
       "In January 2019, Affleck officially retired from the cowl, and Warner Bros. scheduled a 2021 release date. Reeves decoupled the story into an autonomous 'Elseworlds' saga. After a months-long global search, Robert Pattinson and Nicholas Hoult competed in a high-stakes 35mm screen test wearing vintage Batsuits.",
     bulletPoints: [
       "On January 30, 2019, Warner Bros. announced the revised release window; Affleck tweeted his blessing to the new filmmakers, marking the definitive conclusion of the DCEU Batman era.",
       "Reeves conceived his young Bruce Wayne while writing with Robert Pattinson in mind, inspired by his frantic, brooding, and dangerous turn in the Safdie brothers' 'Good Time' (2017).",
-      "By mid-May 2019, casting boiled down to two British finalists: Robert Pattinson and Nicholas Hoult, who both flew to Burbank for final camera tests.",
-      "The audition protocol: both actors stepped into Val Kilmer's original 1995 'Batman Forever' rubber suit for 35mm film camera tests, evaluating bone structure, jawline definition, and the intensity behind the cowl eyeholes.",
+      "By mid-May 2019, casting had narrowed to two British finalists: Robert Pattinson and Nicholas Hoult, both of whom reached the final screen-test stage.",
+      "Pattinson later described testing in a vintage Val Kilmer-era Batsuit with several crew members helping him into it. Public reporting also confirms Hoult reached the final testing stage, but does not reliably establish that both actors used the same suit or identical test protocol.",
       "On May 31, 2019, Warner Bros. and Reeves officially ratified Robert Pattinson as the next Dark Knight, initiating a brand-new neo-noir era.",
     ],
     keyQuotes: [
@@ -180,11 +180,11 @@ export const SCRIPT_COMPARISONS_EN: ScriptComparison[] = [
 ];
 
 export const SCREEN_TEST_DUEL_EN: ScreenTestDuel = {
-  title: "Burbank 35mm Suit Screen Test Duel (May 2019)",
+  title: "Burbank Final Screen Tests (May 2019)",
   date: "Late May 2019",
   location: "Warner Bros. Studios, Burbank, California",
   summary:
-    "Prior to locking in Pattinson, Warner Bros. staged a high-stakes, 35mm camera test inside their Burbank stages. Pattinson and Hoult each flew in to step into Val Kilmer's iconic suit under the scrutiny of director Matt Reeves and DP Greig Fraser, testing close-up jawline geometry and emotional resonance through the cowl.",
+    "Before the role was finalized, Robert Pattinson and Nicholas Hoult reached the final round and underwent screen tests. Pattinson later described using a vintage Val Kilmer-era Batsuit; available public reporting does not establish that Hoult used the same suit or that both tests followed an identical technical setup.",
   candidates: [
     {
       name: "Robert Pattinson",
@@ -192,25 +192,25 @@ export const SCREEN_TEST_DUEL_EN: ScreenTestDuel = {
       strengths:
         "Coming off magnetic turns in Good Time and Cosmopolis, possessed the exact 'reclusive rock star, raw rage, and haunting vulnerability' Reeves envisioned; captivating gaze behind the cowl.",
       outcome:
-        "Officially Cast: Approved on May 31, 2019, becoming one of the youngest standalone Batman leads in cinematic history.",
+        "Warner Bros. confirmed Robert Pattinson as the new Bruce Wayne / Batman on May 31, 2019.",
       laterDcuFate:
         "Headlines 'The Batman' feature trilogy and the overarching Epic Crime Saga.",
     },
     {
       name: "Nicholas Hoult",
-      suitWorn: "Legacy Batsuit screen test fitting",
+      suitWorn: "Final screen test (public sources do not identify the suit model)",
       strengths:
-        "Premier British talent with exceptional versatility (Mad Max: Fury Road, The Favourite), statuesque physique, regal poise, and commanding vocal cadence.",
+        "A versatile British actor whose work in Mad Max: Fury Road and The Favourite helped place him among the final candidates considered by Warner Bros. and Reeves.",
       outcome:
-        "Runner-Up: Narrowly missed out, but left a lasting impression on studio leadership and director Matt Reeves.",
+        "Reached the final round, but the role ultimately went to Robert Pattinson; Hoult has since spoken publicly about losing the part.",
       laterDcuFate:
         "Handpicked by James Gunn in 2023 to play arch-nemesis Lex Luthor in the new DCU's 'Superman' (2025).",
     },
   ],
   details: [
-    "The vintage rubber Batsuit featured zero built-in cooling, requiring five wardrobe technicians over 40 minutes just to squeeze each actor inside under blistering studio lighting.",
-    "Reeves' primary evaluation criterion wasn't athletic flips, but rather: 'When the cowl is on and only the eyes and jaw are visible, can the actor command the entire frame with a single breath?'",
-    "Reviewing the 35mm close-up footage in the editing suite, Reeves determined that Pattinson's tragic, Kurt Cobain-esque weariness provided the indispensable soul for this neo-noir incarnation.",
+    "Pattinson later recalled that the vintage rubber suit required roughly five crew members to help him into it and left him sweating heavily during the test.",
+    "Public reporting confirms Pattinson and Hoult both reached the final testing stage, but reliable sources do not establish identical suit models, film formats, or test procedures for both actors.",
+    "Warner Bros. confirmed Pattinson in the role on May 31, 2019; Hoult later discussed the experience of reaching the final round and losing the part.",
   ],
 };
 

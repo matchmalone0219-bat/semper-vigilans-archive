@@ -89,3 +89,16 @@ test("runMediaCheck reports an unreferenced fixture without deleting it", async 
   assert.equal(result.warnings.some((item) => item.kind === "orphan"), true);
   assert.equal(result.warnings.some((item) => item.kind === "small"), true);
 });
+
+
+test("repository has no duplicate, orphan, or MIME-mismatched media assets", async () => {
+  const result = await runMediaCheck();
+  const blockingKinds = new Set(["duplicate", "orphan", "mime"]);
+  const blocking = result.warnings.filter((item) => blockingKinds.has(item.kind));
+  assert.deepEqual(
+    blocking,
+    [],
+    "Media hygiene regressions:\n" +
+      blocking.map((item) => `${item.kind}: ${item.file} (${item.detail})`).join("\n"),
+  );
+});

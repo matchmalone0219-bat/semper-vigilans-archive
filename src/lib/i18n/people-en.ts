@@ -129,6 +129,24 @@ export const PEOPLE_EN: Record<string, LocalizedPersonData> = {
       { work: "The Batman: Part II", note: "Andy Serkis returns; seen on set performing emergency CPR in Glasgow snow." },
     ],
   },
+  dory: {
+    name: "Dory",
+    sub: "Wayne Tower Housekeeper",
+    actor: "Sandra Dickinson",
+    sections: [
+      {
+        heading: "Loyal Guardian of Wayne Tower",
+        body: "Portrayed by Sandra Dickinson, Dory is one of the rare trusted staff members with direct access to Bruce Wayne in his penthouse retreat at Wayne Tower. Working quietly alongside Alfred Pennyworth, she attends to Bruce's solitary domestic life, representing the final vestige of familial warmth within the reclusive Wayne household.",
+      },
+      {
+        heading: "The Exploding Package & Classic Homage",
+        body: "When the Riddler mails an explosive parcel addressed to Bruce Wayne, Dory signs for it and hands it to Alfred. As Bruce frantically telephones to warn the tower, Dory answers in tears to reveal the explosion has already occurred. The character is widely celebrated as director Matt Reeves's modern homage to Aunt Harriet from the 1966 Batman television series.",
+      },
+    ],
+    appearances: [
+      { work: "The Batman (2022)", note: "Wayne Tower housekeeper; handles mail deliveries and answers Bruce's frantic warning call after the bombing." },
+    ],
+  },
   bella: {
     name: "Bella Reál",
     sub: "Mayor-Elect of Gotham",
@@ -192,6 +210,43 @@ export const PEOPLE_EN: Record<string, LocalizedPersonData> = {
       { work: "The Batman: Part II", note: "Gil Perez-Abraham confirmed returning to Gordon's precinct ranks." },
     ],
   },
+  savage: {
+    name: "Pete Savage",
+    sub: "Former GCPD Police Commissioner",
+    actor: "Alex Ferns",
+    sections: [
+      {
+        heading: "Corrupt GCPD Top Commander",
+        body: "Portrayed by Alex Ferns, Pete Savage served as Commissioner of the Gotham City Police Department. While presenting a tough public stance on law enforcement before news cameras and furiously reprimanding Lieutenant Gordon for bringing a masked vigilante to the Mayor's crime scene, Savage was secretly on Carmine Falcone's dirty payroll.",
+      },
+      {
+        heading: "Rat Cage Execution & Exposed Corruption",
+        body: "Targeted as the second corrupt official in the Riddler's 'No More Lies' purge, Savage was abducted outside a gym. The Riddler strapped a cage containing starving sewer rats onto his head, brutally executing him and broadcasting the torture alongside confidential records proving Savage received substantial payouts from Falcone's illicit drops-drug ring.",
+      },
+    ],
+    appearances: [
+      { work: "The Batman (2022)", note: "Police Commissioner killed by the Riddler with a rat cage trap after his mob payoffs are exposed." },
+    ],
+  },
+  bock: {
+    name: "Chief Mackenzie Bock",
+    sub: "GCPD Major Crimes Unit Chief",
+    actor: "Con O'Neill",
+    sections: [
+      {
+        heading: "MCU Commander & Strict Disciplinarian",
+        body: "Portrayed by Con O'Neill, Mackenzie Bock is the Chief of the GCPD Major Crimes Unit (MCU). A seasoned bureaucratic commander committed to strict police regulations, Bock strongly distrusts vigilantes and clashes with Gordon over his unsanctioned partnership with the Batman.",
+      },
+      {
+        heading: "Precinct Stand-Off & Succession",
+        body: "Following Commissioner Savage's execution, Bock stepped forward to lead major homicide investigations and citywide tactical cordons. When Batman was brought unconscious to GCPD headquarters after Colson's explosion, Bock led armed detectives and SWAT officers in demanding his unmasking, forcing Gordon to stage a punch-up allowing Batman to escape across the rooftops. He reprised his role in The Penguin.",
+      },
+    ],
+    appearances: [
+      { work: "The Batman (2022)", note: "MCU Chief who confronts Gordon and Batman at crime scenes and commands the GCPD manhunt." },
+      { work: "The Penguin (2024)", note: "GCPD Chief managing precinct emergency responses and gang crackdowns during the post-flood aftermath." },
+    ],
+  },
   mitchell: {
     name: "Don Mitchell Jr.",
     sub: "Former Mayor of Gotham",
@@ -208,6 +263,24 @@ export const PEOPLE_EN: Record<string, LocalizedPersonData> = {
     ],
     appearances: [
       { work: "The Batman (2022)", note: "Murdered on Halloween; his funeral becomes the site of the car-bomb attack." },
+    ],
+  },
+  "mitchell-son": {
+    name: "Don Mitchell Jr.'s Son",
+    sub: "Traumatized Mayoral Orphan",
+    actor: "Archie Barnes",
+    sections: [
+      {
+        heading: "The Orphan of Halloween",
+        body: "Portrayed by Archie Barnes, he is the young son of murdered Mayor Don Mitchell Jr. Returning home in a red costume on Halloween night, he discovers his father's gruesome murder, becoming the first civilian victim of the Riddler's political purge. At the crime scene, his silent eye contact with Bruce Wayne powerfully stirs Bruce's own childhood trauma in Crime Alley.",
+      },
+      {
+        heading: "Funeral Rescue & Beacon of Hope",
+        body: "During the Mayor's memorial service at Gotham City Hall, District Attorney Colson's collar-bombed SUV violently crashes through the chapel doors. Bruce leaps across pews to shield the boy with his own body, narrowly saving his life. Later at the flooded Gotham Square Garden, the boy is among those trapped beneath fallen scaffolding; when Batman extends a hand, the young boy grasps it, symbolizing the hero's transformative pivot from Vengeance to Hope.",
+      },
+    ],
+    appearances: [
+      { work: "The Batman (2022)", note: "Discovers father's murder on Halloween; saved by Bruce at the memorial service and flood evacuation." },
     ],
   },
   colson: {
@@ -468,6 +541,17 @@ export const RELATION_LABELS_EN: Record<string, string> = {
   "互为宿敌": "Archnemeses",
   "狙击暗杀": "Sniper Assassination",
   "邻格囚徒": "Neighboring Cellmates",
+  "照料起居": "Household Care",
+  "协同主管": "Household Colleagues",
+  "市长父子": "Mayoral Lineage",
+  "创伤投射 / 舍身相救": "Trauma Mirror & Rescue",
+  "葬礼惊魂": "Funeral Terror",
+  "斥责义警": "Reprimand & Institutional Rift",
+  "毒品分红": "Drops Drug Payoffs",
+  "老鼠笼处决": "Rat Cage Execution",
+  "警监同僚": "MCU Precinct Commander",
+  "总部围捕": "Precinct Ambush & Hunt",
+  "直接下属": "Direct Superior & Succession",
   // Legacy aliases
   "委托杀人": "Commissioned Mob Hit",
   "隐瞒精神病史": "Covered Up Psychiatric History",
@@ -528,6 +612,17 @@ export const RELATION_DESCS_EN: Record<string, string> = {
   "互为宿敌": "The Riddler used Batman as a tool for his anti-corruption crusade, only for Batman to reject vengeance and embrace hope.",
   "狙击暗杀": "Edward Nashton sniper-assassinated Carmine Falcone from an apartment across from the Iceberg Lounge as he stepped into the light.",
   "邻格囚徒": "Locked in neighboring cells in Arkham's high-security ward, whispering cryptic words about Gotham's love for a comeback story.",
+  "照料起居": "Managing Bruce's domestic needs and correspondence at Wayne Tower, she witnessed the reclusive master's trauma while sorting incoming riddle missives.",
+  "协同主管": "Partnered with Alfred to maintain Wayne Manor's lineage and tower logistics; narrowly avoided death alongside him during the parcel bombing.",
+  "市长父子": "Mayor Don Mitchell Jr.'s only son, left orphaned on Halloween night following the Riddler's initial assassination.",
+  "创伤投射 / 舍身相救": "Bruce recognized his own childhood loss in the boy's eyes, diving across chapel pews to shield him from a speeding car and later pulling him from stadium floodwaters.",
+  "葬礼惊魂": "Colson was coerced into driving a collar-bombed SUV straight through the memorial service chapel, nearly crushing the widowed mother and son beneath its tires.",
+  "斥责义警": "Commissioner Savage furiously berated Gordon for permitting a masked vigilante to contaminate the Mayor's active crime scene, exposing their stark philosophical rift.",
+  "毒品分红": "As GCPD Commissioner, Savage collected regular payoffs from Falcone's drops-narcotics syndicate in exchange for institutional protection.",
+  "老鼠笼处决": "The Riddler's second high-profile victim, abducted outside the precinct and executed with a cage of starving rats, his mob corruption broadcast publicly.",
+  "警监同僚": "Major Crimes Unit Chief Bock took over tactical command after Savage's death, questioning Gordon's vigilante ties while maintaining procedural discipline.",
+  "总部围捕": "Cornered Batman inside GCPD headquarters following the church explosion, demanding his mask be removed before Gordon staged a punch to facilitate his rooftop escape.",
+  "直接下属": "Reported directly to Commissioner Savage as MCU detective lead before assuming control of the high-profile homicide investigation upon Savage's murder.",
 };
 
 export function getLocalizedPerson<

@@ -85,7 +85,7 @@ export const PLACES: Place[] = [
     image: "/media/places/wayne-tower.jpg",
     imageAlt: "黄昏时分自高处俯瞰哥谭河岸与天际线",
     status: "核心居所",
-    people: ["bruce", "alfred"],
+    people: ["bruce", "alfred", "dory"],
     works: "前传小说 · 电影《新蝙蝠侠》 · 电影《新蝙蝠侠2》",
     body: [
       "位于哥谭金融区的哥特式摩天大楼。旧庄园捐出后，布鲁斯常年深居于顶层阁楼，并在阿尔弗雷德照料下训练与办案；地底连通秘密车间。成片天际线里还可见「Gotham Empire」一类纽约帝国大厦式的巨幅楼标。",
@@ -115,7 +115,7 @@ export const PLACES: Place[] = [
     image: "/media/places/gcpd.jpg",
     imageAlt: "哥谭市警局屋顶亮起的蝙蝠信号灯",
     status: "正常运转",
-    people: ["gordon", "martinez", "kenzie", "bruce", "bella", "colson"],
+    people: ["gordon", "martinez", "kenzie", "bruce", "bella", "colson", "savage", "bock"],
     works: "电影《新蝙蝠侠》 · 电影《新蝙蝠侠2》",
     body: [
       "哥谭治安的核心指挥中枢，但在前作中暴露出系统性腐败问题。吉姆·戈登中尉在此任职，并多次力排众议将蝙蝠侠带入物证室与停尸间协助勘验线索。",
@@ -174,7 +174,7 @@ export const PLACES: Place[] = [
     image: "/media/flood.jpg",
     imageAlt: "洪水漫灌体育馆后，蝙蝠侠点燃照明弹引导受困市民",
     status: "已完成灾后清淤修复",
-    people: ["bella", "bruce", "gordon", "edward"],
+    people: ["bella", "bruce", "gordon", "edward", "mitchell-son"],
     works: "电影《新蝙蝠侠》",
     body: [
       "哥谭市大型综合体育馆，命名方式对标纽约麦迪逊广场花园，实景取自伦敦 O2 体育馆。城市低于海平面，大堤一破，积水便灌向这处低洼集会点——选举夜数千市民与当选市长贝拉·蕾尔在此避难，却遭遇谜语人信徒伏击。",
@@ -233,7 +233,7 @@ export const PLACES: Place[] = [
     image: "/media/places/city-hall.jpg",
     imageAlt: "哥谭市政厅新古典主义宏伟柱廊、石阶与雨伞人群（圣乔治大厅外景）",
     status: "正常运转",
-    people: ["bella", "mitchell", "colson"],
+    people: ["bella", "mitchell", "colson", "mitchell-son", "savage", "bock"],
     works: "电影《新蝙蝠侠》 · 限定剧《企鹅人》",
     body: [
       "哥谭市政治与行政最高中枢，市政建筑上可见市徽格言 Sic Parvis Magna。前市长唐·米切尔与前检察官吉尔·科尔森曾在此办公并深涉法尔科内黑金网络；贝拉·蕾尔在第一部后宣誓就任新市长，推行灾后重建与反腐改革。",

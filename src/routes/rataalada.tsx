@@ -6,10 +6,14 @@ import {
   RATA_INTRO,
   RIDDLER_CIPHER_ALPHABET,
   TESTS,
+  clearProgress,
+  loadProgress,
+  stillsFor,
   type PrizeStill,
 } from "@/lib/rataalada";
 import { pageTitle } from "@/lib/film";
 import { RiddlerTerminal } from "@/components/riddler-terminal";
+import { GcpdSeizurePage } from "@/components/gcpd-seizure-page";
 import { Lightbox } from "@/components/lightbox";
 import { useI18n, RATA_INTRO_EN, CIPHER_SHAPES_EN, RATA_STILLS_EN } from "@/lib/i18n";
 
@@ -27,7 +31,14 @@ function Rataalada() {
   const { locale } = useI18n();
   const isEn = locale === "en";
 
-  const [stills, setStills] = useState<PrizeStill[]>([]);
+  const [initialProgress] = useState(() =>
+    typeof window === "undefined" ? null : loadProgress(),
+  );
+  const [stills, setStills] = useState<PrizeStill[]>(() =>
+    initialProgress ? stillsFor(initialProgress) : [],
+  );
+  const [seized, setSeized] = useState(() => Boolean(initialProgress?.seizure));
+  const [terminalKey, setTerminalKey] = useState(0);
   const [open, setOpen] = useState<string | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"files" | "cipher">("files");
@@ -47,6 +58,7 @@ function Rataalada() {
 
   return (
     <main className="crt-page flex h-dvh flex-col">
+      {!seized ? (
       <header className="relative z-20 flex shrink-0 items-center justify-between gap-3 border-b border-phosphor/20 px-3 py-2 font-mono text-phosphor sm:px-4">
         <p className="min-w-0 truncate text-xs tracking-[0.18em] uppercase sm:text-sm">
           Rataalada.com
@@ -83,23 +95,49 @@ function Rataalada() {
           </Link>
         </div>
       </header>
+      ) : null}
 
       <div className="relative flex min-h-0 flex-1">
-        <RiddlerTerminal
-          onUnlock={(next, file) => {
-            setStills(next);
-            if (file) {
-              setOpen(file);
+        {seized ? (
+          <GcpdSeizurePage
+            isEn={isEn}
+            onReviewFiles={() => {
               setActiveTab("files");
               setPanelOpen(true);
-            }
-          }}
-          onReset={() => {
-            setStills([]);
-            setOpen(null);
-            setPanelOpen(false);
-          }}
-        />
+            }}
+            onRestart={() => {
+              clearProgress();
+              setStills([]);
+              setOpen(null);
+              setPanelOpen(false);
+              setActiveTab("files");
+              setSeized(false);
+              setTerminalKey((value) => value + 1);
+            }}
+          />
+        ) : (
+          <RiddlerTerminal
+            key={terminalKey}
+            onUnlock={(next, file) => {
+              setStills(next);
+              if (file) {
+                setOpen(file);
+                setActiveTab("files");
+                setPanelOpen(true);
+              }
+            }}
+            onReset={() => {
+              setStills([]);
+              setOpen(null);
+              setPanelOpen(false);
+            }}
+            onSeized={() => {
+              setOpen(null);
+              setPanelOpen(false);
+              setSeized(true);
+            }}
+          />
+        )}
 
         {panelOpen ? (
           <aside className="absolute inset-y-0 right-0 z-20 flex w-full max-w-md flex-col border-l border-phosphor/25 bg-crt/95 font-mono text-phosphor backdrop-blur-sm sm:w-[26rem]">

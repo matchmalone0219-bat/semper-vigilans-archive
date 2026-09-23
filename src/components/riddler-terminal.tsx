@@ -41,9 +41,11 @@ function prefersReducedMotion() {
 export function RiddlerTerminal({
   onUnlock,
   onReset,
+  onSeized,
 }: {
   onUnlock: (stills: PrizeStill[], file?: string) => void;
   onReset?: () => void;
+  onSeized?: () => void;
 }) {
   const { locale } = useI18n();
   const isEn = locale === "en";
@@ -62,7 +64,9 @@ export function RiddlerTerminal({
   const skipRef = useRef(false);
   const progressRef = useRef<Progress>(EMPTY_PROGRESS);
   const onUnlockRef = useRef(onUnlock);
+  const onSeizedRef = useRef(onSeized);
   onUnlockRef.current = onUnlock;
+  onSeizedRef.current = onSeized;
 
   function commit(next: Progress, file?: string) {
     progressRef.current = next;
@@ -252,17 +256,23 @@ export function RiddlerTerminal({
   async function runSeizure(current: Progress) {
     await typeLines([
       { text: "" },
-      { text: "*** GCPD CYBERCRIME DIVISION ***", tone: "err" },
-      { text: "THIS DOMAIN HAS BEEN SEIZED.", tone: "err" },
-      { text: "RATAALADA.COM — 29 MARCH 2022" },
-      { text: "YOUAREELRATAALADA.COM ALSO OFFLINE." },
+      { text: "CONNECTION INTERRUPTED.", tone: "err" },
+      { text: "REMOTE HOST OVERRIDE DETECTED.", tone: "err" },
+      { text: "RATAALADA.COM IS NO LONGER RESPONDING." },
       { text: "" },
-      { text: "GOODBYE <?>" },
-      { text: "" },
-      { text: "NO FURTHER TESTS ON THIS MIRROR.", tone: "dim" },
-      { text: "TYPE LS TO REVIEW FILES. TYPE ABOUT FOR THE ARCHIVE NOTE." },
+      { text: "GOODBYE <?>", tone: "dim" },
     ]);
-    commit({ ...current, seizure: true });
+
+    const next = { ...current, seizure: true };
+    commit(next);
+
+    if (!prefersReducedMotion()) {
+      await wait(1200);
+    }
+    // RESET may have happened while the takeover was waiting.
+    if (progressRef.current.seizure) {
+      onSeizedRef.current?.();
+    }
   }
 
   async function onSubmit(raw: string, displayText?: string) {
@@ -364,6 +374,12 @@ export function RiddlerTerminal({
         ),
         { text: "ALL FILES UNLOCKED." },
       ]);
+      if (!prefersReducedMotion()) {
+        await wait(1200);
+      }
+      if (progressRef.current.seizure) {
+        onSeizedRef.current?.();
+      }
       return;
     }
     if (upper === "RESET") {

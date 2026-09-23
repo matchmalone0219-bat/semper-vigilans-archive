@@ -130,6 +130,38 @@ export type InterviewQuote = {
 
 export const INTERVIEWS: InterviewQuote[] = [
   {
+    id: "pattinson-collider-2026-left-turn",
+    speakerId: "pattinson",
+    work: "part2",
+    date: "2026.09.22",
+    iso: "2026-09-22",
+    outlet: "Collider",
+    sourceUrl:
+      "https://collider.com/the-batman-part-2-script-update-robert-pattinson/",
+    quoteZh:
+      "相较第一部，这次确实是一次明显的转向。",
+    quoteEn:
+      "It's a real left turn from the first one.",
+    note:
+      "2026 年 9 月 Collider 采访摘录。帕丁森认为两部影片分别采用了不同的蝙蝠侠诠释方式；续集方向变化明显，但仍保留前作的部分气质，整体构想十分大胆。他没有透露具体剧情、反派身份或影片类型。Variety 于 9 月 23 日跟进报道。",
+  },
+  {
+    id: "pattinson-collider-2026-dense-script",
+    speakerId: "pattinson",
+    work: "part2",
+    date: "2026.09.22",
+    iso: "2026-09-22",
+    outlet: "Collider",
+    sourceUrl:
+      "https://collider.com/the-batman-part-2-script-update-robert-pattinson/",
+    quoteZh:
+      "这份剧本的信息量极其密集。",
+    quoteEn:
+      "The script is incredibly dense.",
+    note:
+      "同场采访的另一段发言。帕丁森表示，剧本包含大量细节，自己在拍摄和逐步了解剧情时才不断发现其中的关联；在他看来，导演马特·里夫斯已经对整部影片有清晰、完整的构想。此处只记录演员对剧本和导演创作方式的评价。",
+  },
+  {
     id: "pattinson-gq-weirdo",
     speakerId: "pattinson",
     work: "batman",

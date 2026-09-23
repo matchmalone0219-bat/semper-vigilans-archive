@@ -257,7 +257,7 @@ function Cases() {
               const context = isEn && enJ ? enJ.context : j.context;
 
               return (
-                <article key={j.id} className="border-l-2 border-blood bg-surface/20 p-6 sm:p-8 crimson-glow-card">
+                <article key={j.id} id={j.id} className="scroll-mt-28 border-l-2 border-blood bg-surface/20 p-6 sm:p-8 crimson-glow-card">
                   <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-fg/10 pb-3">
                     <div>
                       <span className="font-display text-xs font-semibold tracking-[0.2em] text-blood uppercase">

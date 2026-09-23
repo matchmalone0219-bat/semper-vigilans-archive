@@ -301,7 +301,12 @@ export function SignalsHub({
 
               {/* 焦点核心金句 */}
               {latestInterview ? (
-                <div className="mt-3">
+                <Link
+                  to="/interviews"
+                  hash={latestInterview.id}
+                  aria-label={locale === "zh" ? "查看最新访谈详情" : "Read the latest interview"}
+                  className="group/featured-quote mt-3 block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blood"
+                >
                   <Quote className="size-3.5 fill-current text-blood/70" />
                   <blockquote className="mt-1.5 text-pretty text-xs leading-relaxed text-fg/90">
                     {locale === "zh" ? (
@@ -315,7 +320,11 @@ export function SignalsHub({
                       {latestInterview.quoteEn}
                     </p>
                   )}
-                </div>
+                  <span className="mt-2 inline-flex items-center gap-1 font-display text-[10px] font-semibold tracking-[0.15em] text-blood uppercase group-hover/featured-quote:underline">
+                    {locale === "zh" ? "查看这条访谈" : "Read this interview"}
+                    <ArrowRight className="size-3" aria-hidden="true" />
+                  </span>
+                </Link>
               ) : null}
 
               {/* 更多主创观点精选 */}

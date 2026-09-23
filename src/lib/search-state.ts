@@ -1,5 +1,5 @@
 export const SEARCH_PAGE_SIZE = 16;
-const SEARCH_CATEGORIES = ["all", "people", "places", "plot", "log", "gear", "merch", "craft"] as const;
+const SEARCH_CATEGORIES = ["all", "people", "places", "plot", "log", "interviews", "cases", "gear", "merch", "craft"] as const;
 type Category = (typeof SEARCH_CATEGORIES)[number];
 
 export function parseSearchState(raw: Record<string, unknown>): {

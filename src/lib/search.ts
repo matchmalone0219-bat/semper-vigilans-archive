@@ -6,6 +6,9 @@ import { PEOPLE } from "@/lib/people";
 import { CINEMA_ROOTS, RIDDLE_LORE, ROOTS, ROOT_KIND } from "@/lib/roots";
 import { CITIES, LENS, THEMES } from "@/lib/craft";
 import { PRODUCTION_PHASES } from "@/data/production";
+import { INTERVIEWS, SPEAKERS, WORK_LABEL } from "@/data/interviews";
+import { BRUCE_JOURNALS, CASE_FILES } from "@/lib/cases";
+import { BRUCE_JOURNALS_EN } from "@/lib/i18n/cases-en";
 
 export type SearchItem = {
   title: string;
@@ -34,6 +37,8 @@ function item(
 const PAGES = [
   item("电影档案", "信息、线索、演员与拍摄日志", "/dossier", "栏目", "新蝙蝠侠2"),
   item("重案卷宗与物证", "谜语人案件与关键证物", "/cases", "栏目"),
+  item("人物访谈", "主创与演员采访原话", "/interviews", "栏目", "访谈 采访 Interviews"),
+  item("布鲁斯夜巡日记", "哥谭项目手稿与独白", "/cases#journal", "栏目", "日记 手稿 Gotham Project Bruce Wayne"),
   item("前作与宇宙编年", "电影、剧集、小说与漫画回顾", "/recap", "栏目"),
   item("原著与影史溯源", "漫画影响、电影渊源与证据等级", "/roots", "栏目"),
   item("幕后与视听", "摄影、配乐、取景与声音", "/craft", "栏目"),
@@ -72,6 +77,43 @@ export function plotToSearchItem(plot: PlotItem): SearchItem {
 export const SEARCH_ITEMS: SearchItem[] = [
   ...PAGES,
   ...PLOT.map(plotToSearchItem),
+  ...INTERVIEWS.map((quote) => {
+    const speaker = SPEAKERS.find((person) => person.id === quote.speakerId);
+    const speakerName = speaker?.name ?? "主创";
+    return item(
+      `${speakerName} · ${quote.quoteZh.length > 38 ? `${quote.quoteZh.slice(0, 38)}…` : quote.quoteZh}`,
+      `${quote.date} · ${quote.outlet} · ${WORK_LABEL[quote.work]}`,
+      `/interviews#${quote.id}`,
+      "访谈",
+      [speaker?.nameEn ?? "", speaker?.role ?? "", speaker?.roleEn ?? "",
+        quote.quoteEn, quote.quoteZh, quote.note ?? "", quote.outlet, quote.work,
+      ].join(" "),
+    );
+  }),
+  ...CASE_FILES.map((record) =>
+    item(
+      record.title,
+      `${record.caseNo} · ${record.victim}`,
+      `/cases#${record.id}`,
+      "案件",
+      [record.titleEn, record.victimRole, record.location, record.summary,
+        record.method, record.revelation,
+        ...record.evidences.flatMap((evidence) =>
+          [evidence.name, evidence.nameEn, evidence.type, evidence.desc]),
+      ].join(" "),
+    ),
+  ),
+  ...BRUCE_JOURNALS.map((entry) =>
+    item(
+      entry.title,
+      `${entry.date} · 布鲁斯·韦恩夜巡日记`,
+      `/cases#${entry.id}`,
+      "日记",
+      [BRUCE_JOURNALS_EN[entry.id]?.title ?? "", entry.day,
+        entry.context, entry.excerptZh, entry.excerptEn, "Batman Bruce Wayne Gotham Project",
+      ].join(" "),
+    ),
+  ),
   ...PEOPLE.map((person) =>
     item(
       person.name,

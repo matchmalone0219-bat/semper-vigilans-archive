@@ -265,4 +265,49 @@ test("desktop, mobile, and keyboard search page", { timeout: 180000 }, async (t)
     await page.close();
   });
 
+
+  await t.test("homepage featured interview links to its individual highlighted quote", async () => {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    page.setDefaultTimeout(12000);
+    await page.goto(BASE, { waitUntil: "networkidle" });
+    const featured = page.getByRole("link", { name: "查看最新访谈详情" });
+    const href = await featured.getAttribute("href");
+    const id = href?.split("#")[1];
+    assert.match(id ?? "", /^pattinson-collider-/);
+    await featured.click();
+    await page.waitForURL(new RegExp("/interviews#" + id + "$"));
+    const targetReady = () => page.waitForFunction((anchor) => {
+      const el = document.getElementById(anchor);
+      return el?.classList.contains("ring-blood") && el.getBoundingClientRect().height > 0;
+    }, id);
+    await targetReady();
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await targetReady();
+    await page.close();
+  });
+
+  await t.test("interview and case search results land on exact records and journals", async () => {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    page.setDefaultTimeout(12000);
+    for (const entry of [
+      { category: "interviews", query: "incredibly dense", href: "/interviews#pattinson-collider-2026-dense-script" },
+      { category: "cases", query: "市长唐·米切尔官邸遇害案", href: "/cases#case-01-mitchell" },
+      { category: "cases", query: "希望的火种", href: "/cases#journal-nov-06" },
+    ]) {
+      await page.goto(`${BASE}/search?q=${encodeURIComponent(entry.query)}&category=${entry.category}`, {
+        waitUntil: "networkidle",
+      });
+      const result = page.locator("main li button").first();
+      await result.waitFor({ state: "visible" });
+      await result.click();
+      await page.waitForURL((url) => url.pathname + url.hash === entry.href);
+      await page.waitForFunction((anchor) => {
+        const el = document.getElementById(anchor);
+        return el?.classList.contains("ring-blood") && el.getBoundingClientRect().height > 0;
+      }, entry.href.split("#")[1]);
+    }
+    await page.close();
+  });
+
 });

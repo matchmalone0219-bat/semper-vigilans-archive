@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
 
 // Contemporary screenshot of the original 2022 Rataalada GCPD seizure notice.
 // Source: https://www.gamesradar.com/the-batman-rataalada-website-GCPD/
@@ -46,6 +47,12 @@ export function GcpdSeizurePage({
           <ActionButton onClick={onRestart}>
             {isEn ? "Restart Archive" : "重新启动档案"}
           </ActionButton>
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center border border-white/25 bg-white/5 px-4 py-2.5 font-mono text-[10px] tracking-[0.14em] text-white/75 uppercase transition-colors hover:border-white/55 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-xs"
+          >
+            {isEn ? "Return to Semper Vigilans" : "返回档案站"}
+          </Link>
         </div>
 
         <p className="mt-4 max-w-2xl text-center font-mono text-[9px] leading-relaxed tracking-wide text-white/50 sm:text-[10px]">

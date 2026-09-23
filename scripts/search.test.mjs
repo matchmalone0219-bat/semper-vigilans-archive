@@ -8,6 +8,8 @@ const rootDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 const jiti = createJiti(import.meta.url, { alias: { "@": join(rootDir, "src") } });
 const film = jiti(join(rootDir, "src/data/film.ts"));
 const search = jiti(join(rootDir, "src/lib/search.ts"));
+const { INTERVIEWS } = jiti(join(rootDir, "src/data/interviews.ts"));
+const { CASE_FILES, BRUCE_JOURNALS } = jiti(join(rootDir, "src/lib/cases.ts"));
 
 const fakeDebunked = {
   id: "debunked-court-of-owls-test",
@@ -79,4 +81,41 @@ test("search URL state accepts valid filters and rejects malformed values", () =
   const { parseSearchState } = jiti(join(rootDir, "src/lib/search-state.ts"));
   assert.deepEqual(parseSearchState({ q: "蝙蝠侠", category: "log", shown: "32" }), { q: "蝙蝠侠", category: "log", shown: 32 });
   assert.deepEqual(parseSearchState({ q: [], category: "invalid", shown: -1 }), { q: undefined, category: undefined, shown: undefined });
+});
+
+test("each interview is independently searchable in Chinese and English and links to its quote", () => {
+  const indexed = search.SEARCH_ITEMS.filter((entry) => entry.kind === "访谈");
+  assert.equal(indexed.length, INTERVIEWS.length);
+  for (const interview of INTERVIEWS) {
+    assert.equal(indexed.filter((entry) => entry.href === `/interviews#${interview.id}`).length, 1);
+  }
+  const chinese = search.searchSite("帕丁森", search.SEARCH_ITEMS.length);
+  const english = search.searchSite("incredibly dense", search.SEARCH_ITEMS.length);
+  assert.ok(chinese.some((entry) => entry.href === "/interviews#pattinson-collider-2026-left-turn"));
+  assert.ok(english.some((entry) => entry.href === "/interviews#pattinson-collider-2026-dense-script"));
+});
+
+test("all case files and Bruce journals are searchable by their own stable anchors", () => {
+  const cases = search.SEARCH_ITEMS.filter((entry) => entry.kind === "案件");
+  const journals = search.SEARCH_ITEMS.filter((entry) => entry.kind === "日记");
+  assert.equal(cases.length, CASE_FILES.length);
+  assert.equal(journals.length, BRUCE_JOURNALS.length);
+  for (const record of CASE_FILES) {
+    assert.equal(cases.filter((entry) => entry.href === `/cases#${record.id}`).length, 1);
+  }
+  for (const entry of BRUCE_JOURNALS) {
+    assert.equal(journals.filter((result) => result.href === `/cases#${entry.id}`).length, 1);
+  }
+  assert.ok(search.searchSite("First Riddle Card", 1000).some(
+    (entry) => entry.href === "/cases#case-01-mitchell",
+  ));
+  assert.ok(search.searchSite("Spark of Hope", 1000).some(
+    (entry) => entry.href === "/cases#journal-nov-06",
+  ));
+});
+
+test("search URL state includes interview and case categories", () => {
+  const { parseSearchState } = jiti(join(rootDir, "src/lib/search-state.ts"));
+  assert.equal(parseSearchState({ category: "interviews" }).category, "interviews");
+  assert.equal(parseSearchState({ category: "cases" }).category, "cases");
 });

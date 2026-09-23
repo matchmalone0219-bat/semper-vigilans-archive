@@ -1,5 +1,11 @@
 import type { ReactNode } from "react";
 
+// Contemporary screenshot of the original 2022 Rataalada GCPD seizure notice.
+// Source: https://www.gamesradar.com/the-batman-rataalada-website-GCPD/
+// Image credited to Warner Bros. on the source page.
+const ORIGINAL_SEIZURE_SCREENSHOT =
+  "https://cdn.mos.cms.futurecdn.net/QyWTKWXcDzbw9gLzWysyp4.jpg";
+
 export function GcpdSeizurePage({
   isEn,
   onReviewFiles,
@@ -11,45 +17,29 @@ export function GcpdSeizurePage({
 }) {
   return (
     <section
-      className="gcpd-seizure-stage relative flex min-h-0 flex-1 items-center justify-start overflow-x-hidden overflow-y-auto px-5 py-6 text-white sm:justify-center sm:px-8 sm:py-10"
-      aria-labelledby="gcpd-seizure-title"
+      className="gcpd-seizure-stage relative flex min-h-0 flex-1 items-center justify-center overflow-x-hidden overflow-y-auto px-3 py-6 text-white sm:px-6 sm:py-8"
+      aria-label={isEn ? "Original GCPD seizure notice archive" : "GCPD 原始查封公告存档"}
     >
-      <div className="gcpd-seizure-noise" aria-hidden="true" />
-      <div className="gcpd-seizure-vignette" aria-hidden="true" />
-
-      <div className="relative z-10 my-auto flex w-full max-w-5xl shrink-0 flex-col items-center text-center">
-        <p className="mb-3 font-sans text-[10px] font-semibold tracking-[0.34em] text-white/55 uppercase sm:text-xs">
-          Gotham City Police Department · Cybercrime Division
-        </p>
-
-        <h1
-          id="gcpd-seizure-title"
-          className="font-sans text-3xl font-black leading-none tracking-[-0.035em] text-white uppercase sm:text-5xl lg:text-6xl"
-        >
-          This Domain Has Been Seized
-        </h1>
-
-        <p className="mt-5 max-w-4xl font-sans text-[10px] font-semibold leading-relaxed tracking-[0.025em] text-white/75 uppercase sm:text-xs">
-          RATAALADA.COM AND YOUAREELRATAALADA.COM ARE UNDER GCPD CONTROL FOLLOWING A GOTHAM
-          CITY DISTRICT COURT SEIZURE WARRANT. FEDERAL FORFEITURE AUTHORITIES INCLUDE
-          18 U.S.C. §§ 981 AND 982.
-        </p>
-
-        <div className="mt-9 flex flex-col items-center sm:mt-12">
+      <div className="my-auto flex w-full max-w-[1000px] shrink-0 flex-col items-center">
+        <figure className="w-full">
           <img
-            src="/media/rataalada/gcpd-seal.svg"
-            alt="City of Gotham Police Department emblem"
-            className="h-36 w-32 object-contain outline-none sm:h-44 sm:w-40"
+            src={ORIGINAL_SEIZURE_SCREENSHOT}
+            alt={
+              isEn
+                ? "Original Rataalada.com screenshot: This Domain Has Been Seized, with the GCPD shield and original footer."
+                : "原 Rataalada.com 查封页面截图，包含 THIS DOMAIN HAS BEEN SEIZED、GCPD 盾徽及原始页脚。"
+            }
+            className="block h-auto w-full outline-none"
+            width={1000}
+            height={563}
+            decoding="async"
           />
-          <p className="mt-4 font-sans text-3xl font-black tracking-[0.2em] text-white uppercase sm:text-4xl">
-            GCPD
-          </p>
-          <p className="mt-1 font-sans text-[10px] font-semibold tracking-[0.08em] text-white/75">
-            Gotham City Police Department
-          </p>
-        </div>
+          <figcaption className="sr-only">
+            {isEn ? "The original 2022 GCPD seizure page" : "2022 年 GCPD 原始查封页面"}
+          </figcaption>
+        </figure>
 
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-3 sm:mt-12">
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
           <ActionButton onClick={onReviewFiles}>
             {isEn ? "Review Unlocked Files" : "查看已解锁档案"}
           </ActionButton>
@@ -58,10 +48,19 @@ export function GcpdSeizurePage({
           </ActionButton>
         </div>
 
-        <p className="mt-7 max-w-2xl font-mono text-[9px] leading-relaxed tracking-[0.14em] text-white/40 uppercase sm:text-[10px]">
+        <p className="mt-4 max-w-2xl text-center font-mono text-[9px] leading-relaxed tracking-wide text-white/50 sm:text-[10px]">
           {isEn
-            ? "Archived reconstruction · Original Rataalada shutdown: 29 Mar 2022 · Fan archive recreation"
-            : "历史档案复原 · 原 Rataalada 网站于 2022-03-29 进入查封状态 · 本页为影迷档案重构"}
+            ? "Historical screenshot of the 2022 Rataalada shutdown · Fan archive"
+            : "2022 年 Rataalada 查封页面历史截图 · 影迷档案存档"}
+          {" · "}
+          <a
+            href="https://www.gamesradar.com/the-batman-rataalada-website-GCPD/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-white focus-visible:outline-2 focus-visible:outline-white"
+          >
+            {isEn ? "Image: Warner Bros. via GamesRadar+" : "图片来源：Warner Bros. / GamesRadar+"}
+          </a>
         </p>
       </div>
     </section>
@@ -79,7 +78,7 @@ function ActionButton({
     <button
       type="button"
       onClick={onClick}
-      className="border border-white/25 bg-black/20 px-4 py-2.5 font-mono text-[10px] tracking-[0.14em] text-white/75 uppercase transition-colors hover:border-white/55 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-xs"
+      className="border border-white/25 bg-white/5 px-4 py-2.5 font-mono text-[10px] tracking-[0.14em] text-white/75 uppercase transition-colors hover:border-white/55 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-xs"
     >
       {children}
     </button>

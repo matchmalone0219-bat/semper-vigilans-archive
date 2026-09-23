@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useI18n } from "@/lib/i18n";
 import {
   ABOUT,
   BETWEEN_TESTS,
@@ -43,6 +44,9 @@ export function RiddlerTerminal({
   onUnlock: (stills: PrizeStill[], file?: string) => void;
   onReset?: () => void;
 }) {
+  const { locale } = useI18n();
+  const isEn = locale === "en";
+
   const [lines, setLines] = useState<Line[]>([]);
   const [value, setValue] = useState("");
   const [busy, setBusy] = useState(true);
@@ -53,6 +57,7 @@ export function RiddlerTerminal({
   const input = useRef<HTMLInputElement>(null);
   const form = useRef<HTMLFormElement>(null);
   const queue = useRef(Promise.resolve());
+  const skipRef = useRef(false);
   const progressRef = useRef<Progress>(EMPTY_PROGRESS);
   const onUnlockRef = useRef(onUnlock);
   onUnlockRef.current = onUnlock;
@@ -79,6 +84,31 @@ export function RiddlerTerminal({
     box.current?.scrollTo({ top: box.current.scrollHeight });
   }, [lines, busy]);
 
+  useEffect(() => {
+    if (!busy) {
+      input.current?.focus();
+    }
+  }, [busy]);
+
+  useEffect(() => {
+    const onGlobalKeyDown = (event: KeyboardEvent) => {
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey
+      ) {
+        return;
+      }
+      if (event.key.length === 1 || event.key === "Backspace" || event.key === "Enter") {
+        input.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onGlobalKeyDown);
+    return () => window.removeEventListener("keydown", onGlobalKeyDown);
+  }, []);
+
   function push(next: Line[]) {
     setLines((prev) => [...prev, ...next]);
   }
@@ -88,21 +118,26 @@ export function RiddlerTerminal({
   ) {
     const run = async () => {
       setBusy(true);
+      skipRef.current = false;
       const instant = prefersReducedMotion();
       for (const item of batch) {
         const id = ++lineId;
-        if (instant || item.instant || item.text.length === 0) {
+        if (instant || item.instant || item.text.length === 0 || skipRef.current) {
           push([{ id, text: item.text, tone: item.tone }]);
-          if (!instant && item.text.length === 0) await wait(40);
+          if (!instant && !skipRef.current && item.text.length === 0) await wait(40);
           continue;
         }
         push([{ id, text: "", tone: item.tone }]);
         for (let i = 1; i <= item.text.length; i++) {
+          if (skipRef.current) {
+            setLines((prev) => prev.map((line) => (line.id === id ? { ...line, text: item.text } : line)));
+            break;
+          }
           const slice = item.text.slice(0, i);
           setLines((prev) => prev.map((line) => (line.id === id ? { ...line, text: slice } : line)));
-          await wait(10);
+          await wait(8);
         }
-        await wait(50);
+        if (!skipRef.current) await wait(30);
       }
       setBusy(false);
     };
@@ -190,12 +225,17 @@ export function RiddlerTerminal({
 
   async function onSubmit(raw: string) {
     const command = raw.trim();
-    if (!command || busy) return;
+    if (!command) return;
+    if (busy) {
+      skipRef.current = true;
+      await queue.current;
+    }
     setValue("");
     histPos.current = -1;
     setHistory((prev) => [command, ...prev].slice(0, 40));
     push([{ id: ++lineId, text: `> ${command.toUpperCase()}`, tone: "in" }]);
     await handle(command);
+    input.current?.focus();
   }
 
   async function handle(raw: string) {
@@ -399,6 +439,39 @@ export function RiddlerTerminal({
   }
 
   const seized = progress.seizure;
+  const beat = nextBeat(progress);
+
+  const quickActions = useMemo(() => {
+    const list: { cmd: string; label: string }[] = [];
+    if (beat.kind === "invite") {
+      list.push(
+        { cmd: "Y", label: isEn ? "▶ Y (Start Game)" : "▶ Y (开启互动)" },
+        { cmd: "N", label: isEn ? "✕ N (Exit)" : "✕ N (暂不开启)" },
+        { cmd: "HELP", label: isEn ? "? HELP" : "? HELP (指令帮助)" },
+        { cmd: "SPOILER", label: isEn ? "⚡ SPOILER (Unlock All)" : "⚡ SPOILER (一键全解)" },
+      );
+    } else if (beat.kind === "riddle") {
+      list.push(
+        { cmd: "HINT", label: isEn ? "💡 HINT (Get Clue)" : "💡 HINT (获取线索)" },
+        { cmd: "RIDDLE", label: isEn ? "📜 RIDDLE (Re-read)" : "📜 RIDDLE (重显谜题)" },
+        { cmd: "LS", label: isEn ? "📁 LS (View Files)" : "📁 LS (已解锁文件)" },
+        { cmd: "SPOILER", label: isEn ? "⚡ SPOILER (Skip/All)" : "⚡ SPOILER (跳过本题)" },
+      );
+    } else if (beat.kind === "lounge") {
+      list.push(
+        { cmd: "Y", label: isEn ? "🍸 Y (Been to Lounge)" : "🍸 Y (去过俱乐部)" },
+        { cmd: "N", label: isEn ? "✕ N (Never been)" : "✕ N (没去过)" },
+      );
+    } else {
+      list.push(
+        { cmd: "LS", label: isEn ? "📁 LS (Files)" : "📁 LS (查看文件)" },
+        { cmd: "ABOUT", label: isEn ? "ℹ ABOUT" : "ℹ ABOUT (关于终端)" },
+        { cmd: "RESET", label: isEn ? "🔄 RESET" : "🔄 RESET (重置挑战)" },
+      );
+    }
+    list.push({ cmd: "CLEAR", label: isEn ? "CLEAR" : "CLEAR (清屏)" });
+    return list;
+  }, [beat.kind, isEn]);
 
   return (
     <div
@@ -432,47 +505,86 @@ export function RiddlerTerminal({
         ))}
         <form
           ref={form}
-          className="mt-2 flex min-h-11 items-center gap-2"
+          className="mt-3 flex min-h-11 items-center gap-2 border-b border-phosphor/20 pb-2 font-mono text-sm sm:text-base"
           onSubmit={(event) => {
             event.preventDefault();
             void onSubmit(value);
           }}
         >
-          <span className="shrink-0 text-phosphor/80">{">"}</span>
-          <input
-            ref={input}
-            value={value}
-            disabled={busy}
-            autoFocus
-            autoComplete="off"
-            autoCapitalize="off"
-            spellCheck={false}
-            aria-label="终端指令"
-            className="min-w-0 flex-1 bg-transparent caret-transparent text-phosphor uppercase outline-none placeholder:text-phosphor/35"
-            onChange={(event) => setValue(event.target.value)}
-            onKeyDown={(event) => {
-              if (event.key === "ArrowUp") {
-                event.preventDefault();
-                const next = history[histPos.current + 1];
-                if (next !== undefined) {
-                  histPos.current += 1;
-                  setValue(next);
-                }
+          <span className="shrink-0 font-mono font-bold text-phosphor/80 select-none">{">"}</span>
+          <div className="relative flex-1 flex items-center">
+            <input
+              ref={input}
+              value={value}
+              autoFocus
+              autoComplete="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              aria-label={isEn ? "Terminal command" : "终端指令"}
+              placeholder={
+                busy
+                  ? isEn
+                    ? "SIGNAL TRANSMITTING... (TYPE OR CLICK CHIPS)"
+                    : "信号传输中...（可直接键盘输入或点击下方按键）"
+                  : isEn
+                  ? "TYPE Y TO START, OR CHOOSE BELOW..."
+                  : "输入 Y 开启互动，或点击下方快捷指令..."
               }
-              if (event.key === "ArrowDown") {
-                event.preventDefault();
-                if (histPos.current <= 0) {
-                  histPos.current = -1;
-                  setValue("");
-                } else {
-                  histPos.current -= 1;
-                  setValue(history[histPos.current] ?? "");
+              className="w-full bg-transparent font-mono text-sm uppercase text-phosphor outline-none placeholder:text-phosphor/35 placeholder:normal-case sm:text-base"
+              style={{ caretColor: "var(--color-phosphor, #33ff33)" }}
+              onChange={(event) => setValue(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "ArrowUp") {
+                  event.preventDefault();
+                  const next = history[histPos.current + 1];
+                  if (next !== undefined) {
+                    histPos.current += 1;
+                    setValue(next);
+                  }
                 }
-              }
-            }}
-          />
-          {!busy ? <span className="crt-cursor" aria-hidden="true" /> : null}
+                if (event.key === "ArrowDown") {
+                  event.preventDefault();
+                  if (histPos.current <= 0) {
+                    histPos.current = -1;
+                    setValue("");
+                  } else {
+                    histPos.current -= 1;
+                    setValue(history[histPos.current] ?? "");
+                  }
+                }
+              }}
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={!value.trim()}
+            className={cn(
+              "shrink-0 border border-phosphor/40 px-2.5 py-1 font-mono text-xs tracking-wider uppercase transition-all",
+              value.trim()
+                ? "cursor-pointer bg-phosphor/15 opacity-100 hover:bg-phosphor/30 active:bg-phosphor/40"
+                : "pointer-events-none opacity-0",
+            )}
+          >
+            {isEn ? "SEND ↵" : "发送 ↵"}
+          </button>
         </form>
+
+        {/* 快捷指令交互芯片栏 */}
+        <div className="mt-3 flex flex-wrap items-center gap-2 pt-1 select-none">
+          <span className="mr-1 font-mono text-[11px] uppercase tracking-wider text-phosphor/50">
+            {isEn ? "QUICK ACTIONS:" : "快捷指令:"}
+          </span>
+          {quickActions.map((action) => (
+            <button
+              key={action.cmd}
+              type="button"
+              onClick={() => void onSubmit(action.cmd)}
+              className="cursor-pointer border border-phosphor/30 bg-phosphor/5 px-2.5 py-1 font-mono text-xs tracking-wider text-phosphor uppercase transition-colors hover:bg-phosphor/20 active:bg-phosphor/35"
+            >
+              {action.label}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

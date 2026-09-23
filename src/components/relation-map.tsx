@@ -41,6 +41,7 @@ import {
 } from "@/lib/relations";
 import { cn } from "@/lib/cn";
 import { Badge } from "@/components/ui/badge";
+import { useI18n } from "@/lib/i18n";
 
 const W = 1100;
 const H = 800;
@@ -139,6 +140,15 @@ function labelAnchor(a: RelNode, b: RelNode, dup: boolean) {
   return { x, y };
 }
 
+function getLocalizedStatus(st: string, t: ReturnType<typeof useI18n>["t"]) {
+  if (st === "alive") return t.meta.status.alive;
+  if (st === "dead") return t.meta.status.dead;
+  if (st === "arkham") return t.meta.status.arkham;
+  if (st === "gone") return t.meta.status.gone;
+  if (st === "rumor") return t.meta.status.rumor;
+  return STATUS_LABEL[st as keyof typeof STATUS_LABEL] || st;
+}
+
 /** SVG Topology Canvas */
 function RelationSvg({
   lit,
@@ -160,13 +170,14 @@ function RelationSvg({
   onHoverEdge: (edge: RelEdge | null) => void;
 }) {
   const grayFilterId = useId();
+  const { t, locale } = useI18n();
 
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}
       className="size-full select-none"
       role="img"
-      aria-label="哥谭人物关系拓扑图"
+      aria-label={t.relations.warRoomTitle}
     >
       <defs>
         <filter id={grayFilterId}>
@@ -184,31 +195,45 @@ function RelationSvg({
       <rect width={W} height={H} fill="url(#rel-grid)" />
 
       {/* Factions Territory Labels */}
-      {FACTIONS.map((f) => (
-        <g key={f.id} className="pointer-events-none">
-          <text
-            x={f.x}
-            y={f.y}
-            fill="var(--color-blood)"
-            fontSize="12"
-            letterSpacing="0.28em"
-            fontFamily="var(--font-display)"
-            fontWeight="bold"
-            className="drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]"
-          >
-            {f.label}
-          </text>
-          <line
-            x1={f.x}
-            y1={f.y + 6}
-            x2={f.x + f.label.length * 16}
-            y2={f.y + 6}
-            stroke="var(--color-blood)"
-            strokeOpacity="0.3"
-            strokeWidth="1"
-          />
-        </g>
-      ))}
+      {FACTIONS.map((f) => {
+        const fLabel =
+          f.id === "wayne"
+            ? t.relations.factions.wayne
+            : f.id === "gcpd"
+              ? t.relations.factions.gcpd
+              : f.id === "falcone"
+                ? t.relations.factions.falcone
+                : f.id === "underground"
+                  ? t.relations.factions.underground
+                  : f.id === "arkham"
+                    ? t.relations.factions.arkham
+                    : f.label;
+        return (
+          <g key={f.id} className="pointer-events-none">
+            <text
+              x={f.x}
+              y={f.y}
+              fill="var(--color-blood)"
+              fontSize="12"
+              letterSpacing="0.28em"
+              fontFamily="var(--font-display)"
+              fontWeight="bold"
+              className="drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]"
+            >
+              {fLabel}
+            </text>
+            <line
+              x1={f.x}
+              y1={f.y + 6}
+              x2={f.x + Math.max(40, fLabel.length * 12)}
+              y2={f.y + 6}
+              stroke="var(--color-blood)"
+              strokeOpacity="0.3"
+              strokeWidth="1"
+            />
+          </g>
+        );
+      })}
 
       {/* Relationship Edges */}
       {EDGES.map((e, i) => {
@@ -376,7 +401,8 @@ function RelationSvg({
               fontFamily="var(--font-mono)"
               letterSpacing="0.06em"
             >
-              {STATUS_LABEL[n.status]} · {edgeCount}联
+              {getLocalizedStatus(n.status, t)} · {edgeCount}
+              {locale === "zh" ? "联" : " links"}
             </text>
           </g>
         );
@@ -452,6 +478,7 @@ function RelationSvg({
 }
 
 export function RelationMap() {
+  const { locale, t } = useI18n();
   const [active, setActive] = useState<string | null>("bruce");
   const [activeFaction, setActiveFaction] = useState<string | null>(null);
   const [activeKind, setActiveKind] = useState<EdgeKind | null>(null);
@@ -459,6 +486,8 @@ export function RelationMap() {
   const [hoveredEdge, setHoveredEdge] = useState<RelEdge | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showMobileDrawer, setShowMobileDrawer] = useState(false);
+
+  const getStatusLabel = (st: string) => getLocalizedStatus(st, t);
 
   // Gesture & Viewport States
   const [scale, setScale] = useState(1);
@@ -772,8 +801,8 @@ export function RelationMap() {
           type="button"
           onClick={() => zoomBy(1.18)}
           className="grid size-8 place-items-center text-muted hover:bg-elevated hover:text-fg focus-visible:outline-none"
-          title="放大画布 (+)"
-          aria-label="放大"
+          title={t.relations.zoomIn}
+          aria-label={t.relations.zoomIn}
         >
           <ZoomIn className="size-4" />
         </button>
@@ -784,8 +813,8 @@ export function RelationMap() {
           type="button"
           onClick={() => zoomBy(0.85)}
           className="grid size-8 place-items-center text-muted hover:bg-elevated hover:text-fg focus-visible:outline-none"
-          title="缩小画布 (-)"
-          aria-label="缩小"
+          title={t.relations.zoomOut}
+          aria-label={t.relations.zoomOut}
         >
           <ZoomOut className="size-4" />
         </button>
@@ -795,8 +824,8 @@ export function RelationMap() {
             type="button"
             onClick={() => focusNode(active)}
             className="grid size-8 place-items-center text-muted hover:bg-elevated hover:text-blood focus-visible:outline-none"
-            title="对焦当前人物"
-            aria-label="对焦当前人物"
+            title={t.relations.focusPerson}
+            aria-label={t.relations.focusPerson}
           >
             <Crosshair className="size-4" />
           </button>
@@ -805,8 +834,8 @@ export function RelationMap() {
           type="button"
           onClick={resetView}
           className="grid size-8 place-items-center text-muted hover:bg-elevated hover:text-fg focus-visible:outline-none"
-          title="重置居中"
-          aria-label="重置居中"
+          title={t.relations.resetView}
+          aria-label={t.relations.resetView}
         >
           <RotateCcw className="size-3.5" />
         </button>
@@ -814,8 +843,8 @@ export function RelationMap() {
           type="button"
           onClick={() => setIsFullscreen((v) => !v)}
           className="grid size-8 place-items-center text-muted hover:bg-elevated hover:text-fg focus-visible:outline-none"
-          title={isFullscreen ? "退出全屏" : "全屏检视"}
-          aria-label={isFullscreen ? "退出全屏" : "全屏检视"}
+          title={isFullscreen ? t.relations.exitFullscreen : t.relations.fullscreen}
+          aria-label={isFullscreen ? t.relations.exitFullscreen : t.relations.fullscreen}
         >
           {isFullscreen ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
         </button>
@@ -824,9 +853,9 @@ export function RelationMap() {
       {/* Top Left Detective Compass HUD */}
       <div className="absolute left-3 top-3 pointer-events-none z-10 flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-faint uppercase sm:left-4 sm:top-4">
         <span className="size-1.5 rounded-full bg-blood animate-pulse" />
-        <span>GCPD INTEL // TOPOLOGY NET</span>
+        <span>{t.relations.compassTitle}</span>
         <span className="hidden text-fg/20 sm:inline">|</span>
-        <span className="hidden text-muted/70 sm:inline">双指缩放 · 拖拽漫游 · 双击对焦</span>
+        <span className="hidden text-muted/70 sm:inline">{t.relations.compassTips}</span>
       </div>
 
       {/* Active Edge Relationship HUD Card */}
@@ -835,7 +864,7 @@ export function RelationMap() {
           <div className="flex items-start justify-between gap-2 border-b border-fg/10 pb-2">
             <div className="flex items-center gap-1.5">
               <Badge variant={KIND_META[edgeDetail.kind].badgeVariant} size="sm">
-                {KIND_META[edgeDetail.kind].label}
+                {t.relations.kinds[edgeDetail.kind] || KIND_META[edgeDetail.kind].label}
               </Badge>
               <span className="font-sans text-xs font-black text-blood">
                 {edgeDetail.label}
@@ -845,7 +874,7 @@ export function RelationMap() {
               type="button"
               onClick={() => setActiveEdge(null)}
               className="text-faint hover:text-fg"
-              aria-label="关闭关系卡片"
+              aria-label={t.relations.closeCard}
             >
               <X className="size-3.5" />
             </button>
@@ -914,7 +943,7 @@ export function RelationMap() {
                 <div className="flex items-center gap-2">
                   <span className="font-sans text-sm font-black truncate">{person.name}</span>
                   <Badge variant="outline" size="sm">
-                    {STATUS_LABEL[person.status]}
+                    {getStatusLabel(person.status)}
                   </Badge>
                 </div>
                 <p className="text-[11px] text-faint truncate">{person.sub}</p>
@@ -922,18 +951,18 @@ export function RelationMap() {
             </div>
             <div className="flex items-center gap-1">
               <Link
-                to="/people/"
+                to="/people/$id"
                 params={{ id: person.id }}
                 className="inline-flex items-center gap-1 bg-blood/20 text-blood border border-blood/40 px-2 py-1 text-[11px] font-bold"
               >
-                档案
+                {locale === "zh" ? "档案" : "Dossier"}
                 <ExternalLink className="size-2.5" />
               </Link>
               <button
                 type="button"
                 onClick={() => setShowMobileDrawer(false)}
                 className="p-1 text-faint hover:text-fg"
-                aria-label="收起抽屉"
+                aria-label={t.common.close}
               >
                 <X className="size-4" />
               </button>
@@ -973,7 +1002,7 @@ export function RelationMap() {
   return (
     <div>
       <p className="max-w-2xl text-pretty text-sm text-muted">
-        全景交互式人物情报拓扑图。支持移动端触控双指捏合缩放、单指平移漫游；点击人物可高亮关联子网并快速居中，点击关系连线可探查剧情恩怨始末。
+        {t.relations.description}
       </p>
 
       {/* Dual Dimension Filter Bar */}
@@ -982,7 +1011,7 @@ export function RelationMap() {
         <div className="flex flex-wrap items-center gap-1.5">
           <span className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase mr-1 flex items-center gap-1">
             <Users className="size-3 text-blood" />
-            阵营:
+            {t.relations.factionFilterLabel}:
           </span>
           <button
             type="button"
@@ -997,11 +1026,23 @@ export function RelationMap() {
                 : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
             )}
           >
-            全部 ({NODES.length})
+            {t.common.all} ({NODES.length})
           </button>
           {FACTIONS.map((f) => {
             const count = nodesIn(f.id).length;
             const isSelected = activeFaction === f.id;
+            const fLabel =
+              f.id === "wayne"
+                ? t.relations.factions.wayne
+                : f.id === "gcpd"
+                  ? t.relations.factions.gcpd
+                  : f.id === "falcone"
+                    ? t.relations.factions.falcone
+                    : f.id === "underground"
+                      ? t.relations.factions.underground
+                      : f.id === "arkham"
+                        ? t.relations.factions.arkham
+                        : f.label;
             return (
               <button
                 key={f.id}
@@ -1021,7 +1062,7 @@ export function RelationMap() {
                     : "border border-fg/15 text-muted hover:border-fg/40 hover:text-fg",
                 )}
               >
-                {f.label} ({count})
+                {fLabel} ({count})
               </button>
             );
           })}
@@ -1031,7 +1072,7 @@ export function RelationMap() {
         <div className="flex flex-wrap items-center gap-1.5 pt-1 border-t border-fg/10">
           <span className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase mr-1 flex items-center gap-1">
             <Swords className="size-3 text-muted" />
-            性质:
+            {t.relations.kindFilterLabel}:
           </span>
           <button
             type="button"
@@ -1043,7 +1084,7 @@ export function RelationMap() {
                 : "border border-fg/10 text-muted hover:border-fg/30 hover:text-fg",
             )}
           >
-            全部关系 ({EDGES.length})
+            {t.relations.allRelations} ({EDGES.length})
           </button>
           {(Object.keys(KIND_META) as EdgeKind[]).map((kind) => {
             const meta = KIND_META[kind];
@@ -1062,7 +1103,7 @@ export function RelationMap() {
                 )}
               >
                 <span className={cn("size-1.5 rounded-full", meta.dotClass)} />
-                {meta.label} ({count})
+                {t.relations.kinds[kind] || meta.label} ({count})
               </button>
             );
           })}
@@ -1082,10 +1123,10 @@ export function RelationMap() {
             <div className="flex items-center gap-3">
               <span className="size-2 rounded-full bg-blood animate-pulse" />
               <h2 className="font-sans text-base font-black tracking-tight text-fg">
-                GCPD 哥谭关系全景战术大盘
+                {t.relations.warRoomTitle}
               </h2>
               <span className="hidden text-xs text-faint sm:inline">
-                [按 ESC 键或右上角退出全屏]
+                {t.relations.escHint}
               </span>
             </div>
             <button
@@ -1094,7 +1135,7 @@ export function RelationMap() {
               className="flex items-center gap-1 border border-fg/20 px-2.5 py-1 text-xs text-muted hover:border-blood hover:text-blood"
             >
               <Minimize2 className="size-3.5" />
-              退出全屏
+              {t.relations.exitFullscreen}
             </button>
           </div>
         )}
@@ -1114,9 +1155,9 @@ export function RelationMap() {
       <div className="mt-6 space-y-2">
         <div className="flex items-center justify-between text-xs">
           <span className="font-display font-semibold tracking-[0.16em] text-faint uppercase">
-            人物快速对焦 ({visibleNodes.length})
+            {t.relations.quickFocusTitle} ({visibleNodes.length})
           </span>
-          <span className="text-[11px] text-faint">点击头像即时在拓扑图中居中</span>
+          <span className="text-[11px] text-faint">{t.relations.quickFocusHint}</span>
         </div>
         <div className="flex gap-2 overflow-x-auto pb-2 pt-1 snap-x">
           {visibleNodes.map((n) => {
@@ -1151,7 +1192,7 @@ export function RelationMap() {
                   )}
                   {n.status === "dead" ? (
                     <span className="absolute inset-x-0 bottom-0 bg-black/80 py-0.5 text-[8px] text-faint">
-                      已故
+                      {getStatusLabel("dead")}
                     </span>
                   ) : null}
                 </div>
@@ -1159,7 +1200,7 @@ export function RelationMap() {
                   {n.name}
                 </span>
                 <span className="mt-0.5 text-[10px] text-faint truncate w-full scale-95">
-                  {STATUS_LABEL[n.status]}
+                  {getStatusLabel(n.status)}
                 </span>
               </button>
             );
@@ -1203,14 +1244,14 @@ export function RelationMap() {
                   className="inline-flex items-center gap-1 text-xs text-muted hover:text-blood border border-fg/10 px-2 py-1"
                 >
                   <Crosshair className="size-3.5" />
-                  在拓扑图中对焦
+                  {t.relations.focusInTopology}
                 </button>
               </div>
 
               <h3 className="mt-2 font-sans text-2xl font-black tracking-tight">
                 {person.name}
                 <span className="ml-2 text-sm font-medium tracking-normal text-faint">
-                  {STATUS_LABEL[person.status]}
+                  {getStatusLabel(person.status)}
                 </span>
               </h3>
               <div className="mt-4 space-y-3 text-pretty text-base leading-relaxed text-muted">
@@ -1220,11 +1261,11 @@ export function RelationMap() {
               </div>
               <p className="mt-5">
                 <Link
-                  to="/people/"
+                  to="/people/$id"
                   params={{ id: person.id }}
                   className="font-display text-sm font-semibold tracking-[0.18em] text-blood uppercase hover:text-fg inline-flex items-center gap-1.5"
                 >
-                  打开完整人物档案 →
+                  {locale === "zh" ? "打开完整人物档案 →" : "Open Full Dossier →"}
                 </Link>
               </p>
             </div>
@@ -1232,7 +1273,7 @@ export function RelationMap() {
 
           <div className="mt-6 border-t border-fg/10 pt-4">
             <h4 className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase">
-              关联人物与恩怨链条 ({related.length})
+              {t.relations.connectionListTitle} ({related.length})
             </h4>
             <ul className="mt-3 divide-y divide-fg/10 border-t border-fg/10">
               {related.map((e) => {
@@ -1264,7 +1305,7 @@ export function RelationMap() {
                           {other.name}
                         </span>
                         <span className="ml-2 text-sm font-medium text-faint">
-                          {STATUS_LABEL[other.status]}
+                          {getStatusLabel(other.status)}
                         </span>
                         <span className="block text-xs font-normal text-faint">{other.sub}</span>
                       </div>
@@ -1283,7 +1324,7 @@ export function RelationMap() {
                       >
                         {e.label}
                         <span className="ml-2 text-xs font-normal text-faint">
-                          {KIND_LABEL[e.kind]}
+                          {t.relations.kinds[e.kind] || KIND_LABEL[e.kind]}
                         </span>
                       </span>
                     </div>
@@ -1300,7 +1341,7 @@ export function RelationMap() {
         {FACTIONS.map((faction) => (
           <section key={faction.id} id={`cluster-${faction.id}`} className="scroll-mt-24">
             <p className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
-              {faction.label}
+              {t.relations.factions[faction.id as keyof typeof t.relations.factions] || faction.label}
             </p>
             <p className="mt-2 max-w-2xl text-pretty text-muted">{faction.note}</p>
             <ul className="mt-8 space-y-10">
@@ -1327,7 +1368,7 @@ export function RelationMap() {
                         <p className="text-sm text-faint">
                           {n.sub}
                           {n.actor ? ` · ${n.actor}` : null}
-                          <span className="ml-2">{STATUS_LABEL[n.status]}</span>
+                          <span className="ml-2">{getStatusLabel(n.status)}</span>
                         </p>
                         <h4 className="mt-1 font-sans text-2xl font-black tracking-tight hover:text-blood">
                           {n.name}
@@ -1339,11 +1380,11 @@ export function RelationMap() {
                     </button>
                     <p className="mt-3">
                       <Link
-                        to="/people/"
+                        to="/people/$id"
                         params={{ id: n.id }}
                         className="font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase hover:text-fg"
                       >
-                        打开档案 →
+                        {locale === "zh" ? "打开档案 →" : "Open Dossier →"}
                       </Link>
                     </p>
                     <div className="mt-3 max-w-3xl space-y-3 text-pretty text-sm leading-relaxed text-muted sm:text-base">

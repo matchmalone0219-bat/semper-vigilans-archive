@@ -6,12 +6,14 @@ import { SPEAKER_MAP } from "@/lib/interviews";
 import { logVideoPoster } from "@/lib/film";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { useI18n } from "@/lib/i18n";
 
 export function SignalsHub({
   onSelectVideo,
 }: {
   onSelectVideo: (video: LogVideo) => void;
 }) {
+  const { locale, t } = useI18n();
   // 2. 最新片场实拍（先算，避免和视频头条抢同一条、同一张图）
   const shootLogs = LOG.filter((e) => e.kind === "shoot" && !e.upcoming);
   const latestShoot = shootLogs[shootLogs.length - 1] ?? LOG[0];
@@ -53,14 +55,18 @@ export function SignalsHub({
         <div className="flex flex-col gap-4 border-b border-fg/10 pb-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="font-display text-xs font-semibold tracking-[0.32em] text-blood uppercase">
-              02 / Signals Hub · 前线情报看板
+              02 / Signals Hub · {locale === "zh" ? "前线情报看板" : "Live Signals Hub"}
             </p>
             <h2 className="mt-2 font-sans text-2xl font-black tracking-tight sm:text-4xl">
-              预告影像 · 片场快讯 · 人物专访
+              {locale === "zh"
+                ? "预告影像 · 片场快讯 · 人物专访"
+                : "Teasers · Set Dispatches · Interviews"}
             </h2>
           </div>
           <p className="max-w-md text-xs leading-relaxed text-muted sm:text-sm">
-            从英国多地外景实拍到主创深度专访，一站式同步《新蝙蝠侠2》最新官方公开线索。
+            {locale === "zh"
+              ? "从英国多地外景实拍到主创深度专访，一站式同步《新蝙蝠侠2》最新官方公开线索。"
+              : "From verified UK filming dispatches to in-depth creator interviews, track the latest sequel developments."}
           </p>
         </div>
 
@@ -74,10 +80,10 @@ export function SignalsHub({
             <div>
               <div className="flex min-w-0 items-center justify-between gap-2">
                 <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
-                  01 / Video · 预告与影音
+                  01 / Video · {locale === "zh" ? "预告与影音" : "Videos & Teasers"}
                 </span>
                 <Badge variant="blood" size="sm">
-                  官方物料
+                  {locale === "zh" ? "官方物料" : "OFFICIAL PROMO"}
                 </Badge>
               </div>
 
@@ -154,7 +160,7 @@ export function SignalsHub({
                 onClick={() => onSelectVideo(featuredVideo)}
                 className="flex w-full items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
               >
-                <span>▶ 弹窗播放最新影像</span>
+                <span>{locale === "zh" ? "▶ 弹窗播放最新影像" : "▶ Play Latest Footage"}</span>
                 <ArrowRight className="size-4" />
               </button>
             </div>
@@ -169,7 +175,7 @@ export function SignalsHub({
             <div>
               <div className="flex min-w-0 items-center justify-between gap-2">
                 <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
-                  02 / Production · 片场实拍
+                  02 / Production · {locale === "zh" ? "片场实拍" : "Set Photography"}
                 </span>
                 <Badge variant="outline" size="sm">
                   {latestShoot.date}
@@ -199,7 +205,7 @@ export function SignalsHub({
                 <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-3">
                   <span className="line-clamp-1 font-sans text-[11px] font-bold text-fg/90">
-                    外景现场：{latestShoot.title}
+                    {locale === "zh" ? `外景现场：${latestShoot.title}` : `On-set: ${latestShoot.title}`}
                   </span>
                 </div>
               </Link>
@@ -212,7 +218,7 @@ export function SignalsHub({
               {/* 近期关键进展列表 */}
               <div className="mt-3.5 border-t border-fg/10 pt-3">
                 <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
-                  近期关键进展
+                  {locale === "zh" ? "近期关键进展" : "Recent Developments"}
                 </p>
                 <ul className="mt-2 space-y-1.5">
                   {recentShoots.map((entry) => (
@@ -220,14 +226,12 @@ export function SignalsHub({
                       <Link
                         to="/dossier"
                         hash="log"
-                        className="group/sub flex items-baseline gap-2 text-muted hover:text-fg"
+                        className="group/item flex items-center justify-between gap-2 text-muted hover:text-fg"
                       >
-                        <span className="shrink-0 font-mono text-[11px] text-blood">
-                          {entry.date.slice(5)}
-                        </span>
-                        <span className="truncate transition-colors group-hover/sub:text-fg">
+                        <span className="truncate transition-colors group-hover/item:text-blood">
                           {entry.title}
                         </span>
+                        <span className="shrink-0 font-mono text-[10px] text-faint">{entry.date.slice(5)}</span>
                       </Link>
                     </li>
                   ))}
@@ -241,7 +245,7 @@ export function SignalsHub({
                 hash="log"
                 className="flex items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
               >
-                <span>查阅完整拍摄日志</span>
+                <span>{locale === "zh" ? "查阅完整拍摄日志" : "Explore Production Log"}</span>
                 <ArrowRight className="size-4" />
               </Link>
             </div>
@@ -256,7 +260,7 @@ export function SignalsHub({
             <div>
               <div className="flex min-w-0 items-center justify-between gap-2">
                 <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
-                  03 / Voices · 人物专访
+                  03 / Voices · {locale === "zh" ? "人物专访" : "Creator Interviews"}
                 </span>
                 <Badge variant="outline" size="sm">
                   {latestInterview?.outlet} · {latestInterview?.date}
@@ -287,20 +291,24 @@ export function SignalsHub({
                 <div className="mt-3">
                   <Quote className="size-3.5 fill-current text-blood/70" />
                   <blockquote className="mt-1.5 text-pretty text-xs leading-relaxed text-fg/90">
-                    “{latestInterview.quoteZh.length > 76
-                      ? `${latestInterview.quoteZh.slice(0, 76)}……`
-                      : latestInterview.quoteZh}”
+                    {locale === "zh" ? (
+                      `“${latestInterview.quoteZh.length > 76 ? `${latestInterview.quoteZh.slice(0, 76)}……` : latestInterview.quoteZh}”`
+                    ) : (
+                      `“${latestInterview.quoteEn}”`
+                    )}
                   </blockquote>
-                  <p className="mt-2 line-clamp-1 text-[11px] italic text-faint">
-                    {latestInterview.quoteEn}
-                  </p>
+                  {locale === "zh" && (
+                    <p className="mt-2 line-clamp-1 text-[11px] italic text-faint">
+                      {latestInterview.quoteEn}
+                    </p>
+                  )}
                 </div>
               ) : null}
 
               {/* 更多主创观点精选 */}
               <div className="mt-3.5 border-t border-fg/10 pt-3">
                 <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
-                  更多主创观点精选
+                  {locale === "zh" ? "更多主创观点精选" : "Selected Creator Quotes"}
                 </p>
                 <ul className="mt-2 space-y-2">
                   {secondaryInterviews.map((q) => {
@@ -322,7 +330,7 @@ export function SignalsHub({
                             <span className="font-mono text-[10px] text-faint">{q.date.slice(2)}</span>
                           </div>
                           <p className="mt-0.5 truncate text-[11px] text-muted transition-colors group-hover/voice:text-fg">
-                            “{q.quoteZh}”
+                            {locale === "zh" ? `“${q.quoteZh}”` : `“${q.quoteEn}”`}
                           </p>
                         </Link>
                       </li>
@@ -337,7 +345,7 @@ export function SignalsHub({
                 to="/interviews"
                 className="flex items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
               >
-                <span>查阅全部人物专访</span>
+                <span>{locale === "zh" ? "查阅全部人物专访" : "Explore All Interviews"}</span>
                 <ArrowRight className="size-4" />
               </Link>
             </div>

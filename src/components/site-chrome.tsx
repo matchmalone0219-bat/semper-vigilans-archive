@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
@@ -6,79 +6,96 @@ import { FILM } from "@/data/film";
 import { rootsNavSection } from "@/lib/roots";
 import { SiteSearchButton } from "@/components/site-search";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { LanguageToggle } from "@/components/language-toggle";
+import { useI18n, type TranslationDictionary } from "@/lib/i18n";
 
-const NAV = [
-  {
-    to: "/dossier",
-    label: "电影档案",
-    paths: ["/dossier", "/people", "/places", "/map", "/cases"],
-    children: [
-      { to: "/dossier", hash: "facts", label: "公开信息" },
-      { to: "/dossier", hash: "plot", label: "故事线索" },
-      { to: "/dossier", hash: "cast", label: "演员阵容" },
-      { to: "/dossier", hash: "log", label: "拍摄日志" },
-      { to: "/people", label: "人物名册" },
-      { to: "/places", label: "哥谭地点" },
-      { to: "/cases", label: "重案卷宗" },
-    ],
-  },
-  {
-    to: "/recap",
-    label: "世界观",
-    paths: ["/recap", "/gear"],
-    children: [
-      { to: "/recap", hash: "the-batman", label: "前作《新蝙蝠侠》" },
-      { to: "/recap", hash: "the-penguin", label: "衍生剧《企鹅人》" },
-      { to: "/roots", hash: "comics", label: "DC 漫画原著" },
-      { to: "/recap", hash: "gotham-timeline", label: "世界观时间线" },
-      { to: "/gear", label: "蝙蝠侠装备库" },
-    ],
-  },
-  {
-    to: "/craft",
-    label: "幕后",
-    paths: ["/craft", "/gallery", "/interviews"],
-    children: [
-      { to: "/roots", hash: "cinema", label: "影史黑色拉片" },
-      { to: "/craft", hash: "score", label: "电影配乐" },
-      { to: "/craft", hash: "soundtrack-list", label: "插曲与古典乐" },
-      { to: "/craft", hash: "lens", label: "光影摄影" },
-      { to: "/craft", hash: "map", label: "取景巡礼" },
-      { to: "/gallery", label: "剧照与片场画廊" },
-      { to: "/interviews", label: "人物访谈" },
-    ],
-  },
-  {
-    to: "/merch",
-    label: "收藏",
-    paths: ["/merch"],
-    children: [
-      { to: "/merch", hash: "figures", label: "可动人偶" },
-      { to: "/merch", hash: "props", label: "道具复刻" },
-      { to: "/merch", hash: "statues", label: "收藏雕像" },
-      { to: "/merch", hash: "vehicles", label: "载具模型" },
-      { to: "/merch", hash: "lego", label: "乐高套组" },
-      { to: "/merch", hash: "print", label: "出版漫画" },
-      { to: "/merch", hash: "media", label: "影音收藏" },
-      { to: "/merch", hash: "posters", label: "院线特典" },
-      { to: "/merch", hash: "prints", label: "艺术印刷" },
-      { to: "/merch", hash: "fashion", label: "时装配饰" },
-      { to: "/merch", hash: "lifestyle", label: "生活联名" },
-      { to: "/merch", hash: "toys", label: "大众玩具" },
-      { to: "/merch", hash: "miniatures", label: "桌游战棋" },
-    ],
-  },
-  { to: "/rataalada", label: "暗号" },
-] as const;
+interface NavChild {
+  to: string;
+  hash?: string;
+  label: string;
+}
 
-function navActive(item: (typeof NAV)[number], pathname: string, hash: string) {
+interface NavItem {
+  to: string;
+  label: string;
+  paths?: string[];
+  children?: NavChild[];
+}
+
+function getNav(t: TranslationDictionary): NavItem[] {
+  return [
+    {
+      to: "/dossier",
+      label: t.nav.dossier,
+      paths: ["/dossier", "/people", "/places", "/map", "/cases"],
+      children: [
+        { to: "/dossier", hash: "facts", label: t.nav.facts },
+        { to: "/dossier", hash: "plot", label: t.nav.plot },
+        { to: "/dossier", hash: "cast", label: t.nav.cast },
+        { to: "/dossier", hash: "log", label: t.nav.log },
+        { to: "/people", label: t.nav.people },
+        { to: "/places", label: t.nav.places },
+        { to: "/cases", label: t.nav.cases },
+      ],
+    },
+    {
+      to: "/recap",
+      label: t.nav.universe,
+      paths: ["/recap", "/gear"],
+      children: [
+        { to: "/recap", hash: "the-batman", label: t.nav.theBatman },
+        { to: "/recap", hash: "the-penguin", label: t.nav.thePenguin },
+        { to: "/roots", hash: "comics", label: t.nav.dcComics },
+        { to: "/recap", hash: "gotham-timeline", label: t.nav.timeline },
+        { to: "/gear", label: t.nav.gear },
+      ],
+    },
+    {
+      to: "/craft",
+      label: t.nav.production,
+      paths: ["/craft", "/gallery", "/interviews"],
+      children: [
+        { to: "/roots", hash: "cinema", label: t.nav.noirCinema },
+        { to: "/craft", hash: "score", label: t.nav.score },
+        { to: "/craft", hash: "soundtrack-list", label: t.nav.soundtrack },
+        { to: "/craft", hash: "lens", label: t.nav.cinematography },
+        { to: "/craft", hash: "map", label: t.nav.locations },
+        { to: "/gallery", label: t.nav.gallery },
+        { to: "/interviews", label: t.nav.interviews },
+      ],
+    },
+    {
+      to: "/merch",
+      label: t.nav.collectibles,
+      paths: ["/merch"],
+      children: [
+        { to: "/merch", hash: "figures", label: t.nav.figures },
+        { to: "/merch", hash: "props", label: t.nav.props },
+        { to: "/merch", hash: "statues", label: t.nav.statues },
+        { to: "/merch", hash: "vehicles", label: t.nav.vehicles },
+        { to: "/merch", hash: "lego", label: t.nav.lego },
+        { to: "/merch", hash: "print", label: t.nav.comics },
+        { to: "/merch", hash: "media", label: t.nav.media },
+        { to: "/merch", hash: "posters", label: t.nav.posters },
+        { to: "/merch", hash: "prints", label: t.nav.artPrints },
+        { to: "/merch", hash: "fashion", label: t.nav.fashion },
+        { to: "/merch", hash: "lifestyle", label: t.nav.lifestyle },
+        { to: "/merch", hash: "toys", label: t.nav.toys },
+        { to: "/merch", hash: "miniatures", label: t.nav.miniatures },
+      ],
+    },
+    { to: "/rataalada", label: t.nav.cipher },
+  ];
+}
+
+function navActive(item: NavItem, pathname: string, hash: string) {
   if (pathname === "/roots" || pathname.startsWith("/roots/")) {
     const section = rootsNavSection(hash);
     if (item.to === "/recap") return section === "world";
     if (item.to === "/craft") return section === "craft";
     return false;
   }
-  const paths = "paths" in item ? item.paths : [item.to];
+  const paths = item.paths ? item.paths : [item.to];
   return paths.some((path) => pathname === path || pathname.startsWith(`${path}/`));
 }
 
@@ -86,6 +103,8 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const hash = useRouterState({ select: (s) => s.location.hash });
   const navigate = useNavigate();
+  const { locale, t } = useI18n();
+  const navItems = useMemo(() => getNav(t), [t]);
   const [open, setOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const isHome = pathname === "/";
@@ -178,7 +197,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             {FILM.siteName}
           </Link>
           <nav className="relative z-10 hidden min-w-0 items-center gap-3 lg:gap-5 md:ml-auto md:flex">
-            {NAV.map((item) => (
+            {navItems.map((item) => (
               <div key={item.to} className="group relative flex h-16 items-center">
                 <Link
                   to={item.to}
@@ -188,18 +207,18 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                   )}
                 >
                   {item.label}
-                  {"children" in item && item.children.length > 0 ? (
+                  {item.children && item.children.length > 0 ? (
                     <ChevronDown className="size-3 transition-transform group-hover:rotate-180" />
                   ) : null}
                 </Link>
-                {"children" in item && item.children.length > 0 ? (
+                {item.children && item.children.length > 0 ? (
                   <div className="pointer-events-none absolute left-1/2 top-[calc(100%-1px)] min-w-48 -translate-x-1/2 border border-fg/15 border-t-2 border-t-blood bg-surface/95 p-1.5 opacity-0 shadow-[0_12px_36px_rgba(0,0,0,0.85),0_0_16px_color-mix(in_oklab,var(--color-blood)_12%,transparent)] backdrop-blur-md transition-all duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
                     {item.children.map((child) => (
                       <Link
-                        key={`${child.to}-${"hash" in child ? child.hash : child.label}`}
+                        key={`${child.to}-${child.hash ?? child.label}`}
                         to={child.to}
-                        hash={"hash" in child ? child.hash : undefined}
-                        data-selected={pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === ("hash" in child ? child.hash : "")}
+                        hash={child.hash}
+                        data-selected={pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === (child.hash ?? "")}
                         activeOptions={{ exact: true, includeHash: true }}
                         className="archive-nav-link block whitespace-nowrap px-3 py-2 text-xs font-medium tracking-[0.14em] text-muted transition-colors hover:bg-elevated hover:text-fg focus-visible:outline-2 focus-visible:outline-fg"
                       >
@@ -211,12 +230,13 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               </div>
             ))}
           </nav>
-          <div className="relative z-[91] flex shrink-0 items-center gap-1 md:ml-4">
+          <div className="relative z-[91] flex shrink-0 items-center gap-1.5 md:ml-4">
             <SiteSearchButton />
+            <LanguageToggle />
             <button
               type="button"
               className="relative grid size-11 place-items-center text-fg md:hidden"
-              aria-label={open ? "关闭菜单" : "打开菜单"}
+              aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
               onClick={() => setOpen((v) => !v)}
             >
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -233,8 +253,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
       {open ? (
         <div className="fixed inset-0 z-30 overflow-y-auto bg-surface pt-16 md:hidden">
+          <div className="border-b border-fg/10 p-4">
+            <LanguageToggle variant="full" />
+          </div>
           <nav className="flex flex-col gap-1 px-6 py-6">
-            {NAV.map((item) => (
+            {navItems.map((item) => (
               <div key={item.to} className="border-b border-fg/10 py-3 last:border-0">
                 <Link
                   to={item.to}
@@ -245,14 +268,14 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 >
                   {item.label}
                 </Link>
-                {"children" in item && item.children.length > 0 ? (
+                {item.children && item.children.length > 0 ? (
                   <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
                     {item.children.map((child) => (
                       <Link
-                        key={`${child.to}-${"hash" in child ? child.hash : child.label}`}
+                        key={`${child.to}-${child.hash ?? child.label}`}
                         to={child.to}
-                        hash={"hash" in child ? child.hash : undefined}
-                        data-selected={pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === ("hash" in child ? child.hash : "")}
+                        hash={child.hash}
+                        data-selected={pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === (child.hash ?? "")}
                         activeOptions={{ exact: true, includeHash: true }}
                         className="archive-nav-link px-2 py-1 text-sm tracking-[0.12em] text-muted focus-visible:outline-2 focus-visible:outline-fg"
                       >
@@ -276,96 +299,95 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               {FILM.siteName}
             </p>
             <p className="mt-1">
-              《{FILM.titleZh}》（{FILM.titleEn}）非官方影迷档案库
+              {t.footer.siteDesc}
             </p>
             <p className="mt-4 max-w-md text-pretty text-xs leading-relaxed text-faint">
-              本站为影迷非商业交流网站，与华纳兄弟、DC Studios
-              及电影主创团队无官方合作关系。内容整理自公开新闻报道、片场路透及官方宣发物料，传闻均已标明出处。
+              {t.footer.disclaimer}
             </p>
           </div>
           <div className="flex flex-col gap-6 sm:flex-row sm:gap-10">
             <div>
               <p className="font-display text-xs font-semibold tracking-[0.22em] text-faint uppercase">
-                影视与刑侦档案
+                {t.footer.sections.dossier}
               </p>
               <ul className="mt-2 space-y-1">
                 <li>
                   <Link to="/dossier" className="hover:text-fg">
-                    电影档案库
+                    {t.nav.dossier}
                   </Link>
                 </li>
                 <li>
                   <Link to="/cases" className="hover:text-fg">
-                    重案卷宗与物证
+                    {t.nav.cases}
                   </Link>
                 </li>
                 <li>
                   <Link to="/people" className="hover:text-fg">
-                    人物名册
+                    {t.nav.people}
                   </Link>
                 </li>
                 <li>
                   <Link to="/places" className="hover:text-fg">
-                    哥谭地点
+                    {t.nav.places}
                   </Link>
                 </li>
                 <li>
                   <Link to="/recap" className="hover:text-fg">
-                    前作与宇宙编年
+                    {t.nav.timeline}
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
               <p className="font-display text-xs font-semibold tracking-[0.22em] text-faint uppercase">
-                艺术与视听溯源
+                {t.footer.sections.artAndRoots}
               </p>
               <ul className="mt-2 space-y-1">
                 <li>
                   <Link to="/roots" className="hover:text-fg">
-                    原著与影史溯源
+                    {t.nav.dcComics}
                   </Link>
                 </li>
                 <li>
                   <Link to="/craft" className="hover:text-fg">
-                    幕后视听与配乐
+                    {t.nav.production}
                   </Link>
                 </li>
                 <li>
                   <Link to="/craft" hash="map" className="hover:text-fg">
-                    英伦取景巡礼
+                    {t.nav.locations}
                   </Link>
                 </li>
                 <li>
                   <Link to="/craft" hash="soundtrack-list" className="hover:text-fg">
-                    插曲与古典乐全表
+                    {t.nav.soundtrack}
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
               <p className="font-display text-xs font-semibold tracking-[0.22em] text-faint uppercase">
-                装备与图集互动
+                {t.footer.sections.interactive}
               </p>
               <ul className="mt-2 space-y-1">
                 <li>
                   <Link to="/gear" className="hover:text-fg">
-                    蝙蝠侠装备库
+                    {t.nav.gear}
                   </Link>
                 </li>
                 <li>
                   <Link to="/merch" className="hover:text-fg">
-                    官方周边与收藏
+                    {t.nav.collectibles}
                   </Link>
                 </li>
                 <li>
                   <Link to="/gallery" className="hover:text-fg">
-                    剧照与片场画廊
+                    {t.nav.gallery}
                   </Link>
                 </li>
                 <li>
                   <Link to="/rataalada" className="hover:text-fg">
-                    谜语人暗号终端
+                    {t.nav.cipher}
                   </Link>
                 </li>
               </ul>

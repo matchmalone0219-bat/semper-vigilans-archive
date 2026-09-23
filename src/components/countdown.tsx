@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FILM } from "@/data/film";
 import { cn } from "@/lib/cn";
+import { useI18n } from "@/lib/i18n";
 
 type Remain = { days: number; hours: number; minutes: number; seconds: number };
 
@@ -15,15 +16,9 @@ function compute(): Remain {
   return { days, hours, minutes, seconds };
 }
 
-const UNITS: { key: keyof Remain; label: string }[] = [
-  { key: "days", label: "天" },
-  { key: "hours", label: "时" },
-  { key: "minutes", label: "分" },
-  { key: "seconds", label: "秒" },
-];
-
 export function Countdown({ className }: { className?: string }) {
   const [remain, setRemain] = useState<Remain | null>(null);
+  const { t } = useI18n();
 
   useEffect(() => {
     setRemain(compute());
@@ -33,15 +28,22 @@ export function Countdown({ className }: { className?: string }) {
 
   const value = remain ?? { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
+  const units: { key: keyof Remain; label: string }[] = [
+    { key: "days", label: t.home.countdown.days },
+    { key: "hours", label: t.home.countdown.hours },
+    { key: "minutes", label: t.home.countdown.minutes },
+    { key: "seconds", label: t.home.countdown.seconds },
+  ];
+
   return (
     <div
       className={cn(
         "grid grid-cols-4 gap-2 sm:gap-3",
         className,
       )}
-      aria-label="距上映倒计时"
+      aria-label={t.home.countdownLabel}
     >
-      {UNITS.map((unit) => (
+      {units.map((unit) => (
         <div
           key={unit.key}
           className="flex min-w-0 flex-col items-center border border-fg/15 bg-bg/55 px-2 py-3 sm:px-3 sm:py-4"

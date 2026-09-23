@@ -8,6 +8,7 @@ import { BiliPlayer } from "@/components/bili-player";
 import { pageTitle } from "@/lib/film";
 import { FILM, type LogVideo } from "@/data/film";
 import { SignalsHub } from "@/components/home/signals-hub";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -16,39 +17,40 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const CORE_LINKS = [
-  {
-    to: "/dossier",
-    kicker: "01 / Dossier",
-    title: "电影档案",
-    description: "续集公开信息、演职员阵容与片场拍摄日志。",
-    image: "/media/still-riddle-card.jpg",
-  },
-  {
-    to: "/recap",
-    kicker: "02 / Universe",
-    title: "世界观",
-    description: "前作、衍生剧、漫画与哥谭时间线的完整串联。",
-    image: "/media/still-riddler-lair.jpg",
-  },
-  {
-    to: "/craft",
-    kicker: "03 / Behind the Scenes",
-    title: "幕后",
-    description: "摄影、配乐、声音设计与英伦实景取景巡礼。",
-    image: "/media/still-bts-monitor.jpg",
-  },
-  {
-    to: "/merch",
-    kicker: "04 / Collection",
-    title: "收藏",
-    description: "官方授权人偶、载具、出版物与艺术收藏品。",
-    image: "/media/merch/p1s.jpg",
-  },
-] as const;
-
 function Home() {
   const [activeVideo, setActiveVideo] = useState<LogVideo | null>(null);
+  const { locale, t } = useI18n();
+
+  const coreLinks = [
+    {
+      to: "/dossier",
+      kicker: "01 / Dossier",
+      title: t.home.coreLinks.dossierTitle,
+      description: t.home.coreLinks.dossierDesc,
+      image: "/media/still-riddle-card.jpg",
+    },
+    {
+      to: "/recap",
+      kicker: "02 / Universe",
+      title: t.home.coreLinks.universeTitle,
+      description: t.home.coreLinks.universeDesc,
+      image: "/media/still-riddler-lair.jpg",
+    },
+    {
+      to: "/craft",
+      kicker: "03 / Behind the Scenes",
+      title: t.home.coreLinks.craftTitle,
+      description: t.home.coreLinks.craftDesc,
+      image: "/media/still-bts-monitor.jpg",
+    },
+    {
+      to: "/merch",
+      kicker: "04 / Collection",
+      title: t.home.coreLinks.merchTitle,
+      description: t.home.coreLinks.merchDesc,
+      image: "/media/merch/p1s.jpg",
+    },
+  ] as const;
 
   useEffect(() => {
     if (!activeVideo) return;
@@ -86,18 +88,28 @@ function Home() {
               <span className="block text-5xl sm:text-6xl md:text-7xl">Vigilans</span>
             </h1>
             <p className="mt-2 font-sans text-xl font-black tracking-tight text-fg sm:text-2xl">
-              《{FILM.titleZh}》非官方中文档案库
+              {locale === "zh" ? `《${FILM.titleZh}》非官方中文档案库` : t.home.archiveTitle}
             </p>
             <p className="mt-4 max-w-xl text-pretty text-sm leading-relaxed text-fg/80 sm:text-base">
-              {FILM.titleEn} / 《{FILM.titleZh}》
-              <br />
-              导演：马特·里夫斯 · 北美定档：{FILM.releaseLabel} · {FILM.format}
+              {locale === "zh" ? (
+                <>
+                  {FILM.titleEn} / 《{FILM.titleZh}》
+                  <br />
+                  导演：马特·里夫斯 · 北美定档：{FILM.releaseLabel} · {FILM.format}
+                </>
+              ) : (
+                <>
+                  {FILM.titleEn}
+                  <br />
+                  Director: Matt Reeves · Theatrical Release: February 18, 2028 · Epic Crime Saga
+                </>
+              )}
             </p>
             <Countdown className="mt-8 max-w-lg" />
             <div className="mt-8 grid max-w-[26.75rem] grid-cols-2 gap-3 md:w-fit md:max-w-none md:grid-cols-[repeat(3,13rem)]">
               <Button asChild size="lg" className="h-14 w-full">
                 <Link to="/dossier">
-                  查阅电影档案
+                  {t.home.viewDossier}
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
@@ -108,7 +120,7 @@ function Home() {
                 className="h-14 w-full bg-bg/90"
               >
                 <Link to="/places">
-                  打开互动地图
+                  {locale === "zh" ? "打开互动地图" : "Interactive Map"}
                   <MapPin className="size-4" />
                 </Link>
               </Button>
@@ -142,15 +154,21 @@ function Home() {
               01 / Prologue
             </p>
             <h2 className="mt-3 font-sans text-3xl font-black leading-tight tracking-tight sm:text-5xl">
-              洪水退去，哥谭市即将迎来严苛寒冬。
+              {locale === "zh"
+                ? "洪水退去，哥谭市即将迎来严苛寒冬。"
+                : "As the floodwaters recede, Gotham faces a brutal winter."}
             </h2>
           </div>
           <div className="space-y-6">
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
-              前作《新蝙蝠侠》（The Batman）以谜语人引爆防洪大坝、暴洪淹没哥谭落幕；而在衍生限定剧《企鹅人》（The Penguin）中，奥兹·科布（Oz Cobb）夺取地下黑道王座数周后，整座城市步入严酷凛冬，《新蝙蝠侠2》（The Batman: Part II）的故事由此正式拉开帷幕。目前剧组正以「Semper Vigilans」（永远警惕）为项目代号，在苏格兰格拉斯哥、英格兰伦敦等英国多地展开大规模实景拍摄。
+              {locale === "zh"
+                ? "前作《新蝙蝠侠》（The Batman）以谜语人引爆防洪大坝、暴洪淹没哥谭落幕；而在衍生限定剧《企鹅人》（The Penguin）中，奥兹·科布（Oz Cobb）夺取地下黑道王座数周后，整座城市步入严酷凛冬，《新蝙蝠侠2》（The Batman: Part II）的故事由此正式拉开帷幕。目前剧组正以「Semper Vigilans」（永远警惕）为项目代号，在苏格兰格拉斯哥、英格兰伦敦等英国多地展开大规模实景拍摄。"
+                : "The Batman (2022) concluded with the seawall breach submerging Gotham under catastrophic floods. Following Oz Cobb's rise to the underworld throne in The Penguin, the city plunges into a bitter winter as The Batman: Part II unfolds. Under the production codename 'Semper Vigilans', principal photography is underway across Glasgow, London, and Liverpool."}
             </p>
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
-              本站为影迷自发建立的中文档案库，为您持续汇总官方公开新闻、演职员阵容、片场实拍线索与剧情推测。所有传闻均已明确标注出处与可信度，力求提供客观严谨的影视一手资讯。
+              {locale === "zh"
+                ? "本站为影迷自发建立的中文档案库，为您持续汇总官方公开新闻、演职员阵容、片场实拍线索与剧情推测。所有传闻均已明确标注出处与可信度，力求提供客观严谨的影视一手资讯。"
+                : "An independent fan archive dedicated to compiling verified press reports, cast announcements, set dispatches, and narrative theories. Every leak and report is classified with strict source tiers and verification dates."}
             </p>
           </div>
         </div>
@@ -163,14 +181,14 @@ function Home() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div>
           <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-            Core Archives
+            {t.home.coreLinksKicker}
           </p>
           <h2 className="mt-3 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-            核心档案
+            {t.home.coreLinksTitle}
           </h2>
         </div>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-          {CORE_LINKS.map((item) => (
+          {coreLinks.map((item) => (
             <li key={item.to}>
               <Link to={item.to} className="archive-card group relative isolate block min-h-72 overflow-hidden border-t border-fg/25">
                 <img

@@ -325,7 +325,7 @@ export function SignalsHub({
                     <ArrowRight className="size-3" aria-hidden="true" />
                   </span>
                 </Link>
-              ) : null
+              ) : null}
 
               {/* 更多主创观点精选 */}
               <div className="mt-3.5 border-t border-fg/10 pt-3">

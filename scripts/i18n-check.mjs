@@ -16,6 +16,7 @@ export function runI18nCheck() {
   const cases = jiti(join(rootDir, "src/lib/cases.ts"));
   const roots = jiti(join(rootDir, "src/lib/roots.ts"));
   const merch = jiti(join(rootDir, "src/lib/merch.ts"));
+  const production = jiti(join(rootDir, "src/data/production.ts"));
 
   const dossierEn = jiti(join(rootDir, "src/lib/i18n/dossier-en.ts"));
   const peopleEn = jiti(join(rootDir, "src/lib/i18n/people-en.ts"));
@@ -23,6 +24,7 @@ export function runI18nCheck() {
   const casesEn = jiti(join(rootDir, "src/lib/i18n/cases-en.ts"));
   const rootsEn = jiti(join(rootDir, "src/lib/i18n/roots-en.ts"));
   const merchEn = jiti(join(rootDir, "src/lib/i18n/merch-en.ts"));
+  const productionEn = jiti(join(rootDir, "src/lib/i18n/production-en.ts"));
 
   const missing = {};
   const addMissing = (category, id) => {
@@ -88,6 +90,13 @@ export function runI18nCheck() {
   (merch.MERCH || []).forEach((g) => {
     if (g.id && !merchEn.MERCH_GROUPS_EN?.[g.id]) {
       addMissing("Merch Groups (merch.MERCH -> MERCH_GROUPS_EN)", g.id);
+    }
+  });
+
+  // 9. Production phases
+  (production.PRODUCTION_PHASES || []).forEach((p) => {
+    if (p.id && !productionEn.PRODUCTION_PHASES_EN?.[p.id]) {
+      addMissing("Production Phases (production.PRODUCTION_PHASES -> PRODUCTION_PHASES_EN)", p.id);
     }
   });
 

@@ -235,9 +235,44 @@ export const LOG_EN: Record<
     source?: string;
   }
 > = {
+  "log-2013-08-22": {
+    title: "Ben Affleck Cast as Batman in the DCEU",
+    body: "Warner Bros. officially announced Ben Affleck had signed to play Batman across multiple DC films, debuting in Batman v Superman and Justice League while laying groundwork for a standalone feature.",
+    source: "Variety",
+  },
+  "log-2015-07-09": {
+    title: "Affleck & Geoff Johns Begin Writing Solo Batman Script",
+    body: "Trades revealed Ben Affleck partnered with DC Chief Creative Officer Geoff Johns to pen a standalone Batman screenplay set in the DCEU, with Affleck planning to direct and star.",
+    source: "Deadline",
+  },
+  "log-2016-04-12": {
+    title: "CinemaCon: WB Officially Confirms Affleck-Helmed Solo Film",
+    body: "Warner Bros. CEO Kevin Tsujihara officially confirmed on stage at CinemaCon that a standalone Batman film written, directed by, and starring Ben Affleck was greenlit under the working title 'The Batman'.",
+    source: "The Hollywood Reporter",
+  },
+  "log-2016-08-29": {
+    title: "Deathstroke Test Footage Released; Joe Manganiello Cast",
+    body: "Ben Affleck shared unexpected test footage of a fully armored Deathstroke. Geoff Johns and WB subsequently confirmed Joe Manganiello was cast as the principal antagonist Slade Wilson.",
+    source: "The Wall Street Journal",
+  },
+  "log-2017-01-30": {
+    title: "Ben Affleck Steps Down as Director",
+    body: "Affleck announced he would no longer direct The Batman, citing personal health considerations and the immense toll of directing and starring in a tentpole of this magnitude.",
+    source: "Variety",
+  },
   "log-2017-02-23": {
     title: "Matt Reeves Steps in as Director & Writer",
     body: "Warner Bros. officially confirmed Matt Reeves would replace Ben Affleck to write and direct the new Batman film. Reeves initiated a complete script overhaul, crafting a gritty, standalone detective noir set in Bruce Wayne's early crime-fighting days.",
+    source: "Variety / The Hollywood Reporter",
+  },
+  "log-2019-01-30": {
+    title: "Release Slated for 2021; Ben Affleck Retires From The Cowl",
+    body: "Warner Bros. dated Matt Reeves' reboot for June 2021 focusing on a younger Bruce Wayne. Ben Affleck tweeted his blessing to the new team, formally concluding his tenure as Batman.",
+    source: "Deadline",
+  },
+  "log-2019-05-16": {
+    title: "Pattinson & Nicholas Hoult Emerge as Frontrunners in Burbank Screen Tests",
+    body: "Reports confirmed the search narrowed to Robert Pattinson and Nicholas Hoult, who both underwent intensive 35mm camera tests wearing vintage Batsuits inside Warner Bros. Burbank soundstages.",
     source: "Variety / The Hollywood Reporter",
   },
   "log-2019-05-31": {

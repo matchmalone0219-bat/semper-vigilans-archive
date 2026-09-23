@@ -8,6 +8,7 @@ import { ChapterNav } from "@/components/chapter-nav";
 import { DossierFacts } from "@/components/dossier/dossier-facts";
 import { DossierPlot } from "@/components/dossier/dossier-plot";
 import { DossierCast } from "@/components/dossier/dossier-cast";
+import { DossierProductionDrama } from "@/components/dossier/dossier-production-drama";
 import { DossierShootLog } from "@/components/dossier/dossier-shoot-log";
 import { useI18n } from "@/lib/i18n";
 import { PLACES_EN } from "@/lib/i18n/places-en";
@@ -30,6 +31,7 @@ function Dossier() {
       { href: "#places", label: locale === "zh" ? "哥谭地点" : "Gotham Locations", count: PLACES.length },
       { href: "#craft", label: locale === "zh" ? "幕后视听" : "Craft & Cinema" },
       { href: "#features", label: locale === "zh" ? "实体收录与特辑" : "Home Video & Extras" },
+      { href: "#drama", label: locale === "zh" ? "制作演变与原案" : "Production Odyssey" },
       { href: "#log", label: locale === "zh" ? "拍摄日志" : "Shoot Log", count: LOG.length },
     ],
     [locale],
@@ -328,9 +330,25 @@ function Dossier() {
           </div>
         </section>
 
-        {/* 08 / 拍摄日志 */}
+        {/* 08 / 制作坎坷实录 */}
+        <section id="drama" className="scroll-mt-24">
+          <SectionKicker
+            n="08"
+            title={locale === "zh" ? "制作演变史与废弃原案" : "Production Odyssey & Scrapped Script"}
+          />
+          <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
+            {locale === "zh"
+              ? "回顾《新蝙蝠侠》十年漫长演进：从本·阿弗莱克 DCEU 丧钟复仇原案、主创健康危机与创作理念分歧，到马特·里夫斯全面推翻重构独立新黑色侦探宇宙，以及罗伯特·帕丁森与尼古拉斯·霍尔特的终极胶片试镜决战："
+              : "Tracing the decade-long odyssey of The Batman: from Ben Affleck's Arkham-set Deathstroke script and creative crossroads to Matt Reeves' grounded Elseworlds reboot and the historic 35mm screen test between Pattinson and Hoult:"}
+          </p>
+          <div className="mt-8">
+            <DossierProductionDrama />
+          </div>
+        </section>
+
+        {/* 09 / 拍摄日志 */}
         <section id="log" className="scroll-mt-24">
-          <SectionKicker n="08" title={locale === "zh" ? "拍摄日志" : "Production Log"} />
+          <SectionKicker n="09" title={locale === "zh" ? "拍摄日志" : "Production Log"} />
           <DossierShootLog />
         </section>
       </div>

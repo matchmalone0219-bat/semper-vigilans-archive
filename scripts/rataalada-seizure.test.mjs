@@ -87,15 +87,17 @@ test("final puzzle reveals seizure page; files remain accessible; restart resets
   await answer.waitFor({ state: "visible" });
   await answer.click();
 
-  const seizureHeading = page.getByRole("heading", { name: "This Domain Has Been Seized" });
-  await seizureHeading.waitFor({ state: "visible", timeout: 30000 });
+  const seizureScreenshot = page.getByRole("img", { name: /原 Rataalada.com 查封页面截图/ });
+  await seizureScreenshot.waitFor({ state: "visible", timeout: 30000 });
+  assert.match(await seizureScreenshot.getAttribute("src"), /QyWTKWXcDzbw9gLzWysyp4\.jpg$/);
+  assert.equal(await page.locator('img[src$="gcpd-seal.svg"]').count(), 0);
   await page.getByRole("button", { name: "查看已解锁档案" }).click();
   await page.getByRole("button", { name: /已解锁文件/ }).waitFor({ state: "visible" });
   assert.ok(await page.locator("aside img").count() > 0, "unlocked files should still be available");
   await page.getByRole("button", { name: "关闭" }).click();
 
   await page.reload({ waitUntil: "domcontentloaded" });
-  await seizureHeading.waitFor({ state: "visible" });
+  await seizureScreenshot.waitFor({ state: "visible" });
   const stored = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)), STORAGE_KEY);
   assert.equal(stored.seizure, true);
 
@@ -111,6 +113,7 @@ test("final puzzle reveals seizure page; files remain accessible; restart resets
     progress: { started: true, solved: riddles.map((riddle) => riddle.id), lounge: true, loading: true, seizure: true },
   });
   await mobile.goto(`${BASE}/rataalada`, { waitUntil: "domcontentloaded" });
+  await mobile.getByRole("img", { name: /原 Rataalada.com 查封页面截图/ }).waitFor({ state: "visible" });
   await mobile.getByRole("button", { name: "重新启动档案" }).click();
   await mobile.getByText("RATAALADA.COM TERMINAL").waitFor({ state: "visible" });
   await mobile.close();

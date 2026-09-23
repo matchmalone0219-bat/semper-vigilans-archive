@@ -1,5 +1,5 @@
 export const RATA_INTRO_EN =
-  "In late 2021, the first teaser trailer for The Batman concealed a cryptic cipher leading to Warner Bros.' viral alternate-reality game rataalada.com ('rat with wings' in Spanish). The site features a vintage CRT hacker command terminal where fans solved the Riddler's puzzles to unlock classified GCPD files. This page faithfully recreates the full puzzle challenge and provides the 26-letter geometric substitution cipher key.";
+  "In late 2021, Warner Bros.' viral marketing campaign for The Batman used cryptic clues to lead fans to the alternate-reality game rataalada.com ('rat with wings' in Spanish). The site presented a vintage CRT-style terminal where fans solved the Riddler's puzzles to unlock Gotham files. This page reconstructs that public ARG flow from archived material and provides a 26-letter geometric substitution cipher reference.";
 
 export const COMMANDS_EN: Record<string, string> = {
   Y: "Begin challenge / confirm",
@@ -42,4 +42,68 @@ export const CIPHER_SHAPES_EN: Record<string, string> = {
   斜向交叉乘号: "Diagonal multiplication cross",
   顶端分叉竖杆: "Top-forked vertical staff",
   双重折返之字折线: "Double recurring zigzag",
+};
+
+
+export const RATA_STILLS_EN: Record<string, { title: string; caption: string }> = {
+  "STREET.IMG": {
+    title: "Batman in the Rain",
+    caption: "GCPD surveillance record: Batman patrolling Gotham on a rain-soaked night.",
+  },
+  "GOTHAM.IMG": {
+    title: "Gotham Overlook",
+    caption: "An elevated view across Gotham's skyline.",
+  },
+  "SUBJECT.IMG": {
+    title: "Riddle Suspect",
+    caption: "Suspect file: Edward Nashton.",
+  },
+  "FALCONE.IMG": {
+    title: "Underworld Patriarch",
+    caption: "Carmine Falcone, the power behind the Iceberg Lounge.",
+  },
+  "SHADOW.IMG": {
+    title: "Between Light and Dark",
+    caption: "Gotham's skyline falling into shadow at sunset.",
+  },
+  "LAIR.IMG": {
+    title: "Hidden Lair",
+    caption: "The Riddler's apartment, covered wall-to-wall with political clippings and investigative notes.",
+  },
+  "WAYNE.IMG": {
+    title: "Behind the Cowl",
+    caption: "Bruce Wayne alone in contemplation.",
+  },
+  "SON.IMG": {
+    title: "Thomas Wayne",
+    caption: "Archive image from Thomas Wayne's mayoral campaign.",
+  },
+  "ARKHAM.IMG": {
+    title: "Martha Wayne",
+    caption: "Archive portrait of Martha Wayne, née Arkham.",
+  },
+  "LEDGER.IMG": {
+    title: "Corruption Ledger",
+    caption: "A key piece of evidence tied to Gotham's laundering and payoff network.",
+  },
+  "MANOR.IMG": {
+    title: "Gotham Orphanage",
+    caption: "The former Wayne property repurposed as Gotham's orphanage.",
+  },
+  "INMATE.IMG": {
+    title: "Unseen Inmate",
+    caption: "A mysterious face from a neighboring high-security Arkham cell.",
+  },
+  "CELL.IMG": {
+    title: "Forensic Examination",
+    caption: "Evidence imagery from Gotham's morgue investigation.",
+  },
+  "LOUNGE.IMG": {
+    title: "Iceberg Lounge",
+    caption: "The main floor of Falcone's underworld entertainment hub.",
+  },
+  "ZOO.IMG": {
+    title: "Private Lounge",
+    caption: "A private room used by Oz Cobb inside the club.",
+  },
 };

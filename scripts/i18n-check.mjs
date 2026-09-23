@@ -17,6 +17,7 @@ export function runI18nCheck() {
   const roots = jiti(join(rootDir, "src/lib/roots.ts"));
   const merch = jiti(join(rootDir, "src/lib/merch.ts"));
   const production = jiti(join(rootDir, "src/data/production.ts"));
+  const rataalada = jiti(join(rootDir, "src/lib/rataalada.ts"));
 
   const dossierEn = jiti(join(rootDir, "src/lib/i18n/dossier-en.ts"));
   const peopleEn = jiti(join(rootDir, "src/lib/i18n/people-en.ts"));
@@ -25,6 +26,7 @@ export function runI18nCheck() {
   const rootsEn = jiti(join(rootDir, "src/lib/i18n/roots-en.ts"));
   const merchEn = jiti(join(rootDir, "src/lib/i18n/merch-en.ts"));
   const productionEn = jiti(join(rootDir, "src/lib/i18n/production-en.ts"));
+  const rataaladaEn = jiti(join(rootDir, "src/lib/i18n/rataalada-en.ts"));
 
   const missing = {};
   const addMissing = (category, id) => {
@@ -100,6 +102,39 @@ export function runI18nCheck() {
     }
   });
 
+  // 10. Rataalada unlocked image metadata
+  const rataStills = [
+    ...(rataalada.TESTS || []).flatMap((test) => test.stills || []),
+    ...(rataalada.LOUNGE_STILLS || []),
+  ];
+  rataStills.forEach((still) => {
+    const en = rataaladaEn.RATA_STILLS_EN?.[still.file];
+    if (!en?.title?.trim() || !en?.caption?.trim()) {
+      addMissing("Rataalada Stills (PrizeStill -> RATA_STILLS_EN)", still.file);
+    }
+  });
+
+  // 11. Inline bilingual riddle-lore fields
+  (roots.RIDDLE_LORE || []).forEach((item) => {
+    const required = [
+      ["kickerEn", item.kickerEn],
+      ["titleEn", item.titleEn],
+      ["promptEn", item.promptEn],
+      ["answerEn", item.answerEn],
+      ["targetSceneEn", item.targetSceneEn],
+      ["literalMeaningEn", item.literalMeaningEn],
+      ["linguisticTrapEn", item.linguisticTrapEn],
+      ["narrativeTruthEn", item.narrativeTruthEn],
+      ["imageAltEn", item.imageAltEn],
+      ["imageCaptionEn", item.imageCaptionEn],
+    ];
+    for (const [field, value] of required) {
+      if (!value || !String(value).trim()) {
+        addMissing("Riddle Lore inline English fields", `${item.id}.${field}`);
+      }
+    }
+  });
+
   const totalMissing = Object.values(missing).reduce((acc, list) => acc + list.length, 0);
 
   return {
@@ -113,7 +148,7 @@ const __filename = fileURLToPath(import.meta.url);
 if (process.argv[1] === __filename) {
   const result = runI18nCheck();
   if (result.success) {
-    console.log("i18n check passed: 100% bilingual coverage across all archives.");
+    console.log("i18n check passed: configured bilingual archive coverage checks passed.");
     process.exit(0);
   } else {
     console.error(`i18n check failed: ${result.totalMissing} missing English translation(s):`);

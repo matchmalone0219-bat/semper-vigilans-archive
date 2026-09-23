@@ -11,7 +11,7 @@ import {
 import { pageTitle } from "@/lib/film";
 import { RiddlerTerminal } from "@/components/riddler-terminal";
 import { Lightbox } from "@/components/lightbox";
-import { useI18n, RATA_INTRO_EN, CIPHER_SHAPES_EN } from "@/lib/i18n";
+import { useI18n, RATA_INTRO_EN, CIPHER_SHAPES_EN, RATA_STILLS_EN } from "@/lib/i18n";
 
 export const Route = createFileRoute("/rataalada")({
   head: () => ({
@@ -32,13 +32,18 @@ function Rataalada() {
   const [panelOpen, setPanelOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"files" | "cipher">("files");
 
-  const lightboxItems = stills.map((still) => ({
+  const localizedStills = stills.map((still) => {
+    const localized = isEn ? RATA_STILLS_EN[still.file] : undefined;
+    return localized ? { ...still, ...localized } : still;
+  });
+
+  const lightboxItems = localizedStills.map((still) => ({
     src: still.src,
     title: still.title,
     caption: still.caption,
     source: still.file,
   }));
-  const openIndex = stills.findIndex((still) => still.file === open);
+  const openIndex = localizedStills.findIndex((still) => still.file === open);
 
   return (
     <main className="crt-page flex h-dvh flex-col">
@@ -134,7 +139,7 @@ function Rataalada() {
                   </p>
                 ) : (
                   <ul className="grid gap-4">
-                    {stills.map((still) => (
+                    {localizedStills.map((still) => (
                       <li key={still.file}>
                         <button
                           type="button"

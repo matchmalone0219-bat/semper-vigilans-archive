@@ -3,8 +3,9 @@ import { CERTAINTY_LABEL, LOG, PLOT, type PlotItem } from "@/data/film";
 import { MERCH } from "@/lib/merch";
 import { PLACES } from "@/lib/places";
 import { PEOPLE } from "@/lib/people";
-import { CINEMA_ROOTS, ROOTS, ROOT_KIND } from "@/lib/roots";
+import { CINEMA_ROOTS, RIDDLE_LORE, ROOTS, ROOT_KIND } from "@/lib/roots";
 import { CITIES, LENS, THEMES } from "@/lib/craft";
+import { PRODUCTION_PHASES } from "@/data/production";
 
 export type SearchItem = {
   title: string;
@@ -128,6 +129,39 @@ export const SEARCH_ITEMS: SearchItem[] = [
       `/roots#${work.id}`,
       "溯源",
       `${work.creators} ${work.thesis} ${work.lede} ${work.quoteZh ?? ""} ${work.jump}`,
+    ),
+  ),
+  ...RIDDLE_LORE.map((riddle) =>
+    item(
+      riddle.title,
+      `${riddle.titleEn} · 谜语与语言考据`,
+      `/roots#${riddle.id}`,
+      "谜题考据",
+      [
+        riddle.kicker,
+        riddle.kickerEn,
+        riddle.prompt,
+        riddle.promptEn,
+        riddle.answer,
+        riddle.answerEn,
+        riddle.linguisticTrap,
+        riddle.linguisticTrapEn,
+        riddle.narrativeTruth,
+        riddle.narrativeTruthEn,
+      ].join(" "),
+    ),
+  ),
+  ...PRODUCTION_PHASES.map((phase) =>
+    item(
+      phase.title,
+      `${phase.period} · ${phase.tag}`,
+      "/dossier#drama",
+      "制作史",
+      [
+        phase.summary,
+        ...phase.bulletPoints,
+        ...(phase.keyQuotes ?? []).flatMap((quote) => [quote.speaker, quote.role, quote.text]),
+      ].join(" "),
     ),
   ),
   ...CINEMA_ROOTS.map((film) =>

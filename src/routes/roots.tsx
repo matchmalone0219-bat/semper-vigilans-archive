@@ -403,8 +403,37 @@ function Roots() {
             </h2>
             <p className="mt-2 max-w-3xl text-pretty text-sm text-muted">
               {isEn
-                ? "In The Batman (2022), Edward Nashton's riddles are heavily nested with English homophones, mob argot, legal idioms, and deliberate grammatical misdirections. Because these wordplays break down in Chinese translation, here is the definitive breakdown of the film's eight central riddles:"
-                : "《新蝙蝠侠》（2022）中，谜语人（爱德华·纳什顿）的系列杀人谜题深度嵌套了英语同音异形梗、黑帮黑话、法理典故以及西班牙语语法陷阱。在中文直译下极易丢失原味。在此全面还原 8 大主线谜语背后的语言学玄机与真实叙事暗涌："}
+                ? "In The Batman (2022), Edward Nashton's riddles draw on English homophones, mob argot, legal idioms, and deliberate grammatical misdirection. Because much of that wordplay weakens in translation, this section examines key film riddles and language-driven clues:"
+                : "《新蝙蝠侠》（2022）中，谜语人（爱德华·纳什顿）的谜题大量运用了英语双关、黑帮黑话、法理典故以及西班牙语语法陷阱，中文直译往往会损失原有语义层次。这里选取电影中的关键谜题与语言线索，拆解其字面含义、语言机制与叙事作用："}
+            </p>
+            <p className="mt-3 max-w-3xl text-pretty text-xs leading-relaxed text-faint">
+              {isEn ? (
+                <>
+                  Dialogue and scene wording are cross-checked against the published shooting script / film transcript. Linguistic and thematic interpretations below are editorial analysis.{" "}
+                  <a
+                    href="https://nofilmschool.com/files/54670/the-batman-read-the-screenplay.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted underline underline-offset-4 hover:text-fg"
+                  >
+                    Review screenplay source
+                  </a>
+                  .
+                </>
+              ) : (
+                <>
+                  谜面与场景文本以公开拍摄剧本 / 成片对白为核对依据；下方语言学与叙事延伸属于本站考据分析。{" "}
+                  <a
+                    href="https://nofilmschool.com/files/54670/the-batman-read-the-screenplay.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted underline underline-offset-4 hover:text-fg"
+                  >
+                    查看剧本文本依据
+                  </a>
+                  。
+                </>
+              )}
             </p>
           </div>
 

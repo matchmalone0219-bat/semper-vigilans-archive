@@ -58,7 +58,7 @@ export type Beat =
   | { kind: "done" };
 
 export const RATA_INTRO =
-  "2021 年底《新蝙蝠侠》首支预告片中隐藏了一串神秘密码，指向华纳官方设立的沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，谐音 URL）。网站采用经典黑客命令行终端界面，影迷需逐一破解谜语人的密码挑战以解锁哥谭机密文件。本页面完整复刻了当年全套解谜挑战，并附带谜语人 26 个几何密码符号全对照表。";
+  "2021 年底，《新蝙蝠侠》官方病毒营销通过密码与宣传物料将影迷引向沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，并在影片中形成 URL 谐音梗）。网站采用复古 CRT 终端式界面，影迷通过破解谜题逐步解锁哥谭档案。本页面依据公开存档重构当年的 ARG 解谜流程，并整理 26 字母几何替换密码参考表。";
 
 export const COMMANDS: { cmd: string; hint: string }[] = [
   { cmd: "Y", hint: "开始挑战 / 确认" },
@@ -823,8 +823,8 @@ export const DECODED_MESSAGES: DecodedMessage[] = [
   },
   {
     id: "trailer-cipher",
-    source: "预告片首发暗网网址代码",
-    sourceEn: "Main Teaser Trailer Post-Credit Cipher",
+    source: "2021 年官方病毒营销暗网网址代码",
+    sourceEn: "2021 Viral Marketing Web Cipher",
     cipherNote: "数字序列代换与西班牙语双关",
     decodedEn: "YOU ARE EL RATA ALADA -> URL: RATAALADA.COM",
     decodedZh: "“你是长翅膀的老鼠”（音译：You Are El = URL，指向解谜网站 rataalada.com）",

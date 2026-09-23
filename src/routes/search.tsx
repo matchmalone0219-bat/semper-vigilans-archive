@@ -5,8 +5,9 @@ import { SEARCH_ITEMS, searchSite, type SearchItem } from "@/lib/search";
 import { searchLinkProps } from "@/components/site-search";
 import { cn } from "@/lib/cn";
 import { parseSearchState, SEARCH_PAGE_SIZE } from "@/lib/search-state";
+import { useI18n } from "@/lib/i18n";
 
-const SUGGESTED_TAGS = [
+const SUGGESTED_TAGS_ZH = [
   "布鲁斯·韦恩",
   "猫头鹰法庭",
   "蝙蝠战车",
@@ -15,6 +16,17 @@ const SUGGESTED_TAGS = [
   "缄默",
   "圣保罗大教堂",
   "格拉斯哥外景",
+];
+
+const SUGGESTED_TAGS_EN = [
+  "Bruce Wayne",
+  "Court of Owls",
+  "Batmobile",
+  "The Penguin",
+  "Mr. Freeze",
+  "Hush",
+  "St. Paul's Cathedral",
+  "Glasgow Exterior",
 ];
 
 type SearchCategory =
@@ -29,22 +41,37 @@ type SearchCategory =
 
 const CATEGORIES: {
   id: SearchCategory;
-  label: string;
+  labelZh: string;
+  labelEn: string;
   matches: (kind: string) => boolean;
 }[] = [
-  { id: "all", label: "全部", matches: () => true },
-  { id: "people", label: "人物", matches: (k) => k === "人物" },
-  { id: "places", label: "地点", matches: (k) => k === "地点" },
-  { id: "plot", label: "线索", matches: (k) => k === "线索" },
-  { id: "log", label: "日志", matches: (k) => k === "日志" },
-  { id: "gear", label: "装备", matches: (k) => k === "装备" },
-  { id: "merch", label: "周边", matches: (k) => k === "收藏" },
+  { id: "all", labelZh: "全部", labelEn: "All", matches: () => true },
+  { id: "people", labelZh: "人物", labelEn: "People", matches: (k) => k === "人物" },
+  { id: "places", labelZh: "地点", labelEn: "Places", matches: (k) => k === "地点" },
+  { id: "plot", labelZh: "线索", labelEn: "Clues", matches: (k) => k === "线索" },
+  { id: "log", labelZh: "日志", labelEn: "Logs", matches: (k) => k === "日志" },
+  { id: "gear", labelZh: "装备", labelEn: "Gear", matches: (k) => k === "装备" },
+  { id: "merch", labelZh: "周边", labelEn: "Merch", matches: (k) => k === "收藏" },
   {
     id: "craft",
-    label: "幕后视听",
+    labelZh: "幕后视听",
+    labelEn: "Craft",
     matches: (k) => k === "视听" || k === "取景" || k === "光影" || k === "溯源",
   },
 ];
+
+const KIND_MAP_EN: Record<string, string> = {
+  人物: "PEOPLE",
+  地点: "PLACES",
+  线索: "CLUES",
+  日志: "LOGS",
+  装备: "GEAR",
+  收藏: "MERCH",
+  视听: "SCORE",
+  取景: "LOCATIONS",
+  光影: "LENS",
+  溯源: "ROOTS",
+};
 
 const RECENT_KEY = "semper_vigilans_recent_searches";
 
@@ -102,6 +129,9 @@ export const Route = createFileRoute("/search")({
 });
 
 function SearchPage() {
+  const { locale } = useI18n();
+  const isEn = locale === "en";
+
   const search = Route.useSearch();
   const query = search.q ?? "";
   const activeCategory = search.category ?? "all";
@@ -110,13 +140,25 @@ function SearchPage() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+
   const setQuery = (q: string) => {
     setSelectedIndex(0);
-    void navigate({ to: "/search", search: { ...search, q: q || undefined, shown: undefined }, replace: true, resetScroll: false });
+    void navigate({
+      to: "/search",
+      search: { ...search, q: q || undefined, shown: undefined },
+      replace: true,
+      resetScroll: false,
+    });
   };
+
   const setActiveCategory = (category: SearchCategory) => {
     setSelectedIndex(0);
-    void navigate({ to: "/search", search: { ...search, category: category === "all" ? undefined : category, shown: undefined }, replace: true, resetScroll: false });
+    void navigate({
+      to: "/search",
+      search: { ...search, category: category === "all" ? undefined : category, shown: undefined },
+      replace: true,
+      resetScroll: false,
+    });
   };
 
   useEffect(() => {
@@ -139,6 +181,7 @@ function SearchPage() {
     }
     return [];
   }, [trimmed, query, activeCategory, currentCategory]);
+
   const results = matches.slice(0, visibleCount);
 
   useEffect(() => {
@@ -174,7 +217,6 @@ function SearchPage() {
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
-    // Let the IME handle candidate selection before applying search shortcuts.
     if (e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229) return;
     if (e.key === "Escape") {
       e.preventDefault();
@@ -208,6 +250,8 @@ function SearchPage() {
     }
   };
 
+  const suggestedTags = isEn ? SUGGESTED_TAGS_EN : SUGGESTED_TAGS_ZH;
+
   return (
     <main>
       <header className="relative isolate overflow-hidden border-b border-fg/10 bg-elevated">
@@ -217,10 +261,12 @@ function SearchPage() {
               SEARCH ARCHIVE
             </p>
             <h1 className="mt-4 font-sans text-4xl font-black leading-none tracking-tight whitespace-nowrap sm:text-5xl lg:text-6xl">
-              全站档案检索
+              {isEn ? "Archive Search" : "全站档案检索"}
             </h1>
             <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted">
-              检索人物、地点、装备、拍摄日志、剧情线索与收藏档案。
+              {isEn
+                ? "Search people, places, gear, shoot logs, plot clues, and collectibles."
+                : "检索人物、地点、装备、拍摄日志、剧情线索与收藏档案。"}
             </p>
           </div>
           <div className="relative hidden h-60 w-60 shrink-0 sm:block lg:h-72 lg:w-72">
@@ -246,7 +292,7 @@ function SearchPage() {
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="搜索人物、地点、装备、日志、线索……"
+              placeholder={isEn ? "Search people, places, gear, logs, clues..." : "搜索人物、地点、装备、日志、线索……"}
               className="h-9 min-w-0 flex-1 bg-transparent text-base text-fg outline-none placeholder:text-faint sm:text-lg"
               autoComplete="off"
               autoCorrect="off"
@@ -261,7 +307,7 @@ function SearchPage() {
                 }}
                 className="px-2 py-1 font-mono text-xs text-faint hover:text-fg"
               >
-                清空
+                {isEn ? "Clear" : "清空"}
               </button>
             ) : null}
           </div>
@@ -269,7 +315,7 @@ function SearchPage() {
           {/* Category Tabs */}
           <div className="flex items-center gap-1.5 overflow-x-auto border-b border-fg/10 px-3 py-2 scrollbar-none sm:px-4">
             <span className="mr-1 shrink-0 font-display text-[10px] font-semibold tracking-wider text-faint uppercase">
-              分类:
+              {isEn ? "CATEGORY:" : "分类:"}
             </span>
             {CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat.id;
@@ -285,7 +331,7 @@ function SearchPage() {
                       : "text-muted hover:bg-elevated/80 hover:text-fg",
                   )}
                 >
-                  {cat.label}
+                  {isEn ? cat.labelEn : cat.labelZh}
                 </button>
               );
             })}
@@ -300,14 +346,14 @@ function SearchPage() {
                   <div>
                     <div className="flex items-center justify-between pb-2">
                       <span className="inline-flex items-center gap-1.5 font-mono text-xs text-faint">
-                        <Clock className="size-3.5 text-blood" /> 最近搜索
+                        <Clock className="size-3.5 text-blood" /> {isEn ? "Recent Searches" : "最近搜索"}
                       </span>
                       <button
                         type="button"
                         onClick={clearHistory}
                         className="font-mono text-[11px] text-faint hover:text-blood"
                       >
-                        清空历史
+                        {isEn ? "Clear History" : "清空历史"}
                       </button>
                     </div>
                     <div className="flex flex-wrap gap-2 pt-1">
@@ -327,7 +373,7 @@ function SearchPage() {
                             type="button"
                             onClick={() => removeSearchHistory(term)}
                             className="py-1 pl-0.5 pr-2 text-faint transition-colors hover:text-blood focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blood"
-                            aria-label={`删除历史记录 ${term}`}
+                            aria-label={isEn ? `Remove ${term}` : `删除历史记录 ${term}`}
                           >
                             <X className="size-3" />
                           </button>
@@ -340,10 +386,12 @@ function SearchPage() {
                 {/* Recommended Searches */}
                 <div>
                   <div className="pb-2">
-                    <span className="font-mono text-xs text-faint">推荐探索标签</span>
+                    <span className="font-mono text-xs text-faint">
+                      {isEn ? "Recommended Tags" : "推荐探索标签"}
+                    </span>
                   </div>
                   <div className="flex flex-wrap gap-2 pt-1">
-                    {SUGGESTED_TAGS.map((tag) => (
+                    {suggestedTags.map((tag) => (
                       <button
                         key={tag}
                         type="button"
@@ -357,18 +405,24 @@ function SearchPage() {
                 </div>
 
                 <p className="pt-2 text-center text-xs text-faint">
-                  输入关键词或点选上方分类检索档案库 260+ 项资料
+                  {isEn
+                    ? "Enter keywords or select categories above to explore 260+ archive records"
+                    : "输入关键词或点选上方分类检索档案库 260+ 项资料"}
                 </p>
               </div>
             ) : results.length ? (
               <ul className="space-y-1">
                 {!trimmed && (
                   <li className="border-b border-fg/5 px-3 py-1.5 font-mono text-[11px] text-faint">
-                    正在浏览「{currentCategory.label}」分类档案（输入关键词可直接过滤）
+                    {isEn
+                      ? `Browsing "${currentCategory.labelEn}" category archives (enter keywords to filter directly)`
+                      : `正在浏览「${currentCategory.labelZh}」分类档案（输入关键词可直接过滤）`}
                   </li>
                 )}
                 {results.map((result, idx) => {
                   const isSelected = idx === selectedIndex;
+                  const kindLabel = isEn ? (KIND_MAP_EN[result.kind] ?? result.kind) : result.kind;
+
                   return (
                     <li key={`${result.kind}-${result.href}-${result.title}`}>
                       <button
@@ -382,7 +436,7 @@ function SearchPage() {
                         )}
                       >
                         <span className="pt-0.5 font-display text-[10px] font-bold tracking-[0.16em] text-blood uppercase">
-                          {result.kind}
+                          {kindLabel}
                         </span>
                         <span className="min-w-0">
                           <span className="block truncate font-sans font-bold tracking-tight text-fg">
@@ -399,8 +453,17 @@ function SearchPage() {
               </ul>
             ) : (
               <div className="px-4 py-10 text-center text-sm text-muted">
-                未在「{currentCategory.label}」中找到与「
-                <span className="text-blood">{trimmed}</span>」匹配的档案内容。
+                {isEn ? (
+                  <>
+                    No records found in "{currentCategory.labelEn}" matching "
+                    <span className="text-blood">{trimmed}</span>".
+                  </>
+                ) : (
+                  <>
+                    未在「{currentCategory.labelZh}」中找到与「
+                    <span className="text-blood">{trimmed}</span>」匹配的档案内容。
+                  </>
+                )}
                 {activeCategory !== "all" ? (
                   <div className="mt-3">
                     <button
@@ -408,12 +471,14 @@ function SearchPage() {
                       onClick={() => setActiveCategory("all")}
                       className="border border-blood px-3 py-1 text-xs text-blood transition-colors hover:bg-blood hover:text-bg"
                     >
-                      切换至「全部」分类重试
+                      {isEn ? "Switch to 'All' category and retry" : "切换至「全部」分类重试"}
                     </button>
                   </div>
                 ) : null}
                 <p className="mt-4 text-xs text-faint">
-                  提示：支持中文全名、角色英文名、缩写（如“戈登”、“法庭”、“战车”、“Hush”）。
+                  {isEn
+                    ? "Tip: Supports character names, English titles, and keywords (e.g., 'Gordon', 'Court', 'Batmobile', 'Hush')."
+                    : "提示：支持中文全名、角色英文名、缩写（如“戈登”、“法庭”、“战车”、“Hush”）。"}
                 </p>
               </div>
             )}
@@ -423,26 +488,38 @@ function SearchPage() {
             <div className="px-4 pb-4 text-center">
               <button
                 type="button"
-                onClick={() => void navigate({
-                  to: "/search",
-                  search: { ...search, shown: Math.min(visibleCount + SEARCH_PAGE_SIZE, matches.length) },
-                  replace: true,
-                  resetScroll: false,
-                })}
+                onClick={() =>
+                  void navigate({
+                    to: "/search",
+                    search: {
+                      ...search,
+                      shown: Math.min(visibleCount + SEARCH_PAGE_SIZE, matches.length),
+                    },
+                    replace: true,
+                    resetScroll: false,
+                  })
+                }
                 className="border border-fg/20 px-4 py-2 text-sm text-muted hover:border-blood hover:text-fg"
               >
-                加载更多
+                {isEn ? "Load More" : "加载更多"}
               </button>
             </div>
           ) : null}
 
           <div className="flex items-center justify-between border-t border-fg/10 px-4 py-2.5 font-mono text-[11px] text-faint">
-            <span>共 {matches.length} 条匹配 · 已显示 {results.length} 条</span>
+            <span>
+              {isEn
+                ? `${matches.length} matching · showing ${results.length}`
+                : `共 ${matches.length} 条匹配 · 已显示 ${results.length} 条`}
+            </span>
             <span className="hidden sm:inline">
               <kbd className="border border-fg/15 bg-elevated px-1 py-0.5">↑</kbd>{" "}
-              <kbd className="border border-fg/15 bg-elevated px-1 py-0.5">↓</kbd> 切换 ·{" "}
-              <kbd className="border border-fg/15 bg-elevated px-1.5 py-0.5">Enter</kbd> 打开 ·{" "}
-              <kbd className="border border-fg/15 bg-elevated px-1 py-0.5">Esc</kbd> 清空 / 返回
+              <kbd className="border border-fg/15 bg-elevated px-1 py-0.5">↓</kbd>{" "}
+              {isEn ? "Navigate · " : "切换 · "}
+              <kbd className="border border-fg/15 bg-elevated px-1.5 py-0.5">Enter</kbd>{" "}
+              {isEn ? "Open · " : "打开 · "}
+              <kbd className="border border-fg/15 bg-elevated px-1 py-0.5">Esc</kbd>{" "}
+              {isEn ? "Clear / Back" : "清空 / 返回"}
             </span>
           </div>
         </div>

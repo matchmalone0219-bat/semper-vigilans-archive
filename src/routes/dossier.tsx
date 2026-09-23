@@ -9,6 +9,8 @@ import { DossierFacts } from "@/components/dossier/dossier-facts";
 import { DossierPlot } from "@/components/dossier/dossier-plot";
 import { DossierCast } from "@/components/dossier/dossier-cast";
 import { DossierShootLog } from "@/components/dossier/dossier-shoot-log";
+import { useI18n } from "@/lib/i18n";
+import { PLACES_EN } from "@/lib/i18n/places-en";
 
 export const Route = createFileRoute("/dossier")({
   head: () => ({
@@ -18,16 +20,17 @@ export const Route = createFileRoute("/dossier")({
 });
 
 function Dossier() {
+  const { locale } = useI18n();
   const jump = useMemo(
     () => [
-      { href: "#facts", label: "基本信息", count: FACTS.length },
-      { href: "#plot", label: "故事线索", count: PLOT.length },
-      { href: "#cast", label: "演员阵容", count: CAST.length },
-      { href: "#relations", label: "人物关系" },
-      { href: "#places", label: "哥谭地点", count: PLACES.length },
-      { href: "#log", label: "拍摄日志", count: LOG.length },
+      { href: "#facts", label: locale === "zh" ? "基本信息" : "Key Facts", count: FACTS.length },
+      { href: "#plot", label: locale === "zh" ? "故事线索" : "Plot Clues", count: PLOT.length },
+      { href: "#cast", label: locale === "zh" ? "演员阵容" : "Cast Roster", count: CAST.length },
+      { href: "#relations", label: locale === "zh" ? "人物关系" : "Character Network" },
+      { href: "#places", label: locale === "zh" ? "哥谭地点" : "Gotham Locations", count: PLACES.length },
+      { href: "#log", label: locale === "zh" ? "拍摄日志" : "Shoot Log", count: LOG.length },
     ],
-    [],
+    [locale],
   );
 
   return (
@@ -47,52 +50,78 @@ function Dossier() {
             <span className="classified-stamp">ACTIVE INVESTIGATION</span>
           </div>
           <h1 className="mt-4 font-sans text-5xl font-black leading-none tracking-tight sm:text-7xl">
-            档案
+            {locale === "zh" ? "档案" : "Film Dossier"}
           </h1>
           <p className="mt-4 max-w-xl text-pretty text-muted">
-            系统整理《{FILM.titleZh}
-            》相关的全方位资讯，涵盖官方公告、片场实拍动态与演职员阵容；深入了解配乐创作、摄影风格与取景地解析，请访问{" "}
-            <Link to="/craft" className="text-fg underline-offset-4 hover:underline">
-              幕后与视听
-            </Link>
-            专题。
+            {locale === "zh" ? (
+              <>
+                系统整理《{FILM.titleZh}
+                》相关的全方位资讯，涵盖官方公告、片场实拍动态与演职员阵容；深入了解配乐创作、摄影风格与取景地解析，请访问{" "}
+                <Link to="/craft" className="text-fg underline-offset-4 hover:underline">
+                  幕后与视听
+                </Link>
+                专题。
+              </>
+            ) : (
+              <>
+                Comprehensive archive of verified intel for <em>{FILM.titleEn}</em>, spanning official announcements, on-set leaks, and full cast rosters. For in-depth analysis of the score, cinematography, and filming locations, visit the{" "}
+                <Link to="/craft" className="text-fg underline-offset-4 hover:underline">
+                  Craft & Visuals
+                </Link>{" "}
+                dossier.
+              </>
+            )}
           </p>
           <p className="mt-4 max-w-xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
-            追踪影片最新动态：汇总官方公告、媒体报道与公开片场路透。包含现场解析与剧情背景整理，提供全方位的电影资料参考。
+            {locale === "zh"
+              ? "追踪影片最新动态：汇总官方公告、媒体报道与公开片场路透。包含现场解析与剧情背景整理，提供全方位的电影资料参考。"
+              : "Live production surveillance: tracking press disclosures, director dispatches, and on-location reports across the UK with verified background context."}
           </p>
         </div>
       </header>
 
-      <ChapterNav label="电影档案章节" items={jump} />
+      <ChapterNav label={locale === "zh" ? "电影档案章节" : "Dossier Chapters"} items={jump} />
 
       <div className="mx-auto max-w-6xl space-y-24 px-4 py-16 sm:px-6 sm:py-24 [&>section]:scroll-mt-36">
         {/* 01 / 基本信息 */}
         <section id="facts" className="scroll-mt-24">
-          <SectionKicker n="01" title="基本信息" />
+          <SectionKicker n="01" title={locale === "zh" ? "基本信息" : "Key Facts"} />
           <DossierFacts />
         </section>
 
         {/* 02 / 故事线索 */}
         <section id="plot" className="scroll-mt-24">
-          <SectionKicker n="02" title="故事线索" />
+          <SectionKicker n="02" title={locale === "zh" ? "故事线索" : "Plot Clues"} />
           <DossierPlot />
         </section>
 
         {/* 03 / 演职员 */}
         <section id="cast" className="scroll-mt-24">
-          <SectionKicker n="03" title="演职员" />
+          <SectionKicker n="03" title={locale === "zh" ? "演职员" : "Cast & Crew"} />
           <DossierCast />
         </section>
 
         {/* 04 / 人物关系 */}
         <section id="relations" className="scroll-mt-24">
-          <SectionKicker n="04" title="人物关系" />
+          <SectionKicker n="04" title={locale === "zh" ? "人物关系" : "Character Relations"} />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            点击人物节点可查看彼此关联与简介，支持直接跳转至该角色的独立人物档案。完整人物列表请访问{" "}
-            <Link to="/people" className="text-fg underline-offset-4 hover:underline">
-              人物
-            </Link>
-            。
+            {locale === "zh" ? (
+              <>
+                点击人物节点可查看彼此关联与简介，支持直接跳转至该角色的独立人物档案。完整人物列表请访问{" "}
+                <Link to="/people" className="text-fg underline-offset-4 hover:underline">
+                  人物
+                </Link>
+                。
+              </>
+            ) : (
+              <>
+                Click character nodes to inspect alliances, rivalries, and dossier briefs. View full character dossiers at{" "}
+                <Link to="/people" className="text-fg underline-offset-4 hover:underline">
+                  Characters
+                </Link>
+                .
+              </>
+            )}
           </p>
           <div className="mt-8">
             <RelationMap />
@@ -101,44 +130,75 @@ function Dossier() {
 
         {/* 05 / 哥谭地点 */}
         <section id="places" className="scroll-mt-24">
-          <SectionKicker n="05" title="哥谭地点" />
+          <SectionKicker n="05" title={locale === "zh" ? "哥谭地点" : "Gotham Locations"} />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            收录哥谭市核心地标及其在故事中的现状。查看全城地图与详细地点解析请访问{" "}
-            <Link to="/places" className="text-fg underline-offset-4 hover:underline">
-              地点
-            </Link>
-            。
+            {locale === "zh" ? (
+              <>
+                收录哥谭市核心地标及其在故事中的现状。查看全城地图与详细地点解析请访问{" "}
+                <Link to="/places" className="text-fg underline-offset-4 hover:underline">
+                  地点
+                </Link>
+                。
+              </>
+            ) : (
+              <>
+                Key Gotham landmarks and their narrative status in the aftermath of the flood. For the tactical map, explore{" "}
+                <Link to="/places" className="text-fg underline-offset-4 hover:underline">
+                  Locations
+                </Link>
+                .
+              </>
+            )}
           </p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-3">
-            {PLACES.slice(0, 6).map((place) => (
-              <li key={place.id}>
-                <Link to="/places/$id" params={{ id: place.id }} className="group block">
-                  <div className="aspect-[16/9] overflow-hidden bg-elevated">
-                    <img
-                      src={place.image}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="size-full object-cover transition-opacity duration-150 group-hover:opacity-90"
-                    />
-                  </div>
-                  <p className="mt-2 font-sans font-black tracking-tight">{place.name}</p>
-                  <p className="text-sm text-faint">{place.status}</p>
-                </Link>
-              </li>
-            ))}
+            {PLACES.slice(0, 6).map((place) => {
+              const enPlace = PLACES_EN[place.id];
+              return (
+                <li key={place.id}>
+                  <Link to="/places/$id" params={{ id: place.id }} className="group block">
+                    <div className="aspect-[16/9] overflow-hidden bg-elevated">
+                      <img
+                        src={place.image}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="size-full object-cover transition-opacity duration-150 group-hover:opacity-90"
+                      />
+                    </div>
+                    <p className="mt-2 font-sans font-black tracking-tight">
+                      {locale === "zh" ? place.name : (enPlace?.name ?? place.name)}
+                    </p>
+                    <p className="text-sm text-faint">
+                      {locale === "zh" ? place.status : (enPlace?.status ?? place.status)}
+                    </p>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </section>
 
         {/* 06 / 幕后与视听 */}
         <section className="scroll-mt-24">
-          <SectionKicker n="06" title="幕后与视听" />
+          <SectionKicker n="06" title={locale === "zh" ? "幕后与视听" : "Behind the Scenes"} />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
-            深度解析系列电影的原创配乐动机、摄影视觉风格与现实取景地。完整专题请访问{" "}
-            <Link to="/craft" className="text-fg underline-offset-4 hover:underline">
-              幕后与视听
-            </Link>
-            。
+            {locale === "zh" ? (
+              <>
+                深度解析系列电影的原创配乐动机、摄影视觉风格与现实取景地。完整专题请访问{" "}
+                <Link to="/craft" className="text-fg underline-offset-4 hover:underline">
+                  幕后与视听
+                </Link>
+                。
+              </>
+            ) : (
+              <>
+                In-depth breakdown of Giacchino's original motifs, noir cinematography, and UK location scout. Visit{" "}
+                <Link to="/craft" className="text-fg underline-offset-4 hover:underline">
+                  Craft & Visuals
+                </Link>{" "}
+                for the full dossier.
+              </>
+            )}
           </p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-3">
             {[
@@ -146,22 +206,31 @@ function Dossier() {
                 href: "/craft#score",
                 image: "/media/craft/score.jpg",
                 kicker: "Score",
-                title: "吉亚奇诺四主题",
-                body: "解析吉亚奇诺创作的核心主题动机、猫女弦乐与经典插曲。",
+                title: locale === "zh" ? "吉亚奇诺四主题" : "Giacchino's Four Themes",
+                body:
+                  locale === "zh"
+                    ? "解析吉亚奇诺创作的核心主题动机、猫女弦乐与经典插曲。"
+                    : "Analysis of Giacchino's core character motifs, Catwoman strings, and licensed tracks.",
               },
               {
                 href: "/craft#lens",
                 image: "/media/street.jpg",
                 kicker: "Cinematography",
-                title: "弗雷泽 / 梅塞施密特",
-                body: "格雷格·弗雷泽与埃里克·梅塞施密特的光影美学与摄影机镜头解析。",
+                title: locale === "zh" ? "弗雷泽 / 梅塞施密特" : "Fraser / Messerschmidt",
+                body:
+                  locale === "zh"
+                    ? "格雷格·弗雷泽与埃里克·梅塞施密特的光影美学与摄影机镜头解析。"
+                    : "Lighting aesthetics and camera optics of Greig Fraser and Erik Messerschmidt.",
               },
               {
                 href: "/craft#map",
                 image: "/media/craft/st-georges.jpg",
                 kicker: "Locations",
-                title: "利物浦 · 格拉斯哥 · 伦敦",
-                body: "利物浦、格拉斯哥与伦敦等主要取景坐标与影迷巡礼打卡指南。",
+                title: locale === "zh" ? "利物浦 · 格拉斯哥 · 伦敦" : "Liverpool · Glasgow · London",
+                body:
+                  locale === "zh"
+                    ? "利物浦、格拉斯哥与伦敦等主要取景坐标与影迷巡礼打卡指南。"
+                    : "Major UK filming coordinates and cinematic walking guide across key locations.",
               },
             ].map((card) => (
               <li key={card.href}>
@@ -188,7 +257,7 @@ function Dossier() {
 
         {/* 07 / 拍摄日志 */}
         <section id="log" className="scroll-mt-24">
-          <SectionKicker n="07" title="拍摄日志" />
+          <SectionKicker n="07" title={locale === "zh" ? "拍摄日志" : "Production Log"} />
           <DossierShootLog />
         </section>
       </div>

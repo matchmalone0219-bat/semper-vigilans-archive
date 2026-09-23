@@ -3,6 +3,8 @@ import { FACTIONS, STATUS_LABEL } from "@/lib/relations";
 import { PEOPLE } from "@/lib/people";
 import { cn } from "@/lib/cn";
 import { pageTitle } from "@/lib/film";
+import { useI18n } from "@/lib/i18n";
+import { FACTIONS_EN, PEOPLE_EN } from "@/lib/i18n/people-en";
 
 export const Route = createFileRoute("/people/")({
   head: () => ({
@@ -12,6 +14,8 @@ export const Route = createFileRoute("/people/")({
 });
 
 function PeopleIndex() {
+  const { locale, t } = useI18n();
+
   return (
     <main>
       <header className="relative isolate overflow-hidden border-b border-fg/10">
@@ -22,65 +26,94 @@ function PeopleIndex() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/75 to-bg/40" />
         <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-        <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
-          Files / People
-        </p>
-        <h1 className="mt-3 font-sans text-5xl font-black tracking-tight sm:text-6xl">人物</h1>
-        <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-          收录哥谭各派系核心角色的生平履历与出场档案。点击角色卡片可查看详细生平背景与出场记录；查看全景人物关系网络请前往{" "}
-          <Link
-            to="/dossier"
-            hash="relations"
-            className="text-fg underline-offset-4 hover:underline"
-          >
-            电影档案 · 人物关系
-          </Link>
-          。
-        </p>
+          <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
+            Files / People
+          </p>
+          <h1 className="mt-3 font-sans text-5xl font-black tracking-tight sm:text-6xl">
+            {locale === "zh" ? "人物" : "Character Archive"}
+          </h1>
+          <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
+            {locale === "zh" ? (
+              <>
+                收录哥谭各派系核心角色的生平履历与出场档案。点击角色卡片可查看详细生平背景与出场记录；查看全景人物关系网络请前往{" "}
+                <Link
+                  to="/dossier"
+                  hash="relations"
+                  className="text-fg underline-offset-4 hover:underline"
+                >
+                  电影档案 · 人物关系
+                </Link>
+                。
+              </>
+            ) : (
+              <>
+                Comprehensive dossiers of key figures across Gotham&apos;s factions. Select any card to review full biographical records and appearances. For the tactical relationship map, visit{" "}
+                <Link
+                  to="/dossier"
+                  hash="relations"
+                  className="text-fg underline-offset-4 hover:underline"
+                >
+                  Dossier · Character Network
+                </Link>
+                .
+              </>
+            )}
+          </p>
         </div>
       </header>
 
       {FACTIONS.map((faction) => {
         const members = PEOPLE.filter((p) => p.faction === faction.id);
+        const enFaction = FACTIONS_EN[faction.id];
         return (
           <section key={faction.id} className="border-t border-fg/10">
             <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
               <h2 className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
-                {faction.label}
+                {locale === "zh" ? faction.label : (enFaction?.label ?? faction.label)}
               </h2>
-              <p className="mt-2 max-w-2xl text-pretty text-sm text-muted">{faction.note}</p>
+              <p className="mt-2 max-w-2xl text-pretty text-sm text-muted">
+                {locale === "zh" ? faction.note : (enFaction?.note ?? faction.note)}
+              </p>
               <ul className="mt-8 grid border-l border-t border-fg/10 sm:grid-cols-2">
-                {members.map((p) => (
-                  <li key={p.id} className="border-b border-r border-fg/10 bg-bg">
-                    <Link
-                      to="/people/$id"
-                      params={{ id: p.id }}
-                      className="archive-card flex h-full items-start gap-4 p-5"
-                    >
-                      {p.portrait ? (
-                        <img
-                          src={p.portrait.src}
-                          alt=""
-                          loading="lazy"
-                          decoding="async"
-                          className={cn(
-                            "size-20 shrink-0 object-cover",
-                            (p.status === "dead" || p.status === "rumor") && "grayscale",
-                          )}
-                        />
-                      ) : null}
-                      <span>
-                        <p className="font-display text-xs font-semibold tracking-[0.18em] text-faint uppercase">
-                          {p.sub} · {STATUS_LABEL[p.status]}
-                        </p>
-                        <h3 className="mt-1 font-sans text-2xl font-black tracking-tight">
-                          {p.name}
-                        </h3>
-                        {p.actor ? <p className="mt-1 text-sm text-muted">{p.actor}</p> : null}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
+                {members.map((p) => {
+                  const enPerson = PEOPLE_EN[p.id];
+                  const pName = locale === "zh" ? p.name : (enPerson?.name ?? p.name);
+                  const pSub = locale === "zh" ? p.sub : (enPerson?.sub ?? p.sub);
+                  const pActor = locale === "zh" ? p.actor : (enPerson?.actor ?? p.actor);
+                  const pStatus = locale === "zh" ? STATUS_LABEL[p.status] : t.meta.status[p.status];
+
+                  return (
+                    <li key={p.id} className="border-b border-r border-fg/10 bg-bg">
+                      <Link
+                        to="/people/$id"
+                        params={{ id: p.id }}
+                        className="archive-card flex h-full items-start gap-4 p-5"
+                      >
+                        {p.portrait ? (
+                          <img
+                            src={p.portrait.src}
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                            className={cn(
+                              "size-20 shrink-0 object-cover",
+                              (p.status === "dead" || p.status === "rumor") && "grayscale",
+                            )}
+                          />
+                        ) : null}
+                        <span>
+                          <p className="font-display text-xs font-semibold tracking-[0.18em] text-faint uppercase">
+                            {pSub} · {pStatus}
+                          </p>
+                          <h3 className="mt-1 font-sans text-2xl font-black tracking-tight">
+                            {pName}
+                          </h3>
+                          {pActor ? <p className="mt-1 text-sm text-muted">{pActor}</p> : null}
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </section>
@@ -89,3 +122,4 @@ function PeopleIndex() {
     </main>
   );
 }
+

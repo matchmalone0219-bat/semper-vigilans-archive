@@ -10,6 +10,13 @@ import { Link } from "@tanstack/react-router";
 import { Bomb, LocateFixed, Minus, Plus, RotateCcw, X } from "lucide-react";
 import { PLACE_MAP, PLACES, GOTHAM_CITY } from "@/lib/places";
 import { PlaceMark } from "@/components/place-marks";
+import { useI18n } from "@/lib/i18n";
+import {
+  getLocalizedPlace,
+  REGION_MARKERS_NOTES_EN,
+  REGIONS_EN,
+  GOTHAM_CITY_EN,
+} from "@/lib/i18n/places-en";
 
 type Evidence = "map" | "screen" | "theory";
 
@@ -99,10 +106,10 @@ const MAPPED_PLACE_IDS = new Set(
 );
 const UNLOCATED_PLACES = PLACES.filter((place) => !MAPPED_PLACE_IDS.has(place.id as MapPlaceId));
 
-const EVIDENCE: Record<Evidence, { label: string; className: string }> = {
-  map: { label: "地图标注", className: "bg-fg text-bg" },
-  screen: { label: "影片定位", className: "bg-blood text-fg" },
-  theory: { label: "本站推测", className: "bg-amber-400 text-bg" },
+const EVIDENCE: Record<Evidence, { label: string; labelEn: string; className: string }> = {
+  map: { label: "地图标注", labelEn: "Production Map", className: "bg-fg text-bg" },
+  screen: { label: "影片定位", labelEn: "Film Verified", className: "bg-blood text-fg" },
+  theory: { label: "本站推测", labelEn: "Research Theory", className: "bg-amber-400 text-bg" },
 };
 
 const REGIONS = [
@@ -149,6 +156,8 @@ function clamp(value: number, min: number, max: number) {
 }
 
 export function GothamPlacesMap() {
+  const { locale } = useI18n();
+  const isZh = locale === "zh";
   const [regionId, setRegionId] = useState<RegionId>("downtown");
   const [floodPlan, setFloodPlan] = useState(false);
   const [scale, setScale] = useState(1);
@@ -166,6 +175,7 @@ export function GothamPlacesMap() {
   const drag = useRef<{ x: number; y: number; offset: { x: number; y: number } } | null>(null);
 
   const region = REGIONS.find((item) => item.id === regionId) ?? REGIONS[2];
+  const activeRegionEn = REGIONS_EN[regionId] ?? REGIONS_EN.downtown;
   const markers = REGION_MARKERS[regionId];
   const selectedMarker = markers.find((marker) => marker.placeId === selectedId);
   const selectedPlace = selectedMarker ? PLACE_MAP[selectedMarker.placeId] : null;
@@ -322,9 +332,13 @@ export function GothamPlacesMap() {
         </p>
         <div className="mt-3 flex flex-col gap-3 sm:gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <h1 className="font-sans text-4xl font-black tracking-tight sm:text-5xl">哥谭地点</h1>
+            <h1 className="font-sans text-4xl font-black tracking-tight sm:text-5xl">
+              {isZh ? "哥谭地点" : "Gotham Landmarks"}
+            </h1>
             <p className="mt-3 hidden max-w-3xl text-pretty text-base leading-relaxed text-muted sm:block">
-              下城区基于电影《新蝙蝠侠》官方设定地图重绘；中城区与上城区由限定剧《企鹅人》剧中地图补完。点击地点标记可查看考据解析，并进入完整档案。
+              {isZh
+                ? "下城区基于电影《新蝙蝠侠》官方设定地图重绘；中城区与上城区由限定剧《企鹅人》剧中地图补完。点击地点标记可查看考据解析，并进入完整档案。"
+                : "Downtown is redrawn from The Batman official production maps; Midtown and Uptown are reconstructed from The Penguin limited series transit maps. Click any marker for cartographic notes and complete dossiers."}
             </p>
           </div>
           <div className="hidden gap-2 text-xs sm:flex sm:flex-wrap">
@@ -334,42 +348,48 @@ export function GothamPlacesMap() {
                 className="inline-flex shrink-0 items-center gap-2 border border-fg/10 bg-surface px-2.5 py-1.5 text-muted sm:px-3 sm:py-2"
               >
                 <span className={`size-2 ${item.className}`} />
-                {item.label}
+                {isZh ? item.label : item.labelEn}
               </span>
             ))}
           </div>
         </div>
 
-        <ul aria-label="地图区域" className="mt-3 grid grid-cols-3 gap-2 sm:mt-6">
-          {REGIONS.map((item) => (
-            <li key={item.id} className="min-w-0">
-              <button
-                type="button"
-                onClick={() => selectRegion(item.id)}
-                aria-pressed={item.id === regionId}
-                className={`min-h-11 w-full px-2 py-2 text-center transition-colors sm:p-4 sm:text-left ${
-                  item.id === regionId
-                    ? "border border-blood bg-blood text-fg"
-                    : "border border-fg/20 bg-surface text-muted hover:border-fg/40 hover:text-fg"
-                } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/70`}
-              >
-                <p className="hidden font-display text-xs font-semibold tracking-[0.24em] uppercase sm:block">
-                  {item.name}
-                </p>
-                <span className="flex items-end justify-center gap-3 sm:mt-1 sm:justify-between">
-                  <span className="font-sans text-base font-black tracking-tight sm:text-xl">
-                    {item.zh}
+        <ul aria-label={isZh ? "地图区域" : "Map regions"} className="mt-3 grid grid-cols-3 gap-2 sm:mt-6">
+          {REGIONS.map((item) => {
+            const regEn = REGIONS_EN[item.id];
+            return (
+              <li key={item.id} className="min-w-0">
+                <button
+                  type="button"
+                  onClick={() => selectRegion(item.id)}
+                  aria-pressed={item.id === regionId}
+                  className={`min-h-11 w-full px-2 py-2 text-center transition-colors sm:p-4 sm:text-left ${
+                    item.id === regionId
+                      ? "border border-blood bg-blood text-fg"
+                      : "border border-fg/20 bg-surface text-muted hover:border-fg/40 hover:text-fg"
+                  } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/70`}
+                >
+                  <p className="hidden font-display text-xs font-semibold tracking-[0.24em] uppercase sm:block">
+                    {item.name}
+                  </p>
+                  <span className="flex items-end justify-center gap-3 sm:mt-1 sm:justify-between">
+                    <span className="font-sans text-base font-black tracking-tight sm:text-xl">
+                      {isZh ? item.zh : item.name}
+                    </span>
+                    <span className="hidden text-xs sm:inline">
+                      {isZh ? item.status : (regEn?.status ?? item.status)}
+                    </span>
                   </span>
-                  <span className="hidden text-xs sm:inline">{item.status}</span>
-                </span>
-              </button>
-            </li>
-          ))}
+                </button>
+              </li>
+            );
+          })}
         </ul>
         {regionId === "downtown" ? (
           <ul className="mt-3 flex snap-x gap-2 overflow-x-auto pb-1 sm:mt-5 sm:flex-wrap sm:overflow-visible sm:pb-0">
             {markers.map((marker) => {
-              const place = PLACE_MAP[marker.placeId];
+              const rawPlace = PLACE_MAP[marker.placeId];
+              const place = getLocalizedPlace(rawPlace, locale);
               const active = marker.placeId === selectedId;
               return (
                 <li key={marker.placeId} className="shrink-0 snap-start">
@@ -404,25 +424,35 @@ export function GothamPlacesMap() {
                   Map of Gotham City {region.name}
                 </p>
                 <div className="hidden flex-wrap items-baseline gap-x-3 gap-y-1 sm:mt-1 sm:flex">
-                  <h2 className="font-sans text-2xl font-black tracking-tight">{region.zh}</h2>
-                  <span className="text-xs text-faint">{region.status}</span>
+                  <h2 className="font-sans text-2xl font-black tracking-tight">
+                    {isZh ? region.zh : region.name}
+                  </h2>
+                  <span className="text-xs text-faint">
+                    {isZh ? region.status : activeRegionEn.status}
+                  </span>
                 </div>
                 <p className="mt-2 hidden text-sm leading-relaxed text-muted sm:block">
-                  {region.description}
+                  {isZh ? region.description : activeRegionEn.description}
                 </p>
                 <details key={regionId} className="text-sm text-muted sm:hidden">
                   <summary className="cursor-pointer py-1 font-semibold text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fg">
-                    {region.zh} · 区域介绍与地图说明
+                    {isZh
+                      ? `${region.zh} · 区域介绍与地图说明`
+                      : `${region.name} · Overview & Map Notes`}
                   </summary>
-                  <p className="mt-2 leading-relaxed">{region.description}</p>
                   <p className="mt-2 leading-relaxed">
-                    下城区基于电影《新蝙蝠侠》官方设定地图重绘；中城区与上城区由限定剧《企鹅人》剧中地图补完。点击地点标记可查看考据解析，并进入完整档案。
+                    {isZh ? region.description : activeRegionEn.description}
+                  </p>
+                  <p className="mt-2 leading-relaxed">
+                    {isZh
+                      ? "下城区基于电影《新蝙蝠侠》官方设定地图重绘；中城区与上城区由限定剧《企鹅人》剧中地图补完。点击地点标记可查看考据解析，并进入完整档案。"
+                      : "Downtown is redrawn from The Batman official production maps; Midtown and Uptown are reconstructed from The Penguin limited series transit maps. Click any marker for cartographic notes and complete dossiers."}
                   </p>
                   <ul className="mt-3 flex flex-wrap gap-3 text-xs">
                     {Object.entries(EVIDENCE).map(([key, item]) => (
                       <li key={key} className="inline-flex items-center gap-2">
                         <span className={`size-2 ${item.className}`} />
-                        {item.label}
+                        {isZh ? item.label : item.labelEn}
                       </li>
                     ))}
                   </ul>
@@ -443,7 +473,7 @@ export function GothamPlacesMap() {
                     } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/70`}
                   >
                     <Bomb className="size-4" />
-                    谜语人洪灾计划
+                    {isZh ? "谜语人洪灾计划" : "Riddler Flood Plan"}
                   </button>
                 ) : null}
                 <div className="flex items-center border border-fg/10 bg-bg">
@@ -451,7 +481,7 @@ export function GothamPlacesMap() {
                     type="button"
                     onClick={() => zoomBy(0.84)}
                     className="grid size-10 place-items-center text-muted hover:bg-elevated hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blood/70"
-                    aria-label="缩小地图"
+                    aria-label={isZh ? "缩小地图" : "Zoom out"}
                   >
                     <Minus className="size-4" />
                   </button>
@@ -462,7 +492,7 @@ export function GothamPlacesMap() {
                     type="button"
                     onClick={() => zoomBy(1.18)}
                     className="grid size-10 place-items-center text-muted hover:bg-elevated hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blood/70"
-                    aria-label="放大地图"
+                    aria-label={isZh ? "放大地图" : "Zoom in"}
                   >
                     <Plus className="size-4" />
                   </button>
@@ -470,7 +500,7 @@ export function GothamPlacesMap() {
                     type="button"
                     onClick={resetView}
                     className="grid size-10 place-items-center border-l border-fg/10 text-muted hover:bg-elevated hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blood/70"
-                    aria-label="重置地图视图"
+                    aria-label={isZh ? "重置地图视图" : "Reset map view"}
                   >
                     <RotateCcw className="size-4" />
                   </button>
@@ -486,7 +516,7 @@ export function GothamPlacesMap() {
               onPointerUp={endPointer}
               onPointerCancel={endPointer}
               role="application"
-              aria-label={`可拖动和缩放的哥谭${region.zh}地图`}
+              aria-label={isZh ? `可拖动和缩放的哥谭${region.zh}地图` : `Interactive pan-and-zoom map of Gotham ${region.name}`}
             >
               <div
                 className="relative w-[min(100%,692px)] shrink-0 cursor-grab active:cursor-grabbing"
@@ -498,13 +528,14 @@ export function GothamPlacesMap() {
               >
                 <img
                   src={region.image}
-                  alt={region.imageAlt}
+                  alt={isZh ? region.imageAlt : activeRegionEn.imageAlt}
                   draggable={false}
                   className="pointer-events-none size-full object-contain"
                 />
                 {(!floodPlan || regionId !== "downtown") &&
                   markers.map((marker) => {
-                    const place = PLACE_MAP[marker.placeId];
+                    const rawPlace = PLACE_MAP[marker.placeId];
+                    const place = getLocalizedPlace(rawPlace, locale);
                     const evidence = EVIDENCE[marker.evidence];
                     const active = marker.placeId === selectedId;
                     return (
@@ -515,7 +546,7 @@ export function GothamPlacesMap() {
                         onClick={(event) => openPlace(marker.placeId, event.currentTarget)}
                         className="group absolute -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/80"
                         style={{ left: `${marker.x}%`, top: `${marker.y}%` }}
-                        aria-label={`查看${place.name}`}
+                        aria-label={isZh ? `查看${place.name}` : `View ${place.name}`}
                         aria-expanded={active}
                         aria-controls="map-detail-card"
                       >
@@ -566,7 +597,7 @@ export function GothamPlacesMap() {
               </div>
               <div className="pointer-events-none absolute bottom-3 left-3 border border-fg/10 bg-bg/90 px-2.5 py-1.5 backdrop-blur-xs">
                 <p className="text-xs text-muted">
-                  拖动地图 · 滚轮或双指缩放
+                  {isZh ? "拖动地图 · 滚轮或双指缩放" : "Drag to pan · Scroll or pinch to zoom"}
                 </p>
                 <p className="mt-0.5 font-mono text-[9px] tracking-wider text-faint uppercase">
                   GOTHAM BASIN // ELEV: -4.2M · HUD COORD LOCK
@@ -577,66 +608,72 @@ export function GothamPlacesMap() {
                   7 points / film reconstruction
                 </p>
               ) : null}
-              {selectedMarker && selectedPlace && !floodPlan ? (
-                <aside
-                  id="map-detail-card"
-                  role="dialog"
-                  aria-modal="false"
-                  aria-labelledby="map-detail-title"
-                  className="absolute inset-x-3 bottom-12 z-20 max-h-[calc(100%-4rem)] select-text overflow-y-auto border border-fg/20 bg-bg/95 shadow-2xl backdrop-blur-md sm:bottom-auto sm:left-auto sm:right-3 sm:top-3 sm:w-80"
-                  onPointerDown={(event) => event.stopPropagation()}
-                  onWheel={(event) => event.stopPropagation()}
-                >
-                  <div className="relative h-24 overflow-hidden bg-elevated sm:h-28">
-                    <img
-                      src={selectedPlace.image}
-                      alt={selectedPlace.imageAlt}
-                      className="size-full object-cover"
-                    />
-                    <span className="absolute left-3 top-3 size-10 text-fg drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)]">
-                      <PlaceMark id={selectedPlace.id} className="size-10" />
-                    </span>
-                    <span
-                      className={`absolute bottom-3 left-3 px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] uppercase ${EVIDENCE[selectedMarker.evidence].className}`}
-                    >
-                      {EVIDENCE[selectedMarker.evidence].label}
-                    </span>
-                    <button
-                      ref={panelCloseRef}
-                      type="button"
-                      onClick={closePanel}
-                      className="absolute right-3 top-3 grid size-8 place-items-center border border-fg/20 bg-bg/90 text-muted hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/80"
-                      aria-label="关闭地点介绍"
-                    >
-                      <X className="size-4" />
-                    </button>
-                  </div>
-                  <div className="p-4">
-                    <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-blood uppercase">
-                      {selectedPlace.nameEn}
-                    </p>
-                    <h3
-                      id="map-detail-title"
-                      className="mt-1 font-sans text-xl font-black tracking-tight"
-                    >
-                      {selectedPlace.name}
-                    </h3>
-                    <p className="mt-1 text-xs text-faint">{selectedPlace.also}</p>
-                    <p className="mt-3 text-xs leading-relaxed text-muted">{selectedMarker.note}</p>
-                    <p className="mt-3 hidden border-t border-fg/10 pt-3 text-xs leading-relaxed text-faint sm:block">
-                      {selectedPlace.body[0]}
-                    </p>
-                    <Link
-                      to="/places/$id"
-                      params={{ id: selectedPlace.id }}
-                      className="mt-4 flex items-center justify-between border border-blood bg-blood px-3 py-2.5 font-display text-[10px] font-semibold tracking-[0.18em] text-fg uppercase hover:bg-blood/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fg/80"
-                    >
-                      调阅完整地点档案
-                      <LocateFixed className="size-4" />
-                    </Link>
-                  </div>
-                </aside>
-              ) : null}
+              {selectedMarker && selectedPlace && !floodPlan ? (() => {
+                const localizedSelectedPlace = getLocalizedPlace(selectedPlace, locale);
+                const markerNote = isZh
+                  ? selectedMarker.note
+                  : (REGION_MARKERS_NOTES_EN[selectedMarker.placeId] ?? selectedMarker.note);
+                return (
+                  <aside
+                    id="map-detail-card"
+                    role="dialog"
+                    aria-modal="false"
+                    aria-labelledby="map-detail-title"
+                    className="absolute inset-x-3 bottom-12 z-20 max-h-[calc(100%-4rem)] select-text overflow-y-auto border border-fg/20 bg-bg/95 shadow-2xl backdrop-blur-md sm:bottom-auto sm:left-auto sm:right-3 sm:top-3 sm:w-80"
+                    onPointerDown={(event) => event.stopPropagation()}
+                    onWheel={(event) => event.stopPropagation()}
+                  >
+                    <div className="relative h-24 overflow-hidden bg-elevated sm:h-28">
+                      <img
+                        src={localizedSelectedPlace.image}
+                        alt={localizedSelectedPlace.imageAlt}
+                        className="size-full object-cover"
+                      />
+                      <span className="absolute left-3 top-3 size-10 text-fg drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)]">
+                        <PlaceMark id={localizedSelectedPlace.id} className="size-10" />
+                      </span>
+                      <span
+                        className={`absolute bottom-3 left-3 px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] uppercase ${EVIDENCE[selectedMarker.evidence].className}`}
+                      >
+                        {isZh ? EVIDENCE[selectedMarker.evidence].label : EVIDENCE[selectedMarker.evidence].labelEn}
+                      </span>
+                      <button
+                        ref={panelCloseRef}
+                        type="button"
+                        onClick={closePanel}
+                        className="absolute right-3 top-3 grid size-8 place-items-center border border-fg/20 bg-bg/90 text-muted hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/80"
+                        aria-label={isZh ? "关闭地点介绍" : "Close landmark details"}
+                      >
+                        <X className="size-4" />
+                      </button>
+                    </div>
+                    <div className="p-4">
+                      <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-blood uppercase">
+                        {localizedSelectedPlace.nameEn}
+                      </p>
+                      <h3
+                        id="map-detail-title"
+                        className="mt-1 font-sans text-xl font-black tracking-tight"
+                      >
+                        {localizedSelectedPlace.name}
+                      </h3>
+                      <p className="mt-1 text-xs text-faint">{localizedSelectedPlace.also}</p>
+                      <p className="mt-3 text-xs leading-relaxed text-muted">{markerNote}</p>
+                      <p className="mt-3 hidden border-t border-fg/10 pt-3 text-xs leading-relaxed text-faint sm:block">
+                        {localizedSelectedPlace.body[0]}
+                      </p>
+                      <Link
+                        to="/places/$id"
+                        params={{ id: localizedSelectedPlace.id }}
+                        className="mt-4 flex items-center justify-between border border-blood bg-blood px-3 py-2.5 font-display text-[10px] font-semibold tracking-[0.18em] text-fg uppercase hover:bg-blood/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fg/80"
+                      >
+                        {isZh ? "调阅完整地点档案" : "Open Landmark Dossier →"}
+                        <LocateFixed className="size-4" />
+                      </Link>
+                    </div>
+                  </aside>
+                );
+              })() : null}
               {regionId === "downtown" && floodPlan ? (
                 <aside
                   id="map-detail-card"
@@ -652,7 +689,7 @@ export function GothamPlacesMap() {
                     type="button"
                     onClick={closePanel}
                     className="absolute right-3 top-3 grid size-8 place-items-center border border-blood/50 text-blood hover:bg-blood hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/80"
-                    aria-label="关闭洪灾计划介绍"
+                    aria-label={isZh ? "关闭洪灾计划介绍" : "Close flood plan details"}
                   >
                     <X className="size-4" />
                   </button>
@@ -664,21 +701,22 @@ export function GothamPlacesMap() {
                     id="map-detail-title"
                     className="mt-1 pr-8 font-sans text-xl font-black tracking-tight"
                   >
-                    谜语人海堤爆破计划
+                    {isZh ? "谜语人海堤爆破计划" : "Riddler Seawall Demolition Plan"}
                   </h3>
                   <div className="mt-4 grid grid-cols-2 gap-2 text-center">
                     <div className="border border-fg/10 bg-surface p-2">
                       <p className="font-display text-lg font-black text-blood">07</p>
-                      <p className="text-[10px] text-faint">爆破车辆</p>
+                      <p className="text-[10px] text-faint">{isZh ? "爆破车辆" : "Bomb Vans"}</p>
                     </div>
                     <div className="border border-fg/10 bg-surface p-2">
                       <p className="font-display text-lg font-black text-blood">SEA WALL</p>
-                      <p className="text-[10px] text-faint">目标设施</p>
+                      <p className="text-[10px] text-faint">{isZh ? "目标设施" : "Target Facility"}</p>
                     </div>
                   </div>
                   <p className="mt-4 text-xs leading-relaxed text-muted">
-                    蝙蝠侠在谜语人公寓地板地图上发现七个
-                    X；随后的视频确认，七辆爆破车被部署在城市海堤沿线。图层依据电影画面复原分布关系，并非官方精确坐标。
+                    {isZh
+                      ? "蝙蝠侠在谜语人公寓地板地图上发现七个 X；随后的视频确认，七辆爆破车被部署在城市海堤沿线。图层依据电影画面复原分布关系，并非官方精确坐标。"
+                      : "Batman discovered seven 'X' markings on the floor map in Riddler's apartment; subsequent video confirmed seven explosive-laden vans deployed along the city seawall. This layer reconstructs spatial distribution from film footage rather than official GPS coordinates."}
                   </p>
                   <a
                     href="https://movies.fandom.com/wiki/The_Batman/Transcript"
@@ -686,7 +724,7 @@ export function GothamPlacesMap() {
                     rel="noreferrer"
                     className="mt-4 flex items-center justify-between border border-blood px-3 py-2.5 font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase hover:bg-blood hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/80"
                   >
-                    查看电影文字稿
+                    {isZh ? "查看电影文字稿" : "View Film Transcript"}
                     <LocateFixed className="size-4" />
                   </a>
                 </aside>
@@ -704,39 +742,44 @@ export function GothamPlacesMap() {
                 Unlocated Files
               </p>
               <h2 className="mt-1 font-sans text-2xl font-black tracking-tight">
-                尚未落点的地点档案
+                {isZh ? "尚未落点的地点档案" : "Unmapped Landmark Files"}
               </h2>
             </div>
             <p className="max-w-xl text-xs leading-relaxed text-faint">
-              这些地点已有内容档案，但现有设定图不足以支持精确落点，因此暂不放入地图。
+              {isZh
+                ? "这些地点已有内容档案，但现有设定图不足以支持精确落点，因此暂不放入地图。"
+                : "These landmarks have full dossier archives, but existing production materials lack precise coordinates to pin on the map."}
             </p>
           </div>
           <ul className="mt-5 flex snap-x gap-3 overflow-x-auto pb-3">
-            {UNLOCATED_PLACES.map((place) => (
-              <li key={place.id} className="w-64 shrink-0 snap-start">
-                <Link
-                  to="/places/$id"
-                  params={{ id: place.id }}
-                  className="group relative flex h-full items-center gap-3 border border-fg/10 bg-surface p-3 hover:border-blood"
-                >
-                  <img
-                    src={place.image}
-                    alt=""
-                    loading="lazy"
-                    className="size-16 shrink-0 object-cover"
-                  />
-                  <span className="absolute left-2 top-2 size-7 text-fg drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)]">
-                    <PlaceMark id={place.id} className="size-7" />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block truncate font-sans text-sm font-black tracking-tight group-hover:text-blood">
-                      {place.name}
+            {UNLOCATED_PLACES.map((place) => {
+              const localizedPlace = getLocalizedPlace(place, locale);
+              return (
+                <li key={place.id} className="w-64 shrink-0 snap-start">
+                  <Link
+                    to="/places/$id"
+                    params={{ id: place.id }}
+                    className="group relative flex h-full items-center gap-3 border border-fg/10 bg-surface p-3 hover:border-blood"
+                  >
+                    <img
+                      src={localizedPlace.image}
+                      alt=""
+                      loading="lazy"
+                      className="size-16 shrink-0 object-cover"
+                    />
+                    <span className="absolute left-2 top-2 size-7 text-fg drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)]">
+                      <PlaceMark id={localizedPlace.id} className="size-7" />
                     </span>
-                    <span className="mt-1 block truncate text-[11px] text-faint">{place.also}</span>
-                  </span>
-                </Link>
-              </li>
-            ))}
+                    <span className="min-w-0">
+                      <span className="block truncate font-sans text-sm font-black tracking-tight group-hover:text-blood">
+                        {localizedPlace.name}
+                      </span>
+                      <span className="mt-1 block truncate text-[11px] text-faint">{localizedPlace.also}</span>
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </section>
       ) : null}
@@ -747,11 +790,14 @@ export function GothamPlacesMap() {
             <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
               Cartography Note
             </p>
-            <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">地图资料说明</h2>
+            <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">
+              {isZh ? "地图资料说明" : "Cartography & Reference Notes"}
+            </h2>
           </div>
           <p className="text-sm leading-relaxed text-muted">
-            下城区（Downtown）严格依据电影《新蝙蝠侠》官方设定资料与成片地理重绘；上城区（Uptown）与中城区（Midtown）在电影中未直接展开，底图基于限定剧《企鹅人》出现的全城路网与交通地图重构并校正了透视。三张底图均聚焦呈现岛岸、水系与道路骨架，属于影迷严谨重构；互动标记严格区分影视确凿定位与合理推测。“谜语人洪灾计划”图层依据成片中地板地图的
-            7 处爆破标记与海堤走向复原，旨在呈现灾难蔓延态势。
+            {isZh
+              ? "下城区（Downtown）严格依据电影《新蝙蝠侠》官方设定资料与成片地理重绘；上城区（Uptown）与中城区（Midtown）在电影中未直接展开，底图基于限定剧《企鹅人》出现的全城路网与交通地图重构并校正了透视。三张底图均聚焦呈现岛岸、水系与道路骨架，属于影迷严谨重构；互动标记严格区分影视确凿定位与合理推测。“谜语人洪灾计划”图层依据成片中地板地图的 7 处爆破标记与海堤走向复原，旨在呈现灾难蔓延态势。"
+              : "Downtown is strictly redrawn from The Batman official production files and final film geography; Uptown and Midtown were not explored directly in the film, so their basemaps are reconstructed and perspective-corrected from the citywide transit networks seen in The Penguin. All three basemaps focus on coastlines, waterways, and arterial road grids as rigorous fan cartography; interactive markers strictly distinguish between verified on-screen placements and reasoned analysis. The 'Riddler Flood Plan' layer reconstructs the disaster progression from the 7 blast points marked on Nashton's floor map."}
           </p>
         </div>
       </section>
@@ -759,68 +805,94 @@ export function GothamPlacesMap() {
       <section className="border-t border-fg/10">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
           <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
-            City File · {GOTHAM_CITY.motto}
+            City File · {GOTHAM_CITY.motto} {isZh ? `(${GOTHAM_CITY.mottoZh})` : `(${GOTHAM_CITY_EN.mottoZh})`}
           </p>
-          <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">哥谭市档案</h2>
+          <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">
+            {isZh ? "哥谭市档案" : "Gotham City Dossier"}
+          </h2>
           <p className="mt-3 max-w-3xl text-pretty text-sm leading-relaxed text-muted">
-            {GOTHAM_CITY.lede}
+            {isZh ? GOTHAM_CITY.lede : GOTHAM_CITY_EN.lede}
           </p>
           <div className="mt-8 grid gap-px bg-border sm:grid-cols-3">
-            {GOTHAM_CITY.boroughs.map((b) => (
-              <div key={b.nameEn} className="bg-bg p-5">
-                <p className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase">
-                  {b.source}
-                </p>
-                <p className="mt-2 font-sans text-lg font-black tracking-tight">
-                  {b.name}{" "}
-                  <span className="font-display text-xs font-semibold tracking-wide text-muted">
-                    {b.nameEn}
-                  </span>
-                </p>
-                <p className="mt-1 text-sm text-muted">{b.note}</p>
-              </div>
-            ))}
+            {GOTHAM_CITY.boroughs.map((b, index) => {
+              const bEn = GOTHAM_CITY_EN.boroughs[index];
+              return (
+                <div key={b.nameEn} className="bg-bg p-5">
+                  <p className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase">
+                    {isZh ? b.source : (bEn?.source ?? b.source)}
+                  </p>
+                  <p className="mt-2 font-sans text-lg font-black tracking-tight">
+                    {isZh ? b.name : b.nameEn}{" "}
+                    {isZh ? (
+                      <span className="font-display text-xs font-semibold tracking-wide text-muted">
+                        {b.nameEn}
+                      </span>
+                    ) : null}
+                  </p>
+                  <p className="mt-1 text-sm text-muted">{isZh ? b.note : (bEn?.note ?? b.note)}</p>
+                </div>
+              );
+            })}
           </div>
           <dl className="mt-8 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {GOTHAM_CITY.facts.map((fact) => (
-              <div key={fact.label} className="bg-bg p-5">
-                <dt className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase">
-                  {fact.label}
-                </dt>
-                <dd className="mt-2 text-pretty text-sm leading-relaxed">{fact.value}</dd>
-              </div>
-            ))}
+            {GOTHAM_CITY.facts.map((fact, index) => {
+              const fEn = GOTHAM_CITY_EN.facts[index];
+              return (
+                <div key={fact.label} className="bg-bg p-5">
+                  <dt className="font-display text-xs font-semibold tracking-[0.2em] text-faint uppercase">
+                    {isZh ? fact.label : (fEn?.label ?? fact.label)}
+                  </dt>
+                  <dd className="mt-2 text-pretty text-sm leading-relaxed">
+                    {isZh ? fact.value : (fEn?.value ?? fact.value)}
+                  </dd>
+                </div>
+              );
+            })}
           </dl>
           <div className="mt-10 grid gap-10 lg:grid-cols-2">
             <div>
               <h3 className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
-                成片点名的区划
+                {isZh ? "成片点名的区划" : "Districts Named in Film & Series"}
               </h3>
               <ul className="mt-4 space-y-3">
-                {GOTHAM_CITY.districts.map((d) => (
-                  <li key={d.nameEn}>
-                    <p className="font-sans text-base font-black tracking-tight">
-                      {d.name}{" "}
-                      <span className="font-display text-xs font-semibold tracking-wide text-muted">
-                        {d.nameEn}
-                      </span>
-                    </p>
-                    <p className="mt-0.5 text-sm text-muted">{d.note}</p>
-                  </li>
-                ))}
+                {GOTHAM_CITY.districts.map((d, index) => {
+                  const dEn = GOTHAM_CITY_EN.districts[index];
+                  return (
+                    <li key={d.nameEn}>
+                      <p className="font-sans text-base font-black tracking-tight">
+                        {isZh ? d.name : d.nameEn}{" "}
+                        {isZh ? (
+                          <span className="font-display text-xs font-semibold tracking-wide text-muted">
+                            {d.nameEn}
+                          </span>
+                        ) : null}
+                      </p>
+                      <p className="mt-0.5 text-sm text-muted">
+                        {isZh ? d.note : (dEn?.note ?? d.note)}
+                      </p>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div>
               <h3 className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
-                旧豪门与地下秩序
+                {isZh ? "旧豪门与地下秩序" : "Dynasties & Underworld Order"}
               </h3>
               <ul className="mt-4 space-y-3">
-                {GOTHAM_CITY.families.map((f) => (
-                  <li key={f.name}>
-                    <p className="font-sans text-base font-black tracking-tight">{f.name}</p>
-                    <p className="mt-0.5 text-sm text-muted">{f.note}</p>
-                  </li>
-                ))}
+                {GOTHAM_CITY.families.map((f, index) => {
+                  const fEn = GOTHAM_CITY_EN.families[index];
+                  return (
+                    <li key={f.name}>
+                      <p className="font-sans text-base font-black tracking-tight">
+                        {isZh ? f.name : (fEn?.name ?? f.name)}
+                      </p>
+                      <p className="mt-0.5 text-sm text-muted">
+                        {isZh ? f.note : (fEn?.note ?? f.note)}
+                      </p>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>

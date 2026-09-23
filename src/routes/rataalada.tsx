@@ -11,6 +11,7 @@ import {
 import { pageTitle } from "@/lib/film";
 import { RiddlerTerminal } from "@/components/riddler-terminal";
 import { Lightbox } from "@/components/lightbox";
+import { useI18n, RATA_INTRO_EN, CIPHER_SHAPES_EN } from "@/lib/i18n";
 
 export const Route = createFileRoute("/rataalada")({
   head: () => ({
@@ -23,6 +24,9 @@ export const Route = createFileRoute("/rataalada")({
 });
 
 function Rataalada() {
+  const { locale } = useI18n();
+  const isEn = locale === "en";
+
   const [stills, setStills] = useState<PrizeStill[]>([]);
   const [open, setOpen] = useState<string | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
@@ -41,7 +45,9 @@ function Rataalada() {
       <header className="relative z-20 flex shrink-0 items-center justify-between gap-3 border-b border-phosphor/20 px-3 py-2 font-mono text-phosphor sm:px-4">
         <p className="min-w-0 truncate text-xs tracking-[0.18em] uppercase sm:text-sm">
           Rataalada.com
-          <span className="ml-2 text-phosphor/55">终端与密码本</span>
+          <span className="ml-2 text-phosphor/55">
+            {isEn ? "Terminal & Cipher Key" : "终端与密码本"}
+          </span>
         </p>
         <div className="flex shrink-0 items-center gap-2">
           <button
@@ -52,7 +58,7 @@ function Rataalada() {
               setPanelOpen((v) => !v || activeTab !== "files");
             }}
           >
-            文件 ({stills.length})
+            {isEn ? `Files (${stills.length})` : `文件 (${stills.length})`}
           </button>
           <button
             type="button"
@@ -62,13 +68,13 @@ function Rataalada() {
               setPanelOpen((v) => !v || activeTab !== "cipher");
             }}
           >
-            密码本 [A-Z]
+            {isEn ? "Cipher [A-Z]" : "密码本 [A-Z]"}
           </button>
           <Link
             to="/"
             className="grid min-h-11 place-items-center px-3 text-xs tracking-[0.18em] uppercase hover:bg-phosphor/10"
           >
-            退出
+            {isEn ? "Exit" : "退出"}
           </Link>
         </div>
       </header>
@@ -99,14 +105,14 @@ function Rataalada() {
                   onClick={() => setActiveTab("files")}
                   className={activeTab === "files" ? "font-bold underline" : "text-phosphor/50 hover:text-phosphor"}
                 >
-                  已解锁文件 ({stills.length})
+                  {isEn ? `Unlocked Files (${stills.length})` : `已解锁文件 (${stills.length})`}
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTab("cipher")}
                   className={activeTab === "cipher" ? "font-bold underline" : "text-phosphor/50 hover:text-phosphor"}
                 >
-                  几何密码本
+                  {isEn ? "Geometric Cipher" : "几何密码本"}
                 </button>
               </div>
               <button
@@ -114,7 +120,7 @@ function Rataalada() {
                 className="min-h-11 px-3 text-xs tracking-[0.18em] uppercase hover:bg-phosphor/10"
                 onClick={() => setPanelOpen(false)}
               >
-                关闭
+                {isEn ? "Close" : "关闭"}
               </button>
             </div>
 
@@ -122,7 +128,9 @@ function Rataalada() {
               {activeTab === "files" ? (
                 stills.length === 0 ? (
                   <p className="text-sm leading-relaxed text-phosphor/70">
-                    暂无解锁文件。在终端输入 Y 开始，答完一组谜题即可解锁。
+                    {isEn
+                      ? "No unlocked files yet. Type Y in the terminal to begin and solve riddles to unlock."
+                      : "暂无解锁文件。在终端输入 Y 开始，答完一组谜题即可解锁。"}
                   </p>
                 ) : (
                   <ul className="grid gap-4">
@@ -132,7 +140,7 @@ function Rataalada() {
                           type="button"
                           onClick={() => setOpen(still.file)}
                           className="block w-full text-left"
-                          aria-label={`查看 ${still.title}`}
+                          aria-label={isEn ? `View ${still.title}` : `查看 ${still.title}`}
                         >
                           <img
                             src={still.src}
@@ -153,10 +161,12 @@ function Rataalada() {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-sm font-bold tracking-wider text-phosphor uppercase">
-                      26 字母几何密码代换表 (Cipher Key)
+                      {isEn ? "26-Letter Geometric Cipher Key" : "26 字母几何密码代换表 (Cipher Key)"}
                     </h3>
                     <p className="mt-1 text-xs text-phosphor/70 leading-relaxed">
-                      谜语人用于手写信件与现场题字的定制几何符号代换体系：
+                      {isEn
+                        ? "The Riddler's custom geometric substitution cipher system used in letters and crime scene scrawls:"
+                        : "谜语人用于手写信件与现场题字的定制几何符号代换体系："}
                     </p>
                     <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
                       {RIDDLER_CIPHER_ALPHABET.map((item) => (
@@ -166,7 +176,11 @@ function Rataalada() {
                         >
                           <span className="font-bold text-phosphor">{item.letter}</span>
                           <span className="text-base text-phosphor">{item.symbol}</span>
-                          <span className="text-[10px] text-phosphor/60">{item.shapeName}</span>
+                          <span className="text-[10px] text-phosphor/60">
+                            {isEn && CIPHER_SHAPES_EN[item.shapeName]
+                              ? CIPHER_SHAPES_EN[item.shapeName]
+                              : item.shapeName}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -174,15 +188,19 @@ function Rataalada() {
 
                   <div className="border-t border-phosphor/20 pt-4">
                     <h3 className="text-sm font-bold tracking-wider text-phosphor uppercase">
-                      全片核心密电逐字破译对照
+                      {isEn ? "Film Ciphers & Verbatim Decryptions" : "全片核心密电逐字破译对照"}
                     </h3>
                     <div className="mt-3 space-y-4">
                       {DECODED_MESSAGES.map((msg) => (
                         <div key={msg.id} className="border border-phosphor/20 bg-phosphor/5 p-3 text-xs">
-                          <p className="font-bold text-phosphor">{msg.source}</p>
+                          <p className="font-bold text-phosphor">
+                            {isEn ? msg.sourceEn : msg.source}
+                          </p>
                           <p className="text-[10px] text-phosphor/60">{msg.sourceEn}</p>
-                          <p className="mt-2 text-phosphor/80 font-mono">原文解密：{msg.decodedEn}</p>
-                          <p className="mt-1 text-phosphor/90">{msg.decodedZh}</p>
+                          <p className="mt-2 text-phosphor/80 font-mono">
+                            {isEn ? "Decrypted: " : "原文解密："}{msg.decodedEn}
+                          </p>
+                          {!isEn ? <p className="mt-1 text-phosphor/90">{msg.decodedZh}</p> : null}
                         </div>
                       ))}
                     </div>
@@ -191,9 +209,11 @@ function Rataalada() {
               )}
 
               <div className="mt-8 border-t border-phosphor/20 pt-4 text-xs leading-relaxed text-phosphor/55">
-                <p>{RATA_INTRO}</p>
+                <p>{isEn ? RATA_INTRO_EN : RATA_INTRO}</p>
                 <p className="mt-2">
-                  {TESTS.length} 组公开谜题。终端指令：{COMMANDS.map((item) => item.cmd).join(" · ")}。
+                  {isEn
+                    ? `${TESTS.length} puzzle archives. Terminal commands: ${COMMANDS.map((item) => item.cmd).join(" · ")}.`
+                    : `${TESTS.length} 组公开谜题。终端指令：${COMMANDS.map((item) => item.cmd).join(" · ")}。`}
                 </p>
               </div>
             </div>
@@ -210,7 +230,11 @@ function Rataalada() {
         />
       ) : null}
 
-      <span className="sr-only">绿色荧光终端。输入 Y 开始谜语。</span>
+      <span className="sr-only">
+        {isEn
+          ? "Green phosphor terminal. Type Y to start riddles."
+          : "绿色荧光终端。输入 Y 开始谜语。"}
+      </span>
     </main>
   );
 }

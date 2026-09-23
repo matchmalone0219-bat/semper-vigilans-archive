@@ -10,6 +10,7 @@ import {
 } from "@/data/interviews";
 import { SourceLink } from "@/components/source-link";
 import { cn } from "@/lib/cn";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/interviews")({
   head: () => ({
@@ -18,21 +19,33 @@ export const Route = createFileRoute("/interviews")({
   component: Interviews,
 });
 
-const WORKS: { id: "all" | InterviewWork; label: string }[] = [
-  { id: "all", label: "全部" },
-  { id: "batman", label: "第一部" },
-  { id: "penguin", label: "企鹅人" },
-  { id: "part2", label: "第二部" },
-];
+const WORK_LABEL_EN: Record<InterviewWork, string> = {
+  batman: "The Batman (2022)",
+  penguin: "The Penguin (2024)",
+  part2: "The Batman: Part II",
+};
 
 function Interviews() {
+  const { locale } = useI18n();
   const [work, setWork] = useState<"all" | InterviewWork>("all");
   const [speaker, setSpeaker] = useState<string>("all");
 
+  const works = useMemo(
+    () => [
+      { id: "all" as const, label: locale === "zh" ? "全部" : "All Projects" },
+      { id: "batman" as const, label: locale === "zh" ? "第一部" : "The Batman" },
+      { id: "penguin" as const, label: locale === "zh" ? "企鹅人" : "The Penguin" },
+      { id: "part2" as const, label: locale === "zh" ? "第二部" : "Part II" },
+    ],
+    [locale],
+  );
+
   const quotes = useMemo(() => {
-    return INTERVIEWS.filter((q) => (work === "all" || q.work === work) && (speaker === "all" || q.speakerId === speaker)).sort(
-      (a, b) => b.iso.localeCompare(a.iso),
-    );
+    return INTERVIEWS.filter(
+      (q) =>
+        (work === "all" || q.work === work) &&
+        (speaker === "all" || q.speakerId === speaker),
+    ).sort((a, b) => b.iso.localeCompare(a.iso));
   }, [work, speaker]);
 
   return (
@@ -49,13 +62,17 @@ function Interviews() {
             CAST & CREW / IN THEIR WORDS
           </p>
           <h1 className="mt-4 font-sans text-5xl font-black leading-none tracking-tight sm:text-7xl">
-            人物访谈
+            {locale === "zh" ? "人物访谈" : "Interviews & Oral History"}
           </h1>
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-            收录主演与核心主创在公开深度专访中关于《新蝙蝠侠》三部曲与《企鹅人》剧集的关键谈话实录。中文经档案整理核对，以媒体一手出处为准。
+            {locale === "zh"
+              ? "收录主演与核心主创在公开深度专访中关于《新蝙蝠侠》三部曲与《企鹅人》剧集的关键谈话实录。中文经档案整理核对，以媒体一手出处为准。"
+              : "Key quotes and reflections from principal cast and filmmakers across The Batman Epic Crime Saga. Sourced directly from verified archival long-form interviews."}
           </p>
           <p className="mt-4 max-w-2xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
-            可按作品或发言人筛选。人物档案页也会链到对应条目。
+            {locale === "zh"
+              ? "可按作品或发言人筛选。人物档案页也会链到对应条目。"
+              : "Filter by project or speaker. Linked directly from corresponding character dossiers."}
           </p>
         </div>
       </header>
@@ -66,16 +83,20 @@ function Interviews() {
             <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
               Filter
             </p>
-            <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">按作品 / 发言人</h2>
+            <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">
+              {locale === "zh" ? "按作品 / 发言人" : "Filter by Project / Speaker"}
+            </h2>
           </div>
           <p className="text-sm text-faint">
-            {quotes.length} 条
-            {work !== "all" ? ` · ${WORK_LABEL[work]}` : null}
+            {quotes.length} {locale === "zh" ? "条" : "quotes"}
+            {work !== "all"
+              ? ` · ${locale === "zh" ? WORK_LABEL[work] : WORK_LABEL_EN[work]}`
+              : null}
           </p>
         </div>
 
         <div className="mt-6 flex flex-wrap gap-2">
-          {WORKS.map((item) => (
+          {works.map((item) => (
             <button
               key={item.id}
               type="button"
@@ -102,7 +123,7 @@ function Interviews() {
                 : "border-fg/20 text-muted hover:border-fg hover:text-fg",
             )}
           >
-            全部发言人
+            {locale === "zh" ? "全部发言人" : "All Speakers"}
           </button>
           {SPEAKERS.map((s) => (
             <button
@@ -116,13 +137,17 @@ function Interviews() {
                   : "border-fg/20 text-muted hover:border-fg hover:text-fg",
               )}
             >
-              {s.name}
+              {locale === "zh" ? s.name : s.nameEn}
             </button>
           ))}
         </div>
 
         {quotes.length === 0 ? (
-          <p className="mt-16 text-muted">这个筛选条件下没有条目。</p>
+          <p className="mt-16 text-muted">
+            {locale === "zh"
+              ? "这个筛选条件下没有条目。"
+              : "No interview entries found for this filter."}
+          </p>
         ) : (
           <ul className="mt-12 space-y-12">
             {quotes.map((q) => {
@@ -135,7 +160,7 @@ function Interviews() {
                         <Link to="/people/$id" params={{ id: who.personId }} className="shrink-0">
                           <img
                             src={who.portrait}
-                            alt={who.name}
+                            alt={locale === "zh" ? who.name : who.nameEn}
                             className="aspect-square w-24 object-cover lg:w-full"
                           />
                         </Link>
@@ -149,17 +174,19 @@ function Interviews() {
                     ) : null}
                     <article>
                       <p className="font-display text-xs font-semibold tracking-[0.28em] text-blood uppercase">
-                        {WORK_LABEL[q.work]} · {q.date}
+                        {locale === "zh" ? WORK_LABEL[q.work] : WORK_LABEL_EN[q.work]} · {q.date}
                       </p>
                       <p className="mt-2 font-sans text-lg font-black tracking-tight">
-                        {who.name}
-                        <span className="ml-2 text-sm font-normal text-muted">{who.role}</span>
+                        {locale === "zh" ? who.name : who.nameEn}
+                        <span className="ml-2 text-sm font-normal text-muted">
+                          {locale === "zh" ? who.role : (who.roleEn ?? who.role)}
+                        </span>
                       </p>
                       <blockquote className="mt-4 max-w-3xl text-pretty text-lg leading-relaxed">
-                        {q.quoteZh}
+                        {locale === "zh" ? q.quoteZh : q.quoteEn}
                       </blockquote>
                       <p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-faint italic">
-                        {q.quoteEn}
+                        {locale === "zh" ? q.quoteEn : q.quoteZh}
                       </p>
                       {q.note ? <p className="mt-3 max-w-3xl text-sm text-muted">{q.note}</p> : null}
                       <SourceLink
@@ -179,3 +206,4 @@ function Interviews() {
     </main>
   );
 }
+

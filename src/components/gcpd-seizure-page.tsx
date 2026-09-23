@@ -11,13 +11,13 @@ export function GcpdSeizurePage({
 }) {
   return (
     <section
-      className="gcpd-seizure-stage relative flex min-h-0 flex-1 items-center justify-center overflow-hidden px-5 py-10 text-white sm:px-8"
+      className="gcpd-seizure-stage relative flex min-h-0 flex-1 items-center justify-start overflow-x-hidden overflow-y-auto px-5 py-6 text-white sm:justify-center sm:px-8 sm:py-10"
       aria-labelledby="gcpd-seizure-title"
     >
       <div className="gcpd-seizure-noise" aria-hidden="true" />
       <div className="gcpd-seizure-vignette" aria-hidden="true" />
 
-      <div className="relative z-10 flex w-full max-w-5xl flex-col items-center text-center">
+      <div className="relative z-10 my-auto flex w-full max-w-5xl shrink-0 flex-col items-center text-center">
         <p className="mb-3 font-sans text-[10px] font-semibold tracking-[0.34em] text-white/55 uppercase sm:text-xs">
           Gotham City Police Department · Cybercrime Division
         </p>

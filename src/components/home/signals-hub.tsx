@@ -8,6 +8,51 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { useI18n } from "@/lib/i18n";
 
+const LOG_EN_MAP: Record<
+  string,
+  {
+    title: string;
+    body?: string;
+    location?: string;
+    videoTitle?: string;
+  }
+> = {
+  "log-2026-07-15": {
+    title: "Release Date Set for Feb 18, 2028 with Camera Test Footage",
+    body: "Warner Bros. shifts release schedule; the sequel is set for North American release on February 18, 2028, with full IMAX distribution. Matt Reeves reveals camera test footage of Robert Pattinson in the updated cowl.",
+    videoTitle: "The Batman: Part II - First Teaser Footage · Feb 18, 2028",
+  },
+  "log-2026-09-20": {
+    title: "London Night Shoot: GCPD Patrol Bike GC-201 & Camera Chase Rig",
+    body: "Following Batman Day, filming resumed in a secure London district for night shooting. Photographer UnBoxPHD captured the custom GCPD patrol motorcycle (GC-201) seen earlier in Glasgow snow chases, alongside a heavy camera pursuit chase vehicle.",
+    location: "London · Night Action Vehicle Unit",
+  },
+  "log-2026-09-19": {
+    title: "Batman Day: Director Shares Sequel Frame from London",
+    body: "On Batman Day 2026, Matt Reeves shared an official framed widescreen still from London showing Batman against snowfall and an orange moon, confirming the return of the tactile film-out process.",
+    location: "London · Official Production Still",
+  },
+  "log-2026-09-16": {
+    title: "Glasgow Day Log: GCPD SWAT Van Snow Street Transport",
+    body: "High-angle window footage from Bothwell Street reveals GCPD officers escorting an unidentified target into a police SWAT van on snow-covered streets amid Christmas decorations.",
+    location: "Glasgow, Scotland · Bothwell Street SWAT Transport",
+  },
+  "log-2026-09-13": {
+    title: "London Protest Scene: Bruce Escorted Outside Courthouse",
+    body: "Robert Pattinson as Bruce Wayne escorted by GCPD through angry demonstrators outside St. Paul's Cathedral. Crowd signs feature Court of Owls and Anarky references.",
+    location: "London · St. Paul's Cathedral Exterior",
+    videoTitle: "Set Leak: Bruce Wayne Escorted Through Protesters",
+  },
+  "log-2026-09-11": {
+    title: "Sebastian Stan on Part II: 'Godfather Part II' Ambition",
+    videoTitle: "Stan on Joining The Batman Part II with Johnson",
+  },
+  "log-2026-09-04": {
+    title: "Glasgow Night Shoot: Stunt Rider on GCPD Patrol Motorcycle",
+    videoTitle: "Set Leak: Modified Batsuit Riding GCPD Motorcycle",
+  },
+};
+
 export function SignalsHub({
   onSelectVideo,
 }: {
@@ -88,10 +133,12 @@ export function SignalsHub({
               </div>
 
               <h3 className="mt-4 line-clamp-1 font-sans text-lg font-black tracking-tight text-fg sm:text-xl">
-                {featuredVideoEntry?.title ?? "首曝镜头与定档前瞻"}
+                {locale === "en"
+                  ? (LOG_EN_MAP[featuredVideoEntry?.id ?? ""]?.title ?? featuredVideoEntry?.title ?? "First Teaser Footage & Slate Preview")
+                  : (featuredVideoEntry?.title ?? "首曝镜头与定档前瞻")}
               </h3>
               <p className="mt-1 text-xs text-muted">
-                {featuredVideoEntry?.date ?? FILM.releaseLabel} · B 站高清转存
+                {featuredVideoEntry?.date ?? FILM.releaseLabel} · {locale === "zh" ? "B 站高清转存" : "Bilibili HD Archive"}
               </p>
 
               <div
@@ -121,7 +168,9 @@ export function SignalsHub({
                 </div>
                 <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-3">
                   <span className="truncate pr-2 font-mono text-[11px] text-fg/90">
-                    {featuredVideo.title}
+                    {locale === "en"
+                      ? (LOG_EN_MAP[featuredVideoEntry?.id ?? ""]?.videoTitle ?? featuredVideo.title)
+                      : featuredVideo.title}
                   </span>
                   <span className="shrink-0 rounded bg-black/60 px-1.5 py-0.5 font-mono text-[10px] text-faint">
                     Bilibili
@@ -132,7 +181,7 @@ export function SignalsHub({
               {/* 更多视频列表 */}
               <div className="mt-3.5 border-t border-fg/10 pt-3">
                 <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
-                  收录影像片段
+                  {locale === "zh" ? "收录影像片段" : "Recorded Footage Clips"}
                 </p>
                 <ul className="mt-2 space-y-1.5">
                   {archiveVideos.map((entry, i) => (
@@ -144,7 +193,9 @@ export function SignalsHub({
                       >
                         <Play className="size-3 shrink-0 fill-current text-blood" />
                         <span className="min-w-0 flex-1 truncate text-[11px] text-muted">
-                          {entry.video?.title}
+                          {locale === "en"
+                            ? (LOG_EN_MAP[entry.id]?.videoTitle ?? entry.video?.title)
+                            : entry.video?.title}
                         </span>
                         <span className="shrink-0 font-mono text-[10px] text-faint">{entry.date.slice(5)}</span>
                       </button>
@@ -183,10 +234,14 @@ export function SignalsHub({
               </div>
 
               <h3 className="mt-4 line-clamp-1 font-sans text-lg font-black tracking-tight text-fg sm:text-xl">
-                {latestShoot.title}
+                {locale === "en"
+                  ? (LOG_EN_MAP[latestShoot.id]?.title ?? latestShoot.title)
+                  : latestShoot.title}
               </h3>
               <p className="mt-1 text-xs text-muted">
-                {latestShoot.locationLabel}
+                {locale === "en"
+                  ? (LOG_EN_MAP[latestShoot.id]?.location ?? latestShoot.locationLabel)
+                  : latestShoot.locationLabel}
               </p>
 
               {/* 片场高清配图缩略图 */}
@@ -197,7 +252,7 @@ export function SignalsHub({
               >
                 <img
                   src={latestShoot.image ?? "/media/p2-snow1.jpg"}
-                  alt={latestShoot.title}
+                  alt={locale === "en" ? (LOG_EN_MAP[latestShoot.id]?.title ?? latestShoot.title) : latestShoot.title}
                   loading="lazy"
                   decoding="async"
                   className="absolute inset-0 size-full object-cover object-[center_28%] transition-transform duration-300 group-hover/shoot:scale-105"
@@ -205,14 +260,18 @@ export function SignalsHub({
                 <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-3">
                   <span className="line-clamp-1 font-sans text-[11px] font-bold text-fg/90">
-                    {locale === "zh" ? `外景现场：${latestShoot.title}` : `On-set: ${latestShoot.title}`}
+                    {locale === "zh"
+                      ? `外景现场：${latestShoot.title}`
+                      : `On-set: ${LOG_EN_MAP[latestShoot.id]?.title ?? latestShoot.title}`}
                   </span>
                 </div>
               </Link>
 
               {/* 核心段落摘要 */}
               <p className="mt-2.5 line-clamp-2 text-xs leading-relaxed text-muted">
-                {latestShoot.body}
+                {locale === "en"
+                  ? (LOG_EN_MAP[latestShoot.id]?.body ?? latestShoot.body)
+                  : latestShoot.body}
               </p>
 
               {/* 近期关键进展列表 */}
@@ -229,7 +288,9 @@ export function SignalsHub({
                         className="group/item flex items-center justify-between gap-2 text-muted hover:text-fg"
                       >
                         <span className="truncate transition-colors group-hover/item:text-blood">
-                          {entry.title}
+                          {locale === "en"
+                            ? (LOG_EN_MAP[entry.id]?.title ?? entry.title)
+                            : entry.title}
                         </span>
                         <span className="shrink-0 font-mono text-[10px] text-faint">{entry.date.slice(5)}</span>
                       </Link>
@@ -273,15 +334,17 @@ export function SignalsHub({
                   {interviewSpeaker.portrait ? (
                     <img
                       src={interviewSpeaker.portrait}
-                      alt={interviewSpeaker.name}
+                      alt={locale === "en" ? (interviewSpeaker.nameEn || interviewSpeaker.name) : interviewSpeaker.name}
                       className="size-11 shrink-0 border border-fg/20 object-cover"
                     />
                   ) : null}
                   <div>
                     <h3 className="font-sans text-base font-black tracking-tight text-fg">
-                      {interviewSpeaker.name}
+                      {locale === "en" ? (interviewSpeaker.nameEn || interviewSpeaker.name) : interviewSpeaker.name}
                     </h3>
-                    <p className="text-xs text-muted">{interviewSpeaker.role}</p>
+                    <p className="text-xs text-muted">
+                      {locale === "en" ? (interviewSpeaker.roleEn || interviewSpeaker.role) : interviewSpeaker.role}
+                    </p>
                   </div>
                 </div>
               ) : null}
@@ -322,9 +385,11 @@ export function SignalsHub({
                         >
                           <div className="flex items-center justify-between text-[11px]">
                             <span className="font-bold text-fg/90 transition-colors group-hover/voice:text-blood">
-                              {spk?.name ?? "主创"}
+                              {locale === "en" ? (spk?.nameEn ?? spk?.name ?? "Creator") : (spk?.name ?? "主创")}
                               <span className="ml-1.5 font-normal text-faint">
-                                {spk?.role.split(" / ")[0]}
+                                {locale === "en"
+                                  ? (spk?.roleEn?.split(" / ")[0] ?? spk?.role.split(" / ")[0])
+                                  : spk?.role.split(" / ")[0]}
                               </span>
                             </span>
                             <span className="font-mono text-[10px] text-faint">{q.date.slice(2)}</span>

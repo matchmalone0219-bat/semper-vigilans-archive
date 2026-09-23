@@ -11,6 +11,7 @@ export type InterviewSpeaker = {
   name: string;
   nameEn: string;
   role: string;
+  roleEn?: string;
   personId?: string;
   portrait?: string;
 };
@@ -21,6 +22,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "罗伯特·帕丁森",
     nameEn: "Robert Pattinson",
     role: "布鲁斯·韦恩 / 蝙蝠侠",
+    roleEn: "Bruce Wayne / Batman",
     personId: "bruce",
     portrait: "/media/cast/pattinson.jpg",
   },
@@ -29,6 +31,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "佐伊·克拉维茨",
     nameEn: "Zoë Kravitz",
     role: "瑟琳娜·凯尔 / 猫女",
+    roleEn: "Selina Kyle / Catwoman",
     personId: "selina",
     portrait: "/media/cast/kravitz.jpg",
   },
@@ -37,6 +40,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "科林·法瑞尔",
     nameEn: "Colin Farrell",
     role: "奥兹·科布 / 企鹅人",
+    roleEn: "Oz Cobb / The Penguin",
     personId: "oz",
     portrait: "/media/cast/farrell.jpg",
   },
@@ -45,6 +49,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "杰弗里·怀特",
     nameEn: "Jeffrey Wright",
     role: "吉姆·戈登",
+    roleEn: "Jim Gordon",
     personId: "gordon",
     portrait: "/media/cast/wright.jpg",
   },
@@ -53,6 +58,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "安迪·瑟金斯",
     nameEn: "Andy Serkis",
     role: "阿尔弗雷德·潘尼沃斯",
+    roleEn: "Alfred Pennyworth",
     personId: "alfred",
     portrait: "/media/cast/serkis.jpg",
   },
@@ -61,6 +67,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "保罗·达诺",
     nameEn: "Paul Dano",
     role: "爱德华·纳什顿 / 谜语人",
+    roleEn: "Edward Nashton / The Riddler",
     personId: "edward",
     portrait: "/media/cast/dano-v2.jpg",
   },
@@ -69,6 +76,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "克里斯汀·米莉奥蒂",
     nameEn: "Cristin Milioti",
     role: "索菲亚·法尔科内",
+    roleEn: "Sofia Falcone",
     personId: "sofia",
     portrait: "/media/cast/milioti.jpg",
   },
@@ -77,6 +85,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "伦齐·费利兹",
     nameEn: "Rhenzy Feliz",
     role: "维克托·阿吉拉尔",
+    roleEn: "Victor Aguilar",
     personId: "victor",
     portrait: "/media/cast/feliz-v2.jpg",
   },
@@ -85,6 +94,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "马特·里夫斯",
     nameEn: "Matt Reeves",
     role: "导演 / 编剧",
+    roleEn: "Director / Writer",
     portrait: "/media/cast/reeves.jpg",
   },
   {
@@ -92,6 +102,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "格雷格·弗雷泽",
     nameEn: "Greig Fraser",
     role: "摄影指导",
+    roleEn: "Director of Photography",
     portrait: "/media/cast/fraser-v2.jpg",
   },
   {
@@ -99,6 +110,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     name: "塞巴斯蒂安·斯坦",
     nameEn: "Sebastian Stan",
     role: "《新蝙蝠侠2》主演（角色未公布）",
+    roleEn: "Lead Cast, The Batman: Part II (Undisclosed Role)",
     portrait: "/media/cast/stan.jpg",
   },
 ];

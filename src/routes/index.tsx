@@ -234,7 +234,7 @@ function Home() {
                 type="button"
                 onClick={() => setActiveVideo(null)}
                 className="grid size-8 place-items-center text-muted transition-colors hover:text-fg"
-                aria-label="关闭视频"
+                aria-label={locale === "zh" ? "关闭视频" : "Close Video"}
               >
                 <X className="size-5" />
               </button>

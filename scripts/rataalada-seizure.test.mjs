@@ -69,7 +69,9 @@ test("final puzzle reveals seizure page; files remain accessible; restart resets
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
   page.setDefaultTimeout(15000);
   await page.addInitScript(({ key, progress }) => {
-    localStorage.setItem(key, JSON.stringify(progress));
+    if (!localStorage.getItem(key)) {
+      localStorage.setItem(key, JSON.stringify(progress));
+    }
   }, {
     key: STORAGE_KEY,
     progress: {

@@ -12,7 +12,6 @@ import {
   type PrizeStill,
 } from "@/lib/rataalada";
 import { pageTitle } from "@/lib/film";
-import { FILM } from "@/data/film";
 import { RiddlerTerminal } from "@/components/riddler-terminal";
 import { GcpdSeizurePage } from "@/components/gcpd-seizure-page";
 import { Lightbox } from "@/components/lightbox";
@@ -265,34 +264,6 @@ function Rataalada() {
 
               <div className="mt-8 border-t border-phosphor/20 pt-4 text-xs leading-relaxed text-phosphor/60 space-y-3">
                 <p>{isEn ? RATA_INTRO_EN : RATA_INTRO}</p>
-                <div className="border border-phosphor/20 bg-phosphor/5 p-3 text-[11px] leading-relaxed text-phosphor/75">
-                  <p className="font-bold tracking-wider text-phosphor uppercase">
-                    {isEn ? "Archival Provenance Distinction:" : "档案史料分类说明："}
-                  </p>
-                  <ul className="mt-1.5 list-disc list-inside space-y-1 text-phosphor/70">
-                    <li>
-                      <strong className="text-phosphor">{isEn ? "Official 2021–2022 ARG:" : "官方历史原版："}</strong>{" "}
-                      {isEn
-                        ? "Phases 1, 2, 6, 7, GCPD seizure screen, and trailer cipher."
-                        : "第 1、2、6、7 阶段、GCPD 最终查封通告及预告片密码本。"}
-                    </li>
-                    <li>
-                      <strong className="text-phosphor">{isEn ? "Archive Canon Extension:" : "本站连贯扩展："}</strong>{" "}
-                      {isEn
-                        ? `Phases 3–5, web-adapted still files, and 'SEE YOU IN 2028' finale easter egg (${FILM.releaseLabelEn}).`
-                        : `第 3–5 阶段补充谜题、轻量化勘验证物图，以及终局致敬《新蝙蝠侠2》（定档 ${FILM.releaseLabel}）的「SEE YOU IN 2028」彩蛋。`}
-                    </li>
-                  </ul>
-                  <div className="mt-2.5 pt-2 border-t border-phosphor/15">
-                    <Link
-                      to="/roots"
-                      hash="riddles"
-                      className="text-phosphor underline underline-offset-2 hover:text-white"
-                    >
-                      {isEn ? "→ View Deep Linguistic & Lore Decodes in Roots" : "→ 前往艺术溯源查看谜语人双关与语言学深度考据"}
-                    </Link>
-                  </div>
-                </div>
                 <p className="text-[11px] text-phosphor/50">
                   {isEn
                     ? `${TESTS.length} puzzle archives. Terminal commands: ${COMMANDS.map((item) => item.cmd).join(" · ")}.`

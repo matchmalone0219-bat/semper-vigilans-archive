@@ -103,10 +103,10 @@ export const en: TranslationDictionary = {
     exploreMap: "Gotham Intel Map",
     coreLinksKicker: "CORE ARCHIVES",
     coreLinksTitle: "Core Case Files",
-    coreLinksSubtitle: "From verified production reports to comic roots, track the evolution of the sequel.",
+    coreLinksSubtitle: "From production reports to comic roots, track the evolution of the sequel.",
     coreLinks: {
       dossierTitle: "Production Dossier",
-      dossierDesc: "Confirmed sequel details, cast announcements, and production logs.",
+      dossierDesc: "Sequel updates, cast announcements, and production logs.",
       universeTitle: "The Universe",
       universeDesc: "Connecting the 2022 film, The Penguin, comics, and the Gotham timeline.",
       craftTitle: "The Craft",
@@ -116,7 +116,7 @@ export const en: TranslationDictionary = {
     },
     signals: {
       title: "Tactical Signals",
-      subtitle: "Aggregated live wire intel from verified press and on-set sightings.",
+      subtitle: "Aggregated live wire intel from press coverage and on-set sightings.",
       tabs: {
         all: "All Signals",
         confirmed: "Confirmed",
@@ -134,7 +134,7 @@ export const en: TranslationDictionary = {
       log: "Production Log",
     },
     facts: {
-      title: "Verified & Official Facts",
+      title: "Production & Release Facts",
       titleZhKey: "Title",
       directorKey: "Director / Screenplay",
       cinematographyKey: "Cinematography",

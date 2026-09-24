@@ -152,6 +152,7 @@ function Recap() {
                         const sourceEl = beat.href ? (
                           <Link
                             to={beat.href}
+                            hash={beat.hash}
                             className="text-faint underline-offset-4 hover:text-fg hover:underline"
                           >
                             {beatSource}

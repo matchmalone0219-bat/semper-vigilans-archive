@@ -37,7 +37,7 @@ const TIER_META = {
   },
 } as const;
 
-export function SourceLink({ label, href, tier, verifiedAt, className }: SourceLinkProps) {
+export function SourceLink({ label, href, tier, className }: SourceLinkProps) {
   const meta = tier ? TIER_META[tier] : null;
 
   return (
@@ -49,12 +49,7 @@ export function SourceLink({ label, href, tier, verifiedAt, className }: SourceL
           </Badge>
         </span>
       ) : null}
-      {verifiedAt ? (
-        <span className="font-mono text-[10px] tracking-wider text-faint">
-          核验 {verifiedAt}
-        </span>
-      ) : null}
-      <span className="text-faint">·</span>
+      {meta ? <span className="text-faint">·</span> : null}
       {href ? (
         <a
           href={href}

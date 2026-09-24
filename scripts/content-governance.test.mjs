@@ -15,17 +15,31 @@ const production = jiti(join(rootDir, "src/data/production.ts"));
 const cases = jiti(join(rootDir, "src/lib/cases.ts"));
 const rataalada = jiti(join(rootDir, "src/lib/rataalada.ts"));
 
-test("curator notes on interview quotes are explicitly labeled", () => {
+test("interview notes stay structurally separate without public self-certifying prefixes", () => {
   for (const entry of interviews.INTERVIEWS) {
+    assert.doesNotMatch(entry.quoteZh, /【本站整理】|ARCHIVE CURATOR NOTE|档案注记/);
+    assert.doesNotMatch(entry.quoteEn, /【本站整理】|ARCHIVE CURATOR NOTE|档案注记/);
     if (!entry.note) continue;
-    assert.match(
+    assert.doesNotMatch(
       entry.note,
-      /^【本站整理】/,
-      `${entry.id}: interview note must be separated from direct quotation with 【本站整理】`,
+      /^(?:【本站整理】|\[ARCHIVE CURATOR NOTE|档案注记)/,
+      `${entry.id}: editorial note should remain a separate field without a public self-certifying prefix`,
     );
   }
 });
 
+
+test("public archive voice does not expose verification housekeeping", () => {
+  const sourceLink = readFileSync(join(rootDir, "src/components/source-link.tsx"), "utf8");
+  const signalsHub = readFileSync(join(rootDir, "src/components/home/signals-hub.tsx"), "utf8");
+  const zh = readFileSync(join(rootDir, "src/lib/i18n/translations/zh.ts"), "utf8");
+  const en = readFileSync(join(rootDir, "src/lib/i18n/translations/en.ts"), "utf8");
+
+  assert.doesNotMatch(sourceLink, /核验\s*\{verifiedAt\}/);
+  assert.doesNotMatch(signalsHub, /verified UK filming dispatches|最新官方公开线索/);
+  assert.doesNotMatch(en, /verified set leaks/i);
+  assert.doesNotMatch(zh, /传闻均已标明出处/);
+});
 test("Bruce journal archive contains only authenticated opening and closing voiceovers", () => {
   assert.deepEqual(
     cases.BRUCE_JOURNALS.map((entry) => entry.id),

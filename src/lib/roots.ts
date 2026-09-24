@@ -68,7 +68,7 @@ export const ROOTS: RootWork[] = [
     quote:
       "I wanted to get into the mindset of the character. One of the cool deep dive ones was Ego. He's confronting the beast that is Batman.",
     quoteZh:
-      "我想深入探索这个角色的内心世界。《自我》是一部极其深刻的作品，它展现了布鲁斯如何直面内心深处化名为‘蝙蝠侠’的野兽与恐惧。",
+      "我想深入到这个角色的思维状态里。《自我》是其中一部很适合深入挖掘的作品。布鲁斯在里面面对的，是那个名为“蝙蝠侠”的野兽。",
     quoteSrc: "导演马特·里夫斯，Esquire 专访与 DC FanDome 官方发言",
     thesis: "导演明确确认的心理构建蓝本：探讨布鲁斯·韦恩如何在义警初期直面内心阴暗面与道德边界。",
     lede: "《蝙蝠侠：自我》并非案件侦破故事，而是里夫斯构建年轻布鲁斯心理世界的核心切入点。影片深刻继承了布鲁斯对义警身份的正当性拷问与自我救赎历程。",

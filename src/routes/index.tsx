@@ -167,8 +167,8 @@ function Home() {
             </p>
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
               {locale === "zh"
-                ? "本站为影迷自发建立的中文档案库，为您持续汇总官方公开新闻、演职员阵容、片场实拍线索与剧情推测。所有传闻均已明确标注出处与可信度，力求提供客观严谨的影视一手资讯。"
-                : "An independent fan archive dedicated to compiling verified press reports, cast announcements, set dispatches, and narrative theories. Every leak and report is classified with strict source tiers and verification dates."}
+                ? "Semper Vigilans 持续整理《新蝙蝠侠》犯罪宇宙的制作动态、演职员阵容、片场实拍、人物关系与剧情前瞻，并将第一部、《企鹅人》与续集线索串联成一套不断扩展的哥谭档案。"
+                : "Semper Vigilans follows the evolving Batman Epic Crime Saga through production updates, cast changes, set dispatches, character dossiers, and narrative threads linking The Batman, The Penguin, and Part II."}
             </p>
           </div>
         </div>

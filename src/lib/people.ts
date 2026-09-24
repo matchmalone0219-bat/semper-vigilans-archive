@@ -99,7 +99,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "续集展望：凛冬下的内心考验",
-        body: "导演马特·里夫斯表示，《新蝙蝠侠2》将进一步聚焦布鲁斯·韦恩本人。雪地战车被 GCPD 与 SWAT 车辆包围的片场线索，则让本站更倾向于一种危险走向：布鲁斯不仅要对抗新敌人，还可能被哥谭体制重新视为必须清除的威胁。",
+        body: "导演马特·里夫斯表示，《新蝙蝠侠2》将进一步聚焦布鲁斯·韦恩本人。雪地战车被 GCPD 与 SWAT 车辆包围的片场画面，也让一种更危险的走向浮现：布鲁斯不仅要对抗新敌人，还可能被哥谭体制重新视为必须清除的威胁。",
       },
     ],
   },
@@ -119,7 +119,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "生死相托的深厚羁绊",
-        body: "在第一部中，阿尔弗雷德替布鲁斯拆开暗藏炸药的信件而负伤。在病榻前两人坦诚相待，解开了历史心结。随着布鲁斯可能再次遭到警队围捕，本站预计阿尔弗雷德会继续镇守地下车间，承担情报、装备与撤离支援。",
+        body: "在第一部中，阿尔弗雷德替布鲁斯拆开暗藏炸药的信件而负伤。在病榻前两人坦诚相待，解开了历史心结。随着布鲁斯可能再次遭到警队围捕，阿尔弗雷德很可能继续镇守地下车间，承担情报、装备与撤离支援。",
       },
     ],
   },
@@ -334,7 +334,7 @@ export const FILES: Record<string, PersonFile> = {
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "冰山俱乐部服务生兼神偷，协助蝙蝠侠后前往布鲁德海文。", href: "/recap", hash: "the-batman" },
       { work: "限定剧《企鹅人》", note: "未正面出场，剧末向阿卡姆中的索菲亚寄送来信。", href: "/recap", hash: "the-penguin" },
-      { work: "电影《新蝙蝠侠2》", note: "官方尚未正式宣布是否回归。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "续集回归状态待定。", href: "/dossier" },
     ],
     places: ["iceberg", "orphanage"],
     stills: [
@@ -411,7 +411,7 @@ export const FILES: Record<string, PersonFile> = {
       },
       {
         heading: "铁血登顶与地下新王",
-        body: "在《企鹅人》八集剧集中，他击溃法尔科内与马罗尼家族核心势力，甚至灭口唯一信任的心腹维克托，彻底登顶哥谭地下新王。科林·法瑞尔确认回归后，本站判断他不会只是客串：城市重建、警政资源与黑市网络都可能成为奥兹继续扩张的筹码。",
+        body: "在《企鹅人》八集剧集中，他击溃法尔科内与马罗尼家族核心势力，甚至灭口唯一信任的心腹维克托，彻底登顶哥谭地下新王。科林·法瑞尔确认回归后，登顶后的奥兹也重新进入续集棋局：城市重建、警政资源与黑市网络都可能成为他继续扩张的筹码。",
       },
     ],
   },
@@ -433,7 +433,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "官方前传小说", note: "孤儿院成长的童年阴影与仇恨萌芽。", href: "/recap", hash: "before" },
       { work: "漫画《谜语人元年》", note: "担任司法会计师时期发现城市黑幕与黑化全过程。", href: "/recap", hash: "year-one" },
       { work: "电影《新蝙蝠侠》", note: "策划连环暗杀与大堤决口，现关押于阿卡姆疯人院。", href: "/recap", hash: "the-batman" },
-      { work: "电影《新蝙蝠侠2》", note: "官方尚未宣布回归。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "续集回归状态待定。", href: "/dossier" },
     ],
     places: ["orphanage", "arkham", "riddler-room", "seawall"],
     stills: ["/media/riddler.jpg", "/media/still-lair.jpg", "/media/still-riddler-unmask.jpg"],
@@ -452,7 +452,7 @@ export const FILES: Record<string, PersonFile> = {
     also: ["神秘重犯", "小丑 (未正式定名)"],
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "阿卡姆疯人院邻近病房囚徒，与谜语人展开对话。", href: "/recap", hash: "the-batman" },
-      { work: "电影《新蝙蝠侠2》", note: "传闻待定，官方尚未确认加盟。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "续集加盟状态待定。", href: "/dossier" },
     ],
     places: ["arkham"],
     stills: ["/media/portraits/joker-v2.jpg"],

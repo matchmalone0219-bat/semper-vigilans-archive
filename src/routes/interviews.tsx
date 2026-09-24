@@ -66,8 +66,8 @@ function Interviews() {
           </h1>
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
             {locale === "zh"
-              ? "收录主演与核心主创在公开深度专访中关于《新蝙蝠侠》三部曲与《企鹅人》剧集的关键谈话实录。中文经档案整理核对，以媒体一手出处为准。"
-              : "Key quotes and reflections from principal cast and filmmakers across The Batman Epic Crime Saga. Sourced directly from verified archival long-form interviews."}
+              ? "收录主演与核心主创在公开深度专访中关于《新蝙蝠侠》三部曲与《企鹅人》剧集的关键谈话实录。"
+              : "Key quotes and reflections from principal cast and filmmakers across The Batman Epic Crime Saga."}
           </p>
           <p className="mt-4 max-w-2xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
             {locale === "zh"

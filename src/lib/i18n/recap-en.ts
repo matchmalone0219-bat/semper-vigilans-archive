@@ -265,24 +265,24 @@ export const GOTHAM_ERAS_EN: Record<number, { era: string; note: string; beats: 
   },
   6: {
     era: "VII. Winter Approaches & Part II Evidence",
-    note: "A forward-looking section that separates documented set activity and interviews from archive interpretation. Character roles and plot causality remain unconfirmed unless explicitly sourced.",
+    note: "A forward look at the winter-set sequel through public set activity, interviews, and the new power balance after The Penguin.",
     beats: [
       {
         when: "Weeks After the Series Finale",
         title: "Winter Dressing Across Post-Flood Gotham",
-        line: "Public Glasgow set material confirms artificial snow, seasonal dressing, and dense police/emergency-vehicle staging. Whether heating, transport, public safety, or reconstruction become explicit plot conflicts remains an archive inference from those visual clues.",
+        line: "Public Glasgow set material shows artificial snow, seasonal dressing, and dense police/emergency-vehicle staging. Heating, transport, public safety, and reconstruction all emerge as possible pressure points in this winter version of Gotham.",
         source: "Public set material · Glasgow winter shoot log",
       },
       {
         when: "Day Exterior",
         title: "Alfred Performs CPR on Bruce in the Snow",
-        line: "The August 28 Glasgow Bridge shoot captured Alfred performing CPR on a prone Bruce while a blonde woman held a child nearby; another setup appeared to show Bruce with his hands restrained. These are exterior-production observations, not confirmed story context.",
+        line: "The August 28 Glasgow Bridge shoot captured Alfred performing CPR on a prone Bruce while a blonde woman held a child nearby; another setup appeared to show Bruce with his hands restrained.",
         source: "Set dispatch · Aug. 28, 2026 shoot log",
       },
       {
         when: "Night Exterior",
         title: "Batmobile Avoids a Truck on Snow-Covered Streets",
-        line: "The August 29 night shoot captured the Batmobile avoiding an oncoming truck and moving alongside police cars, with aerial footage showing a snow-dressed closed street. The narrative cause of the sequence has not been disclosed.",
+        line: "The August 29 night shoot captured the Batmobile avoiding an oncoming truck and moving alongside police cars, with aerial footage showing a snow-dressed closed street.",
         source: "Set dispatch · Aug. 29, 2026 shoot log",
       },
       {

@@ -108,9 +108,9 @@ export const LENS_EN = {
     "The Batman established an unmistakable neo-noir visual language under Oscar-winning cinematographer Greig Fraser; for The Batman: Part II, fellow Oscar winner Erik Messerschmidt (Mank, Mindhunter, The Killer) takes the helm. Prior to official production, Messerschmidt posted four scout photographs—northwest, LEDs, spring, and mist—on Instagram, providing the earliest public glimpse of the sequel's atmospheric palette.",
   stillCaptions: [
     "northwest: Damp pavement reflecting cyan sodium vapor streetlamps. Fan consensus links this to the Runcorn area, where the crew filmed on the Runcorn bridge in July.",
-    "LEDs: Gotham streetscape framed by an ocean of LED signs and traffic. Commenters speculated this might be Wayne Tower, though unconfirmed officially.",
+    "LEDs: Gotham streetscape framed by an ocean of LED signs and traffic. Commenters speculated this might be Wayne Tower.",
     "spring: Industrial skyline and Gothic spires veiled in sepia-gray fog, sparking early discussion of an even dirtier, grittier sequel tone.",
-    "mist: Tree-lined country lane disappearing into heavy mist. Commenters floated Wayne Manor or Scottish moorlands, unconfirmed officially.",
+    "mist: Tree-lined country lane disappearing into heavy mist. Commenters floated Wayne Manor or the Scottish moorlands.",
   ],
   fraser: [
     {
@@ -137,7 +137,7 @@ export const LENS_EN = {
     },
     {
       heading: "Four Pre-Production Instagram Location Scouts",
-      body: "Between February 27 and May 21, 2026, Messerschmidt shared four scout photos on @emesserschmidt: northwest, LEDs, spring, and mist, well ahead of Reeves' #FirstShot announcement. They represent verified pre-production location studies.",
+      body: "Between February 27 and May 21, 2026, Messerschmidt shared four scout photos on @emesserschmidt: northwest, LEDs, spring, and mist, well ahead of Reeves' #FirstShot announcement. They form an early set of pre-production location studies.",
     },
     {
       heading: "Winter Snow and Harsh Contrast Challenges",

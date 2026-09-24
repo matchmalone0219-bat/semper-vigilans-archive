@@ -90,7 +90,7 @@ export const THEMES: ThemeCue[] = [
     image: "/media/still-bruce.jpg",
     imageAlt: "布鲁斯·韦恩卸下头套后的落寞神情",
     when: "2020 年首支预告；序幕夜巡日记；终局洪水体育馆救援",
-    lede: "这首歌不是配上预告的情绪垫乐，而是里夫斯写第一幕时的工作曲。柯特·柯本（Kurt Cobain）由此变成帕丁森版布鲁斯的人物塑形：拒绝花花公子面具、把自己关在衰败庄园里的隐士。格斯·范·桑特的《最后的日子》（Last Days）只提供庄园意象，不是犯罪片叙事蓝本，所以不单列进艺术溯源。",
+    lede: "这首歌最早是里夫斯写第一幕时反复播放的工作曲，后来一路进入预告与正片。柯特·柯本（Kurt Cobain）也由此渗入帕丁森版布鲁斯的人物塑形：拒绝花花公子面具、把自己关在衰败庄园里的隐士；格斯·范·桑特的《最后的日子》（Last Days）又补上一层荒宅与孤绝感。",
     quote:
       "When I write, I listen to music, and as I was writing the first act, I put on Nirvana's 'Something In The Way.' That's when it came to me that, rather than make Bruce Wayne the playboy version we've seen before, there's another version who had gone through a great tragedy and become a recluse.",
     quoteZh:
@@ -102,12 +102,12 @@ export const THEMES: ThemeCue[] = [
         body: "里夫斯后来说明：第一支预告用这首歌，是因为它本来就在电影里。序幕随着夜巡日记低声响起，终局洪水体育馆救援再回来一次——同一条吉他线，先定隐士的孤独，再托住他走向人群。它不是吉亚奇诺的主题动机，却是全片听感上最容易被记住的锚。",
       },
       {
-        heading: "柯本是人物塑形，不是又一部犯罪片",
-        body: "同一采访里，里夫斯把这首歌接到格斯·范·桑特《最后的日子》：一个虚构的柯本住在衰败庄园里。对 Esquire 他说得更直白：「他就是一种瘾君子。他的药，是对复仇的成瘾。他像一个蝙蝠侠版的柯特·柯本。」他又补了一句界限：不是觉得柯本就是蝙蝠侠，而是柯本与名声相处得很别扭，给布鲁斯加一层摇滚明星的锋芒说得通。帕丁森在《Good Time》里那股脆弱、绝望又有力量的气质，被他形容成「也有那种柯本的感觉：看起来像摇滚明星，但你也觉得他可以彻底隐居」。",
+        heading: "柯本与隐士式布鲁斯",
+        body: "同一采访里，里夫斯把这首歌接到格斯·范·桑特《最后的日子》：一个虚构的柯本住在衰败庄园里。对 Esquire 他说得更直白：「他就是一种瘾君子。他的药，是对复仇的成瘾。他像一个蝙蝠侠版的柯特·柯本。」里夫斯借的是柯本与名声相处时的疏离感，以及那种看起来像摇滚明星、同时又能彻底隐居的矛盾气质。帕丁森在《Good Time》里脆弱、绝望又危险的银幕状态，正好把这层感觉带进布鲁斯。",
       },
       {
         heading: "全片情绪的首尾呼应",
-        body: "开场是雨夜车窗与日记体独白，结尾是体育馆里的照明弹。歌没有变，人变了。这条线写在布鲁斯的人物档案里，配乐条目只负责把原话和出场位置钉死。",
+        body: "开场是雨夜车窗与日记体独白，结尾是体育馆里的照明弹。歌没有变，人变了；同一条吉他线从孤独的夜巡一路回到洪灾救援，完整托住布鲁斯由复仇走向希望的变化。",
       },
     ],
   },
@@ -236,7 +236,7 @@ export const LENS = {
     {
       src: "/media/craft/lens-leds.jpg",
       caption:
-        "LEDs：LED 灯海与车流中的哥谭街景。评论区有人写成「Wayne tower」，官方未确认这座灯塔式高层的戏中身份。",
+        "LEDs：LED 灯海与车流中的哥谭街景。评论区出现「Wayne tower」的说法，这座灯塔式高层的戏中身份仍未公开。",
       alt: "埃里克·梅塞施密特 Instagram 勘景照 LEDs：夜间 LED 灯海与湿滑街面",
       credit: "Instagram · @emesserschmidt",
       posted: "2026.03.02",
@@ -254,7 +254,7 @@ export const LENS = {
     {
       src: "/media/craft/lens-mist.jpg",
       caption:
-        "mist：林荫车道没入浓雾。评论区有人写成 Wayne Manor / Scotch mist，官方未确认这处外景身份。",
+        "mist：林荫车道没入浓雾。评论区出现 Wayne Manor / Scotch mist 的说法，这处外景身份仍未公开。",
       alt: "埃里克·梅塞施密特 Instagram 勘景照 mist：雾中林荫车道",
       credit: "Instagram · @emesserschmidt",
       posted: "2026.05.21",
@@ -286,7 +286,7 @@ export const LENS = {
     },
     {
       heading: "开拍前 Instagram 勘景四连",
-      body: "2026 年 2 月 27 日至 5 月 21 日，梅塞施密特在 @emesserschmidt 先后发布 northwest、LEDs、spring、mist 四张取景地勘景照，均早于马特·里夫斯 6 月 12 日的 #FirstShot。northwest 被影迷比对为兰康（Runcorn）一带，同年 7 月剧组确在兰康桥拍摄；LEDs、mist 的评论区分别出现过「Wayne tower」「Wayne Manor」的猜测，官方均未确认。这四张是目前能公开核验的续集外景光影样本，不是第一部剧照。",
+      body: "2026 年 2 月 27 日至 5 月 21 日，梅塞施密特在 @emesserschmidt 先后发布 northwest、LEDs、spring、mist 四张取景地勘景照，均早于马特·里夫斯 6 月 12 日的 #FirstShot。northwest 被影迷比对为兰康（Runcorn）一带，同年 7 月剧组确在兰康桥拍摄；LEDs、mist 的评论区分别出现过「Wayne tower」「Wayne Manor」的猜测。这四张共同记录了续集前期外景勘景的光影方向。",
     },
     {
       heading: "冬日风雪下的全新光影挑战",
@@ -297,8 +297,8 @@ export const LENS = {
       body: "2026 年 9 月 19 日蝙蝠侠日，有从业者询问第一部的 film-out 流程（数字拍摄后再转录至胶片冲印输出）是否在续集回归。里夫斯先以「Indeed.」予以证实，随后详述其影像哲学：数字摄影所带来的极致精度与对画面的绝对掌控力不可替代，「你确切知晓自己拍到了什么」；而后续结合 film-out 胶片转印与特定的镜头畸变，能把更有机、模拟的真实质感融回画面，呈现「一种美丽而精心淬炼出的不完美之美」。",
     },
     {
-      heading: "球形镜头？仅是评论区观察",
-      body: "勘景照评论区有影迷写道，续集若改用球形镜头（spherical），会与第一部及《企鹅人》的变形宽银幕（anamorphic）形成对照。这是观众推测，官方尚未公布《新蝙蝠侠2》的光学方案。",
+      heading: "球形镜头的影迷猜想",
+      body: "勘景照评论区有影迷提出一种有趣猜想：续集若改用球形镜头（spherical），会与第一部及《企鹅人》的变形宽银幕（anamorphic）形成鲜明对照。",
     },
   ] satisfies LensNote[],
 };

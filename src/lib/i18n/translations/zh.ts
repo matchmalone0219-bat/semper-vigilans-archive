@@ -116,7 +116,7 @@ export const zh: TranslationDictionary = {
     },
     signals: {
       title: "前线信号",
-      subtitle: "实时聚合权威媒体最新报道与片场目击动态。",
+      subtitle: "实时聚合媒体报道与片场目击动态。",
       tabs: {
         all: "全部动态",
         confirmed: "官方确认",
@@ -134,7 +134,7 @@ export const zh: TranslationDictionary = {
       log: "拍摄日志",
     },
     facts: {
-      title: "官方与权威事实汇总",
+      title: "制作与公开信息",
       titleZhKey: "片名",
       directorKey: "导演 / 编剧",
       cinematographyKey: "摄影",
@@ -220,7 +220,7 @@ export const zh: TranslationDictionary = {
   },
   footer: {
     siteDesc: "《新蝙蝠侠2》（The Batman: Part II）非官方影迷档案库",
-    disclaimer: "本站为影迷非商业交流网站，与华纳兄弟、DC Studios 及电影主创团队无官方合作关系。内容整理自公开新闻报道、片场路透及官方宣发物料，传闻均已标明出处。",
+    disclaimer: "本站为影迷非商业交流网站，与华纳兄弟、DC Studios 及电影主创团队无官方合作关系。内容整理自公开新闻报道、片场记录及官方宣发物料。",
     sections: {
       dossier: "影视与刑侦档案",
       artAndRoots: "艺术与视听溯源",

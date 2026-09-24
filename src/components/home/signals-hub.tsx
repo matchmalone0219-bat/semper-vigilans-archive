@@ -73,8 +73,8 @@ export function SignalsHub({
           </div>
           <p className="max-w-md text-xs leading-relaxed text-muted sm:text-sm">
             {locale === "zh"
-              ? "从英国多地外景实拍到主创深度专访，一站式同步《新蝙蝠侠2》最新官方公开线索。"
-              : "From verified UK filming dispatches to in-depth creator interviews, track the latest sequel developments."}
+              ? "从英国外景拍摄到主创深度专访，集中追踪《新蝙蝠侠2》的最新制作动态。"
+              : "From UK set dispatches to creator interviews, follow the latest developments on The Batman: Part II."}
           </p>
         </div>
 

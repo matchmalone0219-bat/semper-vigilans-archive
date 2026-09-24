@@ -161,14 +161,14 @@ export const PLOT_EN: Record<
     text: "Online speculation suggested the production team was filming The Batman: Part II and an unannounced Part III back-to-back to conserve budget and production schedules.",
     source: "MovieWeb · Rumor Report",
     debunkedNote:
-      "In August 2026, when asked directly whether Part II and Part III were secretly shooting concurrently, James Gunn responded on Threads: 'I can deny.' No production schedule for Part III has been greenlit.",
+      "In August 2026, when asked directly whether Part II and Part III were secretly shooting concurrently, James Gunn responded on Threads: 'I can deny.'",
     debunkedSource: "James Gunn · Threads",
   },
   "debunked-robin-2025": {
     text: "In August 2025, industry scoopers claimed Matt Reeves' newly delivered script featured Dick Grayson (Robin / The Boy Wonder) as Batman's active sidekick.",
     source: "IGN · Industry Rumor Report",
     debunkedNote:
-      "James Gunn debunked the rumor on Threads as 'nonsense,' noting that only six people had read the completed script at the time and that unverified claims about character lineups were false.",
+      "James Gunn dismissed the rumor on Threads as 'nonsense,' noting that only six people had read the completed script at the time.",
     debunkedSource: "IGN · Quoting James Gunn",
   },
   "debunked-hush-main-villain": {
@@ -207,13 +207,13 @@ export const CAST_EN: Record<string, { note: string }> = {
     note: "Confirmed returning as Officer Martinez, Gordon's grounded and observant ally within the departmental ranks.",
   },
   "Sebastian Stan": {
-    note: "Officially confirmed in an undisclosed lead role. In a September 2026 Variety interview, Stan praised the film's grounded epic scale as comparable to The Godfather Part II and noted filming would continue across the winter.",
+    note: "Joined the cast in an undisclosed role. In a September 2026 Variety interview, Stan compared the atmosphere on set to The Godfather Part II and said filming would continue across the winter.",
   },
   "Scarlett Johansson": {
-    note: "Officially confirmed in an undisclosed lead role. High-res set photos from Glasgow show a blonde female passenger in the Batmobile and observing on the Kingston Bridge set.",
+    note: "Joined the cast in an undisclosed role. Glasgow set photos also show a blonde woman riding in the Batmobile and watching the Kingston Bridge CPR scene.",
   },
   "Charles Dance": {
-    note: "Officially confirmed in an undisclosed lead role. Character details remain strictly classified under NDA.",
+    note: "Joined the cast in an undisclosed role.",
   },
   "Sebastian Koch": {
     note: "Officially confirmed in an undisclosed lead role. Character details remain strictly classified under NDA.",
@@ -222,7 +222,7 @@ export const CAST_EN: Record<string, { note: string }> = {
     note: "Officially confirmed in an undisclosed lead role. Character details remain strictly classified under NDA.",
   },
   "Barry Keoghan": {
-    note: "Rumored as the mysterious Arkham inmate / Joker following his dialogue with the Riddler at the end of the 2022 film; official return unconfirmed.",
+    note: "The mysterious Arkham inmate / Joker from the 2022 film remains a possible returning figure after his final-scene exchange with the Riddler.",
   },
 };
 

@@ -143,7 +143,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "It's so ambitious. I mean, the first one was a different take on a Batman movie, and this one is another… It's a real left turn from the first one, but somehow it keeps elements of the kind of feel of it. But it just feels really ambitious, and I'm excited to see how it turns out.",
     note:
-      "【本站整理】2026 年 9 月多伦多国际电影节（TIFF）期间接受 Collider 专访。当被问及塞巴斯蒂安·斯坦此前盛赞续集的发言时，帕丁森给出了上述回应。对话聚焦于风格定位，帕丁森用「real left turn」形容续集相对于前作的风格转向，同时表示仍保留了第一部的一些感觉基调。谈话未涉及具体剧情与反派身份；《TheWrap》与《Variety》等媒体随后跟进报道。",
+      "2026 年 9 月多伦多国际电影节（TIFF）期间接受 Collider 专访。当被问及塞巴斯蒂安·斯坦此前盛赞续集的发言时，帕丁森给出了上述回应。对话聚焦于风格定位，帕丁森用「real left turn」形容续集相对于前作的风格转向，同时表示仍保留了第一部的一些感觉基调。",
   },
   {
     id: "pattinson-collider-2026-dense-script",
@@ -159,7 +159,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "When you see it, the script is incredibly dense, and it's like he's just one of those directors who it's really obvious that he has the entire thing in his head already… There's so much in it that it's almost impossible to encompass the whole thing, but when you keep finding out, you're like, 'Oh, no, you know exactly what you want to do with this.' There's just something so cool about it.",
     note:
-      "【本站整理】同场专访中，帕丁森用「incredibly dense」形容剧本内容密度，并表示里夫斯显然已经对整部电影要如何处理有清楚构想。",
+      "同场专访中，帕丁森用「incredibly dense」形容剧本内容密度，并表示里夫斯显然已经对整部电影要如何处理有清楚构想。",
   },
   {
     id: "pattinson-gq-weirdo",
@@ -213,7 +213,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "That's definitely the way I interpreted that, that they had some kind of romantic relationship.",
     note:
-      "【本站整理】克拉维茨明确表示，她将瑟琳娜与安妮卡的关系理解为带有浪漫性质；漫画设定背景不属于这句直接引语本身。",
+      "克拉维茨明确表示，她将瑟琳娜与安妮卡的关系理解为带有浪漫性质。",
   },
   {
     id: "dano-ew-radical",
@@ -241,7 +241,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "And for me, I think [it's] this idea that the Joker is not yet the Joker, but they already have this relationship. ... It's this idea of him being very incisive and brilliant and being able to get into your mind and basically having this nihilistic point of view that's like from his inception, from his birth, life has been a cruel joke on him. And this is his response, and he's eventually going to declare himself as a clown, declare himself as the Joker.",
     note:
-      "【本站整理】里夫斯在采访中说明，片尾阿卡姆囚徒仍处于“尚未成为小丑”的阶段；华纳随后公开了蝙蝠侠与该囚徒的阿卡姆删减审讯片段。",
+      "里夫斯在采访中说明，片尾阿卡姆囚徒仍处于“尚未成为小丑”的阶段；华纳随后公开了蝙蝠侠与该囚徒的阿卡姆删减审讯片段。",
   },
   {
     id: "serkis-kutv-alfred",
@@ -297,7 +297,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "And it's all psychological. I mean, it's violent, too. But for Sofia, the final step with Oz is: I'm gonna ruin you. I'm going to ruin your brain for life the way mine has been. Death would be a relief for him. Which is what he did to me. He took the person I loved the most away. There's a bottomless pit to her grief and anger.",
     note:
-      "【本站整理】对应《企鹅人》后段索菲亚与奥兹的对峙。米莉奥蒂将索菲亚的目标概括为让奥兹长期承受与自己相似的心理创伤，而非简单杀死他。",
+      "对应《企鹅人》后段索菲亚与奥兹的对峙。米莉奥蒂将索菲亚的目标概括为让奥兹长期承受与自己相似的心理创伤，而非简单杀死他。",
   },
   {
     id: "reeves-mtv-penguin-s2",
@@ -340,7 +340,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "I've heard some things. … I'm liking what I'm hearing. And I have huge respect for Matt's Gotham-building skills. So I'm excited to jump in there and read what he has, which I'm sure will be rich and satisfying to play, and ideally for audiences to take in as well.",
     note:
-      "【本站整理】怀特当时表示自己尚未读到完整剧本，这段评价主要基于已听到的内容以及对里夫斯构建哥谭世界能力的信任。",
+      "怀特当时表示自己尚未读到完整剧本，这段评价主要基于已听到的内容以及对里夫斯构建哥谭世界能力的信任。",
   },
   {
     id: "serkis-dkn-script",
@@ -506,7 +506,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "I mean, part of me didn't want to do it, you know? I knew that the general sentiment was that, by the end, they kind of wanted to, in a way, kill the Oz that we met in the film. I felt that there was a sense of creative responsibility that leaned towards, 'We cannot have this man as a likable character.' ... So, knowing that I was going into that kind of degree of psychological finality and embodying the character with a kind of a depth of cruelty that is articulated in that scene, it was tough, man.",
     note:
-      "【本站整理】法瑞尔谈到大结局杀死维克托的戏时，强调主创不希望奥兹最终仍被观众当作一个讨喜角色，并形容那场戏的残酷程度让拍摄很艰难。",
+      "法瑞尔谈到大结局杀死维克托的戏时，强调主创不希望奥兹最终仍被观众当作一个讨喜角色，并形容那场戏的残酷程度让拍摄很艰难。",
   },
   {
     id: "reeves-hsc-bruce",
@@ -549,7 +549,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "I'm in London here till the end of the year doing a Batman sequel. It's good. I'm definitely feeling my age when fighting a lot. I'm literally like, 'Goddamn, this is significantly harder than it used to be.' But it's really fun. And I think the movie's going to be pretty great. It's got a really, really fun cast, but it's a marathon.",
     note:
-      "【本站整理】2026 年 9 月 1 日《GQ》专访。帕丁森表示自己会在伦敦拍摄续集至年底，并以玩笑口吻谈到动作戏比过去更吃力；原话没有涉及退出系列或“最后一部蝙蝠侠”的表态。",
+      "2026 年 9 月 1 日《GQ》专访。帕丁森表示自己会在伦敦拍摄续集至年底，并以玩笑口吻谈到动作戏比过去更吃力。",
   },
   {
     id: "pattinson-gq-2026-drifter",
@@ -564,7 +564,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "I think that's a stunt double. Is that something in Liverpool or Scotland or something? … [GQ: People were saying it was the drifter.] … Yeah, it's me! It's me. [Laughs]",
     note:
-      "【本站整理】记者询问片场摩托车画面时，帕丁森先判断为特技替身，听到“流浪者”说法后又笑着改口认领。这段回答具有明显即兴玩笑语气，不能单独作为画面人物身份的确认依据。",
+      "记者询问片场摩托车画面时，帕丁森先判断为特技替身，听到“流浪者”说法后又笑着改口认领。整段回答带着明显的即兴玩笑语气。",
   },
   {
     id: "pattinson-mymovies-direction",
@@ -580,7 +580,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "Matt just wrote this amazing script. I think the first one was… it's difficult to reinvent Batman as this new thing. And then to go in another totally different direction. I'm just looking at the playback on certain things… it looks different to the first one.",
     note:
-      "【本站整理】帕丁森在宣传新片期间谈到续集剧本与片场回放，明确表示第二部走向与第一部不同，且已看到的镜头“看起来和第一部不一样”。",
+      "帕丁森在宣传新片期间谈到续集剧本与片场回放，明确表示第二部走向与第一部不同，且已看到的镜头“看起来和第一部不一样”。",
   },
   {
     id: "pattinson-mymovies-radical",
@@ -596,7 +596,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "It's just amazing. It's a quite radical change of the script. It's cool that Warner's behind it, and DC. It's just crazy. I think Matt is the only person who anybody would allow to do it, because it's kind of a really radical retelling of Batman. I think people are going to be excited by it.",
     note:
-      "【本站整理】同场谈话中，帕丁森用「radical」形容剧本变化与对蝙蝠侠故事的重新讲述，并提到华纳与 DC 对该方向的支持；谈话未透露具体剧情或反派身份。",
+      "同场谈话中，帕丁森用「radical」形容剧本变化与对蝙蝠侠故事的重新讲述，并提到华纳与 DC 对该方向的支持。",
   },
   {
     id: "stan-variety-godfather",
@@ -612,7 +612,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "I go to set sometimes and I look around and I’m like, I think we’re making fucking ‘Godfather Part Two,’ I really don’t want to raise it up, but I do feel like it’s going to be a payoff.",
     note:
-      "【本站整理】2026 年 9 月 11 日《Variety》专访。斯坦以《教父2》作现场感受的夸张类比，同时仍未公开自己的具体角色，也没有回应外界关于哈维·丹特的猜测。",
+      "2026 年 9 月 11 日《Variety》专访。斯坦以《教父2》作现场感受的夸张类比。",
   },
   {
     id: "stan-variety-grounded",
@@ -628,7 +628,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "There’s no way people will fully grasp how this movie is until they see it. … There’s a lot of speculation about these roles, about what this movie is, but I think it’s going to be a good payoff — it’s really grounded and real, and that’s what I loved about it. You want to tease it a little, but we still have a long time.",
     note:
-      "【本站整理】同篇专访中，斯坦强调外界在成片公开前难以完整理解影片，并用「grounded and real」概括自己喜欢的质感；具体角色仍处于保密状态。",
+      "同篇专访中，斯坦强调外界在成片公开前难以完整理解影片，并用「grounded and real」概括自己喜欢的质感。",
   },
   {
     id: "stan-variety-gunn",
@@ -644,7 +644,7 @@ export const INTERVIEWS: InterviewQuote[] = [
     quoteEn:
       "Two things happened at the same time. I got a call to go meet Matt Reeves, who had seen The Apprentice and loved it and said, 'I want to talk to you about this new movie.' And at the same time, I'd reached out to James Gunn and said, 'Listen, man, I’m just letting you know — I’m here, I’m alive and well, I’m ready to rock.' And then it happened.",
     note:
-      "【本站整理】斯坦回忆加盟过程：里夫斯因看过《学徒》约他会面，同时他也主动向詹姆斯·古恩表达合作意愿，之后促成了此次加盟。",
+      "斯坦回忆加盟过程：里夫斯因看过《学徒》约他会面，同时他也主动向詹姆斯·古恩表达合作意愿，之后促成了此次加盟。",
   },
   {
     id: "stan-screenrant-winter",
@@ -658,6 +658,6 @@ export const INTERVIEWS: InterviewQuote[] = [
       "很长时间。这个冬天会很漫长。",
     quoteEn: "A very long time. It's a long winter.",
     note:
-      "【本站整理】TIFF 红毯受访时，斯坦只明确表示拍摄还会持续“很长时间”，并称“这个冬天会很漫长”；更具体的拍摄安排应以片场日志和官方通告分别核对。",
+      "TIFF 红毯受访时，斯坦只明确表示拍摄还会持续“很长时间”，并称“这个冬天会很漫长”。",
   },
 ];

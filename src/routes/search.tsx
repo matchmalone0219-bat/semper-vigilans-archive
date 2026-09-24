@@ -262,60 +262,28 @@ function SearchPage() {
   return (
     <main>
       <header className="relative isolate overflow-hidden border-b border-fg/10 bg-elevated">
-        <div className="mx-auto flex max-w-4xl items-center justify-between gap-6 px-4 py-10 sm:gap-10 sm:px-6 sm:py-14">
-          <div className="relative z-10 min-w-0 max-w-lg flex-1">
-            <div className="flex items-center gap-2">
-              <span className="size-1.5 rounded-full bg-blood animate-pulse" />
-              <p className="font-display text-xs font-semibold tracking-[0.32em] text-blood uppercase sm:text-sm">
-                SEARCH ARCHIVE
-              </p>
-            </div>
-            <h1 className="mt-3 font-sans text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+        <div className="mx-auto flex max-w-4xl items-center justify-between gap-8 px-4 py-12 sm:px-6 sm:py-16">
+          <div className="relative z-10 min-w-0 flex-1">
+            <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
+              SEARCH ARCHIVE
+            </p>
+            <h1 className="mt-4 font-sans text-4xl font-black leading-none tracking-tight whitespace-nowrap sm:text-5xl lg:text-6xl">
               {isEn ? "Archive Search" : "全站档案检索"}
             </h1>
-            <p className="mt-3 max-w-md text-pretty text-sm leading-relaxed text-muted sm:text-base">
+            <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted">
               {isEn
                 ? "Search people, places, gear, shoot logs, plot clues, and collectibles."
                 : "检索人物、地点、装备、拍摄日志、剧情线索与收藏档案。"}
             </p>
-            <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-mono tracking-wider text-faint">
-              <span className="border border-fg/10 bg-surface/50 px-2 py-0.5">
-                {isEn ? "PEOPLE" : "人物档案"}
-              </span>
-              <span className="border border-fg/10 bg-surface/50 px-2 py-0.5">
-                {isEn ? "PLACES" : "哥谭地点"}
-              </span>
-              <span className="border border-fg/10 bg-surface/50 px-2 py-0.5">
-                {isEn ? "GEAR" : "警械装备"}
-              </span>
-              <span className="border border-fg/10 bg-surface/50 px-2 py-0.5">
-                {isEn ? "LOGS" : "拍摄日志"}
-              </span>
-              <span className="border border-fg/10 bg-surface/50 px-2 py-0.5">
-                {isEn ? "CLUES" : "剧情线索"}
-              </span>
-            </div>
           </div>
-          <div className="relative hidden w-64 shrink-0 sm:block sm:w-72 lg:w-80">
-            <div className="group relative overflow-hidden border border-fg/20 bg-surface/80 p-2 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:border-blood/50">
-              <div className="relative aspect-square overflow-hidden bg-black">
-                <img
-                  src="/media/search-gazette.jpg"
-                  alt="《新蝙蝠侠》片中哥谭公报头版：Gotham Terrorized / Who is the Batman?"
-                  width={736}
-                  height={736}
-                  className="size-full object-cover object-[center_35%] filter contrast-[1.08] brightness-95 transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
-                <span className="absolute bottom-2 left-2 font-mono text-[9px] font-semibold tracking-widest text-blood uppercase bg-black/85 px-1.5 py-0.5 border border-blood/30 backdrop-blur-sm">
-                  GOTHAM GAZETTE
-                </span>
-              </div>
-              <div className="mt-2 flex items-center justify-between px-0.5 font-mono text-[10px] tracking-wider text-muted/80">
-                <span className="truncate">WHO IS THE BATMAN?</span>
-                <span className="shrink-0 font-bold tracking-widest text-blood">EXHIBIT #01</span>
-              </div>
-            </div>
+          <div className="relative hidden shrink-0 sm:block sm:size-80 lg:size-88">
+            <img
+              src="/media/search-gazette.jpg"
+              alt="《新蝙蝠侠》片中哥谭公报头版：Gotham Terrorized / Who is the Batman?"
+              width={736}
+              height={736}
+              className="search-gazette pointer-events-none absolute inset-0 size-full object-cover object-[center_42%] opacity-90"
+            />
           </div>
         </div>
       </header>

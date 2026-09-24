@@ -100,9 +100,23 @@
     outline: 1px solid color-mix(in oklab, var(--color-fg) 10%, transparent);
     outline-offset: -1px;
   }
-
-
-
+  img.search-gazette {
+    outline: none;
+    -webkit-mask-image: radial-gradient(
+      ellipse 52% 52% at 58% 48%,
+      #000 30%,
+      rgba(0, 0, 0, 0.85) 50%,
+      rgba(0, 0, 0, 0.35) 70%,
+      transparent 90%
+    );
+    mask-image: radial-gradient(
+      ellipse 52% 52% at 58% 48%,
+      #000 30%,
+      rgba(0, 0, 0, 0.85) 50%,
+      rgba(0, 0, 0, 0.35) 70%,
+      transparent 90%
+    );
+  }
   ::selection {
     background: color-mix(in oklab, var(--color-blood) 55%, transparent);
     color: var(--color-fg);

@@ -289,7 +289,7 @@ export function DossierProductionDrama() {
         {/* 幕后细节列表 */}
         <div className="mt-6 space-y-2 rounded border border-fg/10 bg-elevated/40 p-4">
           <p className="font-display text-[10px] font-semibold tracking-widest text-faint uppercase">
-            {isZh ? "公开试镜资料核对" : "DOCUMENTED SCREEN-TEST NOTES"}
+            {isZh ? "试镜幕后记录" : "SCREEN-TEST NOTES"}
           </p>
           <ul className="space-y-1.5 text-xs text-muted list-disc pl-4">
             {screenTest.details.map((detail, dIdx) => (

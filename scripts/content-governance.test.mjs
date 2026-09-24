@@ -61,6 +61,7 @@ test("Rataalada archive-made text defaults to extended provenance", () => {
   assert.equal(rataalada.GCPD_TEXT.provenance, "historical");
   assert.equal(rataalada.GCPD_TEXT.body[0], "THIS DOMAIN HAS BEEN SEIZED");
   assert.equal(rataalada.GOODBYE_TEXT.provenance, "historical");
+  assert.deepEqual(rataalada.GOODBYE_TEXT.body, ["GOOD BYE <?>"]);
   assert.equal(rataalada.TRIBUTE_TEXT.provenance, "extended");
 });
 

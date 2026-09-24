@@ -63,7 +63,7 @@ const REGION_MARKERS: Record<RegionId, Marker[]> = {
       x: 57.8,
       y: 35.2,
       evidence: "theory",
-      note: "设定地图未直接标出总局字样，标记依据市中心警务调度街区与出警动线作本站推测。",
+      note: "设定地图未直接标出总局字样；结合市中心警务调度街区与出警动线，将总局暂定在这一带。",
     },
     {
       placeId: "iceberg",
@@ -108,8 +108,8 @@ const UNLOCATED_PLACES = PLACES.filter((place) => !MAPPED_PLACE_IDS.has(place.id
 
 const EVIDENCE: Record<Evidence, { label: string; labelEn: string; className: string }> = {
   map: { label: "地图标注", labelEn: "Production Map", className: "bg-fg text-bg" },
-  screen: { label: "影片定位", labelEn: "Film Verified", className: "bg-blood text-fg" },
-  theory: { label: "本站推测", labelEn: "Research Theory", className: "bg-amber-400 text-bg" },
+  screen: { label: "银幕定位", labelEn: "On-screen", className: "bg-blood text-fg" },
+  theory: { label: "考据推演", labelEn: "Research Reconstruction", className: "bg-amber-400 text-bg" },
 };
 
 const REGIONS = [
@@ -122,7 +122,7 @@ const REGIONS = [
     imageAlt: "依据《企鹅人》剧中全城地图重绘的 Uptown 道路地图",
     aspectRatio: "1198 / 1313",
     description:
-      "限定剧《企鹅人》全城交通地图中出现的北部岛区。电影《新蝙蝠侠》未展开该区域，现有公开资料仅足以复原海岸线与主干道路网，暂不设具体地点标记。",
+      "限定剧《企鹅人》全城交通地图中出现的北部岛区。电影《新蝙蝠侠》没有展开该区域，因此地图只保留海岸线与主干道路网，不设置具体地点标记。",
   },
   {
     id: "midtown",
@@ -747,8 +747,8 @@ export function GothamPlacesMap() {
             </div>
             <p className="max-w-xl text-xs leading-relaxed text-faint">
               {isZh
-                ? "这些地点已有内容档案，但现有设定图不足以支持精确落点，因此暂不放入地图。"
-                : "These landmarks have full dossier archives, but existing production materials lack precise coordinates to pin on the map."}
+                ? "这些地点已有内容档案，但当前地图无法精确落点，因此暂不放置标记。"
+                : "These landmarks have full dossier archives, but the current map does not support a precise pin, so they remain off-map."}
             </p>
           </div>
           <ul className="mt-5 flex snap-x gap-3 overflow-x-auto pb-3">
@@ -791,13 +791,13 @@ export function GothamPlacesMap() {
               Cartography Note
             </p>
             <h2 className="mt-2 font-sans text-2xl font-black tracking-tight">
-              {isZh ? "地图资料说明" : "Cartography & Reference Notes"}
+              {isZh ? "地图构成" : "Map Construction"}
             </h2>
           </div>
           <p className="text-sm leading-relaxed text-muted">
             {isZh
-              ? "下城区（Downtown）严格依据电影《新蝙蝠侠》官方设定资料与成片地理重绘；上城区（Uptown）与中城区（Midtown）在电影中未直接展开，底图基于限定剧《企鹅人》出现的全城路网与交通地图重构并校正了透视。三张底图均聚焦呈现岛岸、水系与道路骨架，属于影迷严谨重构；互动标记严格区分影视确凿定位与合理推测。“谜语人洪灾计划”图层依据成片中地板地图的 7 处爆破标记与海堤走向复原，旨在呈现灾难蔓延态势。"
-              : "Downtown is strictly redrawn from The Batman official production files and final film geography; Uptown and Midtown were not explored directly in the film, so their basemaps are reconstructed and perspective-corrected from the citywide transit networks seen in The Penguin. All three basemaps focus on coastlines, waterways, and arterial road grids as rigorous fan cartography; interactive markers strictly distinguish between verified on-screen placements and reasoned analysis. The 'Riddler Flood Plan' layer reconstructs the disaster progression from the 7 blast points marked on Nashton's floor map."}
+              ? "下城区（Downtown）以《新蝙蝠侠》的设定资料与成片地理为骨架；上城区（Uptown）与中城区（Midtown）参考《企鹅人》的全城路网与交通地图重构。三张底图聚焦岛岸、水系与道路骨架，地点标记按「银幕定位 / 考据推演」区分；「谜语人洪灾计划」则沿成片地板地图的 7 处爆破标记与海堤走向复原灾难蔓延路线。"
+              : "Downtown follows The Batman's production maps and finished-film geography; Uptown and Midtown draw on the citywide road and transit networks seen in The Penguin. All three basemaps focus on coastlines, waterways, and arterial roads, with markers grouped as On-screen or Research Reconstruction. The 'Riddler Flood Plan' follows the seven blast points and seawall route shown on Nashton's floor map."}
           </p>
         </div>
       </section>

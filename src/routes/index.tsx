@@ -167,8 +167,8 @@ function Home() {
             </p>
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
               {locale === "zh"
-                ? "本站为影迷自发建立的中文档案库，为您持续汇总官方公开新闻、演职员阵容、片场实拍线索与剧情推测。所有传闻均已明确标注出处与可信度，力求提供客观严谨的影视一手资讯。"
-                : "An independent fan archive dedicated to compiling verified press reports, cast announcements, set dispatches, and narrative theories. Every leak and report is classified with strict source tiers and verification dates."}
+                ? "这里收录公开新闻、演职员阵容、片场实拍线索、人物关系与剧情前瞻，串起《新蝙蝠侠》犯罪宇宙正在发生的变化。"
+                : "An independent fan archive bringing together press reports, cast announcements, set dispatches, character links, and narrative theories across The Batman Epic Crime Saga."}
             </p>
           </div>
         </div>

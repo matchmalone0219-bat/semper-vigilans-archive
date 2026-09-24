@@ -68,7 +68,7 @@ function Dossier() {
               </>
             ) : (
               <>
-                Comprehensive archive of verified intel for <em>{FILM.titleEn}</em>, spanning official announcements, on-set leaks, and full cast rosters. For in-depth analysis of the score, cinematography, and filming locations, visit the{" "}
+                Comprehensive archive for <em>{FILM.titleEn}</em>, spanning official announcements, on-set dispatches, and the full cast roster. For in-depth analysis of the score, cinematography, and filming locations, visit the{" "}
                 <Link to="/craft" className="text-fg underline-offset-4 hover:underline">
                   Craft & Visuals
                 </Link>{" "}
@@ -79,7 +79,7 @@ function Dossier() {
           <p className="mt-4 max-w-xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
             {locale === "zh"
               ? "追踪影片最新动态：汇总官方公告、媒体报道与公开片场路透。包含现场解析与剧情背景整理，提供全方位的电影资料参考。"
-              : "Live production surveillance: tracking press disclosures, director dispatches, and on-location reports across the UK with verified background context."}
+              : "Live production surveillance: tracking press disclosures, director dispatches, and on-location reports across the UK."}
           </p>
         </div>
       </header>

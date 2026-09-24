@@ -317,7 +317,7 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-13-anarky.jpg",
         title: "白面罩与 A 字夹克",
         caption:
-          "抗议群众中一人佩戴遮脸白面罩，夹克绘有无政府主义 A 字符号。影迷据此联想无政府客（Anarky），官方未确认任何反派身份。",
+          "抗议群众中一人佩戴遮脸白面罩，夹克绘有无政府主义 A 字符号，影迷据此联想到无政府客（Anarky）。",
         source: "片场路透 · RayChand006",
       },
       {

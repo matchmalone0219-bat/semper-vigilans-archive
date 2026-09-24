@@ -220,7 +220,7 @@ export const zh: TranslationDictionary = {
   },
   footer: {
     siteDesc: "《新蝙蝠侠2》（The Batman: Part II）非官方影迷档案库",
-    disclaimer: "本站为影迷非商业交流网站，与华纳兄弟、DC Studios 及电影主创团队无官方合作关系。内容整理自公开新闻报道、片场路透及官方宣发物料，传闻均已标明出处。",
+    disclaimer: "本站为影迷非商业交流网站，与华纳兄弟、DC Studios 及电影主创团队无官方合作关系。内容整理自公开新闻报道、片场记录及官方宣发物料。",
     sections: {
       dossier: "影视与刑侦档案",
       artAndRoots: "艺术与视听溯源",

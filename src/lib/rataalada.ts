@@ -5,6 +5,8 @@ export type PrizeStill = {
   title: string;
   caption: string;
   provenance?: "historical" | "extended";
+  originBadgeEn?: string;
+  originBadgeZh?: string;
 };
 
 export type PrizeText = {
@@ -13,6 +15,8 @@ export type PrizeText = {
   title: string;
   body: string[];
   provenance?: "historical" | "extended";
+  originBadgeEn?: string;
+  originBadgeZh?: string;
 };
 
 export type Prize = PrizeStill | PrizeText;
@@ -63,7 +67,7 @@ export type Beat =
   | { kind: "done" };
 
 export const RATA_INTRO =
-  "2021 年底，《新蝙蝠侠》官方病毒营销通过密码与宣传物料将影迷引向沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，并在影片中形成 URL 谐音梗）。网站采用复古 CRT 终端式界面，影迷通过破解谜题逐步解锁哥谭档案。本页面依据公开存档复原 2021–2022 官方核心互动阶段（第 1、2、6、7 阶段与 GCPD 查封通告），并由本站补充第 3–5 阶段连贯谜题与轻量勘验证物，终局融入献给《新蝙蝠侠 2》（2028）的影迷致敬彩蛋。";
+  "2021 年底，《新蝙蝠侠》官方病毒营销通过密码与宣传物料将影迷引向沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，并在影片中形成 URL 谐音梗）。网站采用复古 CRT 终端式界面，影迷通过破解谜题逐步解锁哥谭档案。本页面依据公开存档复原 2021–2022 官方核心互动阶段（第 1、2、6、7 阶段与 GCPD 查封通告），并由本站补充第 3–5 阶段连贯谜题与轻量勘验证物，终局融入献给《新蝙蝠侠 2》（2028 年 2 月 18 日）的影迷致敬彩蛋。";
 
 export const COMMANDS: { cmd: string; hint: string }[] = [
   { cmd: "Y", hint: "开始挑战 / 确认" },
@@ -86,19 +90,33 @@ const still = (
   title: string,
   caption: string,
   provenance: "historical" | "extended" = "extended",
-): PrizeStill => ({ file, src, title, caption, provenance });
+  originBadgeZh?: string,
+  originBadgeEn?: string,
+): PrizeStill => ({
+  file,
+  src,
+  title,
+  caption,
+  provenance,
+  originBadgeZh,
+  originBadgeEn,
+});
 
 const text = (
   file: string,
   title: string,
   body: string[],
   provenance: "historical" | "extended" = "historical",
+  originBadgeZh?: string,
+  originBadgeEn?: string,
 ): PrizeText => ({
   kind: "text",
   file,
   title,
   body,
   provenance,
+  originBadgeZh,
+  originBadgeEn,
 });
 
 export const TESTS: Test[] = [
@@ -151,25 +169,40 @@ export const TESTS: Test[] = [
     prize: [
       "CONGRATULATIONS.",
       "HERE'S YOUR REWARD.",
-      "UNLOCKED: GCPD SURVEILLANCE DOSSIER.",
-      "TYPE OPEN STREET.IMG TO VIEW.",
+      "UNLOCKED: GCPD SUSPECT SKETCH DOSSIER.",
+      "TYPE OPEN SKETCH.IMG TO VIEW.",
     ],
     stills: [
-      still("STREET.IMG", "/media/street.jpg", "雨中战衣", "哥谭警方监控记录：雨夜巡逻中的蝙蝠侠。", "historical"),
-      still("GOTHAM.IMG", "/media/gotham.jpg", "俯瞰哥谭", "哥谭天际线俯瞰视角照片。", "extended"),
-      still("SUBJECT.IMG", "/media/riddler.jpg", "出题嫌疑人", "嫌疑人档案：爱德华·纳什顿。", "extended"),
+      still(
+        "SKETCH.IMG",
+        "/media/gcpd-sketch.jpg",
+        "警方通缉素描",
+        "2021.12 官方原版首发奖励：哥谭警局目击者证供蝙蝠侠通缉素描三连图（原文件名 9-13_14-15-20_1-14.jpg）。",
+        "historical",
+        "2021 官方原版",
+        "Official 2021 ARG",
+      ),
+      still("GOTHAM.IMG", "/media/gotham.jpg", "俯瞰哥谭", "哥谭天际线俯瞰视角照片。", "extended", "本站剧照适配", "Archive Adaptation"),
+      still("SUBJECT.IMG", "/media/riddler.jpg", "出题嫌疑人", "嫌疑人档案：爱德华·纳什顿。", "extended", "本站剧照适配", "Archive Adaptation"),
     ],
     texts: [
-      text("CIPHER.TXT", "预告片解密密电", [
-        "THE ORIGINAL JPG PATH WAS A CIPHER:",
-        "/RPO/9-13_14-15-20_1-14.JPG",
-        "A=1  B=2  ...  Z=26",
-        "I M  TELLING  A N",
-        "",
-        "TRAILER CIPHER: YOU ARE EL RATA ALADA.",
-        "RATA ALADA = WINGED RAT IN SPANISH.",
-        "YOU ARE EL + RATAALADA.COM = URL.",
-      ], "historical"),
+      text(
+        "CIPHER.TXT",
+        "预告片解密密电",
+        [
+          "THE ORIGINAL JPG PATH WAS A CIPHER:",
+          "/RPO/9-13_14-15-20_1-14.JPG",
+          "A=1  B=2  ...  Z=26",
+          "I M  TELLING  A N",
+          "",
+          "TRAILER CIPHER: YOU ARE EL RATA ALADA.",
+          "RATA ALADA = WINGED RAT IN SPANISH.",
+          "YOU ARE EL + RATAALADA.COM = URL.",
+        ],
+        "historical",
+        "2021 官方原版",
+        "Official 2021 ARG",
+      ),
     ],
   },
   {
@@ -556,33 +589,50 @@ export const PROMISE_TEXT = text("PROMISE.TXT", "解密证书", [
   "TRUTH PREVAILS IN THE SHADOWS.",
 ]);
 
-export const GCPD_TEXT = text("GCPD.TXT", "网络查封通告", [
-  "GOTHAM CITY POLICE DEPARTMENT",
-  "CYBERCRIME & FORENSIC DIVISION",
-  "",
-  "OPERATION COMPLETED.",
-  "SERVER LOGS SECURED.",
-]);
+export const GCPD_TEXT = text(
+  "GCPD.TXT",
+  "网络查封通告",
+  [
+    "GOTHAM CITY POLICE DEPARTMENT",
+    "CYBERCRIME & FORENSIC DIVISION",
+    "",
+    "OPERATION COMPLETED.",
+    "SERVER LOGS SECURED.",
+  ],
+  "historical",
+  "2022 官方原版",
+  "Official 2022 ARG",
+);
 
 export const GOODBYE_TEXT = text(
   "GOODBYE.TXT",
-  "终局留言",
+  "官方终局留言",
   [
     "YOU SOLVED ALL THE RIDDLES.",
     "",
     "GOOD BYE <?>",
-    "",
-    "==================================================",
+  ],
+  "historical",
+  "2022 官方原版",
+  "Official 2022 ARG",
+);
+
+export const TRIBUTE_TEXT = text(
+  "TRIBUTE.TXT",
+  "续作致敬彩蛋",
+  [
     "[ARCHIVE CURATOR NOTE / 档案注记]",
-    "* 2022 官方原版片尾与网站最终留存文本为：'GOOD BYE <?>'",
+    "* 2022 官方原版片尾与网站最终留存文本为：'GOOD BYE <?>'。",
     "* 终局界面出现的 'SEE YOU IN 2028' 系本影迷档案站",
-    "  向续作《新蝙蝠侠 2》（定档 2028 年 10 月）献上的致敬彩蛋。",
+    "  向续作《新蝙蝠侠 2》（正式定档 2028 年 2 月 18 日）献上的致敬彩蛋。",
     "* 感谢你完成全部 7 阶段 21 道谜语人破译互动挑战。",
     "==================================================",
     "",
     "SEE YOU IN 2028 <?>",
   ],
-  "historical",
+  "extended",
+  "本站致敬扩展",
+  "Archive Fan Tribute",
 );
 
 export const BOOT = [
@@ -644,7 +694,7 @@ export const TIMELINE_LOGS = [
   "* PHASES 3-5: Canonically crafted by Semper Vigilans Archive",
   "  using movie clues & Nirvana lyrics to bridge the timeline.",
   "* FINALE 'SEE YOU IN 2028': A fan tribute looking forward to",
-  "  The Batman Part II (October 2028). Original was 'GOOD BYE <?>'.",
+  "  The Batman Part II (February 18, 2028). Original was 'GOOD BYE <?>'.",
   "* FORENSICS: Converted multi-gigabyte ZIP/video files to lightweight",
   "  instant web dossiers for frictionless gameplay.",
 ];
@@ -721,7 +771,7 @@ export function allPrizes(progress: Progress): Prize[] {
     out.push(LOADING_TEXT, PROMISE_TEXT);
   }
   if (progress.seizure) {
-    out.push(GCPD_TEXT, GOODBYE_TEXT);
+    out.push(GCPD_TEXT, GOODBYE_TEXT, TRIBUTE_TEXT);
   }
   return out;
 }
@@ -736,7 +786,13 @@ export function textsFor(progress: Progress): PrizeText[] {
 
 export function findPrize(progress: Progress, name: string): Prize | undefined {
   const upper = name.trim().toUpperCase();
-  return allPrizes(progress).find((item) => item.file === upper);
+  return allPrizes(progress).find((item) => {
+    if (item.file === upper) return true;
+    if (upper === "STREET.IMG" && item.file === "SKETCH.IMG") return true;
+    if (upper === "9-13_14-15-20_1-14.JPG" && item.file === "SKETCH.IMG") return true;
+    if ((upper === "2028.TXT" || upper === "NOTE.TXT") && item.file === "TRIBUTE.TXT") return true;
+    return false;
+  });
 }
 
 export function loadProgress(): Progress {

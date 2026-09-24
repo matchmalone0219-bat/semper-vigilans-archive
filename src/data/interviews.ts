@@ -139,11 +139,11 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://collider.com/the-batman-part-2-script-update-robert-pattinson/",
     quoteZh:
-      "这部续集极其雄心勃勃。第一部是对蝙蝠侠电影的一次截然不同的重塑，而这一部则是另一重全新维度的探索……相较前作，它确实是一次出人意料的‘急转弯’（left turn），但在某种程度上又奇妙地保留了前作特有的那种沉浸气质。它的格局宏大得令人赞叹，我非常期待看到成片最终呈现的模样。",
+      "这部片子很有野心。我的意思是，第一部是对蝙蝠侠电影的一种全新尝试，而这一部则是另一种……相较第一部，它确实是一次‘急转弯’（real left turn），但在某种程度上它又保留了第一部那种感觉的一些要素。但它感觉真的非常有野心，我很期待看到成片最终呈现出来是什么样。",
     quoteEn:
       "It's so ambitious. I mean, the first one was a different take on a Batman movie, and this one is another… It's a real left turn from the first one, but somehow it keeps elements of the kind of feel of it. But it just feels really ambitious, and I'm excited to see how it turns out.",
     note:
-      "2026 年 9 月多伦多国际电影节（TIFF）期间接受 Collider 专访。当被问及塞巴斯蒂安·斯坦此前盛赞续集的发言时，帕丁森透露第二部并非对前作成功模式的公式化沿袭，而是一次方向性极强的风格急转弯（left turn），同时完整保留了里夫斯宇宙标志性的冷峻犯罪氛围。谈话未涉及具体剧情与反派身份；《TheWrap》与《Variety》于次日相继跟进报道。",
+      "【本站整理】2026 年 9 月多伦多国际电影节（TIFF）期间接受 Collider 专访。当被问及塞巴斯蒂安·斯坦此前盛赞续集的发言时，帕丁森给出了上述回应。对话聚焦于风格定位，帕丁森用「real left turn」形容续集相对于前作的风格转向，同时表示仍保留了第一部的一些感觉基调。谈话未涉及具体剧情与反派身份；《TheWrap》与《Variety》等媒体随后跟进报道。",
   },
   {
     id: "pattinson-collider-2026-dense-script",
@@ -155,11 +155,11 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://collider.com/the-batman-part-2-script-update-robert-pattinson/",
     quoteZh:
-      "当你真正读到它时，会发现剧本的信息量极其庞大且细密。马特·里夫斯就是那种显然已经在脑海中完整构建好整部电影所有细节的导演。与他合作的感觉非常奇妙——因为故事里交织了太多伏笔与微小线索，你总会遗漏某些细节；但随着你不断去发掘，你就会恍然感叹：‘天哪，你原来从一开始就确切知道自己想用这个做什么。’这种缜密周全的掌控力真的酷极了。",
+      "当你看到它时，剧本非常密（incredibly dense）。马特·里夫斯就是那种显然已经在脑子里装好了整部电影所有东西的导演……里面的内容太多了，几乎不可能一次性把它全装下，但随着你不断去了解，你就会感觉：‘哦，原来你完全清楚自己想拿这个做什么。’这种感觉真的很酷。",
     quoteEn:
       "When you see it, the script is incredibly dense, and it's like he's just one of those directors who it's really obvious that he has the entire thing in his head already… There's so much in it that it's almost impossible to encompass the whole thing, but when you keep finding out, you're like, 'Oh, no, you know exactly what you want to do with this.' There's just something so cool about it.",
     note:
-      "同场专访中关于剧本复杂度的详述。帕丁森透露里夫斯与麦特森·汤姆林历时多年打磨的定稿剧本结构极其缜密、多条叙事线深度交织，赞叹导演对整部宏大犯罪史诗各处伏笔的精密规划与全局掌控力。",
+      "【本站整理】同场专访中关于剧本复杂度的详述。帕丁森用「incredibly dense」形容里夫斯打磨的续集剧本信息量极其紧密，并赞叹导演在脑海中对整部电影全貌与各处细节早已具备明确清晰的构想与把控力。",
   },
   {
     id: "pattinson-gq-weirdo",

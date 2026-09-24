@@ -194,8 +194,12 @@ function Rataalada() {
                             <p className="font-mono text-xs tracking-wide text-phosphor/75">{still.file}</p>
                             <span className="border border-phosphor/30 bg-phosphor/10 px-1.5 py-0.5 font-mono text-[9px] tracking-wider text-phosphor/90 uppercase">
                               {still.provenance === "historical"
-                                ? (isEn ? "2022 Official ARG" : "2022 官方原版")
-                                : (isEn ? "Archive Adaptation" : "本站剧照适配")}
+                                ? (isEn
+                                    ? (still.originBadgeEn || "Official ARG Archive")
+                                    : (still.originBadgeZh || "官方 ARG 原版"))
+                                : (isEn
+                                    ? (still.originBadgeEn || "Archive Adaptation")
+                                    : (still.originBadgeZh || "本站剧照适配"))}
                             </span>
                           </div>
                           <p className="mt-1 text-sm font-medium tracking-wide text-phosphor">{still.title}</p>
@@ -274,8 +278,8 @@ function Rataalada() {
                     <li>
                       <strong className="text-phosphor">{isEn ? "Archive Canon Extension:" : "本站连贯扩展："}</strong>{" "}
                       {isEn
-                        ? "Phases 3–5, web-adapted still files, and 'SEE YOU IN 2028' finale easter egg."
-                        : "第 3–5 阶段补充谜题、轻量化勘验证物图，以及终局致敬《新蝙蝠侠2》的「SEE YOU IN 2028」彩蛋。"}
+                        ? "Phases 3–5, web-adapted still files, and 'SEE YOU IN 2028' finale easter egg (February 18, 2028)."
+                        : "第 3–5 阶段补充谜题、轻量化勘验证物图，以及终局致敬《新蝙蝠侠2》（定档 2028 年 2 月 18 日）的「SEE YOU IN 2028」彩蛋。"}
                     </li>
                   </ul>
                   <div className="mt-2.5 pt-2 border-t border-phosphor/15">

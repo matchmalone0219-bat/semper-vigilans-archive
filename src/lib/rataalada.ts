@@ -4,6 +4,7 @@ export type PrizeStill = {
   src: string;
   title: string;
   caption: string;
+  provenance?: "historical" | "extended";
 };
 
 export type PrizeText = {
@@ -11,6 +12,7 @@ export type PrizeText = {
   file: string;
   title: string;
   body: string[];
+  provenance?: "historical" | "extended";
 };
 
 export type Prize = PrizeStill | PrizeText;
@@ -39,6 +41,9 @@ export type Test = {
   prize: string[];
   stills: PrizeStill[];
   texts?: PrizeText[];
+  provenance: "historical" | "extended";
+  originBadgeEn: string;
+  originBadgeZh: string;
 };
 
 export type Progress = {
@@ -58,7 +63,7 @@ export type Beat =
   | { kind: "done" };
 
 export const RATA_INTRO =
-  "2021 年底，《新蝙蝠侠》官方病毒营销通过密码与宣传物料将影迷引向沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，并在影片中形成 URL 谐音梗）。网站采用复古 CRT 终端式界面，影迷通过破解谜题逐步解锁哥谭档案。本页面依据公开存档重构当年的 ARG 解谜流程，并整理 26 字母几何替换密码参考表。";
+  "2021 年底，《新蝙蝠侠》官方病毒营销通过密码与宣传物料将影迷引向沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，并在影片中形成 URL 谐音梗）。网站采用复古 CRT 终端式界面，影迷通过破解谜题逐步解锁哥谭档案。本页面依据公开存档复原 2021–2022 官方核心互动阶段（第 1、2、6、7 阶段与 GCPD 查封通告），并由本站补充第 3–5 阶段连贯谜题与轻量勘验证物，终局融入献给《新蝙蝠侠 2》（2028）的影迷致敬彩蛋。";
 
 export const COMMANDS: { cmd: string; hint: string }[] = [
   { cmd: "Y", hint: "开始挑战 / 确认" },
@@ -68,7 +73,8 @@ export const COMMANDS: { cmd: string; hint: string }[] = [
   { cmd: "LS", hint: "列出已解锁的机密文件" },
   { cmd: "OPEN <file>", hint: "查阅已解锁的图片文件" },
   { cmd: "CAT <file>", hint: "阅读已解锁的文本档案" },
-  { cmd: "ABOUT", hint: "终端背景介绍" },
+  { cmd: "TIMELINE", hint: "查阅 2021-2022 真实 ARG 演进史" },
+  { cmd: "ABOUT", hint: "终端背景与史料出处" },
   { cmd: "CLEAR", hint: "清空当前终端屏幕" },
   { cmd: "RESET", hint: "重置挑战进度" },
   { cmd: "SPOILER", hint: "直接解锁全部档案" },
@@ -79,13 +85,20 @@ const still = (
   src: string,
   title: string,
   caption: string,
-): PrizeStill => ({ file, src, title, caption });
+  provenance: "historical" | "extended" = "extended",
+): PrizeStill => ({ file, src, title, caption, provenance });
 
-const text = (file: string, title: string, body: string[]): PrizeText => ({
+const text = (
+  file: string,
+  title: string,
+  body: string[],
+  provenance: "historical" | "extended" = "historical",
+): PrizeText => ({
   kind: "text",
   file,
   title,
   body,
+  provenance,
 });
 
 export const TESTS: Test[] = [
@@ -93,7 +106,10 @@ export const TESTS: Test[] = [
     id: "w1",
     kicker: "TEST 01",
     when: "2021.12 · 预告片先导阶段",
-    note: "预告片首波谜题，破解三道谜题即可解锁第一批哥谭目击档案。",
+    note: "2021 年底预告片首波 3 道官方谜题，破解后解锁第一批哥谭监控与代换密码。",
+    provenance: "historical",
+    originBadgeEn: "Official 2021 ARG",
+    originBadgeZh: "2021 官方历史原版",
     riddles: [
       {
         id: "street",
@@ -139,9 +155,9 @@ export const TESTS: Test[] = [
       "TYPE OPEN STREET.IMG TO VIEW.",
     ],
     stills: [
-      still("STREET.IMG", "/media/street.jpg", "雨中战衣", "哥谭警方监控记录：雨夜巡逻中的蝙蝠侠。"),
-      still("GOTHAM.IMG", "/media/gotham.jpg", "俯瞰哥谭", "哥谭天际线俯瞰视角照片。"),
-      still("SUBJECT.IMG", "/media/riddler.jpg", "出题嫌疑人", "嫌疑人档案：爱德华·纳什顿。"),
+      still("STREET.IMG", "/media/street.jpg", "雨中战衣", "哥谭警方监控记录：雨夜巡逻中的蝙蝠侠。", "historical"),
+      still("GOTHAM.IMG", "/media/gotham.jpg", "俯瞰哥谭", "哥谭天际线俯瞰视角照片。", "extended"),
+      still("SUBJECT.IMG", "/media/riddler.jpg", "出题嫌疑人", "嫌疑人档案：爱德华·纳什顿。", "extended"),
     ],
     texts: [
       text("CIPHER.TXT", "预告片解密密电", [
@@ -153,14 +169,17 @@ export const TESTS: Test[] = [
         "TRAILER CIPHER: YOU ARE EL RATA ALADA.",
         "RATA ALADA = WINGED RAT IN SPANISH.",
         "YOU ARE EL + RATAALADA.COM = URL.",
-      ]),
+      ], "historical"),
     ],
   },
   {
     id: "w2",
     kicker: "TEST 02",
     when: "2022.01 · 第二阶段",
-    note: "涉及冰山俱乐部与哥谭地下黑金交易的加密挑战。",
+    note: "涉及冰山俱乐部与哥谭地下黑金交易的官方加密挑战。",
+    provenance: "historical",
+    originBadgeEn: "Official 2022 ARG",
+    originBadgeZh: "2022 官方历史原版",
     riddles: [
       {
         id: "iceberg",
@@ -211,7 +230,10 @@ export const TESTS: Test[] = [
     id: "w3",
     kicker: "TEST 03",
     when: "2022.01 · 第三阶段",
-    note: "针对哥谭特权阶层与黑金内幕的深度谜题。",
+    note: "基于涅槃乐队插曲《Something in the Way》与政商权钱交易暗线构建的本站连贯过渡题。",
+    provenance: "extended",
+    originBadgeEn: "Archive Extension",
+    originBadgeZh: "本站剧作暗线扩展",
     riddles: [
       {
         id: "feelings",
@@ -266,7 +288,10 @@ export const TESTS: Test[] = [
     id: "w4",
     kicker: "TEST 04",
     when: "2022.02 · 第四阶段",
-    note: "探索谜语人命名起源与犯罪心路历程。",
+    note: "基于谜语人命名起源、拉丁语源与孤儿院心路历程构建的本站连贯过渡题。",
+    provenance: "extended",
+    originBadgeEn: "Archive Extension",
+    originBadgeZh: "本站剧作暗线扩展",
     riddles: [
       {
         id: "darkness",
@@ -321,7 +346,10 @@ export const TESTS: Test[] = [
     id: "w5",
     kicker: "TEST 05",
     when: "2022.02 · 第五阶段",
-    note: "针对韦恩家族继承人布鲁斯·韦恩的针对性谜题。",
+    note: "基于阿卡姆家族与韦恩家族双孤儿阶级对照暗线构建的本站连贯过渡题。",
+    provenance: "extended",
+    originBadgeEn: "Archive Extension",
+    originBadgeZh: "本站剧作暗线扩展",
     riddles: [
       {
         id: "puzzle",
@@ -377,7 +405,10 @@ export const TESTS: Test[] = [
     id: "w6",
     kicker: "TEST 06",
     when: "2022.03 · 首映公映周",
-    note: "电影上映当周发布的重磅谜题，解锁托马斯·韦恩的「新生」慈善基金黑幕。",
+    note: "电影上映当周发布的官方重磅谜题，解锁托马斯·韦恩「新生」慈善基金黑幕下载包（WHAT_AM_I.ZIP）。",
+    provenance: "historical",
+    originBadgeEn: "Official 2022 ARG",
+    originBadgeZh: "2022 官方历史原版",
     riddles: [
       {
         id: "renewal",
@@ -434,7 +465,10 @@ export const TESTS: Test[] = [
     id: "w7",
     kicker: "TEST 07",
     when: "2022.03 · 阿卡姆彩蛋阶段",
-    note: "直通阿卡姆疯人院高戒备病房的终极谜题挑战。",
+    note: "直通阿卡姆疯人院高戒备病房的官方终极谜题，当年通关后解锁 5 分钟小丑删减片段。",
+    provenance: "historical",
+    originBadgeEn: "Official 2022 ARG",
+    originBadgeZh: "2022 官方历史原版",
     riddles: [
       {
         id: "ha",
@@ -530,11 +564,26 @@ export const GCPD_TEXT = text("GCPD.TXT", "网络查封通告", [
   "SERVER LOGS SECURED.",
 ]);
 
-export const GOODBYE_TEXT = text("GOODBYE.TXT", "终局留言", [
-  "YOU SOLVED ALL THE RIDDLES.",
-  "",
-  "SEE YOU IN 2028 <?>",
-]);
+export const GOODBYE_TEXT = text(
+  "GOODBYE.TXT",
+  "终局留言",
+  [
+    "YOU SOLVED ALL THE RIDDLES.",
+    "",
+    "GOOD BYE <?>",
+    "",
+    "==================================================",
+    "[ARCHIVE CURATOR NOTE / 档案注记]",
+    "* 2022 官方原版片尾与网站最终留存文本为：'GOOD BYE <?>'",
+    "* 终局界面出现的 'SEE YOU IN 2028' 系本影迷档案站",
+    "  向续作《新蝙蝠侠 2》（定档 2028 年 10 月）献上的致敬彩蛋。",
+    "* 感谢你完成全部 7 阶段 21 道谜语人破译互动挑战。",
+    "==================================================",
+    "",
+    "SEE YOU IN 2028 <?>",
+  ],
+  "historical",
+);
 
 export const BOOT = [
   "RATAALADA.COM TERMINAL",
@@ -554,8 +603,50 @@ export const INVITE = [
 export const ABOUT = [
   "RATA ALADA = 'WINGED RAT' IN SPANISH.",
   "OFFICIAL ARG PROMOTION ARCHIVE (2021–2022).",
-  "ALL 7 TEST PHASES RESTORED.",
-  "SOLVE RIDDLES TO UNLOCK HIDDEN STILLS & LOGS.",
+  "",
+  "PROVENANCE ARCHITECTURE:",
+  "• HISTORICAL CORE (2021.12–2022.04):",
+  "  PHASES 1, 2, 6, 7 & FINAL GCPD SEIZURE NOTICE.",
+  "  AUTHENTIC WARNER BROS. VIRAL PROMOTION PUZZLES.",
+  "• ARCHIVE CANON EXTENSION:",
+  "  PHASES 3, 4, 5 DEVELOPED BY SEMPER VIGILANS",
+  "  FOR CONTINUOUS IN-BROWSER NARRATIVE PROGRESSION.",
+  "",
+  "TYPE 'TIMELINE' TO READ THE REAL-WORLD 2022 ARG HISTORY.",
+  "TYPE 'LS' TO VIEW UNLOCKED DOSSIERS.",
+];
+
+export const TIMELINE_LOGS = [
+  "RATAALADA.COM VIRAL MARKETING TIMELINE (2021–2022)",
+  "==================================================",
+  "[2021.12] LAUNCH WITH 'THE BAT AND THE CAT' TRAILER",
+  "  * CRT terminal debut with first 3 riddles (Phase 1).",
+  "  * Rewarded with GCPD surveillance sketch & cipher.",
+  "",
+  "[2022.01] THE ICEBERG LOUNGE & CORRUPTION INQUIRY",
+  "  * Interactive prompt: 'Have you been to the Iceberg Lounge?'",
+  "  * Second riddle cluster (Phase 2) unmasking Falcone's racket.",
+  "",
+  "[2022.02] 0% -> 100% LOADING COUNTDOWN & ZIP DROP",
+  "  * Global fans tracked real-time loading bar progress.",
+  "  * Unlocked WHAT_AM_I.ZIP (Password: PROMISE), exposing",
+  "    Thomas Wayne 2001 mayoral campaign corruption (Phase 6).",
+  "",
+  "[2022.03] THEATRICAL PREMIERE & ARKHAM DELETED SCENE",
+  "  * End credits flashed 'GOOD BYE <?>' directing back to site.",
+  "  * Phase 7 riddles unlocked Barry Keoghan Joker deleted scene.",
+  "",
+  "[2022.04] FINAL TAKEOVER: GCPD SEIZURE NOTICE",
+  "  * Official viral campaign concluded with domain seizure warrant.",
+  "",
+  "==================================================",
+  "[FAN ARCHIVE CURATION NOTES / 本站说明]",
+  "* PHASES 3-5: Canonically crafted by Semper Vigilans Archive",
+  "  using movie clues & Nirvana lyrics to bridge the timeline.",
+  "* FINALE 'SEE YOU IN 2028': A fan tribute looking forward to",
+  "  The Batman Part II (October 2028). Original was 'GOOD BYE <?>'.",
+  "* FORENSICS: Converted multi-gigabyte ZIP/video files to lightweight",
+  "  instant web dossiers for frictionless gameplay.",
 ];
 
 export const WRONG = [

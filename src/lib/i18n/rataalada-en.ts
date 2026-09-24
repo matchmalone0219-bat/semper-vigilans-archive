@@ -1,5 +1,5 @@
 export const RATA_INTRO_EN =
-  "In late 2021, Warner Bros.' viral marketing campaign for The Batman used cryptic clues to lead fans to the alternate-reality game rataalada.com ('rat with wings' in Spanish). The site presented a vintage CRT-style terminal where fans solved the Riddler's puzzles to unlock Gotham files. This page reconstructs that public ARG flow from archived material and provides a 26-letter geometric substitution cipher reference.";
+  "In late 2021, Warner Bros.' viral marketing campaign for The Batman used cryptic clues to lead fans to the alternate-reality game rataalada.com ('rat with wings' in Spanish). The site presented a vintage CRT-style terminal where fans solved the Riddler's puzzles to unlock Gotham files. This page reconstructs the 2021–2022 official ARG milestones (Phases 1, 2, 6, 7 and the GCPD seizure notice), with Phases 3–5 and web-adapted stills curated by this archive for continuous progression, concluding with a fan tribute to The Batman Part II (2028).";
 
 export const COMMANDS_EN: Record<string, string> = {
   Y: "Begin challenge / confirm",
@@ -9,6 +9,7 @@ export const COMMANDS_EN: Record<string, string> = {
   LS: "List unlocked classified dossiers",
   "OPEN <file>": "View an unlocked image file",
   "CAT <file>": "Read an unlocked text document",
+  TIMELINE: "View real-world 2021–2022 ARG evolution timeline",
   ABOUT: "Terminal background and history",
   CLEAR: "Clear the current terminal screen",
   RESET: "Reset game challenge progress",

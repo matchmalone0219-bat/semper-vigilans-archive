@@ -8,6 +8,7 @@ import {
   EMPTY_PROGRESS,
   INVITE,
   TESTS,
+  TIMELINE_LOGS,
   WRONG,
   allPrizes,
   allSolvedProgress,
@@ -212,9 +213,13 @@ export function RiddlerTerminal({
   }
 
   async function printRiddle(test: Test, riddle: Riddle, index: number) {
+    const badge = isEn ? test.originBadgeEn : test.originBadgeZh;
     await typeLines([
       { text: "", tone: "dim" },
-      { text: `${test.kicker}  —  RIDDLE ${index + 1} OF ${test.riddles.length}`, tone: "dim" },
+      {
+        text: `${test.kicker} [${badge.toUpperCase()}]  —  RIDDLE ${index + 1} OF ${test.riddles.length}`,
+        tone: "dim",
+      },
       ...riddle.prompt.map((text) => ({ text })),
       { text: "?" },
     ]);
@@ -308,6 +313,10 @@ export function RiddlerTerminal({
     }
     if (upper === "ABOUT") {
       await typeLines(ABOUT.map((text) => ({ text, tone: "dim" as const })));
+      return;
+    }
+    if (upper === "TIMELINE" || upper === "HISTORY") {
+      await typeLines(TIMELINE_LOGS.map((text) => ({ text, tone: "dim" as const })));
       return;
     }
     if (upper === "CLEAR" || upper === "CLS") {
@@ -506,6 +515,7 @@ export function RiddlerTerminal({
     if (beat.kind === "invite") {
       list.push(
         { cmd: "HELP", label: isEn ? "? HELP" : "? 指令帮助" },
+        { cmd: "TIMELINE", label: isEn ? "⏱ TIMELINE" : "⏱ 史料" },
         { cmd: "SPOILER", label: isEn ? "⚡ SPOILER (Unlock All)" : "⚡ 一键全解" },
       );
     } else if (beat.kind === "riddle") {
@@ -513,16 +523,19 @@ export function RiddlerTerminal({
         { cmd: "HINT", label: isEn ? "💡 HINT (Get Clue)" : "💡 获取线索" },
         { cmd: "RIDDLE", label: isEn ? "📜 RIDDLE (Re-read)" : "📜 重现谜面" },
         { cmd: "LS", label: isEn ? "📁 LS (Files)" : "📁 查看文件" },
+        { cmd: "TIMELINE", label: isEn ? "⏱ TIMELINE" : "⏱ 史料" },
         { cmd: "SPOILER", label: isEn ? "⚡ SPOILER (Skip)" : "⚡ 跳过本题" },
       );
     } else if (beat.kind === "lounge") {
       list.push(
+        { cmd: "TIMELINE", label: isEn ? "⏱ TIMELINE" : "⏱ 史料" },
         { cmd: "CLEAR", label: isEn ? "CLEAR" : "清屏" },
       );
     } else {
       list.push(
         { cmd: "LS", label: isEn ? "📁 LS (Files)" : "📁 查看文件" },
         { cmd: "ABOUT", label: isEn ? "ℹ ABOUT" : "ℹ 关于终端" },
+        { cmd: "TIMELINE", label: isEn ? "⏱ TIMELINE" : "⏱ 史料" },
         { cmd: "RESET", label: isEn ? "🔄 RESET" : "🔄 重置挑战" },
       );
     }

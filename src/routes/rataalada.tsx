@@ -178,7 +178,7 @@ function Rataalada() {
                 ) : (
                   <ul className="grid gap-4">
                     {localizedStills.map((still) => (
-                      <li key={still.file}>
+                      <li key={still.file} className="border border-phosphor/20 bg-phosphor/5 p-2.5">
                         <button
                           type="button"
                           onClick={() => setOpen(still.file)}
@@ -190,8 +190,15 @@ function Rataalada() {
                             alt=""
                             className="aspect-[16/9] w-full object-cover outline outline-phosphor/25"
                           />
-                          <p className="mt-2 text-xs tracking-wide text-phosphor/65">{still.file}</p>
-                          <p className="text-sm font-medium tracking-wide">{still.title}</p>
+                          <div className="mt-2 flex items-center justify-between gap-2">
+                            <p className="font-mono text-xs tracking-wide text-phosphor/75">{still.file}</p>
+                            <span className="border border-phosphor/30 bg-phosphor/10 px-1.5 py-0.5 font-mono text-[9px] tracking-wider text-phosphor/90 uppercase">
+                              {still.provenance === "historical"
+                                ? (isEn ? "2022 Official ARG" : "2022 官方原版")
+                                : (isEn ? "Archive Adaptation" : "本站剧照适配")}
+                            </span>
+                          </div>
+                          <p className="mt-1 text-sm font-medium tracking-wide text-phosphor">{still.title}</p>
                           <p className="mt-1 text-pretty text-xs leading-relaxed text-phosphor/70">
                             {still.caption}
                           </p>
@@ -251,9 +258,37 @@ function Rataalada() {
                 </div>
               )}
 
-              <div className="mt-8 border-t border-phosphor/20 pt-4 text-xs leading-relaxed text-phosphor/55">
+              <div className="mt-8 border-t border-phosphor/20 pt-4 text-xs leading-relaxed text-phosphor/60 space-y-3">
                 <p>{isEn ? RATA_INTRO_EN : RATA_INTRO}</p>
-                <p className="mt-2">
+                <div className="border border-phosphor/20 bg-phosphor/5 p-3 text-[11px] leading-relaxed text-phosphor/75">
+                  <p className="font-bold tracking-wider text-phosphor uppercase">
+                    {isEn ? "Archival Provenance Distinction:" : "档案史料分类说明："}
+                  </p>
+                  <ul className="mt-1.5 list-disc list-inside space-y-1 text-phosphor/70">
+                    <li>
+                      <strong className="text-phosphor">{isEn ? "Official 2021–2022 ARG:" : "官方历史原版："}</strong>{" "}
+                      {isEn
+                        ? "Phases 1, 2, 6, 7, GCPD seizure screen, and trailer cipher."
+                        : "第 1、2、6、7 阶段、GCPD 最终查封通告及预告片密码本。"}
+                    </li>
+                    <li>
+                      <strong className="text-phosphor">{isEn ? "Archive Canon Extension:" : "本站连贯扩展："}</strong>{" "}
+                      {isEn
+                        ? "Phases 3–5, web-adapted still files, and 'SEE YOU IN 2028' finale easter egg."
+                        : "第 3–5 阶段补充谜题、轻量化勘验证物图，以及终局致敬《新蝙蝠侠2》的「SEE YOU IN 2028」彩蛋。"}
+                    </li>
+                  </ul>
+                  <div className="mt-2.5 pt-2 border-t border-phosphor/15">
+                    <Link
+                      to="/roots"
+                      hash="riddles"
+                      className="text-phosphor underline underline-offset-2 hover:text-white"
+                    >
+                      {isEn ? "→ View Deep Linguistic & Lore Decodes in Roots" : "→ 前往艺术溯源查看谜语人双关与语言学深度考据"}
+                    </Link>
+                  </div>
+                </div>
+                <p className="text-[11px] text-phosphor/50">
                   {isEn
                     ? `${TESTS.length} puzzle archives. Terminal commands: ${COMMANDS.map((item) => item.cmd).join(" · ")}.`
                     : `${TESTS.length} 组公开谜题。终端指令：${COMMANDS.map((item) => item.cmd).join(" · ")}。`}

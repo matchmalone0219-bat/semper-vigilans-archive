@@ -165,7 +165,7 @@ export const REGIONS_EN: Record<string, {
     name: "Midtown",
     status: "HBO Series Reference",
     imageAlt: "Road network map of Midtown reconstructed from The Penguin full-city transit maps",
-    description: "Central island borough bridging north and south transit in The Penguin. Unfeatured individually in the film; high-res basemap provided without unverified plot coordinates.",
+    description: "Central island borough bridging north and south transit in The Penguin. The high-res basemap follows the series' citywide transit geography and major road network.",
   },
   downtown: {
     name: "Downtown",

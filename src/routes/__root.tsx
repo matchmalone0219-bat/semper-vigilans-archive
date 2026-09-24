@@ -4,6 +4,7 @@ import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { HashTarget } from "@/components/hash-target";
 import { Atmosphere } from "@/components/atmosphere";
 import { SiteChrome } from "@/components/site-chrome";
+import { FILM } from "@/data/film";
 import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 
@@ -20,7 +21,7 @@ export const Route = createRootRoute({
       { title: APP_NAME },
       {
         name: "description",
-        content: "《新蝙蝠侠2》非官方影迷档案库。北美定档 2028 年 2 月 18 日。",
+        content: `《新蝙蝠侠2》非官方影迷档案库。北美定档 ${FILM.releaseLabel}。`,
       },
       { name: "theme-color", content: "#050505" },
       { property: "og:title", content: "Semper Vigilans · 《新蝙蝠侠2》影迷档案站" },

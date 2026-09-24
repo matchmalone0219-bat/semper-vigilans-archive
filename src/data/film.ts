@@ -13,7 +13,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.09.21";
+export const CONTENT_REVIEWED_AT = "2026.09.24";
 
 export const FACTS: {
   label: string;

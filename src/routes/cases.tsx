@@ -244,8 +244,8 @@ function Cases() {
             </h2>
             <p className="mt-2 text-sm text-muted">
               {isEn
-                ? "The two authenticated Bruce Wayne journal voiceovers heard at the film's opening and conclusion, presented in Chinese and English."
-                : "收录成片中可直接核对的两段布鲁斯日记旁白：开场万圣节夜巡与终局洪灾后的希望独白（中英对照）。"}
+                ? "Bruce Wayne's journal voiceovers from the film's opening and conclusion, presented in Chinese and English."
+                : "收录电影开场与终局两段布鲁斯日记旁白：万圣节夜巡与洪灾后的希望独白（中英对照）。"}
             </p>
           </div>
 

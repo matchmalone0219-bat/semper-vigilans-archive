@@ -409,27 +409,27 @@ function Roots() {
             <p className="mt-3 max-w-3xl text-pretty text-xs leading-relaxed text-faint">
               {isEn ? (
                 <>
-                  Dialogue and scene wording are cross-checked against the published shooting script / film transcript. Linguistic and thematic interpretations below are editorial analysis.{" "}
+                  Dialogue and scene wording follow the published shooting script and finished film; the notes below trace their linguistic and thematic echoes.{" "}
                   <a
                     href="https://nofilmschool.com/files/54670/the-batman-read-the-screenplay.pdf"
                     target="_blank"
                     rel="noreferrer"
                     className="text-muted underline underline-offset-4 hover:text-fg"
                   >
-                    Review screenplay source
+                    Read the screenplay
                   </a>
                   .
                 </>
               ) : (
                 <>
-                  谜面与场景文本以公开拍摄剧本 / 成片对白为核对依据；下方语言学与叙事延伸属于本站考据分析。{" "}
+                  谜面与场景文本取自公开拍摄剧本与成片对白；下方从语言、意象与叙事结构继续展开。{" "}
                   <a
                     href="https://nofilmschool.com/files/54670/the-batman-read-the-screenplay.pdf"
                     target="_blank"
                     rel="noreferrer"
                     className="text-muted underline underline-offset-4 hover:text-fg"
                   >
-                    查看剧本文本依据
+                    查看拍摄剧本
                   </a>
                   。
                 </>

@@ -40,6 +40,42 @@ test("public archive voice does not expose verification housekeeping", () => {
   assert.doesNotMatch(en, /verified set leaks/i);
   assert.doesNotMatch(zh, /传闻均已标明出处/);
 });
+
+test("user-facing copy avoids defensive self-certifying phrasing across primary copy files", () => {
+  const targetFiles = [
+    "src/components/home/signals-hub.tsx",
+    "src/lib/i18n/translations/zh.ts",
+    "src/lib/i18n/translations/en.ts",
+    "src/data/interviews.ts",
+    "src/lib/craft.ts",
+    "src/lib/gallery.ts",
+    "src/data/recap.ts",
+    "src/lib/people.ts",
+    "src/lib/rataalada.ts",
+  ];
+
+  const forbiddenPatterns = [
+    { pattern: /【本站整理】/, label: "【本站整理】" },
+    { pattern: /经核对/, label: "经核对" },
+    { pattern: /本站判断/, label: "本站判断" },
+    { pattern: /本站预计/, label: "本站预计" },
+    { pattern: /以成片为准/, label: "以成片为准" },
+    { pattern: /传闻均已标明出处/, label: "传闻均已标明出处" },
+    { pattern: /verified set leaks/i, label: "verified set leaks" },
+    { pattern: /verified UK filming/i, label: "verified UK filming" },
+  ];
+
+  for (const relPath of targetFiles) {
+    const content = readFileSync(join(rootDir, relPath), "utf8");
+    for (const { pattern, label } of forbiddenPatterns) {
+      assert.doesNotMatch(
+        content,
+        pattern,
+        `${relPath} should not contain defensive/self-certifying phrasing: "${label}"`,
+      );
+    }
+  }
+});
 test("Bruce journal archive contains only authenticated opening and closing voiceovers", () => {
   assert.deepEqual(
     cases.BRUCE_JOURNALS.map((entry) => entry.id),

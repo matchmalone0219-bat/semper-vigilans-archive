@@ -123,9 +123,7 @@ export function RiddlerTerminal({
 
         if (selectedOpt) {
           event.preventDefault();
-          const label = isEn
-            ? `[${selectedOpt.key}] ${selectedOpt.labelEn}`
-            : `[${selectedOpt.key}] ${selectedOpt.labelZh} (${selectedOpt.labelEn})`;
+          const label = `[${selectedOpt.key}] ${selectedOpt.labelEn}`;
           void onSubmit(selectedOpt.value, label);
           return;
         }
@@ -581,37 +579,27 @@ export function RiddlerTerminal({
             </div>
 
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-              {beat.riddle.options.map((opt) => {
-                const displayLabel = isEn
-                  ? `[${opt.key}] ${opt.labelEn}`
-                  : `[${opt.key}] ${opt.labelZh} (${opt.labelEn})`;
-                return (
-                  <button
-                    key={opt.key}
-                    type="button"
-                    disabled={busy}
-                    onClick={() => void onSubmit(opt.value, displayLabel)}
-                    className={cn(
-                      "group relative flex min-h-[3.25rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
-                      "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
-                      "active:scale-[0.99] active:bg-phosphor/35",
-                      busy && "cursor-not-allowed opacity-60",
-                    )}
-                  >
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-phosphor/60 bg-phosphor/20 text-xs font-bold text-phosphor shadow-[0_0_6px_rgba(51,255,51,0.2)] transition-colors group-hover:border-phosphor group-hover:bg-phosphor group-hover:text-black">
-                      {opt.key}
-                    </span>
-                    <div className="flex min-w-0 flex-col">
-                      <span className="truncate text-sm font-bold tracking-wide text-phosphor">
-                        {isEn ? opt.labelEn : opt.labelZh}
-                      </span>
-                      <span className="truncate text-xs tracking-wider text-phosphor/55">
-                        {isEn ? opt.labelZh : opt.labelEn}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
+              {beat.riddle.options.map((opt) => (
+                <button
+                  key={opt.key}
+                  type="button"
+                  disabled={busy}
+                  onClick={() => void onSubmit(opt.value, `[${opt.key}] ${opt.labelEn}`)}
+                  className={cn(
+                    "group relative flex min-h-[3rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
+                    "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
+                    "active:scale-[0.99] active:bg-phosphor/35",
+                    busy && "cursor-not-allowed opacity-60",
+                  )}
+                >
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-phosphor/60 bg-phosphor/20 text-xs font-bold text-phosphor shadow-[0_0_6px_rgba(51,255,51,0.2)] transition-colors group-hover:border-phosphor group-hover:bg-phosphor group-hover:text-black">
+                    {opt.key}
+                  </span>
+                  <span className="truncate font-mono text-sm font-bold tracking-wider text-phosphor uppercase">
+                    {opt.labelEn}
+                  </span>
+                </button>
+              ))}
             </div>
           </div>
         )}

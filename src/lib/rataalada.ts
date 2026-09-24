@@ -613,11 +613,7 @@ export const GCPD_TEXT = text(
 export const GOODBYE_TEXT = text(
   "GOODBYE.TXT",
   "官方终局留言",
-  [
-    "YOU SOLVED ALL THE RIDDLES.",
-    "",
-    "GOOD BYE <?>",
-  ],
+  ["GOOD BYE <?>"],
   "historical",
   "2022 官方原版",
   "Official 2022 ARG",

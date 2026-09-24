@@ -253,32 +253,10 @@ export const BRUCE_JOURNALS: JournalEntry[] = [
     day: "星期四 (Thursday, October 31st)",
     title: "万圣节夜巡 · 恐惧的阴影",
     excerptZh:
-      "“雨夜中的城市在自我吞噬。两条命案，抢劫，袭击，街头泛滥着滴剂。两年来，雨夜已经变成了我的主场。他们认为我隐匿在阴影中……但我就是阴影本身。每当那道光打上云层，不仅是一声召唤，更是一个警告。在这个城市里，恐惧是最好的武器。”",
+      "“10 月 31 日，星期四。节日期间，城市街道挤满了人，哪怕下着雨。混乱中藏着那些伺机而动的人，像蛇一样等待出手。而我也在那里，观察着。两年的夜晚让我变成了夜行动物。我必须谨慎选择目标。这座城市很大，我不可能无处不在。但他们不知道我在哪里。现在我们有了一个信号，在需要我的时候点亮。那束光照向天空时，不只是在召唤我——也是对他们的警告。恐惧是一种工具。他们以为我藏在阴影里，但我就是阴影。”",
     excerptEn:
       "“Thursday, October 31st. The city streets are crowded for the holiday. Even with the rain. Hidden in the chaos is the element, waiting to strike like snakes. And I'm there too. Watching. Two years of nights have turned me into a nocturnal animal. I must choose my targets carefully. It's a big city. I can't be everywhere. But they don't know where I am. We have a signal now, for when I'm needed. When that light hits the sky, it's not just a call-it's a warning. To them. Fear is a tool. They think I am hiding in the shadows. But I am the shadows.”",
-    context: "电影开场独白。布鲁斯坐在昏暗的书桌前手写日记，背景交织着万圣节雨夜哥谭街头的暴力与罪恶，展现其最初将自己定义为冷酷「复仇者」的心态。",
-  },
-  {
-    id: "journal-nov-01",
-    date: "11 月 1 日",
-    day: "星期五 (Friday, November 1st)",
-    title: "市长案发 · 谎言的迷宫",
-    excerptZh:
-      "“死者是市长。现场留下了一封写给我的信。戈登相信我，但整个警局都在防备我。这个城市已经从根部彻底烂透，每个人都在撒谎。如果说市长是不干净的，那么谁又是干净的？这不仅仅是连环暗杀，这是一个针对整个体制的审判。”",
-    excerptEn:
-      "“November 1st. The mayor is dead. The crime scene was meant for me to see. Gordon knows it. The police don't trust me, but they have no choice. The killer calls himself the Riddler. He knows about the lies. In a city where everyone is lying, truth becomes a weapon. Who else is on his list?”",
-    context: "勘验完市长官邸案发现场后写下的记录。布鲁斯开始意识到对手并非寻常暴徒，而是掌握着高层不可告人秘密的精密审计者。",
-  },
-  {
-    id: "journal-nov-03",
-    date: "11 月 3 日",
-    day: "星期日 (Sunday, November 3rd)",
-    title: "庄园遭袭 · 家族债务的重负",
-    excerptZh:
-      "“阿尔弗雷德在医院抢救。谜语人的信件几乎杀了他。托马斯·韦恩……我的父亲，他也不是无暇的圣徒。复仇不能洗清过去的债务，它只会让这座城市继续流血。我以为我是在惩罚罪恶，但我所守护的名字本身就带着阴影。”",
-    excerptEn:
-      "“November 3rd. Alfred is in the hospital. The bomb was meant for me. I was forced to face the truth about Thomas Wayne. My father made mistakes. He wasn't a saint. Vengeance cannot pay a debt that was incurred decades ago. If I only punish, what am I saving?”",
-    context: "阿尔弗雷德拆开炸弹信件负伤后，布鲁斯在病榻前得知父亲曾委托法尔科内封杀记者的往事，遭遇了义警生涯深重的人格与道德危机。",
+    context: "电影开场旁白。布鲁斯以日记记录万圣节夜巡，并把恐惧视为打击街头犯罪的工具。",
   },
   {
     id: "journal-nov-06",
@@ -286,12 +264,12 @@ export const BRUCE_JOURNALS: JournalEntry[] = [
     day: "星期三 · 洪灾余波 (Post-Flood)",
     title: "希望的火种 · 告别复仇",
     excerptZh:
-      "“洪水淹没了街区，但它也冲刷掉了谎言。那些人在水中向我伸出手，他们眼神里流露的不再是恐惧，而是希望。夜巡仍将继续。这座城市依然伤痕累累，重建将无比艰难。但我不能再只是复仇的化身。他们需要的是一道光。”",
+      "“11 月 6 日，星期三。城市伤痕累累。洪水冲走了旧秩序，却留下成千上万需要帮助的人。当我在水中伸出手，而他们握住我的手时，我从他们眼中看到的不是恐惧，而是希望。我曾经以为恐惧就是答案。现在我明白了。复仇改变不了过去，也改变不了这座城市。我必须成为更多。我必须成为希望的灯塔。”",
     excerptEn:
       "“Wednesday, November 6th. The city is scarred. The waters washed away the old order, but left behind thousands who need help. When I reached out into the water and they took my hand, I saw it in their eyes: not terror, but hope. I used to think fear was the answer. Now I know. Vengeance won't change the past. It won't change the city. I have to become more. I have to be a beacon of hope.”",
-    context: "电影结尾终局独白。在经历了决堤漫灌的现场生死救援后，布鲁斯彻底放下了单纯以暴制暴的复仇执念，完成向正义灯塔的心理蜕变。",
+    context: "电影终局旁白。洪灾救援之后，布鲁斯明确意识到单靠恐惧与复仇无法改变哥谭，并转向成为希望的象征。",
   },
-];
+]
 
 export const ARKHAM_SCENE = {
   title: "阿卡姆疯人院 5 分钟删减审讯解析",

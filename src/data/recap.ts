@@ -433,7 +433,7 @@ export const GOTHAM: GothamEra[] = [
         href: "/dossier",
         hash: "log-2026-07-15",
       },
-
+    ],
   },
 ];
 

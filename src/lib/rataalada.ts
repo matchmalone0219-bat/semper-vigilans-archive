@@ -72,18 +72,18 @@ export const RATA_INTRO =
   `2021 年底，《新蝙蝠侠》官方病毒营销通过密码与宣传物料将影迷引向沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，并在影片中形成 URL 谐音梗）。网站采用复古 CRT 终端式界面，影迷通过破解谜题逐步解锁哥谭档案。本页面依据公开存档复原 2021–2022 官方核心互动阶段（第 1、2、6、7 阶段与 GCPD 查封通告），并由本站补充第 3–5 阶段连贯谜题与轻量勘验证物，终局融入献给《新蝙蝠侠 2》（${FILM.releaseLabel}）的影迷致敬彩蛋。`;
 
 export const COMMANDS: { cmd: string; hint: string }[] = [
-  { cmd: "Y", hint: "开始挑战 / 确认" },
-  { cmd: "HELP", hint: "查看指令帮助" },
-  { cmd: "RIDDLE", hint: "重新显示当前谜题" },
-  { cmd: "HINT", hint: "获取一条解谜线索" },
-  { cmd: "LS", hint: "列出已解锁的机密文件" },
-  { cmd: "OPEN <file>", hint: "查阅已解锁的图片文件" },
-  { cmd: "CAT <file>", hint: "阅读已解锁的文本档案" },
-  { cmd: "TIMELINE", hint: "查阅 2021-2022 真实 ARG 演进史" },
-  { cmd: "ABOUT", hint: "终端背景与史料出处" },
-  { cmd: "CLEAR", hint: "清空当前终端屏幕" },
-  { cmd: "RESET", hint: "重置挑战进度" },
-  { cmd: "SPOILER", hint: "直接解锁全部档案" },
+  { cmd: "Y", hint: "Begin challenge / confirm" },
+  { cmd: "HELP", hint: "Display command manual" },
+  { cmd: "RIDDLE", hint: "Redisplay current riddle" },
+  { cmd: "HINT", hint: "Obtain an investigative hint" },
+  { cmd: "LS", hint: "List unlocked dossiers" },
+  { cmd: "OPEN <file>", hint: "View unlocked image file" },
+  { cmd: "CAT <file>", hint: "Read unlocked text document" },
+  { cmd: "TIMELINE", hint: "View 2021-2022 ARG timeline" },
+  { cmd: "ABOUT", hint: "Terminal background and provenance" },
+  { cmd: "CLEAR", hint: "Clear terminal display" },
+  { cmd: "RESET", hint: "Reset challenge progress" },
+  { cmd: "SPOILER", hint: "Instantly unlock all dossiers" },
 ];
 
 const still = (

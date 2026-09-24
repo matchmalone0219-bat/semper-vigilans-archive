@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useI18n } from "@/lib/i18n";
 import {
   ABOUT,
   BETWEEN_TESTS,
@@ -48,9 +47,6 @@ export function RiddlerTerminal({
   onReset?: () => void;
   onSeized?: () => void;
 }) {
-  const { locale } = useI18n();
-  const isEn = locale === "en";
-
   const [lines, setLines] = useState<Line[]>([]);
   const [value, setValue] = useState("");
   const [busy, setBusy] = useState(true);
@@ -131,14 +127,12 @@ export function RiddlerTerminal({
       } else if (currentBeat.kind === "invite" || currentBeat.kind === "lounge") {
         if (key === "Y" || key === "A" || key === "1") {
           event.preventDefault();
-          const label = isEn ? "[Y] YES" : "[Y] 准备好了 / 是 (YES)";
-          void onSubmit("Y", label);
+          void onSubmit("Y", "[Y] YES");
           return;
         }
         if (key === "N" || key === "B" || key === "2") {
           event.preventDefault();
-          const label = isEn ? "[N] NO" : "[N] 暂不开启 / 否 (NO)";
-          void onSubmit("N", label);
+          void onSubmit("N", "[N] NO");
           return;
         }
       }
@@ -152,7 +146,7 @@ export function RiddlerTerminal({
     };
     window.addEventListener("keydown", onGlobalKeyDown);
     return () => window.removeEventListener("keydown", onGlobalKeyDown);
-  }, [isEn, showCli]);
+  }, [showCli]);
 
   function push(next: Line[]) {
     setLines((prev) => [...prev, ...next]);
@@ -213,7 +207,7 @@ export function RiddlerTerminal({
   }
 
   async function printRiddle(test: Test, riddle: Riddle, index: number) {
-    const badge = isEn ? test.originBadgeEn : test.originBadgeZh;
+    const badge = test.originBadgeEn || "ARCHIVE";
     await typeLines([
       { text: "", tone: "dim" },
       {
@@ -305,9 +299,9 @@ export function RiddlerTerminal({
     if (upper === "HELP" || upper === "?") {
       await typeLines([
         { text: "COMMANDS", tone: "dim" },
-        ...COMMANDS.map((item) => ({ text: `${item.cmd.padEnd(14)} ${item.hint}` })),
+        ...COMMANDS.map((item) => ({ text: `${item.cmd.padEnd(14)} ${item.hint.toUpperCase()}` })),
         { text: "OR TYPE THE ANSWER TO THE CURRENT RIDDLE." },
-        { text: "ANSWERS WORK IN ENGLISH OR 中文." },
+        { text: "ANSWERS WORK IN ENGLISH." },
       ]);
       return;
     }
@@ -514,34 +508,34 @@ export function RiddlerTerminal({
     const list: { cmd: string; label: string }[] = [];
     if (beat.kind === "invite") {
       list.push(
-        { cmd: "HELP", label: isEn ? "? HELP" : "? 指令帮助" },
-        { cmd: "TIMELINE", label: isEn ? "⏱ TIMELINE" : "⏱ 史料" },
-        { cmd: "SPOILER", label: isEn ? "⚡ SPOILER (Unlock All)" : "⚡ 一键全解" },
+        { cmd: "HELP", label: "? HELP" },
+        { cmd: "TIMELINE", label: "⏱ TIMELINE" },
+        { cmd: "SPOILER", label: "⚡ SPOILER (UNLOCK ALL)" },
       );
     } else if (beat.kind === "riddle") {
       list.push(
-        { cmd: "HINT", label: isEn ? "💡 HINT (Get Clue)" : "💡 获取线索" },
-        { cmd: "RIDDLE", label: isEn ? "📜 RIDDLE (Re-read)" : "📜 重现谜面" },
-        { cmd: "LS", label: isEn ? "📁 LS (Files)" : "📁 查看文件" },
-        { cmd: "TIMELINE", label: isEn ? "⏱ TIMELINE" : "⏱ 史料" },
-        { cmd: "SPOILER", label: isEn ? "⚡ SPOILER (Skip)" : "⚡ 跳过本题" },
+        { cmd: "HINT", label: "💡 HINT (GET CLUE)" },
+        { cmd: "RIDDLE", label: "📜 RIDDLE (RE-READ)" },
+        { cmd: "LS", label: "📁 LS (FILES)" },
+        { cmd: "TIMELINE", label: "⏱ TIMELINE" },
+        { cmd: "SPOILER", label: "⚡ SPOILER (SKIP)" },
       );
     } else if (beat.kind === "lounge") {
       list.push(
-        { cmd: "TIMELINE", label: isEn ? "⏱ TIMELINE" : "⏱ 史料" },
-        { cmd: "CLEAR", label: isEn ? "CLEAR" : "清屏" },
+        { cmd: "TIMELINE", label: "⏱ TIMELINE" },
+        { cmd: "CLEAR", label: "CLEAR" },
       );
     } else {
       list.push(
-        { cmd: "LS", label: isEn ? "📁 LS (Files)" : "📁 查看文件" },
-        { cmd: "ABOUT", label: isEn ? "ℹ ABOUT" : "ℹ 关于终端" },
-        { cmd: "TIMELINE", label: isEn ? "⏱ TIMELINE" : "⏱ 史料" },
-        { cmd: "RESET", label: isEn ? "🔄 RESET" : "🔄 重置挑战" },
+        { cmd: "LS", label: "📁 LS (FILES)" },
+        { cmd: "ABOUT", label: "ℹ ABOUT" },
+        { cmd: "TIMELINE", label: "⏱ TIMELINE" },
+        { cmd: "RESET", label: "🔄 RESET" },
       );
     }
-    list.push({ cmd: "CLEAR", label: isEn ? "CLEAR" : "清屏" });
+    list.push({ cmd: "CLEAR", label: "CLEAR" });
     return list;
-  }, [beat.kind, isEn]);
+  }, [beat.kind]);
 
   return (
     <div
@@ -578,16 +572,16 @@ export function RiddlerTerminal({
           </p>
         ))}
 
-        {/* 谜题 4 选 1 选择题卡片区域 */}
+        {/* Riddle multiple-choice options */}
         {beat.kind === "riddle" && beat.riddle.options && (
           <div className="mt-4 border-t border-phosphor/25 pt-3 select-none">
             <div className="mb-2.5 flex items-center justify-between font-mono text-xs text-phosphor/75">
               <span className="flex items-center gap-1.5 font-bold tracking-wider uppercase">
                 <span className="inline-block h-2 w-2 animate-pulse bg-phosphor" />
-                {isEn ? "SELECT AN ANSWER [OR PRESS A / B / C / D]:" : "选择你的答案 [点击或按键盘 A / B / C / D]："}
+                SELECT AN ANSWER [OR PRESS A / B / C / D]:
               </span>
               <span className="text-[11px] text-phosphor/50">
-                {isEn ? "CLICK TO SUBMIT" : "单选即时作答"}
+                CLICK TO SUBMIT
               </span>
             </div>
 
@@ -617,16 +611,16 @@ export function RiddlerTerminal({
           </div>
         )}
 
-        {/* 开启挑战 Y / N 选择题卡片区域 */}
+        {/* Start challenge Y / N cards */}
         {beat.kind === "invite" && (
           <div className="mt-4 border-t border-phosphor/25 pt-3 select-none">
             <div className="mb-2.5 flex items-center justify-between font-mono text-xs text-phosphor/75">
               <span className="flex items-center gap-1.5 font-bold tracking-wider uppercase">
                 <span className="inline-block h-2 w-2 animate-pulse bg-phosphor" />
-                {isEn ? "START CHALLENGE [SELECT OR PRESS Y / N]:" : "启动谜题挑战 [点击或按键盘 Y / N]："}
+                START CHALLENGE [SELECT OR PRESS Y / N]:
               </span>
               <span className="text-[11px] text-phosphor/50">
-                {isEn ? "INTERACTIVE TERMINAL" : "即时交互终端"}
+                INTERACTIVE TERMINAL
               </span>
             </div>
 
@@ -634,7 +628,7 @@ export function RiddlerTerminal({
               <button
                 type="button"
                 disabled={busy}
-                onClick={() => void onSubmit("Y", isEn ? "[Y] YES — READY TO PLAY" : "[Y] 准备好了 — 开启互动 (YES)")}
+                onClick={() => void onSubmit("Y", "[Y] YES — READY TO PLAY")}
                 className={cn(
                   "group relative flex min-h-[3.25rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
                   "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
@@ -647,10 +641,10 @@ export function RiddlerTerminal({
                 </span>
                 <div className="flex min-w-0 flex-col">
                   <span className="truncate text-sm font-bold tracking-wide text-phosphor">
-                    {isEn ? "YES — READY TO PLAY" : "准备好了 — 开启互动"}
+                    YES — READY TO PLAY
                   </span>
                   <span className="truncate text-xs tracking-wider text-phosphor/55">
-                    {isEn ? "Start Riddler trial" : "进入测试第一阶段"}
+                    Start Riddler trial
                   </span>
                 </div>
               </button>
@@ -658,7 +652,7 @@ export function RiddlerTerminal({
               <button
                 type="button"
                 disabled={busy}
-                onClick={() => void onSubmit("N", isEn ? "[N] NO — NOT YET" : "[N] 暂不开启 — 稍后再来 (NO)")}
+                onClick={() => void onSubmit("N", "[N] NO — NOT YET")}
                 className={cn(
                   "group relative flex min-h-[3.25rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
                   "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
@@ -671,10 +665,10 @@ export function RiddlerTerminal({
                 </span>
                 <div className="flex min-w-0 flex-col">
                   <span className="truncate text-sm font-bold tracking-wide text-phosphor">
-                    {isEn ? "NO — NOT YET" : "暂不开启 — 稍后再来"}
+                    NO — NOT YET
                   </span>
                   <span className="truncate text-xs tracking-wider text-phosphor/55">
-                    {isEn ? "Decline prompt" : "暂不进入谜题测试"}
+                    Decline prompt
                   </span>
                 </div>
               </button>
@@ -682,16 +676,16 @@ export function RiddlerTerminal({
           </div>
         )}
 
-        {/* 冰山俱乐部 Y / N 现场问答卡片区域 */}
+        {/* Iceberg Lounge Y / N cards */}
         {beat.kind === "lounge" && (
           <div className="mt-4 border-t border-phosphor/25 pt-3 select-none">
             <div className="mb-2.5 flex items-center justify-between font-mono text-xs text-phosphor/75">
               <span className="flex items-center gap-1.5 font-bold tracking-wider uppercase">
                 <span className="inline-block h-2 w-2 animate-pulse bg-phosphor" />
-                {isEn ? "ICEBERG INQUIRY [SELECT OR PRESS Y / N]:" : "冰山俱乐部问询 [点击或按键盘 Y / N]："}
+                ICEBERG INQUIRY [SELECT OR PRESS Y / N]:
               </span>
               <span className="text-[11px] text-phosphor/50">
-                {isEn ? "SPECIAL EVIDENCE" : "特殊现场证物"}
+                SPECIAL EVIDENCE
               </span>
             </div>
 
@@ -699,7 +693,7 @@ export function RiddlerTerminal({
               <button
                 type="button"
                 disabled={busy}
-                onClick={() => void onSubmit("Y", isEn ? "[Y] YES — I HAVE BEEN THERE" : "[Y] 去过 — 曾踏足俱乐部 (YES)")}
+                onClick={() => void onSubmit("Y", "[Y] YES — I HAVE BEEN THERE")}
                 className={cn(
                   "group relative flex min-h-[3.25rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
                   "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
@@ -712,10 +706,10 @@ export function RiddlerTerminal({
                 </span>
                 <div className="flex min-w-0 flex-col">
                   <span className="truncate text-sm font-bold tracking-wide text-phosphor">
-                    {isEn ? "YES — I HAVE BEEN THERE" : "去过 — 曾踏足俱乐部"}
+                    YES — I HAVE BEEN THERE
                   </span>
                   <span className="truncate text-xs tracking-wider text-phosphor/55">
-                    {isEn ? "Unlock lounge.img" : "解锁机密现场图片"}
+                    Unlock lounge.img
                   </span>
                 </div>
               </button>
@@ -723,7 +717,7 @@ export function RiddlerTerminal({
               <button
                 type="button"
                 disabled={busy}
-                onClick={() => void onSubmit("N", isEn ? "[N] NO — NEVER" : "[N] 没去过 — 从未涉足 (NO)")}
+                onClick={() => void onSubmit("N", "[N] NO — NEVER")}
                 className={cn(
                   "group relative flex min-h-[3.25rem] cursor-pointer items-center gap-3 border border-phosphor/40 bg-phosphor/5 p-2.5 text-left font-mono transition-all duration-150",
                   "hover:border-phosphor hover:bg-phosphor/20 hover:shadow-[0_0_12px_rgba(51,255,51,0.25)]",
@@ -736,10 +730,10 @@ export function RiddlerTerminal({
                 </span>
                 <div className="flex min-w-0 flex-col">
                   <span className="truncate text-sm font-bold tracking-wide text-phosphor">
-                    {isEn ? "NO — NEVER" : "没去过 — 从未涉足"}
+                    NO — NEVER
                   </span>
                   <span className="truncate text-xs tracking-wider text-phosphor/55">
-                    {isEn ? "Proceed with caution" : "接受警示并继续"}
+                    Proceed with caution
                   </span>
                 </div>
               </button>
@@ -747,7 +741,7 @@ export function RiddlerTerminal({
           </div>
         )}
 
-        {/* 仅在非问答状态或用户手动开启时呈现命令行输入 */}
+        {/* CLI command input */}
         {(showCli || !hasChoices) && (
           <form
             ref={form}
@@ -766,15 +760,11 @@ export function RiddlerTerminal({
                 autoComplete="off"
                 autoCapitalize="off"
                 spellCheck={false}
-                aria-label={isEn ? "Terminal command" : "终端指令"}
+                aria-label="Terminal command"
                 placeholder={
                   busy
-                    ? isEn
-                      ? "SIGNAL TRANSMITTING..."
-                      : "信号传输中..."
-                    : isEn
-                    ? "ENTER COMMAND (E.G. HELP, LS, CAT, SPOILER)..."
-                    : "输入终端指令 (如 HELP, LS, CAT, SPOILER)..."
+                    ? "SIGNAL TRANSMITTING..."
+                    : "ENTER COMMAND (E.G. HELP, LS, CAT, SPOILER)..."
                 }
                 className="w-full bg-transparent font-mono text-sm uppercase text-phosphor outline-none placeholder:text-phosphor/35 placeholder:normal-case sm:text-base"
                 style={{ caretColor: "var(--color-phosphor, #33ff33)" }}
@@ -811,15 +801,15 @@ export function RiddlerTerminal({
                   : "pointer-events-none opacity-0",
               )}
             >
-              {isEn ? "SEND ↵" : "发送 ↵"}
+              SEND ↵
             </button>
           </form>
         )}
 
-        {/* 快捷操作栏 */}
+        {/* Quick action bar */}
         <div className="mt-3 flex flex-wrap items-center gap-2 pt-1 select-none">
           <span className="mr-1 font-mono text-[11px] uppercase tracking-wider text-phosphor/50">
-            {isEn ? "ACTIONS:" : "快捷操作:"}
+            ACTIONS:
           </span>
           {quickActions.map((action) => (
             <button
@@ -842,9 +832,7 @@ export function RiddlerTerminal({
               }}
               className="cursor-pointer border border-phosphor/25 bg-phosphor/5 px-2.5 py-1 font-mono text-xs tracking-wider text-phosphor/60 uppercase transition-colors hover:border-phosphor/50 hover:bg-phosphor/15 hover:text-phosphor"
             >
-              {showCli
-                ? (isEn ? "[-] HIDE CLI" : "[-] 收起命令行")
-                : (isEn ? "[>] CLI MODE" : "[>] 命令行模式")}
+              {showCli ? "[-] HIDE CLI" : "[>] CLI MODE"}
             </button>
           )}
         </div>

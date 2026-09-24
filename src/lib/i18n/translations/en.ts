@@ -220,7 +220,7 @@ export const en: TranslationDictionary = {
   },
   footer: {
     siteDesc: "The Batman: Part II Unofficial Fan Archive",
-    disclaimer: "This is an unofficial non-commercial fan archive with no official affiliation to Warner Bros., DC Studios, or the filmmakers. Content gathered from public press reports, verified set leaks, and official promos. Rumors are clearly marked.",
+    disclaimer: "This is an unofficial non-commercial fan archive with no official affiliation to Warner Bros., DC Studios, or the filmmakers. Content draws on public press reports, public set reports, and official promotional materials.",
     sections: {
       dossier: "Film & Case Files",
       artAndRoots: "Art & Cinematic Roots",

@@ -31,7 +31,7 @@ export function SignalsHub({
   const featuredVideo: LogVideo = featuredVideoEntry?.video ?? {
     platform: "bilibili",
     bvid: "BV1BTKG6mEUQ",
-    title: "DC《新蝙蝠侠2》首曝镜头 · 定档 2028 年 2 月 18 日",
+    title: `DC《新蝙蝠侠2》首曝镜头 · 定档 ${FILM.releaseLabel}`,
   };
   const featuredVideoPoster = featuredVideoEntry
     ? logVideoPoster(featuredVideoEntry)

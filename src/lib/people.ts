@@ -334,7 +334,7 @@ export const FILES: Record<string, PersonFile> = {
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "冰山俱乐部服务生兼神偷，协助蝙蝠侠后前往布鲁德海文。", href: "/recap", hash: "the-batman" },
       { work: "限定剧《企鹅人》", note: "未正面出场，剧末向阿卡姆中的索菲亚寄送来信。", href: "/recap", hash: "the-penguin" },
-      { work: "电影《新蝙蝠侠2》", note: "官方尚未正式宣布是否回归。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "续集回归状态待定。", href: "/dossier" },
     ],
     places: ["iceberg", "orphanage"],
     stills: [
@@ -433,7 +433,7 @@ export const FILES: Record<string, PersonFile> = {
       { work: "官方前传小说", note: "孤儿院成长的童年阴影与仇恨萌芽。", href: "/recap", hash: "before" },
       { work: "漫画《谜语人元年》", note: "担任司法会计师时期发现城市黑幕与黑化全过程。", href: "/recap", hash: "year-one" },
       { work: "电影《新蝙蝠侠》", note: "策划连环暗杀与大堤决口，现关押于阿卡姆疯人院。", href: "/recap", hash: "the-batman" },
-      { work: "电影《新蝙蝠侠2》", note: "官方尚未宣布回归。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "续集回归状态待定。", href: "/dossier" },
     ],
     places: ["orphanage", "arkham", "riddler-room", "seawall"],
     stills: ["/media/riddler.jpg", "/media/still-lair.jpg", "/media/still-riddler-unmask.jpg"],
@@ -452,7 +452,7 @@ export const FILES: Record<string, PersonFile> = {
     also: ["神秘重犯", "小丑 (未正式定名)"],
     appearances: [
       { work: "电影《新蝙蝠侠》", note: "阿卡姆疯人院邻近病房囚徒，与谜语人展开对话。", href: "/recap", hash: "the-batman" },
-      { work: "电影《新蝙蝠侠2》", note: "传闻待定，官方尚未确认加盟。", href: "/dossier" },
+      { work: "电影《新蝙蝠侠2》", note: "续集加盟状态待定。", href: "/dossier" },
     ],
     places: ["arkham"],
     stills: ["/media/portraits/joker-v2.jpg"],

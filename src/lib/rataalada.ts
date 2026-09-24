@@ -623,17 +623,14 @@ export const TRIBUTE_TEXT = text(
   "TRIBUTE.TXT",
   "续作致敬彩蛋",
   [
-    "[ARCHIVE CURATOR NOTE / 档案注记]",
-    "* 2022 官方原版片尾与网站最终留存文本为：'GOOD BYE <?>'。",
-    "* 终局界面出现的 'SEE YOU IN 2028' 系本影迷档案站",
-    `  向续作《新蝙蝠侠 2》（正式定档 ${FILM.releaseLabel}）献上的致敬彩蛋。`,
-    "* 感谢你完成全部 7 阶段 21 道谜语人破译互动挑战。",
     "==================================================",
     "",
     "SEE YOU IN 2028 <?>",
+    "",
+    "THANK YOU FOR PLAYING.",
   ],
   "extended",
-  "本站致敬扩展",
+  "续作致敬扩展",
   "Archive Fan Tribute",
 );
 
@@ -654,17 +651,12 @@ export const INVITE = [
 
 export const ABOUT = [
   "RATA ALADA = 'WINGED RAT' IN SPANISH.",
-  "OFFICIAL ARG PROMOTION ARCHIVE (2021–2022).",
   "",
-  "PROVENANCE ARCHITECTURE:",
-  "• HISTORICAL CORE (2021.12–2022.04):",
-  "  PHASES 1, 2, 6, 7 & FINAL GCPD SEIZURE NOTICE.",
-  "  AUTHENTIC WARNER BROS. VIRAL PROMOTION PUZZLES.",
-  "• ARCHIVE CANON EXTENSION:",
-  "  PHASES 3, 4, 5 DEVELOPED BY SEMPER VIGILANS",
-  "  FOR CONTINUOUS IN-BROWSER NARRATIVE PROGRESSION.",
+  "ARCHIVE STATUS:",
+  "• ORIGINAL 2021–2022 ARG: PHASES 1, 2, 6, 7 + FINAL GCPD SEIZURE.",
+  "• SEMPER VIGILANS EXTENSION: PHASES 3, 4, 5.",
   "",
-  "TYPE 'TIMELINE' TO READ THE REAL-WORLD 2022 ARG HISTORY.",
+  "TYPE 'TIMELINE' TO READ THE 2021–2022 HISTORY.",
   "TYPE 'LS' TO VIEW UNLOCKED DOSSIERS.",
 ];
 
@@ -692,13 +684,6 @@ export const TIMELINE_LOGS = [
   "  * Official viral campaign concluded with domain seizure warrant.",
   "",
   "==================================================",
-  "[FAN ARCHIVE CURATION NOTES / 本站说明]",
-  "* PHASES 3-5: Canonically crafted by Semper Vigilans Archive",
-  "  using movie clues & Nirvana lyrics to bridge the timeline.",
-  "* FINALE 'SEE YOU IN 2028': A fan tribute looking forward to",
-  `  The Batman Part II (${FILM.releaseLabelEn}). Original was 'GOOD BYE <?>'.`,
-  "* FORENSICS: Converted multi-gigabyte ZIP/video files to lightweight",
-  "  instant web dossiers for frictionless gameplay.",
 ];
 
 export const WRONG = [

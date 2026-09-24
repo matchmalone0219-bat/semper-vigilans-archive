@@ -54,7 +54,7 @@ export const PRODUCTION_PHASES_EN: Record<
     summary:
       "Strained by the critical disappointment of 'Live by Night', personal health challenges, and the chaotic production of 'Justice League', Affleck stepped down as director in January 2017. Warner Bros. then courted Matt Reeves, who negotiated complete creative independence and insisted on completely tossing out the existing script.",
     bulletPoints: [
-      "Affleck confided to a confidant: 'I showed somebody The Batman script. They said, 'I think the script is good. I also think you’ll drink yourself to death if you go through what you just went through again.''",
+      "Affleck later recalled that a friend thought the script itself was good but warned that enduring another production experience under similar pressure could threaten his sobriety and health.",
       "On January 30, 2017, Affleck formally stepped down as director, initially intending to remain as star and producer to focus entirely on the performance.",
       "On February 23, 2017, Matt Reeves ('Dawn of the Planet of the Apes') officially signed on to write, direct, and produce.",
       "The pivotal fork in the road: Reeves set a hard prerequisite with studio executives—he would not use Affleck and Johns' action-thriller script, choosing instead to write a fresh narrative focusing on Bruce Wayne's raw 'Year Two'.",

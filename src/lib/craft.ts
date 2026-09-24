@@ -236,7 +236,7 @@ export const LENS = {
     {
       src: "/media/craft/lens-leds.jpg",
       caption:
-        "LEDs：LED 灯海与车流中的哥谭街景。评论区有人写成「Wayne tower」，官方未确认这座灯塔式高层的戏中身份。",
+        "LEDs：LED 灯海与车流中的哥谭街景。评论区出现「Wayne tower」的说法，这座灯塔式高层的戏中身份仍未公开。",
       alt: "埃里克·梅塞施密特 Instagram 勘景照 LEDs：夜间 LED 灯海与湿滑街面",
       credit: "Instagram · @emesserschmidt",
       posted: "2026.03.02",
@@ -254,7 +254,7 @@ export const LENS = {
     {
       src: "/media/craft/lens-mist.jpg",
       caption:
-        "mist：林荫车道没入浓雾。评论区有人写成 Wayne Manor / Scotch mist，官方未确认这处外景身份。",
+        "mist：林荫车道没入浓雾。评论区出现 Wayne Manor / Scotch mist 的说法，这处外景身份仍未公开。",
       alt: "埃里克·梅塞施密特 Instagram 勘景照 mist：雾中林荫车道",
       credit: "Instagram · @emesserschmidt",
       posted: "2026.05.21",
@@ -286,7 +286,7 @@ export const LENS = {
     },
     {
       heading: "开拍前 Instagram 勘景四连",
-      body: "2026 年 2 月 27 日至 5 月 21 日，梅塞施密特在 @emesserschmidt 先后发布 northwest、LEDs、spring、mist 四张取景地勘景照，均早于马特·里夫斯 6 月 12 日的 #FirstShot。northwest 被影迷比对为兰康（Runcorn）一带，同年 7 月剧组确在兰康桥拍摄；LEDs、mist 的评论区分别出现过「Wayne tower」「Wayne Manor」的猜测，官方均未确认。这四张是目前能公开核验的续集外景光影样本，不是第一部剧照。",
+      body: "2026 年 2 月 27 日至 5 月 21 日，梅塞施密特在 @emesserschmidt 先后发布 northwest、LEDs、spring、mist 四张取景地勘景照，均早于马特·里夫斯 6 月 12 日的 #FirstShot。northwest 被影迷比对为兰康（Runcorn）一带，同年 7 月剧组确在兰康桥拍摄；LEDs、mist 的评论区分别出现过「Wayne tower」「Wayne Manor」的猜测。这四张共同记录了续集前期外景勘景的光影方向。",
     },
     {
       heading: "冬日风雪下的全新光影挑战",

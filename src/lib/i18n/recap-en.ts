@@ -1,5 +1,6 @@
 import type { Locale } from "./types";
 import type { RecapWork, GothamEra } from "@/data/recap";
+import { FILM } from "@/data/film";
 
 export const RECAP_HEADER_EN = {
   title: "Recap & Gotham Timeline",
@@ -49,7 +50,7 @@ export const TIMELINE_BEATS_EN: Record<string, { when: string; span: string; tit
   },
   "part-two": {
     when: "Weeks Post-Series · Deep Winter",
-    span: "Theatrical Release: February 18, 2028",
+    span: `Theatrical Release: ${FILM.releaseLabelEn}`,
     title: "The Batman: Part II",
     line: "A brutal winter envelops Gotham; practical shoots in Glasgow capture squad cars pursuing the snow-treaded Batmobile, while Bruce is escorted through civil protests outside London courts.",
     published: "2028",
@@ -321,9 +322,9 @@ export const GOTHAM_ERAS_EN: Record<number, { era: string; note: string; beats: 
         source: "IGN · Sept. 13, 2026 London set report",
       },
       {
-        when: "Feb. 18, 2028",
+        when: FILM.releaseLabelEn,
         title: "Current North American Theatrical Date",
-        line: "The current North American theatrical date is February 18, 2028. If the studio changes the schedule, this archive follows the canonical FILM release fact.",
+        line: `The current North American theatrical date is ${FILM.releaseLabelEn}. If the studio changes the schedule, this archive follows the canonical FILM release fact.`,
         source: "Variety · July 16, 2026 release-date report",
       },
     ],

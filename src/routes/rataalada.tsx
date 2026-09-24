@@ -12,6 +12,7 @@ import {
   type PrizeStill,
 } from "@/lib/rataalada";
 import { pageTitle } from "@/lib/film";
+import { FILM } from "@/data/film";
 import { RiddlerTerminal } from "@/components/riddler-terminal";
 import { GcpdSeizurePage } from "@/components/gcpd-seizure-page";
 import { Lightbox } from "@/components/lightbox";
@@ -278,8 +279,8 @@ function Rataalada() {
                     <li>
                       <strong className="text-phosphor">{isEn ? "Archive Canon Extension:" : "本站连贯扩展："}</strong>{" "}
                       {isEn
-                        ? "Phases 3–5, web-adapted still files, and 'SEE YOU IN 2028' finale easter egg (February 18, 2028)."
-                        : "第 3–5 阶段补充谜题、轻量化勘验证物图，以及终局致敬《新蝙蝠侠2》（定档 2028 年 2 月 18 日）的「SEE YOU IN 2028」彩蛋。"}
+                        ? `Phases 3–5, web-adapted still files, and 'SEE YOU IN 2028' finale easter egg (${FILM.releaseLabelEn}).`
+                        : `第 3–5 阶段补充谜题、轻量化勘验证物图，以及终局致敬《新蝙蝠侠2》（定档 ${FILM.releaseLabel}）的「SEE YOU IN 2028」彩蛋。`}
                     </li>
                   </ul>
                   <div className="mt-2.5 pt-2 border-t border-phosphor/15">

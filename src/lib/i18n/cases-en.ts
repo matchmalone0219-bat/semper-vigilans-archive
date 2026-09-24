@@ -162,27 +162,15 @@ export const BRUCE_JOURNALS_EN: Record<string, BruceJournalEn> = {
     title: "Halloween Patrol · Shadows of Fear",
     day: "Thursday, October 31st",
     context:
-      "The opening monologue. Bruce sits at his dimly lit desk writing by hand as street violence and crime erupt across rain-slicked Gotham, capturing his mindset as a cold instrument of retribution.",
-  },
-  "journal-nov-01": {
-    title: "Mayor's Homicide · The Labyrinth of Lies",
-    day: "Friday, November 1st",
-    context:
-      "Recorded following the inspection of Mayor Mitchell's study. Bruce realizes his adversary is not a common thug, but a meticulous auditor holding the city elite's darkest secrets.",
-  },
-  "journal-nov-03": {
-    title: "Attack on Wayne Tower · Family Debts",
-    day: "Sunday, November 3rd",
-    context:
-      "Written at Alfred's bedside after the letter-bomb detonated, where Bruce learns the troubling past of Thomas Wayne and Carmine Falcone, facing a moral crisis regarding his legacy.",
+      "The film's opening voiceover. Bruce records his Halloween patrol and describes fear as a tool against street crime.",
   },
   "journal-nov-06": {
     title: "Spark of Hope · Moving Beyond Vengeance",
     day: "Wednesday, November 6th (Post-Flood)",
     context:
-      "The film's closing monologue. After rescuing trapped citizens from the flooded arena, Bruce abandons punitive vengeance to emerge as an enduring beacon of hope for Gotham.",
+      "The film's closing voiceover. After the flood rescue, Bruce recognizes that fear and vengeance alone cannot change Gotham and resolves to become a symbol of hope.",
   },
-};
+}
 
 export const ARKHAM_SCENE_EN = {
   title: "Arkham Hospital 5-Minute Deleted Interrogation Breakdown",

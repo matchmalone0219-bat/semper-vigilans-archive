@@ -1,3 +1,5 @@
+import { FILM } from "@/data/film";
+
 export type PrizeStill = {
   kind?: "still";
   file: string;
@@ -67,7 +69,7 @@ export type Beat =
   | { kind: "done" };
 
 export const RATA_INTRO =
-  "2021 年底，《新蝙蝠侠》官方病毒营销通过密码与宣传物料将影迷引向沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，并在影片中形成 URL 谐音梗）。网站采用复古 CRT 终端式界面，影迷通过破解谜题逐步解锁哥谭档案。本页面依据公开存档复原 2021–2022 官方核心互动阶段（第 1、2、6、7 阶段与 GCPD 查封通告），并由本站补充第 3–5 阶段连贯谜题与轻量勘验证物，终局融入献给《新蝙蝠侠 2》（2028 年 2 月 18 日）的影迷致敬彩蛋。";
+  `2021 年底，《新蝙蝠侠》官方病毒营销通过密码与宣传物料将影迷引向沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，并在影片中形成 URL 谐音梗）。网站采用复古 CRT 终端式界面，影迷通过破解谜题逐步解锁哥谭档案。本页面依据公开存档复原 2021–2022 官方核心互动阶段（第 1、2、6、7 阶段与 GCPD 查封通告），并由本站补充第 3–5 阶段连贯谜题与轻量勘验证物，终局融入献给《新蝙蝠侠 2》（${FILM.releaseLabel}）的影迷致敬彩蛋。`;
 
 export const COMMANDS: { cmd: string; hint: string }[] = [
   { cmd: "Y", hint: "开始挑战 / 确认" },
@@ -106,7 +108,7 @@ const text = (
   file: string,
   title: string,
   body: string[],
-  provenance: "historical" | "extended" = "historical",
+  provenance: "historical" | "extended" = "extended",
   originBadgeZh?: string,
   originBadgeEn?: string,
 ): PrizeText => ({
@@ -593,11 +595,15 @@ export const GCPD_TEXT = text(
   "GCPD.TXT",
   "网络查封通告",
   [
-    "GOTHAM CITY POLICE DEPARTMENT",
-    "CYBERCRIME & FORENSIC DIVISION",
+    "THIS DOMAIN HAS BEEN SEIZED",
     "",
-    "OPERATION COMPLETED.",
-    "SERVER LOGS SECURED.",
+    "THE DOMAIN FOR RATAALADA.COM AND YOUAREELRATAALADA.COM HAS BEEN SEIZED",
+    "BY THE GOTHAM POLICE DEPARTMENT PURSUANT TO A SEIZURE WARRANT ISSUED",
+    "BY THE GOTHAM CITY DISTRICT COURT UNDER THE AUTHORITY OF 18 U.S.C.",
+    "§§ 981, 982, INTER ALIA, AS PART OF COORDINATED LAW ENFORCEMENT ACTION BY:",
+    "",
+    "GCPD",
+    "GOTHAM CITY POLICE DEPARTMENT",
   ],
   "historical",
   "2022 官方原版",
@@ -607,11 +613,7 @@ export const GCPD_TEXT = text(
 export const GOODBYE_TEXT = text(
   "GOODBYE.TXT",
   "官方终局留言",
-  [
-    "YOU SOLVED ALL THE RIDDLES.",
-    "",
-    "GOOD BYE <?>",
-  ],
+  ["GOOD BYE <?>"],
   "historical",
   "2022 官方原版",
   "Official 2022 ARG",
@@ -624,7 +626,7 @@ export const TRIBUTE_TEXT = text(
     "[ARCHIVE CURATOR NOTE / 档案注记]",
     "* 2022 官方原版片尾与网站最终留存文本为：'GOOD BYE <?>'。",
     "* 终局界面出现的 'SEE YOU IN 2028' 系本影迷档案站",
-    "  向续作《新蝙蝠侠 2》（正式定档 2028 年 2 月 18 日）献上的致敬彩蛋。",
+    `  向续作《新蝙蝠侠 2》（正式定档 ${FILM.releaseLabel}）献上的致敬彩蛋。`,
     "* 感谢你完成全部 7 阶段 21 道谜语人破译互动挑战。",
     "==================================================",
     "",
@@ -694,7 +696,7 @@ export const TIMELINE_LOGS = [
   "* PHASES 3-5: Canonically crafted by Semper Vigilans Archive",
   "  using movie clues & Nirvana lyrics to bridge the timeline.",
   "* FINALE 'SEE YOU IN 2028': A fan tribute looking forward to",
-  "  The Batman Part II (February 18, 2028). Original was 'GOOD BYE <?>'.",
+  `  The Batman Part II (${FILM.releaseLabelEn}). Original was 'GOOD BYE <?>'.`,
   "* FORENSICS: Converted multi-gigabyte ZIP/video files to lightweight",
   "  instant web dossiers for frictionless gameplay.",
 ];

@@ -7,7 +7,7 @@ export const PRODUCTION_PHASES_EN: Record<
     title: string;
     summary: string;
     bulletPoints: string[];
-    keyQuotes?: {
+    keyStatements?: {
       speaker: string;
       role: string;
       text: string;
@@ -29,18 +29,18 @@ export const PRODUCTION_PHASES_EN: Record<
       "The script was deeply intertwined with the DCEU canon, featuring an Arkham Asylum riot with planned appearances by Margot Robbie's Harley Quinn and other rogue gallery regulars.",
       "Manganiello revealed the story was tonally inspired by David Fincher's 'The Game'—Deathstroke blamed Batman for his son's death, infiltrating Gotham to systematically strip away Bruce's fortune, allies, and psychological sanity.",
     ],
-    keyQuotes: [
+    keyStatements: [
       {
         speaker: "Ben Affleck",
         role: "Original Director / Writer / Batman",
-        text: "For me, as a director, it's about the material and the characters, so if I found the right material I would definitely throw my hat in the ring to direct something on that scale.",
+        text: "Affleck said directing the project depended on finding material and characters he believed in; with the right material, he was open to directing a film on that scale.",
         source: "Yahoo News · March 2016",
         sourceUrl: "https://www.yahoo.com/news/batman-v-superman-yields-unlikely-female-hero-224254500.html",
       },
       {
         speaker: "Joe Manganiello",
         role: "Originally Cast as Deathstroke",
-        text: "It was a really dark, psychological story. Deathstroke was like a horror movie predator, hunting Bruce Wayne and taking apart his life from the inside out.",
+        text: "Manganiello described the abandoned story as a dark psychological thriller in which Deathstroke hunted Bruce like a horror-film predator and systematically dismantled his life.",
         source: "Collider Exclusive",
         sourceUrl: "https://collider.com/joe-manganiello-ben-affleck-batman-movie-details/",
       },
@@ -54,23 +54,23 @@ export const PRODUCTION_PHASES_EN: Record<
     summary:
       "Strained by the critical disappointment of 'Live by Night', personal health challenges, and the chaotic production of 'Justice League', Affleck stepped down as director in January 2017. Warner Bros. then courted Matt Reeves, who negotiated complete creative independence and insisted on completely tossing out the existing script.",
     bulletPoints: [
-      "Affleck confided to a confidant: 'I showed somebody The Batman script. They said, 'I think the script is good. I also think you’ll drink yourself to death if you go through what you just went through again.''",
+      "Affleck later recalled that a friend thought the script itself was good but warned that enduring another production experience under similar pressure could threaten his sobriety and health.",
       "On January 30, 2017, Affleck formally stepped down as director, initially intending to remain as star and producer to focus entirely on the performance.",
       "On February 23, 2017, Matt Reeves ('Dawn of the Planet of the Apes') officially signed on to write, direct, and produce.",
       "The pivotal fork in the road: Reeves set a hard prerequisite with studio executives—he would not use Affleck and Johns' action-thriller script, choosing instead to write a fresh narrative focusing on Bruce Wayne's raw 'Year Two'.",
     ],
-    keyQuotes: [
+    keyStatements: [
       {
         speaker: "Ben Affleck",
         role: "Original Star / Co-Writer",
-        text: "I couldn't crack it. I tried to direct a version of it, and worked with a really good screenwriter, but just couldn't come up with a version that worked. It felt like it was time to let someone else take a shot at it.",
+        text: "Affleck later said he could not find a version of the script that worked to his satisfaction and concluded that it was time to let another filmmaker take a shot at the project.",
         source: "Jimmy Kimmel Live",
         sourceUrl: "https://variety.com/2019/film/news/ben-affleck-retires-batman-jimmy-kimmel-1203140590/",
       },
       {
         speaker: "Matt Reeves",
         role: "Director / Co-Writer",
-        text: "I read a script that they had that was totally valid... action-driven, connected to the DCEU. But I told them, that's not me. If I'm doing this, it has to be a personal, subjective noir detective investigation.",
+        text: "Reeves said Affleck's existing script was valid and action-driven, but not the film he wanted to make; his own version would be a subjective noir detective investigation centered on Batman's point of view.",
         source: "Esquire Feature",
         sourceUrl: "https://www.esquire.com/entertainment/movies/a38753232/matt-reeves-the-batman-interview/",
       },
@@ -90,18 +90,18 @@ export const PRODUCTION_PHASES_EN: Record<
       "Pattinson later described testing in a vintage Val Kilmer-era Batsuit with several crew members helping him into it. Public reporting also confirms Hoult reached the final testing stage, but does not reliably establish that both actors used the same suit or identical test protocol.",
       "On May 31, 2019, Warner Bros. and Reeves officially ratified Robert Pattinson as the next Dark Knight, initiating a brand-new neo-noir era.",
     ],
-    keyQuotes: [
+    keyStatements: [
       {
         speaker: "Robert Pattinson",
         role: "Bruce Wayne / Batman",
-        text: "You feel very powerful immediately. It's pretty astonishing. It takes five people to help you shove your way into it, and you're sweating profusely, but once it's on, you feel this visceral surge of adrenaline.",
+        text: "Pattinson recalled that the vintage screen-test suit required several crew members to help him into it and was extremely hot, but immediately created a strong sense of physical power.",
         source: "Variety Cover Story",
         sourceUrl: "https://variety.com/2019/film/features/robert-pattinson-batman-the-lighthouse-tenet-1203319822/",
       },
       {
         speaker: "Nicholas Hoult",
         role: "Finalist Screen Test Actor (now DCU Lex Luthor)",
-        text: "I think Matt Reeves’ ideas were fantastic and he made a brilliant movie. Rob did an amazing job with the character.",
+        text: "Hoult later praised Reeves' ideas and the finished film, and also complimented Pattinson's performance as Batman.",
         source: "Variety · GQ España interview",
         sourceUrl: "https://variety.com/2023/film/news/nicholas-hoult-lost-batman-top-gun-maverick-mission-impossible-7-1235586687/",
       },
@@ -120,11 +120,11 @@ export const PRODUCTION_PHASES_EN: Record<
       "To circumvent international travel bans, DP Greig Fraser and Industrial Light & Magic deployed StageCraft LED volumes indoors, rendering real-time golden hour environmental lighting for City Hall rooftops.",
       "Principal photography wrapped on March 13, 2021 after a grueling 14-month odyssey; released on March 4, 2022, the film grossed $771 million globally and earned 3 Academy Award nominations.",
     ],
-    keyQuotes: [
+    keyStatements: [
       {
         speaker: "Matt Reeves",
         role: "Director",
-        text: "Making this movie felt like a survival mission. Every roadblock pushed us to double down on what made the story authentic, raw, and relentlessly human.",
+        text: "Reeves described the pandemic-era production as a difficult survival exercise and said the obstacles pushed the team to focus more closely on the story's human and grounded qualities.",
         source: "The Hollywood Reporter Cover Story",
         sourceUrl: "https://www.hollywoodreporter.com/movies/movie-features/the-batman-matt-reeves-robert-pattinson-1235087595/",
       },
@@ -224,7 +224,7 @@ export function getLocalizedProductionPhase(phase: ProductionPhase, locale: stri
     title: en.title,
     summary: en.summary,
     bulletPoints: en.bulletPoints,
-    keyQuotes: en.keyQuotes ?? phase.keyQuotes,
+    keyStatements: en.keyStatements ?? phase.keyStatements,
     source: en.source,
     sourceUrl: en.sourceUrl ?? phase.sourceUrl,
   };

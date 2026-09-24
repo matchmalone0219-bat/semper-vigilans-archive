@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ExternalLink, Quote, Sparkles, UserCheck, Film, Swords } from "lucide-react";
+import { ChevronDown, ExternalLink, FileText, UserCheck, Film, Swords } from "lucide-react";
 import { PRODUCTION_PHASES, SCRIPT_COMPARISONS, SCREEN_TEST_DUEL } from "@/data/production";
 import {
   getLocalizedProductionPhase,
@@ -118,17 +118,20 @@ export function DossierProductionDrama() {
                       ))}
                     </div>
 
-                    {/* 主创一手原声引言 */}
-                    {phase.keyQuotes && phase.keyQuotes.length > 0 && (
+                    {/* 主创发言摘要：来源可核对，但不冒充逐字引语 */}
+                    {phase.keyStatements && phase.keyStatements.length > 0 && (
                       <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                        {phase.keyQuotes.map((quote, qIdx) => (
+                        {phase.keyStatements.map((quote, qIdx) => (
                           <div
                             key={qIdx}
                             className="relative border border-fg/10 bg-fg/[0.015] p-4 text-xs"
                           >
-                            <Quote className="absolute top-3 right-3 size-4 text-fg/10" />
-                            <p className="italic leading-relaxed text-muted">
-                              “{quote.text}”
+                            <FileText className="absolute top-3 right-3 size-4 text-fg/10" />
+                            <div className="mb-2 font-display text-[9px] font-semibold tracking-[0.14em] text-faint uppercase">
+                              {isZh ? "来源支持的发言摘要" : "SOURCE-BACKED REMARK SUMMARY"}
+                            </div>
+                            <p className="leading-relaxed text-muted">
+                              {quote.text}
                             </p>
                             <div className="mt-3 flex items-center justify-between border-t border-fg/10 pt-2 font-mono text-[10px] text-faint">
                               <span>

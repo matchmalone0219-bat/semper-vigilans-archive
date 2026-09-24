@@ -1,4 +1,5 @@
 import type { TranslationDictionary } from "../types";
+import { FILM } from "@/data/film";
 
 export const en: TranslationDictionary = {
   nav: {
@@ -89,7 +90,7 @@ export const en: TranslationDictionary = {
     movieTitleEn: "The Batman: Part II",
     movieTitleZh: "The Batman: Part II",
     director: "Matt Reeves",
-    releaseDate: "February 18, 2028",
+    releaseDate: FILM.releaseLabelEn,
     format: "Epic Crime Saga",
     countdownLabel: "COUNTDOWN TO THEATRICAL RELEASE",
     countdown: {

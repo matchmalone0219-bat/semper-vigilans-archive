@@ -1,8 +1,18 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { spawn } from "node:child_process";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
-import { TESTS, normalizeAnswer, nextBeat, EMPTY_PROGRESS } from "../src/lib/rataalada.ts";
+import { createJiti } from "jiti";
+
+const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const jiti = createJiti(import.meta.url, {
+  alias: { "@": join(rootDir, "src") },
+});
+const { TESTS, normalizeAnswer, nextBeat, EMPTY_PROGRESS } = jiti(
+  join(rootDir, "src/lib/rataalada.ts"),
+);
 
 const PORT = 4180;
 const BASE = `http://127.0.0.1:${PORT}`;

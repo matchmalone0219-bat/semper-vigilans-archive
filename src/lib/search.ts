@@ -202,7 +202,7 @@ export const SEARCH_ITEMS: SearchItem[] = [
       [
         phase.summary,
         ...phase.bulletPoints,
-        ...(phase.keyQuotes ?? []).flatMap((quote) => [quote.speaker, quote.role, quote.text]),
+        ...(phase.keyStatements ?? []).flatMap((statement) => [statement.speaker, statement.role, statement.text]),
       ].join(" "),
     ),
   ),

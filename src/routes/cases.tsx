@@ -69,13 +69,13 @@ function Cases() {
           </h1>
           <p className="mt-3 font-display text-lg tracking-[0.12em] text-muted uppercase">
             {isEn
-              ? "Five Case Evidence Lockers · Bruce Wayne's Nocturnal Journal · Arkham Interrogation"
-              : "五大凶案物证室 · 布鲁斯夜巡日记 · 阿卡姆审讯纪要"}
+              ? "Five Case Evidence Lockers · Bruce Wayne's Opening & Closing Journals · Arkham Interrogation"
+              : "五大凶案物证室 · 布鲁斯开场与终局日记 · 阿卡姆审讯纪要"}
           </p>
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
             {isEn
               ? CASES_INTRO_EN
-              : "以严密法医物证与警局侦查卷宗视角，全面复盘第一部连环暗杀大案的现场线索、致命凶器、录像密码与终局大坝决堤物证；同时收录布鲁斯·韦恩夜巡日记《哥谭项目》全文与阿卡姆 5 分钟删减审讯深度拉片。"}
+              : "以严密法医物证与警局侦查卷宗视角，全面复盘第一部连环暗杀大案的现场线索、致命凶器、录像密码与终局大坝决堤物证；同时收录电影开场与终局两段布鲁斯·韦恩《哥谭项目》日记旁白，以及阿卡姆 5 分钟删减审讯解析。"}
           </p>
         </div>
       </header>
@@ -244,8 +244,8 @@ function Cases() {
             </h2>
             <p className="mt-2 text-sm text-muted">
               {isEn
-                ? "Complete transcripts of Bruce Wayne's Year Two handwritten nocturnal journal entries from the film's opening to conclusion."
-                : "完整收录电影开场至终局成片中，布鲁斯在地下车间深夜手写日记的全部独白文本（中英对照）。"}
+                ? "The two authenticated Bruce Wayne journal voiceovers heard at the film's opening and conclusion, presented in Chinese and English."
+                : "收录成片中可直接核对的两段布鲁斯日记旁白：开场万圣节夜巡与终局洪灾后的希望独白（中英对照）。"}
             </p>
           </div>
 

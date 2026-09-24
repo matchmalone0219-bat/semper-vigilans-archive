@@ -1,13 +1,21 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import {
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { createJiti } from "jiti";
+
+const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const jiti = createJiti(import.meta.url, {
+  alias: { "@": join(rootDir, "src") },
+});
+const {
   TESTS,
   normalizeAnswer,
   nextBeat,
   EMPTY_PROGRESS,
   isYes,
   isNo,
-} from "../src/lib/rataalada.ts";
+} = jiti(join(rootDir, "src/lib/rataalada.ts"));
 
 test("every riddle across all tests has exactly 4 structured multiple-choice options", () => {
   let count = 0;

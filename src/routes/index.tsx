@@ -101,7 +101,7 @@ function Home() {
                 <>
                   {FILM.titleEn}
                   <br />
-                  Director: Matt Reeves · Theatrical Release: February 18, 2028 · Epic Crime Saga
+                  {`Director: Matt Reeves · Theatrical Release: ${FILM.releaseLabelEn} · Epic Crime Saga`}
                 </>
               )}
             </p>

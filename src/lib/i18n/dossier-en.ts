@@ -1,5 +1,5 @@
 import type { Locale } from "./types";
-import type { Certainty, LogEntry, LogKind, PlotItem } from "@/data/film";
+import { FILM, type Certainty, type LogEntry, type LogKind, type PlotItem } from "@/data/film";
 
 export const FACTS_EN: Record<
   string,
@@ -28,7 +28,7 @@ export const FACTS_EN: Record<
   "发行": {
     label: "Distribution",
     value:
-      "Worldwide theatrical release by Warner Bros. Pictures · North American release on February 18, 2028 in IMAX & Dolby Cinema",
+      `Worldwide theatrical release by Warner Bros. Pictures · North American release on ${FILM.releaseLabelEn} in IMAX & Dolby Cinema`,
     source: "Variety · 2026.07.16",
   },
   "片场制作代号": {
@@ -353,9 +353,9 @@ export const LOG_EN: Record<
     source: "Matt Reeves Social Dispatch",
   },
   "log-2026-07-15": {
-    title: "Release Date Slated for Feb 18, 2028 with Test Footage",
-    videoTitle: "The Batman: Part II - First Teaser Footage · Feb 18, 2028",
-    body: "Warner Bros. set the worldwide theatrical release date for February 18, 2028, in IMAX and Dolby formats. Reeves unveiled camera test footage of Pattinson suited up in the updated cowl.",
+    title: `Release Date Slated for ${FILM.releaseLabelEn} with Test Footage`,
+    videoTitle: `The Batman: Part II - First Teaser Footage · ${FILM.releaseLabelEn}`,
+    body: `Warner Bros. set the worldwide theatrical release date for ${FILM.releaseLabelEn}, in IMAX and Dolby formats. Reeves unveiled camera test footage of Pattinson suited up in the updated cowl.`,
     source: "Variety",
   },
   "log-2026-08-18": {

@@ -5,7 +5,7 @@ export type ProductionPhase = {
   title: string;
   summary: string;
   bulletPoints: string[];
-  keyQuotes?: {
+  keyStatements?: {
     speaker: string;
     role: string;
     text: string;
@@ -53,18 +53,18 @@ export const PRODUCTION_PHASES: ProductionPhase[] = [
       "原案剧本深度根植于 DCEU 宇宙体系，设定阿卡姆疯人院暴动，玛格特·罗比饰演的哈莉·奎茵及其他经典反派曾计划客串出场。",
       "曼根尼罗透露故事受大卫·芬奇《心理游戏》（The Game）启发，丧钟因将儿子之死归咎于蝙蝠侠，潜入哥谭逐一瓦解布鲁斯的财产、社交圈及精神防线。",
     ],
-    keyQuotes: [
+    keyStatements: [
       {
         speaker: "本·阿弗莱克",
         role: "原定导演 / 编剧 / 蝙蝠侠",
-        text: "作为导演，最核心的是剧本素材与人物。如果我找到了对的素材，我绝对会亲自执导这种规模的超级英雄电影。",
+        text: "阿弗莱克表示，是否亲自执导取决于剧本素材和人物是否合适；若条件合适，他愿意执导这种规模的项目。",
         source: "Yahoo News · 2016.03",
         sourceUrl: "https://www.yahoo.com/news/batman-v-superman-yields-unlikely-female-hero-224254500.html",
       },
       {
         speaker: "乔·曼根尼罗",
         role: "原定反派「丧钟」饰演者",
-        text: "这是一个极其黑暗、心理战驱动的故事。丧钟就像一只恐怖的捕食者，把布鲁斯·韦恩当做猎物，由内而外摧毁他的一切。",
+        text: "曼根尼罗将原案形容为黑暗的心理故事，丧钟会像恐怖片中的捕食者一样追猎布鲁斯，并逐步拆解他的生活。",
         source: "Collider 专访",
         sourceUrl: "https://collider.com/joe-manganiello-ben-affleck-batman-movie-details/",
       },
@@ -85,18 +85,18 @@ export const PRODUCTION_PHASES: ProductionPhase[] = [
       "2017 年 2 月 23 日，凭借《猩球崛起：黎明之战》广受赞誉的马特·里夫斯正式签约担任编剧与导演兼制片人。",
       "关键转折：里夫斯向华纳高层提出明确前提——不沿用阿弗莱克与杰夫·琼斯的动作惊悚剧本，全盘重写，将故事回溯至布鲁斯·韦恩义警生涯早期的“第二年”。",
     ],
-    keyQuotes: [
+    keyStatements: [
       {
         speaker: "本·阿弗莱克",
         role: "原定主演 / 编剧",
-        text: "我无法打磨出一个让我自己感到满意的剧本。是时候让其他人来执掌它了，马特·里夫斯是一位非常出色的电影人。",
+        text: "阿弗莱克后来表示，自己始终没能找到一个令他满意、真正可行的剧本版本，因此认为应让其他创作者接手。",
         source: "Jimmy Kimmel Live 访谈",
         sourceUrl: "https://variety.com/2019/film/news/ben-affleck-retires-batman-jimmy-kimmel-1203140590/",
       },
       {
         speaker: "马特·里夫斯",
         role: "导演 / 联合编剧",
-        text: "我读了大本的剧本，它非常有效且动作戏十足，但那不是我想要拍的电影。我告诉华纳：如果我来做，必须是一部以蝙蝠侠为视角的新黑色侦探悬疑故事。",
+        text: "里夫斯表示，阿弗莱克原剧本本身成立且以动作为主，但并非自己想拍的版本；若接手，他希望从蝙蝠侠主观视角拍成黑色侦探调查故事。",
         source: "Esquire 专访",
         sourceUrl: "https://www.esquire.com/entertainment/movies/a38753232/matt-reeves-the-batman-interview/",
       },
@@ -118,18 +118,18 @@ export const PRODUCTION_PHASES: ProductionPhase[] = [
       "试镜细节：帕丁森后来公开回忆，自己的镜头测试使用了方·基默《永远的蝙蝠侠》（1995）时期的旧战衣，并需要多名工作人员协助穿戴；公开报道也确认霍尔特进入最终测试，但没有可靠公开资料证明两人使用完全相同的战衣或测试流程。",
       "2019 年 5 月 31 日，华纳兄弟与里夫斯正式批准罗伯特·帕丁森出演布鲁斯·韦恩，开启新黑色侦探纪元。",
     ],
-    keyQuotes: [
+    keyStatements: [
       {
         speaker: "罗伯特·帕丁森",
         role: "布鲁斯·韦恩 / 蝙蝠侠",
-        text: "试镜时穿上那件老战衣感觉不可思议，五位工作人员合力把我塞进橡胶服里。虽然浑身大汗、动弹不得，但那一刻你真的会瞬间感到自身涌动着一种原始的力量。",
+        text: "帕丁森回忆镜头测试时穿旧战衣需要多人协助，穿着非常闷热，但战衣上身后会立刻带来强烈的力量感。",
         source: "Variety 封面故事",
         sourceUrl: "https://variety.com/2019/film/features/robert-pattinson-batman-the-lighthouse-tenet-1203319822/",
       },
       {
         speaker: "尼古拉斯·霍尔特",
         role: "决选试镜演员（现 DCU 莱克斯·卢瑟）",
-        text: "我认为马特·里夫斯的想法非常棒，他拍出了一部很出色的电影；罗伯特对这个角色的演绎也非常精彩。",
+        text: "霍尔特后来肯定里夫斯的构想与成片，也称赞帕丁森对角色的演绎。",
         source: "Variety · GQ España 访谈转述",
         sourceUrl: "https://variety.com/2023/film/news/nicholas-hoult-lost-batman-top-gun-maverick-mission-impossible-7-1235586687/",
       },
@@ -150,11 +150,11 @@ export const PRODUCTION_PHASES: ProductionPhase[] = [
       "为解决疫情期间跨国实景拍摄限制，格雷格·弗雷泽与工业光魔（ILM）开创性引入 StageCraft 虚拟 LED 天幕系统，在室内实现哥谭市政厅楼顶黄昏真实环境光渲染。",
       "2021 年 3 月 13 日历时 14 个月艰难长跑终告杀青；2022 年 3 月全球公映斩获 7.71 亿美元票房，并荣获 3 项奥斯卡金像奖提名。",
     ],
-    keyQuotes: [
+    keyStatements: [
       {
         speaker: "马特·里夫斯",
         role: "导演",
-        text: "制作这部电影本身就像是一场生存战。疫情、停摆、隔离，但每一次困境都让我们更加专注于挖掘这个故事最真实、最粗粝的人性核心。",
+        text: "里夫斯回顾疫情时期的制作过程时，将其形容为一场艰难的生存战，并表示种种阻碍反而促使团队更专注于故事的人性与真实感。",
         source: "The Hollywood Reporter 封面长访",
         sourceUrl: "https://www.hollywoodreporter.com/movies/movie-features/the-batman-matt-reeves-robert-pattinson-1235087595/",
       },

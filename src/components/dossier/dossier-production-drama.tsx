@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ExternalLink, FileText, Sparkles, UserCheck, Film, Swords } from "lucide-react";
+import { ChevronDown, ExternalLink, FileText, UserCheck, Film, Swords } from "lucide-react";
 import { PRODUCTION_PHASES, SCRIPT_COMPARISONS, SCREEN_TEST_DUEL } from "@/data/production";
 import {
   getLocalizedProductionPhase,

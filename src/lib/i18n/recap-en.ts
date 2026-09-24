@@ -263,23 +263,71 @@ export const GOTHAM_ERAS_EN: Record<number, { era: string; note: string; beats: 
     ],
   },
   6: {
-    era: "VII. The Coming Winter Storm (The Batman: Part II)",
-    note: "Following Oz's ascension, sub-zero winter temperatures grip Gotham as street protests and institutional backlash escalate.",
+    era: "VII. Winter Approaches & Part II Evidence",
+    note: "A forward-looking section that separates documented set activity and interviews from archive interpretation. Character roles and plot causality remain unconfirmed unless explicitly sourced.",
     beats: [
       {
-        when: "Winter 2026/2028",
-        title: "Sub-Zero Gotham & Snow Pursuit",
-        line: "Freezing conditions freeze canals and bridges; set footage in Glasgow captures police cruisers ambushing the Batmobile equipped with snow treads and heavy exterior wear.",
-        source: "Part II Set Leaks",
+        when: "Weeks After the Series Finale",
+        title: "Winter Dressing Across Post-Flood Gotham",
+        line: "Public Glasgow set material confirms artificial snow, seasonal dressing, and dense police/emergency-vehicle staging. Whether heating, transport, public safety, or reconstruction become explicit plot conflicts remains an archive inference from those visual clues.",
+        source: "Public set material · Glasgow winter shoot log",
       },
       {
-        when: "Winter 2026/2028",
-        title: "Courthouse Protests & Civilian Scrutiny",
-        line: "Bruce Wayne is filmed being escorted through angry picketing crowds outside London courts, pointing to civil unrest, legal fallout, or intense scrutiny on Wayne philanthropic resources.",
-        source: "Part II Set Leaks",
+        when: "Day Exterior",
+        title: "Alfred Performs CPR on Bruce in the Snow",
+        line: "The August 28 Glasgow Bridge shoot captured Alfred performing CPR on a prone Bruce while a blonde woman held a child nearby; another setup appeared to show Bruce with his hands restrained. These are exterior-production observations, not confirmed story context.",
+        source: "Set dispatch · Aug. 28, 2026 shoot log",
+      },
+      {
+        when: "Night Exterior",
+        title: "Batmobile Avoids a Truck on Snow-Covered Streets",
+        line: "The August 29 night shoot captured the Batmobile avoiding an oncoming truck and moving alongside police cars, with aerial footage showing a snow-dressed closed street. The narrative cause of the sequence has not been disclosed.",
+        source: "Set dispatch · Aug. 29, 2026 shoot log",
+      },
+      {
+        when: "Under Kingston Bridge",
+        title: "Damaged Batmobile & Stunt Rigging",
+        line: "The August 31 location displayed a heavily damaged Batmobile prop alongside rollover cable framing and a stunt sled, plus Gotham municipal signs and graffiti dressing.",
+        source: "Set dispatch · Aug. 31, 2026 shoot log",
+      },
+      {
+        when: "Night Exterior",
+        title: "GCPD Motorcycle Chase & Bloodied Batsuit",
+        line: "The September 4 Glasgow shoot captured the revised cowl and full suit while a stunt performer rode a GCPD motorcycle through vehicle stunts and an armed-police confrontation. The suit carried obvious stage blood and battle damage; final story context remains unknown.",
+        source: "Set dispatch · Sept. 4, 2026 shoot log",
+      },
+      {
+        when: "Part II Returning Cast",
+        title: "The Penguin Is Confirmed to Return",
+        line: "Colin Farrell is confirmed to return as Oz Cobb. The Penguin finale establishes Oz's new position in Gotham's underworld, but his exact function and screen time in Part II remain limited to what has been disclosed in interviews and the eventual film.",
+        source: "ScreenRant · Colin Farrell interview",
+      },
+      {
+        when: "New Cast",
+        title: "Multiple New Cast Members, Roles Undisclosed",
+        line: "Scarlett Johansson, Sebastian Stan, Charles Dance, Sebastian Koch, Brian Tyree Henry and others are confirmed to have joined the production; their roles remain undisclosed.",
+        source: "Variety · May 14, 2026 casting report",
+      },
+      {
+        when: "Sept. 11, 2026",
+        title: "Stan Discusses the Film's Feel and Long Shoot",
+        line: "Sebastian Stan used The Godfather Part II as an on-set comparison in Variety and described the movie as grounded and real. Asked about the remaining production period at TIFF, he said it would continue for 'a very long time' and called it 'a long winter.' His role remains undisclosed.",
+        source: "Variety / TIFF red-carpet interview",
+      },
+      {
+        when: "Day Exterior",
+        title: "London Protest Scene: Bruce Escorted Through Crowd",
+        line: "The September 13 St Paul's Cathedral shoot showed Pattinson's Bruce escorted by GCPD through protesters, with Gordon also present. Signs and costumes prompted Court of Owls and Anarky theories, but those character readings remain fan speculation.",
+        source: "IGN · Sept. 13, 2026 London set report",
+      },
+      {
+        when: "Feb. 18, 2028",
+        title: "Current North American Theatrical Date",
+        line: "The current North American theatrical date is February 18, 2028. If the studio changes the schedule, this archive follows the canonical FILM release fact.",
+        source: "Variety · July 16, 2026 release-date report",
       },
     ],
-  },
+  }
 };
 
 export const BOARD_EN = [

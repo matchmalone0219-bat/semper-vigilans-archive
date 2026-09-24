@@ -426,7 +426,7 @@ export const GOTHAM: GothamEra[] = [
         hash: "log-2026-09-13",
       },
       {
-        when: "2028.02.18",
+        when: FILM.releaseIso.slice(0, 10).replaceAll("-", "."),
         title: "现行北美院线档期",
         line: `影片现行北美档期为 ${FILM.releaseLabel}；后续若片方调整，以项目权威事实源中的最新档期为准。`,
         source: "Variety · 2026.07.16 档期报道",

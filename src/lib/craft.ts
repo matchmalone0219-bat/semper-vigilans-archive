@@ -90,7 +90,7 @@ export const THEMES: ThemeCue[] = [
     image: "/media/still-bruce.jpg",
     imageAlt: "布鲁斯·韦恩卸下头套后的落寞神情",
     when: "2020 年首支预告；序幕夜巡日记；终局洪水体育馆救援",
-    lede: "这首歌不是配上预告的情绪垫乐，而是里夫斯写第一幕时的工作曲。柯特·柯本（Kurt Cobain）由此变成帕丁森版布鲁斯的人物塑形：拒绝花花公子面具、把自己关在衰败庄园里的隐士。格斯·范·桑特的《最后的日子》（Last Days）只提供庄园意象，不是犯罪片叙事蓝本，所以不单列进艺术溯源。",
+    lede: "这首歌不是配上预告的情绪垫乐，而是里夫斯写第一幕时的工作曲。柯特·柯本（Kurt Cobain）由此变成帕丁森版布鲁斯的人物塑形参照：拒绝花花公子面具、把自己关在衰败庄园里的隐士。格斯·范·桑特的《最后的日子》（Last Days）又为这层“摇滚明星式隐居”补上了视觉意象。",
     quote:
       "When I write, I listen to music, and as I was writing the first act, I put on Nirvana's 'Something In The Way.' That's when it came to me that, rather than make Bruce Wayne the playboy version we've seen before, there's another version who had gone through a great tragedy and become a recluse.",
     quoteZh:
@@ -107,7 +107,7 @@ export const THEMES: ThemeCue[] = [
       },
       {
         heading: "全片情绪的首尾呼应",
-        body: "开场是雨夜车窗与日记体独白，结尾是体育馆里的照明弹。歌没有变，人变了。这条线写在布鲁斯的人物档案里，配乐条目只负责把原话和出场位置钉死。",
+        body: "开场是雨夜车窗与日记体独白，结尾是体育馆里的照明弹。歌没有变，人变了：同一首《Something in the Way》从孤绝的夜巡者一路陪到主动走向人群的布鲁斯。",
       },
     ],
   },
@@ -286,7 +286,7 @@ export const LENS = {
     },
     {
       heading: "开拍前 Instagram 勘景四连",
-      body: "2026 年 2 月 27 日至 5 月 21 日，梅塞施密特在 @emesserschmidt 先后发布 northwest、LEDs、spring、mist 四张取景地勘景照，均早于马特·里夫斯 6 月 12 日的 #FirstShot。northwest 被影迷比对为兰康（Runcorn）一带，同年 7 月剧组确在兰康桥拍摄；LEDs、mist 的评论区分别出现过「Wayne tower」「Wayne Manor」的猜测，官方均未确认。这四张是目前能公开核验的续集外景光影样本，不是第一部剧照。",
+      body: "2026 年 2 月 27 日至 5 月 21 日，梅塞施密特在 @emesserschmidt 先后发布 northwest、LEDs、spring、mist 四张取景地勘景照，均早于马特·里夫斯 6 月 12 日的 #FirstShot。northwest 被影迷比对为兰康（Runcorn）一带，同年 7 月剧组确在兰康桥拍摄；LEDs、mist 的评论区分别出现过「Wayne tower」「Wayne Manor」的猜测。这四张照片随后成了观察续集外景光影方向的最早窗口。",
     },
     {
       heading: "冬日风雪下的全新光影挑战",
@@ -297,8 +297,8 @@ export const LENS = {
       body: "2026 年 9 月 19 日蝙蝠侠日，有从业者询问第一部的 film-out 流程（数字拍摄后再转录至胶片冲印输出）是否在续集回归。里夫斯先以「Indeed.」予以证实，随后详述其影像哲学：数字摄影所带来的极致精度与对画面的绝对掌控力不可替代，「你确切知晓自己拍到了什么」；而后续结合 film-out 胶片转印与特定的镜头畸变，能把更有机、模拟的真实质感融回画面，呈现「一种美丽而精心淬炼出的不完美之美」。",
     },
     {
-      heading: "球形镜头？仅是评论区观察",
-      body: "勘景照评论区有影迷写道，续集若改用球形镜头（spherical），会与第一部及《企鹅人》的变形宽银幕（anamorphic）形成对照。这是观众推测，官方尚未公布《新蝙蝠侠2》的光学方案。",
+      heading: "球形镜头的猜想",
+      body: "勘景照评论区出现过一种有趣猜想：续集若改用球形镜头（spherical），会与第一部及《企鹅人》的变形宽银幕（anamorphic）形成鲜明对照。",
     },
   ] satisfies LensNote[],
 };

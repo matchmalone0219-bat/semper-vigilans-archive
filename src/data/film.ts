@@ -242,7 +242,7 @@ export const PLOT: PlotItem[] = [
     sourceUrl: "https://x.com/CultureCrave/status/2003247876776853739",
     sourceTier: "press",
     debunkedNote:
-      "古恩在 Threads 亲自辟谣：“这些谣言到底从何而来？剧本自始至终都是原版那一份。”他明确否认因泥脸角色改写或干预里夫斯的剧本创作，但该回应仅针对干涉剧本的不实传言，官方并未对泥脸是否在片中出场做出实质定性。",
+      "古恩在 Threads 亲自辟谣：“这些谣言到底从何而来？剧本自始至终都是原版那一份。”他明确否认因泥脸角色改写或干预里夫斯剧本的说法。",
     debunkedSource: "James Gunn · Threads",
     debunkedSourceUrl: "https://www.threads.com/@jamesgunn/post/DSlSiTKEUFt/",
     debunkedSourceTier: "official",

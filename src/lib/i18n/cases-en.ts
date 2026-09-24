@@ -1,5 +1,5 @@
 export const CASES_INTRO_EN =
-  "A forensic review of the five landmark homicides and terror strikes from the inaugural case, cataloging crime scene evidence, murder weapons, cryptographic recordings, and the seawall breach. Includes the complete screenplay text of Bruce Wayne's Year Two 'Gotham Project' nocturnal journal and an in-depth breakdown of the 5-minute deleted Arkham interrogation.";
+  "A forensic review of the five landmark homicides and terror strikes from the inaugural case, cataloging crime scene evidence, murder weapons, cryptographic recordings, and the seawall breach. Includes the two authenticated Bruce Wayne journal voiceovers heard at the film's opening and conclusion, plus an in-depth breakdown of the 5-minute deleted Arkham interrogation.";
 
 export interface CaseFileEn {
   title: string;

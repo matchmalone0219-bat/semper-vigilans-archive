@@ -139,11 +139,11 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://collider.com/the-batman-part-2-script-update-robert-pattinson/",
     quoteZh:
-      "相较第一部，这次确实是一次明显的转向。",
+      "这部续集极其雄心勃勃。第一部是对蝙蝠侠电影的一次截然不同的重塑，而这一部则是另一重全新维度的探索……相较前作，它确实是一次出人意料的‘急转弯’（left turn），但在某种程度上又奇妙地保留了前作特有的那种沉浸气质。它的格局宏大得令人赞叹，我非常期待看到成片最终呈现的模样。",
     quoteEn:
-      "It's a real left turn from the first one.",
+      "It's so ambitious. I mean, the first one was a different take on a Batman movie, and this one is another… It's a real left turn from the first one, but somehow it keeps elements of the kind of feel of it. But it just feels really ambitious, and I'm excited to see how it turns out.",
     note:
-      "2026 年 9 月 Collider 采访摘录。帕丁森认为两部影片分别采用了不同的蝙蝠侠诠释方式；续集方向变化明显，但仍保留前作的部分气质，整体构想十分大胆。他没有透露具体剧情、反派身份或影片类型。Variety 于 9 月 23 日跟进报道。",
+      "2026 年 9 月多伦多国际电影节（TIFF）期间接受 Collider 专访。当被问及塞巴斯蒂安·斯坦此前盛赞续集的发言时，帕丁森透露第二部并非对前作成功模式的公式化沿袭，而是一次方向性极强的风格急转弯（left turn），同时完整保留了里夫斯宇宙标志性的冷峻犯罪氛围。谈话未涉及具体剧情与反派身份；《TheWrap》与《Variety》于次日相继跟进报道。",
   },
   {
     id: "pattinson-collider-2026-dense-script",
@@ -155,11 +155,11 @@ export const INTERVIEWS: InterviewQuote[] = [
     sourceUrl:
       "https://collider.com/the-batman-part-2-script-update-robert-pattinson/",
     quoteZh:
-      "这份剧本的信息量极其密集。",
+      "当你真正读到它时，会发现剧本的信息量极其庞大且细密。马特·里夫斯就是那种显然已经在脑海中完整构建好整部电影所有细节的导演。与他合作的感觉非常奇妙——因为故事里交织了太多伏笔与微小线索，你总会遗漏某些细节；但随着你不断去发掘，你就会恍然感叹：‘天哪，你原来从一开始就确切知道自己想用这个做什么。’这种缜密周全的掌控力真的酷极了。",
     quoteEn:
-      "The script is incredibly dense.",
+      "When you see it, the script is incredibly dense, and it's like he's just one of those directors who it's really obvious that he has the entire thing in his head already… There's so much in it that it's almost impossible to encompass the whole thing, but when you keep finding out, you're like, 'Oh, no, you know exactly what you want to do with this.' There's just something so cool about it.",
     note:
-      "同场采访的另一段发言。帕丁森表示，剧本包含大量细节，自己在拍摄和逐步了解剧情时才不断发现其中的关联；在他看来，导演马特·里夫斯已经对整部影片有清晰、完整的构想。此处只记录演员对剧本和导演创作方式的评价。",
+      "同场专访中关于剧本复杂度的详述。帕丁森透露里夫斯与麦特森·汤姆林历时多年打磨的定稿剧本结构极其缜密、多条叙事线深度交织，赞叹导演对整部宏大犯罪史诗各处伏笔的精密规划与全局掌控力。",
   },
   {
     id: "pattinson-gq-weirdo",

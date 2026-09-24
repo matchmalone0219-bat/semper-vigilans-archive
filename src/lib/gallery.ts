@@ -324,14 +324,14 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-13-signs.jpg",
         title: "Court of Fowls 抗议标语",
         caption:
-          "抗议纸板上写有 Court of Fowls 字样。影迷据此推测猫头鹰法庭可能入局，官方未确认任何反派身份。",
+          "抗议纸板上写有 Court of Fowls 字样，很快引发了猫头鹰法庭可能入局的影迷猜想。",
         source: "片场路透 · robymav_ / DCU Argentina",
       },
       {
         src: "/media/log/p2-13-oligarchs.jpg",
         title: "Court of Oligarchs 标语",
         caption:
-          "同场另一块纸板写有 Court of Oligarchs。与 Court of Fowls 一样，目前只能视为抗议道具，不能当作官方确认。",
+          "同场另一块纸板写有 Court of Oligarchs，与 Court of Fowls 一起强化了这场抗议戏的寡头政治意象。",
         source: "片场路透 · At Horse Guards",
       },
       {
@@ -359,7 +359,7 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-16-load.jpg",
         title: "GCPD 押上厢式车",
         caption:
-          "格拉斯哥博思韦尔街日戏补充视角：两名身着 GCPD 深色战术警服的警员押解一名未公开身份的目标人员进入特警押运车后厢，街道覆满人造积雪。",
+          "格拉斯哥博思韦尔街日戏补充视角：两名身着 GCPD 深色战术警服的警员押解一名无法辨认面目的人员进入特警押运车后厢，街道覆满人造积雪。",
         source: "片场路透 · cp_allan / The Batman Saga News",
       },
       {
@@ -465,14 +465,14 @@ export const GALLERIES: GalleryGroup[] = [
       {
         src: "/media/log/p2-28-boat1.jpg",
         title: "克莱德河上的游艇",
-        caption: "大桥拍摄现场克莱德河面上停泊着一艘悬挂旗帜的游艇，外界推测可能与新登场势力或神秘角色相关，官方尚未公布细节。",
+        caption: "大桥拍摄现场克莱德河面上停泊着一艘悬挂旗帜的游艇，也让新登场势力与神秘角色的猜想继续升温。",
         source: "片场路透 · hoeBread36",
       },
       {
         src: "/media/log/p2-27-front.jpg",
         title: "驾驶席与金发副驾",
         caption:
-          "圣文森特街夜戏高清近景：挡风玻璃后可见清晰的蝙蝠头套轮廓与副驾驶座金发女性，外界普遍推测为帕丁森与约翰逊（或二人特技替身），目前官方尚未公布角色身份。",
+          "圣文森特街夜戏高清近景：挡风玻璃后可见清晰的蝙蝠头套轮廓与副驾驶座金发女性，帕丁森、约翰逊及二人特技替身的身份猜测由此升温。",
         source: "片场路透 · hoeBread36",
       },
 
@@ -533,7 +533,7 @@ export const GALLERIES: GalleryGroup[] = [
         src: "/media/log/p2-24-blonde.jpg",
         title: "副驾驶神秘金发乘客",
         caption:
-          "片场路透捕捉到战车副驾驶坐有一名金发女性，具体身份尚未公开，引发外界对新加盟演员角色的猜想。",
+          "片场路透捕捉到战车副驾驶坐有一名金发女性，这一细节随即引发了对新加盟演员角色的猜想。",
         source: "片场路透 · sydd.91",
       },
       {

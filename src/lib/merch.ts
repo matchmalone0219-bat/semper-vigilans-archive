@@ -180,7 +180,7 @@ export const MERCH: MerchGroup[] = [
         spec: "1/12 比例 · 编号 DC007 · 预订，预计 2026 年第四季出货",
         image: "/media/merch/lpzz.jpg",
         imageAlt: "良品制造 1/12 电影版蝙蝠侠可动人偶，露脸头雕与战术配件",
-        body: "良品制造（U-P-Finegures，亦称 LPZZ）1/12 比例电影造型。露脸布鲁斯头雕、空头套、十二只手型。配件含三款蝙蝠镖、撬具、手铐、手持电脑、抓钩枪两把、抓钩、肾上腺素、手电筒、紫外灯、信号棒与黏弹枪，另附支架与地台。战衣按第一部多层战术甲还原。图为开发样板，成品以出货为准。",
+        body: "良品制造（U-P-Finegures，亦称 LPZZ）1/12 比例电影造型。露脸布鲁斯头雕、空头套、十二只手型。配件含三款蝙蝠镖、撬具、手铐、手持电脑、抓钩枪两把、抓钩、肾上腺素、手电筒、紫外灯、信号棒与黏弹枪，另附支架与地台。战衣按第一部多层战术甲还原。图为开发样板。",
         sourceUrl: "https://onesixthoutfitters.com/lpzz-dc007-1-12-scale-the-batman-2022-batman-figure/",
         sourceLabel: "经销商产品页",
         verifiedAt: "2026.09.08",

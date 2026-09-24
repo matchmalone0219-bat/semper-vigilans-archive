@@ -89,7 +89,7 @@ test("final puzzle reveals seizure page; files remain accessible; restart resets
 
   const seizureScreenshot = page.getByRole("img", { name: /原 Rataalada.com 查封页面截图/ });
   await seizureScreenshot.waitFor({ state: "visible", timeout: 30000 });
-  assert.match(await seizureScreenshot.getAttribute("src"), /QyWTKWXcDzbw9gLzWysyp4\.jpg$/);
+  assert.match(await seizureScreenshot.getAttribute("src"), /gcpd-seized\.jpg$/);
   assert.equal(await page.locator('img[src$="gcpd-seal.svg"]').count(), 0);
   await page.getByRole("button", { name: "查看已解锁档案" }).click();
   await page.getByRole("button", { name: /已解锁文件/ }).waitFor({ state: "visible" });

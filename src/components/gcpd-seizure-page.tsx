@@ -4,8 +4,7 @@ import { Link } from "@tanstack/react-router";
 // Contemporary screenshot of the original 2022 Rataalada GCPD seizure notice.
 // Source: https://www.gamesradar.com/the-batman-rataalada-website-GCPD/
 // Image credited to Warner Bros. on the source page.
-const ORIGINAL_SEIZURE_SCREENSHOT =
-  "https://cdn.mos.cms.futurecdn.net/QyWTKWXcDzbw9gLzWysyp4.jpg";
+const ORIGINAL_SEIZURE_SCREENSHOT = "/media/gcpd-seized.jpg";
 
 export function GcpdSeizurePage({
   isEn,

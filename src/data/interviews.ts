@@ -130,6 +130,22 @@ export type InterviewQuote = {
 
 export const INTERVIEWS: InterviewQuote[] = [
   {
+    id: "pattinson-ladbible-2026-tone",
+    speakerId: "pattinson",
+    work: "part2",
+    date: "2026.09.24",
+    iso: "2026-09-24",
+    outlet: "LADbible",
+    sourceUrl:
+      "https://www.ladbible.com/entertainment/robert-pattinson-batman-james-gunn-dcu-crossover-062837-20260924",
+    quoteZh:
+      "让这版布鲁斯离开那个世界会有点难。拍摄周期很长，调性又非常具体，那种调子会钻进你身体里。……（被问到如果和吉米·奥尔森这类DCU角色同框会怎样）那我就把别的角色也变得更严肃。（笑）其实挺逗的，因为哥谭就是沃特福德，沃特福德的一个棚子。整整八个月都在黑暗里，那种状态真的很让人失衡，你几乎完全失去了和现实世界的连接。",
+    quoteEn:
+      "I think it would be kind of tough to have this version of Bruce outside of that world. The shoot is so long, and the tone is so specific, it kind of gets inside you. … [On being in the DCU with Jimmy Olsen] I'd just make the other characters more serious. [Laughs] It's so funny, because Gotham is Watford. It's a shed in Watford. There's something so destabilising about when you're just, you're in the dark the whole time. I mean just for eight months in the dark and you literally have no conception of being connected to anything in the world.",
+    note:
+      "2026 年 9 月 24 日宣传新片《Primetime》期间，帕丁森与饰演DCU吉米·奥尔森的搭档接受 LADbible 专访。帕丁森以自嘲语气谈及这版蝙蝠侠强烈的调性烙印与利维斯登影棚长达数月的黑暗拍摄体验，并玩笑回应与其他调性角色互动的假想。",
+  },
+  {
     id: "pattinson-collider-2026-left-turn",
     speakerId: "pattinson",
     work: "part2",

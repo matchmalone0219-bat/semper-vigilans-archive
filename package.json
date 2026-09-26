@@ -11,6 +11,7 @@
     "build": "vite build && npm run db:migrate",
     "build:sites": "vite build --mode sites && node scripts/prepare-sites.mjs",
     "build:github-pages": "vite build --mode github-pages && node scripts/prepare-github-pages.mjs",
+    "build:edgeone": "vite build --mode edgeone && node scripts/prepare-edgeone.mjs",
     "db:migrate": "node scripts/migrate.mjs",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",

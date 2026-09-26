@@ -27,32 +27,32 @@ const routeMeta = {
   places: ["哥谭地点", "查看哥谭关键地点与相关人物、作品档案。"],
 };
 
-function htmlForRoute(html, route) {
+function htmlForRoute(html, route, base = publicBase) {
   const section = route.split("/")[0];
   const [label, description] = routeMeta[section] ?? [
     "影迷档案",
     "《新蝙蝠侠2》非官方中文影迷档案库。",
   ];
   const title = `${label} · Semper Vigilans`;
-  const url = `${publicBase}${route}/`;
+  const url = `${base}${route}/`;
 
   return html
     .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
     .replace(
-      /<meta name="description" content="[^"]*"\s*\/?>/,
+      /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
       `<meta name="description" content="${description}" />`,
     )
     .replace(/<link rel="canonical" href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${url}" />`)
     .replace(
-      /<meta property="og:title" content="[^"]*"\s*\/?>/,
+      /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/,
       `<meta property="og:title" content="${title}" />`,
     )
     .replace(
-      /<meta property="og:description" content="[^"]*"\s*\/?>/,
+      /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/,
       `<meta property="og:description" content="${description}" />`,
     )
     .replace(
-      /<meta property="og:url" content="[^"]*"\s*\/?>/,
+      /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/,
       `<meta property="og:url" content="${url}" />`,
     );
 }
@@ -112,14 +112,14 @@ function escapeXml(value) {
   });
 }
 
-export function pageUrl(route = "") {
-  return route ? `${publicBase}${route}/` : publicBase;
+export function pageUrl(route = "", base = publicBase) {
+  return route ? `${base}${route}/` : base;
 }
 
-export function sitemapUrls(routes) {
+export function sitemapUrls(routes, base = publicBase) {
   return [
-    pageUrl(),
-    ...[...new Set(routes)].filter((route) => !SITEMAP_SKIP.has(route)).map((route) => pageUrl(route)),
+    pageUrl("", base),
+    ...[...new Set(routes)].filter((route) => !SITEMAP_SKIP.has(route)).map((route) => pageUrl(route, base)),
   ];
 }
 
@@ -135,7 +135,7 @@ export function buildRobots(sitemapUrl = `${publicBase}sitemap.xml`) {
   return `User-agent: *\nAllow: /\n\nSitemap: ${sitemapUrl}\n`;
 }
 
-export async function prepareGithubPages() {
+export async function prepareStaticPages(base = publicBase) {
   if (!existsSync(indexFile) && existsSync(spaIndexFile)) {
     await copyFile(spaIndexFile, indexFile);
   }
@@ -147,19 +147,23 @@ export async function prepareGithubPages() {
     routes.map(async (route) => {
       const routeDir = path.join(distDir, route);
       await mkdir(routeDir, { recursive: true });
-      await writeFile(path.join(routeDir, "index.html"), htmlForRoute(indexHtml, route), "utf8");
+      await writeFile(path.join(routeDir, "index.html"), htmlForRoute(indexHtml, route, base), "utf8");
     }),
   );
 
   // Keep the SPA fallback for unknown links while known routes receive HTTP 200.
   await copyFile(indexFile, path.join(distDir, "404.html"));
 
-  const urls = sitemapUrls(routes);
+  const urls = sitemapUrls(routes, base);
   await writeFile(path.join(distDir, "sitemap.xml"), buildSitemap(urls), "utf8");
-  await writeFile(path.join(distDir, "robots.txt"), buildRobots(), "utf8");
+  await writeFile(path.join(distDir, "robots.txt"), buildRobots(`${base}sitemap.xml`), "utf8");
 
-  console.log(`Prepared ${routes.length} GitHub Pages routes and sitemap (${urls.length} URLs).`);
+  console.log(`Prepared ${routes.length} static routes and sitemap (${urls.length} URLs).`);
   return { routes, urls };
+}
+
+export function prepareGithubPages() {
+  return prepareStaticPages();
 }
 
 const isDirectRun = process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href;

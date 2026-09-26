@@ -1,5 +1,5 @@
 import type { Plugin } from "vite";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import viteReact from "@vitejs/plugin-react";
@@ -137,12 +137,28 @@ function githubPagesMediaPlugin(): Plugin {
   };
 }
 
+function edgeOneHtmlPlugin(publicUrl: string): Plugin {
+  return {
+    name: "edgeone-public-url",
+    transformIndexHtml(html) {
+      return html
+        .replaceAll("https://matchmalone0219-bat.github.io/semper-vigilans-archive/", publicUrl)
+        .replaceAll("/semper-vigilans-archive/favicon.svg", "/favicon.svg");
+    },
+  };
+}
+
 // `0.0.0.0:8080` is the live-preview contract — don't change host/port.
 // The dev server starts once `src/router.tsx` and `src/routes/` exist — see
 // AGENTS.md § "First scaffold".
 export default defineConfig(({ command, isPreview, mode }) => {
   const sitesBuild = mode === "sites";
   const githubPagesBuild = mode === "github-pages";
+  const edgeOneBuild = mode === "edgeone";
+  const staticBuild = githubPagesBuild || edgeOneBuild;
+  const publicUrl = (
+    loadEnv(mode, process.cwd(), "VITE_").VITE_PUBLIC_URL || "https://archive.batcavecn.com/"
+  ).replace(/\/?$/, "/");
 
   return {
     base: githubPagesBuild ? "/semper-vigilans-archive/" : "/",
@@ -162,13 +178,14 @@ export default defineConfig(({ command, isPreview, mode }) => {
       // Before tanstackStart so /auth/popup never falls through to the SPA.
       authPopupPlugin(),
       // Grok preview-only PWA assets are unavailable on GitHub Pages.
-      ...(!githubPagesBuild ? [grokPwaPlugin()] : []),
+      ...(!staticBuild ? [grokPwaPlugin()] : []),
       tailwindcss(),
-      ...(githubPagesBuild
+      ...(staticBuild
         ? [tanstackRouter({ target: "react", autoCodeSplitting: true })]
         : [tanstackStart()]),
       ...(githubPagesBuild ? [githubPagesMediaPlugin()] : []),
-      ...(!githubPagesBuild && (command === "build" || isPreview)
+      ...(edgeOneBuild ? [edgeOneHtmlPlugin(publicUrl)] : []),
+      ...(!staticBuild && (command === "build" || isPreview)
         ? [
             nitro({
               preset: sitesBuild ? "cloudflare_module" : "vercel",

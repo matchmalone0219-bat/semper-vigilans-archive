@@ -10,8 +10,10 @@ import appCss from "../styles.css?url";
 
 const APP_NAME = "Semper Vigilans";
 const BASE_URL = import.meta.env.BASE_URL;
-const IS_GITHUB_PAGES = import.meta.env.MODE === "github-pages";
-const PUBLIC_URL = "https://matchmalone0219-bat.github.io/semper-vigilans-archive/";
+const IS_STATIC_BUILD = import.meta.env.MODE === "github-pages" || import.meta.env.MODE === "edgeone";
+const PUBLIC_URL = import.meta.env.MODE === "edgeone"
+  ? (import.meta.env.VITE_PUBLIC_URL || "https://archive.batcavecn.com/").replace(/\/?$/, "/")
+  : "https://matchmalone0219-bat.github.io/semper-vigilans-archive/";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -44,7 +46,7 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700;900&display=swap",
       },
       { rel: "stylesheet", href: appCss },
-      ...(!IS_GITHUB_PAGES
+      ...(!IS_STATIC_BUILD
         ? [
             { rel: "manifest", href: "/__grok/manifest.webmanifest" },
             { rel: "apple-touch-icon", href: "/__grok/icon-180.png" },

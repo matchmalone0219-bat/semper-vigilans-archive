@@ -9,6 +9,8 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 import { LanguageToggle } from "@/components/language-toggle";
 import { useI18n, type TranslationDictionary } from "@/lib/i18n";
 
+const BATCAVECN_URL = "https://www.batcavecn.com/";
+
 interface NavChild {
   to: string;
   hash?: string;
@@ -231,6 +233,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             ))}
           </nav>
           <div className="relative z-[91] flex shrink-0 items-center gap-1.5 md:ml-4">
+            <a
+              href={BATCAVECN_URL}
+              className="hidden items-center px-2 py-2 font-display text-[10px] font-semibold tracking-[0.18em] text-faint uppercase transition-colors hover:text-fg xl:inline-flex"
+            >
+              BATCAVECN ↗
+            </a>
             <SiteSearchButton />
             <LanguageToggle />
             <button
@@ -255,6 +263,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         <div className="fixed inset-0 z-30 overflow-y-auto bg-surface pt-16 md:hidden">
           <div className="border-b border-fg/10 p-4">
             <LanguageToggle variant="full" />
+            <a
+              href={BATCAVECN_URL}
+              className="mt-3 inline-flex font-display text-xs font-semibold tracking-[0.16em] text-blood uppercase"
+            >
+              {locale === "zh" ? "← 返回 Batman小站" : "← Back to BatcaveCN"}
+            </a>
           </div>
           <nav className="flex flex-col gap-1 px-6 py-6">
             {navItems.map((item) => (
@@ -301,6 +315,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             <p className="mt-1">
               {t.footer.siteDesc}
             </p>
+            <a
+              href={BATCAVECN_URL}
+              className="mt-3 inline-flex font-display text-xs font-semibold tracking-[0.14em] text-blood uppercase transition-colors hover:text-fg"
+            >
+              {locale === "zh" ? "← 返回 Batman小站" : "← Back to BatcaveCN"}
+            </a>
             <p className="mt-4 max-w-md text-pretty text-xs leading-relaxed text-faint">
               {t.footer.disclaimer}
             </p>

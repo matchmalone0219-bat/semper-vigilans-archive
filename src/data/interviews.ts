@@ -599,34 +599,6 @@ export const INTERVIEWS: InterviewQuote[] = [
       "同场谈话中，帕丁森用「radical」形容剧本变化与对蝙蝠侠故事的重新讲述，并提到华纳与 DC 对该方向的支持。",
   },
   {
-    id: "pattinson-collider-left-turn",
-    speakerId: "pattinson",
-    work: "part2",
-    date: "2026.09",
-    iso: "2026-09-22",
-    outlet: "Collider",
-    sourceUrl: "https://collider.com/the-batman-part-2-script-update-robert-pattinson/",
-    quoteZh:
-      "它野心很大。我前几天也说过：第一部已经是另一种蝙蝠侠电影，这一部又是另一种。相对第一部，这是一次真正的左转弯，但还留着原来那种感觉。它显得非常有野心，我很想看最后会做成什么样。",
-    quoteEn:
-      "It's so ambitious. I mean, I sort of said the other day on something that the first one was a different take on a Batman movie, and this one is another… It's a real left turn from the first one, but somehow it keeps elements of the kind of feel of it. But it just feels really ambitious, and I'm excited to see how it turns out.",
-    note: "2026 年 9 月 22 日 Collider 记者 Steve Weintraub 在《Primetime》宣传期专访。帕丁森没有点名反派或场次，只把续集说成相对第一部的左转弯，同时保留原有质感。",
-  },
-  {
-    id: "pattinson-collider-dense-script",
-    speakerId: "pattinson",
-    work: "part2",
-    date: "2026.09",
-    iso: "2026-09-22",
-    outlet: "Collider",
-    sourceUrl: "https://collider.com/the-batman-part-2-script-update-robert-pattinson/",
-    quoteZh:
-      "你一看剧本就会发现它密得厉害。他是那种你能明显感觉到整部片子已经在脑子里的导演。跟这样的人工作会有点不寻常，因为你会不断忘掉一些细枝末节。里面的东西多到几乎没法一次装下，但每次再发现一点，你都会觉得：不，这件事你早就知道该怎么做。这很酷。",
-    quoteEn:
-      "When you see it, the script is incredibly dense, and it's like he's just one of those directors who it's really obvious that he has the entire thing in his head already, and so it's unusual to be working with someone when you keep forgetting with little elements. There's so much in it that it's almost impossible to encompass the whole thing, but when you keep finding out, you're like, 'Oh, no, you know exactly what you want to do with this.' There's just something so cool about it.",
-    note: "同篇专访。说的是剧本密度和里夫斯的准备程度，不是新的剧情披露。",
-  },
-  {
     id: "stan-variety-godfather",
     speakerId: "stan",
     work: "part2",

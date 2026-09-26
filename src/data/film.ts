@@ -1236,6 +1236,7 @@ export const LOG: LogEntry[] = [
     sourceTier: "press",
     verifiedAt: "2026.09.26",
     href: "/interviews",
+    hash: "pattinson-collider-2026-left-turn",
   },
   {
     date: "2028.02.18",

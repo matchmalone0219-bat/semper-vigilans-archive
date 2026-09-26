@@ -85,7 +85,7 @@ export const zh: TranslationDictionary = {
     learnMore: "了解更多",
   },
   home: {
-    heroKicker: "BATCAVECN SPECIAL ARCHIVE · PART II",
+    heroKicker: "BATCAVECN SPECIAL ARCHIVE · THE BATMAN PART II",
     archiveTitle: "Batman小站 ·《新蝙蝠侠2》专题档案",
     movieTitleEn: "The Batman: Part II",
     movieTitleZh: "新蝙蝠侠2",

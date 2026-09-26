@@ -6,7 +6,7 @@
 
 核心文案与史料准则：
 
-0. **站点品牌身份**：Semper Vigilans 为 Batman小站（BatcaveCN）旗下《新蝙蝠侠2》专题档案。首页品牌层级固定为 `BATCAVECN SPECIAL ARCHIVE · PART II` → `Semper Vigilans` → `Batman小站 ·《新蝙蝠侠2》专题档案`；页脚站点描述使用 `Batman小站《新蝙蝠侠2》专题档案 · Semper Vigilans`。不得重新将主身份写成独立“非官方中文档案库”；与 Warner Bros. / DC Studios 无官方隶属关系的声明继续保留在页脚。
+0. **站点品牌身份**：Semper Vigilans 为 Batman小站（BatcaveCN）旗下《新蝙蝠侠2》专题档案。首页品牌层级固定为 `BATCAVECN SPECIAL ARCHIVE · THE BATMAN PART II` → `Semper Vigilans` → `Batman小站 ·《新蝙蝠侠2》专题档案`；页脚站点描述使用 `Batman小站《新蝙蝠侠2》专题档案 · Semper Vigilans`。不得重新将主身份写成独立“非官方中文档案库”；与 Warner Bros. / DC Studios 无官方隶属关系的声明继续保留在页脚。
 1. **直接引语客观直译**：`quoteZh` 严禁过度文学化润色与拔高；拿不到可逐字核对的原文时降级为“发言摘要”，不得继续使用直接引语样式。
 2. **访谈分析与原话分层**：访谈及一手发言中的二级解读、风格推断与背景补充放入独立 `note` 字段；前台通过结构与版式区分，不添加 `【本站整理】`、`[ARCHIVE CURATOR NOTE]`、“经核对”等自证式前缀。
 3. **史料原版与扩展彻底解耦**：`historical` 判断素材本身是否为真实历史原物，不等同于 `sourceTier=official`；本站新建复原内容默认 `extended`，只有核对历史原物后才能显式升级为 `historical`。

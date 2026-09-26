@@ -85,7 +85,7 @@ export const en: TranslationDictionary = {
     learnMore: "Learn More",
   },
   home: {
-    heroKicker: "BATCAVECN SPECIAL ARCHIVE · PART II",
+    heroKicker: "BATCAVECN SPECIAL ARCHIVE · THE BATMAN PART II",
     archiveTitle: "BatcaveCN · The Batman: Part II Special Archive",
     movieTitleEn: "The Batman: Part II",
     movieTitleZh: "The Batman: Part II",

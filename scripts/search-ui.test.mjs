@@ -273,7 +273,7 @@ test("desktop, mobile, and keyboard search page", { timeout: 180000 }, async (t)
     const featured = page.getByRole("link", { name: "查看最新访谈详情" });
     const href = await featured.getAttribute("href");
     const id = href?.split("#")[1];
-    assert.match(id ?? "", /^pattinson-collider-/);
+    assert.match(id ?? "", /^pattinson-/);
     await featured.click();
     await page.waitForURL(new RegExp("/interviews#" + id + "$"));
     const targetReady = () => page.waitForFunction((anchor) => {

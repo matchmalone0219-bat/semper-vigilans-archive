@@ -31,7 +31,7 @@ export function HashTarget() {
       completed = true;
       observer.disconnect();
       document.removeEventListener("transitionend", schedule, true);
-      target.scrollIntoView({ block: "center", behavior: "auto" });
+      target.scrollIntoView({ block: "start", behavior: "auto" });
       target.classList.add("ring-2", "ring-blood");
       highlighted = target;
       clearHighlight = setTimeout(() => target.classList.remove("ring-2", "ring-blood"), 2500);

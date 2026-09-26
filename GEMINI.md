@@ -12,7 +12,7 @@ This repository is a strict, evidence-based canonical archive for *The Batman* u
 
 ## 3. Provenance Architecture: Decouple Official from Extended (史料与扩展严格解耦)
 - `historical`: Reserved STRICTLY for 100% authentic, historical artifacts officially released by Warner Bros. / DC in the 2021–2022 viral campaign (e.g., GCPD suspect sketches `SKETCH.IMG`, official cipher sheets `CIPHER.TXT`, `GOODBYE.TXT`).
-- `extended`: Content curated by this fan archive for continuous web gameplay (e.g., movie stills, transitional riddles, fan tributes `TRIBUTE.TXT`). Must be labeled with `Archive Adaptation / 本站剧照适配` or `Archive Fan Tribute / 本站致敬扩展`.
+- `extended`: Content curated by this fan archive for continuous web gameplay (e.g., movie stills, transitional riddles, fan tributes `TRIBUTE.TXT`). Must be labeled with `Archive Adaptation / 专题剧照适配` or `Archive Fan Tribute / 专题致敬扩展`.
 - Data separation: Official historical texts and fan easter eggs must NEVER be merged into a single object or file. Keep them as distinct items.
 
 ## 4. Release Date & Fact Consistency (档期与事实强一致性)

@@ -31,7 +31,7 @@ function htmlForRoute(html, route, base = publicBase) {
   const section = route.split("/")[0];
   const [label, description] = routeMeta[section] ?? [
     "影迷档案",
-    "《新蝙蝠侠2》非官方中文影迷档案库。",
+    "Batman小站旗下《新蝙蝠侠2》专题档案。",
   ];
   const title = `${label} · Semper Vigilans`;
   const url = `${base}${route}/`;

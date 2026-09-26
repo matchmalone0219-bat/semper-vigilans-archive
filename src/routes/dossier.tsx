@@ -78,7 +78,7 @@ function Dossier() {
           </p>
           <p className="mt-4 max-w-xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
             {locale === "zh"
-              ? "追踪影片最新动态：汇总官方公告、媒体报道与公开片场路透。包含现场解析与剧情背景整理，提供全方位的电影资料参考。"
+              ? "汇总官方通告、行业权威报道与英伦三岛片场实录，结合分镜机位解析与世界观脉络，系统追踪续集制作进程。"
               : "Live production surveillance: tracking press disclosures, director dispatches, and on-location reports across the UK."}
           </p>
         </div>

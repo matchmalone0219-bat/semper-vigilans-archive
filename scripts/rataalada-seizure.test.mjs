@@ -112,7 +112,7 @@ test("final puzzle reveals seizure page; files remain accessible; restart resets
   assert.equal(stored.seizure, true);
 
   // Leaving the GCPD ending must keep solved puzzles; only restart clears progress.
-  await page.getByRole("link", { name: "返回档案站" }).click();
+  await page.getByRole("link", { name: /返回 Semper Vigilans|Return to Semper Vigilans/ }).click();
   await page.waitForURL((url) => url.pathname === "/");
   assert.deepEqual(
     await page.evaluate((key) => JSON.parse(localStorage.getItem(key)), STORAGE_KEY),

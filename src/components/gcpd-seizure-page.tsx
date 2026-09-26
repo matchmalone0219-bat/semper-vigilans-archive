@@ -50,7 +50,7 @@ export function GcpdSeizurePage({
             to="/"
             className="inline-flex items-center justify-center border border-white/25 bg-white/5 px-4 py-2.5 font-mono text-[10px] tracking-[0.14em] text-white/75 uppercase transition-colors hover:border-white/55 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-xs"
           >
-            {isEn ? "Return to Semper Vigilans" : "返回档案站"}
+            {isEn ? "Return to Semper Vigilans" : "返回 Semper Vigilans"}
           </Link>
         </div>
 

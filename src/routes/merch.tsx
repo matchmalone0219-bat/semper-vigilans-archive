@@ -503,7 +503,7 @@ function Merch() {
       <p className="mx-auto max-w-6xl px-4 pb-16 text-sm text-faint sm:px-6">
         {isEn ? (
           <>
-            This archive is an unofficial non-commercial fan database and does not offer items for sale. Product imagery and specifications are curated from public materials published by Medicom Toy, BANDAI SPIRITS, Mezco, Beast Kingdom, INART, Hot Toys, McFarlane, Iron Studios, Infinity Studio, Prime 1 Studio, Factory Entertainment, Jazzinc, Spin Master, LEGO, DC Comics, LANVIN, Carhartt, PUMA, Fossil, Police, Kross Studio, House of Sillage, Dr. Squatch, Rubies, Mondo, Abrams, and Warner Bros. Home Entertainment. For film gear specifications, see{" "}
+            The BatcaveCN The Batman Part II special archive is a non-commercial fan database and does not offer items for sale. Product imagery and specifications are curated from public materials published by Medicom Toy, BANDAI SPIRITS, Mezco, Beast Kingdom, INART, Hot Toys, McFarlane, Iron Studios, Infinity Studio, Prime 1 Studio, Factory Entertainment, Jazzinc, Spin Master, LEGO, DC Comics, LANVIN, Carhartt, PUMA, Fossil, Police, Kross Studio, House of Sillage, Dr. Squatch, Rubies, Mondo, Abrams, and Warner Bros. Home Entertainment. For film gear specifications, see{" "}
             <Link to="/gear" className="text-fg underline-offset-4 hover:underline">
               Tactical Gear
             </Link>
@@ -515,7 +515,7 @@ function Merch() {
           </>
         ) : (
           <>
-            本站为影迷非商业资料库，不提供任何商品购买与销售服务。产品展示图与技术规格均整理自
+            Batman小站《新蝙蝠侠2》专题档案为非商业资料库，不提供任何商品购买与销售服务。产品展示图与技术规格均整理自
             Medicom Toy、BANDAI SPIRITS、Mezco、Beast Kingdom、INART、良品制造、Hot Toys、McFarlane、
             Iron Studios、Infinity Studio、Prime 1 Studio、Factory Entertainment、Jazzinc、Spin Master、乐高、
             DC Comics、LANVIN、Carhartt、PUMA、Fossil、Police、Kross Studio、House of Sillage、Dr. Squatch、Rubies、Mondo、Abrams

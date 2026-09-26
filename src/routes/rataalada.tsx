@@ -199,7 +199,7 @@ function Rataalada() {
                                     : (still.originBadgeZh || "官方 ARG 原版"))
                                 : (isEn
                                     ? (still.originBadgeEn || "Archive Adaptation")
-                                    : (still.originBadgeZh || "本站剧照适配"))}
+                                    : (still.originBadgeZh || "专题剧照适配"))}
                             </span>
                           </div>
                           <p className="mt-1 text-sm font-medium tracking-wide text-phosphor">{still.title}</p>

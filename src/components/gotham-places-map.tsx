@@ -63,7 +63,7 @@ const REGION_MARKERS: Record<RegionId, Marker[]> = {
       x: 57.8,
       y: 35.2,
       evidence: "theory",
-      note: "设定地图未直接标出总局字样，标记依据市中心警务调度街区与出警动线作本站推测。",
+      note: "设定地图未直接标出总局字样，标记依据市中心警务调度街区与出警动线作专题考证推测。",
     },
     {
       placeId: "iceberg",
@@ -109,7 +109,7 @@ const UNLOCATED_PLACES = PLACES.filter((place) => !MAPPED_PLACE_IDS.has(place.id
 const EVIDENCE: Record<Evidence, { label: string; labelEn: string; className: string }> = {
   map: { label: "地图标注", labelEn: "Production Map", className: "bg-fg text-bg" },
   screen: { label: "影片定位", labelEn: "Film Verified", className: "bg-blood text-fg" },
-  theory: { label: "本站推测", labelEn: "Research Theory", className: "bg-amber-400 text-bg" },
+  theory: { label: "专题考证", labelEn: "Research Theory", className: "bg-amber-400 text-bg" },
 };
 
 const REGIONS = [

@@ -85,8 +85,8 @@ export const en: TranslationDictionary = {
     learnMore: "Learn More",
   },
   home: {
-    heroKicker: "Unofficial Fan Archive · Part II",
-    archiveTitle: "The Batman: Part II Unofficial Archive",
+    heroKicker: "BATCAVECN SPECIAL ARCHIVE · PART II",
+    archiveTitle: "BatcaveCN · The Batman: Part II Special Archive",
     movieTitleEn: "The Batman: Part II",
     movieTitleZh: "The Batman: Part II",
     director: "Matt Reeves",
@@ -219,8 +219,8 @@ export const en: TranslationDictionary = {
     noResults: "No matching archive entries found. Try different keywords.",
   },
   footer: {
-    siteDesc: "The Batman: Part II Unofficial Fan Archive",
-    disclaimer: "This is an unofficial non-commercial fan archive with no official affiliation to Warner Bros., DC Studios, or the filmmakers. Content draws on public press reports, public set reports, and official promotional materials.",
+    siteDesc: "BatcaveCN · The Batman: Part II Special Archive · Semper Vigilans",
+    disclaimer: "This BatcaveCN special archive is a non-commercial fan project with no official affiliation to Warner Bros., DC Studios, or the filmmakers. Content draws on public press reports, public set reports, and official promotional materials.",
     sections: {
       dossier: "Film & Case Files",
       artAndRoots: "Art & Cinematic Roots",

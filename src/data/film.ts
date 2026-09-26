@@ -13,7 +13,7 @@ export const FILM = {
   format: "史诗犯罪传奇",
 } as const;
 
-export const CONTENT_REVIEWED_AT = "2026.09.24";
+export const CONTENT_REVIEWED_AT = "2026.09.26";
 
 export const FACTS: {
   label: string;
@@ -28,7 +28,13 @@ export const FACTS: {
     value: "马特·里夫斯（Matt Reeves）执导，并与麦特森·汤姆林（Mattson Tomlin）联合编剧",
   },
   { label: "摄影", value: "埃里克·梅塞施密特（Erik Messerschmidt，代表作《曼克》《心灵猎人》）" },
-  { label: "配乐", value: "迈克尔·吉亚奇诺（Michael Giacchino）是否回归目前尚未正式公布" },
+  {
+    label: "配乐",
+    value: "迈克尔·吉亚奇诺（Michael Giacchino）。2026 年 7 月 28 日作曲家表示里夫斯不会让他缺席，导演回复「100%」确认回归",
+    source: "马特·里夫斯 @mattreevesLA",
+    sourceUrl: "https://x.com/mattreevesLA/status/2082210942197067824",
+    sourceTier: "official",
+  },
   { label: "制片", value: "DC Studios · 6th & Idaho · Dylan Clark Productions" },
   {
     label: "发行",
@@ -1217,6 +1223,18 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-20-gcpd-201b.jpg",
       "/media/log/p2-20-cam-bike.jpg",
     ],
+  },
+  {
+    date: "2026.09.22",
+    iso: "2026-09-22",
+    title: "帕丁森谈续集：相对第一部是一次左转弯",
+    body: "宣传《Primetime》时，帕丁森对 Collider 说《新蝙蝠侠2》相对第一部是一次真正的左转弯，但还留着原来的感觉。他称剧本非常密，里夫斯脑子里已经有完整的片子，演员在片场会不断发现漏掉的细节。没有谈反派、具体场次或造型。",
+    kind: "cast",
+    source: "Collider · Steve Weintraub 专访",
+    sourceUrl: "https://collider.com/the-batman-part-2-script-update-robert-pattinson/",
+    sourceTier: "press",
+    verifiedAt: "2026.09.26",
+    href: "/interviews",
   },
   {
     date: "2028.02.18",

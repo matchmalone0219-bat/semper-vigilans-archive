@@ -69,7 +69,7 @@ export type Beat =
   | { kind: "done" };
 
 export const RATA_INTRO =
-  `2021 年底，《新蝙蝠侠》官方病毒营销通过密码与宣传物料将影迷引向沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，并在影片中形成 URL 谐音梗）。网站采用复古 CRT 终端式界面，影迷通过破解谜题逐步解锁哥谭档案。本页面依据公开存档复原 2021–2022 官方核心互动阶段（第 1、2、6、7 阶段与 GCPD 查封通告），并由本站补充第 3–5 阶段连贯谜题与轻量勘验证物，终局融入献给《新蝙蝠侠 2》（${FILM.releaseLabel}）的影迷致敬彩蛋。`;
+  `2021 年底，《新蝙蝠侠》官方病毒营销通过密码与宣传物料将影迷引向沉浸式解谜网站 rataalada.com（西班牙语意为「长翅膀的老鼠」，并在影片中形成 URL 谐音梗）。网站采用复古 CRT 终端式界面，影迷通过破解谜题逐步解锁哥谭档案。本页面依据公开存档复原 2021–2022 官方核心互动阶段（第 1、2、6、7 阶段与 GCPD 查封通告），并由 Semper Vigilans 专题补充第 3–5 阶段连贯谜题与轻量勘验证物，终局融入献给《新蝙蝠侠 2》（${FILM.releaseLabel}）的影迷致敬彩蛋。`;
 
 export const COMMANDS: { cmd: string; hint: string }[] = [
   { cmd: "Y", hint: "Begin challenge / confirm" },
@@ -184,8 +184,8 @@ export const TESTS: Test[] = [
         "2021 官方原版",
         "Official 2021 ARG",
       ),
-      still("GOTHAM.IMG", "/media/gotham.jpg", "俯瞰哥谭", "哥谭天际线俯瞰视角照片。", "extended", "本站剧照适配", "Archive Adaptation"),
-      still("SUBJECT.IMG", "/media/riddler.jpg", "出题嫌疑人", "嫌疑人档案：爱德华·纳什顿。", "extended", "本站剧照适配", "Archive Adaptation"),
+      still("GOTHAM.IMG", "/media/gotham.jpg", "俯瞰哥谭", "哥谭天际线俯瞰视角照片。", "extended", "专题剧照适配", "Archive Adaptation"),
+      still("SUBJECT.IMG", "/media/riddler.jpg", "出题嫌疑人", "嫌疑人档案：爱德华·纳什顿。", "extended", "专题剧照适配", "Archive Adaptation"),
     ],
     texts: [
       text(
@@ -265,10 +265,10 @@ export const TESTS: Test[] = [
     id: "w3",
     kicker: "TEST 03",
     when: "2022.01 · 第三阶段",
-    note: "基于涅槃乐队插曲《Something in the Way》与政商权钱交易暗线构建的本站连贯过渡题。",
+    note: "基于涅槃乐队插曲《Something in the Way》与政商权钱交易暗线构建的 Semper Vigilans 连贯过渡题。",
     provenance: "extended",
     originBadgeEn: "Archive Extension",
-    originBadgeZh: "本站剧作暗线扩展",
+    originBadgeZh: "Semper Vigilans 扩展",
     riddles: [
       {
         id: "feelings",
@@ -323,10 +323,10 @@ export const TESTS: Test[] = [
     id: "w4",
     kicker: "TEST 04",
     when: "2022.02 · 第四阶段",
-    note: "基于谜语人命名起源、拉丁语源与孤儿院心路历程构建的本站连贯过渡题。",
+    note: "基于谜语人命名起源、拉丁语源与孤儿院心路历程构建的 Semper Vigilans 连贯过渡题。",
     provenance: "extended",
     originBadgeEn: "Archive Extension",
-    originBadgeZh: "本站剧作暗线扩展",
+    originBadgeZh: "Semper Vigilans 扩展",
     riddles: [
       {
         id: "darkness",
@@ -381,10 +381,10 @@ export const TESTS: Test[] = [
     id: "w5",
     kicker: "TEST 05",
     when: "2022.02 · 第五阶段",
-    note: "基于阿卡姆家族与韦恩家族双孤儿阶级对照暗线构建的本站连贯过渡题。",
+    note: "基于阿卡姆家族与韦恩家族双孤儿阶级对照暗线构建的 Semper Vigilans 连贯过渡题。",
     provenance: "extended",
     originBadgeEn: "Archive Extension",
-    originBadgeZh: "本站剧作暗线扩展",
+    originBadgeZh: "Semper Vigilans 扩展",
     riddles: [
       {
         id: "puzzle",
@@ -629,7 +629,7 @@ export const TRIBUTE_TEXT = text(
     "SEE YOU IN 2028 <?>",
   ],
   "extended",
-  "续作致敬扩展",
+  "Semper Vigilans 致敬扩展",
   "Archive Fan Tribute",
 );
 

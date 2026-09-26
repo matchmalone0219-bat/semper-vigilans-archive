@@ -1,7 +1,7 @@
 import { FILM, LOG, type LogEntry } from "@/data/film";
 
 export function pageTitle(page?: string) {
-  return page ? `${page} · ${FILM.siteName}` : `${FILM.siteName} · 《${FILM.titleZh}》影迷档案站`;
+  return page ? `${page} · ${FILM.siteName}` : `Batman小站《${FILM.titleZh}》专题档案 · ${FILM.siteName}`;
 }
 
 export function logImages(entry: LogEntry): string[] {

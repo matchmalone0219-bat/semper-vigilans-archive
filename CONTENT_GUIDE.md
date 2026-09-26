@@ -6,6 +6,13 @@
 
 ## 核心录入原则
 
+0. **站点身份与品牌层级保持一致**：
+   - Semper Vigilans 是 Batman小站（BatcaveCN）旗下《新蝙蝠侠2》专题档案，不再以独立“非官方中文档案库”作为前台主身份。
+   - 首页固定品牌层级：`BATCAVECN SPECIAL ARCHIVE · PART II` → `Semper Vigilans` → `Batman小站 ·《新蝙蝠侠2》专题档案`。
+   - 页脚站点描述固定为 `Batman小站《新蝙蝠侠2》专题档案 · Semper Vigilans`，并保留与 Warner Bros.、DC Studios 及电影主创团队无官方合作关系的非商业影迷项目声明。
+   - 涉及专题自建内容时，优先使用“Semper Vigilans 专题 / Semper Vigilans 扩展 / 专题适配”等明确主体，避免用“本站”造成 Batman小站母站与专题站之间的归属歧义。
+   - 母站入口指向 `https://www.batcavecn.com/`；专题站内部导航、内容结构与视觉品牌保持独立。
+
 1. **数据与展现分离**：内容数据应优先放在 `src/data/`（如 `film.ts`、`interviews.ts`、`recap.ts`）或稳定的实体库（如 `src/lib/people.ts`、`src/lib/places.ts`、`src/lib/relations.ts`）。
 2. **禁止在组件中硬编码**：页面组件仅负责渲染与交互，严禁在 React 组件内硬编码新增新闻、路透或图文资料。
 3. **拍摄日志结构约束**：新增拍摄日志必须严格遵循当前 `LOG` 数据结构（包含 `id`、`date`、`iso`、`title`、`body`、`kind`，可选 `source`、`sourceUrl`、`sourceTier`、`image`、`images`、`video` 等）。

@@ -85,8 +85,8 @@ export const zh: TranslationDictionary = {
     learnMore: "了解更多",
   },
   home: {
-    heroKicker: "Unofficial Fan Archive · Part II",
-    archiveTitle: "《新蝙蝠侠2》非官方中文档案库",
+    heroKicker: "BATCAVECN SPECIAL ARCHIVE · PART II",
+    archiveTitle: "Batman小站 ·《新蝙蝠侠2》专题档案",
     movieTitleEn: "The Batman: Part II",
     movieTitleZh: "新蝙蝠侠2",
     director: "马特·里夫斯",
@@ -219,8 +219,8 @@ export const zh: TranslationDictionary = {
     noResults: "未找到相关档案记录，请尝试其他关键词。",
   },
   footer: {
-    siteDesc: "《新蝙蝠侠2》（The Batman: Part II）非官方影迷档案库",
-    disclaimer: "本站为影迷非商业交流网站，与华纳兄弟、DC Studios 及电影主创团队无官方合作关系。内容整理自公开新闻报道、片场记录及官方宣发物料。",
+    siteDesc: "Batman小站《新蝙蝠侠2》专题档案 · Semper Vigilans",
+    disclaimer: "本专题为 Batman小站旗下非商业影迷档案，与华纳兄弟、DC Studios 及电影主创团队无官方合作关系。内容整理自公开新闻报道、片场记录及官方宣发物料。",
     sections: {
       dossier: "影视与刑侦档案",
       artAndRoots: "艺术与视听溯源",

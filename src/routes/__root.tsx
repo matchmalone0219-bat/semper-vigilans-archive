@@ -8,7 +8,7 @@ import { FILM } from "@/data/film";
 import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "Semper Vigilans";
+const APP_NAME = "Batman小站《新蝙蝠侠2》专题档案 · Semper Vigilans";
 const BASE_URL = import.meta.env.BASE_URL;
 const IS_STATIC_BUILD = import.meta.env.MODE === "github-pages" || import.meta.env.MODE === "edgeone";
 const PUBLIC_URL = import.meta.env.MODE === "edgeone"
@@ -23,13 +23,13 @@ export const Route = createRootRoute({
       { title: APP_NAME },
       {
         name: "description",
-        content: `《新蝙蝠侠2》非官方影迷档案库。北美定档 ${FILM.releaseLabel}。`,
+        content: `Batman小站旗下《新蝙蝠侠2》专题档案，持续整理制作动态、片场记录、主创访谈、人物关系与系列资料。北美定档 ${FILM.releaseLabel}。`,
       },
       { name: "theme-color", content: "#050505" },
-      { property: "og:title", content: "Semper Vigilans · 《新蝙蝠侠2》影迷档案站" },
+      { property: "og:title", content: "Batman小站《新蝙蝠侠2》专题档案 · Semper Vigilans" },
       {
         property: "og:description",
-        content: "追踪《新蝙蝠侠2》的公开资料、人物地点、拍摄日志、装备与原著溯源。",
+        content: "Batman小站旗下《新蝙蝠侠2》专题档案：制作动态、片场记录、主创访谈、人物地点、装备与原著溯源。",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: PUBLIC_URL },

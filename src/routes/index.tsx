@@ -167,8 +167,8 @@ function Home() {
             </p>
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
               {locale === "zh"
-                ? "作为 Batman小站《新蝙蝠侠2》专题档案，Semper Vigilans 持续整理《新蝙蝠侠》犯罪宇宙的制作动态、演职员阵容、片场实拍、人物关系与剧情前瞻，并将第一部、《企鹅人》与续集线索串联成一套不断扩展的哥谭档案。"
-                : "As BatcaveCN's dedicated archive for The Batman: Part II, Semper Vigilans follows the evolving Batman Epic Crime Saga through production updates, cast changes, set dispatches, character dossiers, and narrative threads linking The Batman, The Penguin, and Part II."}
+                ? "以此拍摄代号为名，Batman小站设立本期专题档案，持续追踪这部犯罪史诗的制作进程、片场实录与主创手记，并将《新蝙蝠侠》、《企鹅人》与续作暗线编织为一份长线推演的哥谭卷宗。"
+                : "Named after the sequel's production codename, this dedicated BatcaveCN archive chronicles the making of the Batman Epic Crime Saga—weaving set dispatches, creator insights, and unfolding narrative threads into a living dossier of Gotham."}
             </p>
           </div>
         </div>

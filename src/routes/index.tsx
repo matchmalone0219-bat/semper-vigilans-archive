@@ -81,14 +81,14 @@ function Home() {
         <div className="relative z-10 mx-auto flex min-h-svh max-w-6xl flex-col justify-end px-4 pb-16 pt-28 sm:px-6 sm:pb-20">
           <div className="stagger-in max-w-3xl">
             <p className="font-display text-sm font-semibold tracking-[0.42em] text-fg/70 uppercase">
-              Unofficial Fan Archive · Part II
+              {t.home.heroKicker}
             </p>
             <h1 className="mt-3 font-display font-extrabold leading-[0.88] tracking-[0.04em] text-blood uppercase">
               <span className="block text-6xl sm:text-7xl md:text-8xl">Semper</span>
               <span className="block text-5xl sm:text-6xl md:text-7xl">Vigilans</span>
             </h1>
             <p className="mt-2 font-sans text-xl font-black tracking-tight text-fg sm:text-2xl">
-              {locale === "zh" ? `《${FILM.titleZh}》非官方中文档案库` : t.home.archiveTitle}
+              {t.home.archiveTitle}
             </p>
             <p className="mt-4 max-w-xl text-pretty text-sm leading-relaxed text-fg/80 sm:text-base">
               {locale === "zh" ? (
@@ -167,8 +167,8 @@ function Home() {
             </p>
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
               {locale === "zh"
-                ? "Semper Vigilans 持续整理《新蝙蝠侠》犯罪宇宙的制作动态、演职员阵容、片场实拍、人物关系与剧情前瞻，并将第一部、《企鹅人》与续集线索串联成一套不断扩展的哥谭档案。"
-                : "Semper Vigilans follows the evolving Batman Epic Crime Saga through production updates, cast changes, set dispatches, character dossiers, and narrative threads linking The Batman, The Penguin, and Part II."}
+                ? "作为 Batman小站《新蝙蝠侠2》专题档案，Semper Vigilans 持续整理《新蝙蝠侠》犯罪宇宙的制作动态、演职员阵容、片场实拍、人物关系与剧情前瞻，并将第一部、《企鹅人》与续集线索串联成一套不断扩展的哥谭档案。"
+                : "As BatcaveCN's dedicated archive for The Batman: Part II, Semper Vigilans follows the evolving Batman Epic Crime Saga through production updates, cast changes, set dispatches, character dossiers, and narrative threads linking The Batman, The Penguin, and Part II."}
             </p>
           </div>
         </div>

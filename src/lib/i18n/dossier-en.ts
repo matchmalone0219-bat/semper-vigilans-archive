@@ -19,7 +19,9 @@ export const FACTS_EN: Record<
   },
   "配乐": {
     label: "Score",
-    value: "Michael Giacchino's return has not yet been officially announced",
+    value:
+      "Michael Giacchino. On July 28, 2026, the composer stated Reeves wouldn't do it without him, and Reeves replied '100%' confirming his return",
+    source: "Matt Reeves @mattreevesLA",
   },
   "制片": {
     label: "Production",
@@ -459,6 +461,11 @@ export const LOG_EN: Record<
     locationLabel: "London · Night Action Vehicle Unit",
     body: "Production resumed on a secure London street for night filming, with photographer UnBoxPHD capturing the GCPD patrol motorcycle alongside a heavy gyro-stabilized camera pursuit vehicle.",
     source: "Set Leak / UnBoxPHD",
+  },
+  "log-2026-09-22": {
+    title: "Pattinson on Sequel: A Real Left Turn from the First Film",
+    body: "While promoting Primetime, Pattinson told Collider that The Batman Part II represents a genuine left turn from the first movie while retaining its core atmosphere. He described the screenplay as exceptionally dense, noting Reeves already has the entire film mapped in his head, with cast members continually discovering layered details on set. No villains, specific scenes, or suits were discussed.",
+    source: "Collider · Steve Weintraub Interview",
   },
   "log-2028-02-18": {
     title: "Theatrical Release Across North America",

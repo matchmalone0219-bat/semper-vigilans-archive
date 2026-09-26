@@ -48,15 +48,15 @@ function Roots() {
           </h1>
           <p className="mt-3 font-display text-lg tracking-[0.12em] text-muted uppercase">
             {isEn
-              ? "Four Core Comics · Film Lineage · Riddle Decodes · City Lore"
-              : "四大漫画灵感 · 影史拉片 · 谜题语言考据 · 城市暗线"}
+              ? "Comic Inspirations · Film Lineage · Riddle Decodes · City Lore"
+              : "漫画灵感 · 影史拉片 · 谜题语言考据 · 城市暗线"}
           </p>
           <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
             {isEn ? ROOTS_INTRO_EN : ROOTS_INTRO}
           </p>
           <nav className="mt-8 flex flex-wrap gap-3">
             {[
-              { hash: "comics", label: isEn ? "01 / Comic Inspirations" : "01 / 四大漫画考据" },
+              { hash: "comics", label: isEn ? "01 / Comic Inspirations" : "01 / 漫画考据" },
               { hash: "cinema", label: isEn ? "02 / Cinema Lineage" : "02 / 影史拉片" },
               { hash: "riddles", label: isEn ? "03 / Riddle Decodes" : "03 / 谜语人双关考据" },
               { hash: "lore", label: isEn ? "04 / City Lore & Clues" : "04 / 城市暗线与彩蛋" },
@@ -83,12 +83,12 @@ function Roots() {
               01 / DC Comic Inspirations
             </p>
             <h2 className="mt-2 font-sans text-3xl font-black tracking-tight sm:text-4xl">
-              {isEn ? "Deep Analysis of Four Core Comic Inspirations" : "四大核心原著漫画深度考据"}
+              {isEn ? "Comic Inspirations" : "原著漫画考据"}
             </h2>
             <p className="mt-2 text-sm text-muted">
               {isEn
-                ? "An in-depth analysis of Batman: Ego, The Long Halloween, Year One, and Zero Year as cornerstones of character psychology, mob narrative, and cataclysm."
-                : "深入剖析《蝙蝠侠：自我》、《漫长的万圣节》、《元年》与《零年》对角色心理、黑帮叙事与灾难格局的基石作用。"}
+                ? "Ego, The Long Halloween, Year One, and Zero Year remain the core. Shaman is here because Pattinson named it. The Man Who Falls is only a short parallel."
+                : "《自我》、《漫长的万圣节》、《元年》与《零年》仍是主体。《萨满》来自帕丁森的点名。《坠落之人》只留一条短对照。"}
             </p>
           </div>
 

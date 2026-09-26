@@ -1,7 +1,7 @@
 import type { RootKind, RootParallel, RootWork, CinemaWork } from "../roots";
 
 export const ROOTS_INTRO_EN =
-  "Matt Reeves' The Batman is not a mechanical adaptation of any single comic run, but an amalgamation of the psychological core and cinematic language of landmark works across DC history: Bruce's self-trial draws from Darwyn Cooke's Batman: Ego; grounded detective realism stems from Frank Miller's Batman: Year One; mob hegemony and festive serial killings inherit from The Long Halloween; Martha's Arkham lineage, institutionalization, and slaughter derive directly from Geoff Johns' Batman: Earth One; the climax seawall explosion creates intertextuality with Scott Snyder's Zero Year. In cinematic grammar, Reeves cited 1970s street crime milestones including Chinatown, Taxi Driver, and The French Connection at DC FanDome; Bruce and Selina's dynamic was benchmarked by Reeves, Pattinson, and Kravitz against Alan J. Pakula's Klute; Pattinson viewed the 1993 animated feature Batman: Mask of the Phantasm as one of the rare works truly capturing 'being Batman as a curse'; and the Batmobile's visceral entry directly benchmarks John Carpenter's adaptation of Stephen King's Christine.";
+  "Matt Reeves' The Batman is not a mechanical adaptation of any single comic run, but an amalgamation of the psychological core and cinematic language of landmark works across DC history: Bruce's self-trial draws from Darwyn Cooke's Batman: Ego; grounded detective realism stems from Frank Miller's Batman: Year One; mob hegemony and festive serial killings inherit from The Long Halloween; Martha's Arkham lineage, institutionalization, and slaughter derive directly from Geoff Johns' Batman: Earth One; the climax seawall explosion creates intertextuality with Scott Snyder's Zero Year. In a February 18, 2022 Entertainment Weekly interview, Robert Pattinson named Dennis O'Neil's Batman: Shaman to explain the bat as something closer to a private rite than a practical tool; the same piece treats The Man Who Falls as the lighter reference. In cinematic grammar, Reeves cited 1970s street crime milestones including Chinatown, Taxi Driver, and The French Connection at DC FanDome; Bruce and Selina's dynamic was benchmarked by Reeves, Pattinson, and Kravitz against Alan J. Pakula's Klute; Pattinson viewed the 1993 animated feature Batman: Mask of the Phantasm as one of the rare works truly capturing 'being Batman as a curse'; and the Batmobile's visceral entry directly benchmarks John Carpenter's adaptation of Stephen King's Christine.";
 
 export const ROOT_KIND_EN: Record<RootKind, string> = {
   confirmed: "Official Core Inspiration",
@@ -210,6 +210,68 @@ export const ROOTS_EN: Record<string, RootWorkEn> = {
       {
         heading: "Heroic Rebirth Amidst Ruins",
         body: "The flood is both a visual spectacle and the pivotal crucible for Bruce's character arc: moving beyond punitive vengeance to step into the waters as a savior.",
+      },
+    ],
+  },
+  shaman: {
+    kicker: "05 / Totem",
+    title: "Batman: Shaman",
+    jump: "Shaman",
+    creators: "Writer: Dennis O'Neil · Pencils: Ed Hannigan · Inks: John Beatty",
+    published: "1989–1990 · Legends of the Dark Knight #1–5",
+    thesis: "The comic Pattinson used to step away from a practical explanation of the suit: the bat is what Bruce believes he is becoming.",
+    lede: "The story sits in Batman's first weeks, alongside the opening of Year One. Before the mask, Bruce is left for dead in Alaska. A shaman in a ceremonial bat mask heals him with an old tale and makes him swear not to repeat it. Pattinson took the mysticism, not the cult murders.",
+    sources: [
+      {
+        label: "Entertainment Weekly",
+        note: "On February 18, 2022, Pattinson set Shaman against the practical account of the suit in the Nolan films.",
+      },
+    ],
+    parallels: [
+      {
+        comic: "The shaman's bat tale is not a field manual. It makes the wounded man believe he is bound to the creature.",
+        film: "Pattinson said that once the suit is on, Bruce believes it gives him power, even though he is an ordinary man.",
+      },
+      {
+        comic: "The mask is kept in the cave as a reminder of what he has become.",
+        film: "For the opening examination of a body, he wanted a crouching druid, not a tank.",
+      },
+    ],
+    sections: [
+      {
+        heading: "The Mask and the Oath",
+        body: "Bruce tracks the killer Tom Woodley with the bounty hunter Willy Doggett. Doggett is killed and Bruce collapses in the snow. A shaman and his daughter save him. Bruce later repeats the forbidden tale to an investigator his money is funding. A killer in the same Alaskan mask then appears in Gotham. When the fraud breaks, the mask stays in the cave.",
+      },
+      {
+        heading: "What Pattinson Kept",
+        body: "The film does not adapt the Chubala cult or the Alaska episode. Pattinson said he wanted another angle: becoming Batman is not a plan that has been reasoned through. It is closer to a witch doctor who believes the clothes themselves confer power. In his performance the suit is skin, not a prop.",
+      },
+    ],
+  },
+  "man-who-falls": {
+    kicker: "06 / Short Parallel",
+    title: "The Man Who Falls",
+    jump: "Falls",
+    creators: "Writer: Dennis O'Neil · Artist: Dick Giordano",
+    published: "1989 · The one original story in Secret Origins of the World's Greatest Super-Heroes, 16 pages",
+    thesis: "The lighter reference in the same interview. The well, the travels, and the bat at the window live in these sixteen pages. The Batman does not stage that origin.",
+    lede: "This is the only new story in that origins collection. Young Bruce falls into a hole on the manor grounds, his parents are murdered, he leaves to study, and a bat crashes through the study window. Nolan's Batman Begins uses the well. Reeves' film begins in year two.",
+    sources: [
+      {
+        label: "Entertainment Weekly",
+        note: "The February 18, 2022 piece places The Man Who Falls after Shaman, as the lesser reference.",
+      },
+    ],
+    parallels: [
+      {
+        comic: "After a bat breaks the window, Bruce decides to become Batman. The narration says he will keep falling.",
+        film: "The film has neither the well nor the bat at the window. Pattinson uses the story only to say the choice feels like a dream, not a plan.",
+      },
+    ],
+    sections: [
+      {
+        heading: "A Parallel, Not a Blueprint",
+        body: "O'Neil gathers the scattered origin pages into one story: the hole, the murders, the years away, the bat at the glass. The comic Pattinson actually dwelt on is Shaman. The Man Who Falls marks how early that dream-logic is, and that the fall into the cave belongs to another film.",
       },
     ],
   },

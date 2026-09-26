@@ -15,6 +15,7 @@ interface NavChild {
   to: string;
   hash?: string;
   label: string;
+  dividerBefore?: boolean;
 }
 
 interface NavItem {
@@ -38,7 +39,7 @@ function getNav(t: TranslationDictionary): NavItem[] {
         { to: "/dossier", hash: "features", label: t.nav.features },
         { to: "/dossier", hash: "drama", label: t.nav.productionOdyssey },
         { to: "/dossier", hash: "log", label: t.nav.log },
-        { to: "/people", label: t.nav.people },
+        { to: "/people", label: t.nav.people, dividerBefore: true },
         { to: "/places", label: t.nav.places },
         { to: "/cases", label: t.nav.cases },
       ],
@@ -48,13 +49,13 @@ function getNav(t: TranslationDictionary): NavItem[] {
       label: t.nav.universe,
       paths: ["/recap", "/gear"],
       children: [
+        { to: "/recap", hash: "gotham-timeline", label: t.nav.timeline },
         { to: "/recap", hash: "the-batman", label: t.nav.theBatman },
         { to: "/recap", hash: "the-penguin", label: t.nav.thePenguin },
         { to: "/roots", hash: "comics", label: t.nav.dcComics },
         { to: "/roots", hash: "riddles", label: t.nav.riddleStudies },
         { to: "/roots", hash: "lore", label: t.nav.cityLore },
-        { to: "/recap", hash: "gotham-timeline", label: t.nav.timeline },
-        { to: "/gear", label: t.nav.gear },
+        { to: "/gear", label: t.nav.gear, dividerBefore: true },
       ],
     },
     {
@@ -67,7 +68,7 @@ function getNav(t: TranslationDictionary): NavItem[] {
         { to: "/craft", hash: "soundtrack-list", label: t.nav.soundtrack },
         { to: "/craft", hash: "lens", label: t.nav.cinematography },
         { to: "/craft", hash: "map", label: t.nav.locations },
-        { to: "/gallery", label: t.nav.gallery },
+        { to: "/gallery", label: t.nav.gallery, dividerBefore: true },
         { to: "/interviews", label: t.nav.interviews },
       ],
     },
@@ -219,19 +220,30 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                   ) : null}
                 </Link>
                 {item.children && item.children.length > 0 ? (
-                  <div className="pointer-events-none absolute left-1/2 top-[calc(100%-1px)] min-w-48 -translate-x-1/2 border border-fg/15 border-t-2 border-t-blood bg-surface/95 p-1.5 opacity-0 shadow-[0_12px_36px_rgba(0,0,0,0.85),0_0_16px_color-mix(in_oklab,var(--color-blood)_12%,transparent)] backdrop-blur-md transition-all duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
-                    {item.children.map((child) => (
-                      <Link
-                        key={`${child.to}-${child.hash ?? child.label}`}
-                        to={child.to}
-                        hash={child.hash}
-                        data-selected={pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === (child.hash ?? "")}
-                        activeOptions={{ exact: true, includeHash: true }}
-                        className="archive-nav-link block whitespace-nowrap px-3 py-2 text-xs font-medium tracking-[0.14em] text-muted transition-colors hover:bg-elevated hover:text-fg focus-visible:outline-2 focus-visible:outline-fg"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                  <div className="pointer-events-none absolute left-1/2 top-[calc(100%-1px)] max-h-[calc(100vh-4.5rem)] min-w-48 -translate-x-1/2 overflow-y-auto overscroll-contain border border-fg/15 border-t-2 border-t-blood bg-surface/95 p-1.5 opacity-0 shadow-[0_12px_36px_rgba(0,0,0,0.85),0_0_16px_color-mix(in_oklab,var(--color-blood)_12%,transparent)] backdrop-blur-md transition-all duration-150 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+                    {item.children.map((child) => {
+                      const isSelected =
+                        pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === (child.hash ?? "");
+                      return (
+                        <div key={`${child.to}-${child.hash ?? child.label}`}>
+                          {child.dividerBefore ? (
+                            <div className="my-1 border-t border-fg/10" aria-hidden="true" />
+                          ) : null}
+                          <Link
+                            to={child.to}
+                            hash={child.hash}
+                            data-selected={isSelected}
+                            activeOptions={{ exact: true, includeHash: true }}
+                            className={cn(
+                              "archive-nav-link block whitespace-nowrap px-3 py-2 text-xs font-medium tracking-[0.14em] transition-colors hover:bg-elevated hover:text-fg focus-visible:outline-2 focus-visible:outline-fg",
+                              isSelected ? "bg-elevated/70 font-semibold text-fg" : "text-muted",
+                            )}
+                          >
+                            {child.label}
+                          </Link>
+                        </div>
+                      );
+                    })}
                   </div>
                 ) : null}
               </div>
@@ -288,19 +300,28 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                   {item.label}
                 </Link>
                 {item.children && item.children.length > 0 ? (
-                  <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
-                    {item.children.map((child) => (
-                      <Link
-                        key={`${child.to}-${child.hash ?? child.label}`}
-                        to={child.to}
-                        hash={child.hash}
-                        data-selected={pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === (child.hash ?? "")}
-                        activeOptions={{ exact: true, includeHash: true }}
-                        className="archive-nav-link px-2 py-1 text-sm tracking-[0.12em] text-muted focus-visible:outline-2 focus-visible:outline-fg"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                  <div className="mt-2.5 flex flex-wrap gap-2">
+                    {item.children.map((child) => {
+                      const isSelected =
+                        pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === (child.hash ?? "");
+                      return (
+                        <Link
+                          key={`${child.to}-${child.hash ?? child.label}`}
+                          to={child.to}
+                          hash={child.hash}
+                          data-selected={isSelected}
+                          activeOptions={{ exact: true, includeHash: true }}
+                          className={cn(
+                            "archive-nav-link inline-flex items-center border px-2.5 py-1.5 text-xs font-medium tracking-[0.08em] transition-colors focus-visible:outline-2 focus-visible:outline-fg",
+                            isSelected
+                              ? "border-blood/60 bg-blood/10 font-semibold text-fg"
+                              : "border-fg/10 bg-fg/[0.03] text-muted hover:border-fg/25 hover:bg-fg/[0.08] hover:text-fg",
+                          )}
+                        >
+                          {child.label}
+                        </Link>
+                      );
+                    })}
                   </div>
                 ) : null}
               </div>

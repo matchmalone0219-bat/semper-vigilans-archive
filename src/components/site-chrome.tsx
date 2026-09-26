@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useMemo, useState } from "react";
+import { Fragment, type ReactNode, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
@@ -304,22 +304,27 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                     {item.children.map((child) => {
                       const isSelected =
                         pathname.replace(/\/$/, "") === child.to && hash.replace(/^#/, "") === (child.hash ?? "");
+                      const key = `${child.to}-${child.hash ?? child.label}`;
                       return (
-                        <Link
-                          key={`${child.to}-${child.hash ?? child.label}`}
-                          to={child.to}
-                          hash={child.hash}
-                          data-selected={isSelected}
-                          activeOptions={{ exact: true, includeHash: true }}
-                          className={cn(
-                            "archive-nav-link inline-flex items-center border px-2.5 py-1.5 text-xs font-medium tracking-[0.08em] transition-colors focus-visible:outline-2 focus-visible:outline-fg",
-                            isSelected
-                              ? "border-blood/60 bg-blood/10 font-semibold text-fg"
-                              : "border-fg/10 bg-fg/[0.03] text-muted hover:border-fg/25 hover:bg-fg/[0.08] hover:text-fg",
-                          )}
-                        >
-                          {child.label}
-                        </Link>
+                        <Fragment key={key}>
+                          {child.dividerBefore ? (
+                            <div className="my-1 basis-full border-t border-fg/10" aria-hidden="true" />
+                          ) : null}
+                          <Link
+                            to={child.to}
+                            hash={child.hash}
+                            data-selected={isSelected}
+                            activeOptions={{ exact: true, includeHash: true }}
+                            className={cn(
+                              "archive-nav-link inline-flex items-center border px-2.5 py-1.5 text-xs font-medium tracking-[0.08em] transition-colors focus-visible:outline-2 focus-visible:outline-fg",
+                              isSelected
+                                ? "border-blood/60 bg-blood/10 font-semibold text-fg"
+                                : "border-fg/10 bg-fg/[0.03] text-muted hover:border-fg/25 hover:bg-fg/[0.08] hover:text-fg",
+                            )}
+                          >
+                            {child.label}
+                          </Link>
+                        </Fragment>
                       );
                     })}
                   </div>

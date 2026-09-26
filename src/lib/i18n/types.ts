@@ -6,6 +6,9 @@ export interface TranslationDictionary {
     facts: string;
     plot: string;
     cast: string;
+    relationsNav: string;
+    features: string;
+    productionOdyssey: string;
     log: string;
     people: string;
     places: string;
@@ -14,6 +17,8 @@ export interface TranslationDictionary {
     theBatman: string;
     thePenguin: string;
     dcComics: string;
+    riddleStudies: string;
+    cityLore: string;
     timeline: string;
     gear: string;
     production: string;

@@ -219,59 +219,59 @@ export const ROOTS_EN: Record<string, RootWorkEn> = {
     jump: "Shaman",
     creators: "Writer: Dennis O'Neil · Pencils: Ed Hannigan · Inks: John Beatty",
     published: "1989–1990 · Legends of the Dark Knight #1–5",
-    thesis: "The comic Pattinson used to step away from a practical explanation of the suit: the bat is what Bruce believes he is becoming.",
-    lede: "The story sits in Batman's first weeks, alongside the opening of Year One. Before the mask, Bruce is left for dead in Alaska. A shaman in a ceremonial bat mask heals him with an old tale and makes him swear not to repeat it. Pattinson took the mysticism, not the cult murders.",
+    thesis: "Pattinson's departure from purely utilitarian armor: the bat is not just a tactical weapon, but a mystical totem Bruce believes he is becoming.",
+    lede: "The story sits in Batman's first weeks, alongside the opening of Year One. Before the mask, Bruce is left for dead in the Alaskan snow. An indigenous shaman in a ceremonial bat mask heals him with ancient totem lore, swearing him to secrecy. Pattinson seized on this primordial mysticism rather than the detective cult plot.",
     sources: [
       {
         label: "Entertainment Weekly",
-        note: "On February 18, 2022, Pattinson set Shaman against the practical account of the suit in the Nolan films.",
+        note: "In a February 18, 2022 interview, Pattinson contrasted Shaman against the purely tactical account of the suit in the Nolan films.",
       },
     ],
     parallels: [
       {
-        comic: "The shaman's bat tale is not a field manual. It makes the wounded man believe he is bound to the creature.",
-        film: "Pattinson said that once the suit is on, Bruce believes it gives him power, even though he is an ordinary man.",
+        comic: "The shaman's bat legend is not a tactical manual; it binds the wounded man's spirit inextricably to the nocturnal creature.",
+        film: "Pattinson's performance anchor: once inside the suit, Bruce truly believes the totem grants him power, even if physically he remains merely mortal.",
       },
       {
-        comic: "The mask is kept in the cave as a reminder of what he has become.",
-        film: "For the opening examination of a body, he wanted a crouching druid, not a tank.",
+        comic: "The Alaskan ceremonial mask is permanently enshrined in the Batcave, an enduring reminder of what Bruce has become.",
+        film: "Examining crime scenes, Pattinson channeled an ominous wraith or druid rather than an armored tank.",
       },
     ],
     sections: [
       {
         heading: "The Mask and the Oath",
-        body: "Bruce tracks the killer Tom Woodley with the bounty hunter Willy Doggett. Doggett is killed and Bruce collapses in the snow. A shaman and his daughter save him. Bruce later repeats the forbidden tale to an investigator his money is funding. A killer in the same Alaskan mask then appears in Gotham. When the fraud breaks, the mask stays in the cave.",
+        body: "Tracking the killer Tom Woodley across Alaskan peaks with bounty hunter Willy Doggett, Bruce is ambushed, Doggett is killed, and Bruce collapses in the snow. A shaman and his daughter rescue him, invoking a bat healing chant. Bruce later repeats the forbidden lore to an anthropologist funded by Wayne money, inadvertently unleashing ritual murders in Gotham. When the fraud unmasks, the ceremonial mask is preserved in the Batcave.",
       },
       {
         heading: "What Pattinson Kept",
-        body: "The film does not adapt the Chubala cult or the Alaska episode. Pattinson said he wanted another angle: becoming Batman is not a plan that has been reasoned through. It is closer to a witch doctor who believes the clothes themselves confer power. In his performance the suit is skin, not a prop.",
+        body: "Reeves did not adapt the Chubala cult or Alaskan snowscapes, but Pattinson drew deeply on its psychological core: donning the cowl is not a calculated tactical scheme, but akin to a medicine man believing sacred garb imparts supernatural power. In his portrayal, the suit is skin, not a prop.",
       },
     ],
   },
   "man-who-falls": {
-    kicker: "06 / Short Parallel",
+    kicker: "06 / Origin Parallel",
     title: "The Man Who Falls",
     jump: "Falls",
     creators: "Writer: Dennis O'Neil · Artist: Dick Giordano",
     published: "1989 · The one original story in Secret Origins of the World's Greatest Super-Heroes, 16 pages",
-    thesis: "The lighter reference in the same interview. The well, the travels, and the bat at the window live in these sixteen pages. The Batman does not stage that origin.",
-    lede: "This is the only new story in that origins collection. Young Bruce falls into a hole on the manor grounds, his parents are murdered, he leaves to study, and a bat crashes through the study window. Nolan's Batman Begins uses the well. Reeves' film begins in year two.",
+    thesis: "A concise psychological parallel cited in the same interview: the well, global travels, and the bat crashing through the window. The Batman bypasses these familiar beats to dive straight into year two.",
+    lede: "The sole original short story in the 1989 anthology. Dennis O'Neil crystallized the classic origin—falling into the cavern, the parents' murder, wandering the world to study, and the bat crashing through the study window—into a 16-page destiny. Nolan used it heavily in Batman Begins; Reeves and Pattinson chose to start in year two, letting the origin exist purely as character subconscious.",
     sources: [
       {
         label: "Entertainment Weekly",
-        note: "The February 18, 2022 piece places The Man Who Falls after Shaman, as the lesser reference.",
+        note: "The February 18, 2022 profile cites The Man Who Falls alongside Shaman as contextual background.",
       },
     ],
     parallels: [
       {
-        comic: "After a bat breaks the window, Bruce decides to become Batman. The narration says he will keep falling.",
-        film: "The film has neither the well nor the bat at the window. Pattinson uses the story only to say the choice feels like a dream, not a plan.",
+        comic: "As the bat shatters the window glass, Bruce takes the vow; the narration observes that his life will be an endless fall.",
+        film: "The film omits the cave fall and the window bat; Pattinson used the story to emphasize that becoming Batman feels like a dream rather than a calculated plan.",
       },
     ],
     sections: [
       {
         heading: "A Parallel, Not a Blueprint",
-        body: "O'Neil gathers the scattered origin pages into one story: the hole, the murders, the years away, the bat at the glass. The comic Pattinson actually dwelt on is Shaman. The Man Who Falls marks how early that dream-logic is, and that the fall into the cave belongs to another film.",
+        body: "O'Neil gathered scattered canonical milestones into a single rhythm: the cavern, the tragedy, the years abroad, the bat at the glass. Where Nolan used this as an explicit cinematic spine, Reeves bypassed staging the familiar scenes. Pattinson cited it to underscore that his Batman need not act out the fall—from his very first scene, he is already dwelling in the depths.",
       },
     ],
   },

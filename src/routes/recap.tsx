@@ -323,7 +323,7 @@ function Recap() {
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
             {isZh ? (
               <>
-                深度解析《蝙蝠侠：自我》、《漫长的万圣节》、《元年》与《零年》；另收帕丁森点名的《萨满》，以及《坠落之人》的短对照。影史拉片另收《出租车司机》《幻影的面具》《克里斯汀》等主创点名的电影。完整专题请查阅{" "}
+                深度解析《蝙蝠侠：自我》、《漫长的万圣节》、《元年》与《零年》四大基石，收录帕丁森专访点名的《萨满》与《坠落之人》对照；影史拉片另纳《出租车司机》《幻影的面具》《克里斯汀》等电影渊源。完整专题请查阅{" "}
                 <Link to="/roots" className="text-fg underline-offset-4 hover:underline">
                   原著渊源
                 </Link>
@@ -331,7 +331,7 @@ function Recap() {
               </>
             ) : (
               <>
-                Deep analysis of Batman: Ego, The Long Halloween, Year One, and Zero Year, plus Pattinson's citation of Shaman and a short parallel for The Man Who Falls. Cinema genealogy includes Taxi Driver, Mask of the Phantasm, and Christine. For full monograph see{" "}
+                Deep analysis of Batman: Ego, The Long Halloween, Year One, and Zero Year, alongside Pattinson's cited totemic inspiration Shaman and the origin parallel in The Man Who Falls. Cinema genealogy includes Taxi Driver, Mask of the Phantasm, and Christine. For full monograph see{" "}
                 <Link to="/roots" className="text-fg underline-offset-4 hover:underline">
                   Roots
                 </Link>

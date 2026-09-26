@@ -87,8 +87,8 @@ function Roots() {
             </h2>
             <p className="mt-2 text-sm text-muted">
               {isEn
-                ? "Ego, The Long Halloween, Year One, and Zero Year remain the core. Shaman is here because Pattinson named it. The Man Who Falls is only a short parallel."
-                : "《自我》、《漫长的万圣节》、《元年》与《零年》仍是主体。《萨满》来自帕丁森的点名。《坠落之人》只留一条短对照。"}
+                ? "Anchored by the four core cornerstones (Ego, The Long Halloween, Year One, and Zero Year), alongside Pattinson's cited totemic inspiration Shaman and the psychological parallel in The Man Who Falls."
+                : "以《自我》、《漫长的万圣节》、《元年》与《零年》四大经典为叙事基石，补充帕丁森在专访中重点阐述的图腾灵感《萨满》与宿命短篇《坠落之人》。"}
             </p>
           </div>
 

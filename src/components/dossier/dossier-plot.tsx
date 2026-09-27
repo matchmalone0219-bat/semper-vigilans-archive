@@ -108,7 +108,7 @@ export function DossierPlot() {
                 {debunked ? (
                   <div className="mt-5 border-t border-dashed border-fg/15 pt-4">
                     <p className="font-display text-[10px] tracking-[0.28em] text-faint uppercase">
-                      {locale === "zh" ? "后续核验" : "DEBUNK VERIFICATION"}
+                      {locale === "zh" ? "证伪依据" : "DEBUNKING EVIDENCE"}
                     </p>
                     {item.debunkedNote ? (
                       <p className="mt-2 text-pretty text-sm leading-relaxed text-muted">

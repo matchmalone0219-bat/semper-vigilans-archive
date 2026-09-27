@@ -825,8 +825,8 @@ export function GothamPlacesMap() {
           </div>
           <p className="text-sm leading-relaxed text-muted">
             {isZh
-              ? "下城区（Downtown）严格依据电影《新蝙蝠侠》官方设定资料与成片地理重绘；上城区（Uptown）与中城区（Midtown）在电影中未直接展开，底图基于限定剧《企鹅人》出现的全城路网与交通地图重构并校正了透视。三张底图均聚焦呈现岛岸、水系与道路骨架，属于影迷严谨重构；互动标记严格区分影视确凿定位与合理推测。“谜语人洪灾计划”图层依据成片中地板地图的 7 处爆破标记与海堤走向复原，旨在呈现灾难蔓延态势。"
-              : "Downtown is strictly redrawn from The Batman official production files and final film geography; Uptown and Midtown were not explored directly in the film, so their basemaps are reconstructed and perspective-corrected from the citywide transit networks seen in The Penguin. All three basemaps focus on coastlines, waterways, and arterial road grids as rigorous fan cartography; interactive markers strictly distinguish between verified on-screen placements and reasoned analysis. The 'Riddler Flood Plan' layer reconstructs the disaster progression from the 7 blast points marked on Nashton's floor map."}
+              ? "下城区（Downtown）依据电影《新蝙蝠侠》的官方设定资料与成片地理重绘；上城区（Uptown）与中城区（Midtown）基于限定剧《企鹅人》出现的全城路网与交通地图重构，并做透视校正。三张底图集中呈现岛岸、水系与道路骨架；互动标记按“地图标注 / 影片定位 / 专题考证”区分来源层级。“谜语人洪灾计划”图层根据成片地板地图中的 7 处爆破标记与海堤走向复原灾害路径。"
+              : "Downtown is redrawn from The Batman's official production materials and on-screen geography; Uptown and Midtown are reconstructed from the citywide road and transit maps seen in The Penguin, with perspective correction applied. The three basemaps focus on coastlines, waterways, and arterial roads; markers are categorized as Production Map, On-screen Location, or Research Theory. The 'Riddler Flood Plan' layer follows the seven blast points and seawall route shown on Nashton's floor map."}
           </p>
         </div>
       </section>

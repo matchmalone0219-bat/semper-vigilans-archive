@@ -438,8 +438,8 @@ function SearchPage() {
                         className={cn(
                           "grid w-full grid-cols-[4.5rem_1fr] items-start gap-3 px-3 py-3 text-left transition-colors",
                           isSelected
-                            ? "border-l-2 border-blood bg-elevated text-fg"
-                            : "border-l-2 border-transparent hover:bg-elevated/60",
+                            ? "bg-elevated text-fg"
+                            : "hover:bg-elevated/60",
                         )}
                       >
                         <span className="pt-0.5 font-display text-[10px] font-bold tracking-[0.16em] text-blood uppercase">

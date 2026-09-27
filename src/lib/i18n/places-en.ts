@@ -160,13 +160,13 @@ export const REGIONS_EN: Record<string, {
     name: "Uptown",
     status: "Series Canon · Macro Grid",
     imageAlt: "Road network map of Uptown reconstructed from The Penguin full-city transit maps",
-    description: "Per production design interviews with James Chinlund (The Batman) and Kalina Ivanov (The Penguin), street-level architectural blueprints were exclusively developed for Downtown in the first film. Uptown and Midtown were planned as macro islands without sub-block building schematics. Maintaining strict archival rigor, we omit speculative pins; suburban facilities like Arkham and Wayne Orphanage are cataloged in the dossier index below.",
+    description: "Interviews with production designers James Chinlund (The Batman) and Kalina Ivanov (The Penguin) indicate that the first film developed Downtown at street level, while Midtown and Uptown remained at a broader city-planning scale. Outlying locations such as Arkham and Wayne Orphanage are cataloged below without map pins.",
   },
   midtown: {
     name: "Midtown",
     status: "Series Canon · Macro Grid",
     imageAlt: "Road network map of Midtown reconstructed from The Penguin full-city transit maps",
-    description: "Central island borough bridging north-south transit in The Penguin. Film narrative did not stage individual structures here; high-res basemap is provided without speculative coordinates.",
+    description: "The Penguin expands this central island as Gotham's north-south transit link, with major bridges and arterial routes. Available material currently defines the waterways, road network, and broad city layout rather than street-level building locations.",
   },
   downtown: {
     name: "Downtown",

@@ -151,7 +151,7 @@ function Craft() {
                     <div className={theme.image ? "lg:col-span-7" : "lg:col-span-12"}>
                       <p className="text-pretty leading-relaxed text-fg">{theme.lede}</p>
                       {theme.quote ? (
-                        <blockquote className="mt-6 border-l border-blood/50 pl-4 text-sm leading-relaxed text-muted">
+                        <blockquote className="mt-6 text-sm leading-relaxed text-muted">
                           <p>“{isZh && theme.quoteZh ? theme.quoteZh : theme.quote}”</p>
                           {isZh && theme.quoteZh ? (
                             <p className="mt-3 text-pretty font-medium text-fg">“{theme.quote}”</p>

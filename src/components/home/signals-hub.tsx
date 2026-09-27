@@ -95,12 +95,12 @@ export function SignalsHub({
           </span>
         </div>
 
-        <div className="mt-6 grid min-w-0 gap-4 sm:gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(19rem,1fr)] lg:items-stretch">
+        <div className="mt-6 grid min-w-0 gap-4 sm:gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(19rem,1fr)] lg:items-start">
           {/* 板块 1：预告与首曝影音 */}
           <Card
             variant="default"
             showCorners
-            className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden border-fg/20 bg-elevated/35 p-4 sm:p-6 lg:min-h-[35rem]"
+            className="flex min-w-0 w-full max-w-full flex-col overflow-hidden border-fg/20 bg-elevated/35 p-4 sm:p-6"
           >
             <div>
               <div className="flex min-w-0 items-center justify-between gap-2">
@@ -180,7 +180,7 @@ export function SignalsHub({
               </div>
             </div>
 
-            <div className="mt-6 border-t border-fg/10 pt-4">
+            <div className="mt-5 border-t border-fg/10 pt-4">
               <button
                 type="button"
                 onClick={() => onSelectVideo(featuredVideo)}

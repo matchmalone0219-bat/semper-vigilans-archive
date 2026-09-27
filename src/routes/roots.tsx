@@ -615,8 +615,8 @@ function Roots() {
           </h2>
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
             {isEn
-              ? "Graded and structured across director statements, creator interviews, and scene parallels to present the rigorous relationship between comic inspiration and cinema:"
-              : "按照导演公开发言、主创专访与经典情节对照进行分级梳理，严谨呈现漫画灵感与电影创作之间的互动关系："}
+              ? "Graded across director statements, creator interviews, and scene parallels to trace the relationship between comic inspiration and cinema:"
+              : "按照导演公开发言、主创专访与经典情节对照进行分级梳理，呈现漫画灵感与电影创作之间的互动关系："}
           </p>
           <ul className="mt-8 grid gap-px bg-border sm:grid-cols-3">
             {(isEn ? ROOT_METHOD_EN : ROOT_METHOD).map((item) => (

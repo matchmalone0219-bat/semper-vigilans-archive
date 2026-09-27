@@ -785,7 +785,7 @@ export function GothamPlacesMap() {
       ) : null}
 
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14">
-        <div className="grid gap-6 border-l-2 border-blood pl-5 sm:grid-cols-2 sm:gap-10">
+        <div className="grid gap-6 sm:grid-cols-2 sm:gap-10">
           <div>
             <p className="font-display text-xs font-semibold tracking-[0.22em] text-blood uppercase">
               Cartography Note

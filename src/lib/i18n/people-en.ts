@@ -498,7 +498,7 @@ export const PEOPLE_EN: Record<string, LocalizedPersonData> = {
     ],
     appearances: [
       { work: "The Batman (2022)", note: "Appears in cellblock 44 whispering to Edward Nashton; extended Arkham scene released online." },
-      { work: "The Batman: Part II", note: "Barry Keoghan rumored to reprise his role; official status unconfirmed." },
+      { work: "The Batman: Part II", note: "Barry Keoghan has been linked to a return, with no Part II casting announcement for the role." },
     ],
   },
 };

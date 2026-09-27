@@ -140,13 +140,14 @@ export const PLACES_EN: Record<string, PlaceEnData> = {
 };
 
 export const REGION_MARKERS_NOTES_EN: Record<string, string> = {
-  "wayne-tower": "Production map labels Wayne Plaza downtown; Wayne Tower is anchored here matching film skyline sightlines.",
-  gsg: "Corresponds to Gotham Square on production maps; arena location inferred from flood finale and plaza surroundings.",
-  "city-hall": "Positioned from on-location practical filming relative to Gotham Square Subway Station.",
-  gcpd: "Production map does not explicitly label GCPD HQ; placed here based on downtown dispatch grids and squad car routes.",
-  iceberg: "Production design and concept art locate Iceberg Lounge at Tricorner Bridge foot, subterranean Shoreline Lofts, not Chinatown.",
-  "riddler-room": "Film frames show Nashton's apartment window directly facing Iceberg Lounge main entrance, placing it in Tricorner.",
-  "crown-point": "Production maps place Crown Point on Downtown's east flank along East River Avenue, rather than southern docks.",
+  "wayne-tower": "Official production blueprints label the Financial District and Wayne Plaza; Wayne Tower anchors this core metropolitan axis overlooking the central avenue.",
+  gsg: "Official blueprints label a dedicated subway loop with the 'Arena' landmark just north of Gotham Square; the flood climax and rally shootout occurred here.",
+  "city-hall": "Official blueprints explicitly mark the City Hall subway station along the horizontal east-west transit line, southeast of the Arena loop.",
+  "park-row": "Official blueprints mark Theatre Row in central downtown; Park Row (Crime Alley) is the alleyway beside the Monarch Theater where the Waynes were killed.",
+  gcpd: "Production map does not explicitly label GCPD HQ; placed here based on downtown municipal dispatch grids and squad car routes.",
+  iceberg: "Production design and Riddler: Year One place the Iceberg Lounge at the south bridgehead of the canal bridge in Tricorner, subterranean Shoreline Lofts.",
+  "riddler-room": "Film frames show Nashton's tenement window directly facing the Iceberg Lounge main entrance across the street, maintaining a direct surveillance line of sight.",
+  "crown-point": "Production blueprints and The Penguin production design interview place Crown Point on the low-lying eastern riverfront, inspired by Five Points.",
 };
 
 export const REGIONS_EN: Record<string, {
@@ -157,21 +158,21 @@ export const REGIONS_EN: Record<string, {
 }> = {
   uptown: {
     name: "Uptown",
-    status: "HBO Series Reference",
+    status: "Series Canon · Macro Grid",
     imageAlt: "Road network map of Uptown reconstructed from The Penguin full-city transit maps",
-    description: "Northern island borough featured in The Penguin citywide transit maps. Unexplored in The Batman, currently reconstructed for coastlines and major arterial grids without speculative landmark markers.",
+    description: "Per production design interviews with James Chinlund (The Batman) and Kalina Ivanov (The Penguin), street-level architectural blueprints were exclusively developed for Downtown in the first film. Uptown and Midtown were planned as macro islands without sub-block building schematics. Maintaining strict archival rigor, we omit speculative pins; suburban facilities like Arkham and Wayne Orphanage are cataloged in the dossier index below.",
   },
   midtown: {
     name: "Midtown",
-    status: "HBO Series Reference",
+    status: "Series Canon · Macro Grid",
     imageAlt: "Road network map of Midtown reconstructed from The Penguin full-city transit maps",
-    description: "Central island borough bridging north and south transit in The Penguin. The high-res basemap follows the series' citywide transit geography and major road network.",
+    description: "Central island borough bridging north-south transit in The Penguin. Film narrative did not stage individual structures here; high-res basemap is provided without speculative coordinates.",
   },
   downtown: {
     name: "Downtown",
-    status: "Film Production · 7 Files",
+    status: "Film Production · 8 Files",
     imageAlt: "Dark road grid map of Downtown redrawn from The Batman official production maps",
-    description: "Core epicenter of The Batman. Official production maps and primary practical filming converge here: civic administration, finance, nightlife, and mob dens. Features toggleable Riddler seawall demolition grid.",
+    description: "Core epicenter of The Batman. Official production blueprint (No. 22101/V04) and primary practical filming converge here: City Hall, Gotham Square, Financial District, Theatre Row, and the Tricorner mob dens. Features toggleable Riddler seawall demolition grid.",
   },
 };
 

@@ -23,7 +23,14 @@ type Evidence = "map" | "screen" | "theory";
 type RegionId = "uptown" | "midtown" | "downtown";
 
 type MapPlaceId =
-  "wayne-tower" | "gsg" | "city-hall" | "gcpd" | "iceberg" | "riddler-room" | "crown-point";
+  | "wayne-tower"
+  | "gsg"
+  | "city-hall"
+  | "gcpd"
+  | "iceberg"
+  | "riddler-room"
+  | "crown-point"
+  | "park-row";
 
 type Marker = {
   placeId: MapPlaceId;
@@ -39,52 +46,59 @@ const REGION_MARKERS: Record<RegionId, Marker[]> = {
   downtown: [
     {
       placeId: "wayne-tower",
-      x: 48.8,
-      y: 40.8,
+      x: 51.5,
+      y: 34.0,
       evidence: "map",
-      note: "设定地图在市中心标有 Wayne Plaza；韦恩塔按该标注与成片天际线视线关系落点。",
+      note: "官方制片图纸标为 Financial District / 韦恩广场核心；成片中韦恩塔高耸于都会天际线，俯瞰市中心中轴干道。",
     },
     {
       placeId: "gsg",
-      x: 32.2,
-      y: 25.8,
-      evidence: "screen",
-      note: "对应设定地图中的 Gotham Square；体育馆本身依据终幕大水与广场环境推定位于该区域。",
+      x: 33.7,
+      y: 17.0,
+      evidence: "map",
+      note: "官方制片工程图纸在哥谭广场北侧标有独立环形轨道及「Arena」场馆；成片终幕海水倒灌与市民避难伏击即发生于此。",
     },
     {
       placeId: "city-hall",
-      x: 39.7,
-      y: 31.1,
-      evidence: "screen",
-      note: "依据市政厅外景实拍与 Gotham Square Station 地铁站的相对几何位置定位。",
+      x: 41.4,
+      y: 24.2,
+      evidence: "map",
+      note: "官方图纸明确标有 City Hall 地铁站，坐落在横贯东西的主干轨道线上，位于 Arena 环线东南侧。",
+    },
+    {
+      placeId: "park-row",
+      x: 47.2,
+      y: 33.5,
+      evidence: "map",
+      note: "官方图纸在下城中心标有 Theatre Row（剧院街区）；派克街即君主剧院后巷，托马斯与玛莎·韦恩遇刺的悲剧原点。",
     },
     {
       placeId: "gcpd",
-      x: 57.8,
-      y: 35.2,
+      x: 55.4,
+      y: 30.5,
       evidence: "theory",
-      note: "设定地图未直接标出总局字样，标记依据市中心警务调度街区与出警动线作专题考证推测。",
+      note: "设定地图未直接标出总局字样，标记依据下城市中心警务调度街区与出警动线作专题考证推测。",
     },
     {
       placeId: "iceberg",
-      x: 27.8,
-      y: 72.4,
+      x: 38.8,
+      y: 62.2,
       evidence: "screen",
-      note: "制片设计与概念图将冰山俱乐部置于 Tricorner Bridge 桥头；里夫斯宇宙设定集亦明确其位于 Tricorner 区 Shoreline Lofts 地下，不在老城或唐人街。",
+      note: "依据制片设计与漫画《谜语人元年》，冰山俱乐部位于下城与三角区之间的运河大桥南侧桥头（Shoreline Lofts 地下）。",
     },
     {
       placeId: "riddler-room",
-      x: 31.0,
-      y: 69.6,
+      x: 37.2,
+      y: 60.8,
       evidence: "screen",
-      note: "成片中谜语人公寓窗户正对冰山俱乐部正门，可直接架设长焦监视法尔科内进出，故随俱乐部落点于 Tricorner。",
+      note: "成片中谜语人廉租公寓窗户正对冰山俱乐部正门，架设长焦镜头越过街区监视法尔科内进出，两处隔街对望。",
     },
     {
       placeId: "crown-point",
-      x: 77.2,
-      y: 63.0,
+      x: 76.8,
+      y: 62.5,
       evidence: "map",
-      note: "设定地图将 Crown Point 标在 Downtown 东侧、紧邻 East River Avenue 沿岸，而非南部码头区。",
+      note: "依据制片图纸与《企鹅人》美术总监访谈，皇冠角定点于东河沿岸低洼区，参照纽约五点区打造，海堤破后受灾最重。",
     },
   ],
 };
@@ -106,6 +120,14 @@ const MAPPED_PLACE_IDS = new Set(
 );
 const UNLOCATED_PLACES = PLACES.filter((place) => !MAPPED_PLACE_IDS.has(place.id as MapPlaceId));
 
+const UNLOCATED_CATEGORIES: Record<string, { zh: string; en: string }> = {
+  arkham: { zh: "北部城郊 · Uptown外围", en: "Northern Outskirts · Outer Uptown" },
+  orphanage: { zh: "北部林区 · 旧韦恩领地", en: "Northern Crest Hill · Historic Wayne Lands" },
+  cave: { zh: "韦恩塔正下方 · 废弃铁路", en: "Subterranean · Under Wayne Tower" },
+  falcone: { zh: "冰山俱乐部顶层套房", en: "The Iceberg Lounge · Penthouse Suite" },
+  seawall: { zh: "沿海外围防洪大堤", en: "Metropolitan Perimeter · Outer Seawall" },
+};
+
 const EVIDENCE: Record<Evidence, { label: string; labelEn: string; className: string }> = {
   map: { label: "地图标注", labelEn: "Production Map", className: "bg-fg text-bg" },
   screen: { label: "影片定位", labelEn: "Film Verified", className: "bg-blood text-fg" },
@@ -117,34 +139,34 @@ const REGIONS = [
     id: "uptown",
     name: "Uptown",
     zh: "上城区",
-    status: "剧集提及",
+    status: "剧集提及 · 宏观轮廓",
     image: "/media/gotham-uptown-map.webp",
     imageAlt: "依据《企鹅人》剧中全城地图重绘的 Uptown 道路地图",
     aspectRatio: "1198 / 1313",
     description:
-      "限定剧《企鹅人》全城交通地图中出现的北部岛区。电影《新蝙蝠侠》未展开该区域，现有公开资料仅足以复原海岸线与主干道路网，暂不设具体地点标记。",
+      "依据艺术指导 James Chinlund（《新蝙蝠侠》）与 Kalina Ivanov（《企鹅人》）访谈史料，第一部制片阶段集中绘制了下城三岛架构，中城与上城未下发街区级细化建筑图纸。本站严守史料严谨性，暂不作臆测性地标标记；阿卡姆州立医院、韦恩孤儿院等城郊/北岛外围设施在下方未落点档案完整收录。",
   },
   {
     id: "midtown",
     name: "Midtown",
     zh: "中城区",
-    status: "剧集提及",
+    status: "剧集提及 · 宏观轮廓",
     image: "/media/gotham-midtown-map.webp",
     imageAlt: "依据《企鹅人》剧中全城地图重绘的 Midtown 道路地图",
     aspectRatio: "1250 / 1372",
     description:
-      "限定剧《企鹅人》补完的中部岛区，承接南北交通。电影未单独展现，当前开放高清底图，暂不为缺少影视坐标的地点强行落点。",
+      "限定剧《企鹅人》补完的中部岛区，承接南北交通枢纽与跨海大桥。成片未单独展开局部建筑，当前开放高清水系与道路底图，严格遵循一手史料规范，不为缺少影视坐标的地点强行落点。",
   },
   {
     id: "downtown",
     name: "Downtown",
     zh: "下城区",
-    status: "电影设定 · 7 处档案",
+    status: "电影设定 · 8 处档案",
     image: "/media/gotham-downtown-map-v2.webp",
     imageAlt: "依据电影《新蝙蝠侠》Downtown 设定地图重绘的暗色道路地图",
     aspectRatio: "1197 / 1314",
     description:
-      "电影《新蝙蝠侠》核心主舞台。官方设定地图与主要外景皆汇聚于此：市政、金融、娱乐与黑帮巢穴在此交织。支持切换谜语人海堤爆破图层。",
+      "电影《新蝙蝠侠》核心主舞台。官方设定工程图（编号 22101/V04）与主要外景皆汇聚于此：市政厅、哥谭广场、金融区、剧院街与三角区黑帮巢穴在此交织。支持切换谜语人海堤爆破图层。",
   },
 ] as const;
 
@@ -774,6 +796,13 @@ export function GothamPlacesMap() {
                       <span className="block truncate font-sans text-sm font-black tracking-tight group-hover:text-blood">
                         {localizedPlace.name}
                       </span>
+                      {UNLOCATED_CATEGORIES[place.id] ? (
+                        <span className="mt-1 inline-block border border-fg/10 bg-bg/80 px-1.5 py-0.5 font-display text-[9px] font-semibold tracking-wider text-blood uppercase">
+                          {isZh
+                            ? UNLOCATED_CATEGORIES[place.id].zh
+                            : UNLOCATED_CATEGORIES[place.id].en}
+                        </span>
+                      ) : null}
                       <span className="mt-1 block truncate text-[11px] text-faint">{localizedPlace.also}</span>
                     </span>
                   </Link>

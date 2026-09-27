@@ -57,6 +57,11 @@ export function SignalsHub({
     .map((id) => INTERVIEWS.find((q) => q.id === id))
     .filter((q): q is NonNullable<typeof q> => Boolean(q));
 
+  const latestSignalDate = [featuredVideoEntry?.date, latestShoot.date, latestInterview?.date]
+    .filter((date): date is string => Boolean(date))
+    .sort()
+    .at(-1);
+
   return (
     <section className="overflow-x-hidden border-b border-fg/10 bg-surface/30">
       <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-18">
@@ -78,12 +83,24 @@ export function SignalsHub({
           </p>
         </div>
 
-        <div className="mt-8 grid min-w-0 gap-4 sm:gap-6 lg:grid-cols-3">
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 border-y border-fg/10 py-2.5 font-mono text-[10px] tracking-[0.14em] text-faint uppercase">
+          <span className="inline-flex items-center gap-2 text-blood">
+            <span className="size-1.5 rounded-full bg-blood shadow-[0_0_10px_rgba(180,24,24,0.65)]" />
+            Latest Signal
+          </span>
+          <span>
+            {locale === "zh"
+              ? `最新更新 · ${latestSignalDate ?? FILM.releaseLabel}`
+              : `Latest update · ${latestSignalDate ?? FILM.releaseLabelEn}`}
+          </span>
+        </div>
+
+        <div className="mt-6 grid min-w-0 gap-4 sm:gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(19rem,1fr)] lg:items-stretch">
           {/* 板块 1：预告与首曝影音 */}
           <Card
             variant="default"
             showCorners
-            className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden p-4 sm:p-6"
+            className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden border-fg/20 bg-elevated/35 p-4 sm:p-6 lg:min-h-[35rem]"
           >
             <div>
               <div className="flex min-w-0 items-center justify-between gap-2">
@@ -95,7 +112,7 @@ export function SignalsHub({
                 </Badge>
               </div>
 
-              <h3 className="mt-4 line-clamp-1 font-sans text-lg font-black tracking-tight text-fg sm:text-xl">
+              <h3 className="mt-5 text-balance font-sans text-2xl font-black leading-tight tracking-tight text-fg sm:text-3xl">
                 {localizedFeaturedVideo?.title ??
                   (locale === "en" ? "First Teaser Footage & Slate Preview" : "首曝镜头与定档前瞻")}
               </h3>
@@ -105,7 +122,7 @@ export function SignalsHub({
 
               <div
                 onClick={() => onSelectVideo(featuredVideo)}
-                className="group/video relative mt-3 block h-40 w-full min-w-0 cursor-pointer overflow-hidden border border-fg/20 bg-elevated sm:mt-4 sm:h-auto sm:aspect-video"
+                className="group/video relative mt-4 block h-56 w-full min-w-0 cursor-pointer overflow-hidden border border-fg/20 bg-bg sm:h-auto sm:aspect-video lg:mt-5"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
@@ -124,7 +141,7 @@ export function SignalsHub({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="grid size-9 place-items-center rounded-full border border-fg/40 bg-bg/85 text-fg shadow-lg backdrop-blur-sm transition-all duration-200 group-hover/video:scale-110 group-hover/video:border-blood group-hover/video:bg-blood group-hover/video:text-white sm:size-12">
+                  <div className="grid size-12 place-items-center rounded-full border border-fg/45 bg-bg/85 text-fg shadow-xl backdrop-blur-sm transition-all duration-200 group-hover/video:scale-110 group-hover/video:border-blood group-hover/video:bg-blood group-hover/video:text-white sm:size-14">
                     <Play className="ml-0.5 size-4 fill-current sm:size-5" />
                   </div>
                 </div>
@@ -175,11 +192,12 @@ export function SignalsHub({
             </div>
           </Card>
 
+          <div className="grid min-w-0 gap-4 sm:gap-6 lg:grid-rows-2">
           {/* 板块 2：片场实拍动态（图文结合与近期时间线） */}
           <Card
             variant="default"
             showCorners
-            className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden p-4 sm:p-6"
+            className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden p-4 sm:p-5"
           >
             <div>
               <div className="flex min-w-0 items-center justify-between gap-2">
@@ -191,7 +209,7 @@ export function SignalsHub({
                 </Badge>
               </div>
 
-              <h3 className="mt-4 line-clamp-1 font-sans text-lg font-black tracking-tight text-fg sm:text-xl">
+              <h3 className="mt-3 line-clamp-2 font-sans text-lg font-black leading-tight tracking-tight text-fg">
                 {localizedShoot.title}
               </h3>
               <p className="mt-1 text-xs text-muted">
@@ -202,7 +220,7 @@ export function SignalsHub({
               <Link
                 to="/dossier"
                 hash={latestShoot.id}
-                className="group/shoot relative mt-3 block h-40 w-full min-w-0 overflow-hidden border border-fg/20 bg-elevated sm:mt-4 sm:h-auto sm:aspect-video"
+                className="group/shoot relative mt-3 block h-28 w-full min-w-0 overflow-hidden border border-fg/20 bg-elevated sm:h-32"
               >
                 <img
                   src={latestShoot.image ?? "/media/p2-snow1.jpg"}
@@ -222,7 +240,7 @@ export function SignalsHub({
               </Link>
 
               {/* 核心段落摘要 */}
-              <p className="mt-2.5 line-clamp-2 text-xs leading-relaxed text-muted">
+              <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-muted">
                 {localizedShoot.body}
               </p>
 
@@ -232,7 +250,7 @@ export function SignalsHub({
                   {locale === "zh" ? "近期关键进展" : "Recent Developments"}
                 </p>
                 <ul className="mt-2 space-y-1.5">
-                  {recentShoots.map((entry) => (
+                  {recentShoots.slice(0, 2).map((entry) => (
                     <li key={entry.date + entry.title} className="text-xs">
                       <Link
                         to="/dossier"
@@ -250,11 +268,11 @@ export function SignalsHub({
               </div>
             </div>
 
-            <div className="mt-6 border-t border-fg/10 pt-4">
+            <div className="mt-3 pt-1">
               <Link
                 to="/dossier"
                 hash="log"
-                className="flex items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
+                className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
               >
                 <span>{locale === "zh" ? "查阅完整拍摄日志" : "Explore Production Log"}</span>
                 <ArrowRight className="size-4" />
@@ -266,7 +284,7 @@ export function SignalsHub({
           <Card
             variant="default"
             showCorners
-            className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden p-4 sm:p-6"
+            className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden p-4 sm:p-5"
           >
             <div>
               <div className="flex min-w-0 items-center justify-between gap-2">
@@ -280,12 +298,12 @@ export function SignalsHub({
 
               {/* 头条人物卡片 */}
               {interviewSpeaker ? (
-                <div className="mt-4 flex items-center gap-3 border-b border-fg/10 pb-3">
+                <div className="mt-3 flex items-center gap-3 border-b border-fg/10 pb-3">
                   {interviewSpeaker.portrait ? (
                     <img
                       src={interviewSpeaker.portrait}
                       alt={locale === "en" ? (interviewSpeaker.nameEn || interviewSpeaker.name) : interviewSpeaker.name}
-                      className="size-11 shrink-0 border border-fg/20 object-cover"
+                      className="size-10 shrink-0 border border-fg/20 object-cover"
                     />
                   ) : null}
                   <div>
@@ -328,12 +346,12 @@ export function SignalsHub({
               ) : null}
 
               {/* 更多主创观点精选 */}
-              <div className="mt-3.5 border-t border-fg/10 pt-3">
+              <div className="mt-3 border-t border-fg/10 pt-3">
                 <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
                   {locale === "zh" ? "更多主创观点精选" : "Selected Creator Quotes"}
                 </p>
                 <ul className="mt-2 space-y-2">
-                  {secondaryInterviews.map((q) => {
+                  {secondaryInterviews.slice(0, 1).map((q) => {
                     const spk = SPEAKER_MAP[q.speakerId];
                     return (
                       <li key={q.id} className="text-xs">
@@ -364,16 +382,17 @@ export function SignalsHub({
               </div>
             </div>
 
-            <div className="mt-6 border-t border-fg/10 pt-4">
+            <div className="mt-3 pt-1">
               <Link
                 to="/interviews"
-                className="flex items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
+                className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
               >
                 <span>{locale === "zh" ? "查阅全部人物专访" : "Explore All Interviews"}</span>
                 <ArrowRight className="size-4" />
               </Link>
             </div>
           </Card>
+          </div>
         </div>
       </div>
     </section>

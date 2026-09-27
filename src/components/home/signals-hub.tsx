@@ -192,7 +192,7 @@ export function SignalsHub({
             </div>
           </Card>
 
-          <div className="grid min-w-0 gap-4 sm:gap-6 lg:grid-rows-2">
+          <div className="grid min-w-0 gap-4 sm:gap-6">
           {/* 板块 2：片场实拍动态（图文结合与近期时间线） */}
           <Card
             variant="default"

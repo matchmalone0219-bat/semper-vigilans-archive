@@ -178,7 +178,7 @@ function Home() {
       <SignalsHub onSelectVideo={(video) => setActiveVideo(video)} />
 
       {/* 03 / Core Archives · 核心档案导航 */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <section className="mx-auto max-w-6xl px-4 pt-10 pb-16 sm:px-6 sm:pt-12 sm:pb-20">
         <div>
           <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
             {t.home.coreLinksKicker}

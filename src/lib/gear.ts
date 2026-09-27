@@ -11,7 +11,7 @@ export type GearItem = {
 };
 
 export const GEAR_INTRO =
-  "本栏目系统介绍马特·里夫斯执导《新蝙蝠侠》宇宙中布鲁斯·韦恩所使用的核心战衣、战术工具与专属座驾。服装造型由格伦·狄龙（Glyn Dillon）、杰奎琳·杜兰（Jacqueline Durran）与皮埃尔·博汉纳（Pierre Bohanna）团队落地制作；载具系统由美术指导詹姆斯·钦伦德（James Chinlund）与概念设计师阿什·索普（Ash Thorp）联合打造。成片细节以 2022 年公映电影及官方艺术设定集《The Art of The Batman》为准；续集已由导演本人公开确认的改款（如头套耳廓加长）同步收录更新。";
+  "本栏目系统介绍马特·里夫斯执导《新蝙蝠侠》宇宙中布鲁斯·韦恩所使用的核心战衣、战术工具与专属座驾。服装造型由格伦·狄龙（Glyn Dillon）、杰奎琳·杜兰（Jacqueline Durran）与皮埃尔·博汉纳（Pierre Bohanna）团队落地制作；载具系统由美术指导詹姆斯·钦伦德（James Chinlund）与概念设计师阿什·索普（Ash Thorp）联合打造。成片细节取自 2022 年公映电影及官方艺术设定集《The Art of The Batman》；续集已由导演本人公开确认的改款（如头套耳廓加长）同步收录更新。";
 
 export const GEAR: GearItem[] = [
   {

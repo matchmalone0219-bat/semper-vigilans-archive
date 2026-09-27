@@ -170,7 +170,7 @@ function Roots() {
                         className="mx-auto max-h-[28rem] w-full bg-elevated object-contain"
                       />
                       {work.quote ? (
-                        <blockquote className="mt-6 border-l border-blood/50 pl-4 text-sm leading-relaxed text-muted">
+                        <blockquote className="mt-6 text-sm leading-relaxed text-muted">
                           <p>“{work.quote}”</p>
                           {!isEn && work.quoteZh ? (
                             <p className="mt-3 text-pretty text-fg font-medium">“{work.quoteZh}”</p>
@@ -328,7 +328,7 @@ function Roots() {
                           className="mx-auto max-h-[28rem] w-full bg-elevated object-contain"
                         />
                         {film.quote ? (
-                          <blockquote className="mt-6 border-l border-blood/50 pl-4 text-sm leading-relaxed text-muted">
+                          <blockquote className="mt-6 text-sm leading-relaxed text-muted">
                             <p>“{film.quote}”</p>
                             {!isEn && film.quoteZh ? (
                               <p className="mt-3 text-pretty font-medium text-fg">“{film.quoteZh}”</p>
@@ -484,7 +484,7 @@ function Roots() {
                     <p className="mt-2 text-xs leading-relaxed text-muted italic">
                       {isEn ? item.imageCaptionEn : item.imageCaption}
                     </p>
-                    <div className="mt-4 border-l-2 border-blood/50 pl-3 text-xs leading-relaxed text-faint">
+                    <div className="mt-4 text-xs leading-relaxed text-faint">
                       <span className="font-semibold text-fg/80">
                         {isEn ? "Scene Context: " : "涉及场次："}
                       </span>
@@ -513,7 +513,7 @@ function Roots() {
 
                     {/* Three-Layer Analysis */}
                     <div className="space-y-4 text-xs leading-relaxed">
-                      <div className="border-l border-fg/20 pl-3">
+                      <div className="">
                         <p className="font-sans font-bold tracking-wide text-fg/90 uppercase">
                           {isEn ? "1. Literal Surface" : "1. 字面表象"}
                         </p>
@@ -522,7 +522,7 @@ function Roots() {
                         </p>
                       </div>
 
-                      <div className="border-l-2 border-blood bg-blood/[0.03] py-1.5 pr-2 pl-3">
+                      <div className="bg-blood/[0.03] px-3 py-1.5">
                         <p className="font-sans font-bold tracking-wide text-blood uppercase">
                           {isEn ? "2. Linguistic Trap & Cultural Wordplay" : "2. 语言学陷阱与双关暗号"}
                         </p>
@@ -531,7 +531,7 @@ function Roots() {
                         </p>
                       </div>
 
-                      <div className="border-l border-fg/20 pl-3">
+                      <div className="">
                         <p className="font-sans font-bold tracking-wide text-fg/90 uppercase">
                           {isEn ? "3. Narrative Truth & DC Canon" : "3. 叙事真相与原著隐喻"}
                         </p>

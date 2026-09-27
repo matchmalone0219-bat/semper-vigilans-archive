@@ -130,7 +130,7 @@ const UNLOCATED_CATEGORIES: Record<string, { zh: string; en: string }> = {
 
 const EVIDENCE: Record<Evidence, { label: string; labelEn: string; className: string }> = {
   map: { label: "地图标注", labelEn: "Production Map", className: "bg-fg text-bg" },
-  screen: { label: "影片定位", labelEn: "Film Verified", className: "bg-blood text-fg" },
+  screen: { label: "影片定位", labelEn: "On-screen Location", className: "bg-blood text-fg" },
   theory: { label: "专题考证", labelEn: "Research Theory", className: "bg-amber-400 text-bg" },
 };
 
@@ -144,7 +144,7 @@ const REGIONS = [
     imageAlt: "依据《企鹅人》剧中全城地图重绘的 Uptown 道路地图",
     aspectRatio: "1198 / 1313",
     description:
-      "依据艺术指导 James Chinlund（《新蝙蝠侠》）与 Kalina Ivanov（《企鹅人》）访谈史料，第一部制片阶段集中绘制了下城三岛架构，中城与上城未下发街区级细化建筑图纸。本站严守史料严谨性，暂不作臆测性地标标记；阿卡姆州立医院、韦恩孤儿院等城郊/北岛外围设施在下方未落点档案完整收录。",
+      "艺术指导 James Chinlund（《新蝙蝠侠》）与 Kalina Ivanov（《企鹅人》）的访谈显示，第一部制片阶段重点完成了下城三岛架构；中城与上城主要保留宏观城市轮廓，未见街区级建筑图纸。阿卡姆州立医院、韦恩孤儿院等城郊与北岛外围设施收录于下方未落点档案。",
   },
   {
     id: "midtown",
@@ -155,7 +155,7 @@ const REGIONS = [
     imageAlt: "依据《企鹅人》剧中全城地图重绘的 Midtown 道路地图",
     aspectRatio: "1250 / 1372",
     description:
-      "限定剧《企鹅人》补完的中部岛区，承接南北交通枢纽与跨海大桥。成片未单独展开局部建筑，当前开放高清水系与道路底图，严格遵循一手史料规范，不为缺少影视坐标的地点强行落点。",
+      "限定剧《企鹅人》补完的中部岛区，承接南北交通枢纽与跨海大桥。现有公开素材主要呈现水系、道路与城市轮廓，尚未出现可对应至具体街区的建筑位置。",
   },
   {
     id: "downtown",

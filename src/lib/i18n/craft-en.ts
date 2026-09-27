@@ -149,7 +149,7 @@ export const LENS_EN = {
     },
     {
       heading: "Spherical Lenses? A Fan Discussion",
-      body: "Scouting photo commenters noted that adopting spherical lenses would contrast with the anamorphic look of the first film and The Penguin. This remains speculative fan observation; official optical specs are pending.",
+      body: "Scouting photo commenters suggested that spherical lenses would create a marked contrast with the anamorphic look of the first film and The Penguin. The lens package has not been published.",
     },
   ],
 };

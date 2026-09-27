@@ -110,7 +110,7 @@ export function DossierProductionDrama() {
                     </p>
 
                     {/* 核心事实列表 */}
-                    <div className="mt-5 space-y-2.5 border-l-2 border-blood/50 pl-4">
+                    <div className="mt-5 space-y-2.5">
                       {phase.bulletPoints.map((point, pIdx) => (
                         <p key={pIdx} className="text-pretty text-xs leading-relaxed text-muted">
                           {point}

@@ -64,7 +64,7 @@ export function SignalsHub({
 
   return (
     <section className="overflow-x-hidden border-b border-fg/10 bg-surface/30">
-      <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-18">
+      <div className="mx-auto w-full max-w-6xl px-4 pt-14 pb-8 sm:px-6 sm:pt-18 sm:pb-10">
         <div className="flex flex-col gap-4 border-b border-fg/10 pb-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="font-display text-xs font-semibold tracking-[0.32em] text-blood uppercase">

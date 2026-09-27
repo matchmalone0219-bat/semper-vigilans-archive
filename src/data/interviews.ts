@@ -113,6 +113,13 @@ export const SPEAKERS: InterviewSpeaker[] = [
     roleEn: "Lead Cast, The Batman: Part II (Undisclosed Role)",
     portrait: "/media/cast/stan.jpg",
   },
+  {
+    id: "johansson",
+    name: "斯嘉丽·约翰逊",
+    nameEn: "Scarlett Johansson",
+    role: "《新蝙蝠侠2》主演（角色未公布）",
+    roleEn: "Lead Cast, The Batman: Part II (Undisclosed Role)",
+  },
 ];
 
 export type InterviewQuote = {
@@ -129,6 +136,21 @@ export type InterviewQuote = {
 };
 
 export const INTERVIEWS: InterviewQuote[] = [
+  {
+    id: "johansson-variety-2026-nyff",
+    speakerId: "johansson",
+    work: "part2",
+    date: "2026.09.25",
+    iso: "2026-09-25",
+    outlet: "Variety",
+    sourceUrl:
+      "https://variety.com/2026/film/festivals/scarlett-johansson-paper-tiger-new-york-film-festival-premiere-adam-driver-1236872284/",
+    quoteZh: "我像在幻觉里。现在是凌晨五点，这个时间上台接受采访倒也合适。",
+    quoteEn:
+      "I'm hallucinating. It's 5 in the morning — which is a great time to be doing an interview on stage.",
+    note:
+      "2026 年 9 月 25 日，纽约电影节开幕片《Paper Tiger》映后问答，地点为林肯中心 Alice Tully Hall。Variety 现场报道称，她刚从伦敦的长途航班下来，当时正在那里拍摄《The Batman: Part II》。问答没有涉及角色。她此前缺席戛纳首映，是因为在纽约拍摄《The Exorcist: Martyrs》。",
+  },
   {
     id: "pattinson-ladbible-2026-tone",
     speakerId: "pattinson",

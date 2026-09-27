@@ -1239,20 +1239,6 @@ export const LOG: LogEntry[] = [
     hash: "pattinson-collider-2026-left-turn",
   },
   {
-    date: "2026.09.25",
-    id: "log-2026-09-25",
-    iso: "2026-09-25",
-    title: "约翰逊从伦敦片场飞抵纽约电影节",
-    body: "《Paper Tiger》作为第 64 届纽约电影节开幕片放映后，斯嘉丽·约翰逊在林肯中心 Alice Tully Hall 参加映后问答。Variety 现场报道称，她刚从伦敦的长途航班下来，当时正在那里拍摄《The Batman: Part II》。台上她没有谈角色，只说自己像在幻觉里，因为这时对她是凌晨五点。戛纳首映她没到场，当时在纽约拍摄《The Exorcist: Martyrs》。",
-    kind: "shoot",
-    locationLabel: "伦敦片场 · 纽约电影节",
-    source: "Variety · Rebecca Rubin",
-    sourceUrl:
-      "https://variety.com/2026/film/festivals/scarlett-johansson-paper-tiger-new-york-film-festival-premiere-adam-driver-1236872284/",
-    sourceTier: "press",
-    verifiedAt: "2026.09.27",
-  },
-  {
     date: "2028.02.18",
     id: "log-2028-02-18",
     iso: "2028-02-18",

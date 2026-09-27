@@ -467,12 +467,6 @@ export const LOG_EN: Record<
     body: "While promoting Primetime, Pattinson told Collider that The Batman Part II represents a genuine left turn from the first movie while retaining its core atmosphere. He described the screenplay as exceptionally dense, noting Reeves already has the entire film mapped in his head, with cast members continually discovering layered details on set. No villains, specific scenes, or suits were discussed.",
     source: "Collider · Steve Weintraub Interview",
   },
-  "log-2026-09-25": {
-    title: "Johansson Flies from the London Shoot to the New York Film Festival",
-    locationLabel: "London set · New York Film Festival",
-    body: "After Paper Tiger opened the 64th New York Film Festival, Scarlett Johansson joined the post-screening Q&A at Lincoln Center's Alice Tully Hall. Variety reported that she had just landed from a long flight out of London, where she is filming The Batman: Part II. She did not discuss the role. On stage she said she was hallucinating, because for her it was five in the morning. She had missed the Cannes premiere while shooting The Exorcist: Martyrs in New York.",
-    source: "Variety · Rebecca Rubin",
-  },
   "log-2028-02-18": {
     title: "Theatrical Release Across North America",
     body: "The Batman: Part II opens nationwide in premium formats including IMAX and Dolby Cinema.",

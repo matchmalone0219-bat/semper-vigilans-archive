@@ -69,7 +69,7 @@ function Interviews() {
               ? "收录主演与核心主创在公开深度专访中关于《新蝙蝠侠》三部曲与《企鹅人》剧集的关键谈话实录。"
               : "Key quotes and reflections from principal cast and filmmakers across The Batman Epic Crime Saga."}
           </p>
-          <p className="mt-4 max-w-2xl border-l-2 border-blood pl-3 text-xs leading-relaxed text-faint">
+          <p className="mt-4 max-w-2xl text-xs leading-relaxed text-faint">
             {locale === "zh"
               ? "可按作品或发言人筛选。人物档案页也会链到对应条目。"
               : "Filter by project or speaker. Linked directly from corresponding character dossiers."}

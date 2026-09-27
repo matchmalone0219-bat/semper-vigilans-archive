@@ -1,7 +1,16 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import { createJiti } from "jiti";
+
+const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const jiti = createJiti(import.meta.url, {
+  alias: { "@": join(rootDir, "src") },
+});
+const { INTERVIEWS } = jiti(join(rootDir, "src/data/interviews.ts"));
 
 const PORT = 4179;
 const BASE = `http://127.0.0.1:${PORT}`;
@@ -273,7 +282,8 @@ test("desktop, mobile, and keyboard search page", { timeout: 180000 }, async (t)
     const featured = page.getByRole("link", { name: "查看最新访谈详情" });
     const href = await featured.getAttribute("href");
     const id = href?.split("#")[1];
-    assert.match(id ?? "", /^pattinson-/);
+    const expectedId = [...INTERVIEWS].sort((a, b) => b.iso.localeCompare(a.iso))[0]?.id;
+    assert.equal(id, expectedId);
     await featured.click();
     await page.waitForURL(new RegExp("/interviews#" + id + "$"));
     const targetReady = () => page.waitForFunction((anchor) => {

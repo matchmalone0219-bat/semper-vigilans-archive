@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ExternalLink, Play, Quote } from "lucide-react";
+import { ArrowRight, Play, Quote } from "lucide-react";
 import { FILM, LOG, type LogVideo } from "@/data/film";
 import { INTERVIEWS } from "@/data/interviews";
 import { SPEAKER_MAP } from "@/lib/interviews";
@@ -494,15 +494,14 @@ export function SignalsHub({
                         {locale === "en" ? featuredSocialDrop.contextEn : featuredSocialDrop.contextZh}
                       </p>
                     )}
-                    <a
-                      href={featuredSocialDrop.url}
-                      target="_blank"
-                      rel="noreferrer noopener"
+                    <Link
+                      to="/dossier"
+                      hash={featuredSocialDrop.id}
                       className="group/social-link mt-2.5 inline-flex items-center gap-1 font-display text-[10px] font-semibold tracking-[0.15em] text-blood uppercase hover:underline"
                     >
-                      <span>{locale === "zh" ? "查阅官方原帖" : "View Original Post"}</span>
-                      <ExternalLink className="size-3 transition-transform group-hover/social-link:translate-x-0.5" aria-hidden="true" />
-                    </a>
+                      <span>{locale === "zh" ? "查看这条动态" : "Open this dispatch"}</span>
+                      <ArrowRight className="size-3" aria-hidden="true" />
+                    </Link>
                   </div>
 
                   {/* 更多主创动态精选 */}
@@ -513,10 +512,9 @@ export function SignalsHub({
                     <ul className="mt-2 space-y-2">
                       {secondarySocialDrops.slice(0, 1).map((drop) => (
                         <li key={drop.id} className="text-xs">
-                          <a
-                            href={drop.url}
-                            target="_blank"
-                            rel="noreferrer noopener"
+                          <Link
+                            to="/dossier"
+                            hash={drop.id}
                             className="group/drop block text-muted hover:text-fg"
                           >
                             <div className="flex items-center justify-between text-[11px]">
@@ -531,7 +529,7 @@ export function SignalsHub({
                             <p className="mt-0.5 truncate text-[11px] text-muted transition-colors group-hover/drop:text-fg">
                               {locale === "zh" ? `“${drop.textZh}”` : `“${drop.textEn}”`}
                             </p>
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -552,7 +550,7 @@ export function SignalsHub({
               ) : (
                 <Link
                   to="/dossier"
-                  hash="log"
+                  hash="social"
                   className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
                 >
                   <span>{locale === "zh" ? "查阅拍摄动态与信源" : "Explore Production Logs"}</span>

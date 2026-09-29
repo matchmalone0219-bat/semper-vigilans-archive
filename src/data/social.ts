@@ -18,10 +18,36 @@ export type SocialDrop = {
   textEn: string;
   contextZh?: string;
   contextEn?: string;
+  image?: string;
+  imageAlt?: string;
+  imageAltEn?: string;
   verified: boolean;
 };
 
 export const SOCIAL_DROPS: SocialDrop[] = [
+  {
+    id: "perez-london-2026",
+    authorId: "martinez",
+    authorName: "吉尔·佩雷斯-亚伯拉罕",
+    authorNameEn: "Gil Perez-Abraham",
+    authorHandle: "@gilperezabraham",
+    authorRole: "马丁内斯警官",
+    authorRoleEn: "Officer Martinez",
+    avatar: "/media/portraits/martinez.jpg",
+    platform: "instagram",
+    platformLabel: "Instagram",
+    date: "2026.09.25",
+    iso: "2026-09-25",
+    url: "https://www.instagram.com/gilperezabraham/",
+    textZh: "配文未随转载保留。",
+    textEn: "The caption was not kept in the reposts.",
+    contextZh: "2026年9月25日，他在 Instagram 发出这张伦敦石板路自拍。转载把它读成前来拍摄《新蝙蝠侠2》。原帖完整配文没有留下来，这里不补写。",
+    contextEn: "On September 25, 2026 he posted this London street selfie. Reposts read it as his arrival to film The Batman: Part II. The full caption was not preserved, so none is invented here.",
+    image: "/media/social/perez-london-2026.jpg",
+    imageAlt: "吉尔·佩雷斯-亚伯拉罕在伦敦石板路上的自拍",
+    imageAltEn: "Gil Perez-Abraham's selfie on a London cobblestone street",
+    verified: true,
+  },
   {
     id: "reeves-batman-day-2026",
     authorId: "reeves",
@@ -40,6 +66,9 @@ export const SOCIAL_DROPS: SocialDrop[] = [
     textEn: "Happy Batman Day 🦇",
     contextZh: "马特·里夫斯在 2026 年蝙蝠侠日发布罗伯特·帕丁森身着战衣的全新官方物料剪影，持续为《新蝙蝠侠2》预热。",
     contextEn: "Matt Reeves marked Batman Day 2026 by sharing an official silhouette of Robert Pattinson suited up as the Dark Knight for The Batman: Part II.",
+    image: "/media/social/reeves-batman-day-2026.jpg",
+    imageAlt: "马特·里夫斯 2026 年蝙蝠侠日发布的战衣剪影",
+    imageAltEn: "Silhouette Matt Reeves posted on Batman Day 2026",
     verified: true,
   },
   {
@@ -73,13 +102,16 @@ export const SOCIAL_DROPS: SocialDrop[] = [
     avatar: "/media/cast/wright.jpg",
     platform: "instagram",
     platformLabel: "Instagram",
-    date: "2025.09.12",
-    iso: "2025-09-12",
+    date: "2025.08.30",
+    iso: "2025-08-30",
     url: "https://www.instagram.com/jfreewright/",
-    textZh: "为文化底蕴做些背景阅读……我们回到了哥谭。",
-    textEn: "Background reads for the culture... We back in Gotham.",
-    contextZh: "杰弗里·怀特在社交平台展示绝密剧本收纳包，确认已收到加密剧本并正式启动戈登局长角色备战。",
-    contextEn: "Jeffrey Wright confirmed receiving his encrypted script binder and preparing to reprise Jim Gordon in The Batman: Part II.",
+    textZh: "🦇",
+    textEn: "🦇",
+    contextZh: "2025年8月30日，杰弗里·怀特在 Instagram 发出这只带密码锁的黑色收纳包，配文只有一个蝙蝠表情。外界把它读成《新蝙蝠侠2》的剧本包。",
+    contextEn: "On August 30, 2025 Jeffrey Wright posted this combination-lock pouch on Instagram, captioned only with a bat emoji. It was widely read as the pouch for The Batman: Part II script.",
+    image: "/media/social/wright-script-bag-2025.jpg",
+    imageAlt: "杰弗里·怀特 Instagram 上的密码锁收纳包",
+    imageAltEn: "The combination-lock pouch Jeffrey Wright posted on Instagram",
     verified: true,
   },
   {
@@ -100,6 +132,9 @@ export const SOCIAL_DROPS: SocialDrop[] = [
     textEn: "Partners in crime (fighters). Very proud of what we made.",
     contextZh: "马特·里夫斯与联合编剧马特森·汤姆林合影宣布《新蝙蝠侠2》最终剧本正式定稿交付。",
     contextEn: "Matt Reeves and co-writer Mattson Tomlin confirmed the completion of The Batman: Part II screenplay.",
+    image: "/media/social/reeves-script-2025.jpg",
+    imageAlt: "里夫斯与汤姆林合影，前景是盖着蝙蝠标志的剧本",
+    imageAltEn: "Reeves and Tomlin with the finished script and bat emblem in the foreground",
     verified: true,
   },
   {

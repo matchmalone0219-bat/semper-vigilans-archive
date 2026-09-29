@@ -7,6 +7,7 @@ import { CINEMA_ROOTS, RIDDLE_LORE, ROOTS, ROOT_KIND } from "@/lib/roots";
 import { CITIES, LENS, THEMES } from "@/lib/craft";
 import { PRODUCTION_PHASES } from "@/data/production";
 import { INTERVIEWS, SPEAKERS, WORK_LABEL } from "@/data/interviews";
+import { SORTED_SOCIAL_DROPS } from "@/lib/social";
 import { BRUCE_JOURNALS, CASE_FILES } from "@/lib/cases";
 import { BRUCE_JOURNALS_EN } from "@/lib/i18n/cases-en";
 
@@ -90,6 +91,15 @@ export const SEARCH_ITEMS: SearchItem[] = [
       ].join(" "),
     );
   }),
+  ...SORTED_SOCIAL_DROPS.map((drop) =>
+    item(
+      `${drop.authorName} · ${drop.textZh.length > 28 ? `${drop.textZh.slice(0, 28)}…` : drop.textZh}`,
+      `${drop.date} · ${drop.platformLabel}`,
+      `/dossier#${drop.id}`,
+      "社媒",
+      [drop.authorNameEn, drop.authorHandle, drop.authorRole, drop.textEn, drop.textZh, drop.contextZh ?? "", drop.contextEn ?? ""].join(" "),
+    ),
+  ),
   ...CASE_FILES.map((record) =>
     item(
       record.title,

@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { pageTitle } from "@/lib/film";
 import { CAST, FACTS, FILM, LOG, PLOT } from "@/data/film";
+import { SORTED_SOCIAL_DROPS } from "@/lib/social";
 import { RelationMap } from "@/components/relation-map";
 import { PLACES } from "@/lib/places";
 import { ChapterNav } from "@/components/chapter-nav";
@@ -10,6 +11,7 @@ import { DossierPlot } from "@/components/dossier/dossier-plot";
 import { DossierCast } from "@/components/dossier/dossier-cast";
 import { DossierProductionDrama } from "@/components/dossier/dossier-production-drama";
 import { DossierShootLog } from "@/components/dossier/dossier-shoot-log";
+import { DossierSocial } from "@/components/dossier/dossier-social";
 import { useI18n } from "@/lib/i18n";
 import { PLACES_EN } from "@/lib/i18n/places-en";
 
@@ -33,6 +35,7 @@ function Dossier() {
       { href: "#features", label: locale === "zh" ? "实体收录与特辑" : "Home Video & Extras" },
       { href: "#drama", label: locale === "zh" ? "制作演变与原案" : "Production Odyssey" },
       { href: "#log", label: locale === "zh" ? "拍摄日志" : "Shoot Log", count: LOG.length },
+      { href: "#social", label: locale === "zh" ? "主创社媒" : "Creator Posts", count: SORTED_SOCIAL_DROPS.length },
     ],
     [locale],
   );
@@ -350,6 +353,16 @@ function Dossier() {
         <section id="log" className="scroll-mt-24">
           <SectionKicker n="09" title={locale === "zh" ? "拍摄日志" : "Production Log"} />
           <DossierShootLog />
+        </section>
+
+        <section id="social" className="scroll-mt-24">
+          <SectionKicker n="10" title={locale === "zh" ? "主创社媒" : "Creator Posts"} />
+          <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
+            {locale === "zh"
+              ? "导演、编剧与主演公开发布的制作动态。每条保留当时随帖发出的图片。"
+              : "Public posts from the director, writers, and cast. Each entry keeps the image that went out with the post."}
+          </p>
+          <DossierSocial />
         </section>
       </div>
     </main>

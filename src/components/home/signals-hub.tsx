@@ -67,6 +67,10 @@ export function SignalsHub({
     ? getRecentSocialDrops(2, featuredSocialDrop.id)
     : [];
 
+  const featuredSocialText = featuredSocialDrop
+    ? (locale === "zh" ? featuredSocialDrop.textZh : featuredSocialDrop.textEn)
+    : undefined;
+
   const latestSignalDate = [
     featuredVideoEntry?.date,
     latestShoot.date,
@@ -435,13 +439,15 @@ export function SignalsHub({
                 </div>
               ) : featuredSocialDrop ? (
                 <div>
-                  <div className="mt-2.5 flex items-center justify-between">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[11px] font-medium text-muted">
-                        {locale === "zh" ? "一手社媒追踪" : "Direct Creator Drop"}
+                  <div className="mt-2.5 flex items-center justify-between gap-2">
+                    <div className="flex min-w-0 items-center gap-1.5">
+                      <span className="truncate text-[11px] font-medium text-muted">
+                        {locale === "zh" ? "主创社媒动态" : "Creator Social"}
                       </span>
-                      <Badge variant="official" dotColor="bg-emerald-400" size="sm">
-                        {locale === "zh" ? "官方" : "OFFICIAL"}
+                      <Badge variant="outline" size="sm">
+                        {featuredSocialDrop.sourceKind === "creator"
+                          ? (locale === "zh" ? "主创账号" : "CREATOR ACCOUNT")
+                          : (locale === "zh" ? "转载存档" : "REPOST ARCHIVE")}
                       </Badge>
                     </div>
                     <Badge variant="outline" size="sm">
@@ -467,9 +473,6 @@ export function SignalsHub({
                         <h3 className="truncate font-sans text-base font-black tracking-tight text-fg">
                           {locale === "en" ? featuredSocialDrop.authorNameEn : featuredSocialDrop.authorName}
                         </h3>
-                        <span className="shrink-0 font-mono text-xs text-blood" title="Verified Creator">
-                          ✓
-                        </span>
                       </div>
                       <p className="truncate text-xs text-muted">
                         <span className="font-mono text-faint">{featuredSocialDrop.authorHandle}</span>
@@ -481,16 +484,18 @@ export function SignalsHub({
 
                   {/* 焦点社媒动态正文 */}
                   <div className="mt-3">
-                    <blockquote className="text-pretty text-xs leading-relaxed text-fg/90">
-                      {locale === "zh" ? `“${featuredSocialDrop.textZh}”` : `“${featuredSocialDrop.textEn}”`}
-                    </blockquote>
-                    {locale === "zh" && (
+                    {featuredSocialText ? (
+                      <blockquote className="text-pretty text-xs leading-relaxed text-fg/90">
+                        { `“${featuredSocialText}”` }
+                      </blockquote>
+                    ) : null}
+                    {locale === "zh" && featuredSocialDrop.textZh && featuredSocialDrop.textEn ? (
                       <p className="mt-1.5 line-clamp-1 font-mono text-[11px] italic text-faint">
                         {featuredSocialDrop.textEn}
                       </p>
-                    )}
+                    ) : null}
                     {(featuredSocialDrop.contextZh || featuredSocialDrop.contextEn) && (
-                      <p className="mt-2 border-l-2 border-blood/60 pl-2 text-[11px] leading-relaxed text-muted">
+                      <p className="mt-2 text-[11px] leading-relaxed text-muted">
                         {locale === "en" ? featuredSocialDrop.contextEn : featuredSocialDrop.contextZh}
                       </p>
                     )}
@@ -527,7 +532,9 @@ export function SignalsHub({
                               <span className="font-mono text-[10px] text-faint">{drop.date.slice(2)}</span>
                             </div>
                             <p className="mt-0.5 truncate text-[11px] text-muted transition-colors group-hover/drop:text-fg">
-                              {locale === "zh" ? `“${drop.textZh}”` : `“${drop.textEn}”`}
+                              {locale === "zh"
+                                ? (drop.textZh ? `“${drop.textZh}”` : drop.contextZh)
+                                : (drop.textEn ? `“${drop.textEn}”` : drop.contextEn)}
                             </p>
                           </Link>
                         </li>
@@ -553,7 +560,7 @@ export function SignalsHub({
                   hash="social"
                   className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
                 >
-                  <span>{locale === "zh" ? "查阅拍摄动态与信源" : "Explore Production Logs"}</span>
+                  <span>{locale === "zh" ? "查阅全部主创社媒" : "Explore Creator Posts"}</span>
                   <ArrowRight className="size-4" />
                 </Link>
               )}

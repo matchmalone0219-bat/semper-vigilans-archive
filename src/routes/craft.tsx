@@ -27,9 +27,9 @@ function Craft() {
     <main>
       <header className="relative isolate overflow-hidden border-b border-fg/10">
         <img
-          src="/media/street.jpg"
-          alt=""
-          className="absolute inset-0 size-full object-cover opacity-50"
+          src="/media/craft-hero.jpg"
+          alt={isZh ? "布鲁斯·韦恩在韦恩塔光环门廊前的剪影与暖调逆光" : "Bruce Wayne backlit before the circular portal in Wayne Tower"}
+          className="absolute inset-0 size-full object-cover object-[center_30%] opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/75 to-bg/40" />
         <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">

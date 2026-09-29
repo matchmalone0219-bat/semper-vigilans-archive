@@ -297,6 +297,33 @@ test("desktop, mobile, and keyboard search page", { timeout: 180000 }, async (t)
     await page.close();
   });
 
+  await t.test("homepage voices card toggles between interviews and creator social drops", async () => {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    page.setDefaultTimeout(12000);
+    await page.goto(BASE, { waitUntil: "networkidle" });
+
+    // Initial state: interview tab is active
+    const interviewLink = page.getByRole("link", { name: "查看最新访谈详情" });
+    await assert.doesNotReject(interviewLink.waitFor({ state: "visible" }));
+
+    // Switch to social drops tab
+    const socialTabBtn = page.getByRole("button", { name: /社媒动态/ });
+    await socialTabBtn.click();
+
+    // Verify creator social content is rendered
+    const socialLink = page.getByRole("link", { name: "查阅官方原帖" });
+    await assert.doesNotReject(socialLink.waitFor({ state: "visible" }));
+    const href = await socialLink.getAttribute("href");
+    assert.match(href || "", /^https?:\/\//);
+
+    // Switch back to interviews tab
+    const interviewTabBtn = page.getByRole("button", { name: "深度专访" });
+    await interviewTabBtn.click();
+    await assert.doesNotReject(interviewLink.waitFor({ state: "visible" }));
+
+    await page.close();
+  });
+
   await t.test("interview and case search results land on exact records and journals", async () => {
     const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
     page.setDefaultTimeout(12000);

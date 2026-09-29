@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Play, Quote } from "lucide-react";
+import { ArrowRight, ExternalLink, Play, Quote } from "lucide-react";
 import { FILM, LOG, type LogVideo } from "@/data/film";
 import { INTERVIEWS } from "@/data/interviews";
 import { SPEAKER_MAP } from "@/lib/interviews";
 import { logVideoPoster } from "@/lib/film";
+import { LATEST_SOCIAL_DROP, getRecentSocialDrops } from "@/lib/social";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/cn";
 import { useI18n } from "@/lib/i18n";
 import { getLocalizedLog, getLocalizedLogVideoTitle } from "@/lib/i18n/dossier-en";
 
@@ -47,7 +50,9 @@ export function SignalsHub({
     .slice(-3)
     .reverse();
 
-  // 3. 最新人物访谈（头条专访 + 2条核心主创观点）
+  // 3. 主创发声与动态（深度专访 / 社媒动态）
+  const [voiceTab, setVoiceTab] = useState<"interview" | "social">("interview");
+
   const sortedInterviews = [...INTERVIEWS].sort((a, b) => b.iso.localeCompare(a.iso));
   const latestInterview = sortedInterviews[0];
   const interviewSpeaker = latestInterview ? SPEAKER_MAP[latestInterview.speakerId] : null;
@@ -57,7 +62,17 @@ export function SignalsHub({
     .map((id) => INTERVIEWS.find((q) => q.id === id))
     .filter((q): q is NonNullable<typeof q> => Boolean(q));
 
-  const latestSignalDate = [featuredVideoEntry?.date, latestShoot.date, latestInterview?.date]
+  const featuredSocialDrop = LATEST_SOCIAL_DROP;
+  const secondarySocialDrops = featuredSocialDrop
+    ? getRecentSocialDrops(2, featuredSocialDrop.id)
+    : [];
+
+  const latestSignalDate = [
+    featuredVideoEntry?.date,
+    latestShoot.date,
+    latestInterview?.date,
+    featuredSocialDrop?.date,
+  ]
     .filter((date): date is string => Boolean(date))
     .sort()
     .at(-1);
@@ -280,116 +295,270 @@ export function SignalsHub({
             </div>
           </Card>
 
-          {/* 板块 3：人物访谈（头条金句 + 更多核心主创原话） */}
+          {/* 板块 3：主创发声与动态（深度专访 | 社媒动态） */}
           <Card
             variant="default"
             showCorners
             className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden p-4 sm:p-5"
           >
             <div>
-              <div className="flex min-w-0 items-center justify-between gap-2">
+              {/* 卡片头部与分段切换器 */}
+              <div className="flex min-w-0 flex-wrap items-center justify-between gap-2 border-b border-fg/10 pb-2.5">
                 <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
-                  03 / Voices · {locale === "zh" ? "人物专访" : "Creator Interviews"}
+                  03 / Voices · {locale === "zh" ? "主创发声" : "Creator Voices"}
                 </span>
-                <Badge variant="outline" size="sm">
-                  {latestInterview?.outlet} · {latestInterview?.date}
-                </Badge>
+
+                <div className="inline-flex items-center rounded border border-fg/20 bg-surface/80 p-0.5 font-mono text-[10px]">
+                  <button
+                    type="button"
+                    onClick={() => setVoiceTab("interview")}
+                    className={cn(
+                      "cursor-pointer rounded px-2 py-0.5 transition-colors",
+                      voiceTab === "interview"
+                        ? "bg-blood font-bold text-white shadow-xs"
+                        : "text-muted hover:text-fg"
+                    )}
+                  >
+                    {locale === "zh" ? "深度专访" : "Interviews"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setVoiceTab("social")}
+                    className={cn(
+                      "cursor-pointer inline-flex items-center gap-1.5 rounded px-2 py-0.5 transition-colors",
+                      voiceTab === "social"
+                        ? "bg-blood font-bold text-white shadow-xs"
+                        : "text-muted hover:text-fg"
+                    )}
+                  >
+                    <span>{locale === "zh" ? "社媒动态" : "Social Drops"}</span>
+                    <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  </button>
+                </div>
               </div>
 
-              {/* 头条人物卡片 */}
-              {interviewSpeaker ? (
-                <div className="mt-3 flex items-center gap-3 border-b border-fg/10 pb-3">
-                  {interviewSpeaker.portrait ? (
-                    <img
-                      src={interviewSpeaker.portrait}
-                      alt={locale === "en" ? (interviewSpeaker.nameEn || interviewSpeaker.name) : interviewSpeaker.name}
-                      className="size-10 shrink-0 border border-fg/20 object-cover"
-                    />
+              {voiceTab === "interview" ? (
+                <div>
+                  <div className="mt-2.5 flex items-center justify-between">
+                    <span className="text-[11px] font-medium text-muted">
+                      {locale === "zh" ? "媒体深度专访" : "In-Depth Interview"}
+                    </span>
+                    <Badge variant="outline" size="sm">
+                      {latestInterview?.outlet} · {latestInterview?.date}
+                    </Badge>
+                  </div>
+
+                  {/* 头条人物卡片 */}
+                  {interviewSpeaker ? (
+                    <div className="mt-3 flex items-center gap-3 border-b border-fg/10 pb-3">
+                      {interviewSpeaker.portrait ? (
+                        <img
+                          src={interviewSpeaker.portrait}
+                          alt={locale === "en" ? (interviewSpeaker.nameEn || interviewSpeaker.name) : interviewSpeaker.name}
+                          className="size-10 shrink-0 border border-fg/20 object-cover"
+                        />
+                      ) : null}
+                      <div>
+                        <h3 className="font-sans text-base font-black tracking-tight text-fg">
+                          {locale === "en" ? (interviewSpeaker.nameEn || interviewSpeaker.name) : interviewSpeaker.name}
+                        </h3>
+                        <p className="text-xs text-muted">
+                          {locale === "en" ? (interviewSpeaker.roleEn || interviewSpeaker.role) : interviewSpeaker.role}
+                        </p>
+                      </div>
+                    </div>
                   ) : null}
-                  <div>
-                    <h3 className="font-sans text-base font-black tracking-tight text-fg">
-                      {locale === "en" ? (interviewSpeaker.nameEn || interviewSpeaker.name) : interviewSpeaker.name}
-                    </h3>
-                    <p className="text-xs text-muted">
-                      {locale === "en" ? (interviewSpeaker.roleEn || interviewSpeaker.role) : interviewSpeaker.role}
+
+                  {/* 焦点核心金句 */}
+                  {latestInterview ? (
+                    <Link
+                      to="/interviews"
+                      hash={latestInterview.id}
+                      aria-label={locale === "zh" ? "查看最新访谈详情" : "Read the latest interview"}
+                      className="group/featured-quote mt-3 block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blood"
+                    >
+                      <Quote className="size-3.5 fill-current text-blood/70" />
+                      <blockquote className="mt-1.5 text-pretty text-xs leading-relaxed text-fg/90">
+                        {locale === "zh" ? (
+                          `“${latestInterview.quoteZh.length > 76 ? `${latestInterview.quoteZh.slice(0, 76)}……` : latestInterview.quoteZh}”`
+                        ) : (
+                          `“${latestInterview.quoteEn}”`
+                        )}
+                      </blockquote>
+                      {locale === "zh" && (
+                        <p className="mt-2 line-clamp-1 text-[11px] italic text-faint">
+                          {latestInterview.quoteEn}
+                        </p>
+                      )}
+                      <span className="mt-2 inline-flex items-center gap-1 font-display text-[10px] font-semibold tracking-[0.15em] text-blood uppercase group-hover/featured-quote:underline">
+                        {locale === "zh" ? "查看这条访谈" : "Read this interview"}
+                        <ArrowRight className="size-3" aria-hidden="true" />
+                      </span>
+                    </Link>
+                  ) : null}
+
+                  {/* 更多主创观点精选 */}
+                  <div className="mt-3 border-t border-fg/10 pt-3">
+                    <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
+                      {locale === "zh" ? "更多主创观点精选" : "Selected Creator Quotes"}
                     </p>
+                    <ul className="mt-2 space-y-2">
+                      {secondaryInterviews.slice(0, 1).map((q) => {
+                        const spk = SPEAKER_MAP[q.speakerId];
+                        return (
+                          <li key={q.id} className="text-xs">
+                            <Link
+                              to="/interviews"
+                              hash={q.id}
+                              className="group/voice block text-muted hover:text-fg"
+                            >
+                              <div className="flex items-center justify-between text-[11px]">
+                                <span className="font-bold text-fg/90 transition-colors group-hover/voice:text-blood">
+                                  {locale === "en" ? (spk?.nameEn ?? spk?.name ?? "Creator") : (spk?.name ?? "主创")}
+                                  <span className="ml-1.5 font-normal text-faint">
+                                    {locale === "en"
+                                      ? (spk?.roleEn?.split(" / ")[0] ?? spk?.role.split(" / ")[0])
+                                      : spk?.role.split(" / ")[0]}
+                                  </span>
+                                </span>
+                                <span className="font-mono text-[10px] text-faint">{q.date.slice(2)}</span>
+                              </div>
+                              <p className="mt-0.5 truncate text-[11px] text-muted transition-colors group-hover/voice:text-fg">
+                                {locale === "zh" ? `“${q.quoteZh}”` : `“${q.quoteEn}”`}
+                              </p>
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
+              ) : featuredSocialDrop ? (
+                <div>
+                  <div className="mt-2.5 flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[11px] font-medium text-muted">
+                        {locale === "zh" ? "一手社媒追踪" : "Direct Creator Drop"}
+                      </span>
+                      <Badge variant="official" dotColor="bg-emerald-400" size="sm">
+                        {locale === "zh" ? "官方" : "OFFICIAL"}
+                      </Badge>
+                    </div>
+                    <Badge variant="outline" size="sm">
+                      {featuredSocialDrop.platformLabel} · {featuredSocialDrop.date}
+                    </Badge>
+                  </div>
+
+                  {/* 头条主创社媒卡片 */}
+                  <div className="mt-3 flex items-center gap-3 border-b border-fg/10 pb-3">
+                    {featuredSocialDrop.avatar ? (
+                      <img
+                        src={featuredSocialDrop.avatar}
+                        alt={locale === "en" ? featuredSocialDrop.authorNameEn : featuredSocialDrop.authorName}
+                        className="size-10 shrink-0 border border-fg/20 object-cover"
+                      />
+                    ) : (
+                      <div className="flex size-10 shrink-0 items-center justify-center border border-fg/20 bg-elevated font-mono text-xs font-bold text-fg/80">
+                        {featuredSocialDrop.authorNameEn.split(" ").map((w) => w[0]).join("")}
+                      </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1.5">
+                        <h3 className="truncate font-sans text-base font-black tracking-tight text-fg">
+                          {locale === "en" ? featuredSocialDrop.authorNameEn : featuredSocialDrop.authorName}
+                        </h3>
+                        <span className="shrink-0 font-mono text-xs text-blood" title="Verified Creator">
+                          ✓
+                        </span>
+                      </div>
+                      <p className="truncate text-xs text-muted">
+                        <span className="font-mono text-faint">{featuredSocialDrop.authorHandle}</span>
+                        <span className="mx-1 text-fg/20">·</span>
+                        <span>{locale === "en" ? featuredSocialDrop.authorRoleEn : featuredSocialDrop.authorRole}</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 焦点社媒动态正文 */}
+                  <div className="mt-3">
+                    <blockquote className="text-pretty text-xs leading-relaxed text-fg/90">
+                      {locale === "zh" ? `“${featuredSocialDrop.textZh}”` : `“${featuredSocialDrop.textEn}”`}
+                    </blockquote>
+                    {locale === "zh" && (
+                      <p className="mt-1.5 line-clamp-1 font-mono text-[11px] italic text-faint">
+                        {featuredSocialDrop.textEn}
+                      </p>
+                    )}
+                    {(featuredSocialDrop.contextZh || featuredSocialDrop.contextEn) && (
+                      <p className="mt-2 border-l-2 border-blood/60 pl-2 text-[11px] leading-relaxed text-muted">
+                        {locale === "en" ? featuredSocialDrop.contextEn : featuredSocialDrop.contextZh}
+                      </p>
+                    )}
+                    <a
+                      href={featuredSocialDrop.url}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="group/social-link mt-2.5 inline-flex items-center gap-1 font-display text-[10px] font-semibold tracking-[0.15em] text-blood uppercase hover:underline"
+                    >
+                      <span>{locale === "zh" ? "查阅官方原帖" : "View Original Post"}</span>
+                      <ExternalLink className="size-3 transition-transform group-hover/social-link:translate-x-0.5" aria-hidden="true" />
+                    </a>
+                  </div>
+
+                  {/* 更多主创动态精选 */}
+                  <div className="mt-3 border-t border-fg/10 pt-3">
+                    <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
+                      {locale === "zh" ? "近期主创动态精选" : "Recent Creator Drops"}
+                    </p>
+                    <ul className="mt-2 space-y-2">
+                      {secondarySocialDrops.slice(0, 1).map((drop) => (
+                        <li key={drop.id} className="text-xs">
+                          <a
+                            href={drop.url}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            className="group/drop block text-muted hover:text-fg"
+                          >
+                            <div className="flex items-center justify-between text-[11px]">
+                              <span className="font-bold text-fg/90 transition-colors group-hover/drop:text-blood">
+                                {locale === "en" ? drop.authorNameEn : drop.authorName}
+                                <span className="ml-1.5 font-mono text-[10px] font-normal text-faint">
+                                  {drop.authorHandle}
+                                </span>
+                              </span>
+                              <span className="font-mono text-[10px] text-faint">{drop.date.slice(2)}</span>
+                            </div>
+                            <p className="mt-0.5 truncate text-[11px] text-muted transition-colors group-hover/drop:text-fg">
+                              {locale === "zh" ? `“${drop.textZh}”` : `“${drop.textEn}”`}
+                            </p>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               ) : null}
-
-              {/* 焦点核心金句 */}
-              {latestInterview ? (
-                <Link
-                  to="/interviews"
-                  hash={latestInterview.id}
-                  aria-label={locale === "zh" ? "查看最新访谈详情" : "Read the latest interview"}
-                  className="group/featured-quote mt-3 block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blood"
-                >
-                  <Quote className="size-3.5 fill-current text-blood/70" />
-                  <blockquote className="mt-1.5 text-pretty text-xs leading-relaxed text-fg/90">
-                    {locale === "zh" ? (
-                      `“${latestInterview.quoteZh.length > 76 ? `${latestInterview.quoteZh.slice(0, 76)}……` : latestInterview.quoteZh}”`
-                    ) : (
-                      `“${latestInterview.quoteEn}”`
-                    )}
-                  </blockquote>
-                  {locale === "zh" && (
-                    <p className="mt-2 line-clamp-1 text-[11px] italic text-faint">
-                      {latestInterview.quoteEn}
-                    </p>
-                  )}
-                  <span className="mt-2 inline-flex items-center gap-1 font-display text-[10px] font-semibold tracking-[0.15em] text-blood uppercase group-hover/featured-quote:underline">
-                    {locale === "zh" ? "查看这条访谈" : "Read this interview"}
-                    <ArrowRight className="size-3" aria-hidden="true" />
-                  </span>
-                </Link>
-              ) : null}
-
-              {/* 更多主创观点精选 */}
-              <div className="mt-3 border-t border-fg/10 pt-3">
-                <p className="font-display text-[10px] font-semibold tracking-[0.2em] text-faint uppercase">
-                  {locale === "zh" ? "更多主创观点精选" : "Selected Creator Quotes"}
-                </p>
-                <ul className="mt-2 space-y-2">
-                  {secondaryInterviews.slice(0, 1).map((q) => {
-                    const spk = SPEAKER_MAP[q.speakerId];
-                    return (
-                      <li key={q.id} className="text-xs">
-                        <Link
-                          to="/interviews"
-                          hash={q.id}
-                          className="group/voice block text-muted hover:text-fg"
-                        >
-                          <div className="flex items-center justify-between text-[11px]">
-                            <span className="font-bold text-fg/90 transition-colors group-hover/voice:text-blood">
-                              {locale === "en" ? (spk?.nameEn ?? spk?.name ?? "Creator") : (spk?.name ?? "主创")}
-                              <span className="ml-1.5 font-normal text-faint">
-                                {locale === "en"
-                                  ? (spk?.roleEn?.split(" / ")[0] ?? spk?.role.split(" / ")[0])
-                                  : spk?.role.split(" / ")[0]}
-                              </span>
-                            </span>
-                            <span className="font-mono text-[10px] text-faint">{q.date.slice(2)}</span>
-                          </div>
-                          <p className="mt-0.5 truncate text-[11px] text-muted transition-colors group-hover/voice:text-fg">
-                            {locale === "zh" ? `“${q.quoteZh}”` : `“${q.quoteEn}”`}
-                          </p>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
             </div>
 
             <div className="mt-3 pt-1">
-              <Link
-                to="/interviews"
-                className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
-              >
-                <span>{locale === "zh" ? "查阅全部人物专访" : "Explore All Interviews"}</span>
-                <ArrowRight className="size-4" />
-              </Link>
+              {voiceTab === "interview" ? (
+                <Link
+                  to="/interviews"
+                  className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
+                >
+                  <span>{locale === "zh" ? "查阅全部人物专访" : "Explore All Interviews"}</span>
+                  <ArrowRight className="size-4" />
+                </Link>
+              ) : (
+                <Link
+                  to="/dossier"
+                  hash="log"
+                  className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
+                >
+                  <span>{locale === "zh" ? "查阅拍摄动态与信源" : "Explore Production Logs"}</span>
+                  <ArrowRight className="size-4" />
+                </Link>
+              )}
             </div>
           </Card>
           </div>

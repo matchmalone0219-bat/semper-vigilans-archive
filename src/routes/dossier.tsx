@@ -44,9 +44,9 @@ function Dossier() {
     <main>
       <header className="relative isolate overflow-hidden border-b border-fg/10">
         <img
-          src="/media/signal.jpg"
+          src="/media/dossier-hero.jpg"
           alt=""
-          className="absolute inset-0 size-full object-cover opacity-50"
+          className="absolute inset-0 size-full object-cover object-top opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-bg/40" />
         <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">

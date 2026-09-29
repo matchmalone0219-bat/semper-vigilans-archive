@@ -359,8 +359,8 @@ function Dossier() {
           <SectionKicker n="10" title={locale === "zh" ? "主创社媒" : "Creator Posts"} />
           <p className="mt-3 max-w-2xl text-pretty text-sm text-muted">
             {locale === "zh"
-              ? "导演、编剧与主演公开发布的制作动态。每条保留当时随帖发出的图片。"
-              : "Public posts from the director, writers, and cast. Each entry keeps the image that went out with the post."}
+              ? "导演、编剧与主演公开发布的制作动态；有存档的原帖图片一并收录。"
+              : "Public posts from the director, writers, and cast; archived post images are included when available."}
           </p>
           <DossierSocial />
         </section>

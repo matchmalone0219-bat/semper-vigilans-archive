@@ -311,10 +311,10 @@ test("desktop, mobile, and keyboard search page", { timeout: 180000 }, async (t)
     await socialTabBtn.click();
 
     // Verify creator social content is rendered
-    const socialLink = page.getByRole("link", { name: "查阅官方原帖" });
+    const socialLink = page.getByRole("link", { name: "查看这条动态" });
     await assert.doesNotReject(socialLink.waitFor({ state: "visible" }));
     const href = await socialLink.getAttribute("href");
-    assert.match(href || "", /^https?:\/\//);
+    assert.match(href || "", /^\/dossier#/);
 
     // Switch back to interviews tab
     const interviewTabBtn = page.getByRole("button", { name: "深度专访" });

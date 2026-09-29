@@ -27,9 +27,9 @@ function Recap() {
     <main>
       <header className="relative isolate overflow-hidden border-b border-fg/10">
         <img
-          src="/media/flood.jpg"
-          alt={isZh ? "大洪水过后的哥谭市" : "Gotham City submerged following seawall rupture"}
-          className="absolute inset-0 size-full object-cover opacity-55"
+          src="/media/universe-hero.jpg"
+          alt={isZh ? "蝙蝠侠与猫女在哥谭天际线下的屋顶对视" : "Batman and Catwoman on a rooftop overlooking the Gotham skyline"}
+          className="absolute inset-0 size-full object-cover object-[center_35%] opacity-55"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-bg/40" />
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">

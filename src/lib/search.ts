@@ -91,15 +91,24 @@ export const SEARCH_ITEMS: SearchItem[] = [
       ].join(" "),
     );
   }),
-  ...SORTED_SOCIAL_DROPS.map((drop) =>
-    item(
-      `${drop.authorName} · ${drop.textZh.length > 28 ? `${drop.textZh.slice(0, 28)}…` : drop.textZh}`,
+  ...SORTED_SOCIAL_DROPS.map((drop) => {
+    const socialText = drop.textZh ?? drop.contextZh ?? drop.authorRole;
+    return item(
+      `${drop.authorName} · ${socialText.length > 28 ? `${socialText.slice(0, 28)}…` : socialText}`,
       `${drop.date} · ${drop.platformLabel}`,
       `/dossier#${drop.id}`,
       "社媒",
-      [drop.authorNameEn, drop.authorHandle, drop.authorRole, drop.textEn, drop.textZh, drop.contextZh ?? "", drop.contextEn ?? ""].join(" "),
-    ),
-  ),
+      [
+        drop.authorNameEn,
+        drop.authorHandle,
+        drop.authorRole,
+        drop.textEn ?? "",
+        drop.textZh ?? "",
+        drop.contextZh ?? "",
+        drop.contextEn ?? "",
+      ].join(" "),
+    );
+  }),
   ...CASE_FILES.map((record) =>
     item(
       record.title,

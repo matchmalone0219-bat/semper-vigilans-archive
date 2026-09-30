@@ -130,7 +130,7 @@ export const PLACES: Place[] = [
     image: "/media/lounge.jpg",
     imageAlt: "冰山俱乐部华丽幽暗的内部大厅",
     status: "已被企鹅人接管",
-    people: ["carmine", "oz", "selina", "sofia", "annika", "twins", "kenzie"],
+    people: ["carmine", "oz", "selina", "sofia", "annika", "twins", "kenzie", "alberto"],
     works: "漫画《谜语人元年》 · 电影《新蝙蝠侠》 · 限定剧《企鹅人》",
     body: [
       "哥谭市最著名的高端地下夜总会，表面上是政商名流寻欢作乐的场所，地下隐秘夹层「44 Below」则是法尔科内掌控毒品交易与政客受贿的秘密据点。",
@@ -145,7 +145,7 @@ export const PLACES: Place[] = [
     image: "/media/places/falcone.jpg",
     imageAlt: "卡尔迈恩·法尔科内顶层奢华官邸内部：暗木吧台、拱形窗与教父私人接见室",
     status: "原主人身亡已易手",
-    people: ["carmine", "selina", "sofia"],
+    people: ["carmine", "selina", "sofia", "alberto"],
     works: "电影《新蝙蝠侠》",
     body: [
       "位于冰山俱乐部上方的奢华私人顶层公寓，是卡尔迈恩·法尔科内接见政要、发号施令的权力中心。在第一部高潮中，法尔科内在此被揭露为出卖马罗尼的告密者，随后在步出大楼时遭到枪杀。",
@@ -219,7 +219,7 @@ export const PLACES: Place[] = [
     image: "/media/places/crown-point.jpg",
     imageAlt: "洪水过后的皇冠角贫民区，车辆被冲积翻覆成堆",
     status: "已被企鹅人势力掌控",
-    people: ["oz", "victor", "sofia"],
+    people: ["oz", "victor", "sofia", "maroni"],
     works: "限定剧《企鹅人》",
     body: [
       "哥谭市贫困边缘社区，低于海平面的地势使这里在大堤溃坝后受创最重：车辆翻覆成堆，街区几乎被冲毁。在《企鹅人》中，奥兹在此藏匿货源、招兵买马，并挑动法尔科内残部与马罗尼势力巷战，最终把皇冠角变成自己登顶的踏板。",

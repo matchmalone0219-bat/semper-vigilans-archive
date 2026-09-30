@@ -319,6 +319,24 @@ export const PEOPLE_EN: Record<string, LocalizedPersonData> = {
       { work: "The Batman (2022)", note: "Mob mole in GCPD; participates in Annika's capture and gets locked in a car trunk." },
     ],
   },
+  alberto: {
+    name: "Alberto Falcone",
+    sub: "Falcone Family Heir",
+    actor: "Michael Zegen",
+    sections: [
+      {
+        heading: "The Heir Apparent & Brief Succession",
+        body: "Alberto Falcone was the only son and chosen successor of crime lord Carmine Falcone, having studied at Oxford. Following his father's assassination by the Riddler, Alberto stepped in to head the Falcone syndicate, planning to introduce the new designer drug 'Bliss' to solidify his reign.",
+      },
+      {
+        heading: "Gunfire in the Vault & Underworld Shockwaves",
+        body: "In the premiere of The Penguin, an erratic, drug-fueled Alberto met with Oz Cobb inside the Iceberg Lounge vault. When Alberto mocked Oz's aspirations of becoming a beloved street boss, Oz impulsively shot him dead. Alberto's murder triggered an immediate power vacuum within the Falcone family, igniting Sofia's relentless investigation and plunging Gotham's underworld into all-out war.",
+      },
+    ],
+    appearances: [
+      { work: "The Penguin (HBO)", note: "Briefly assumes control of the family before being impulsively shot by Oz in the Iceberg Lounge vault." },
+    ],
+  },
   carmine: {
     name: "Carmine Falcone",
     sub: "Former Crime Patriarch ('The Roman')",
@@ -459,6 +477,25 @@ export const PEOPLE_EN: Record<string, LocalizedPersonData> = {
       { work: "The Penguin (2024)", note: "Oz Cobb's close companion and protégé across the eight-episode run." },
     ],
   },
+  maroni: {
+    name: "Salvatore Maroni",
+    sub: "Maroni Family Boss",
+    actor: "Clancy Brown",
+    sections: [
+      {
+        heading: "Former Kingpin & The Historic Drug Bust",
+        body: "Salvatore Maroni was once Carmine Falcone's primary rival atop Gotham's criminal hierarchy. Decades prior, Carmine secretly acted as an informant ('the Rat') to orchestrate the biggest narcotics bust in Gotham history, landing Maroni in Blackgate Penitentiary while the Falcone family absorbed his empire.",
+      },
+      {
+        heading: "Prison Alliance & The Final Duel",
+        body: "In The Penguin, an incarcerated Maroni orchestrates surviving syndicate loyalists from Blackgate. He forms an alliance with Sofia Falcone to crush Oz Cobb. After Oz brutally murders Maroni's wife Nadia and son Taj, Maroni escapes custody to hunt Oz down, suffering a fatal heart attack during their brutal hand-to-hand brawl.",
+      },
+    ],
+    appearances: [
+      { work: "The Batman (2022)", note: "Referenced as the rival boss brought down in Gotham's landmark drug bust orchestrated by the Rat." },
+      { work: "The Penguin (HBO)", note: "Directs his syndicate from Blackgate and wages war against Oz following the murder of his family." },
+    ],
+  },
   edward: {
     name: "Edward Nashton",
     sub: "The Riddler",
@@ -552,6 +589,12 @@ export const RELATION_LABELS_EN: Record<string, string> = {
   "警监同僚": "MCU Precinct Commander",
   "总部围捕": "Precinct Ambush & Hunt",
   "直接下属": "Direct Superior & Succession",
+  "教父与继承人": "Godfather & Heir",
+  "法尔科内兄妹": "Falcone Siblings",
+  "冲动枪杀": "Impulsive Murder",
+  "出卖告密": "Secret Informant Betrayal",
+  "生死宿敌": "Mortal Blood Feud",
+  "反企鹅同盟": "Anti-Oz Alliance",
   // Legacy aliases
   "委托杀人": "Commissioned Mob Hit",
   "隐瞒精神病史": "Covered Up Psychiatric History",
@@ -623,6 +666,12 @@ export const RELATION_DESCS_EN: Record<string, string> = {
   "警监同僚": "Major Crimes Unit Chief Bock took over tactical command after Savage's death, questioning Gordon's vigilante ties while maintaining procedural discipline.",
   "总部围捕": "Cornered Batman inside GCPD headquarters following the church explosion, demanding his mask be removed before Gordon staged a punch to facilitate his rooftop escape.",
   "直接下属": "Reported directly to Commissioner Savage as MCU detective lead before assuming control of the high-profile homicide investigation upon Savage's murder.",
+  "教父与继承人": "Carmine Falcone's only son and chosen successor, briefly assuming control of the family empire after his father's assassination.",
+  "法尔科内兄妹": "Sofia's brother who frequently visited her during her decade in Arkham, serving as her sole emotional anchor within the family.",
+  "冲动枪杀": "In The Penguin premiere, Alberto mocked Oz's ambitions in the lounge vault; Oz snapped and shot him dead, igniting an underworld power vacuum.",
+  "出卖告密": "Carmine operated as GCPD's secret informant to take down Maroni, leading to his syndicate's collapse and his imprisonment at Blackgate.",
+  "生死宿敌": "In The Penguin, the Maronis waged war against Oz; after Oz incinerated his wife and son, Maroni engaged him in a fatal fistfight.",
+  "反企鹅同盟": "Upon release, Sofia visited Maroni at Blackgate to forge a vengeful coalition to stop Oz Cobb from seizing Gotham's underworld.",
 };
 
 export function getLocalizedPerson<

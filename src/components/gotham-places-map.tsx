@@ -837,42 +837,125 @@ export function GothamPlacesMap() {
                   </aside>
                 );
               })() : null}
-              {selectedStation ? (
-                <aside
-                  id="map-detail-card"
-                  role="dialog"
-                  aria-modal="false"
-                  aria-labelledby="map-detail-title"
-                  className="absolute inset-x-3 bottom-12 z-20 max-h-[calc(100%-4rem)] select-text overflow-y-auto border border-fg/20 bg-bg/95 p-4 shadow-2xl backdrop-blur-md sm:bottom-auto sm:left-auto sm:right-3 sm:top-3 sm:w-80"
-                  onPointerDown={(event) => event.stopPropagation()}
-                  onWheel={(event) => event.stopPropagation()}
-                >
-                  <button ref={panelCloseRef} type="button" onClick={closePanel} className="absolute right-3 top-3 grid size-8 place-items-center border border-fg/20 text-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-fg" aria-label={isZh ? "关闭交通地点介绍" : "Close transit details"}><X className="size-4" /></button>
-                  <p className="pr-8 font-display text-[10px] tracking-[0.2em] text-blood">GCT CITYPASS · {region.name.toUpperCase()}</p>
-                  <h3 id="map-detail-title" className="mt-2 pr-8 text-lg font-black">{isZh ? selectedStation.nameZh : selectedStation.nameEn}</h3>
-                  {isZh ? <p className="mt-1 text-xs text-faint">{selectedStation.nameEn}</p> : null}
-                  <p className="mt-3 text-xs text-muted"><TransitLineBadges station={selectedStation} isZh={isZh} /></p>
-                  <p className="mt-3 text-xs leading-relaxed text-muted">
-                    {isZh ? selectedStation.noteZh : selectedStation.noteEn}
-                  </p>
-                  {selectedStation.kind === "transfer" ? <p className="mt-2 text-xs text-faint">{isZh ? "六边形：换乘点" : "Hexagon: transfer point"}</p> : null}
-                  {selectedStation.external ? <p className="mt-2 text-xs text-faint">{isZh ? "跨河接续站，保留以显示本区线路去向。" : "A cross-river connection retained to show the route beyond this borough."}</p> : null}
-                  {selectedStation.uncertain ? <p className="mt-2 text-xs text-faint">{isZh ? "站名待辨，详见原始交通图。" : "Station name pending verification; see the original transit map."}</p> : null}
-                  {selectedStation.archive ? (
-                    <Link to="/places/$id" params={{ id: selectedStation.archive }} className="mt-4 block border border-blood bg-blood px-3 py-2 text-xs font-semibold text-fg focus-visible:outline-2 focus-visible:outline-fg">{isZh ? "调阅关联地点档案" : "Open Related Dossier"}</Link>
-                  ) : null}
-                  {undergroundPlaces.map((place) => {
-                    const underground = getLocalizedPlace(place, locale);
-                    return (
-                      <Link key={place.id} to="/places/$id" params={{ id: place.id }} className="mt-3 block border border-fg/15 bg-surface p-3 hover:border-blood focus-visible:outline-2 focus-visible:outline-fg">
-                        <span className="block text-[10px] tracking-wider text-blood uppercase">{isZh ? "地下空间 · 影片定位" : "Below Ground · On-screen Location"}</span>
-                        <span className="mt-1 block text-sm font-semibold">{underground.name}</span>
-                        <span className="mt-1 block text-xs leading-relaxed text-muted">{underground.also}</span>
-                      </Link>
-                    );
-                  })}
-                </aside>
-              ) : null}
+              {selectedStation ? (() => {
+                const archivePlace = selectedStation.archive ? PLACE_MAP[selectedStation.archive] : null;
+                const localizedArchivePlace = archivePlace ? getLocalizedPlace(archivePlace, locale) : null;
+                const archivePlan = selectedStation.archive ? GCT_LANDMARKS[regionId]?.[selectedStation.archive] : null;
+                const archiveMarker = selectedStation.archive ? markers.find((marker) => marker.placeId === selectedStation.archive) : null;
+                const archiveEvidenceKey = (archiveMarker?.evidence ?? archivePlan?.evidence) as Evidence | undefined;
+                const archiveEvidence = archiveEvidenceKey && archiveEvidenceKey in EVIDENCE ? EVIDENCE[archiveEvidenceKey] : null;
+
+                return (
+                  <aside
+                    id="map-detail-card"
+                    role="dialog"
+                    aria-modal="false"
+                    aria-labelledby="map-detail-title"
+                    className="absolute inset-x-3 bottom-12 z-20 max-h-[calc(100%-4rem)] select-text overflow-y-auto border border-fg/20 bg-bg/95 shadow-2xl backdrop-blur-md sm:bottom-auto sm:left-auto sm:right-3 sm:top-3 sm:w-80"
+                    onPointerDown={(event) => event.stopPropagation()}
+                    onWheel={(event) => event.stopPropagation()}
+                  >
+                    {localizedArchivePlace ? (
+                      <div className="relative h-24 overflow-hidden bg-elevated sm:h-28">
+                        <img
+                          src={localizedArchivePlace.image}
+                          alt={localizedArchivePlace.imageAlt}
+                          className="size-full object-cover"
+                        />
+                        <span className="absolute left-3 top-3 size-10 text-fg drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)]">
+                          <PlaceMark id={localizedArchivePlace.id} className="size-10" />
+                        </span>
+                        {archiveEvidence ? (
+                          <span
+                            className={`absolute bottom-3 left-3 px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] uppercase ${archiveEvidence.className}`}
+                          >
+                            {isZh ? archiveEvidence.label : archiveEvidence.labelEn}
+                          </span>
+                        ) : null}
+                        <button
+                          ref={panelCloseRef}
+                          type="button"
+                          onClick={closePanel}
+                          className="absolute right-3 top-3 grid size-8 place-items-center border border-fg/20 bg-bg/90 text-muted hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blood/80"
+                          aria-label={isZh ? "关闭交通地点介绍" : "Close transit details"}
+                        >
+                          <X className="size-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        ref={panelCloseRef}
+                        type="button"
+                        onClick={closePanel}
+                        className="absolute right-3 top-3 grid size-8 place-items-center border border-fg/20 text-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-fg"
+                        aria-label={isZh ? "关闭交通地点介绍" : "Close transit details"}
+                      >
+                        <X className="size-4" />
+                      </button>
+                    )}
+                    <div className="p-4">
+                      <p className="pr-8 font-display text-[10px] tracking-[0.2em] text-blood">
+                        GCT CITYPASS · {region.name.toUpperCase()}
+                      </p>
+                      <h3 id="map-detail-title" className="mt-2 pr-8 text-lg font-black">
+                        {isZh ? selectedStation.nameZh : selectedStation.nameEn}
+                      </h3>
+                      {isZh ? <p className="mt-1 text-xs text-faint">{selectedStation.nameEn}</p> : null}
+                      <p className="mt-3 text-xs text-muted">
+                        <TransitLineBadges station={selectedStation} isZh={isZh} />
+                      </p>
+                      <p className="mt-3 text-xs leading-relaxed text-muted">
+                        {isZh ? selectedStation.noteZh : selectedStation.noteEn}
+                      </p>
+                      {selectedStation.kind === "transfer" ? (
+                        <p className="mt-2 text-xs text-faint">
+                          {isZh ? "六边形：换乘点" : "Hexagon: transfer point"}
+                        </p>
+                      ) : null}
+                      {selectedStation.external ? (
+                        <p className="mt-2 text-xs text-faint">
+                          {isZh
+                            ? "跨河接续站，保留以显示本区线路去向。"
+                            : "A cross-river connection retained to show the route beyond this borough."}
+                        </p>
+                      ) : null}
+                      {selectedStation.uncertain ? (
+                        <p className="mt-2 text-xs text-faint">
+                          {isZh
+                            ? "站名待辨，详见原始交通图。"
+                            : "Station name pending verification; see the original transit map."}
+                        </p>
+                      ) : null}
+                      {selectedStation.archive ? (
+                        <Link
+                          to="/places/$id"
+                          params={{ id: selectedStation.archive }}
+                          className="mt-4 block border border-blood bg-blood px-3 py-2 text-xs font-semibold text-fg focus-visible:outline-2 focus-visible:outline-fg"
+                        >
+                          {isZh ? "调阅关联地点档案" : "Open Related Dossier"}
+                        </Link>
+                      ) : null}
+                      {undergroundPlaces.map((place) => {
+                        const underground = getLocalizedPlace(place, locale);
+                        return (
+                          <Link
+                            key={place.id}
+                            to="/places/$id"
+                            params={{ id: place.id }}
+                            className="mt-3 block border border-fg/15 bg-surface p-3 hover:border-blood focus-visible:outline-2 focus-visible:outline-fg"
+                          >
+                            <span className="block text-[10px] tracking-wider text-blood uppercase">
+                              {isZh ? "地下空间 · 影片定位" : "Below Ground · On-screen Location"}
+                            </span>
+                            <span className="mt-1 block text-sm font-semibold">{underground.name}</span>
+                            <span className="mt-1 block text-xs leading-relaxed text-muted">{underground.also}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </aside>
+                );
+              })() : null}
               {regionId === "downtown" && floodPlan ? (
                 <aside
                   id="map-detail-card"

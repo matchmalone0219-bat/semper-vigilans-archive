@@ -479,6 +479,12 @@ export const LOG_EN: Record<
     body: "A new night shoot captured Batman on a white-and-blue GCPD patrol motorcycle flanked by two officers on matching bikes. The updated suit features visibly longer cowl ears and thicker chest plating, with battle-damage blood marks across the jaw and armor. A tubular camera rig is mounted directly in front of the handlebars to catch close-up facial action. The snow-dusted street was also dressed with a glowing SUBWAY entrance and Christmas lights, continuing the sequel's winter timeline.",
     source: "Set Leak / UnBoxPHD",
   },
+  "log-2026-10-05-production-pause": {
+    title: "The Batman: Part II Temporarily Pauses Production as Matt Reeves Steps Away for a Family Matter",
+    body: "Warner Bros. and DC Studios confirmed that production on The Batman: Part II has been temporarily paused while director Matt Reeves focuses on a family matter. The studio said Reeves has its full support and that it looks forward to continuing production soon. No restart date has been announced; at the time of the statement, the film remained scheduled for February 18, 2028, with no new release-date change announced.",
+    source: "Variety · Warner Bros. / DC Studios statement",
+    locationLabel: "Production status · Temporarily paused",
+  },
   "log-2028-02-18": {
     title: "Theatrical Release Across North America",
     body: "The Batman: Part II opens nationwide in premium formats including IMAX and Dolby Cinema.",
@@ -491,6 +497,7 @@ export const LOG_KIND_EN: Record<LogKind, string> = {
   cast: "Casting",
   shoot: "Production",
   slate: "Schedule",
+  production: "Production Status",
 };
 
 export function getLocalizedFact(

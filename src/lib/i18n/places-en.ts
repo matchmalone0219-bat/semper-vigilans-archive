@@ -16,7 +16,7 @@ export const PLACES_EN: Record<string, PlaceEnData> = {
     also: "Former Wayne Manor",
     works: "Prequel Novel · Riddler: Year One · The Batman",
     body: [
-      "Originally the historic Wayne Manor, Thomas Wayne donated and repurposed the ancestral estate into a charitable home for orphans during his mayoral campaign. Young Edward Nashton endured a bitter, neglected childhood within its walls, while Bruce Wayne retreated to the top of Wayne Tower following his parents' murder.",
+      "Gotham Orphanage occupies the historic Wayne Manor north of Gotham Heights West station in Uptown. Thomas Wayne donated and repurposed the ancestral estate into a charitable home for orphans during his mayoral campaign. Young Edward Nashton endured a bitter, neglected childhood within its walls, while Bruce Wayne retreated to the top of Wayne Tower following his parents' murder.",
       "In The Batman, this dilapidated structure became a pivotal nexus in the Riddler's crusade to expose the corruption underlying the Wayne family's philanthropy. Investigating the site, Batman and Gordon uncovered the hidden video recording that revealed Thomas Wayne's compromised past.",
     ],
   },
@@ -36,14 +36,14 @@ export const PLACES_EN: Record<string, PlaceEnData> = {
     also: "Bruce's Penthouse & Family Headquarters",
     works: "Prequel Novel · The Batman · The Batman: Part II",
     body: [
-      "A soaring neo-Gothic skyscraper anchoring Gotham's Financial District. After donating Wayne Manor, Bruce took up solitary residence in the penthouse suite, training and conducting investigations with Alfred's aid, with direct elevator access to the subterranean workshop below.",
+      "A neo-Gothic skyscraper in Midtown, near Wayne Tower station southeast of Robinson Park. After donating Wayne Manor, Bruce took up solitary residence in the penthouse suite, training and conducting investigations with Alfred's aid, with direct elevator access to the subterranean workshop below.",
       "In the sequel, Wayne Tower continues its dual purpose: by day, an unavoidable public monument to the Wayne industrial legacy; by night, a fortress from which Batman monitors escalating citywide threats.",
     ],
   },
   cave: {
     name: "Subterranean Workshop / Batcave",
     status: "Operational Sanctuary",
-    also: "Underground Terminus & Tactical Base",
+    also: "Beneath Wayne Tower · Abandoned Wayne Terminus",
     works: "The Batman · The Batman: Part II",
     body: [
       "Not a natural limestone cavern, but a heavy-duty industrial subterranean workshop constructed inside the abandoned Wayne Terminus private rail station deep beneath Wayne Tower. Outfitted with heavy hydraulic lifts, custom machining stations, surveillance terminals, and ballistic tactical racks.",
@@ -85,7 +85,7 @@ export const PLACES_EN: Record<string, PlaceEnData> = {
     also: "City Defense Line Below Sea Level",
     works: "Riddler: Year One · The Batman",
     body: [
-      "Because Gotham sits in a geographical depression below sea level, the harbor sea wall is the city's literal lifeline. The massive seawall was compromised by corner-cutting construction linked to Renewal fund embezzlement.",
+      "The seawall follows the coast southeast of Crown Point, protecting Tricorner Harbor. Because Gotham sits in a geographical depression below sea level, the harbor sea wall is the city's literal lifeline. The massive seawall was compromised by corner-cutting construction linked to Renewal fund embezzlement.",
       "On election night, the Riddler's followers detonated seven explosive-laden vans across primary stress points, flooding downtown and the arena. Edward Nashton weaponized Gotham's vulnerable geography into an apocalyptic judgment.",
     ],
   },
@@ -140,14 +140,16 @@ export const PLACES_EN: Record<string, PlaceEnData> = {
 };
 
 export const REGION_MARKERS_NOTES_EN: Record<string, string> = {
-  "wayne-tower": "Official production blueprints label the Financial District and Wayne Plaza; Wayne Tower anchors this core metropolitan axis overlooking the central avenue.",
+  seawall: "The seawall follows the coast at Crown Point’s southeastern corner, defending Tricorner Harbor against incoming seawater.",
+  orphanage: "The former Wayne Manor stands north of Gotham Heights West station in Uptown. Thomas Wayne donated the estate and converted it into Gotham Orphanage.",
+  "wayne-tower": "Wayne Tower stands near its namesake station in Midtown, southeast of Robinson Park.",
   gsg: "Official blueprints label a dedicated subway loop with the 'Arena' landmark just north of Gotham Square; the flood climax and rally shootout occurred here.",
   "city-hall": "Official blueprints explicitly mark the City Hall subway station along the horizontal east-west transit line, southeast of the Arena loop.",
   "park-row": "Official blueprints mark Theatre Row in central downtown; Park Row (Crime Alley) is the alleyway beside the Monarch Theater where the Waynes were killed.",
-  gcpd: "Production map does not explicitly label GCPD HQ; placed here based on downtown municipal dispatch grids and squad car routes.",
+  gcpd: "The headquarters site follows Downtown municipal dispatch grids and squad car routes.",
   iceberg: "Production design and Riddler: Year One place the Iceberg Lounge at the south bridgehead of the canal bridge in Tricorner, subterranean Shoreline Lofts.",
   "riddler-room": "Film frames show Nashton's tenement window directly facing the Iceberg Lounge main entrance across the street, maintaining a direct surveillance line of sight.",
-  "crown-point": "Production blueprints and The Penguin production design interview place Crown Point on the low-lying eastern riverfront, inspired by Five Points.",
+  "crown-point": "Crown Point lies in southern Tricorner within Downtown, a flood-hit neighborhood and scene of gang conflict in The Penguin.",
 };
 
 export const REGIONS_EN: Record<string, {
@@ -158,21 +160,21 @@ export const REGIONS_EN: Record<string, {
 }> = {
   uptown: {
     name: "Uptown",
-    status: "Series Canon · Macro Grid",
-    imageAlt: "Road network map of Uptown reconstructed from The Penguin full-city transit maps",
-    description: "Interviews with production designers James Chinlund (The Batman) and Kalina Ivanov (The Penguin) indicate that the first film developed Downtown at street level, while Midtown and Uptown remained at a broader city-planning scale. Outlying locations such as Arkham and Wayne Orphanage are cataloged below without map pins.",
+    status: "Transit Reconstruction · 26 Locations",
+    imageAlt: "Uptown reconstructed from the GCT CityPass transit prop",
+    description: "Coastlines, four routes and 26 transit locations follow the GCT CityPass prop, including cross-river connections and an unnamed transfer point. Arkham State Hospital west of the station is distinguished by hatching. The area north of Gotham Heights West station has spacious residential estates, including the former Wayne Manor, now Gotham Orphanage. Plan and model share coastlines and building contours.",
   },
   midtown: {
     name: "Midtown",
-    status: "Series Canon · Macro Grid",
-    imageAlt: "Road network map of Midtown reconstructed from The Penguin full-city transit maps",
-    description: "The Penguin expands this central island as Gotham's north-south transit link, with major bridges and arterial routes. Available material currently defines the waterways, road network, and broad city layout rather than street-level building locations.",
+    status: "Transit Reconstruction · 24 Locations",
+    imageAlt: "Midtown reconstructed from the GCT CityPass transit prop",
+    description: "Midtown surrounds Robinson Park, with routes extending south to Burnley Harbor and Finger River Junction. Its 24 transit locations include cross-river connections and a parking annotation. Wayne Tower (Closed) station sits southeast of the park; the closed route from Diamond District is dashed. Wayne Tower stands near the station, with matching buildings in plan and model.",
   },
   downtown: {
     name: "Downtown",
-    status: "Film Production · 8 Files",
+    status: "Setting + Transit Maps · 28 Locations",
     imageAlt: "Dark road grid map of Downtown redrawn from The Batman official production maps",
-    description: "Core epicenter of The Batman. Official production blueprint (No. 22101/V04) and primary practical filming converge here: City Hall, Gotham Square, Financial District, Theatre Row, and the Tricorner mob dens. Features toggleable Riddler seawall demolition grid.",
+    description: "The production setting map and GCT CityPass prop share one view of the Downtown core, river and southern Tricorner harbor, with 28 transit locations and five line colors. Crown Point lies in southern Tricorner within Downtown. All eight landmarks link to their location dossiers.",
   },
 };
 
@@ -198,7 +200,7 @@ export const GOTHAM_CITY_EN = {
     { name: "Crown Point", nameEn: "Crown Point", note: "Impoverished flood-hit borough; epicenter of Cobb gang war" },
     { name: "Blackgate Isle", nameEn: "Blackgate Isle", note: "Maximum-security penitentiary where Salvatore Maroni was incarcerated" },
     { name: "Gotham Square", nameEn: "Gotham Square", note: "Neon-lit commercial nexus, inspired by NYC Times Square" },
-    { name: "Financial District", nameEn: "Financial District", note: "Core metropolitan skyline anchored by Wayne Tower" },
+    { name: "Financial District", nameEn: "Financial District", note: "Downtown financial and commercial quarter" },
   ],
   families: [
     { name: "The Wayne Family", note: "Industrial infrastructure & philanthropy; Thomas ran for mayor, donated manor to orphanage" },
@@ -223,4 +225,3 @@ export function getLocalizedPlace(place: Place, locale: Locale): Place {
     body: en.body ?? place.body,
   };
 }
-

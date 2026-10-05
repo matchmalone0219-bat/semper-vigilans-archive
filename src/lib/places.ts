@@ -9,6 +9,8 @@ export type Place = {
   people: string[];
   works: string;
   body: string[];
+  beneath?: string;
+  above?: string;
 };
 
 export const GOTHAM_CITY = {
@@ -34,7 +36,7 @@ export const GOTHAM_CITY = {
     { name: "皇冠角", nameEn: "Crown Point", note: "洪水重创的贫民区，企鹅人火拼主场" },
     { name: "布莱克门岛", nameEn: "Blackgate Isle", note: "重刑监狱，萨尔瓦托·马罗尼曾关押于此" },
     { name: "哥谭广场", nameEn: "Gotham Square", note: "霓虹商圈，造型参照纽约时代广场" },
-    { name: "金融区", nameEn: "Financial District", note: "韦恩塔所在的都会核心" },
+    { name: "金融区", nameEn: "Financial District", note: "下城区的金融与商业街区" },
   ],
   families: [
     { name: "韦恩家族", note: "实业与慈善。托马斯参选市长，旧庄园捐建孤儿院" },
@@ -58,7 +60,7 @@ export const PLACES: Place[] = [
     people: ["thomas", "martha", "bruce", "edward", "selina"],
     works: "前传小说 · 漫画《谜语人元年》 · 电影《新蝙蝠侠》",
     body: [
-      "前身为历史悠久的韦恩庄园，托马斯·韦恩在参选市长期间将其捐赠并改建为收容孤儿的慈善福利机构。幼年爱德华·纳什顿在此度过了凄苦的童年；而布鲁斯·韦恩则在双亲遇害后搬迁至韦恩塔顶层。",
+      "位于上城区哥谭高地西站以北，前身为历史悠久的韦恩庄园，托马斯·韦恩在参选市长期间将其捐赠并改建为收容孤儿的慈善福利机构。幼年爱德华·纳什顿在此度过了凄苦的童年；而布鲁斯·韦恩则在双亲遇害后搬迁至韦恩塔顶层。",
       "在第一部中，这栋年久失修的荒废建筑成为谜语人揭露韦恩家族慈善黑幕的关键线索，蝙蝠侠与戈登在此勘验发现了指向托马斯·韦恩过往秘密的关键录像。",
     ],
   },
@@ -88,7 +90,7 @@ export const PLACES: Place[] = [
     people: ["bruce", "alfred", "dory"],
     works: "前传小说 · 电影《新蝙蝠侠》 · 电影《新蝙蝠侠2》",
     body: [
-      "位于哥谭金融区的哥特式摩天大楼。旧庄园捐出后，布鲁斯常年深居于顶层阁楼，并在阿尔弗雷德照料下训练与办案；地底连通秘密车间。成片天际线里还可见「Gotham Empire」一类纽约帝国大厦式的巨幅楼标。",
+      "哥谭中城区的哥特式摩天大楼，邻近罗宾逊公园东南侧的韦恩塔站。旧庄园捐出后，布鲁斯常年深居于顶层阁楼，并在阿尔弗雷德照料下训练与办案；地底连通秘密车间。成片天际线里还可见「Gotham Empire」一类纽约帝国大厦式的巨幅楼标。",
       "续集中韦恩塔将继续维系双重使命：白天是布鲁斯难以回避的显赫家族门面，黑夜中则是他抵御全城围剿、洞悉哥谭阴谋的绝对安全屋。",
     ],
   },
@@ -96,14 +98,15 @@ export const PLACES: Place[] = [
     id: "cave",
     name: "地下车间 / 蝙蝠洞",
     nameEn: "The Workshop / Cave",
-    also: "地下机车库与作战中心",
+    also: "韦恩塔正下方 · 废弃韦恩终点站",
+    beneath: "wayne-tower",
     image: "/media/places/cave.jpg",
     imageAlt: "韦恩塔地底深处的韦恩交通终点站（Wayne Terminus）：拱顶旧车站内群蝠盘旋，台阶与废弃铁轨环绕着布鲁斯的秘密装备工作台与摩托座驾",
     status: "秘密运营中",
     people: ["bruce", "alfred"],
     works: "电影《新蝙蝠侠》 · 电影《新蝙蝠侠2》",
     body: [
-      "并非天然形成的地下溶洞，而是位于韦恩塔地底深处、依托旧城市地下铁路网络改建而成的重工业工作坊。配备战车维修槽、机械加工台、监控大屏与战术装备架。",
+      "蝙蝠洞位于韦恩塔正下方，由废弃的韦恩终点站（Wayne Terminus）改建而成。拱顶车站、旧铁轨与站台构成地下车间的空间骨架，配备战车维修槽、机械加工台、监控大屏与战术装备架。",
       "布鲁斯在此维护战车与战衣，并回放智能隐形眼镜记录的夜巡影像。续集片场出现的雪地胎、战损车身与追车调度，也暗示地下车间将再次成为战车维修、路线规划与紧急撤离的行动中枢。",
     ],
   },
@@ -139,6 +142,7 @@ export const PLACES: Place[] = [
   },
   {
     id: "falcone",
+    above: "iceberg",
     name: "法尔科内顶层豪宅",
     nameEn: "Falcone's Penthouse",
     also: "前黑帮教父私人官邸",
@@ -162,7 +166,7 @@ export const PLACES: Place[] = [
     people: ["edward", "bruce", "bella"],
     works: "漫画《谜语人元年》 · 电影《新蝙蝠侠》",
     body: [
-      "哥谭低于海平面，整座城靠港湾外的防洪大堤把海水挡在外面。堤坝既是地理事实，也是腐败工程：偷工减料与「新生」基金黑金缠在一起，把城市的生存交给一张纸。",
+      "防洪大堤沿皇冠角东南角海岸延伸，守护三角区港湾。哥谭低于海平面，整座城靠港湾外的防洪大堤把海水挡在外面。堤坝既是地理事实，也是腐败工程：偷工减料与「新生」基金黑金缠在一起，把城市的生存交给一张纸。",
       "万圣节大选夜，谜语人信徒在七处受力点同步引爆炸药货车，大堤溃坝，海水灌入低洼街区与哥谭广场花园体育馆。从阿卡姆病房窗口能看见河面上的火光——爱德华把自己的城市审判写成了水文灾难。",
     ],
   },
@@ -183,7 +187,7 @@ export const PLACES: Place[] = [
   },
   {
     id: "arkham",
-    name: "阿卡姆州立医院 / 疯人院",
+    name: "阿卡姆州立医院/疯人院",
     nameEn: "Arkham State Hospital",
     also: "阿卡姆家族产业 · 重刑精神犯收押",
     image: "/media/places/arkham.jpg",

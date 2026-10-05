@@ -43,6 +43,10 @@ function PlacePage() {
   }
 
   const place = getLocalizedPlace(rawPlace, locale);
+  const aboveGround = rawPlace.beneath ? PLACE_MAP[rawPlace.beneath] : undefined;
+  const undergroundPlaces = PLACES.filter((entry) => entry.beneath === rawPlace.id);
+  const below = rawPlace.above ? PLACE_MAP[rawPlace.above] : undefined;
+  const upperPlaces = PLACES.filter((entry) => entry.above === rawPlace.id);
   const people = rawPlace.people.map((pid) => getPerson(pid)).filter(Boolean);
   const placeIndex = PLACES.findIndex((p) => p.id === rawPlace.id);
   const previous = PLACES[(placeIndex - 1 + PLACES.length) % PLACES.length];
@@ -146,6 +150,44 @@ function PlacePage() {
             </p>
           ))}
         </section>
+
+        {aboveGround || undergroundPlaces.length > 0 ? (
+          <section>
+            <h2 className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
+              {locale === "zh" ? "地上与地下" : "Above and Below Ground"}
+            </h2>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {(aboveGround ? [aboveGround] : undergroundPlaces).map((entry) => {
+                const related = getLocalizedPlace(entry, locale);
+                return (
+                  <Link key={entry.id} to="/places/$id" params={{ id: entry.id }} className="block border border-fg/10 bg-surface/40 p-5 hover:border-blood">
+                    <span className="block text-xs text-blood">
+                      {aboveGround ? (locale === "zh" ? "上方建筑" : "Building Above") : (locale === "zh" ? "正下方的地下空间" : "Directly Beneath")}
+                    </span>
+                    <span className="mt-2 block font-sans text-lg font-black">{related.name}</span>
+                    <span className="mt-1 block text-sm text-muted">{related.also}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        ) : null}
+
+        {below || upperPlaces.length > 0 ? (
+          <section>
+            <h2 className="font-display text-sm font-semibold tracking-[0.28em] text-blood uppercase">
+              {locale === "zh" ? "楼内空间" : "Within the Building"}
+            </h2>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {(below ? [below] : upperPlaces).map((entry) => (
+                <Link key={entry.id} to="/places/$id" params={{ id: entry.id }} className="block border border-fg/10 bg-surface/40 p-5 hover:border-blood">
+                  <span className="block text-xs text-blood">{below ? (locale === "zh" ? "下方场所" : "Venue Below") : (locale === "zh" ? "顶部豪宅" : "Penthouse Above")}</span>
+                  <span className="mt-2 block font-sans text-lg font-black">{getLocalizedPlace(entry, locale).name}</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         {people.length > 0 ? (
           <section>
@@ -263,4 +305,3 @@ function PlacePage() {
     </main>
   );
 }
-

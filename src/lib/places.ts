@@ -113,7 +113,7 @@ export const PLACES: Place[] = [
     nameEn: "GCPD Headquarters",
     also: "停尸间 · 楼顶信号灯",
     image: "/media/places/gcpd.jpg",
-    imageAlt: "哥谭市警局屋顶亮起的蝙蝠信号灯",
+    imageAlt: "夜色俯瞰哥谭市警察局总部钟楼，蝙蝠侠立于巨型亮灯钟盘上方的天台石雕边缘准备跃下",
     status: "正常运转",
     people: ["gordon", "martinez", "kenzie", "bruce", "bella", "colson", "savage", "bock"],
     works: "电影《新蝙蝠侠》 · 电影《新蝙蝠侠2》",

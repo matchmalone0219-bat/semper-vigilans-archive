@@ -468,15 +468,15 @@ export const LOG_EN: Record<
     source: "Collider · Steve Weintraub Interview",
   },
   "log-2026-10-02": {
-    title: "Queen Alexandra’s House in London Stays Dressed for The Batman Part II",
+    title: "Queen Alexandra’s House Fitted with Blackout Scaffolding for Closed Set Shoot",
     locationLabel: "Kensington, London · Queen Alexandra’s House",
-    body: "The red-brick front of Queen Alexandra’s House was wrapped in blackout scaffolding, with unit trucks, barriers, and cable cages closing the street. The daylight photos show the building and the equipment only. No identifiable cast appears.",
+    body: "Scaffolding covered in full-height blackout tarps was erected against the red-brick facade of Queen Alexandra's House in Kensington to block daylight for closed interior filming. Support trucks, cable cages, and barriers lined the street. Given the building's Victorian Gothic aesthetic, the location is widely speculated to double as a historic Gotham institution or private facility. No cast was spotted on site.",
     source: "Set Leak / Which-Mushroom5490 / The Batman Saga News",
   },
   "log-2026-10-03": {
-    title: "London Night Shoot Puts the Bloodied Batsuit on a GCPD Motorcycle",
+    title: "London Night Shoot: Bloodied Batman Rides GCPD Motorcycle with Front Camera Rig",
     locationLabel: "London · Night Street Set",
-    body: "On a night street set, Batman rides a white-and-blue GCPD motorcycle between two officers on matching bikes. The cowl ears are longer than in the first film, the chest armor is heavier, and blood marks the jaw and suit. A camera rig is mounted over the front wheel. The same night's street dressing includes fake snow, a lit SUBWAY entrance, and Christmas lights.",
+    body: "A new night shoot captured Batman on a white-and-blue GCPD patrol motorcycle flanked by two officers on matching bikes. The updated suit features visibly longer cowl ears and thicker chest plating, with battle-damage blood marks across the jaw and armor. A tubular camera rig is mounted directly in front of the handlebars to catch close-up facial action. The snow-dusted street was also dressed with a glowing SUBWAY entrance and Christmas lights, continuing the sequel's winter timeline.",
     source: "Set Leak / UnBoxPHD",
   },
   "log-2028-02-18": {

@@ -6,6 +6,11 @@ export type TransitRegionId = keyof typeof data.regions;
 export type TransitStation = (typeof data.regions.uptown.stations)[number];
 export const TRANSIT_REGIONS = data.regions;
 export const TRANSIT_LINES = data.lines;
+
+export function getTransitStationDisplayName(station: TransitStation, isZh: boolean) {
+  if (!isZh) return station.nameEn;
+  return station.nameZh.replace(/（字样待辨）/g, "");
+}
 type Props = {
   regionId: TransitRegionId;
   isZh: boolean;
@@ -197,7 +202,9 @@ export function GothamTransitMap({ regionId, isZh, selectedId, onSelect, transit
             tabIndex={0}
             data-transit-station={station.id}
             aria-label={
-              isZh ? `交通地点：${station.nameZh}` : `Transit location: ${station.nameEn}`
+              isZh
+                ? `交通地点：${getTransitStationDisplayName(station, true)}`
+                : `Transit location: ${getTransitStationDisplayName(station, false)}`
             }
             aria-expanded={active}
             aria-controls="map-detail-card"
@@ -212,8 +219,10 @@ export function GothamTransitMap({ regionId, isZh, selectedId, onSelect, transit
             }}
           >
             <title>
-              {station.nameEn}
-              {station.uncertain ? (isZh ? " · 字样待辨" : " · provisional reading") : ""}
+              {getTransitStationDisplayName(station, isZh)}
+              {station.uncertain
+                ? (isZh ? " · 图中字样较模糊" : " · map lettering partially obscured")
+                : ""}
             </title>
             <circle cx={x} cy={y} r="9" fill="transparent" />
             <circle
@@ -356,7 +365,7 @@ export function GothamTransitIndex({ regionId, isZh, selectedId, onSelect }: Pro
                 className={`h-full w-full border p-3 text-left focus-visible:outline-2 focus-visible:outline-fg ${selectedId === station.id ? "border-blood bg-blood/10" : "border-fg/10 bg-bg hover:border-fg/40"}`}
               >
                 <span className="block text-xs font-semibold text-fg">
-                  {isZh ? station.nameZh : station.nameEn}
+                  {getTransitStationDisplayName(station, isZh)}
                 </span>
                 {isZh ? (
                   <span className="mt-1 block text-[10px] text-faint">{station.nameEn}</span>
@@ -369,8 +378,10 @@ export function GothamTransitIndex({ regionId, isZh, selectedId, onSelect }: Pro
                     {isZh ? "跨河接续站" : "Cross-river connection"}
                   </span>
                 ) : null}
-                {!isZh && station.uncertain ? (
-                  <span className="mt-1 block text-[10px] text-faint">Provisional reading</span>
+                {station.uncertain ? (
+                  <span className="mt-1 block text-[10px] text-faint">
+                    {isZh ? "图中字样较模糊" : "Map lettering partially obscured"}
+                  </span>
                 ) : null}
               </button>
             </li>

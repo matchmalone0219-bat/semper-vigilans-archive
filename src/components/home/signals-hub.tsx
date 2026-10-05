@@ -95,14 +95,14 @@ export function SignalsHub({
             </p>
             <h2 className="mt-2 font-sans text-2xl font-black tracking-tight sm:text-4xl">
               {locale === "zh"
-                ? "预告影像 · 片场快讯 · 人物专访"
-                : "Teasers · Set Dispatches · Interviews"}
+                ? "预告影像 · 制作动态 · 人物专访"
+                : "Teasers · Production Updates · Interviews"}
             </h2>
           </div>
           <p className="max-w-md text-xs leading-relaxed text-muted sm:text-sm">
             {locale === "zh"
-              ? "从英国外景拍摄到主创深度专访，集中追踪《新蝙蝠侠2》的最新制作动态。"
-              : "From UK set dispatches to creator interviews, follow the latest developments on The Batman: Part II."}
+              ? "从制作状态、英国外景到主创深度专访，集中追踪《新蝙蝠侠2》的最新进展。"
+              : "From production status and UK set activity to creator interviews, follow the latest developments on The Batman: Part II."}
           </p>
         </div>
 
@@ -248,7 +248,7 @@ export function SignalsHub({
                   className="mt-3 block border border-blood/35 bg-blood/[0.06] p-3 transition-colors hover:border-blood/70"
                 >
                   <p className="font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase">
-                    {locale === "zh" ? "Current Production Status" : "Current Production Status"}
+                    {locale === "zh" ? "当前制作状态" : "Current Production Status"}
                   </p>
                   <p className="mt-2 line-clamp-4 text-[11px] leading-relaxed text-muted">
                     {localizedProduction.body}

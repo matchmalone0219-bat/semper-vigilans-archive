@@ -467,6 +467,18 @@ export const LOG_EN: Record<
     body: "Robert Pattinson described The Batman Part II as a 'real left turn' from the first film while still carrying pieces of its familiar atmosphere. He also called Matt Reeves' script 'incredibly dense,' saying the director appears to have the entire movie mapped out in his head as the cast keeps discovering new layers during production.",
     source: "Collider · Steve Weintraub Interview",
   },
+  "log-2026-10-02": {
+    title: "Queen Alexandra’s House in London Stays Dressed for The Batman Part II",
+    locationLabel: "Kensington, London · Queen Alexandra’s House",
+    body: "The red-brick front of Queen Alexandra’s House was wrapped in blackout scaffolding, with unit trucks, barriers, and cable cages closing the street. The daylight photos show the building and the equipment only. No identifiable cast appears.",
+    source: "Set Leak / Which-Mushroom5490 / The Batman Saga News",
+  },
+  "log-2026-10-03": {
+    title: "London Night Shoot Puts the Bloodied Batsuit on a GCPD Motorcycle",
+    locationLabel: "London · Night Street Set",
+    body: "On a night street set, Batman rides a white-and-blue GCPD motorcycle between two officers on matching bikes. The cowl ears are longer than in the first film, the chest armor is heavier, and blood marks the jaw and suit. A camera rig is mounted over the front wheel. The same night's street dressing includes fake snow, a lit SUBWAY entrance, and Christmas lights.",
+    source: "Set Leak / UnBoxPHD",
+  },
   "log-2028-02-18": {
     title: "Theatrical Release Across North America",
     body: "The Batman: Part II opens nationwide in premium formats including IMAX and Dolby Cinema.",

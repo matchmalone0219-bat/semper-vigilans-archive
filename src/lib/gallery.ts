@@ -221,8 +221,43 @@ export const GALLERIES: GalleryGroup[] = [
     title: "第二部路透",
     titleEn: "The Batman: Part II",
     intro:
-      "《新蝙蝠侠2》外景实拍画廊。完整记录苏格兰格拉斯哥的冬日雪景追逐、改装战车与升级版战衣细节，以及 9 月中旬剧组移师伦敦圣保罗大教堂拍摄的哥谭法院外群众示威大戏（罗伯特·帕丁森以考究西装造型现身，戈登同场调度；抗议标语引发对猫头鹰法庭与无政府客的推测）。并同步收录博思韦尔街警方秘密押送人员的日戏补档。2026 年蝙蝠侠日，导演马特·里夫斯从伦敦发出一张加框的官方蝙蝠侠静帧；次日伦敦夜戏再现同款 GCPD 警用摩托与多机位特技跟拍摄影车。",
+      "《新蝙蝠侠2》外景实拍画廊。完整记录苏格兰格拉斯哥的冬日雪景追逐、改装战车与升级版战衣细节，以及 9 月中旬剧组移师伦敦圣保罗大教堂拍摄的哥谭法院外群众示威大戏（罗伯特·帕丁森以考究西装造型现身，戈登同场调度；抗议标语引发对猫头鹰法庭与无政府客的推测）。并同步收录博思韦尔街警方秘密押送人员的日戏补档。2026 年蝙蝠侠日，导演马特·里夫斯从伦敦发出一张加框的官方蝙蝠侠静帧；次日伦敦夜戏再现同款 GCPD 警用摩托与多机位特技跟拍摄影车。10 月 3 日夜戏拍到血污战衣骑上警用摩托；前一天 Queen Alexandra’s House 仍在封楼。",
     stills: [
+      {
+        src: "/media/log/p2-1003-blood.jpg",
+        title: "血污战衣骑上警用摩托",
+        caption:
+          "10 月 3 日伦敦夜戏：蝙蝠侠跨在白蓝 GCPD 摩托上，左右各有一名骑警。头套耳廓更长，下颌和战衣带着血污。",
+        source: "片场路透 · UnBoxPHD",
+      },
+      {
+        src: "/media/log/p2-1003-front.jpg",
+        title: "车头机位与加长耳罩",
+        caption:
+          "同场近景：车头加装拍摄机位支架，头套双耳明显高于第一部，胸甲分块更厚。",
+        source: "片场路透 · UnBoxPHD",
+      },
+      {
+        src: "/media/log/p2-1003-side.jpg",
+        title: "POLICE 边箱侧影",
+        caption:
+          "侧箱印着 POLICE。蝙蝠侠踩在踏板上握把，身后有现场工作人员。",
+        source: "片场路透 · UnBoxPHD",
+      },
+      {
+        src: "/media/log/p2-1002-qah-b.jpg",
+        title: "Queen Alexandra’s House 封楼",
+        caption:
+          "10 月 2 日，肯辛顿 Queen Alexandra’s House 红砖立面被黑布脚手架罩住，路口有剧组货车、路障和线材箱。",
+        source: "片场路透 · Which-Mushroom5490 / The Batman Saga News",
+      },
+      {
+        src: "/media/log/p2-1002-qah-a.jpg",
+        title: "脚手架与剧组货车",
+        caption:
+          "同一栋楼的近景：脚手架从上到下蒙着黑布，门前停着两辆白色厢式货车。",
+        source: "片场路透 · Which-Mushroom5490 / The Batman Saga News",
+      },
       {
         src: "/media/log/p2-19-batman-day.jpg",
         title: "蝙蝠侠日官方静帧",

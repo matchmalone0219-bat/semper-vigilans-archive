@@ -61,6 +61,6 @@ test("homepage no longer maintains its own log translation map", () => {
     "utf8",
   );
   assert.doesNotMatch(homepage, /LOG_EN_MAP/);
-  assert.match(homepage, /getLocalizedLog\(latestShoot, locale\)/);
+  assert.match(homepage, /getLocalizedLog\(latestProduction, locale\)/);
   assert.match(homepage, /getLocalizedLogVideoTitle\(entry, locale\)/);
 });

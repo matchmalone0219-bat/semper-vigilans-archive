@@ -426,13 +426,14 @@ export const CAST: {
   },
 ];
 
-export type LogKind = "release" | "cast" | "shoot" | "slate";
+export type LogKind = "release" | "cast" | "shoot" | "slate" | "production";
 
 export const LOG_KIND: Record<LogKind, string> = {
   release: "上映",
   cast: "演员",
   shoot: "拍摄",
   slate: "档期",
+  production: "制作",
 };
 export type LogVideo = {
   platform: "bilibili";
@@ -1275,6 +1276,19 @@ export const LOG: LogEntry[] = [
       "/media/log/p2-1003-front.jpg",
       "/media/log/p2-1003-side.jpg",
     ],
+  },
+  {
+    date: "2026.10.05",
+    id: "log-2026-10-05-production-pause",
+    iso: "2026-10-05",
+    title: "《新蝙蝠侠2》制作暂时暂停，马特·里夫斯因家庭事务离开片场",
+    body: "华纳兄弟与 DC Studios 确认，《新蝙蝠侠2》制作已暂时暂停，导演马特·里夫斯将暂时离开制作工作处理家庭事务。片方表示里夫斯得到 DC Studios 的全力支持，并期待不久后继续制作。官方尚未公布复工日期；截至声明发布时，影片仍维持 2028 年 2 月 18 日北美档期，亦未宣布新的档期调整。",
+    kind: "production",
+    locationLabel: "制作状态 · 暂时暂停",
+    source: "Variety · Warner Bros. / DC Studios 声明",
+    sourceUrl: "https://au.variety.com/2026/film/news/the-batman-2-pauses-production-matt-reeves-steps-away-41001/",
+    sourceTier: "press",
+    verifiedAt: "2026.10.06",
   },
   {
     date: "2028.02.18",

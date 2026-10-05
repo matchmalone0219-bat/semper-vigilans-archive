@@ -481,8 +481,8 @@ export const LOG_EN: Record<
   },
   "log-2026-10-05-production-pause": {
     title: "The Batman: Part II Temporarily Pauses Production as Matt Reeves Steps Away for a Family Matter",
-    body: `Warner Bros. and DC Studios confirmed that production on The Batman: Part II has been temporarily paused while director Matt Reeves focuses on a family matter. The studio said Reeves has its full support and that it looks forward to continuing production soon. No restart date has been announced; at the time of the statement, the film remained scheduled for ${FILM.releaseLabelEn}, with no new release-date change announced.`,
-    source: "Variety · Warner Bros. / DC Studios statement",
+    body: `Warner Bros. and DC Studios confirmed that production on The Batman: Part II has been temporarily paused while director Matt Reeves focuses on a family matter. The studio said Reeves has its full support and that it looks forward to continuing production soon. No restart date or new release-date change has been announced; sources told Deadline it is too early to determine whether the pause will affect the current ${FILM.releaseLabelEn} date.`,
+    source: "Deadline · Warner Bros. / DC Studios statement",
     locationLabel: "Production status · Temporarily paused",
   },
   "log-2028-02-18": {

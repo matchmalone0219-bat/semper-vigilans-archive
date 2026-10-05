@@ -23,7 +23,13 @@ import {
 
 import { DOWNTOWN_SETTING_REFERENCE, GCT_REFERENCE } from "@/data/gotham-model";
 import { GCT_LANDMARKS, gctPoint } from "@/lib/gct-building-plan";
-import { GothamTransitMap, GothamTransitIndex, TransitLineBadges, TRANSIT_REGIONS } from "@/components/gotham-transit-map";
+import {
+  GothamTransitMap,
+  GothamTransitIndex,
+  TransitLineBadges,
+  TRANSIT_REGIONS,
+  getTransitStationDisplayName,
+} from "@/components/gotham-transit-map";
 
 const GothamCityModel = lazy(() => import("@/components/gotham-city-model"));
 
@@ -898,7 +904,7 @@ export function GothamPlacesMap() {
                         GCT CITYPASS · {region.name.toUpperCase()}
                       </p>
                       <h3 id="map-detail-title" className="mt-2 pr-8 text-lg font-black">
-                        {isZh ? selectedStation.nameZh : selectedStation.nameEn}
+                        {getTransitStationDisplayName(selectedStation, isZh)}
                       </h3>
                       {isZh ? <p className="mt-1 text-xs text-faint">{selectedStation.nameEn}</p> : null}
                       <p className="mt-3 text-xs text-muted">
@@ -922,8 +928,8 @@ export function GothamPlacesMap() {
                       {selectedStation.uncertain ? (
                         <p className="mt-2 text-xs text-faint">
                           {isZh
-                            ? "站名待辨，详见原始交通图。"
-                            : "Station name pending verification; see the original transit map."}
+                            ? "图中站名字样较模糊。"
+                            : "The station name is partially obscured on the map."}
                         </p>
                       ) : null}
                       {selectedStation.archive ? (

@@ -162,8 +162,8 @@ function Home() {
           <div className="space-y-6">
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
               {locale === "zh"
-                ? "前作《新蝙蝠侠》（The Batman）以谜语人引爆防洪大坝、暴洪淹没哥谭落幕；而在衍生限定剧《企鹅人》（The Penguin）中，奥兹·科布（Oz Cobb）夺取地下黑道王座数周后，整座城市步入严酷凛冬，《新蝙蝠侠2》（The Batman: Part II）的故事由此正式拉开帷幕。目前剧组正以「Semper Vigilans」（永远警惕）为项目代号，在苏格兰格拉斯哥、英格兰伦敦等英国多地展开大规模实景拍摄。"
-                : "The Batman (2022) concluded with the seawall breach submerging Gotham under catastrophic floods. Following Oz Cobb's rise to the underworld throne in The Penguin, the city plunges into a bitter winter as The Batman: Part II unfolds. Under the production codename 'Semper Vigilans', principal photography is underway across Glasgow, London, and Liverpool."}
+                ? "前作《新蝙蝠侠》（The Batman）以谜语人引爆防洪大坝、暴洪淹没哥谭落幕；而在衍生限定剧《企鹅人》（The Penguin）中，奥兹·科布（Oz Cobb）夺取地下黑道王座数周后，整座城市步入严酷凛冬，《新蝙蝠侠2》（The Batman: Part II）的故事由此正式拉开帷幕。续集以「Semper Vigilans」（永远警惕）为项目代号在英国展开主摄影；2026 年 10 月 5 日，华纳兄弟与 DC Studios 确认制作暂时暂停，复工日期尚未公布。"
+                : "The Batman (2022) concluded with the seawall breach submerging Gotham under catastrophic floods. Following Oz Cobb's rise to the underworld throne in The Penguin, the city plunges into a bitter winter as The Batman: Part II unfolds. Principal photography began in the UK under the production codename 'Semper Vigilans'. On October 5, 2026, Warner Bros. and DC Studios confirmed that production had been temporarily paused; no restart date has been announced."}
             </p>
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
               {locale === "zh"

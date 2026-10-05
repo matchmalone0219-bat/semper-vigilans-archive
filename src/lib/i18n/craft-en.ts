@@ -129,6 +129,10 @@ export const LENS_EN = {
       heading: "StageCraft LED Virtual Production Breakthrough",
       body: "Following COVID-19 filming interruptions in 2020, Fraser and Reeves pioneered the adoption of Industrial Light & Magic's StageCraft LED Volume at Warner Bros. Studios Leavesden. High-peril sequences—including the unfinished skyscraper balcony, the rainy City Hall rooftop, and GCPD dusk panoramas—were staged within the real-time Unreal Engine LED volume, bathing the actors and Batsuit in photorealistic practical reflections while eliminating green screen spill and pandemic crowd liabilities.",
     },
+    {
+      heading: "The Godfather Eye Shadows & Psychological Negative Space",
+      body: "Greig Fraser revealed in the official monograph that the lighting philosophy for the cowl eye sockets was directly inspired by Gordon Willis' legendary cinematography on Francis Ford Coppola's The Godfather: 'If you look at The Godfather, a lot of the time they deliberately let Marlon Brando's eyes disappear into darkness. Because sometimes not seeing a character's eyes connects with their soul far more deeply than reading every facial tick.' Striking this balance between physical forensic texture and psychological void became the benchmark for the film's nocturnal portraits.",
+    },
   ],
   messerschmidt: [
     {

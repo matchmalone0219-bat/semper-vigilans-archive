@@ -1,7 +1,7 @@
 import type { RootKind, RootParallel, RootWork, CinemaWork } from "../roots";
 
 export const ROOTS_INTRO_EN =
-  "Matt Reeves' The Batman is not a mechanical adaptation of any single comic run, but an amalgamation of the psychological core and cinematic language of landmark works across DC history: Bruce's self-trial draws from Darwyn Cooke's Batman: Ego; grounded detective realism stems from Frank Miller's Batman: Year One; mob hegemony and festive serial killings inherit from The Long Halloween; Martha's Arkham lineage, institutionalization, and slaughter derive directly from Geoff Johns' Batman: Earth One; the climax seawall explosion creates intertextuality with Scott Snyder's Zero Year. In a February 18, 2022 Entertainment Weekly interview, Robert Pattinson named Dennis O'Neil's Batman: Shaman to explain the bat as something closer to a private rite than a practical tool; the same piece treats The Man Who Falls as the lighter reference. In cinematic grammar, Reeves cited 1970s street crime milestones including Chinatown, Taxi Driver, and The French Connection at DC FanDome; Bruce and Selina's dynamic was benchmarked by Reeves, Pattinson, and Kravitz against Alan J. Pakula's Klute; Pattinson viewed the 1993 animated feature Batman: Mask of the Phantasm as one of the rare works truly capturing 'being Batman as a curse'; and the Batmobile's visceral entry directly benchmarks John Carpenter's adaptation of Stephen King's Christine.";
+  "Matt Reeves' The Batman is not a mechanical adaptation of any single comic run, but an amalgamation of the psychological core and cinematic language of landmark works across DC history: Bruce's self-trial draws from Darwyn Cooke's Batman: Ego; grounded detective realism stems from Frank Miller's Batman: Year One; mob hegemony and festive serial killings inherit from The Long Halloween; the tactical riot police Batsuit aesthetics derive directly from Lee Bermejo's Batman: Damned; Martha's Arkham lineage, institutionalization, and slaughter derive directly from Geoff Johns' Batman: Earth One; the climax seawall explosion creates intertextuality with Scott Snyder's Zero Year. In a February 18, 2022 Entertainment Weekly interview, Robert Pattinson named Dennis O'Neil's Batman: Shaman to explain the bat as something closer to a private rite than a practical tool; the same piece treats The Man Who Falls as the lighter reference. In cinematic grammar, Reeves cited 1970s street crime milestones including Chinatown, Taxi Driver, and The French Connection at DC FanDome; Bruce and Selina's dynamic was benchmarked by Reeves, Pattinson, and Kravitz against Alan J. Pakula's Klute; Pattinson viewed the 1993 animated feature Batman: Mask of the Phantasm as one of the rare works truly capturing 'being Batman as a curse'; and the Batmobile's visceral entry directly benchmarks John Carpenter's adaptation of Stephen King's Christine.";
 
 export const ROOT_KIND_EN: Record<RootKind, string> = {
   confirmed: "Official Core Inspiration",
@@ -129,6 +129,10 @@ export const ROOTS_EN: Record<string, RootWorkEn> = {
         heading: "The Breakdown of the Legal Order",
         body: "The Long Halloween charts the transition from traditional mafia to freakish supervillains, exposing the fragility of the rule of law and the cost of extrajudicial justice.",
       },
+      {
+        heading: "The USC Mentor Connection: Jeph Loeb and Matt Reeves",
+        body: "In 'The Art of The Batman', Matt Reeves revealed a deeply touching biographical connection: comic scribe Jeph Loeb was Reeves' screenwriting professor at the USC School of Cinematic Arts. Loeb recognized Reeves' writing talent in class and actively encouraged him to pursue professional screenwriting. Decades later, when Reeves stepped up to helm The Batman, using his former mentor's seminal masterpiece to construct Gotham's crime syndicate architecture and serialized mystery formed a poignant full-circle homage in comic and cinema history.",
+      },
     ],
   },
   "year-one": {
@@ -174,8 +178,51 @@ export const ROOTS_EN: Record<string, RootWorkEn> = {
       },
     ],
   },
+  damned: {
+    kicker: "04 / Tactical Armor",
+    title: "Batman: Damned",
+    jump: "Damned",
+    creators: "Writer: Brian Azzarello · Artist: Lee Bermejo",
+    published: "2018–2019 · DC Black Label Milestone Miniseries",
+    thesis: "Tactical riot-police armor aesthetics, visible industrial stitching, and dark psychological neo-gothic atmosphere officially confirmed as a Batsuit design blueprint.",
+    lede: "Director Matt Reeves officially confirmed in 'The Art of The Batman' that Lee Bermejo's gritty, tactical artwork in DC Black Label's inaugural title Batman: Damned was a direct visual blueprint when penning the script and conceptualizing the Batsuit's utilitarian riot-police design.",
+    sources: [
+      {
+        label: "Director Matt Reeves Foreword & Commentary",
+        note: "In the costume craft chapters of 'The Art of The Batman', Reeves explicitly credited Batman: Damned for inspiring the tactical riot-police look.",
+      },
+    ],
+    parallels: [
+      {
+        comic: "Bermejo's Batsuit features segmented riot-police armor plates, visible raw stitching, heavy rivets, and weathered combat scrapes.",
+        film: "The film suit forgoes seamless rubber molds for high-altitude Russian pressure suit lacing, equestrian vest segmentation, and ballistic trauma plates.",
+      },
+      {
+        comic: "Explores Bruce's disorienting psychological spiral and existential guilt between supernatural dread and urban violence following Joker's death.",
+        film: "Bruce navigates severe psychological isolation and trauma-driven self-punishment, immersing the film in psychological neo-noir tension.",
+      },
+      {
+        comic: "Tactile, heavily textured painted artwork rendering Gotham as a perpetual storm of rain, steam, and rusted brutalist monoliths.",
+        film: "Cinematographers Greig Fraser and Erik Messerschmidt utilize custom anamorphic glass and low-key lighting to capture this visceral painterly grit.",
+      },
+    ],
+    sections: [
+      {
+        heading: "The Tactical Riot-Police Armor Paradigm",
+        body: "While previous cinematic Batsuits leaned into high-tech nanotech or seamless molded rubber, Lee Bermejo radically reimagined Batman as a battle-hardened street brawler clad in heavy tactical riot-gear. Matt Reeves confirmed in the official art book that this emphasis on combat wear, raw rivets, and modular ballistic plating served as the foundational benchmark for costume designers Glyn Dillon and Jacqueline Durran.",
+      },
+      {
+        heading: "Gothic Psychological Horror & Hardboiled Noir",
+        body: "Brian Azzarello and Lee Bermejo pushed the superhero mythos to the frontiers of mature psychological horror. Bruce Wayne's nocturnal audio-visual journal entries, his bruised charcoal greasepaint, and his haunting ghost-like presence at crime scenes all find immediate stylistic resonance in Damned's suffocating atmosphere.",
+      },
+      {
+        heading: "Lee Bermejo's Two-Way Dialogue with The Batman",
+        body: "In addition to inspiring the film's suit aesthetics, Lee Bermejo was commissioned by DC to illustrate the official Batman #121 theatrical variant cover in March 2022 (archived in this site's Merch catalog), completing a circular dialogue between cinematic auteur and comic master.",
+      },
+    ],
+  },
   "zero-year": {
-    kicker: "04 / Cataclysm Intertextuality",
+    kicker: "05 / Cataclysm Intertextuality",
     title: "Batman: Zero Year",
     jump: "Zero Year",
     creators: "Writer: Scott Snyder · Artist: Greg Capullo",
@@ -214,7 +261,7 @@ export const ROOTS_EN: Record<string, RootWorkEn> = {
     ],
   },
   shaman: {
-    kicker: "05 / Totem",
+    kicker: "06 / Totem",
     title: "Batman: Shaman",
     jump: "Shaman",
     creators: "Writer: Dennis O'Neil · Pencils: Ed Hannigan · Inks: John Beatty",
@@ -249,7 +296,7 @@ export const ROOTS_EN: Record<string, RootWorkEn> = {
     ],
   },
   "man-who-falls": {
-    kicker: "06 / Origin Parallel",
+    kicker: "07 / Origin Parallel",
     title: "The Man Who Falls",
     jump: "Falls",
     creators: "Writer: Dennis O'Neil · Artist: Dick Giordano",

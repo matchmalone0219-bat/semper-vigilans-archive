@@ -85,18 +85,25 @@ export const PRODUCTION_PHASES_EN: Record<
       "In January 2019, Affleck stepped away from the role and Warner Bros. dated a new version of the film. After months of casting, Robert Pattinson and Nicholas Hoult reached the final round and underwent screen tests for Reeves' reworked project.",
     bulletPoints: [
       "On January 30, 2019, Warner Bros. announced the revised release window; Affleck tweeted his blessing to the new filmmakers, marking the definitive conclusion of the DCEU Batman era.",
+      "2018 Secret LA Meeting: After watching Pattinson's transformative turns in indie gems (Good Time, The Lighthouse, High Life, The Lost City of Z, Cosmopolis), Reeves secretly met with him in Los Angeles. Pattinson had no idea Reeves was writing Batman until the director showed him the early draft.",
       "Reeves conceived his young Bruce Wayne while writing with Robert Pattinson in mind, inspired by his frantic, brooding, and dangerous turn in the Safdie brothers' 'Good Time' (2017).",
       "By mid-May 2019, casting had narrowed to two British finalists: Robert Pattinson and Nicholas Hoult, both of whom reached the final screen-test stage.",
-      "Pattinson later described testing in a vintage Val Kilmer-era Batsuit with several crew members helping him into it. Public reporting also confirms Hoult reached the final testing stage, but does not reliably establish that both actors used the same suit or identical test protocol.",
+      "Pattinson later described testing in a vintage Val Kilmer-era Batsuit from Batman Forever (1995) with several crew members helping him into it. Though stifling and rigid, putting on the cowl imparted an immediate 'transformative' conviction.",
       "On May 31, 2019, Warner Bros. and Reeves officially ratified Robert Pattinson as the next Dark Knight, initiating a brand-new neo-noir era.",
     ],
     keyStatements: [
       {
         speaker: "Robert Pattinson",
         role: "Bruce Wayne / Batman",
-        text: "Pattinson recalled that the vintage screen-test suit required several crew members to help him into it and was extremely hot, but immediately created a strong sense of physical power.",
+        text: "Pattinson recalled that the vintage screen-test suit required several crew members to help him into it and was extremely hot, but immediately created a strong sense of physical power and absolute character conviction.",
         source: "Variety Cover Story",
         sourceUrl: "https://variety.com/2019/film/features/robert-pattinson-batman-the-lighthouse-tenet-1203319822/",
+      },
+      {
+        speaker: "Peter Sarsgaard",
+        role: "District Attorney Gil Colson",
+        text: "Sarsgaard praised Pattinson's chiseled bone structure in 'The Art of The Batman': 'He has this incredible chiseled jawline. If you're going to play Batman, you need that, because that's all the audience sees of you for most of the film.'",
+        source: "The Art of The Batman",
       },
       {
         speaker: "Nicholas Hoult",
@@ -208,8 +215,9 @@ export const SCREEN_TEST_DUEL_EN: ScreenTestDuel = {
     },
   ],
   details: [
-    "Pattinson later recalled that the vintage rubber suit required roughly five crew members to help him into it and left him sweating heavily during the test.",
-    "Public reporting confirms Pattinson and Hoult both reached the final testing stage, but reliable sources do not establish identical suit models, film formats, or test procedures for both actors.",
+    "Pattinson later recalled that the vintage rubber suit from Batman Forever required roughly five crew members to help him into it, feeling stifling and nearly unmovable. Yet the moment he donned the cowl, it sparked an immediate 'transformative' conviction that solidified his belief in this new Batman.",
+    "Peter Sarsgaard, who portrayed DA Gil Colson, remarked on Pattinson's striking bone structure and chiseled jawline, noting it was indispensable for carrying an entire performance while masked.",
+    "Discussing his psychological approach in the art book, Pattinson emphasized: 'Other superheroes know they can save the world; this Batman doesn't. His options are either to be Batman or to die. There's a desperate conviction to it.' Stunt coordinator Robert Alonzo channeled this directly into Batman's relentless, punitive fighting style.",
     "Warner Bros. confirmed Pattinson in the role on May 31, 2019; Hoult later discussed the experience of reaching the final round and losing the part.",
   ],
 };

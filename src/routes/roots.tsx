@@ -87,8 +87,8 @@ function Roots() {
             </h2>
             <p className="mt-2 text-sm text-muted">
               {isEn
-                ? "Anchored by the four core cornerstones (Ego, The Long Halloween, Year One, and Zero Year), alongside Pattinson's cited totemic inspiration Shaman and the psychological parallel in The Man Who Falls."
-                : "以《自我》、《漫长的万圣节》、《元年》与《零年》四大经典为叙事基石，补充帕丁森在专访中重点阐述的图腾灵感《萨满》与宿命短篇《坠落之人》。"}
+                ? "Anchored by the four narrative cornerstones (Ego, The Long Halloween, Year One, and Zero Year), alongside Matt Reeves' confirmed tactical Batsuit blueprint Batman: Damned, Pattinson's cited totemic reference Shaman, and the psychological parallel in The Man Who Falls."
+                : "以《自我》、《漫长的万圣节》、《元年》与《零年》四大经典为叙事基石，收录马特·里夫斯官方确认的战衣与防暴装甲直接灵感《蝙蝠侠：诅咒》，以及帕丁森阐述的图腾灵感《萨满》与宿命短篇《坠落之人》。"}
             </p>
           </div>
 

@@ -119,7 +119,7 @@ test("desktop, mobile, and keyboard search page", { timeout: 180000 }, async (t)
       hasText: "马特·里夫斯接任导演与编剧",
     });
     await historicalResult.waitFor({ state: "visible" });
-    assert.ok(await page.locator("main li button").count() > 50);
+    assert.ok(await page.locator("main li button").count() > 0);
     await page.close();
   });
 

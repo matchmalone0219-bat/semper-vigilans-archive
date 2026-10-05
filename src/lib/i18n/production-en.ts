@@ -104,6 +104,7 @@ export const PRODUCTION_PHASES_EN: Record<
         role: "District Attorney Gil Colson",
         text: "Sarsgaard praised Pattinson's chiseled bone structure in 'The Art of The Batman': 'He has this incredible chiseled jawline. If you're going to play Batman, you need that, because that's all the audience sees of you for most of the film.'",
         source: "The Art of The Batman",
+        sourceUrl: "https://www.abramsbooks.com/product/art-of-the-batman_9781419762109/",
       },
       {
         speaker: "Nicholas Hoult",

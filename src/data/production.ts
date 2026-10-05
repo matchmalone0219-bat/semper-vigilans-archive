@@ -132,6 +132,7 @@ export const PRODUCTION_PHASES: ProductionPhase[] = [
         role: "地方检察官吉尔·科尔森 饰演者",
         text: "萨斯加德在《The Art of The Batman》中盛赞帕丁森的骨相与雕塑般下颌线条：“演蝙蝠侠最需要这个，因为全片观众大半时间只能看到他的下半张脸。”",
         source: "官方设定集《The Art of The Batman》",
+        sourceUrl: "https://www.abramsbooks.com/product/art-of-the-batman_9781419762109/",
       },
       {
         speaker: "尼古拉斯·霍尔特",

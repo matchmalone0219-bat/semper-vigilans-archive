@@ -40,6 +40,7 @@ export function DossierShootLog() {
       if (logFilter === "release" && event.kind !== "release") continue;
       if (logFilter === "slate" && event.kind !== "slate") continue;
       if (logFilter === "cast" && event.kind !== "cast") continue;
+      if (logFilter === "production" && event.kind !== "production") continue;
       if (logFilter === "video" && !event.video) continue;
 
       const month = event.iso.slice(0, 7);
@@ -157,6 +158,7 @@ export function DossierShootLog() {
             { id: "release", label: locale === "zh" ? "官方公告" : "Official" },
             { id: "slate", label: locale === "zh" ? "档期变化" : "Release Date" },
             { id: "cast", label: locale === "zh" ? "演职员" : "Cast & Crew" },
+            { id: "production", label: locale === "zh" ? "制作状态" : "Production Status" },
             { id: "video", label: locale === "zh" ? "含视频" : "With Video" },
           ].map((k) => (
             <button

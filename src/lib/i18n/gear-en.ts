@@ -17,9 +17,10 @@ export const GEAR_EN: Record<string, {
     name: "Batsuit",
     seen: "The Batman (2022)",
     imageAlt: "Batsuit chest and abdominal armor mounted on workshop concrete rig: ballistic strikes, hexagonal abdomen, and wing plates",
-    lede: "Reeves' Batsuit is a handcrafted, tactical riot-armor emphasizing heavy-duty ballistic defense and utilitarian fabrication, far removed from sleek, mass-produced spandex. Costumes designed by Jacqueline Durran, with specialty costumes built by Pierre Bohanna's team.",
+    lede: "Reeves' Batsuit is a handcrafted, tactical riot-armor emphasizing heavy-duty ballistic defense and utilitarian fabrication, far removed from sleek, mass-produced spandex. Costumes designed by Glyn Dillon and Jacqueline Durran, with specialty costumes built by Pierre Bohanna's team.",
     body: [
       "Reeves mandated a gritty, handcrafted texture reflecting Bruce Wayne's Year Two improvisational phase. The outer shell consists of layered ballistic plates; chest and back armor detach independently from the load-bearing vest, showing raw rivets, scratches, and unpolished coatings.",
+      "Costume concept supervisor Glyn Dillon revealed in 'The Art of The Batman' that the longitudinal lacing along the flanks and back was directly adapted from high-altitude Russian pressure suits, paired with stretch mesh to grant full flexibility during brawls; stunt coordinator Robert Alonzo recommended segmenting torso armor after equestrian protective vests, providing ballistic protection while preserving the torso rotation of an elite fighter.",
       "The cowl is modular and separate from the suit, revealing a form-fitting high collar when removed. In Glasgow set footage from August 30, 2026, Robert Pattinson's stunt double without the cowl clearly displayed the separate collar and shoulder armor geometry. Pattinson tailored his physical posture and close-quarters combat stance to bear this tactical weight.",
     ],
   },
@@ -28,9 +29,10 @@ export const GEAR_EN: Record<string, {
     name: "Cowl",
     seen: "The Batman · Part II Camera Test (Modified)",
     imageAlt: "Hand-stitched leather cowl mounted on a workshop bust",
-    lede: "Constructed from hand-stitched leather over an internal reinforcement skeleton, featuring tall sharp ears, deep ocular recesses, and an exposed jawline. It lacks covered lenses, relying on black greasepaint around the eyes to convey intense psychological dread; elongated ears for the sequel were personally confirmed by Matt Reeves.",
+    lede: "Constructed from hand-stitched leather over an internal reinforcement skeleton, featuring tall sharp ears, deep ocular recesses, and an exposed jawline. It lacks covered lenses, relying on black greasepaint around the eyes; articulated neck vertebrae solve historic head-turning limitations; elongated ears for the sequel were personally confirmed by Matt Reeves.",
     body: [
       "The sharp, pointed ears give Batman an imposing silhouette against rain-soaked nighttime Gotham. The deeply recessed eye sockets forgo tinted lenses to showcase Pattinson's raw gaze; Bruce applies black eye paint to eliminate reflective glare and intensify psychological intimidation (audio-visual surveillance is handled by independent digital contact lenses).",
+      "To resolve the decades-old Batsuit curse (dating back to Tim Burton's 1989 film where cast members could not turn their heads without twisting their entire upper bodies), the cowl integrates articulated vertebrae neck segments, granting Pattinson 360-degree head rotation and pitch mobility. The nose ridge was intentionally shaped like a repeatedly broken boxer's bridge, while the frontal silhouette pays homage to Adam West's 1966 cowl; hand-stitched leather replaces generic rubber molds to give the face a terrifying skull-like profile.",
       "The open jawline accommodates the intense respiratory demands of prolonged wet-weather patrols, harsh interrogations, and brutal hand-to-hand combat.",
       "Following the July 15, 2026 camera test, fans noted the elongated ears compared to the first film; Matt Reeves replied on social media: 'You are not crazy.' Full-suit nighttime shoots in Glasgow on September 4 confirmed the elongated cowl ears match the test footage.",
     ],
@@ -49,10 +51,11 @@ export const GEAR_EN: Record<string, {
   "chest-blade": {
     kicker: "04 / Tactical Armor",
     name: "Detachable Chest Emblem Blade",
-    seen: "Physical Suit Prop",
-    imageAlt: "Close-up of the detachable metal bat emblem on the chest plate",
+    seen: "Physical Suit Prop · Concept Design by Glyn Dillon",
+    imageAlt: "Close-up photograph of the physical Batsuit chest emblem, showing carbon-weave substrate, rivets, battle scratches, and detachable dual blades",
     lede: "The stylized bat emblem fitted into the chest plate is in fact a detachable, high-tensile folding combat blade crafted from special alloy, serving as both an iconic crest and an emergency extraction tool.",
     body: [
+      "Costume concept supervisor Glyn Dillon explained in 'The Art of The Batman': 'In this gritty world, Bruce wouldn't sew a useless decorative leather bat on his chest. It has to be a functional weapon.' Thus, the emblem's wings detach into a pair of high-carbon steel combat daggers.",
       "Ordinarily locked flush within the chest recess, the emblem is cast from anti-magnetic, rust-resistant high-carbon steel. In emergencies, it can be drawn with one hand to function as a defensive dagger, rope cutter, or circuit-breaching wedge.",
       "In the climactic flood rescue at Gotham Square Garden, Bruce detached this chest blade to sever a high-voltage cable submerged in rising waters, preventing catastrophic electrocution and saving hundreds of trapped citizens.",
     ],
@@ -82,13 +85,14 @@ export const GEAR_EN: Record<string, {
   },
   gauntlet: {
     kicker: "07 / Weaponry & Hardware",
-    name: "Tactical Gauntlets",
+    name: "Tactical Gauntlets & Armament",
     seen: "The Batman · Concept Design by Glyn Dillon",
     imageAlt: "Tactical gauntlet concept sketches showing dart launcher rails and internal cushioning",
-    lede: "Heavy metal vambraces mounted on both forearms combining melee blade parrying ridges, spring-loaded tactical darts, and rapid-draw grapnel docks into a unified offensive and defensive hub.",
+    lede: "Heavy metal vambraces mounted on both forearms combining melee blade parrying ridges, spring-loaded tactical darts, finger taser nodes, and rapid-draw grapnel docks into a unified offensive and defensive hub.",
     body: [
-      "Hardened serrated ridges on the exterior deflect slashing weapons and amplify punch impact; exterior slots hold steel darts and backup hooks deployed via spring-loaded mechanisms. The right index glove includes micro-stun contacts for close-quarters neutralization.",
-      "The underside incorporates a spring-actuated sleeve-rail for the folding pneumatic grapnel gun, inspired by Travis Bickle's quick-draw sleeve rig in Taxi Driver.",
+      "Hardened serrated ridges on the exterior deflect slashing weapons and amplify punch impact. Concept sketches identify the exterior forearm darts as Japanese 'Bo-Shuriken' mounted on rotational friction locks ('rotates on vambrace'), allowing Batman to flick them effortlessly into his palm.",
+      "The right index finger houses an integrated high-voltage Finger Taser with exposed micro-wiring. Stunt coordinator Robert Alonzo emphasized the delicate balance between 'detective tactile dexterity' (handling minute crime scene trace evidence) and 'combat neutralization' (delivering incapacitating electrical shock pulses).",
+      "The underside incorporates a spring-actuated sleeve-rail for the folding pneumatic grapnel gun, annotated with micro-spools and needle-threaded wire tracks. Glyn Dillon confirmed this mechanism directly homages Travis Bickle's quick-draw sleeve rig in Martin Scorsese's Taxi Driver.",
     ],
   },
   grapnel: {
@@ -102,8 +106,19 @@ export const GEAR_EN: Record<string, {
       "Crucial in the subway battle and the Gotham Square Garden high-wire traversal, Pattinson operated functional mechanical prop versions throughout filming.",
     ],
   },
+  "sticky-bomb-gun": {
+    kicker: "09 / Weaponry & Hardware",
+    name: "Sticky Bomb Gun",
+    seen: "The Batman · Prop Design by Jamie Wilkinson & Glyn Dillon",
+    imageAlt: "Concept design sketch and pneumatic mechanical breakdown of the Sticky Bomb Gun by prop master Jamie Wilkinson",
+    lede: "A close-quarters pneumatic breaching pistol designed by property master Jamie Wilkinson and costume concept director Glyn Dillon, engineered for the precise deployment of high-adhesion timed demolition charges.",
+    body: [
+      "Featuring a rugged side-loading double-barrel configuration powered by an air-pressure cartridge, the launcher eschews delicate electronics in favor of mechanical dependability, true to Bruce's Year Two improvisational philosophy. The adhesive polymer warheads can either be hand-placed directly onto structural weak points or launched across distances onto targets.",
+      "In the film, Batman pairs this launcher with tactical charges stored in his utility belt pouches, using it to breach fortified blast doors, penetrate load-bearing masonry, or rupture high-pressure steam pipes to engineer tactical smoke screens for rapid exfiltration.",
+    ],
+  },
   car: {
-    kicker: "09 / Vehicle Fleet",
+    kicker: "10 / Vehicle Fleet",
     name: "Batmobile",
     seen: "The Batman · Concept Design by Ash Thorp",
     imageAlt: "Ash Thorp Batmobile concept art: red mist silhouette and rear-engine exhaust",
@@ -114,7 +129,7 @@ export const GEAR_EN: Record<string, {
     ],
   },
   turbine: {
-    kicker: "10 / Vehicle Fleet",
+    kicker: "11 / Vehicle Fleet",
     name: "Rear Jet Turbine Engine",
     seen: "The Batman · Engine Mockups & Cutaways",
     imageAlt: "Batmobile rear jet turbine clay model and twin-exhaust cross-section",
@@ -125,7 +140,7 @@ export const GEAR_EN: Record<string, {
     ],
   },
   batcycle: {
-    kicker: "11 / Vehicle Fleet",
+    kicker: "12 / Vehicle Fleet",
     name: "Batcycle & Drifter Motorcycle",
     seen: "The Batman",
     imageAlt: "Matte-black Batcycle studio photography with bat-ear fairing",
@@ -136,7 +151,7 @@ export const GEAR_EN: Record<string, {
     ],
   },
   corvette: {
-    kicker: "12 / Personal Motorcar",
+    kicker: "13 / Personal Motorcar",
     name: "1963 Chevrolet Corvette Stingray",
     seen: "The Batman · Bruce Wayne's Civilian Car",
     imageAlt: "Nighttime shot of the all-black 1963 Corvette: split rear window, dual-vent hood, plate XMC 867A",
@@ -147,7 +162,7 @@ export const GEAR_EN: Record<string, {
     ],
   },
   cave: {
-    kicker: "13 / Covert Base",
+    kicker: "14 / Covert Base",
     name: "The Subterranean Workshop / Batcave",
     seen: "The Batman",
     imageAlt: "Wayne Tower workshop: tarp-covered Batmobile, workbenches, and arched tunnel illumination",
@@ -158,7 +173,7 @@ export const GEAR_EN: Record<string, {
     ],
   },
   signal: {
-    kicker: "14 / Alliance Beacon",
+    kicker: "15 / Alliance Beacon",
     name: "The Bat-Signal",
     seen: "The Batman · The Penguin Finale",
     imageAlt: "Bat-Signal silhouette projected through blinds on a rainy night, Gordon in foreground",

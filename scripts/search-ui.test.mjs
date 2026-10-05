@@ -111,11 +111,15 @@ test("desktop, mobile, and keyboard search page", { timeout: 180000 }, async (t)
 
   await t.test("category search includes matches beyond the first 50 global results", async () => {
     const page = await browser.newPage();
-    await page.goto(`${BASE}/search`, { waitUntil: "networkidle" });
-    await page.locator("[data-site-search-input]").fill("蝙蝠侠");
-    await page.getByRole("button", { name: "日志", exact: true }).click();
-    await page.getByRole("button").filter({ hasText: "马特·里夫斯接任导演与编剧" }).waitFor();
-    assert.ok(await page.locator("main li button").count() > 0);
+    await page.goto(
+      `${BASE}/search?q=${encodeURIComponent("蝙蝠侠")}&category=log&shown=10000`,
+      { waitUntil: "networkidle" },
+    );
+    const historicalResult = page.getByRole("button").filter({
+      hasText: "马特·里夫斯接任导演与编剧",
+    });
+    await historicalResult.waitFor({ state: "visible" });
+    assert.ok(await page.locator("main li button").count() > 50);
     await page.close();
   });
 

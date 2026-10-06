@@ -89,8 +89,8 @@ function Dossier() {
           </p>
           <p className="mt-3 max-w-xl border-t border-fg/10 pt-3 text-xs leading-relaxed text-muted">
             {locale === "zh"
-              ? `当前状态：制作暂时暂停。华纳兄弟与 DC Studios 于 2026 年 10 月 5 日确认，马特·里夫斯暂时离开制作工作处理家庭事务；复工日期尚未公布，现有 ${FILM.releaseLabel} 北美档期暂未调整。`
-              : `Current status: production temporarily paused. Warner Bros. and DC Studios confirmed on October 5, 2026 that Matt Reeves has stepped away to focus on a family matter. No restart date has been announced, and the ${FILM.releaseLabelEn} release date has not been changed.`}
+              ? `当前状态：制作暂时暂停。华纳兄弟与 DC Studios 于 2026 年 10 月 5 日确认，马特·里夫斯暂时离开制作工作处理家庭事务；复工日期尚未公布，也未宣布新的档期调整；目前判断此次停工是否会影响 ${FILM.releaseLabel} 北美档期仍为时过早。`
+              : `Current status: production temporarily paused. Warner Bros. and DC Studios confirmed on October 5, 2026 that Matt Reeves has stepped away to focus on a family matter. No restart date or new release-date change has been announced; it is still too early to determine whether the pause will affect the current ${FILM.releaseLabelEn} date.`}
           </p>
         </div>
       </header>

@@ -178,6 +178,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
   '/merch': typeof MerchRoute
+  '/notes/waiting-for-gotham': typeof NotesWaitingForGothamRoute
   '/rataalada': typeof RataaladaRoute
   '/recap': typeof RecapRoute
   '/roots': typeof RootsRoute
@@ -200,6 +201,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
   '/merch': typeof MerchRoute
+  '/notes/waiting-for-gotham': typeof NotesWaitingForGothamRoute
   '/people': typeof PeopleRouteWithChildren
   '/places': typeof PlacesRouteWithChildren
   '/rataalada': typeof RataaladaRoute
@@ -249,6 +251,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/map'
     | '/merch'
+    | '/notes/waiting-for-gotham'
     | '/rataalada'
     | '/recap'
     | '/roots'
@@ -270,6 +273,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/map'
     | '/merch'
+    | '/notes/waiting-for-gotham'
     | '/people'
     | '/places'
     | '/rataalada'

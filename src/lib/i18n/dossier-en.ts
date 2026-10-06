@@ -476,7 +476,7 @@ export const LOG_EN: Record<
   "log-2026-10-03": {
     title: "London Night Shoot: Bloodied Batman Rides GCPD Motorcycle with Front Camera Rig",
     locationLabel: "London · Night Street Set",
-    body: "A new night shoot captured Batman on a white-and-blue GCPD patrol motorcycle flanked by two officers on matching bikes. The updated suit features visibly longer cowl ears and thicker chest plating, with battle-damage blood marks across the jaw and armor. A tubular camera rig is mounted directly in front of the handlebars to catch close-up facial action. The snow-dusted street was also dressed with a glowing SUBWAY entrance and Christmas lights, continuing the sequel's winter timeline.",
+    body: "A new night shoot captured Batman on a white-and-blue GCPD patrol motorcycle flanked by two officers on matching bikes. The updated suit features visibly longer cowl ears and thicker chest plating, with battle-damage blood marks across the jaw and armor. A tubular camera rig is mounted directly in front of the handlebars to catch close-up facial action. Closer frames show the POLICE pannier and an exposed jaw under the cowl, with two civilians in street clothes beside the bike. The snow-dusted street was also dressed with a glowing SUBWAY entrance and Christmas lights, continuing the sequel's winter timeline.",
     source: "Set Leak / UnBoxPHD",
   },
   "log-2026-10-05-production-pause": {

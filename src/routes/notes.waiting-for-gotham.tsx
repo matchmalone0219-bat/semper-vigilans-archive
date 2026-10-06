@@ -53,7 +53,7 @@ function WaitingForGothamNote() {
               className="inline-flex items-center gap-2 text-sm font-semibold text-muted transition-colors hover:text-fg"
             >
               <ArrowLeft className="size-4" />
-              返回 Semper Vigilans
+              {isZh ? "返回 Semper Vigilans" : "Back to Semper Vigilans"}
             </Link>
             <Link
               to="/dossier"

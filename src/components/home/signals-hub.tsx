@@ -254,7 +254,7 @@ export function SignalsHub({
                     {localizedProduction.body}
                   </p>
                   <span className="mt-2 inline-flex items-center gap-1 font-display text-[10px] font-semibold tracking-[0.14em] text-blood uppercase">
-                    {locale === "zh" ? "查看官方声明与日志" : "Open Statement & Log"}
+                    {locale === "zh" ? "查看报道与制作日志" : "Open Report & Log"}
                     <ArrowRight className="size-3" />
                   </span>
                 </Link>
@@ -286,6 +286,23 @@ export function SignalsHub({
                 <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-muted">
                   {localizedProduction.body}
                 </p>
+              ) : null}
+
+              {productionPaused ? (
+                <Link
+                  to="/notes/waiting-for-gotham"
+                  className="group/note mt-3 flex items-center justify-between gap-3 border-y border-fg/10 py-3 transition-colors hover:border-fg/20"
+                >
+                  <span className="min-w-0">
+                    <span className="block font-display text-[9px] font-semibold tracking-[0.2em] text-faint uppercase">
+                      {locale === "zh" ? "站长手记 · Editor's Note" : "Editor's Note"}
+                    </span>
+                    <span className="mt-1 block truncate text-xs font-bold text-fg transition-colors group-hover/note:text-blood">
+                      {locale === "zh" ? "等他回到哥谭" : "Waiting for His Return to Gotham"}
+                    </span>
+                  </span>
+                  <ArrowRight className="size-3.5 shrink-0 text-blood" />
+                </Link>
               ) : null}
 
               {/* 近期关键进展列表 */}

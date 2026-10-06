@@ -19,6 +19,7 @@ import { Route as InterviewsRouteImport } from './routes/interviews'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as MerchRouteImport } from './routes/merch'
+import { Route as NotesWaitingForGothamRouteImport } from './routes/notes.waiting-for-gotham'
 import { Route as PeopleRouteImport } from './routes/people'
 import { Route as PlacesRouteImport } from './routes/places'
 import { Route as RataaladaRouteImport } from './routes/rataalada'
@@ -79,6 +80,11 @@ const MapRoute = MapRouteImport.update({
 const MerchRoute = MerchRouteImport.update({
   id: '/merch',
   path: '/merch',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesWaitingForGothamRoute = NotesWaitingForGothamRouteImport.update({
+  id: '/notes/waiting-for-gotham',
+  path: '/notes/waiting-for-gotham',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PeopleRoute = PeopleRouteImport.update({
@@ -148,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
   '/merch': typeof MerchRoute
+  '/notes/waiting-for-gotham': typeof NotesWaitingForGothamRoute
   '/people': typeof PeopleRouteWithChildren
   '/places': typeof PlacesRouteWithChildren
   '/rataalada': typeof RataaladaRoute
@@ -218,6 +225,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/map'
     | '/merch'
+    | '/notes/waiting-for-gotham'
     | '/people'
     | '/places'
     | '/rataalada'
@@ -286,6 +294,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MapRoute: typeof MapRoute
   MerchRoute: typeof MerchRoute
+  NotesWaitingForGothamRoute: typeof NotesWaitingForGothamRoute
   PeopleRoute: typeof PeopleRouteWithChildren
   PlacesRoute: typeof PlacesRouteWithChildren
   RataaladaRoute: typeof RataaladaRoute
@@ -365,6 +374,13 @@ declare module '@tanstack/react-router' {
       path: '/merch'
       fullPath: '/merch'
       preLoaderRoute: typeof MerchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes/waiting-for-gotham': {
+      id: '/notes/waiting-for-gotham'
+      path: '/notes/waiting-for-gotham'
+      fullPath: '/notes/waiting-for-gotham'
+      preLoaderRoute: typeof NotesWaitingForGothamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/people': {
@@ -484,6 +500,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MapRoute: MapRoute,
   MerchRoute: MerchRoute,
+  NotesWaitingForGothamRoute: NotesWaitingForGothamRoute,
   PeopleRoute: PeopleRouteWithChildren,
   PlacesRoute: PlacesRouteWithChildren,
   RataaladaRoute: RataaladaRoute,

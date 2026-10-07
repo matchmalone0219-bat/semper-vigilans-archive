@@ -113,8 +113,15 @@
 .gear-body-stage {
   position: relative;
   width: 100%;
-  aspect-ratio: 1324 / 1763;
+  aspect-ratio: 120 / 185;
   overflow: hidden;
+  touch-action: pan-y;
+}
+.gear-body-stage:not([data-focused="true"]) {
+  cursor: grab;
+}
+.gear-body-stage:not([data-focused="true"]):active {
+  cursor: grabbing;
 }
 .gear-body-pan,
 .gear-body-zoom {
@@ -142,7 +149,19 @@
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
   outline: none;
+}
+.gear-turntable-image {
+  user-select: none;
+  pointer-events: none;
+  transition:
+    opacity 90ms ease,
+    filter 90ms ease;
+}
+.gear-body-stage[data-dimmed="true"] .gear-turntable-image {
+  opacity: 0.22;
+  filter: brightness(0.42);
 }
 .gear-body-shade {
   pointer-events: none;
@@ -208,6 +227,44 @@
 .gear-hotspot:focus-visible .gear-hotspot-label,
 .gear-hotspot[aria-pressed="true"] .gear-hotspot-label {
   opacity: 1;
+}
+.gear-view-controls {
+  position: absolute;
+  left: 50%;
+  bottom: 38px;
+  z-index: 5;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: 34px minmax(76px, auto) 34px;
+  align-items: center;
+  border: 1px solid #ffffff24;
+  background: #090909d9;
+  backdrop-filter: blur(8px);
+  transition: opacity 120ms ease;
+}
+.gear-view-controls button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: #ddd;
+}
+.gear-view-controls button:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+.gear-view-controls span {
+  min-width: 76px;
+  padding: 0 8px;
+  text-align: center;
+  font: 9px var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ddd;
+}
+.gear-body-stage[data-focused="true"] .gear-view-controls {
+  opacity: 0;
+  pointer-events: none;
 }
 .gear-focus-reset {
   position: absolute;
@@ -517,6 +574,9 @@
     max-width: 440px;
     margin: auto;
   }
+  .gear-view-controls {
+    bottom: 40px;
+  }
   .gear-body-stage[data-focused="true"] .gear-body-zoom {
     transform: scale(1.62);
   }
@@ -612,7 +672,9 @@
   .gear-body-pan,
   .gear-body-zoom,
   .gear-hotspot,
-  .gear-body-note {
+  .gear-body-note,
+  .gear-turntable-image,
+  .gear-view-controls {
     transition: none;
   }
 }

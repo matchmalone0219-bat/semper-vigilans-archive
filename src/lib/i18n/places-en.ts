@@ -192,8 +192,8 @@ export const GOTHAM_CITY_EN = {
   ],
   boroughs: [
     { name: "Downtown", nameEn: "Downtown", source: "The Batman", note: "Central staging ground with complete official production cartography" },
-    { name: "Midtown", nameEn: "Midtown", source: "The Penguin", note: "Mapped in HBO limited series transit maps; unexplored in first film" },
-    { name: "Uptown", nameEn: "Uptown", source: "The Penguin", note: "Mapped in HBO limited series transit maps; unexplored in first film" },
+    { name: "Midtown", nameEn: "Midtown", source: "The Penguin · Part II GCT prop", note: "The Penguin establishes the broader city layout; the GCT CityPass prop adds station- and district-level detail" },
+    { name: "Uptown", nameEn: "Uptown", source: "The Penguin · Part II GCT prop", note: "The Penguin establishes the broader city layout; the GCT CityPass prop adds station- and district-level detail" },
   ],
   districts: [
     { name: "Park Row", nameEn: "Park Row", note: "Narrow alleyway behind Monarch Theater; site of Wayne murders" },

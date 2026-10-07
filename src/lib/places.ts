@@ -28,8 +28,8 @@ export const GOTHAM_CITY = {
   ],
   boroughs: [
     { name: "下城区", nameEn: "Downtown", source: "电影《新蝙蝠侠》", note: "成片主舞台，设定地图最完整" },
-    { name: "中城区", nameEn: "Midtown", source: "限定剧《企鹅人》", note: "剧中地图补出，电影未展开" },
-    { name: "上城区", nameEn: "Uptown", source: "限定剧《企鹅人》", note: "剧中地图补出，电影未展开" },
+    { name: "中城区", nameEn: "Midtown", source: "《企鹅人》·《新蝙蝠侠2》GCT 道具图", note: "《企鹅人》补出宏观城市轮廓，GCT CityPass 进一步补全站点与区划" },
+    { name: "上城区", nameEn: "Uptown", source: "《企鹅人》·《新蝙蝠侠2》GCT 道具图", note: "《企鹅人》补出宏观城市轮廓，GCT CityPass 进一步补全站点与区划" },
   ],
   districts: [
     { name: "派克街", nameEn: "Park Row", note: "剧院后巷，韦恩夫妇遇刺处" },

@@ -18,18 +18,22 @@ export function SignalsHub({
   onSelectVideo: (video: LogVideo) => void;
 }) {
   const { locale, t } = useI18n();
-  // 2. 最新片场实拍（先算，避免和视频头条抢同一条、同一张图）
+  // 2. 最新制作动态：制作状态优先于片场路透，近期列表仍保留实拍进展。
   const shootLogs = LOG.filter((e) => e.kind === "shoot" && !e.upcoming);
-  const latestShoot = shootLogs[shootLogs.length - 1] ?? LOG[0];
-  const recentShoots = shootLogs.slice(-4, -1).reverse();
-  const localizedShoot = getLocalizedLog(latestShoot, locale);
+  const productionLogs = LOG.filter(
+    (e) => (e.kind === "shoot" || e.kind === "production") && !e.upcoming,
+  );
+  const latestProduction = productionLogs[productionLogs.length - 1] ?? LOG[0];
+  const recentShoots = shootLogs.slice(-2).reverse();
+  const localizedProduction = getLocalizedLog(latestProduction, locale);
+  const productionPaused = latestProduction.kind === "production";
 
   // 1. 预告与影音：官方测试/预告优先，且不复用片场头条的封面
   const videoLogs = LOG.filter((e) => e.video && !e.upcoming);
   const featuredVideoEntry =
     [...videoLogs].reverse().find((e) => e.kind === "slate" || e.kind === "release") ??
-    [...videoLogs].reverse().find((e) => e !== latestShoot && e.kind !== "shoot") ??
-    [...videoLogs].reverse().find((e) => e !== latestShoot) ??
+    [...videoLogs].reverse().find((e) => e !== latestProduction && e.kind !== "shoot") ??
+    [...videoLogs].reverse().find((e) => e !== latestProduction) ??
     videoLogs[videoLogs.length - 1];
   const featuredVideo: LogVideo = featuredVideoEntry?.video ?? {
     platform: "bilibili",
@@ -73,7 +77,7 @@ export function SignalsHub({
 
   const latestSignalDate = [
     featuredVideoEntry?.date,
-    latestShoot.date,
+    latestProduction.date,
     latestInterview?.date,
     featuredSocialDrop?.date,
   ]
@@ -91,14 +95,14 @@ export function SignalsHub({
             </p>
             <h2 className="mt-2 font-sans text-2xl font-black tracking-tight sm:text-4xl">
               {locale === "zh"
-                ? "预告影像 · 片场快讯 · 人物专访"
-                : "Teasers · Set Dispatches · Interviews"}
+                ? "预告影像 · 制作动态 · 人物专访"
+                : "Teasers · Production Updates · Interviews"}
             </h2>
           </div>
           <p className="max-w-md text-xs leading-relaxed text-muted sm:text-sm">
             {locale === "zh"
-              ? "从英国外景拍摄到主创深度专访，集中追踪《新蝙蝠侠2》的最新制作动态。"
-              : "From UK set dispatches to creator interviews, follow the latest developments on The Batman: Part II."}
+              ? "从制作状态、英国外景到主创深度专访，集中追踪《新蝙蝠侠2》的最新进展。"
+              : "From production status and UK set activity to creator interviews, follow the latest developments on The Batman: Part II."}
           </p>
         </div>
 
@@ -212,7 +216,7 @@ export function SignalsHub({
           </Card>
 
           <div className="grid min-w-0 gap-4 sm:gap-6">
-          {/* 板块 2：片场实拍动态（图文结合与近期时间线） */}
+          {/* 板块 2：当前制作状态与近期片场进展 */}
           <Card
             variant="default"
             showCorners
@@ -221,47 +225,85 @@ export function SignalsHub({
             <div>
               <div className="flex min-w-0 items-center justify-between gap-2">
                 <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
-                  02 / Production · {locale === "zh" ? "片场实拍" : "Set Photography"}
+                  02 / Production · {locale === "zh" ? "制作动态" : "Production"}
                 </span>
-                <Badge variant="outline" size="sm">
-                  {latestShoot.date}
+                <Badge variant={productionPaused ? "blood" : "outline"} size="sm">
+                  {productionPaused
+                    ? (locale === "zh" ? "制作暂停" : "PRODUCTION PAUSED")
+                    : latestProduction.date}
                 </Badge>
               </div>
 
-              <h3 className="mt-3 line-clamp-2 font-sans text-lg font-black leading-tight tracking-tight text-fg">
-                {localizedShoot.title}
+              <h3 className="mt-3 line-clamp-3 font-sans text-lg font-black leading-tight tracking-tight text-fg">
+                {localizedProduction.title}
               </h3>
               <p className="mt-1 text-xs text-muted">
-                {localizedShoot.locationLabel}
+                {localizedProduction.locationLabel}
               </p>
 
-              {/* 片场高清配图缩略图 */}
-              <Link
-                to="/dossier"
-                hash={latestShoot.id}
-                className="group/shoot relative mt-3 block h-28 w-full min-w-0 overflow-hidden border border-fg/20 bg-elevated sm:h-32"
-              >
-                <img
-                  src={latestShoot.image ?? "/media/p2-snow1.jpg"}
-                  alt={localizedShoot.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="absolute inset-0 size-full object-cover object-[center_28%] transition-transform duration-300 group-hover/shoot:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-3">
-                  <span className="line-clamp-1 font-sans text-[11px] font-bold text-fg/90">
-                    {locale === "zh"
-                      ? `外景现场：${latestShoot.title}`
-                      : `On-set: ${localizedShoot.title}`}
+              {productionPaused ? (
+                <Link
+                  to="/dossier"
+                  hash={latestProduction.id}
+                  className="mt-3 block border border-blood/35 bg-blood/[0.06] p-3 transition-colors hover:border-blood/70"
+                >
+                  <p className="font-display text-[10px] font-semibold tracking-[0.18em] text-blood uppercase">
+                    {locale === "zh" ? "当前制作状态" : "Current Production Status"}
+                  </p>
+                  <p className="mt-2 line-clamp-4 text-[11px] leading-relaxed text-muted">
+                    {localizedProduction.body}
+                  </p>
+                  <span className="mt-2 inline-flex items-center gap-1 font-display text-[10px] font-semibold tracking-[0.14em] text-blood uppercase">
+                    {locale === "zh" ? "查看报道与制作日志" : "Open Report & Log"}
+                    <ArrowRight className="size-3" />
                   </span>
-                </div>
-              </Link>
+                </Link>
+              ) : (
+                <Link
+                  to="/dossier"
+                  hash={latestProduction.id}
+                  className="group/shoot relative mt-3 block h-28 w-full min-w-0 overflow-hidden border border-fg/20 bg-elevated sm:h-32"
+                >
+                  <img
+                    src={latestProduction.image ?? "/media/p2-snow1.jpg"}
+                    alt={localizedProduction.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 size-full object-cover object-[center_28%] transition-transform duration-300 group-hover/shoot:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-3">
+                    <span className="line-clamp-1 font-sans text-[11px] font-bold text-fg/90">
+                      {locale === "zh"
+                        ? `外景现场：${latestProduction.title}`
+                        : `On-set: ${localizedProduction.title}`}
+                    </span>
+                  </div>
+                </Link>
+              )}
 
-              {/* 核心段落摘要 */}
-              <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-muted">
-                {localizedShoot.body}
-              </p>
+              {!productionPaused ? (
+                <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-muted">
+                  {localizedProduction.body}
+                </p>
+              ) : null}
+
+              {productionPaused ? (
+                <Link
+                  to="/notes/waiting-for-gotham"
+                  className="group/note mt-3 flex items-center justify-between gap-3 border-y border-fg/10 py-3 transition-colors hover:border-fg/20"
+                >
+                  <span className="min-w-0">
+                    <span className="block font-display text-[9px] font-semibold tracking-[0.2em] text-faint uppercase">
+                      {locale === "zh" ? "站长手记 · Editor's Note" : "Editor's Note"}
+                    </span>
+                    <span className="mt-1 block truncate text-xs font-bold text-fg transition-colors group-hover/note:text-blood">
+                      {locale === "zh" ? "等他回到哥谭" : "Waiting for His Return to Gotham"}
+                    </span>
+                  </span>
+                  <ArrowRight className="size-3.5 shrink-0 text-blood" />
+                </Link>
+              ) : null}
 
               {/* 近期关键进展列表 */}
               <div className="mt-3.5 border-t border-fg/10 pt-3">
@@ -293,7 +335,7 @@ export function SignalsHub({
                 hash="log"
                 className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
               >
-                <span>{locale === "zh" ? "查阅完整拍摄日志" : "Explore Production Log"}</span>
+                <span>{locale === "zh" ? "查阅完整制作日志" : "Explore Production Log"}</span>
                 <ArrowRight className="size-4" />
               </Link>
             </div>

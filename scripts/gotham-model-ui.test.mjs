@@ -167,11 +167,15 @@ test(
           0,
         );
         await page.getByRole("button", { name: "韦恩塔", exact: true }).click();
-        assert.match(await page.getByRole("dialog").getByRole("link", { name: "调阅关联地点档案" }).getAttribute("href"), /\/places\/wayne-tower$/);
+        const wayneDialog = page.getByRole("dialog");
+        assert.match(await wayneDialog.getByRole("link", { name: "调阅关联地点档案" }).getAttribute("href"), /\/places\/wayne-tower$/);
+        assert.equal(await wayneDialog.locator('img[src="/media/places/wayne-tower.jpg"]').count(), 1, "Wayne Tower card renders its header image");
         await page.keyboard.press("Escape");
         await page.getByRole("button", { name: /Uptown/ }).click();
         await page.getByRole("button", { name: "阿卡姆州立医院/疯人院", exact: true }).click();
-        assert.match(await page.getByRole("dialog").getByRole("link", { name: "调阅关联地点档案" }).getAttribute("href"), /\/places\/arkham$/);
+        const arkhamDialog = page.getByRole("dialog");
+        assert.match(await arkhamDialog.getByRole("link", { name: "调阅关联地点档案" }).getAttribute("href"), /\/places\/arkham$/);
+        assert.equal(await arkhamDialog.locator('img[src="/media/places/arkham.jpg"]').count(), 1, "Arkham card renders its header image");
         await page.keyboard.press("Escape");
         await page.getByRole("button", { name: /Downtown/ }).click();
         await model.locator("canvas").waitFor();

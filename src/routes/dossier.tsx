@@ -55,6 +55,9 @@ function Dossier() {
               DOSSIER / {FILM.workingTitle}
             </p>
             <span className="classified-stamp">ACTIVE INVESTIGATION</span>
+            <span className="border border-blood/70 bg-blood/10 px-2 py-1 font-display text-[10px] font-semibold tracking-[0.16em] text-blood uppercase">
+              PRODUCTION PAUSED
+            </span>
           </div>
           <h1 className="mt-4 font-sans text-5xl font-black leading-none tracking-tight sm:text-7xl">
             {locale === "zh" ? "档案" : "Film Dossier"}
@@ -83,6 +86,11 @@ function Dossier() {
             {locale === "zh"
               ? "汇总官方通告、行业权威报道与英伦三岛片场实录，结合分镜机位解析与世界观脉络，系统追踪续集制作进程。"
               : "Live production surveillance: tracking press disclosures, director dispatches, and on-location reports across the UK."}
+          </p>
+          <p className="mt-3 max-w-xl border-t border-fg/10 pt-3 text-xs leading-relaxed text-muted">
+            {locale === "zh"
+              ? `当前状态：制作暂时暂停。华纳兄弟与 DC Studios 于 2026 年 10 月 5 日确认，马特·里夫斯暂时离开制作工作处理家庭事务；复工日期尚未公布，也未宣布新的档期调整；目前判断此次停工是否会影响 ${FILM.releaseLabel} 北美档期仍为时过早。`
+              : `Current status: production temporarily paused. Warner Bros. and DC Studios confirmed on October 5, 2026 that Matt Reeves has stepped away to focus on a family matter. No restart date or new release-date change has been announced; it is still too early to determine whether the pause will affect the current ${FILM.releaseLabelEn} date.`}
           </p>
         </div>
       </header>

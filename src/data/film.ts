@@ -426,13 +426,14 @@ export const CAST: {
   },
 ];
 
-export type LogKind = "release" | "cast" | "shoot" | "slate";
+export type LogKind = "release" | "cast" | "shoot" | "slate" | "production";
 
 export const LOG_KIND: Record<LogKind, string> = {
   release: "上映",
   cast: "演员",
   shoot: "拍摄",
   slate: "档期",
+  production: "制作",
 };
 export type LogVideo = {
   platform: "bilibili";
@@ -1260,21 +1261,50 @@ export const LOG: LogEntry[] = [
     id: "log-2026-10-03",
     iso: "2026-10-03",
     title: "《新蝙蝠侠2》伦敦夜戏：蝙蝠侠带伤骑上 GCPD 摩托，加长战盔与车头机位曝光",
-    body: "伦敦夜戏再度拍到动作实况：蝙蝠侠跨上一辆白蓝涂装的 GCPD 巡警摩托，身侧有两名骑同款摩托的警员随行。战衣头套双耳明显比第一部更加尖长，胸甲模块增厚，下颌与胸口带有清晰的战损血痕。该车车头焊装着专属管状拍摄机位，镜头直对驾驶位捕捉面部动态。街头同时布置了人造雪、亮灯的 SUBWAY 门洞与圣诞彩灯，延续了续集的冬夜时间线。",
+    body: "伦敦夜戏再度拍到动作实况：蝙蝠侠跨上一辆白蓝涂装的 GCPD 巡警摩托，身侧有两名骑同款摩托的警员随行。战衣头套双耳明显比第一部更加尖长，胸甲模块增厚，下颌与胸口带有清晰的战损血痕。该车车头焊装着专属管状拍摄机位，镜头直对驾驶位捕捉面部动态。更近的照片从车尾看清了 POLICE 边箱，头套下颌露在面罩外面，车旁还站着两名便装路人。街头同时布置了人造雪、亮灯的 SUBWAY 门洞与圣诞彩灯，延续了续集的冬夜时间线。",
     kind: "shoot",
     locationLabel: "伦敦 · 夜戏街景",
     source: "片场路透 · UnBoxPHD",
     sourceUrl: "https://x.com/UnBoxPHD/status/2106512472425263206",
     sourceTier: "set",
-    verifiedAt: "2026.10.05",
+    verifiedAt: "2026.10.06",
     href: "/gallery",
     hash: "part2",
-    image: "/media/log/p2-1003-blood.jpg",
+    image: "/media/log/p2-1003-rear.jpg",
     images: [
+      "/media/log/p2-1003-rear.jpg",
+      "/media/log/p2-1003-cowl.jpg",
       "/media/log/p2-1003-blood.jpg",
       "/media/log/p2-1003-front.jpg",
       "/media/log/p2-1003-side.jpg",
     ],
+  },
+  {
+    date: "2026.10.05",
+    id: "log-2026-10-05-production-pause",
+    iso: "2026-10-05",
+    title: "《新蝙蝠侠2》制作暂时暂停，马特·里夫斯因家庭事务离开片场",
+    body: "华纳兄弟与 DC Studios 确认，《新蝙蝠侠2》制作已暂时暂停，导演马特·里夫斯暂时离开制作工作处理家庭事务。片方表示里夫斯得到 DC Studios 的全力支持，并期待不久后继续制作。官方尚未公布复工日期，也未宣布新的档期调整；目前判断此次停工是否会影响 2028 年 2 月 18 日北美档期仍为时过早。",
+    kind: "production",
+    locationLabel: "制作状态 · 暂时暂停",
+    source: "Deadline · Warner Bros. / DC Studios 声明",
+    sourceUrl: "https://deadline.com/2026/10/the-batman-part-ii-production-pause-matt-reeves-1237146807/",
+    sourceTier: "press",
+    verifiedAt: "2026.10.06",
+  },
+  {
+    date: "2026.10.05",
+    id: "log-2026-10-05-stan-hsc",
+    iso: "2026-10-05",
+    title: "塞巴斯蒂安·斯坦称马特·里夫斯是「我们这个时代的天才」",
+    body: "塞巴斯蒂安·斯坦在 Josh Horowitz 的影视播客《Happy Sad Confused》中谈及《新蝙蝠侠2》。他坦言面对外界层出不穷的猜测，该项目是其经历过保密挑战最大的工作之一，并幽默戏称「其实我演的是蝙蝠侠」。斯坦盛赞导演马特·里夫斯是「我们这个时代真正的电影天才之一」，潜心沉淀打磨三年之久且胸有成竹，整部作品极具野心；同时透露自己的角色与以往银幕戏路全然不同。官方目前仍严格保密其角色身份。",
+    kind: "cast",
+    source: "Happy Sad Confused · Josh Horowitz",
+    sourceUrl: "https://www.youtube.com/watch?v=h6ctwgdICXs",
+    sourceTier: "press",
+    verifiedAt: "2026.10.07",
+    href: "/interviews",
+    hash: "stan-hsc-2026-reeves",
   },
   {
     date: "2028.02.18",

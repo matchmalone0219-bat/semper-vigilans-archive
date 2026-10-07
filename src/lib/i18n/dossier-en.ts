@@ -480,8 +480,8 @@ export const LOG_EN: Record<
     source: "Set Leak / UnBoxPHD",
   },
   "log-2026-10-05-stan-hsc": {
-    title: "Sebastian Stan on The Batman Part II: Talking About the Role Turns Into Speculation",
-    body: "On Josh Horowitz's Happy Sad Confused podcast, Sebastian Stan called the sequel one of the hardest projects he has had to talk about, because any detail turns into guesswork about his character. He said Matt Reeves has spent three years honing it, and that the part feels very different from what he has done before. Asked who he is playing, he joked that he is Batman. The role remains unannounced.",
+    title: "Sebastian Stan Calls Matt Reeves a Genius of Our Time",
+    body: "On Josh Horowitz's Happy Sad Confused podcast, Sebastian Stan said he has faith in the sequel because Matt Reeves is a genius of our time: unique, specific, three years into the script, and sure of what he is doing. He also called the film ambitious and said he hopes it lands right. In the same conversation he still would not name his character, joking that he is Batman. The role remains unannounced.",
     source: "Happy Sad Confused · Josh Horowitz",
   },
   "log-2026-10-05-production-pause": {

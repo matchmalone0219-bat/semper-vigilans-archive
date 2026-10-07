@@ -146,11 +146,25 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "Happy Sad Confused · Josh Horowitz",
     sourceUrl: "https://www.youtube.com/watch?v=h6ctwgdICXs",
     quoteZh:
-      "这真的是我参与过的最难应付的情况之一。我觉得很难谈它，一谈就会从某个角落变成猜测。我觉得这件事非常有野心，我希望它落点是对的。我对它很有信心，因为我确实觉得马特是我们这个时代真正的天才之一，是我觉得非常独特、也非常具体的少数人之一。他在这上面已经做了三年。这不是偶然。他知道自己在做什么。所以我很高兴能成为这个构想的一部分。",
+      "这真的是我参与过的最难应付的情况之一。我觉得很难谈它，一谈就会从某个角落变成猜测。",
     quoteEn:
-      "It's one of the most challenging situations I've been involved in. I feel like it's hard to talk about it without it becoming some speculative thing from some corner. I think it's a very ambitious thing, and I hope it lands right. I have a lot of faith in it, because I just do feel like Matt is truly a genius of our time, and one of the very few people that I think is so unique and so specific. And he has been at this for three years. I mean, it's not an accident. He knows what he's doing. And so I'm just happy to be part of that vision.",
+      "It's one of the most challenging situations I've been involved in. I feel like it's hard to talk about it without it becoming some speculative thing from some corner.",
     note:
       "2026 年 10 月 5 日 Happy Sad Confused 第四次访谈，约第 35 分钟谈《新蝙蝠侠2》。他再次讲了里夫斯因《学徒》约他、以及自己同时去找詹姆斯·古恩的经过，与 9 月 Variety 专访一致。被问到角色猜测时，他用「我就是蝙蝠侠」一类的话开玩笑，不是角色公布。",
+  },
+  {
+    id: "stan-hsc-2026-reeves",
+    speakerId: "stan",
+    work: "part2",
+    date: "2026.10.05",
+    iso: "2026-10-05",
+    outlet: "Happy Sad Confused · Josh Horowitz",
+    sourceUrl: "https://www.youtube.com/watch?v=h6ctwgdICXs",
+    quoteZh:
+      "我觉得这件事非常有野心，我希望它落点是对的。我对它很有信心，因为我确实觉得马特是我们这个时代真正的天才之一，是我觉得非常独特、也非常具体的少数人之一。他在这上面已经做了三年。这不是偶然。他知道自己在做什么。所以我很高兴能成为这个构想的一部分。",
+    quoteEn:
+      "I think it's a very ambitious thing, and I hope it lands right. I have a lot of faith in it, because I just do feel like Matt is truly a genius of our time, and one of the very few people that I think is so unique and so specific. And he has been at this for three years. I mean, it's not an accident. He knows what he's doing. And so I'm just happy to be part of that vision.",
+    note: "同场访谈。夸的是导演马特·里夫斯，不是在公布角色。",
   },
   {
     id: "stan-hsc-2026-different",

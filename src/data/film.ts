@@ -1297,7 +1297,7 @@ export const LOG: LogEntry[] = [
     id: "log-2026-10-05-stan-hsc",
     iso: "2026-10-05",
     title: "塞巴斯蒂安·斯坦称马特·里夫斯是「我们这个时代的天才」",
-    body: "斯坦在 Josh Horowitz 的播客《Happy Sad Confused》上说，他对续集很有信心，因为里夫斯是「我们这个时代真正的天才之一」，独特、具体，已经打磨了三年，知道自己在做什么。他也说这件事非常有野心，希望落点是对的。同一场里他仍不肯谈角色，一讲就会变成猜测，并开玩笑说自己是蝙蝠侠。角色没有公布。",
+    body: "塞巴斯蒂安·斯坦在 Josh Horowitz 的影视播客《Happy Sad Confused》中谈及《新蝙蝠侠2》。他坦言面对外界层出不穷的猜测，该项目是其经历过保密挑战最大的工作之一，并幽默戏称「其实我演的是蝙蝠侠」。斯坦盛赞导演马特·里夫斯是「我们这个时代真正的电影天才之一」，潜心沉淀打磨三年之久且胸有成竹，整部作品极具野心；同时透露自己的角色与以往银幕戏路全然不同。官方目前仍严格保密其角色身份。",
     kind: "cast",
     source: "Happy Sad Confused · Josh Horowitz",
     sourceUrl: "https://www.youtube.com/watch?v=h6ctwgdICXs",

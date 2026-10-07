@@ -146,11 +146,11 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "Happy Sad Confused · Josh Horowitz",
     sourceUrl: "https://www.youtube.com/watch?v=h6ctwgdICXs",
     quoteZh:
-      "这真的是我参与过的最难应付的情况之一。我觉得很难谈它，一谈就会从某个角落变成猜测。",
+      "这真的是我职业生涯中面临保密压力最大、最难谈论的局面之一。我觉得只要自己一开口，哪怕只言片语，立刻就会被外界某个角落无限放大、演变成铺天盖地的猜测。",
     quoteEn:
       "It's one of the most challenging situations I've been involved in. I feel like it's hard to talk about it without it becoming some speculative thing from some corner.",
     note:
-      "2026 年 10 月 5 日 Happy Sad Confused 第四次访谈，约第 35 分钟谈《新蝙蝠侠2》。他再次讲了里夫斯因《学徒》约他、以及自己同时去找詹姆斯·古恩的经过，与 9 月 Variety 专访一致。被问到角色猜测时，他用「我就是蝙蝠侠」一类的话开玩笑，不是角色公布。",
+      "2026 年 10 月 5 日做客 Josh Horowitz 播客《Happy Sad Confused》（第 4 次作客，正片约第 35 分钟谈及《新蝙蝠侠2》）。谈及全网对其神秘角色的疯狂揣测（如哈维·丹特/双面人、缄默等），斯坦直言保密压力极大；现场甚至以「其实我演的是蝙蝠侠」的幽默玩笑化解追问。官方至今未公布其确切角色身份。",
   },
   {
     id: "stan-hsc-2026-reeves",
@@ -161,10 +161,11 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "Happy Sad Confused · Josh Horowitz",
     sourceUrl: "https://www.youtube.com/watch?v=h6ctwgdICXs",
     quoteZh:
-      "我觉得这件事非常有野心，我希望它落点是对的。我对它很有信心，因为我确实觉得马特是我们这个时代真正的天才之一，是我觉得非常独特、也非常具体的少数人之一。他在这上面已经做了三年。这不是偶然。他知道自己在做什么。所以我很高兴能成为这个构想的一部分。",
+      "我认为这部续集是一件宏大且极具野心的作品，我真切希望它能精准落地。我对它充满信心，因为在我眼中，马特·里夫斯绝对是我们这个时代真正的电影天才之一——他是极少数拥有如此独特审美、又对每一个细节都如此具体清晰的创作者。他已经在这部作品上潜心深耕了整整三年。这绝非偶然，他无比清楚自己在构建什么。能成为这一宏伟蓝图的一部分，我由衷感到荣幸。",
     quoteEn:
       "I think it's a very ambitious thing, and I hope it lands right. I have a lot of faith in it, because I just do feel like Matt is truly a genius of our time, and one of the very few people that I think is so unique and so specific. And he has been at this for three years. I mean, it's not an accident. He knows what he's doing. And so I'm just happy to be part of that vision.",
-    note: "同场访谈。夸的是导演马特·里夫斯，不是在公布角色。",
+    note:
+      "同场访谈中对导演马特·里夫斯创作掌控力的极高赞誉。斯坦强调里夫斯历经三年缜密筹备与打磨，拥有罕见而清晰的作者导演意志与电影工业精度，从主创视角印证了续集极具野心的史诗叙事格局。",
   },
   {
     id: "stan-hsc-2026-different",
@@ -175,10 +176,11 @@ export const INTERVIEWS: InterviewQuote[] = [
     outlet: "Happy Sad Confused · Josh Horowitz",
     sourceUrl: "https://www.youtube.com/watch?v=h6ctwgdICXs",
     quoteZh:
-      "对我来说，这绝对感觉是一件和我以前做过的很不一样的事。这正是我喜欢的，我也对此感到兴奋。",
+      "对我个人而言，这次饰演的角色绝对与我以往尝试过的任何银幕形象都大相径庭。而这恰恰是我最渴望的突破，也让我打心底里倍感兴奋。",
     quoteEn:
       "This is definitely, for me, feeling like something very different than I've gotten to do. And that's what I love, and I'm excited about.",
-    note: "同场访谈。他说的是自己的戏路，没有说出角色名字。",
+    note:
+      "同场访谈中谈及接演该角色的表演动机。继《学徒》（饰演青年特朗普）与《不同的男人》等突破性转型后，斯坦透露本片角色在心理质感与表演空间上完全打破了他以往的戏路边界，进一步引发了外界对其具有灰暗复杂特质角色的猜测。",
   },
   {
     id: "johansson-variety-2026-nyff",

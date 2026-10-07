@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Expand, Crosshair } from "lucide-react";
+import { Expand, Crosshair, Minimize2 } from "lucide-react";
 import { Lightbox } from "@/components/lightbox";
 import { GEAR } from "@/lib/gear";
 import {
@@ -29,9 +29,12 @@ function Gear() {
   const { locale } = useI18n();
   const text = (value: Bilingual) => value[locale];
   const [selectedId, setSelectedId] = useState("gauntlet");
+  const [focusedId, setFocusedId] = useState<string | null>(null);
   const [vehicleId, setVehicleId] = useState("car");
   const [viewer, setViewer] = useState<{ plates: GearPlate[]; index: number } | null>(null);
   const selected = BODY_RECORDS.find((item) => item.id === selectedId) ?? SUIT_OVERVIEW;
+  const focused = LOADOUT.find((item) => item.id === focusedId && item.hotspot) ?? null;
+  const focusPoint = focused?.hotspot ?? null;
   const vehicle = VEHICLES.find((item) => item.id === vehicleId) ?? VEHICLES[0]!;
   useEffect(() => {
     function readHash() {
@@ -55,11 +58,24 @@ function Gear() {
       window.removeEventListener("popstate", readHash);
     };
   }, []);
-  function select(id: string, kind: "body" | "vehicle") {
-    if (kind === "body") setSelectedId(id);
-    else setVehicleId(id);
+  function select(
+    id: string,
+    kind: "body" | "vehicle",
+    options: { focus?: boolean; scrollDetail?: boolean } = {},
+  ) {
+    if (kind === "body") {
+      setSelectedId(id);
+      const record = BODY_RECORDS.find((item) => item.id === id);
+      setFocusedId(options.focus && record?.hotspot ? id : null);
+    } else {
+      setVehicleId(id);
+    }
     if (window.location.hash !== `#${id}`) window.history.pushState(null, "", `#${id}`);
-    if (kind === "body" && window.matchMedia("(max-width: 700px)").matches) {
+    if (
+      kind === "body" &&
+      options.scrollDetail !== false &&
+      window.matchMedia("(max-width: 700px)").matches
+    ) {
       requestAnimationFrame(() =>
         document.getElementById("gear-detail")?.scrollIntoView({ block: "start" }),
       );
@@ -101,7 +117,7 @@ function Gear() {
                 type="button"
                 aria-pressed={selectedId === item.id}
                 aria-controls="gear-detail"
-                onClick={() => select(item.id, "body")}
+                onClick={() => select(item.id, "body", { focus: Boolean(item.hotspot) })}
               >
                 <span className="gear-number">{String(index + 1).padStart(2, "0")}</span>
                 <span>
@@ -113,35 +129,69 @@ function Gear() {
           </div>
         </nav>
         <figure className="gear-body">
-          <div className="gear-body-stage">
-            <img
-              src={BODY_PLATE.preview ?? BODY_PLATE.src}
-              alt={text(BODY_PLATE.title)}
-              width="1324"
-              height="1763"
-              fetchPriority="high"
-            />
-            <div className="gear-body-text-mask" aria-hidden="true" />
-            <div className="gear-body-label-mask" aria-hidden="true" />
-            <div className="gear-body-shade" />
-            {LOADOUT.map((item, index) =>
-              item.hotspot ? (
-                <button
-                  key={item.id}
-                  type="button"
-                  className="gear-hotspot"
-                  style={{ left: `${item.hotspot.x}%`, top: `${item.hotspot.y}%` }}
-                  aria-label={`${String(index + 1).padStart(2, "0")} · ${text(item.name)}`}
-                  aria-pressed={selectedId === item.id}
-                  aria-controls="gear-detail"
-                  onClick={() => select(item.id, "body")}
-                >
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <span className="gear-hotspot-label">{text(item.name)}</span>
-                </button>
-              ) : null,
-            )}
-            <div className="gear-body-note">
+          <div className="gear-body-stage" data-focused={focusPoint ? "true" : "false"}>
+            <div
+              className="gear-body-pan"
+              style={{
+                transform: focusPoint
+                  ? `translate(${50 - focusPoint.x}%, ${50 - focusPoint.y}%)`
+                  : "translate(0, 0)",
+              }}
+            >
+              <div
+                className="gear-body-zoom"
+                style={{
+                  transformOrigin: focusPoint
+                    ? `${focusPoint.x}% ${focusPoint.y}%`
+                    : "50% 50%",
+                }}
+              >
+                <img
+                  src={BODY_PLATE.preview ?? BODY_PLATE.src}
+                  alt={text(BODY_PLATE.title)}
+                  width="1324"
+                  height="1763"
+                  fetchPriority="high"
+                />
+                <div className="gear-body-text-mask" aria-hidden="true" />
+                <div className="gear-body-label-mask" aria-hidden="true" />
+                <div className="gear-body-shade" />
+                {LOADOUT.map((item, index) =>
+                  item.hotspot ? (
+                    <button
+                      key={item.id}
+                      type="button"
+                      className="gear-hotspot"
+                      style={{ left: `${item.hotspot.x}%`, top: `${item.hotspot.y}%` }}
+                      aria-label={`${String(index + 1).padStart(2, "0")} · ${text(item.name)}`}
+                      aria-pressed={selectedId === item.id}
+                      aria-controls="gear-detail"
+                      onClick={() =>
+                        select(item.id, "body", {
+                          focus: focusedId !== item.id,
+                          scrollDetail: false,
+                        })
+                      }
+                    >
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <span className="gear-hotspot-label">{text(item.name)}</span>
+                    </button>
+                  ) : null,
+                )}
+              </div>
+            </div>
+            {focusPoint ? (
+              <button
+                type="button"
+                className="gear-focus-reset"
+                onClick={() => setFocusedId(null)}
+                aria-label={locale === "zh" ? "返回全景" : "Return to full view"}
+              >
+                <Minimize2 size={14} aria-hidden="true" />
+                <span>{locale === "zh" ? "返回全景" : "Full view"}</span>
+              </button>
+            ) : null}
+            <div className="gear-body-note" aria-hidden={Boolean(focusPoint)}>
               <Crosshair size={13} aria-hidden="true" />
               {text(GEAR_COPY.markerHint)}
             </div>

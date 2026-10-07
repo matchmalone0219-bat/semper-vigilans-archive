@@ -8,12 +8,15 @@ export function Lightbox({
   index,
   onClose,
   onIndex,
+  locale = "zh",
 }: {
+  locale?: "zh" | "en";
   items: Still[];
   index: number;
   onClose: () => void;
   onIndex: (next: number) => void;
 }) {
+  const isZh = locale === "zh";
   const item = items[index];
   const hasPrev = index > 0;
   const hasNext = index < items.length - 1;
@@ -59,9 +62,8 @@ export function Lightbox({
   if (!item) return null;
 
   function handleTouchStart(e: React.TouchEvent) {
-    touchStartX.current = !isZoomed && e.touches.length === 1
-      ? e.touches[0]?.clientX ?? null
-      : null;
+    touchStartX.current =
+      !isZoomed && e.touches.length === 1 ? (e.touches[0]?.clientX ?? null) : null;
   }
 
   function handleTouchEnd(e: React.TouchEvent) {
@@ -91,7 +93,9 @@ export function Lightbox({
       aria-label={item.title}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      onTouchCancel={() => { touchStartX.current = null; }}
+      onTouchCancel={() => {
+        touchStartX.current = null;
+      }}
     >
       {/* Top bar */}
       <div className="flex items-center justify-between border-b border-fg/10 bg-surface/60 px-4 py-3 sm:px-6">
@@ -106,11 +110,21 @@ export function Lightbox({
 
         {/* Keyboard hints for desktop */}
         <div className="hidden items-center gap-3 font-mono text-[10px] text-faint md:flex">
-          <span><kbd className="border border-fg/20 px-1 py-0.5 text-muted">A</kbd> / <kbd className="border border-fg/20 px-1 py-0.5 text-muted">D</kbd> 切换</span>
+          <span>
+            <kbd className="border border-fg/20 px-1 py-0.5 text-muted">A</kbd> /{" "}
+            <kbd className="border border-fg/20 px-1 py-0.5 text-muted">D</kbd>{" "}
+            {isZh ? "切换" : "Browse"}
+          </span>
           <span>·</span>
-          <span><kbd className="border border-fg/20 px-1 py-0.5 text-muted">Z</kbd> 缩放</span>
+          <span>
+            <kbd className="border border-fg/20 px-1 py-0.5 text-muted">Z</kbd>{" "}
+            {isZh ? "缩放" : "Zoom"}
+          </span>
           <span>·</span>
-          <span><kbd className="border border-fg/20 px-1 py-0.5 text-muted">ESC</kbd> 关闭</span>
+          <span>
+            <kbd className="border border-fg/20 px-1 py-0.5 text-muted">ESC</kbd>{" "}
+            {isZh ? "关闭" : "Close"}
+          </span>
         </div>
 
         <div className="flex items-center gap-1.5">
@@ -118,8 +132,18 @@ export function Lightbox({
             type="button"
             onClick={() => setIsZoomed((prev) => !prev)}
             className="grid size-9 place-items-center text-muted transition-colors hover:bg-surface hover:text-fg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blood"
-            aria-label={isZoomed ? "还原原始大小" : "放大查看"}
-            title={isZoomed ? "还原原始大小 (Z)" : "放大查看细节 (Z)"}
+            aria-label={
+              isZoomed ? (isZh ? "还原原始大小" : "Reset zoom") : isZh ? "放大查看" : "Zoom in"
+            }
+            title={
+              isZoomed
+                ? isZh
+                  ? "还原原始大小 (Z)"
+                  : "Reset zoom (Z)"
+                : isZh
+                  ? "放大查看细节 (Z)"
+                  : "Zoom in (Z)"
+            }
           >
             {isZoomed ? <ZoomOut className="size-5" /> : <ZoomIn className="size-5" />}
           </button>
@@ -127,7 +151,7 @@ export function Lightbox({
             type="button"
             onClick={onClose}
             className="grid size-9 place-items-center text-muted transition-colors hover:bg-surface hover:text-fg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blood"
-            aria-label="关闭"
+            aria-label={isZh ? "关闭" : "Close"}
           >
             <X className="size-5" />
           </button>
@@ -147,7 +171,7 @@ export function Lightbox({
             type="button"
             onClick={() => onIndex(index - 1)}
             className="absolute left-2 z-10 grid size-11 place-items-center rounded-none bg-surface/60 text-muted backdrop-blur-sm transition-colors hover:bg-surface hover:text-fg sm:left-4"
-            aria-label="上一张"
+            aria-label={isZh ? "上一张" : "Previous image"}
           >
             <ChevronLeft className="size-7" />
           </button>
@@ -170,7 +194,7 @@ export function Lightbox({
             type="button"
             onClick={() => onIndex(index + 1)}
             className="absolute right-2 z-10 grid size-11 place-items-center rounded-none bg-surface/60 text-muted backdrop-blur-sm transition-colors hover:bg-surface hover:text-fg sm:right-4"
-            aria-label="下一张"
+            aria-label={isZh ? "下一张" : "Next image"}
           >
             <ChevronRight className="size-7" />
           </button>
@@ -184,13 +208,13 @@ export function Lightbox({
             <h2 className="font-sans text-base font-bold tracking-tight text-fg sm:text-lg">
               {item.title}
             </h2>
-            <p className="font-mono text-[11px] tracking-wider text-faint uppercase">
-              信源 // {item.source}
-            </p>
+            {item.source ? (
+              <p className="font-mono text-[11px] tracking-wider text-faint uppercase">
+                {isZh ? "信源" : "Source"} // {item.source}
+              </p>
+            ) : null}
           </div>
-          <p className="mt-1.5 text-xs leading-relaxed text-muted sm:text-sm">
-            {item.caption}
-          </p>
+          <p className="mt-1.5 text-xs leading-relaxed text-muted sm:text-sm">{item.caption}</p>
         </div>
       </div>
     </div>

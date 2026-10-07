@@ -1,108 +1,368 @@
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { GEAR, GEAR_INTRO } from "@/lib/gear";
+import { Expand, Crosshair } from "lucide-react";
+import { Lightbox } from "@/components/lightbox";
+import { GEAR } from "@/lib/gear";
+import {
+  BODY_PLATE,
+  GEAR_COPY,
+  LOADOUT,
+  SUIT_OVERVIEW,
+  VEHICLES,
+  type ArchiveGear,
+  type Bilingual,
+  type GearPlate,
+} from "@/lib/gear-archive";
 import { pageTitle } from "@/lib/film";
 import { useI18n } from "@/lib/i18n";
-import { GEAR_INTRO_EN, getLocalizedGear } from "@/lib/i18n/gear-en";
+import { getLocalizedGear } from "@/lib/i18n/gear-en";
+import "@/components/gear-archive.css";
 
 export const Route = createFileRoute("/gear")({
-  head: () => ({
-    meta: [{ title: pageTitle("装备") }],
-  }),
+  head: () => ({ meta: [{ title: pageTitle("装备") }] }),
   component: Gear,
 });
+const BODY_RECORDS = [SUIT_OVERVIEW, ...LOADOUT];
+const RELATED_IDS = ["turbine", "corvette", "cave", "signal"];
 
 function Gear() {
   const { locale } = useI18n();
-  const isZh = locale === "zh";
-
+  const text = (value: Bilingual) => value[locale];
+  const [selectedId, setSelectedId] = useState("gauntlet");
+  const [vehicleId, setVehicleId] = useState("car");
+  const [viewer, setViewer] = useState<{ plates: GearPlate[]; index: number } | null>(null);
+  const selected = BODY_RECORDS.find((item) => item.id === selectedId) ?? SUIT_OVERVIEW;
+  const vehicle = VEHICLES.find((item) => item.id === vehicleId) ?? VEHICLES[0]!;
+  useEffect(() => {
+    function readHash() {
+      let id: string;
+      try {
+        id = decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        return;
+      }
+      if (BODY_RECORDS.some((item) => item.id === id)) setSelectedId(id);
+      if (VEHICLES.some((item) => item.id === id)) setVehicleId(id);
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ block: "start" });
+      });
+    }
+    readHash();
+    window.addEventListener("hashchange", readHash);
+    window.addEventListener("popstate", readHash);
+    return () => {
+      window.removeEventListener("hashchange", readHash);
+      window.removeEventListener("popstate", readHash);
+    };
+  }, []);
+  function select(id: string, kind: "body" | "vehicle") {
+    if (kind === "body") setSelectedId(id);
+    else setVehicleId(id);
+    if (window.location.hash !== `#${id}`) window.history.pushState(null, "", `#${id}`);
+    if (kind === "body" && window.matchMedia("(max-width: 700px)").matches) {
+      requestAnimationFrame(() =>
+        document.getElementById("gear-detail")?.scrollIntoView({ block: "start" }),
+      );
+    }
+  }
   return (
-    <main>
-      <header className="relative isolate overflow-hidden border-b border-fg/10 bg-elevated">
-        <img
-          src="/media/gear-kit.jpg"
-          alt={isZh ? "战备铺陈：抓钩枪、蝙蝠镖、实用腰带与现场工具" : "Tactical kit layout: grapnel gun, batarangs, utility belt, and forensic tools"}
-          className="absolute inset-0 size-full object-cover opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/75 to-bg/50" />
-        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-          <p className="font-display text-sm font-semibold tracking-[0.36em] text-blood uppercase">
-            Kit / Concept
-          </p>
-          <h1 className="mt-4 font-sans text-5xl font-black leading-none tracking-tight sm:text-7xl">
-            {isZh ? "装备" : "Tactical Gear"}
-          </h1>
-          <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted">
-            {isZh ? GEAR_INTRO : GEAR_INTRO_EN}
-          </p>
+    <main className="gear-page" data-manual-hash-scroll>
+      <header className="gear-heading">
+        <div>
+          <p className="gear-eyebrow">{text(GEAR_COPY.eyebrow)} / EQUIPMENT</p>
+          <h1>{text(GEAR_COPY.title)}</h1>
+          <p className="gear-intro">{text(GEAR_COPY.intro)}</p>
         </div>
+        <nav
+          className="gear-section-links"
+          aria-label={locale === "zh" ? "装备栏目" : "Equipment sections"}
+        >
+          <a href="#loadout">{text(GEAR_COPY.loadout)}</a>
+          <a href="#vehicles">{text(GEAR_COPY.vehicles)}</a>
+          <a href="#related">{text(GEAR_COPY.related)}</a>
+        </nav>
       </header>
-
-      <div className="mx-auto max-w-6xl space-y-24 px-4 py-16 sm:px-6 sm:py-24">
-        {GEAR.map((rawItem) => {
-          const item = getLocalizedGear(rawItem, locale);
-          return (
-            <article key={item.id} id={item.id} className="scroll-mt-24">
-              <p className="font-display text-sm font-semibold tracking-[0.32em] text-blood uppercase">
-                {item.kicker}
-              </p>
-              <div className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                <h2 className="font-sans text-4xl font-black tracking-tight sm:text-5xl">
-                  {item.name}
-                </h2>
-                {isZh ? (
-                  <p className="font-display text-lg font-semibold tracking-wide text-muted">
-                    {item.nameEn}
-                  </p>
-                ) : null}
-                <p className="text-sm text-faint">{item.seen}</p>
-              </div>
-              <p className="mt-4 max-w-3xl text-pretty leading-relaxed text-fg">{item.lede}</p>
-              <figure className="mt-8 border border-fg/10 bg-[#111]">
-                <img
-                  src={item.image}
-                  alt={item.imageAlt}
-                  loading="lazy"
-                  decoding="async"
-                  className="mx-auto max-h-[70vh] w-full object-contain"
-                />
-              </figure>
-              <div className="mt-8 max-w-3xl space-y-4 text-pretty leading-relaxed text-muted">
-                {item.body.map((p) => (
-                  <p key={p.slice(0, 24)}>{p}</p>
-                ))}
-              </div>
-            </article>
-          );
-        })}
-
-        <p className="text-sm text-faint">
-          {isZh ? (
-            <>
-              概念稿出自《The Art of The Batman》。剧照在{" "}
-              <Link to="/gallery" className="text-fg underline-offset-4 hover:underline">
-                剧照
-              </Link>
-              。这些东西在哥谭里怎么用过，在{" "}
-              <Link to="/recap" className="text-fg underline-offset-4 hover:underline">
-                回顾
-              </Link>
-              。
-            </>
-          ) : (
-            <>
-              Concept illustrations sourced from &apos;The Art of The Batman&apos;. Production photography in{" "}
-              <Link to="/gallery" className="text-fg underline-offset-4 hover:underline">
-                Gallery
-              </Link>
-              . Practical deployment chronicles across Gotham in{" "}
-              <Link to="/recap" className="text-fg underline-offset-4 hover:underline">
-                Recap
-              </Link>
-              .
-            </>
-          )}
-        </p>
-      </div>
+      <section id="loadout" className="gear-loadout" aria-label={text(GEAR_COPY.loadout)}>
+        <nav className="gear-index" aria-label={text(GEAR_COPY.loadout)}>
+          <p className="gear-eyebrow">01 / LOADOUT</p>
+          <button
+            className="gear-overview"
+            type="button"
+            aria-pressed={selectedId === "suit"}
+            aria-controls="gear-detail"
+            onClick={() => select("suit", "body")}
+          >
+            {text(GEAR_COPY.overview)}
+          </button>
+          <div className="gear-index-items">
+            {LOADOUT.map((item, index) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-pressed={selectedId === item.id}
+                aria-controls="gear-detail"
+                onClick={() => select(item.id, "body")}
+              >
+                <span className="gear-number">{String(index + 1).padStart(2, "0")}</span>
+                <span>
+                  <strong>{text(item.name)}</strong>
+                  <small>{text(item.category)}</small>
+                </span>
+              </button>
+            ))}
+          </div>
+        </nav>
+        <figure className="gear-body">
+          <div className="gear-body-stage">
+            <img
+              src={BODY_PLATE.preview ?? BODY_PLATE.src}
+              alt={text(BODY_PLATE.title)}
+              width="1324"
+              height="1763"
+              fetchPriority="high"
+            />
+            <div className="gear-body-text-mask" aria-hidden="true" />
+            <div className="gear-body-label-mask" aria-hidden="true" />
+            <div className="gear-body-shade" />
+            {LOADOUT.map((item, index) =>
+              item.hotspot ? (
+                <button
+                  key={item.id}
+                  type="button"
+                  className="gear-hotspot"
+                  style={{ left: `${item.hotspot.x}%`, top: `${item.hotspot.y}%` }}
+                  aria-label={`${String(index + 1).padStart(2, "0")} · ${text(item.name)}`}
+                  aria-pressed={selectedId === item.id}
+                  aria-controls="gear-detail"
+                  onClick={() => select(item.id, "body")}
+                >
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <span className="gear-hotspot-label">{text(item.name)}</span>
+                </button>
+              ) : null,
+            )}
+            <div className="gear-body-note">
+              <Crosshair size={13} aria-hidden="true" />
+              {text(GEAR_COPY.markerHint)}
+            </div>
+          </div>
+          <figcaption>{text(GEAR_COPY.bodyCaption)}</figcaption>
+        </figure>
+        <div id="gear-detail" className="gear-detail">
+          <EquipmentRecord
+            key={selected.id}
+            item={selected}
+            onOpen={(plates, index) => setViewer({ plates, index })}
+          />
+        </div>
+      </section>
+      <section id="vehicles" className="gear-vehicles">
+        <div className="gear-section-heading">
+          <p className="gear-eyebrow">02 / VEHICLES</p>
+          <h2>{text(GEAR_COPY.vehicles)}</h2>
+          <p>{text(GEAR_COPY.vehicleIntro)}</p>
+        </div>
+        <nav className="gear-vehicle-tabs" aria-label={text(GEAR_COPY.vehicles)}>
+          {VEHICLES.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              aria-pressed={vehicleId === item.id}
+              aria-controls="vehicle-detail"
+              onClick={() => select(item.id, "vehicle")}
+            >
+              <span className="gear-number">0{index + 1}</span>
+              {text(item.name)}
+            </button>
+          ))}
+        </nav>
+        <div id="vehicle-detail">
+          <EquipmentRecord
+            key={vehicle.id}
+            item={vehicle}
+            wide
+            onOpen={(plates, index) => setViewer({ plates, index })}
+          />
+        </div>
+      </section>
+      <section id="related" className="gear-related">
+        <div className="gear-section-heading">
+          <p className="gear-eyebrow">03 / WORKSHOP</p>
+          <h2>{text(GEAR_COPY.related)}</h2>
+          <p>{text(GEAR_COPY.relatedIntro)}</p>
+        </div>
+        <div className="gear-related-grid">
+          {GEAR.filter((item) => RELATED_IDS.includes(item.id)).map((rawItem) => {
+            const item = getLocalizedGear(rawItem, locale);
+            return (
+              <article id={item.id} key={item.id} className="gear-related-record">
+                <img src={item.image} alt={item.imageAlt} loading="lazy" width="900" height="600" />
+                <div>
+                  <p className="gear-eyebrow">{item.nameEn}</p>
+                  <h3>{item.name}</h3>
+                  <p>{item.lede}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+        <div className="gear-footer-links">
+          <Link to="/gallery">{locale === "zh" ? "电影剧照" : "Film gallery"}</Link>
+          <Link to="/recap">{locale === "zh" ? "回顾第一部" : "Revisit The Batman"}</Link>
+        </div>
+      </section>
+      {viewer ? (
+        <GearViewer
+          plates={viewer.plates}
+          index={viewer.index}
+          onClose={() => setViewer(null)}
+          onIndex={(index) => setViewer({ ...viewer, index })}
+        />
+      ) : null}
     </main>
+  );
+}
+
+function EquipmentRecord({
+  item,
+  wide = false,
+  onOpen,
+}: {
+  item: ArchiveGear;
+  wide?: boolean;
+  onOpen: (plates: GearPlate[], index: number) => void;
+}) {
+  const { locale } = useI18n();
+  const text = (value: Bilingual) => value[locale];
+  const [plateIndex, setPlateIndex] = useState(0);
+  const [tab, setTab] = useState<"film" | "design">("film");
+  const current = item.plates[plateIndex]!;
+  return (
+    <article id={item.id} className={`gear-record${wide ? " gear-record-wide" : ""}`}>
+      <div className="gear-record-heading">
+        <p className="gear-eyebrow">2022 / {text(item.category)}</p>
+        <h3 aria-live="polite">{text(item.name)}</h3>
+        {locale === "zh" ? <p className="gear-english-name">{item.name.en}</p> : null}
+        <p className="gear-summary">{text(item.summary)}</p>
+      </div>
+      <div className="gear-record-media">
+        <button
+          type="button"
+          className="gear-plate"
+          onClick={() => onOpen(item.plates, plateIndex)}
+          aria-label={`${text(GEAR_COPY.enlarge)} · ${text(current.title)}`}
+        >
+          <img
+            src={current.preview ?? current.src}
+            alt={text(current.title)}
+            loading="lazy"
+            decoding="async"
+          />
+          <span className="gear-plate-expand">
+            <Expand size={14} aria-hidden="true" />
+            {text(GEAR_COPY.enlarge)}
+          </span>
+        </button>
+        {item.plates.length > 1 ? (
+          <div
+            className="gear-plate-options"
+            aria-label={locale === "zh" ? "选择图版" : "Select plate"}
+          >
+            {item.plates.map((p, index) => (
+              <button
+                key={p.src}
+                type="button"
+                aria-pressed={plateIndex === index}
+                onClick={() => setPlateIndex(index)}
+              >
+                <span>0{index + 1}</span>
+                {text(p.title)}
+              </button>
+            ))}
+          </div>
+        ) : null}
+        <p className="gear-plate-caption">{text(current.caption)}</p>
+      </div>
+      <div className="gear-record-text">
+        <div
+          className="gear-record-tabs"
+          aria-label={locale === "zh" ? "档案内容" : "Record content"}
+        >
+          {(["film", "design"] as const).map((key) => (
+            <button
+              key={key}
+              type="button"
+              aria-pressed={tab === key}
+              aria-controls={`record-text-${item.id}`}
+              onClick={() => setTab(key)}
+            >
+              {text(GEAR_COPY[key])}
+            </button>
+          ))}
+        </div>
+        <div id={`record-text-${item.id}`} className="gear-record-prose">
+          {(tab === "film"
+            ? (item.filmDetails ?? [item.film])
+            : (item.designDetails ?? [item.design])
+          ).map((paragraph, index) => (
+            <p key={`${item.id}-${tab}-${index}`}>{text(paragraph)}</p>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function GearViewer({
+  plates,
+  index,
+  onClose,
+  onIndex,
+}: {
+  plates: GearPlate[];
+  index: number;
+  onClose: () => void;
+  onIndex: (index: number) => void;
+}) {
+  const { locale } = useI18n();
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    root.current?.querySelector<HTMLButtonElement>("button")?.focus();
+    return () => previous?.focus();
+  }, []);
+  return (
+    <div
+      ref={root}
+      onKeyDown={(event) => {
+        if (event.key !== "Tab") return;
+        const buttons = Array.from(
+          root.current?.querySelectorAll<HTMLButtonElement>("button:not(:disabled)") ?? [],
+        );
+        const first = buttons[0],
+          last = buttons.at(-1);
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        }
+        if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }}
+    >
+      <Lightbox
+        locale={locale}
+        items={plates.map((p) => ({
+          src: p.src,
+          title: p.title[locale],
+          caption: p.caption[locale],
+          source: "",
+        }))}
+        index={index}
+        onClose={onClose}
+        onIndex={onIndex}
+      />
+    </div>
   );
 }

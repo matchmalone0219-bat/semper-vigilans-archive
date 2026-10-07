@@ -1,0 +1,144 @@
+[
+  {
+    "asset": "/media/gear-archive/body.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/04-the-art-of-the-batman-pt4/001-BM_26.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/29/the-art-of-the-batman-pt4",
+    "sourceSha256": "abefb198bc45bb4808f94f285d662e68f2937e498e7b9d9ac2336d0f906cf74c",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/body-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/suit.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/03-the-art-of-the-batman-pt3/006-BM_20.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/26/the-art-of-the-batman-pt3",
+    "sourceSha256": "0ee7ef2269856368f876895f2bcbf9d8bf4dc823c4868858984799b9424ac5ba",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/suit-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/cowl.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/04-the-art-of-the-batman-pt4/003-BM_28.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/29/the-art-of-the-batman-pt4",
+    "sourceSha256": "911c3b1e9277216d5a0da93695518194daa97c512cb4682aefea25755f9a5e3e",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/cowl-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/emblem.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/03-the-art-of-the-batman-pt3/009-BM_23.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/26/the-art-of-the-batman-pt3",
+    "sourceSha256": "5f7ed5f06b9ce61fa78ec895e4ec12045e7ee9e64e182e4a7d80cec7bc3614ad",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/emblem-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/belt.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/04-the-art-of-the-batman-pt4/002-BM_27.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/29/the-art-of-the-batman-pt4",
+    "sourceSha256": "86d1c88bac09f6fb2cf6484a20a93a0858c2c7717df1b4b8c25331e80505674d",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/belt-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/gauntlet-sketch.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/04-the-art-of-the-batman-pt4/006-BM_31.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/29/the-art-of-the-batman-pt4",
+    "sourceSha256": "b8bff2c2d46a729fba6ac887242fe49808b6c5dd8203d9b8925eea696163979d",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/gauntlet-sketch-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/sticky-sketch.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/003-BM_38.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "568f366d6e79f73fe4d3776ec10f4d19c4f407613d01d74588d4c0f3ff69bf37",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/sticky-sketch-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/sticky-render.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/004-BM_39.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "8e7449f250a50c7f4a11ba694824f6abd6fdd12fbe62b80b953155c6d5d45c46",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/sticky-render-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/grapnel.jpg",
+    "sourceFile": "reference-materials/the-batman-equipment-supplement-20261007/images/grapple-harpoon/001-Glyn_Dillon_The_Batman_grapple_gun_harpoon.webp",
+    "sourcePage": "https://www.conceptartassociation.com/2022-caa-finalists/grapple-gunharpoon-the-batman",
+    "sourceSha256": "ae970e84f101512799e9290dafd809c874c07c561abf7cec1dea1344992e5222",
+    "delivery": "JPEG quality 86; source dimensions retained"
+  },
+  {
+    "asset": "/media/gear-archive/lens.jpg",
+    "sourceFile": "reference-materials/the-batman-equipment-supplement-20261007/images/props/001-04.webp",
+    "sourcePage": "https://www.mattsavconcept.com/portfolio/the-batman",
+    "sourceSha256": "e2bf1cd3017d2e4b6f9d620a999015918aabf0292b11f834323493a84882aff3",
+    "delivery": "JPEG quality 86; source dimensions retained"
+  },
+  {
+    "asset": "/media/gear-archive/lens-case.jpg",
+    "sourceFile": "reference-materials/the-batman-equipment-supplement-20261007/images/props/007-02.webp",
+    "sourcePage": "https://www.mattsavconcept.com/portfolio/the-batman",
+    "sourceSha256": "e8ae41c81d978a4450bf3af453fe25c93b225f8a470dcfaad879dba9bae360bb",
+    "delivery": "JPEG quality 86; source dimensions retained"
+  },
+  {
+    "asset": "/media/gear-archive/lens-reader.jpg",
+    "sourceFile": "reference-materials/the-batman-equipment-supplement-20261007/images/props/008-03.webp",
+    "sourcePage": "https://www.mattsavconcept.com/portfolio/the-batman",
+    "sourceSha256": "f976e1ae24b9fda6b6f77a8bfeedc1fea319b9b85c5870f6fdd6c64cf87de324",
+    "delivery": "JPEG quality 86; source dimensions retained"
+  },
+  {
+    "asset": "/media/gear-archive/batmobile-a.jpg",
+    "sourceFile": "reference-materials/the-batman-equipment-supplement-20261007/images/vehicles/001-BATMAN_GRADE_AT_001_BATMOBILE_FINAL_001_RQ_SETUP_00_2022-03-02_15.54.45.jpg",
+    "sourcePage": "https://www.altcinc.com/work/batman",
+    "sourceSha256": "25d6e45295030efa362f42fde7f985f16ecbead1f9266c6aabf5dc8f1e6320f8",
+    "delivery": "JPEG quality 86; source dimensions retained"
+  },
+  {
+    "asset": "/media/gear-archive/batmobile-b.jpg",
+    "sourceFile": "reference-materials/the-batman-equipment-supplement-20261007/images/vehicles/005-BATMAN_GRADE_AT_001_BATMOBILE_FINAL_001_RQ_SETUP_01_2022-03-02_15.56.13.jpg",
+    "sourcePage": "https://www.altcinc.com/work/batman",
+    "sourceSha256": "06f3f8e6e5357e786b4a30d817d317eb6ea9198b2111e2288d7aa2c802511ae8",
+    "delivery": "JPEG quality 86; source dimensions retained"
+  },
+  {
+    "asset": "/media/gear-archive/batcycle-a.jpg",
+    "sourceFile": "reference-materials/the-batman-equipment-supplement-20261007/images/vehicles/041-BATMAN_GRADE_AT_001_BATCYCLE_AT_001_001_2022-03-06_14.02.31.jpg",
+    "sourcePage": "https://www.altcinc.com/work/batman",
+    "sourceSha256": "a9800a856d59868235201b56a2cc769fa56b6ef0d07c2b56516f538321a84b93",
+    "delivery": "JPEG quality 86; source dimensions retained"
+  },
+  {
+    "asset": "/media/gear-archive/batcycle-b.jpg",
+    "sourceFile": "reference-materials/the-batman-equipment-supplement-20261007/images/vehicles/043-BATMAN_GRADE_AT_001_BATCYCLE_AT_001_006_2022-03-06_14.05.23.jpg",
+    "sourcePage": "https://www.altcinc.com/work/batman",
+    "sourceSha256": "f41e506469dc2f351dce727f35589f308df1aaf0cd611aca0a0a993da20e7bef",
+    "delivery": "JPEG quality 86; source dimensions retained"
+  },
+  {
+    "asset": "/media/gear-archive/drifter-a.jpg",
+    "sourceFile": "reference-materials/the-batman-equipment-supplement-20261007/images/vehicles/053-BATMAN_GRADE_AT_001_DRIFTER_BIKE_001_RQ_015_2022-03-07_13.45.21.jpg",
+    "sourcePage": "https://www.altcinc.com/work/batman",
+    "sourceSha256": "c83f78f0e61489c482eb39983eb11241643bbc677ae34a31827df54028982b54",
+    "delivery": "JPEG quality 86; source dimensions retained"
+  },
+  {
+    "asset": "/media/gear-archive/drifter-b.jpg",
+    "sourceFile": "reference-materials/the-batman-equipment-supplement-20261007/images/vehicles/059-BATMAN_GRADE_AT_001_DRIFTER_BIKE_001_RQ_003_2022-03-07_13.42.42.jpg",
+    "sourcePage": "https://www.altcinc.com/work/batman",
+    "sourceSha256": "f88a672d57a7e964d40131aefb83d2eb04823e99ce0609c7c01c2db981686766",
+    "delivery": "JPEG quality 86; source dimensions retained"
+  }
+]

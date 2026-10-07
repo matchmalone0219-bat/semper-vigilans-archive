@@ -19,6 +19,12 @@ export function HashTarget() {
       if (completed) return;
       const target = document.getElementById(hash);
       if (!target) return;
+      if (target.closest("[data-manual-hash-scroll]")) {
+        completed = true;
+        observer.disconnect();
+        document.removeEventListener("transitionend", schedule, true);
+        return;
+      }
       const details = target.closest("details");
       if (details && !details.open) {
         details.open = true;

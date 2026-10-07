@@ -479,6 +479,11 @@ export const LOG_EN: Record<
     body: "A new night shoot captured Batman on a white-and-blue GCPD patrol motorcycle flanked by two officers on matching bikes. The updated suit features visibly longer cowl ears and thicker chest plating, with battle-damage blood marks across the jaw and armor. A tubular camera rig is mounted directly in front of the handlebars to catch close-up facial action. Closer frames show the POLICE pannier and an exposed jaw under the cowl, with two civilians in street clothes beside the bike. The snow-dusted street was also dressed with a glowing SUBWAY entrance and Christmas lights, continuing the sequel's winter timeline.",
     source: "Set Leak / UnBoxPHD",
   },
+  "log-2026-10-05-stan-hsc": {
+    title: "Sebastian Stan on The Batman Part II: Talking About the Role Turns Into Speculation",
+    body: "On Josh Horowitz's Happy Sad Confused podcast, Sebastian Stan called the sequel one of the hardest projects he has had to talk about, because any detail turns into guesswork about his character. He said Matt Reeves has spent three years honing it, and that the part feels very different from what he has done before. Asked who he is playing, he joked that he is Batman. The role remains unannounced.",
+    source: "Happy Sad Confused · Josh Horowitz",
+  },
   "log-2026-10-05-production-pause": {
     title: "The Batman: Part II Temporarily Pauses Production as Matt Reeves Steps Away for a Family Matter",
     body: `Warner Bros. and DC Studios confirmed that production on The Batman: Part II has been temporarily paused while director Matt Reeves focuses on a family matter. The studio said Reeves has its full support and that it looks forward to continuing production soon. No restart date or new release-date change has been announced; sources told Deadline it is too early to determine whether the pause will affect the current ${FILM.releaseLabelEn} date.`,

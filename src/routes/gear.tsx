@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Expand, Crosshair, Minimize2 } from "lucide-react";
+import { Expand, Crosshair, Minimize2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Lightbox } from "@/components/lightbox";
 import { GEAR } from "@/lib/gear";
 import {
-  BODY_PLATE,
   GEAR_COPY,
   LOADOUT,
   SUIT_OVERVIEW,
@@ -16,6 +15,7 @@ import {
 import { pageTitle } from "@/lib/film";
 import { useI18n } from "@/lib/i18n";
 import { getLocalizedGear } from "@/lib/i18n/gear-en";
+import { BODY_TURNTABLE_VIEWS } from "@/lib/gear-turntable-assets";
 import "@/components/gear-archive.css";
 
 export const Route = createFileRoute("/gear")({
@@ -25,17 +25,71 @@ export const Route = createFileRoute("/gear")({
 const BODY_RECORDS = [SUIT_OVERVIEW, ...LOADOUT];
 const RELATED_IDS = ["turbine", "corvette", "cave", "signal"];
 
+type BodyHotspot = { x: number; y: number };
+
+const BODY_VIEW_HOTSPOTS: Record<number, Record<string, BodyHotspot>> = {
+  0: {
+    cowl: { x: 50, y: 11 },
+    "chest-blade": { x: 50, y: 26 },
+    cape: { x: 76, y: 24 },
+    gauntlet: { x: 76, y: 43 },
+    grapnel: { x: 24, y: 44 },
+    belt: { x: 50, y: 48 },
+  },
+  1: {
+    cowl: { x: 49, y: 11 },
+    "chest-blade": { x: 48, y: 26 },
+    cape: { x: 77, y: 25 },
+    gauntlet: { x: 74, y: 44 },
+    grapnel: { x: 27, y: 44 },
+    belt: { x: 49, y: 48 },
+  },
+  2: {
+    cowl: { x: 50, y: 12 },
+    cape: { x: 67, y: 28 },
+    gauntlet: { x: 68, y: 45 },
+    grapnel: { x: 37, y: 45 },
+    belt: { x: 49, y: 49 },
+  },
+  3: {
+    cowl: { x: 50, y: 11 },
+    cape: { x: 50, y: 31 },
+    belt: { x: 50, y: 48 },
+  },
+};
+
 function Gear() {
   const { locale } = useI18n();
   const text = (value: Bilingual) => value[locale];
   const [selectedId, setSelectedId] = useState("gauntlet");
   const [focusedId, setFocusedId] = useState<string | null>(null);
+  const [bodyView, setBodyView] = useState(0);
+  const [viewDimmed, setViewDimmed] = useState(false);
+  const dragStartX = useRef<number | null>(null);
+  const turntableTimers = useRef<number[]>([]);
   const [vehicleId, setVehicleId] = useState("car");
   const [viewer, setViewer] = useState<{ plates: GearPlate[]; index: number } | null>(null);
   const selected = BODY_RECORDS.find((item) => item.id === selectedId) ?? SUIT_OVERVIEW;
-  const focused = LOADOUT.find((item) => item.id === focusedId && item.hotspot) ?? null;
-  const focusPoint = focused?.hotspot ?? null;
+  const focusPoint = focusedId ? (BODY_VIEW_HOTSPOTS[bodyView]?.[focusedId] ?? null) : null;
   const vehicle = VEHICLES.find((item) => item.id === vehicleId) ?? VEHICLES[0]!;
+  useEffect(() => {
+    return () => {
+      turntableTimers.current.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, []);
+
+  function transitionBodyView(next: number) {
+    const clamped = Math.max(0, Math.min(BODY_TURNTABLE_VIEWS.length - 1, next));
+    if (clamped === bodyView || viewDimmed) return;
+
+    setFocusedId(null);
+    setViewDimmed(true);
+
+    const swapTimer = window.setTimeout(() => setBodyView(clamped), 90);
+    const revealTimer = window.setTimeout(() => setViewDimmed(false), 190);
+    turntableTimers.current.push(swapTimer, revealTimer);
+  }
+
   useEffect(() => {
     function readHash() {
       let id: string;
@@ -117,7 +171,7 @@ function Gear() {
                 type="button"
                 aria-pressed={selectedId === item.id}
                 aria-controls="gear-detail"
-                onClick={() => select(item.id, "body", { focus: Boolean(item.hotspot) })}
+                onClick={() => select(item.id, "body")}
               >
                 <span className="gear-number">{String(index + 1).padStart(2, "0")}</span>
                 <span>
@@ -129,7 +183,29 @@ function Gear() {
           </div>
         </nav>
         <figure className="gear-body">
-          <div className="gear-body-stage" data-focused={focusPoint ? "true" : "false"}>
+          <div
+            className="gear-body-stage"
+            data-focused={focusPoint ? "true" : "false"}
+            data-dimmed={viewDimmed ? "true" : "false"}
+            onPointerDown={(event) => {
+              if (focusPoint) return;
+              dragStartX.current = event.clientX;
+              event.currentTarget.setPointerCapture(event.pointerId);
+            }}
+            onPointerMove={(event) => {
+              if (dragStartX.current === null || focusPoint || viewDimmed) return;
+              const delta = event.clientX - dragStartX.current;
+              if (Math.abs(delta) < 46) return;
+              transitionBodyView(bodyView + (delta < 0 ? 1 : -1));
+              dragStartX.current = event.clientX;
+            }}
+            onPointerUp={() => {
+              dragStartX.current = null;
+            }}
+            onPointerCancel={() => {
+              dragStartX.current = null;
+            }}
+          >
             <div
               className="gear-body-pan"
               style={{
@@ -147,25 +223,31 @@ function Gear() {
                 }}
               >
                 <img
-                  src={BODY_PLATE.preview ?? BODY_PLATE.src}
-                  alt={text(BODY_PLATE.title)}
-                  width="1324"
-                  height="1763"
-                  fetchPriority="high"
+                  key={BODY_TURNTABLE_VIEWS[bodyView].id}
+                  className="gear-turntable-image"
+                  src={BODY_TURNTABLE_VIEWS[bodyView].src}
+                  alt={
+                    locale === "zh"
+                      ? `蝙蝠战衣 · ${BODY_TURNTABLE_VIEWS[bodyView].zh}`
+                      : `Batsuit · ${BODY_TURNTABLE_VIEWS[bodyView].en}`
+                  }
+                  width="120"
+                  height="185"
+                  draggable={false}
                 />
-                <div className="gear-body-text-mask" aria-hidden="true" />
-                <div className="gear-body-label-mask" aria-hidden="true" />
                 <div className="gear-body-shade" />
-                {LOADOUT.map((item, index) =>
-                  item.hotspot ? (
+                {LOADOUT.map((item, index) => {
+                  const hotspot = BODY_VIEW_HOTSPOTS[bodyView]?.[item.id];
+                  return hotspot ? (
                     <button
                       key={item.id}
                       type="button"
                       className="gear-hotspot"
-                      style={{ left: `${item.hotspot.x}%`, top: `${item.hotspot.y}%` }}
+                      style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
                       aria-label={`${String(index + 1).padStart(2, "0")} · ${text(item.name)}`}
                       aria-pressed={selectedId === item.id}
                       aria-controls="gear-detail"
+                      onPointerDown={(event) => event.stopPropagation()}
                       onClick={() =>
                         select(item.id, "body", {
                           focus: focusedId !== item.id,
@@ -176,14 +258,42 @@ function Gear() {
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       <span className="gear-hotspot-label">{text(item.name)}</span>
                     </button>
-                  ) : null,
-                )}
+                  ) : null;
+                })}
               </div>
             </div>
+
+            <div className="gear-view-controls">
+              <button
+                type="button"
+                onPointerDown={(event) => event.stopPropagation()}
+                onClick={() => transitionBodyView(bodyView - 1)}
+                disabled={bodyView === 0 || viewDimmed}
+                aria-label={locale === "zh" ? "上一视角" : "Previous angle"}
+              >
+                <ChevronLeft size={14} aria-hidden="true" />
+              </button>
+              <span>
+                {locale === "zh"
+                  ? BODY_TURNTABLE_VIEWS[bodyView].zh
+                  : BODY_TURNTABLE_VIEWS[bodyView].en}
+              </span>
+              <button
+                type="button"
+                onPointerDown={(event) => event.stopPropagation()}
+                onClick={() => transitionBodyView(bodyView + 1)}
+                disabled={bodyView === BODY_TURNTABLE_VIEWS.length - 1 || viewDimmed}
+                aria-label={locale === "zh" ? "下一视角" : "Next angle"}
+              >
+                <ChevronRight size={14} aria-hidden="true" />
+              </button>
+            </div>
+
             {focusPoint ? (
               <button
                 type="button"
                 className="gear-focus-reset"
+                onPointerDown={(event) => event.stopPropagation()}
                 onClick={() => setFocusedId(null)}
                 aria-label={locale === "zh" ? "返回全景" : "Return to full view"}
               >
@@ -191,12 +301,19 @@ function Gear() {
                 <span>{locale === "zh" ? "返回全景" : "Full view"}</span>
               </button>
             ) : null}
+
             <div className="gear-body-note" aria-hidden={Boolean(focusPoint)}>
               <Crosshair size={13} aria-hidden="true" />
-              {text(GEAR_COPY.markerHint)}
+              {locale === "zh"
+                ? "左右拖动切换视角 · 点击节点聚焦装备"
+                : "Drag to rotate · Select a marker to focus"}
             </div>
           </div>
-          <figcaption>{text(GEAR_COPY.bodyCaption)}</figcaption>
+          <figcaption>
+            {locale === "zh"
+              ? "四视图原型 · 拖动或使用箭头切换视角"
+              : "Four-view prototype · drag or use the arrows to change angle"}
+          </figcaption>
         </figure>
         <div id="gear-detail" className="gear-detail">
           <EquipmentRecord

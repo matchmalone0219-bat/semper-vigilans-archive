@@ -178,3 +178,21 @@ test("body equipment is distributed across visible angles", () => {
     }
   }
 });
+
+test("each visible body attachment has a contour and sheet annotations stay within the page", () => {
+  const { BODY_VIEW_OUTLINES } = jiti(join(root, "src/lib/gear-turntable-assets.ts"));
+  for (const [view, hotspots] of Object.entries(BODY_VIEW_HOTSPOTS)) {
+    assert.deepEqual(Object.keys(BODY_VIEW_OUTLINES[view]).sort(), Object.keys(hotspots).sort());
+  }
+  const blade = LOADOUT.find((item) => item.id === "chest-blade");
+  const sheet = blade.plates.find((p) => p.annotation);
+  assert.ok(sheet.src.endsWith("chest-knife-sketch.jpg"));
+  const note = sheet.annotation;
+  for (const { annotation } of records.flatMap((item) => item.plates)) {
+    if (!annotation) continue;
+    const { x, y, width, height } = annotation;
+    assert.ok(x >= 0 && y >= 0 && width > 0 && height > 0);
+    assert.ok(x + width <= 100 && y + height <= 100);
+  }
+  assert.ok(note.text.zh.includes("磁吸") && note.text.en.includes("Magnets"));
+});

@@ -8,6 +8,13 @@ export type GearSource = {
 export type GearPlate = {
   src: string;
   preview?: string;
+  annotation?: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    text: Bilingual;
+  };
   title: Bilingual;
   caption: Bilingual;
   stage: Bilingual;
@@ -95,6 +102,49 @@ const PLATE_PREVIEWS: Record<string, string> = {
   "/media/gear-archive/harpoon-study.jpg": "/media/gear-archive/harpoon-study-preview.jpg",
 };
 
+const PLATE_ANNOTATIONS: Record<string, NonNullable<GearPlate["annotation"]>> = {
+  "/media/gear-archive/chest-knife-sketch.jpg": {
+    x: 1.2,
+    y: 29,
+    width: 39.5,
+    height: 14.4,
+    text: bilingual(
+      "这把刀收拢时嵌在胸甲上，也就是他的蝙蝠标志。它以磁吸方式固定在胸甲上，可以取下，作为战术刀使用。",
+      "Folded into the chest plate, the knife also forms Batman’s emblem. Magnets hold it in place; he can detach it and use it as a tactical knife.",
+    ),
+  },
+  "/media/gear-archive/cowl.jpg": {
+    x: 64.3,
+    y: 4,
+    width: 31,
+    height: 23.8,
+    text: bilingual(
+      "头罩早期设计借鉴了头骨的凹陷与眼窝形状。材质朝皮革的方向发展，让它像布鲁斯亲手制作的装备，避开以往橡胶模具的观感。",
+      "Early cowl drawings drew on the hollows and eye sockets of a skull. Leather gives it the feel of equipment Bruce made himself, moving away from the molded-rubber appearance of earlier suits.",
+    ),
+  },
+  "/media/gear-archive/belt.jpg": {
+    x: 5.6,
+    y: 4.7,
+    width: 35.7,
+    height: 27.6,
+    text: bilingual(
+      "腰带参考军警装备，采用实用的黑色皮革造型。头罩颈部则使用近似椎骨的分片结构，随着颈部活动，为转头和战斗保留空间。",
+      "The belt takes its practical black-leather form from military and police equipment. Vertebra-like pieces at the cowl’s neck move with the wearer, leaving room to turn the head and fight.",
+    ),
+  },
+  "/media/gear-archive/gauntlet-sketch.jpg": {
+    x: 46.5,
+    y: 80,
+    width: 48.5,
+    height: 16,
+    text: bilingual(
+      "抓钩装置收在前臂内侧，既能防御，也能滑出到手掌中发射。它与服装连为一体；这个动作参考了《出租车司机》中从袖内滑出手枪的设计。",
+      "The grapnel sits inside the forearm, serving as protection before sliding into the hand to fire. Its integration with the costume recalls the sleeve-mounted gun in Taxi Driver.",
+    ),
+  },
+};
+
 function plate(
   src: string,
   zh: string,
@@ -108,6 +158,7 @@ function plate(
   return {
     src,
     preview: PLATE_PREVIEWS[src],
+    annotation: PLATE_ANNOTATIONS[src],
     title: bilingual(zh, en),
     caption: bilingual(captionZh, captionEn),
     credit,

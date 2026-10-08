@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Expand, Crosshair, Minimize2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Expand, Crosshair, Minimize2, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Lightbox } from "@/components/lightbox";
 import { WORKSHOP } from "@/lib/gear-workshop";
 import { TOOLS } from "@/lib/gear-tools";
@@ -15,7 +15,11 @@ import {
 } from "@/lib/gear-archive";
 import { pageTitle } from "@/lib/film";
 import { useI18n } from "@/lib/i18n";
-import { BODY_TURNTABLE_VIEWS, BODY_VIEW_HOTSPOTS } from "@/lib/gear-turntable-assets";
+import {
+  BODY_TURNTABLE_VIEWS,
+  BODY_VIEW_HOTSPOTS,
+  BODY_VIEW_OUTLINES,
+} from "@/lib/gear-turntable-assets";
 import "@/components/gear-archive.css";
 
 export const Route = createFileRoute("/gear")({
@@ -31,7 +35,9 @@ const BODY_MARKERS = [...LOADOUT, ...BODY_TOOLS];
 function Gear() {
   const { locale } = useI18n();
   const text = (value: Bilingual) => value[locale];
-  const [selectedId, setSelectedId] = useState("gauntlet");
+  const [selectedId, setSelectedId] = useState("suit");
+  const [dossierOpen, setDossierOpen] = useState(false);
+  const [indexOpen, setIndexOpen] = useState(false);
   const [focusedId, setFocusedId] = useState<string | null>(null);
   const [bodyView, setBodyView] = useState(0);
   const [backCapeVisible, setBackCapeVisible] = useState(true);
@@ -75,10 +81,11 @@ function Gear() {
     [clearViewTimers],
   );
   function resetBodyFocus() {
+    clearViewTimers();
     setFocusedId(null);
     requestAnimationFrame(() => {
       bodyStage.current
-        ?.querySelector<HTMLButtonElement>('.gear-hotspot[aria-pressed="true"]')
+        ?.querySelector<SVGElement>('.gear-outline-hit[aria-pressed="true"]')
         ?.focus({ preventScroll: true });
     });
   }
@@ -114,16 +121,21 @@ function Gear() {
       } catch {
         return;
       }
-      if (BODY_RECORDS.some((item) => item.id === id)) selectBody(id);
-      else if (!id || id === "loadout") selectBody(!id ? "gauntlet" : "suit");
+      clearViewTimers();
+      setDossierOpen(false);
+      setViewer(null);
+      const bodyRecord = BODY_RECORDS.some((item) => item.id === id);
+      if (bodyRecord) {
+        selectBody(id, true);
+        const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 360;
+        turntableTimers.current.push(window.setTimeout(() => setDossierOpen(true), delay));
+      } else if (!id || id === "loadout") selectBody("suit");
       else setFocusedId(null);
       if (VEHICLES.some((item) => item.id === id)) setVehicleId(id);
       if (WORKSHOP.some((item) => item.id === id)) setWorkshopId(id);
       if (TOOLS.some((item) => item.id === id)) setToolId(id);
       requestAnimationFrame(() => {
-        document
-          .getElementById(BODY_TOOLS.some((item) => item.id === id) ? "loadout" : id)
-          ?.scrollIntoView({ block: "start" });
+        document.getElementById(bodyRecord ? "loadout" : id)?.scrollIntoView({ block: "start" });
       });
     }
     readHash();
@@ -133,41 +145,31 @@ function Gear() {
       window.removeEventListener("hashchange", readHash);
       window.removeEventListener("popstate", readHash);
     };
-  }, [selectBody]);
-  function select(
-    id: string,
-    kind: "body" | "vehicle" | "workshop" | "tool",
-    options: { focus?: boolean; scrollDetail?: boolean } = {},
-  ) {
+  }, [selectBody, clearViewTimers]);
+  function select(id: string, kind: "body" | "vehicle" | "workshop" | "tool") {
     if (kind === "body") {
-      selectBody(id, options.focus);
+      selectBody(id, true);
+      setIndexOpen(false);
+      setDossierOpen(false);
+      const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 360;
+      turntableTimers.current.push(window.setTimeout(() => setDossierOpen(true), delay));
     } else if (kind === "vehicle") {
       setVehicleId(id);
     } else if (kind === "workshop") {
       setWorkshopId(id);
     } else {
       setToolId(id);
-      if (BODY_TOOLS.some((item) => item.id === id)) selectBody(id);
+      if (BODY_TOOLS.some((item) => item.id === id)) {
+        select(id, "body");
+        bodyStage.current?.scrollIntoView({ block: "center" });
+        return;
+      }
     }
     if (window.location.hash !== `#${id}`) window.history.pushState(null, "", `#${id}`);
-    if (
-      kind === "workshop" ||
-      kind === "tool" ||
-      (kind === "body" &&
-        options.scrollDetail !== false &&
-        window.matchMedia("(max-width: 700px)").matches)
-    ) {
+    if (kind === "workshop" || kind === "tool") {
       requestAnimationFrame(() =>
         document
-          .getElementById(
-            kind === "body"
-              ? "gear-detail"
-              : kind === "tool"
-                ? BODY_TOOLS.some((item) => item.id === id)
-                  ? "loadout"
-                  : "tool-detail"
-                : "workshop-detail",
-          )
+          .getElementById(kind === "tool" ? "tool-detail" : "workshop-detail")
           ?.scrollIntoView({ block: "start" }),
       );
     }
@@ -191,33 +193,44 @@ function Gear() {
         </nav>
       </header>
       <section id="loadout" className="gear-loadout" aria-label={text(GEAR_COPY.loadout)}>
-        <nav className="gear-index" aria-label={text(GEAR_COPY.loadout)}>
-          <p className="gear-eyebrow">01 / LOADOUT</p>
+        <nav className="gear-index" aria-label={text(GEAR_COPY.loadout)} data-open={indexOpen}>
           <button
-            className="gear-overview"
             type="button"
-            aria-pressed={selectedId === "suit"}
-            aria-controls="gear-detail"
-            onClick={() => select("suit", "body")}
+            className="gear-index-toggle"
+            aria-expanded={indexOpen}
+            aria-controls="body-equipment-index"
+            onClick={() => setIndexOpen(!indexOpen)}
           >
-            {text(GEAR_COPY.overview)}
+            {locale === "zh" ? "装备目录" : "Equipment index"}
           </button>
-          <div className="gear-index-items">
-            {LOADOUT.map((item, index) => (
-              <button
-                key={item.id}
-                type="button"
-                aria-pressed={selectedId === item.id}
-                aria-controls="gear-detail"
-                onClick={() => select(item.id, "body")}
-              >
-                <span className="gear-number">{String(index + 1).padStart(2, "0")}</span>
-                <span>
-                  <strong>{text(item.name)}</strong>
-                  <small>{text(item.category)}</small>
-                </span>
-              </button>
-            ))}
+          <div id="body-equipment-index" hidden={!indexOpen}>
+            <p className="gear-eyebrow">01 / LOADOUT</p>
+            <button
+              className="gear-overview"
+              type="button"
+              aria-pressed={selectedId === "suit"}
+              aria-haspopup="dialog"
+              onClick={() => select("suit", "body")}
+            >
+              {text(GEAR_COPY.overview)}
+            </button>
+            <div className="gear-index-items">
+              {LOADOUT.map((item, index) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-pressed={selectedId === item.id}
+                  aria-haspopup="dialog"
+                  onClick={() => select(item.id, "body")}
+                >
+                  <span className="gear-number">{String(index + 1).padStart(2, "0")}</span>
+                  <span>
+                    <strong>{text(item.name)}</strong>
+                    <small>{text(item.category)}</small>
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </nav>
         <figure className="gear-body">
@@ -314,38 +327,57 @@ function Gear() {
                   />
                 </div>
                 <div className="gear-body-shade" />
-                {BODY_MARKERS.map((item, index) => {
-                  const hotspot = BODY_VIEW_HOTSPOTS[bodyView]?.[item.id];
-                  const visible =
-                    item.id === "light-flare" || item.id === "sticky-bomb-gun"
-                      ? !capeVisible
-                      : item.id === "cape"
-                        ? capeVisible
-                        : true;
-                  return hotspot && visible ? (
-                    <button
-                      key={item.id}
-                      type="button"
-                      className="gear-hotspot"
-                      style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
-                      aria-label={`${String(index + 1).padStart(2, "0")} · ${text(item.name)}`}
-                      aria-pressed={selectedId === item.id}
-                      aria-controls="gear-detail"
-                      inert={Boolean(focusPoint && focusedId !== item.id)}
-                      aria-hidden={Boolean(focusPoint && focusedId !== item.id)}
-                      onPointerDown={(event) => event.stopPropagation()}
-                      onClick={() =>
-                        select(item.id, "body", {
-                          focus: focusedId !== item.id,
-                          scrollDetail: false,
-                        })
-                      }
-                    >
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <span className="gear-hotspot-label">{text(item.name)}</span>
-                    </button>
-                  ) : null;
-                })}
+                <svg
+                  className="gear-body-outlines"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  aria-label={locale === "zh" ? "可探索的装备" : "Explore equipment"}
+                >
+                  {BODY_MARKERS.map((item) => {
+                    const path = BODY_VIEW_OUTLINES[bodyView]?.[item.id];
+                    const visible =
+                      item.id === "light-flare" || item.id === "sticky-bomb-gun"
+                        ? !capeVisible
+                        : item.id === "cape"
+                          ? capeVisible
+                          : true;
+                    if (!path || !visible || (focusPoint && focusedId !== item.id)) return null;
+                    return (
+                      <g
+                        key={item.id}
+                        className="gear-outline"
+                        data-selected={selectedId === item.id}
+                      >
+                        <path
+                          className="gear-outline-hit"
+                          d={path}
+                          role="button"
+                          tabIndex={0}
+                          aria-label={text(item.name)}
+                          aria-pressed={selectedId === item.id}
+                          aria-haspopup="dialog"
+                          data-equipment={item.id}
+                          onPointerDown={(event) => event.stopPropagation()}
+                          onClick={() => select(item.id, "body")}
+                          onKeyDown={(event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                              event.preventDefault();
+                              event.stopPropagation();
+                              select(item.id, "body");
+                            }
+                          }}
+                        >
+                          <title>{text(item.name)}</title>
+                        </path>
+                        <path
+                          className="gear-outline-visible"
+                          d={path}
+                          vectorEffect="non-scaling-stroke"
+                        />
+                      </g>
+                    );
+                  })}
+                </svg>
               </div>
             </div>
 
@@ -413,8 +445,8 @@ function Gear() {
             <div className="gear-body-note" aria-hidden={Boolean(focusPoint)}>
               <Crosshair size={13} aria-hidden="true" />
               {locale === "zh"
-                ? "左右拖动切换视角 · 点击节点聚焦装备"
-                : "Drag to rotate · Select a marker to focus"}
+                ? "左右拖动切换视角 · 点击轮廓探索装备"
+                : "Drag to rotate · Select an outline to explore"}
             </div>
           </div>
           <figcaption>
@@ -423,21 +455,6 @@ function Gear() {
               : "Batsuit views · drag or use the arrows to change angle"}
           </figcaption>
         </figure>
-        <div id="gear-detail" className="gear-detail">
-          <EquipmentRecord
-            key={selected.id}
-            item={selected}
-            recordId={
-              BODY_TOOLS.some((item) => item.id === selected.id) ? `body-${selected.id}` : undefined
-            }
-            onOpen={(plates, index) => setViewer({ plates, index })}
-          />
-          {selected.id === "belt" ? (
-            <a className="gear-tools-link" href="#tools">
-              {text(GEAR_COPY.tools)} ↓
-            </a>
-          ) : null}
-        </div>
       </section>
       <section id="tools" className="gear-tools">
         <div className="gear-section-heading">
@@ -535,7 +552,38 @@ function Gear() {
           <Link to="/recap">{locale === "zh" ? "回顾第一部" : "Revisit The Batman"}</Link>
         </div>
       </section>
-      {viewer ? (
+      {dossierOpen ? (
+        <EquipmentDialog
+          title={text(selected.name)}
+          category={text(selected.category)}
+          onClose={() => setDossierOpen(false)}
+          imageOpen={Boolean(viewer)}
+          onReturnFocus={() => {
+            const target = bodyStage.current?.querySelector<SVGElement>(
+              '.gear-outline-hit[aria-pressed="true"]',
+            );
+            if (target) target.focus({ preventScroll: true });
+            else bodyStage.current?.focus({ preventScroll: true });
+          }}
+        >
+          <EquipmentRecord
+            key={selected.id}
+            item={selected}
+            sheet
+            recordId={`body-${selected.id}`}
+            onOpen={(plates, index) => setViewer({ plates, index })}
+          />
+          {viewer ? (
+            <GearViewer
+              plates={viewer.plates}
+              index={viewer.index}
+              onClose={() => setViewer(null)}
+              onIndex={(index) => setViewer({ ...viewer, index })}
+            />
+          ) : null}
+        </EquipmentDialog>
+      ) : null}
+      {viewer && !dossierOpen ? (
         <GearViewer
           plates={viewer.plates}
           index={viewer.index}
@@ -547,24 +595,135 @@ function Gear() {
   );
 }
 
+function EquipmentDialog({
+  title,
+  category,
+  children,
+  onClose,
+  onReturnFocus,
+  imageOpen,
+}: {
+  title: string;
+  category: string;
+  children: React.ReactNode;
+  onClose: () => void;
+  onReturnFocus: () => void;
+  imageOpen: boolean;
+}) {
+  const { locale } = useI18n();
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const overflow = document.body.style.overflow;
+    const background: { element: HTMLElement; inert: boolean }[] = [];
+    let ancestor: HTMLElement | null = root.current;
+    while (ancestor && ancestor !== document.body) {
+      for (const sibling of ancestor.parentElement?.children ?? []) {
+        if (sibling instanceof HTMLElement && sibling !== ancestor) {
+          background.push({ element: sibling, inert: sibling.inert });
+        }
+      }
+      ancestor = ancestor.parentElement;
+    }
+    background.forEach(({ element }) => {
+      element.inert = true;
+    });
+    document.body.style.overflow = "hidden";
+    root.current
+      ?.querySelector<HTMLButtonElement>(".gear-dossier-close")
+      ?.focus({ preventScroll: true });
+    return () => {
+      background.forEach(({ element, inert }) => {
+        element.inert = inert;
+      });
+      document.body.style.overflow = overflow;
+      onReturnFocus();
+    };
+  }, []);
+  return (
+    <div
+      ref={root}
+      onKeyDown={(event) => {
+        if (imageOpen) return;
+        if (event.key === "Escape") {
+          event.preventDefault();
+          event.stopPropagation();
+          onClose();
+        }
+        if (event.key === "Tab") {
+          const buttons = Array.from(
+            root.current?.querySelectorAll<HTMLButtonElement>("button:not(:disabled)") ?? [],
+          ).filter((button) => button.getClientRects().length);
+          const first = buttons[0],
+            last = buttons.at(-1);
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          }
+          if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }
+      }}
+    >
+      <div className="gear-dossier-overlay" onClick={onClose} aria-hidden="true" />
+      <div
+        className="gear-dossier"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="gear-dossier-title"
+        aria-describedby="gear-dossier-description"
+      >
+        <header className="gear-dossier-bar">
+          <div>
+            <h2 id="gear-dossier-title">{title}</h2>
+            <p id="gear-dossier-description">{category}</p>
+          </div>
+          <button
+            type="button"
+            className="gear-dossier-close"
+            onClick={onClose}
+            aria-label={locale === "zh" ? "返回人物" : "Return to Batman"}
+          >
+            <X size={20} aria-hidden="true" />
+          </button>
+        </header>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 function EquipmentRecord({
   item,
   recordId = item.id,
   wide = false,
+  sheet = false,
   onOpen,
 }: {
   item: ArchiveGear;
   recordId?: string;
   wide?: boolean;
+  sheet?: boolean;
   onOpen: (plates: GearPlate[], index: number) => void;
 }) {
   const { locale } = useI18n();
   const text = (value: Bilingual) => value[locale];
-  const [plateIndex, setPlateIndex] = useState(0);
+  const [plateIndex, setPlateIndex] = useState(() =>
+    sheet
+      ? Math.max(
+          0,
+          item.plates.findIndex((p) => p.annotation),
+        )
+      : 0,
+  );
   const [tab, setTab] = useState<"film" | "design">("film");
   const current = item.plates[plateIndex]!;
   return (
-    <article id={recordId} className={`gear-record${wide ? " gear-record-wide" : ""}`}>
+    <article
+      id={recordId}
+      className={`gear-record${wide ? " gear-record-wide" : ""}${sheet ? " gear-record-sheet" : ""}`}
+    >
       <div className="gear-record-heading">
         <p className="gear-eyebrow">2022 / {text(item.category)}</p>
         <h3 aria-live="polite">{text(item.name)}</h3>
@@ -572,23 +731,27 @@ function EquipmentRecord({
         <p className="gear-summary">{text(item.summary)}</p>
       </div>
       <div className="gear-record-media">
-        <button
-          type="button"
-          className="gear-plate"
-          onClick={() => onOpen(item.plates, plateIndex)}
-          aria-label={`${text(GEAR_COPY.enlarge)} · ${text(current.title)}`}
-        >
-          <img
-            src={current.preview ?? current.src}
-            alt={text(current.title)}
-            loading="lazy"
-            decoding="async"
-          />
-          <span className="gear-plate-expand">
-            <Expand size={14} aria-hidden="true" />
-            {text(GEAR_COPY.enlarge)}
-          </span>
-        </button>
+        {sheet ? (
+          <AnnotatedPlate plate={current} onOpen={() => onOpen(item.plates, plateIndex)} />
+        ) : (
+          <button
+            type="button"
+            className="gear-plate"
+            onClick={() => onOpen(item.plates, plateIndex)}
+            aria-label={`${text(GEAR_COPY.enlarge)} · ${text(current.title)}`}
+          >
+            <img
+              src={current.preview ?? current.src}
+              alt={text(current.title)}
+              loading="lazy"
+              decoding="async"
+            />
+            <span className="gear-plate-expand">
+              <Expand size={14} aria-hidden="true" />
+              {text(GEAR_COPY.enlarge)}
+            </span>
+          </button>
+        )}
         {item.plates.length > 1 ? (
           <div
             className="gear-plate-options"
@@ -636,6 +799,90 @@ function EquipmentRecord({
         </div>
       </div>
     </article>
+  );
+}
+
+function AnnotatedPlate({ plate, onOpen }: { plate: GearPlate; onOpen: () => void }) {
+  const { locale } = useI18n();
+  const paper = useRef<HTMLButtonElement>(null);
+  const reading = useRef<HTMLDialogElement>(null);
+  const note = plate.annotation;
+  return (
+    <div className="gear-sheet">
+      <div className="gear-sheet-page">
+        <img src={plate.src} alt={plate.title[locale]} decoding="async" />
+        {note ? (
+          <div
+            className="gear-sheet-cover"
+            aria-hidden="true"
+            style={{
+              left: `${note.x}%`,
+              top: `${note.y}%`,
+              width: `${note.width}%`,
+              height: `${note.height}%`,
+            }}
+          />
+        ) : null}
+        {note ? (
+          <button
+            ref={paper}
+            type="button"
+            className="gear-sheet-note"
+            aria-label={locale === "zh" ? "放大说明纸条" : "Enlarge annotation"}
+            aria-haspopup="dialog"
+            onClick={() => reading.current?.showModal()}
+            style={{
+              left: `${note.x}%`,
+              top: `${note.y}%`,
+              width: `${note.width}%`,
+              height: `${note.height}%`,
+            }}
+          >
+            <span>{note.text[locale]}</span>
+            <Expand className="gear-sheet-note-hint" size={12} aria-hidden="true" />
+          </button>
+        ) : null}
+      </div>
+      {note ? (
+        <dialog
+          ref={reading}
+          className="gear-sheet-reading"
+          aria-label={locale === "zh" ? "装备说明" : "Equipment annotation"}
+          onKeyDown={(event) => {
+            event.stopPropagation();
+            if (event.key === "Tab") {
+              event.preventDefault();
+              reading.current?.querySelector<HTMLButtonElement>("button")?.focus();
+            }
+          }}
+          onClose={() => paper.current?.focus({ preventScroll: true })}
+          onClick={(event) => {
+            if (event.target !== event.currentTarget) return;
+            const bounds = event.currentTarget.getBoundingClientRect();
+            if (
+              event.clientX < bounds.left || event.clientX > bounds.right ||
+              event.clientY < bounds.top || event.clientY > bounds.bottom
+            ) event.currentTarget.close();
+          }}
+        >
+          <header>
+            <h3>{locale === "zh" ? "装备说明" : "Equipment annotation"}</h3>
+            <button
+              type="button"
+              aria-label={locale === "zh" ? "收起说明纸条" : "Close annotation"}
+              onClick={() => reading.current?.close()}
+            >
+              <X size={20} aria-hidden="true" />
+            </button>
+          </header>
+          <p>{note.text[locale]}</p>
+        </dialog>
+      ) : null}
+      <button type="button" className="gear-sheet-enlarge" onClick={onOpen}>
+        <Expand size={14} aria-hidden="true" />
+        {locale === "zh" ? "查看原图" : "View original"}
+      </button>
+    </div>
   );
 }
 

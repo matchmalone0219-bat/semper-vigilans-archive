@@ -111,11 +111,20 @@
   background: #101112;
 }
 .gear-body-stage {
+  --gear-focus-scale: 1;
+  background: #000;
   position: relative;
   width: 100%;
-  aspect-ratio: 120 / 185;
+  aspect-ratio: 500 / 771;
   overflow: hidden;
   touch-action: pan-y;
+}
+.gear-body-stage:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+.gear-body-stage[data-focused="true"] {
+  --gear-focus-scale: 1.75;
 }
 .gear-body-stage:not([data-focused="true"]) {
   cursor: grab;
@@ -141,27 +150,24 @@
   will-change: transform, filter;
 }
 .gear-body-stage[data-focused="true"] .gear-body-zoom {
-  transform: scale(1.9);
+  transform: scale(var(--gear-focus-scale));
   filter: brightness(1.04) contrast(1.02);
 }
-.gear-body-zoom > img {
+.gear-turntable-frame {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
   height: 100%;
-  object-fit: cover;
-  outline: none;
+  overflow: hidden;
 }
 .gear-turntable-image {
+  max-width: none;
+  height: 100%;
   user-select: none;
   pointer-events: none;
-  transition:
-    opacity 90ms ease,
-    filter 90ms ease;
+  transition: opacity 60ms ease;
 }
 .gear-body-stage[data-dimmed="true"] .gear-turntable-image {
-  opacity: 0.22;
-  filter: brightness(0.42);
+  opacity: 0.82;
 }
 .gear-body-shade {
   pointer-events: none;
@@ -171,7 +177,7 @@
 }
 .gear-hotspot {
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(calc(1 / var(--gear-focus-scale)));
   width: 44px;
   height: 44px;
   display: grid;
@@ -180,6 +186,7 @@
   z-index: 1;
   background: transparent;
   transition:
+    transform 360ms cubic-bezier(0.22, 0.8, 0.2, 1),
     opacity 140ms ease,
     filter 180ms ease;
 }
@@ -235,7 +242,7 @@
   z-index: 5;
   transform: translateX(-50%);
   display: grid;
-  grid-template-columns: 34px minmax(76px, auto) 34px;
+  grid-template-columns: 44px minmax(76px, auto) 44px;
   align-items: center;
   border: 1px solid #ffffff24;
   background: #090909d9;
@@ -243,8 +250,8 @@
   transition: opacity 120ms ease;
 }
 .gear-view-controls button {
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
   color: #ddd;
@@ -266,12 +273,13 @@
   opacity: 0;
   pointer-events: none;
 }
-.gear-focus-reset {
+.gear-focus-reset,
+.gear-cape-toggle {
   position: absolute;
   top: 12px;
   right: 12px;
   z-index: 5;
-  min-height: 34px;
+  min-height: 44px;
   padding: 7px 10px;
   display: flex;
   align-items: center;
@@ -283,7 +291,8 @@
   letter-spacing: 0.04em;
   backdrop-filter: blur(8px);
 }
-.gear-focus-reset:hover {
+.gear-focus-reset:hover,
+.gear-cape-toggle:hover {
   border-color: #ffffff4d;
 }
 .gear-body-note {
@@ -413,6 +422,7 @@
 .gear-record-prose p + p {
   margin-top: 12px;
 }
+.gear-tools,
 .gear-vehicles,
 .gear-related {
   margin-top: 64px;
@@ -436,6 +446,18 @@
   margin-top: 28px;
   padding-bottom: 18px;
   border-bottom: 1px solid var(--color-border);
+}
+.gear-tool-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.gear-tools-link {
+  display: inline-block;
+  margin-top: 1.25rem;
+  padding: 0.75rem 0;
+  color: var(--color-fg);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 .gear-vehicle-tabs button {
   min-height: 44px;
@@ -479,24 +501,38 @@
   margin-top: 28px;
 }
 .gear-related-record {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
   border: 1px solid var(--color-border);
   background: var(--color-surface);
-  scroll-margin-top: 100px;
+}
+.gear-related-record:hover,
+.gear-related-record[aria-pressed="true"] {
+  border-color: var(--color-primary);
+}
+.gear-related-record:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
 }
 .gear-related-record img {
   aspect-ratio: 16 / 8;
   width: 100%;
   object-fit: cover;
 }
-.gear-related-record > div {
+.gear-related-copy {
+  display: block;
   padding: 20px;
 }
-.gear-related-record h3 {
+.gear-related-copy > strong {
+  display: block;
   font-size: 20px;
   font-weight: 700;
   margin-top: 8px;
 }
-.gear-related-record div > p:last-child {
+.gear-related-summary {
+  display: block;
   font-size: 12px;
   line-height: 1.9;
   color: var(--color-muted);
@@ -577,8 +613,8 @@
   .gear-view-controls {
     bottom: 40px;
   }
-  .gear-body-stage[data-focused="true"] .gear-body-zoom {
-    transform: scale(1.62);
+  .gear-body-stage[data-focused="true"] {
+    --gear-focus-scale: 1.5;
   }
   .gear-focus-reset {
     top: 10px;
@@ -629,6 +665,7 @@
   .gear-record-wide .gear-record-media {
     margin-top: 20px;
   }
+  .gear-tools,
   .gear-vehicles,
   .gear-related {
     margin-top: 44px;
@@ -645,7 +682,10 @@
 .gear-record-wide {
   grid-template-rows: min-content 1fr;
 }
-.gear-detail {
+.gear-loadout,
+.gear-detail,
+#tool-detail,
+#workshop-detail {
   scroll-margin-top: 90px;
 }
 

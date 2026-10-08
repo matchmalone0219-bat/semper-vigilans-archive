@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Expand, Crosshair, Minimize2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Lightbox } from "@/components/lightbox";
-import { GEAR } from "@/lib/gear";
+import { WORKSHOP } from "@/lib/gear-workshop";
+import { TOOLS } from "@/lib/gear-tools";
 import {
   GEAR_COPY,
   LOADOUT,
@@ -14,49 +15,18 @@ import {
 } from "@/lib/gear-archive";
 import { pageTitle } from "@/lib/film";
 import { useI18n } from "@/lib/i18n";
-import { getLocalizedGear } from "@/lib/i18n/gear-en";
-import { BODY_TURNTABLE_VIEWS } from "@/lib/gear-turntable-assets";
+import { BODY_TURNTABLE_VIEWS, BODY_VIEW_HOTSPOTS } from "@/lib/gear-turntable-assets";
 import "@/components/gear-archive.css";
 
 export const Route = createFileRoute("/gear")({
   head: () => ({ meta: [{ title: pageTitle("装备") }] }),
   component: Gear,
 });
-const BODY_RECORDS = [SUIT_OVERVIEW, ...LOADOUT];
-const RELATED_IDS = ["turbine", "corvette", "cave", "signal"];
-
-type BodyHotspot = { x: number; y: number };
-
-const BODY_VIEW_HOTSPOTS: Record<number, Record<string, BodyHotspot>> = {
-  0: {
-    cowl: { x: 50, y: 11 },
-    "chest-blade": { x: 50, y: 26 },
-    cape: { x: 76, y: 24 },
-    gauntlet: { x: 76, y: 43 },
-    grapnel: { x: 24, y: 44 },
-    belt: { x: 50, y: 48 },
-  },
-  1: {
-    cowl: { x: 49, y: 11 },
-    "chest-blade": { x: 48, y: 26 },
-    cape: { x: 77, y: 25 },
-    gauntlet: { x: 74, y: 44 },
-    grapnel: { x: 27, y: 44 },
-    belt: { x: 49, y: 48 },
-  },
-  2: {
-    cowl: { x: 50, y: 12 },
-    cape: { x: 67, y: 28 },
-    gauntlet: { x: 68, y: 45 },
-    grapnel: { x: 37, y: 45 },
-    belt: { x: 49, y: 49 },
-  },
-  3: {
-    cowl: { x: 50, y: 11 },
-    cape: { x: 50, y: 31 },
-    belt: { x: 50, y: 48 },
-  },
-};
+const BODY_TOOLS = ["light-flare", "magnetic-charge", "adrenaline-injector", "throwing-spikes"].map(
+  (id) => TOOLS.find((item) => item.id === id)!,
+);
+const BODY_RECORDS = [SUIT_OVERVIEW, ...LOADOUT, ...BODY_TOOLS];
+const BODY_MARKERS = [...LOADOUT, ...BODY_TOOLS];
 
 function Gear() {
   const { locale } = useI18n();
@@ -64,29 +34,75 @@ function Gear() {
   const [selectedId, setSelectedId] = useState("gauntlet");
   const [focusedId, setFocusedId] = useState<string | null>(null);
   const [bodyView, setBodyView] = useState(0);
+  const [backCapeVisible, setBackCapeVisible] = useState(true);
   const [viewDimmed, setViewDimmed] = useState(false);
-  const dragStartX = useRef<number | null>(null);
+  const dragStart = useRef<{ x: number; y: number } | null>(null);
+  const bodyStage = useRef<HTMLDivElement>(null);
   const turntableTimers = useRef<number[]>([]);
   const [vehicleId, setVehicleId] = useState("car");
+  const [workshopId, setWorkshopId] = useState("turbine");
+  const [toolId, setToolId] = useState(TOOLS[0]!.id);
   const [viewer, setViewer] = useState<{ plates: GearPlate[]; index: number } | null>(null);
   const selected = BODY_RECORDS.find((item) => item.id === selectedId) ?? SUIT_OVERVIEW;
   const focusPoint = focusedId ? (BODY_VIEW_HOTSPOTS[bodyView]?.[focusedId] ?? null) : null;
+  const bodyAngle = BODY_TURNTABLE_VIEWS[bodyView]!;
+  const capeVisible = bodyView === 3 ? backCapeVisible : selectedId === "cape";
   const vehicle = VEHICLES.find((item) => item.id === vehicleId) ?? VEHICLES[0]!;
-  useEffect(() => {
-    return () => {
-      turntableTimers.current.forEach((timer) => window.clearTimeout(timer));
-    };
+  const workshop = WORKSHOP.find((item) => item.id === workshopId) ?? WORKSHOP[0]!;
+  const tool = TOOLS.find((item) => item.id === toolId) ?? TOOLS[0]!;
+  const clearViewTimers = useCallback(() => {
+    turntableTimers.current.forEach((timer) => window.clearTimeout(timer));
+    turntableTimers.current = [];
   }, []);
+  const selectBody = useCallback(
+    (id: string, focus = false) => {
+      clearViewTimers();
+      setViewDimmed(false);
+      setSelectedId(id);
+      setFocusedId(focus && Object.values(BODY_VIEW_HOTSPOTS).some((view) => view[id]) ? id : null);
+      if (id === "light-flare" || id === "sticky-bomb-gun") setBackCapeVisible(false);
+      if (id === "cape") setBackCapeVisible(true);
+      if (BODY_TOOLS.some((item) => item.id === id)) setToolId(id);
+      setBodyView((current) =>
+        BODY_VIEW_HOTSPOTS[current]?.[id]
+          ? current
+          : Math.max(
+              0,
+              BODY_TURNTABLE_VIEWS.findIndex((_, index) => BODY_VIEW_HOTSPOTS[index]?.[id]),
+            ),
+      );
+    },
+    [clearViewTimers],
+  );
+  function resetBodyFocus() {
+    setFocusedId(null);
+    requestAnimationFrame(() => {
+      bodyStage.current
+        ?.querySelector<HTMLButtonElement>('.gear-hotspot[aria-pressed="true"]')
+        ?.focus({ preventScroll: true });
+    });
+  }
+  useEffect(() => {
+    return clearViewTimers;
+  }, [clearViewTimers]);
 
   function transitionBodyView(next: number) {
     const clamped = Math.max(0, Math.min(BODY_TURNTABLE_VIEWS.length - 1, next));
     if (clamped === bodyView || viewDimmed) return;
 
+    clearViewTimers();
     setFocusedId(null);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setBodyView(clamped);
+      return;
+    }
     setViewDimmed(true);
 
-    const swapTimer = window.setTimeout(() => setBodyView(clamped), 90);
-    const revealTimer = window.setTimeout(() => setViewDimmed(false), 190);
+    const swapTimer = window.setTimeout(() => setBodyView(clamped), 60);
+    const revealTimer = window.setTimeout(() => {
+      setViewDimmed(false);
+      turntableTimers.current = [];
+    }, 140);
     turntableTimers.current.push(swapTimer, revealTimer);
   }
 
@@ -98,10 +114,16 @@ function Gear() {
       } catch {
         return;
       }
-      if (BODY_RECORDS.some((item) => item.id === id)) setSelectedId(id);
+      if (BODY_RECORDS.some((item) => item.id === id)) selectBody(id);
+      else if (!id || id === "loadout") selectBody(!id ? "gauntlet" : "suit");
+      else setFocusedId(null);
       if (VEHICLES.some((item) => item.id === id)) setVehicleId(id);
+      if (WORKSHOP.some((item) => item.id === id)) setWorkshopId(id);
+      if (TOOLS.some((item) => item.id === id)) setToolId(id);
       requestAnimationFrame(() => {
-        document.getElementById(id)?.scrollIntoView({ block: "start" });
+        document
+          .getElementById(BODY_TOOLS.some((item) => item.id === id) ? "loadout" : id)
+          ?.scrollIntoView({ block: "start" });
       });
     }
     readHash();
@@ -111,27 +133,42 @@ function Gear() {
       window.removeEventListener("hashchange", readHash);
       window.removeEventListener("popstate", readHash);
     };
-  }, []);
+  }, [selectBody]);
   function select(
     id: string,
-    kind: "body" | "vehicle",
+    kind: "body" | "vehicle" | "workshop" | "tool",
     options: { focus?: boolean; scrollDetail?: boolean } = {},
   ) {
     if (kind === "body") {
-      setSelectedId(id);
-      const record = BODY_RECORDS.find((item) => item.id === id);
-      setFocusedId(options.focus && record?.hotspot ? id : null);
-    } else {
+      selectBody(id, options.focus);
+    } else if (kind === "vehicle") {
       setVehicleId(id);
+    } else if (kind === "workshop") {
+      setWorkshopId(id);
+    } else {
+      setToolId(id);
+      if (BODY_TOOLS.some((item) => item.id === id)) selectBody(id);
     }
     if (window.location.hash !== `#${id}`) window.history.pushState(null, "", `#${id}`);
     if (
-      kind === "body" &&
-      options.scrollDetail !== false &&
-      window.matchMedia("(max-width: 700px)").matches
+      kind === "workshop" ||
+      kind === "tool" ||
+      (kind === "body" &&
+        options.scrollDetail !== false &&
+        window.matchMedia("(max-width: 700px)").matches)
     ) {
       requestAnimationFrame(() =>
-        document.getElementById("gear-detail")?.scrollIntoView({ block: "start" }),
+        document
+          .getElementById(
+            kind === "body"
+              ? "gear-detail"
+              : kind === "tool"
+                ? BODY_TOOLS.some((item) => item.id === id)
+                  ? "loadout"
+                  : "tool-detail"
+                : "workshop-detail",
+          )
+          ?.scrollIntoView({ block: "start" }),
       );
     }
   }
@@ -148,6 +185,7 @@ function Gear() {
           aria-label={locale === "zh" ? "装备栏目" : "Equipment sections"}
         >
           <a href="#loadout">{text(GEAR_COPY.loadout)}</a>
+          <a href="#tools">{text(GEAR_COPY.tools)}</a>
           <a href="#vehicles">{text(GEAR_COPY.vehicles)}</a>
           <a href="#related">{text(GEAR_COPY.related)}</a>
         </nav>
@@ -184,26 +222,53 @@ function Gear() {
         </nav>
         <figure className="gear-body">
           <div
+            ref={bodyStage}
             className="gear-body-stage"
+            role="group"
+            tabIndex={0}
+            aria-label={
+              locale === "zh"
+                ? "战衣视角，使用左右方向键切换"
+                : "Batsuit views, use left and right arrow keys to change angle"
+            }
             data-focused={focusPoint ? "true" : "false"}
             data-dimmed={viewDimmed ? "true" : "false"}
+            onKeyDown={(event) => {
+              if (event.key === "Escape" && focusPoint) {
+                event.preventDefault();
+                event.stopPropagation();
+                resetBodyFocus();
+              } else if (!focusPoint && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
+                event.preventDefault();
+                transitionBodyView(bodyView + (event.key === "ArrowRight" ? 1 : -1));
+              }
+            }}
             onPointerDown={(event) => {
-              if (focusPoint) return;
-              dragStartX.current = event.clientX;
+              if (focusPoint || viewDimmed || !event.isPrimary || event.button !== 0) return;
+              dragStart.current = { x: event.clientX, y: event.clientY };
               event.currentTarget.setPointerCapture(event.pointerId);
             }}
             onPointerMove={(event) => {
-              if (dragStartX.current === null || focusPoint || viewDimmed) return;
-              const delta = event.clientX - dragStartX.current;
-              if (Math.abs(delta) < 46) return;
-              transitionBodyView(bodyView + (delta < 0 ? 1 : -1));
-              dragStartX.current = event.clientX;
+              if (!dragStart.current || focusPoint || viewDimmed) return;
+              const dx = event.clientX - dragStart.current.x;
+              const dy = event.clientY - dragStart.current.y;
+              if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) {
+                dragStart.current = null;
+                return;
+              }
+              const threshold = Math.max(38, Math.min(64, event.currentTarget.clientWidth * 0.12));
+              if (Math.abs(dx) < threshold || Math.abs(dx) < Math.abs(dy) * 1.25) return;
+              dragStart.current = null;
+              transitionBodyView(bodyView + (dx < 0 ? 1 : -1));
             }}
             onPointerUp={() => {
-              dragStartX.current = null;
+              dragStart.current = null;
             }}
             onPointerCancel={() => {
-              dragStartX.current = null;
+              dragStart.current = null;
+            }}
+            onLostPointerCapture={() => {
+              dragStart.current = null;
             }}
           >
             <div
@@ -217,28 +282,47 @@ function Gear() {
               <div
                 className="gear-body-zoom"
                 style={{
-                  transformOrigin: focusPoint
-                    ? `${focusPoint.x}% ${focusPoint.y}%`
-                    : "50% 50%",
+                  transformOrigin: focusPoint ? `${focusPoint.x}% ${focusPoint.y}%` : "50% 50%",
                 }}
               >
-                <img
-                  key={BODY_TURNTABLE_VIEWS[bodyView].id}
-                  className="gear-turntable-image"
-                  src={BODY_TURNTABLE_VIEWS[bodyView].src}
-                  alt={
-                    locale === "zh"
-                      ? `蝙蝠战衣 · ${BODY_TURNTABLE_VIEWS[bodyView].zh}`
-                      : `Batsuit · ${BODY_TURNTABLE_VIEWS[bodyView].en}`
-                  }
-                  width="120"
-                  height="185"
-                  draggable={false}
-                />
+                <div
+                  className="gear-turntable-frame"
+                  style={{
+                    left: `${(250 + bodyAngle.cropX - bodyAngle.centerX) / 5}%`,
+                    width: `${bodyAngle.cropWidth / 5}%`,
+                  }}
+                >
+                  <img
+                    className="gear-turntable-image"
+                    src={
+                      capeVisible
+                        ? "/media/gear-archive/turntable-cape.jpg"
+                        : "/media/gear-archive/turntable-armor.jpg"
+                    }
+                    alt={
+                      locale === "zh"
+                        ? `蝙蝠战衣 · ${BODY_TURNTABLE_VIEWS[bodyView].zh}`
+                        : `Batsuit · ${BODY_TURNTABLE_VIEWS[bodyView].en}`
+                    }
+                    width="1200"
+                    height="771"
+                    style={{
+                      width: `${(1200 / bodyAngle.cropWidth) * 100}%`,
+                      transform: `translateX(-${(bodyAngle.cropX / 1200) * 100}%)`,
+                    }}
+                    draggable={false}
+                  />
+                </div>
                 <div className="gear-body-shade" />
-                {LOADOUT.map((item, index) => {
+                {BODY_MARKERS.map((item, index) => {
                   const hotspot = BODY_VIEW_HOTSPOTS[bodyView]?.[item.id];
-                  return hotspot ? (
+                  const visible =
+                    item.id === "light-flare" || item.id === "sticky-bomb-gun"
+                      ? !capeVisible
+                      : item.id === "cape"
+                        ? capeVisible
+                        : true;
+                  return hotspot && visible ? (
                     <button
                       key={item.id}
                       type="button"
@@ -247,6 +331,8 @@ function Gear() {
                       aria-label={`${String(index + 1).padStart(2, "0")} · ${text(item.name)}`}
                       aria-pressed={selectedId === item.id}
                       aria-controls="gear-detail"
+                      inert={Boolean(focusPoint && focusedId !== item.id)}
+                      aria-hidden={Boolean(focusPoint && focusedId !== item.id)}
                       onPointerDown={(event) => event.stopPropagation()}
                       onClick={() =>
                         select(item.id, "body", {
@@ -263,7 +349,29 @@ function Gear() {
               </div>
             </div>
 
-            <div className="gear-view-controls">
+            {bodyView === 3 && !focusPoint ? (
+              <button
+                type="button"
+                className="gear-cape-toggle"
+                aria-pressed={backCapeVisible}
+                onPointerDown={(event) => event.stopPropagation()}
+                onClick={() => setBackCapeVisible((visible) => !visible)}
+              >
+                {locale === "zh"
+                  ? backCapeVisible
+                    ? "隐藏披风"
+                    : "显示披风"
+                  : backCapeVisible
+                    ? "Hide cape"
+                    : "Show cape"}
+              </button>
+            ) : null}
+
+            <div
+              className="gear-view-controls"
+              inert={Boolean(focusPoint)}
+              aria-hidden={Boolean(focusPoint)}
+            >
               <button
                 type="button"
                 onPointerDown={(event) => event.stopPropagation()}
@@ -294,7 +402,7 @@ function Gear() {
                 type="button"
                 className="gear-focus-reset"
                 onPointerDown={(event) => event.stopPropagation()}
-                onClick={() => setFocusedId(null)}
+                onClick={resetBodyFocus}
                 aria-label={locale === "zh" ? "返回全景" : "Return to full view"}
               >
                 <Minimize2 size={14} aria-hidden="true" />
@@ -311,21 +419,58 @@ function Gear() {
           </div>
           <figcaption>
             {locale === "zh"
-              ? "四视图原型 · 拖动或使用箭头切换视角"
-              : "Four-view prototype · drag or use the arrows to change angle"}
+              ? "战衣四视图 · 拖动或使用箭头切换视角"
+              : "Batsuit views · drag or use the arrows to change angle"}
           </figcaption>
         </figure>
         <div id="gear-detail" className="gear-detail">
           <EquipmentRecord
             key={selected.id}
             item={selected}
+            recordId={
+              BODY_TOOLS.some((item) => item.id === selected.id) ? `body-${selected.id}` : undefined
+            }
+            onOpen={(plates, index) => setViewer({ plates, index })}
+          />
+          {selected.id === "belt" ? (
+            <a className="gear-tools-link" href="#tools">
+              {text(GEAR_COPY.tools)} ↓
+            </a>
+          ) : null}
+        </div>
+      </section>
+      <section id="tools" className="gear-tools">
+        <div className="gear-section-heading">
+          <p className="gear-eyebrow">02 / TOOLS</p>
+          <h2>{text(GEAR_COPY.tools)}</h2>
+          <p>{text(GEAR_COPY.toolIntro)}</p>
+        </div>
+        <nav className="gear-vehicle-tabs gear-tool-tabs" aria-label={text(GEAR_COPY.tools)}>
+          {TOOLS.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              aria-pressed={toolId === item.id}
+              aria-controls="tool-detail"
+              onClick={() => select(item.id, "tool")}
+            >
+              <span className="gear-number">{String(index + 1).padStart(2, "0")}</span>
+              {text(item.name)}
+            </button>
+          ))}
+        </nav>
+        <div id="tool-detail">
+          <EquipmentRecord
+            key={tool.id}
+            item={tool}
+            wide
             onOpen={(plates, index) => setViewer({ plates, index })}
           />
         </div>
       </section>
       <section id="vehicles" className="gear-vehicles">
         <div className="gear-section-heading">
-          <p className="gear-eyebrow">02 / VEHICLES</p>
+          <p className="gear-eyebrow">03 / VEHICLES</p>
           <h2>{text(GEAR_COPY.vehicles)}</h2>
           <p>{text(GEAR_COPY.vehicleIntro)}</p>
         </div>
@@ -354,24 +499,36 @@ function Gear() {
       </section>
       <section id="related" className="gear-related">
         <div className="gear-section-heading">
-          <p className="gear-eyebrow">03 / WORKSHOP</p>
+          <p className="gear-eyebrow">04 / WORKSHOP</p>
           <h2>{text(GEAR_COPY.related)}</h2>
           <p>{text(GEAR_COPY.relatedIntro)}</p>
         </div>
-        <div className="gear-related-grid">
-          {GEAR.filter((item) => RELATED_IDS.includes(item.id)).map((rawItem) => {
-            const item = getLocalizedGear(rawItem, locale);
-            return (
-              <article id={item.id} key={item.id} className="gear-related-record">
-                <img src={item.image} alt={item.imageAlt} loading="lazy" width="900" height="600" />
-                <div>
-                  <p className="gear-eyebrow">{item.nameEn}</p>
-                  <h3>{item.name}</h3>
-                  <p>{item.lede}</p>
-                </div>
-              </article>
-            );
-          })}
+        <nav className="gear-related-grid" aria-label={text(GEAR_COPY.related)}>
+          {WORKSHOP.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className="gear-related-record"
+              aria-pressed={workshopId === item.id}
+              aria-controls="workshop-detail"
+              onClick={() => select(item.id, "workshop")}
+            >
+              <img src={item.plates[0]!.src} alt="" loading="lazy" width="900" height="600" />
+              <span className="gear-related-copy">
+                <span className="gear-eyebrow">{text(item.category)}</span>
+                <strong>{text(item.name)}</strong>
+                <span className="gear-related-summary">{text(item.summary)}</span>
+              </span>
+            </button>
+          ))}
+        </nav>
+        <div id="workshop-detail">
+          <EquipmentRecord
+            key={workshop.id}
+            item={workshop}
+            wide
+            onOpen={(plates, index) => setViewer({ plates, index })}
+          />
         </div>
         <div className="gear-footer-links">
           <Link to="/gallery">{locale === "zh" ? "电影剧照" : "Film gallery"}</Link>
@@ -392,10 +549,12 @@ function Gear() {
 
 function EquipmentRecord({
   item,
+  recordId = item.id,
   wide = false,
   onOpen,
 }: {
   item: ArchiveGear;
+  recordId?: string;
   wide?: boolean;
   onOpen: (plates: GearPlate[], index: number) => void;
 }) {
@@ -405,7 +564,7 @@ function EquipmentRecord({
   const [tab, setTab] = useState<"film" | "design">("film");
   const current = item.plates[plateIndex]!;
   return (
-    <article id={item.id} className={`gear-record${wide ? " gear-record-wide" : ""}`}>
+    <article id={recordId} className={`gear-record${wide ? " gear-record-wide" : ""}`}>
       <div className="gear-record-heading">
         <p className="gear-eyebrow">2022 / {text(item.category)}</p>
         <h3 aria-live="polite">{text(item.name)}</h3>
@@ -460,14 +619,14 @@ function EquipmentRecord({
               key={key}
               type="button"
               aria-pressed={tab === key}
-              aria-controls={`record-text-${item.id}`}
+              aria-controls={`record-text-${recordId}`}
               onClick={() => setTab(key)}
             >
-              {text(GEAR_COPY[key])}
+              {text(key === "film" && item.usageLabel ? item.usageLabel : GEAR_COPY[key])}
             </button>
           ))}
         </div>
-        <div id={`record-text-${item.id}`} className="gear-record-prose">
+        <div id={`record-text-${recordId}`} className="gear-record-prose">
           {(tab === "film"
             ? (item.filmDetails ?? [item.film])
             : (item.designDetails ?? [item.design])

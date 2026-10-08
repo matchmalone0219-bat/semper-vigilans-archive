@@ -1,4 +1,5 @@
 import { GEAR } from "@/lib/gear";
+import { GEAR_EN } from "@/lib/i18n/gear-en";
 import { CERTAINTY_LABEL, LOG, PLOT, type PlotItem } from "@/data/film";
 import { MERCH } from "@/lib/merch";
 import { PLACES } from "@/lib/places";
@@ -152,7 +153,11 @@ export const SEARCH_ITEMS: SearchItem[] = [
     ),
   ),
   ...GEAR.map((gear) =>
-    item(gear.name, gear.nameEn, `/gear#${gear.id}`, "装备", `${gear.seen} ${gear.lede}`),
+    item(
+      gear.name, gear.nameEn, `/gear#${gear.id}`, "装备",
+      [gear.seen, gear.lede, ...gear.body, GEAR_EN[gear.id]?.lede,
+        ...(GEAR_EN[gear.id]?.body ?? [])].join(" "),
+    ),
   ),
   ...MERCH.flatMap((group) =>
     group.items.flatMap((merch) => [

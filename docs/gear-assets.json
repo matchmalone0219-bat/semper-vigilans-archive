@@ -140,5 +140,262 @@
     "sourcePage": "https://www.altcinc.com/work/batman",
     "sourceSha256": "f88a672d57a7e964d40131aefb83d2eb04823e99ce0609c7c01c2db981686766",
     "delivery": "JPEG quality 86; source dimensions retained"
+  },
+  {
+    "asset": "/media/gear-archive/engine-layout.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/06-thebatmobile/007-batmobile_engine.webp",
+    "sourcePage": "https://alextoons.com/blog/thebatmobile",
+    "sourceSha256": "c960d35d600ee29e9ba5ab5b27ce1cf4bef4cb9fa6741825ed1a6659b58fec52",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/engine-layout-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/corvette-sheet.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/08-brucewaynethebatman/004-bruce_wayne_cars.webp",
+    "sourcePage": "https://alextoons.com/blog/brucewaynethebatman",
+    "sourceSha256": "47888ae8fcf2d3e9c799fef777644197a6887ba4c5a3626eeed347934f69e4da",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/corvette-sheet-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/cave-station.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/07-the-art-of-the-batman-pt7/004-BM_72.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/9/28/the-art-of-the-batman-pt7",
+    "sourceSha256": "f833900d1e1ee976061a1fbfb9848cdd3b26c8f76a46943c29c30f5f06e10b09",
+    "delivery": "JPEG quality 82; source dimensions retained",
+    "preview": "/media/gear-archive/cave-station-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/cave-workshop.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/07-the-art-of-the-batman-pt7/005-BM_74.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/9/28/the-art-of-the-batman-pt7",
+    "sourceSha256": "e83190f779fad79d2db273b790c838bfd1dc0eac431182aeb10b21b66b199cea",
+    "delivery": "JPEG quality 82; source dimensions retained",
+    "preview": "/media/gear-archive/cave-workshop-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/turntable-armor.jpg",
+    "sourceFile": "用户附件/照片 1.jpg",
+    "sourceType": "user-upload",
+    "sourceSha256": "ef4d8f4d12f9609e18d02fb91699d50533b4a3f1ea698541b50be1739b85786e",
+    "delivery": "Original 1200 × 771 JPEG; browser clips individual views without resampling"
+  },
+  {
+    "asset": "/media/gear-archive/turntable-cape.jpg",
+    "sourceFile": "用户附件/照片 2.jpg",
+    "sourceType": "user-upload",
+    "sourceSha256": "56452831255fab1799cc45a754e6ecbb66466c699f17a15027ada5152ad9a941",
+    "delivery": "Original 1200 × 771 JPEG"
+  },
+  {
+    "asset": "/media/gear-archive/cape-motion.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/03-the-art-of-the-batman-pt3/004-BM_18.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/26/the-art-of-the-batman-pt3",
+    "sourceSha256": "712d5992210dc600fc9f00f19ab1edd4ffa81c5db3789e64e882ce3478e83d38",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/cape-motion-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/gauntlet-assembly.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/04-the-art-of-the-batman-pt4/007-BM_32.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/29/the-art-of-the-batman-pt4",
+    "sourceSha256": "011feaf9f941cf9527ac0dd7a65045839d907fe7fbb3b9be84b45de019166839",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/gauntlet-assembly-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/forearm-spikes.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/04-the-art-of-the-batman-pt4/008-BM_33.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/29/the-art-of-the-batman-pt4",
+    "sourceSha256": "7ad9b028e8e19b578fa4b56aa5ea1be5973f1398a185ca076b7b08d44c070324",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/forearm-spikes-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/gauntlet-release.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/04-the-art-of-the-batman-pt4/009-BM_34.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/29/the-art-of-the-batman-pt4",
+    "sourceSha256": "84e26ff90df5659bb62e60464175ab04518e2a86eddf7ea20155c9372dbca659",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/gauntlet-release-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/gauntlet-trigger.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/04-the-art-of-the-batman-pt4/010-BM_35.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/29/the-art-of-the-batman-pt4",
+    "sourceSha256": "c883bee5e6ca570cd0e08a73c93a79e01bf1a45926ed0136401c2e61a2507e3a",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/gauntlet-trigger-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/harpoon-study.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/002-BM_37.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "9b53bbf3af4d7fbfd149b561494d937471b594800d3c50da700d68da22c623fd",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/harpoon-study-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/magnetic-charge-sketch.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/005-BM_40.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "12b7bf2e3eafa07fc8d44f7c06bf61a4ad9ffc68e6c046ec7686fad56eb116c4",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/magnetic-charge-sketch-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/magnetic-charge.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/006-BM_41.png",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "32bc69d7f8d9a76c3bea5d310975da2d6c167084d4df61390c1278dea5c78c8a",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/magnetic-charge-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/nunchucks.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/007-BM_42.png",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "564041e62e70879150167f0e8ce0c648e854889afff9bf7b04a755dc3e154bfa",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/nunchucks-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/finger-taser.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/008-BM_43.png",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "c125785f848736e999a3fbe3a6ef88bb704b24e70f6c191ab65cbe2aceb67c4b",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/finger-taser-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/light-flare.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/009-BM_44.png",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "c1fa466ce87a7ab3955c50516c4d1f0ba240494900a1addaa02cffd441415a9e",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/light-flare-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/adrenaline-injector.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/010-BM_45.png",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "86fe604156b2598f5032f7f1a78bf19da21b84478f29117600b7bf0ffb172c3a",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/adrenaline-injector-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/lens-reader-study.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/011-BM_46.png",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "a8140797cb6e4a5297bcc628a14d609a07c25b386c5ab2f48890e21206ad3428",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/lens-reader-study-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/earpiece-study.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/05-the-art-of-the-batman/012-BM_47.png",
+    "sourcePage": "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+    "sourceSha256": "a511a3058a84e835c66e01c627f7e8fa3615af8056fa527fa5e5e02a5a28abd6",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/earpiece-study-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/batarang-launcher.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/07-the-art-of-the-batman-pt7/007-BM_78.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/9/28/the-art-of-the-batman-pt7",
+    "sourceSha256": "28c6ade61775572da7080047b931f28eed67f4406be44c8572173b81ead7059e",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/batarang-launcher-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/chest-knife-sketch.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/03-the-art-of-the-batman-pt3/010-BM_24.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/26/the-art-of-the-batman-pt3",
+    "sourceSha256": "f6e063412b36bffba3ec33937c793d4c6cf6b6d68c937d5b3e15c4ed30a95e57",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/chest-knife-sketch-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/chest-knife-prototypes.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/03-the-art-of-the-batman-pt3/011-BM_25.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/26/the-art-of-the-batman-pt3",
+    "sourceSha256": "715f931579c8957933882fda28eeca83814a9a1c1a51d8f9564f5cfc15b8b5dd",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/chest-knife-prototypes-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/suit-underlayer.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/03-the-art-of-the-batman-pt3/007-BM_21.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/8/26/the-art-of-the-batman-pt3",
+    "sourceSha256": "012f1b606d2e2e872fd4c1e440fd04ddca93f5ddc022cdbe2bec1d57d40ebacc",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/suit-underlayer-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/batmobile-frame.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/06-thebatmobile/005-james_chinlund.png",
+    "sourcePage": "https://alextoons.com/blog/thebatmobile",
+    "sourceSha256": "96458e11bf27090c27dabf753951f2346cb13d43df9609ac2c0e1820b156ad25",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/batmobile-frame-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/batmobile-rear-structure.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/06-thebatmobile/008-batmobile.webp",
+    "sourcePage": "https://alextoons.com/blog/thebatmobile",
+    "sourceSha256": "102c166fdb1d7a32a65be2af2d2ca38df20921b275528595379cdb36a01e9444",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/batmobile-rear-structure-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/drifter-bike-study.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/08-brucewaynethebatman/008-james_chinlund.webp",
+    "sourcePage": "https://alextoons.com/blog/brucewaynethebatman",
+    "sourceSha256": "8b9982c062be2400032c35efb544c74f0242cfa607050aa4da1fffddca3b93d3",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/drifter-bike-study-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/drifter-outfit.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/08-brucewaynethebatman/006-robert_pattinson.webp",
+    "sourcePage": "https://alextoons.com/blog/brucewaynethebatman",
+    "sourceSha256": "2c2b4b86141c2c2cbac31b33a095de0ec480909909c5d9191c8352162d1d94fc",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/drifter-outfit-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
+  },
+  {
+    "asset": "/media/gear-archive/ballistics-bench.jpg",
+    "sourceFile": "reference-materials/the-art-of-the-batman-alextoons/images/07-the-art-of-the-batman-pt7/006-BM_75.webp",
+    "sourcePage": "https://alextoons.com/blog/2022/9/28/the-art-of-the-batman-pt7",
+    "sourceSha256": "692a0eec189b375b539f288a7d93d23e09cc2dd2b309879c34a22b52506506b6",
+    "delivery": "JPEG quality 86; source dimensions retained",
+    "preview": "/media/gear-archive/ballistics-bench-preview.jpg",
+    "previewDelivery": "JPEG quality 75; longest edge 1000 pixels"
   }
 ]

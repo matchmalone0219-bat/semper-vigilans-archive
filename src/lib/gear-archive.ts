@@ -23,6 +23,7 @@ export type ArchiveGear = {
   design: Bilingual;
   filmDetails?: Bilingual[];
   designDetails?: Bilingual[];
+  usageLabel?: Bilingual;
   plates: GearPlate[];
   hotspot?: { x: number; y: number };
 };
@@ -39,6 +40,14 @@ const BOOK_4: GearSource = {
 const BOOK_5: GearSource = {
   ...BOOK_3,
   sourceUrl: "https://alextoons.com/blog/2022/9/2/the-art-of-the-batman",
+};
+const BOOK_CAR: GearSource = {
+  ...BOOK_3,
+  sourceUrl: "https://alextoons.com/blog/thebatmobile",
+};
+const BOOK_BRUCE: GearSource = {
+  ...BOOK_3,
+  sourceUrl: "https://alextoons.com/blog/brucewaynethebatman",
 };
 const DILLON: GearSource = {
   source: "Concept Art Association · Glyn Dillon",
@@ -60,6 +69,16 @@ const CONCEPT = bilingual("概念设计", "Concept design");
 const SHEET = bilingual("设定集图版", "Art-book plate");
 
 const PLATE_PREVIEWS: Record<string, string> = {
+  "/media/gear-archive/suit-underlayer.jpg": "/media/gear-archive/suit-underlayer-preview.jpg",
+  "/media/gear-archive/chest-knife-sketch.jpg":
+    "/media/gear-archive/chest-knife-sketch-preview.jpg",
+  "/media/gear-archive/chest-knife-prototypes.jpg":
+    "/media/gear-archive/chest-knife-prototypes-preview.jpg",
+  "/media/gear-archive/batmobile-frame.jpg": "/media/gear-archive/batmobile-frame-preview.jpg",
+  "/media/gear-archive/batmobile-rear-structure.jpg":
+    "/media/gear-archive/batmobile-rear-structure-preview.jpg",
+  "/media/gear-archive/drifter-bike-study.jpg":
+    "/media/gear-archive/drifter-bike-study-preview.jpg",
   "/media/gear-archive/body.jpg": "/media/gear-archive/body-preview.jpg",
   "/media/gear-archive/suit.jpg": "/media/gear-archive/suit-preview.jpg",
   "/media/gear-archive/cowl.jpg": "/media/gear-archive/cowl-preview.jpg",
@@ -68,6 +87,12 @@ const PLATE_PREVIEWS: Record<string, string> = {
   "/media/gear-archive/gauntlet-sketch.jpg": "/media/gear-archive/gauntlet-sketch-preview.jpg",
   "/media/gear-archive/sticky-sketch.jpg": "/media/gear-archive/sticky-sketch-preview.jpg",
   "/media/gear-archive/sticky-render.jpg": "/media/gear-archive/sticky-render-preview.jpg",
+  "/media/gear-archive/cape-motion.jpg": "/media/gear-archive/cape-motion-preview.jpg",
+  "/media/gear-archive/gauntlet-assembly.jpg": "/media/gear-archive/gauntlet-assembly-preview.jpg",
+  "/media/gear-archive/forearm-spikes.jpg": "/media/gear-archive/forearm-spikes-preview.jpg",
+  "/media/gear-archive/gauntlet-release.jpg": "/media/gear-archive/gauntlet-release-preview.jpg",
+  "/media/gear-archive/gauntlet-trigger.jpg": "/media/gear-archive/gauntlet-trigger-preview.jpg",
+  "/media/gear-archive/harpoon-study.jpg": "/media/gear-archive/harpoon-study-preview.jpg",
 };
 
 function plate(
@@ -119,6 +144,20 @@ export const SUIT_OVERVIEW: ArchiveGear = {
   ),
   plates: [
     plate(
+      "/media/gear-archive/turntable-cape.jpg",
+      "带披风的战衣四视图",
+      "Batsuit four-view sheet with cape",
+      "正面、四分之三、侧面与背面展示披风覆盖下的战衣轮廓。",
+      "Front, three-quarter, side and back views show the Batsuit silhouette with its cape.",
+      "The Batman · 用户提供图像",
+      {
+        source: "用户提供 · 战衣四视图",
+        sourceUrl:
+          "https://github.com/matchmalone0219-bat/semper-vigilans-archive/blob/main/public/media/gear-archive/turntable-cape.jpg",
+        sourceTier: "archive",
+      },
+    ),
+    plate(
       "/media/gear-archive/body.jpg",
       "战衣全身概念图",
       "Full-body Batsuit concept",
@@ -133,6 +172,16 @@ export const SUIT_OVERVIEW: ArchiveGear = {
       "Batsuit and mobility",
       "全身设计与战衣结构说明。",
       "Full-body design with construction notes for the suit.",
+      "The Art of The Batman",
+      BOOK_3,
+      SHEET,
+    ),
+    plate(
+      "/media/gear-archive/suit-underlayer.jpg",
+      "战衣内层与背部系带",
+      "Batsuit underlayer and back lacing",
+      "背面概念图与服装实物展示系带、接缝和胸甲下方的软质结构。",
+      "A rear concept and costume photographs show lacing, seams and the soft structure beneath the chest armor.",
       "The Art of The Batman",
       BOOK_3,
       SHEET,
@@ -199,6 +248,26 @@ export const LOADOUT: ArchiveGear[] = [
         BOOK_3,
         SHEET,
       ),
+      plate(
+        "/media/gear-archive/chest-knife-sketch.jpg",
+        "胸前刀的折叠与握持研究",
+        "Chest knife folding and grip studies",
+        "Blade 20 草图探索刀刃、握持区和折叠方向；说明文字介绍胸甲上的磁吸固定。",
+        "Blade 20 sketches explore the edge, grip and folding direction; the commentary describes magnetic attachment to the chest plate.",
+        "The Art of The Batman",
+        BOOK_3,
+        SHEET,
+      ),
+      plate(
+        "/media/gear-archive/chest-knife-prototypes.jpg",
+        "徽记刀轮廓与实物样件",
+        "Emblem knife profiles and physical samples",
+        "草图比较蝙蝠轮廓、刀刃与关节，下方实物样件展示金属部件的厚度和连接。",
+        "Sketches compare bat profiles, edges and joints; physical samples below show the thickness and connections of the metal parts.",
+        "The Art of The Batman",
+        BOOK_3,
+        SHEET,
+      ),
     ],
   },
   {
@@ -218,7 +287,20 @@ export const LOADOUT: ArchiveGear[] = [
       "全身概念图表现了披风在肩部的固定位置、垂坠方向，以及它对护甲轮廓的遮挡。翼装的使用另见影片场景。",
       "The full-body concept shows the cape's shoulder attachment, drape and overlap with the armor. The wingsuit is considered separately through its film appearance.",
     ),
-    plates: [BODY_PLATE],
+    plates: [
+      SUIT_OVERVIEW.plates[0]!,
+      plate(
+        "/media/gear-archive/cape-motion.jpg",
+        "披风与俯身姿态",
+        "Cape in a crouching pose",
+        "披风从肩背铺开，随身体前倾形成不同的垂坠方向。",
+        "The cape spreads from the shoulders and back, falling differently as the body leans forward.",
+        "The Art of The Batman",
+        BOOK_3,
+        SHEET,
+      ),
+      SUIT_OVERVIEW.plates[1]!,
+    ],
   },
   {
     id: "gauntlet",
@@ -257,6 +339,26 @@ export const LOADOUT: ArchiveGear[] = [
         BOOK_4,
         SHEET,
       ),
+      plate(
+        "/media/gear-archive/gauntlet-assembly.jpg",
+        "护臂展开与掌侧结构",
+        "Gauntlet deployment and palm-side assembly",
+        "外侧储架与掌侧抓钩机构分别排列，发射器展开后移到手掌前方。",
+        "The outer rack and palm-side grapnel assembly sit separately; the deployed launcher moves ahead of the palm.",
+        "The Art of The Batman",
+        BOOK_4,
+        SHEET,
+      ),
+      plate(
+        "/media/gear-archive/gauntlet-trigger.jpg",
+        "护臂扳机与挂载点",
+        "Gauntlet trigger and attachment points",
+        "掌侧的扳机、卷盘、刀柄与可调绑带固定点。",
+        "Palm-side trigger, reel, knife handle and adjustable strap attachment points.",
+        "The Art of The Batman",
+        BOOK_4,
+        SHEET,
+      ),
     ],
   },
   {
@@ -285,6 +387,16 @@ export const LOADOUT: ArchiveGear[] = [
         "Design sheet for the grapnel launcher and gauntlet.",
         "Glyn Dillon",
         DILLON,
+      ),
+      plate(
+        "/media/gear-archive/harpoon-study.jpg",
+        "鱼叉头与卷盘研究",
+        "Harpoon head and reel studies",
+        "展开的抓钩尖端、线缆卷盘与实物道具并列。",
+        "The deployed grapnel tip and cable reel are shown beside the physical prop.",
+        "The Art of The Batman",
+        BOOK_5,
+        SHEET,
       ),
     ],
   },
@@ -366,6 +478,7 @@ export const LOADOUT: ArchiveGear[] = [
   },
   {
     id: "sticky-bomb-gun",
+    usageLabel: bilingual("用途与构想", "Use & concept"),
     name: bilingual("黏弹发射器", "Sticky bomb gun"),
     category: bilingual("随身工具", "Portable tool"),
     summary: bilingual(
@@ -431,6 +544,26 @@ export const VEHICLES: ArchiveGear[] = [
         "Body proportions and exterior silhouette.",
         "Ash Thorp / ALT Creative",
         THORP,
+      ),
+      plate(
+        "/media/gear-archive/batmobile-frame.jpg",
+        "战车车架与防滚结构",
+        "Batmobile frame and roll cage",
+        "侧视与俯视草图比较车身、乘员舱、后部引擎和车架之间的空间。",
+        "Side and top sketches compare the body, cabin, rear engine and supporting frame.",
+        "The Art of The Batman",
+        BOOK_CAR,
+        SHEET,
+      ),
+      plate(
+        "/media/gear-archive/batmobile-rear-structure.jpg",
+        "后部承力结构与轮胎研究",
+        "Rear structure and tyre studies",
+        "草图讨论后轮间隙、引擎支撑、车架连接和蝙蝠轮廓胎纹。",
+        "Studies address rear-wheel clearance, engine supports, frame connections and bat-shaped tread patterns.",
+        "The Art of The Batman",
+        BOOK_CAR,
+        SHEET,
       ),
       plate(
         "/media/gear-archive/batmobile-b.jpg",
@@ -515,6 +648,16 @@ export const VEHICLES: ArchiveGear[] = [
         "Ash Thorp / ALT Creative",
         THORP,
       ),
+      plate(
+        "/media/gear-archive/drifter-bike-study.jpg",
+        "Honda CB750 基础与 Café Racer 改装",
+        "Honda CB750 base and Café Racer design",
+        "两张机车设计图与说明展示油箱、座垫、车架和可接近维修的机械部件。",
+        "Two bike designs and commentary show the tank, seat, frame and accessible mechanical parts.",
+        "The Art of The Batman",
+        BOOK_BRUCE,
+        SHEET,
+      ),
     ],
   },
 ];
@@ -542,6 +685,10 @@ const ARCHIVE_DETAILS: Record<string, GearDetails> = {
         "因此图版里的缝线、绑带和接缝不是装饰性的纹理。它们把护甲、软质内层和披风固定在同一个可穿戴系统里，也解释了为什么这套战衣看起来像是布鲁斯亲手改装出来的原型。",
         "The seams, straps and joins in the plates are therefore more than surface texture. They connect armor, soft underlayers and cape into one wearable system, helping the suit read as a prototype Bruce has assembled and modified himself.",
       ),
+      bilingual(
+        "内层实物把胸甲取下后的服装结构直接呈现出来：背部两侧有连续系带，软质衣身沿肩、腰和袖口连接。设计说明还提到背部加入弹性，让穿着者能够伸展、挥拳；分块护甲与内层活动区需要共同工作，才能在保护躯干的同时保留动作空间。",
+        "The underlayer photographs expose the costume beneath the chest armor: continuous lacing runs along both sides of the back, while a soft garment connects shoulders, waist and cuffs. The commentary describes elastic in the back for stretching and punching. Segmented armor and flexible areas work together to protect the torso while allowing movement.",
+      ),
     ],
   },
   cowl: {
@@ -564,6 +711,10 @@ const ARCHIVE_DETAILS: Record<string, GearDetails> = {
         "设定集还把材料感推向皮革和手工制作的方向。正侧面图中的折线、颈部活动区与下颌边缘，都是把‘自己做出来的头罩’落实为结构细节的地方。",
         "The art book also pushes the material toward leather and hand construction. The planes in the front and side views, the flexible neck area and the jaw edge turn the idea of a self-made cowl into physical detail.",
       ),
+      bilingual(
+        "颈部采用一片片近似椎骨的结构，随着头部转动而移动。它让头罩向肩背过渡时仍有活动余地，回应了早期银幕战衣中转头受限的问题：蝙蝠侠需要在保留完整头颈轮廓的同时，能够自然观察周围并完成搏斗动作。",
+        "The neck uses vertebra-like pieces that move as the head turns. They preserve mobility where the cowl meets the shoulders, addressing the restricted head movement of earlier screen suits. Batman needs a continuous head-and-neck silhouette while still looking around and fighting naturally.",
+      ),
     ],
   },
   "chest-blade": {
@@ -583,8 +734,12 @@ const ARCHIVE_DETAILS: Record<string, GearDetails> = {
         "Glyn Dillon's design direction lets the emblem become a weapon when needed: the negative space of the bat wings is pushed toward a blade-like cutting silhouette. It must read as a bat from a distance and as a detachable metal part up close.",
       ),
       bilingual(
-        "图版把徽记轮廓、胸部正面和拆下后的形态放在相邻位置，说明这个符号如何从平面图形转成有厚度、有边缘、可以握持的胸甲零件。",
-        "The plates place emblem silhouettes beside the chest front and the removed form, showing how a flat graphic becomes a thick, edged and hand-held piece of chest armor.",
+        "胸前刀以磁吸方式固定在胸甲上，取下后成为手持战术刀。Blade 20 草图继续研究刀刃强化、握持区和折叠方向，让蝙蝠翼形既能平贴在胸前，也能在手中形成可使用的刃口。",
+        "The knife attaches magnetically to the chest plate and becomes a hand-held tactical tool when removed. The Blade 20 sketches explore edge reinforcement, grip and folding direction, allowing the bat-wing form to sit against the chest and present a usable edge in the hand.",
+      ),
+      bilingual(
+        "另一页将多种蝙蝠轮廓与金属实物样件并置。尖端、开孔、关节与连接件都有可见厚度，样件也比较了不同表面处理；徽记因此经历了从平面标志、机械草图到实体部件的转化。",
+        "Another plate places alternate bat profiles beside metal samples. Tips, cutouts, joints and fittings have visible thickness, and the samples compare surface finishes. The emblem develops from a flat symbol through mechanical sketches into a physical component.",
       ),
     ],
   },
@@ -601,12 +756,12 @@ const ARCHIVE_DETAILS: Record<string, GearDetails> = {
     ],
     designDetails: [
       bilingual(
-        "全身图版首先确定披风从肩部落下的起点、宽度和垂坠方向。它不只是给人物加上一块黑色背景，而是会遮挡护甲、改变侧面轮廓并参与动作阅读的软质结构。",
-        "The full-body plates first establish where the cape leaves the shoulders, how wide it is and how it falls. It is not simply a black backdrop; it is a soft structure that hides armor, changes the side silhouette and participates in reading the movement.",
+        "带披风四视图把正面、四分之三、侧面和背面放在同一比例下：肩部褶皱向胸前收拢，背面形成纵向垂坠，侧面则显示披风与手臂之间的距离。它覆盖肩背，却仍让胸甲、腰带和前臂工具保持可见。",
+        "The caped four-view sheet compares front, three-quarter, side and back at one scale. Shoulder folds gather toward the chest, the back falls in vertical drapes, and the side view shows clearance around the arm. The cape covers shoulders and back while leaving chest armor, belt and forearm tools visible.",
       ),
       bilingual(
-        "与战衣分块设计放在一起看，披风的固定点和颈部活动区尤其重要：它必须随身体转动，又不能破坏头罩、肩甲和背部线条之间的连续性。",
-        "Seen alongside the segmented suit, the cape attachment and neck mobility are especially important. It must follow the body without breaking the continuity between cowl, shoulders and back.",
+        "俯身概念图进一步展示动态轮廓：布料跨过肩背，在前倾姿态下向后铺开，下缘分成不规则的垂落部分。与站立图并列时，可以看到披风如何随着躯干姿态改变覆盖范围，而不是始终保持同一块平面。",
+        "The crouching concept develops the moving silhouette: fabric crosses the shoulders and back, spreading behind the leaning body into irregular hanging edges. Beside the standing view, it shows coverage changing with posture rather than remaining a fixed flat shape.",
       ),
     ],
   },
@@ -623,12 +778,12 @@ const ARCHIVE_DETAILS: Record<string, GearDetails> = {
     ],
     designDetails: [
       bilingual(
-        "Glyn Dillon 的护臂说明把一个实际问题放在中心：特技协调需要护具不妨碍灵活手指去检查线索，同时还要能承载电击等功能。保护、灵活和功能被压缩在同一段前臂空间里。",
-        "Glyn Dillon's gauntlet notes center on a practical problem: stunt work needs dexterous fingers for examining clues, while the forearm piece may also carry a function such as an electrical charge. Protection, dexterity and utility share the same small volume.",
+        "护臂将工具分到前臂两侧：外侧成排存放投掷短刺，掌侧收纳抓钩发射器。草图参考《出租车司机》中藏在袖内、翻出到手中的装置，让发射器与服装连接，并在取用时送到掌前。",
+        "The gauntlet divides tools between the two sides of the forearm: throwing spikes on the outside and a grapnel launcher on the palm side. The sketch commentary refers to the concealed sleeve mechanism in Taxi Driver, attaching the launcher to the costume and bringing it forward into the hand.",
       ),
       bilingual(
-        "手绘稿中的条状构件、绑带和腕部接口，配合数字图里的展开状态和握持姿态，展示了护臂从外观概念走向可操作道具的过程。",
-        "The rods, straps and wrist interfaces in the sketches, together with the deployed and held poses in the digital sheet, show the gauntlet moving from surface concept toward a usable prop.",
+        "新增结构图进一步拆开卷盘、扳机、刀柄和可调绑带固定点，另一页则探索掌侧机构的弹簧前送与快速释放。外侧储架、硬质底板与腕部留空共同决定工具容积和手腕活动空间。",
+        "Construction studies separate reel, trigger, knife handle and adjustable strap mounts; another page explores spring-forward movement and quick release. Outer rack, rigid base and wrist clearance jointly determine carrying volume and movement.",
       ),
     ],
   },
@@ -661,8 +816,8 @@ const ARCHIVE_DETAILS: Record<string, GearDetails> = {
         "The belt and thigh rigs form the suit's clearest storage zone. They let Bruce carry small tools without changing to a separate pack, grounding his way of working in the reality of military and police equipment.",
       ),
       bilingual(
-        "同页图版还把头罩颈部的活动构件画成近似椎骨的连续结构。这个细节和腰带并列出现，说明‘能装东西’与‘能自由转动’在这套战衣里是同一个设计目标。",
-        "The same plate draws the cowl's neck pieces as a linked, almost vertebral structure. Placed beside the belt, the detail shows that carrying equipment and moving freely are part of the same suit-design goal.",
+        "随身工具覆盖照明、控制、破障与急救。设定集进一步展开束带式手铐、紫外灯、照明棒、紧凑双节棍、黏弹夹与急救注射器等构想，让腰带从一个视觉符号变成多用途工具的携带系统。",
+        "The carried toolkit spans lighting, restraint, breaching and emergency aid. The art book develops zip-tie cuffs, UV lighting, a light rod, compact nunchucks, charge clips and an emergency injector, turning the belt from a visual symbol into a carrying system for multiple tools.",
       ),
     ],
     designDetails: [
@@ -671,8 +826,8 @@ const ARCHIVE_DETAILS: Record<string, GearDetails> = {
         "Glyn Dillon's direction moves away from the traditional yellow or gold comic-book belt toward black leather equipment informed by ex-military and police gear. The buckles, pouches and thigh straps feel like objects that could be sourced, modified and repeatedly used in the real world.",
       ),
       bilingual(
-        "正背面三维图的价值在于能同时看到收纳布局和颈部活动区。它把黑色皮革、扣具和软质连接件放在同一张图里，补足了影片近景不容易看清的结构关系。",
-        "The front-and-back 3D plate is useful because it shows storage layout and neck mobility together. It places black leather, hardware and soft connections in one view, filling in relationships that are hard to read in film close-ups.",
+        "工具图版继续研究取用方式：三枚黏弹由专用腰带夹收纳，双节棍合拢成短棒，照明工具缩短后携带，记录镜片的数据则可以转存到随身存储卡。各件工具的尺寸与形态都需要回到腰带空间里考虑。",
+        "The tool plates develop access: a dedicated clip holds three charges, nunchucks close into a short rod, lighting tools shorten for carrying, and lens data can transfer to a carried memory card. Each object's dimensions and shape have to work within the belt's space.",
       ),
     ],
   },
@@ -701,8 +856,8 @@ const ARCHIVE_DETAILS: Record<string, GearDetails> = {
   "sticky-bomb-gun": {
     filmDetails: [
       bilingual(
-        "黏弹发射器属于布鲁斯的破障工具，用在需要从远处处理目标、或需要先在障碍物上布置黏弹的行动里。它把战衣的近身装备扩展成更有距离感的工具。",
-        "The sticky bomb gun is Bruce's breaching tool, used when a target must be handled from a distance or a sticky charge needs to be placed on an obstacle first. It extends the suit's close-range kit into a tool with reach.",
+        "黏弹发射器的构想是把破障工具延伸到远处的目标。紧凑握把与筒状主体组合，配合可附着的黏弹，为布鲁斯提供手动放置之外的部署方式。",
+        "The sticky bomb gun proposal extends breaching equipment to targets at a distance. A compact grip and cylindrical body pair with adhesive charges, giving Bruce an alternative to hand placement.",
       ),
       bilingual(
         "设定说明提到两种部署方式：可以手动放置并设定，也可以从弹筒发射；触发逻辑以空气压力为基础。这个差异让工具既能精确处理，也能在动作场面里快速使用。",
@@ -737,8 +892,12 @@ const ARCHIVE_DETAILS: Record<string, GearDetails> = {
         "Matt Reeves's core direction was that the car's purpose should be immediately clear: it must terrify and intimidate while still performing as a muscle car. Ash Thorp's successive explorations adjust the body proportions and front-end expression around that functional brief.",
       ),
       bilingual(
-        "作品集中的不同视角把低伏车身、外露机械和宽大的车头拆成可比较的设计阶段。并列观看时，可以看到它如何从概念轮廓收束成一辆有明确驾驶方向和攻击姿态的车。",
-        "The portfolio's multiple views make the low body, exposed machinery and broad front end comparable across stages. Seen together, they show the concept narrowing into a car with a clear direction of travel and an attacking stance.",
+        "车架草图从侧面和上方拆开车身：乘员舱由防滚结构围住，后部支架承托引擎，同时给轮胎和悬挂留出空间。设计说明强调一条从保险杠贯通后部的钢结构，用来承受撞击；后部草图又单独提出引擎暴露于后方攻击、支撑梁连接和轮胎间隙等问题。",
+        "Side and top sketches separate the body into a roll-cage-enclosed cabin and rear engine supports, with space for tyres and suspension. The commentary describes a steel structure running from the bumper to the rear to absorb impacts. Rear studies also raise engine exposure, support connections and wheel-clearance questions.",
+      ),
+      bilingual(
+        "拍摄制作最终使用四辆不同车辆：三辆采用汽油引擎，一辆采用电动驱动。电动车的布局为前部火焰特效设备留出了空间。车辆的实际制作因此需要同时考虑传动、悬挂行程、跳跃动作与特效装置，不能只按概念图的外形完成一辆车。",
+        "Production used four different cars: three with gasoline engines and one with electric drive. The electric layout left room at the front for flame-effects equipment. Building the cars required transmission, suspension travel, jumps and effects hardware to be considered alongside the concept silhouette.",
       ),
     ],
   },
@@ -777,12 +936,12 @@ const ARCHIVE_DETAILS: Record<string, GearDetails> = {
     ],
     designDetails: [
       bilingual(
-        "Drifter 图组的重点是油箱、坐垫、车灯和外露车架之间的街头改装关系。它没有追求完整包覆的未来感，而是保留能被看见、被修理、被替换的部件。",
-        "The Drifter studies focus on the street-custom relationship between tank, seat, lamp and exposed frame. They avoid a fully enclosed futuristic look, keeping parts visible, repairable and replaceable.",
+        "这辆 Café Racer 以 Honda CB750 为基础。设计说明强调布鲁斯需要一辆能接近机械部件、便于自己维修的机车，因此油箱、坐垫和裸露车架围绕简洁、可维护的布局展开。它表现的是布鲁斯亲手构筑出行工具的习惯。",
+        "This Café Racer is built on a Honda CB750 base. The design commentary stresses Bruce's need to reach the mechanical parts and repair the bike himself. Tank, seat and exposed frame follow a stripped-down, maintainable layout that reflects his habit of building his own tools.",
       ),
       bilingual(
-        "把它与蝙蝠机车并列，差异不只在造型：蝙蝠机车服务于身份和行动，Drifter 服务于布鲁斯的日常伪装。两组设计共同说明这部电影如何用载具区分同一个人的两种生活。",
-        "Placed beside the Batcycle, the difference is more than styling. The Batcycle serves identity and action; the Drifter serves Bruce's daily cover. Together the two designs show how the film separates two lives belonging to one person through vehicles.",
+        "流浪者机车的线条与功能取向也影响了蝙蝠机车和战车的开发。三辆载具属于同一个改装者的审美：部件各有用途，机械尽量外露；但流浪者机车要帮助骑手融入街头，战车则将同一种粗粝机械感放大为威慑。",
+        "The Drifter bike's lines and functional approach also informed the Batcycle and Batmobile. The three vehicles share their builder's taste for purposeful parts and exposed machinery. The Drifter bike helps its rider blend into the street, while the Batmobile enlarges that rough mechanical language into intimidation.",
       ),
     ],
   },
@@ -796,8 +955,13 @@ export const GEAR_COPY = {
   eyebrow: bilingual("THE BATMAN · 2022", "THE BATMAN · 2022"),
   title: bilingual("战备档案", "Tactical archive"),
   intro: bilingual(
-    "从战衣的一处细节，走进工具、结构与创作过程。",
-    "Explore the tools, construction and creative work behind the Batsuit.",
+    "从战衣、腰带工具到载具与车间，探索银幕装备及设定集中的设计构想。",
+    "Explore the Batsuit, belt tools, vehicles and workshop, from screen equipment to art-book proposals.",
+  ),
+  tools: bilingual("随身工具与侦查装具", "Portable tools & surveillance kit"),
+  toolIntro: bilingual(
+    "从腰带中的照明、急救和近战工具，到融入街头的流浪者侦查装束。",
+    "From belt-carried lighting, emergency and close-combat tools to the Drifter's street surveillance outfit.",
   ),
   loadout: bilingual("随身装备", "Loadout"),
   overview: bilingual("战衣总览", "Suit overview"),
@@ -816,7 +980,7 @@ export const GEAR_COPY = {
   ),
   related: bilingual("车间与关联档案", "Workshop & related records"),
   relatedIntro: bilingual(
-    "继续探索载具动力、布鲁斯的私人座驾与哥谭的信号。",
-    "Continue into the vehicle's machinery, Bruce's civilian car and Gotham's signal.",
+    "继续探索载具动力、地下车间的试验设备、布鲁斯的私人座驾与哥谭的信号。",
+    "Explore vehicle machinery, the underground workshop's test equipment, Bruce's civilian car and Gotham's signal.",
   ),
 };

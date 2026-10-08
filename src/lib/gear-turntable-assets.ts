@@ -1,4 +1,4 @@
-// Source-pixel crop bounds and body centres on a shared 500 × 771 display canvas.
+// Crop bounds and body centres use 1200 × 771 reference coordinates on a shared 500 × 771 display canvas.
 export const BODY_TURNTABLE_VIEWS = [
   { id: "front", zh: "正面", en: "Front", cropX: 0, cropWidth: 335, centerX: 170 },
   {

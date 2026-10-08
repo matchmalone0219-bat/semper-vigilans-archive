@@ -179,17 +179,17 @@
   },
   {
     "asset": "/media/gear-archive/turntable-armor.jpg",
-    "sourceFile": "用户附件/照片 1.jpg",
+    "sourceFile": "sam-williams-002.jpg",
     "sourceType": "user-upload",
-    "sourceSha256": "ef4d8f4d12f9609e18d02fb91699d50533b4a3f1ea698541b50be1739b85786e",
-    "delivery": "Original 1200 × 771 JPEG; browser clips individual views without resampling"
+    "sourceSha256": "37c66c0295dcb4f1594cd017e3f8afc1d049aa177b52ab9a3cb4183e36b53edf",
+    "delivery": "Original 1920 × 1234 JPEG; browser clips individual views without resampling"
   },
   {
     "asset": "/media/gear-archive/turntable-cape.jpg",
-    "sourceFile": "用户附件/照片 2.jpg",
+    "sourceFile": "sam-williams-001.jpg",
     "sourceType": "user-upload",
-    "sourceSha256": "56452831255fab1799cc45a754e6ecbb66466c699f17a15027ada5152ad9a941",
-    "delivery": "Original 1200 × 771 JPEG"
+    "sourceSha256": "88c255581e4a8b80d0650c306f802a4e3bad43203a26b901638ee0e75d4d1064",
+    "delivery": "Original 1920 × 1234 JPEG; browser clips individual views without resampling"
   },
   {
     "asset": "/media/gear-archive/cape-motion.jpg",

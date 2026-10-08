@@ -304,8 +304,8 @@ function Gear() {
                         ? `蝙蝠战衣 · ${BODY_TURNTABLE_VIEWS[bodyView].zh}`
                         : `Batsuit · ${BODY_TURNTABLE_VIEWS[bodyView].en}`
                     }
-                    width="1200"
-                    height="771"
+                    width="1920"
+                    height="1234"
                     style={{
                       width: `${(1200 / bodyAngle.cropWidth) * 100}%`,
                       transform: `translateX(-${(bodyAngle.cropX / 1200) * 100}%)`,

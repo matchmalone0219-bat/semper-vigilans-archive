@@ -84,8 +84,15 @@ test("art-book tools have distinct anchors and concept-aware usage labels", () =
     assert.equal(item.usageLabel.zh, "用途与构想");
     assert.equal(item.hotspot, undefined);
   }
+  assert.equal(
+    LOADOUT.find((item) => item.id === "cape").plates.length,
+    2,
+  );
   assert.ok(
-    LOADOUT.find((item) => item.id === "cape").plates.some((p) => p.src.includes("turntable-cape")),
+    LOADOUT.find((item) => item.id === "cape").plates.some((p) => p.src.includes("cape-real")),
+  );
+  assert.ok(
+    LOADOUT.find((item) => item.id === "cape").plates.some((p) => p.src.includes("wingsuit-sketch")),
   );
   for (const query of ["双节棍", "nunchucks"]) {
     assert.ok(

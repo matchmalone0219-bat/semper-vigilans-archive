@@ -11,3 +11,4 @@ artifacts/
 screenshots/
 .github-token
 scratch/
+.tanstack/

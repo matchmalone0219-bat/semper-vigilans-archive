@@ -52,44 +52,44 @@ export const TOOLS: ArchiveGear[] = [
     category: b("照明工具", "Lighting"),
     usageLabel: USE,
     summary: b(
-      "可收纳于腰带的棒状照明工具，将灯管、握持端与电源压缩为一体。",
-      "A belt-carried lighting tool combines its light tube, grip and power supply in one compact form.",
+      "集成高强度白光照明管与红光遇险求救信号的紧凑伸缩棒状装具，可收纳于腰带战术插套。",
+      "A compact telescoping baton combining high-intensity white inspection illumination and red emergency signaling, holstered on the tactical duty belt.",
     ),
     film: b(
-      "照明和发出信号是腰带工具的一部分；洪灾救援中的红色照明棒也成为带领人群的视觉中心。",
-      "Lighting and signaling belong to the belt's toolkit; the red flare in the flood rescue becomes a visual guide for the crowd.",
+      "洪灾救援深渊中的希望灯塔：布鲁斯高擎猩红照明棒涉水领路，指引受困民众走出黑暗废墟。",
+      "A beacon of salvation amidst flooded ruins: Bruce hoists a blazing crimson flare through waist-deep waters, guiding stranded survivors out of the dark.",
     ),
     design: b(
-      "Light and Flare 图版研究抽出、延长和收回的棒状结构。",
-      "The Light and Flare plate explores a rod-shaped tool that can be withdrawn, extended and stowed.",
+      "设定集图版拆解了高压电筒与化学信号棒的双重结构，通过滚花防滑握把与伸缩套管满足执勤携带要求。",
+      "Art-book schematics break down the dual utility of inspection torch and chemical flare, using knurled grips and collapsible sleeves to fit duty belt holsters.",
     ),
     filmDetails: [
       b(
-        "腰带上的照明装备延续警用执勤工具的思路。设定说明把紫外灯与束带式手铐并列，覆盖搜查现场和控制目标等不同需要。",
-        "The belt's lighting equipment follows police duty gear. The design commentary places UV lighting alongside zip-tie cuffs, covering different needs in searching a scene and restraining a subject.",
+        "腰带照明工具在日常勘查中作为暗处搜索的重要光源。战术腰带同时配备紫外线荧光检测灯与束带式手铐，覆盖了微量血痕勘查与现场控制等执法全流程；而这根便携照明棒则提供了广角无死角的泛光照明。",
+        "The belt lighting kit serves as an essential search asset in routine crime-scene sweeps. The tactical belt integrates forensic UV lights alongside zip-tie cuffs, spanning chemical trace forensics and subject containment; while this compact baton provides wide-angle flood lighting in subterranean dark.",
       ),
       b(
-        "洪灾救援里，布鲁斯举起红色照明棒，在断电与积水的环境中引导幸存者。Light and Flare 图版中的白光灯管则展示另一种照明构想：细长发光面与有纹理的握持端组合，收纳时缩短整体长度。",
-        "During the flood rescue, Bruce raises a red flare to guide survivors through darkness and water. The white tube in the Light and Flare study explores another lighting form: a long illuminated surface and textured grip, shortened for storage.",
+        "在体育馆穹顶坠落后的洪灾救援高潮中，布鲁斯点燃猩红照明棒，在齐腰深的水流中高高举起。跳跃的红光划破绝望的深渊，布鲁斯从带来恐惧的暗夜义警彻底蜕变为带领绝望人群走出死亡阴影的引领者，赋予了这一实用工具深刻的救赎隐喻。",
+        "In the flooded stadium aftermath, Bruce strikes the crimson flare, holding it aloft through surging waters. The flickering red blaze pierces absolute despair: Batman ceases to be an engine of nocturnal vengeance and emerges as a protector leading the trapped toward daylight, charging this utilitarian tool with profound emotional resonance.",
       ),
     ],
     designDetails: [
       b(
-        "草图比较了灯管从外壳抽出的状态，以及上下部件分离的方案。尺寸标记、侧面剖视和收纳轮廓把工具从一根发光棒推进到能够放入腰带装具的物件。",
-        "The sketches compare a light tube withdrawn from its housing with a proposal whose upper and lower sections separate. Dimensions, side sections and the stowed outline develop it into an object that fits the belt.",
+        "工程手稿深入研究了照明棒的伸缩与快拆联动机制：发光管身可完全缩入耐磨外壳中，将整体长度缩短至 15 厘米以便插入腰带模组；金属尾盖设有双向锁止按键与防水 O 型密封圈，确保其在极端泥水浸泡下仍能稳定激发生效。",
+        "Engineering drafts examine the telescoping extension and rapid-draw latching: the illuminator tube retracts flush into a rugged protective sleeve, trimming overall length to six inches for belt pouch stowage; while a dual-detent metal tailcap and watertight O-rings guarantee flawless activation even submerged in toxic floodwaters.",
       ),
       b(
-        "着色图把电子部件集中在握持端，发光区域留出连续的长条表面。深色外壳上的滚花纹理与金属端部，延续整套腰带工具的机械外观。",
-        "The render concentrates electronics in the grip, leaving a continuous illuminated tube. Knurled dark housing and metal ends continue the mechanical appearance of the belt tools.",
+        "着色概念图将驱动电路与高容量锂电池集中在带深滚花防滑纹理的铝合金手柄内部，发光部分采用磨砂扩散聚碳酸酯透镜。其严谨硬朗的工业倒角与耐磨阳极氧化黑处理，与腰带上其他单兵执勤装具保持着严密的家族化美学。",
+        "Rendered concept plates pack driver electronics and high-drain lithium cells within an aggressively knurled aluminum handle, fronted by a frosted polycarbonate diffuser lens. Crisp beveled shoulders and hard-anodized black coatings visually harmonize the baton with every other weapon system on the utility belt.",
       ),
     ],
     plates: [
       plate(
         "/media/gear-archive/light-flare.jpg",
-        b("灯管展开与收纳", "Light tube deployment and storage"),
+        b("照明与化学信号棒总成", "Illumination and signal baton assembly"),
         b(
-          "伸缩方案、握持端与发光状态。",
-          "Extension proposals, grip and illuminated configurations.",
+          "伸缩双模套管、滚花铝合金握把与广角扩散发光体。",
+          "Dual-mode telescoping sleeve, knurled aluminum handle, and wide-angle diffuser.",
         ),
       ),
     ],
@@ -99,44 +99,44 @@ export const TOOLS: ArchiveGear[] = [
     name: b("急救注射器", "Emergency injector"),
     category: b("急救工具", "Emergency equipment"),
     summary: b(
-      "腰带携带的紧凑注射装置，为紧急情况准备。",
-      "A compact belt-carried injector kept for emergencies.",
+      "腰带应急快速自注射装置，内置肾上腺素强化药剂，专供在濒死重创下强行激活心肺与战斗机能。",
+      "A rapid auto-injector holstered on the belt, primed with emergency adrenaline to reboot cardiopulmonary drive and combat reflex under catastrophic trauma.",
     ),
     film: b(
-      "体育馆决战中，布鲁斯受创后取出注射器给自己注射，随后重新投入战斗。",
-      "In the stadium battle, an injured Bruce injects himself before returning to the fight.",
+      "体育馆高空角斗中近距离中弹濒死，布鲁斯拔出注射器强行扎入大腿，在药剂狂暴泵入中嘶吼反杀暴徒。",
+      "Taking point-blank buckshot in the stadium climax, a fading Bruce drives the injector into his thigh, roaring back to consciousness in a savage chemical surge.",
     ),
     design: b(
-      "设定集将其解释为紧急使用的肾上腺素注射装置。",
-      "The art book describes it as an adrenaline injector for emergencies.",
+      "设定集揭示其为针对战损研制的单兵肾上腺素注射器，紧凑滚花合金圆筒带有液位观察窗与防误触机械保险。",
+      "The art book designates it as a combat adrenaline auto-injector, encased in a knurled alloy cylinder with a fluid inspection window and mechanical safety interlock.",
     ),
     filmDetails: [
       b(
-        "在哥谭广场花园，布鲁斯遭到近距离枪击，倒下后取出装有绿色液体的小型注射器，对自己施用。这个动作让随身急救装备直接进入决战的动作链条。",
-        "At Gotham Square Garden, Bruce is hit at close range. After falling, he takes a small injector containing green liquid and administers it to himself, bringing emergency equipment directly into the battle's action.",
+        "在哥谭广场花园顶棚的惨烈搏杀中，布鲁斯遭到步枪近距离重创，仰面跌落高悬的横梁命悬一线。在意识即将溃散的绝境下，他艰难掏出这枚装满亮绿色药剂的应急注射器，反手刺破战衣扎入大腿肌肉。狂暴的药剂泵入血管，剧烈的心跳与神经脉冲将他从死亡边缘强行拉回，爆发出惊人的肉体搏击力量。",
+        "In the ferocious catwalk struggle atop Gotham Square Garden, Bruce absorbs a devastating close-quarters blast, hanging over the abyss near cardiac arrest. Fighting slipping consciousness, he wrenches this emerald-fluid injector from his belt and drives the needle through his suit into femoral muscle. The chemical surge jolts his cardiovascular system awake, igniting an adrenaline-fueled final assault.",
       ),
       b(
-        "设定集的用途说明将它定位为紧急肾上腺素注射装置，既可以供布鲁斯自用，也可以用于他需要帮助的人。它与照明、侦查工具一起，扩展了腰带承担的任务。",
-        "The art-book explanation frames it as an emergency adrenaline injector for Bruce or another person who needs help. Alongside lighting and surveillance tools, it broadens the belt's role.",
+        "这个生死攸关的施药瞬间将超级英雄的‘血肉之躯’刻画得淋漓尽致：蝙蝠侠会流血、会骨折、会陷入休克，他依靠的不是超越常理的超自然体魄，而是准备周密的创伤医学装具与摧折不灭的钢铁意志。",
+        "This harrowing self-injection underscores the brutal physical mortality at the core of Batman: he bleeds, breaks ribs, and goes into shock. He survives not through superhuman immunity, but through rigorous trauma medical preparation and sheer indomitable will.",
       ),
     ],
     designDetails: [
       b(
-        "剖面草图拆开了保护外壳、内部药筒和针端的关系。外壳近似短圆筒，着色方案用绿色窗口与端盖，让道具在深色腰带上仍有可辨认的功能细节。",
-        "The sectional sketch separates the protective shell, internal cartridge and needle end. A short cylindrical body, green window and end cap give the prop recognizable details against the dark belt.",
+        "设定集结构剖面图拆解了注射器的内部机械：耐压合金保护筒内封装高纯度药液玻璃安瓿与高回弹触发弹簧，底部设有一触即发的强力冲压针头；药管中央开有长条形视窗，便于在暗光下快速核验药液存量与清澈度，两端滚花端盖具备出色的防滑抓握力。",
+        "Art-book sectional blueprints break down the internal mechanics: a heavy-walled alloy canister houses a hermetic glass ampoule and a high-load firing spring that drives the penetrator needle through Kevlar; a longitudinal inspection window allows rapid fluid inventory in the dark, bookended by aggressively knurled caps for gloved purchase.",
       ),
       b(
-        "图版同时绘制完整收纳外形与内部结构，强调它是一件可以携带的独立道具。其紧凑比例、滚花外壳和金属端部与其他腰带工具保持一致。",
-        "The plate shows both the closed carrying form and its internal assembly, treating it as a self-contained portable prop. Compact proportions, knurled housing and metal ends match the other belt tools.",
+        "道具造型兼具军规急救医疗笔与战术穿刺器的双重特征：明快的绿色视窗在纯黑战衣与腰带间构成醒目的功能标记，顶端按压机械解脱保险可在遭遇剧烈翻滚撞击时杜绝意外误触，展现出严谨的战地创伤医学工程考量。",
+        "The prop design marries the ergonomics of a military auto-injector with a tactical strike tool: the vivid emerald window creates an unmistakable focal point against the matte black loadout, while a positive mechanical thumb lock eliminates accidental discharge during extreme combat falls.",
       ),
     ],
     plates: [
       plate(
         "/media/gear-archive/adrenaline-injector.jpg",
-        b("注射器结构研究", "Injector construction study"),
+        b("战斗应急注射器内部剖面", "Combat adrenaline injector cross-section"),
         b(
-          "紧凑圆筒外壳、内部药筒与着色方案。",
-          "Compact cylindrical housing, internal cartridge and rendered proposal.",
+          "耐压合金外壳、高载荷弹簧冲压针头与绿色液位观察窗。",
+          "Alloy protective sleeve, high-load spring-driven needle, and emerald inspection window.",
         ),
       ),
     ],
@@ -147,47 +147,47 @@ export const TOOLS: ArchiveGear[] = [
     category: b("爆破工具", "Breaching equipment"),
     usageLabel: USE,
     summary: b(
-      "圆形黏弹以磁性底面附着目标，腰带夹容纳三枚备用弹。",
-      "Circular charges use a magnetic base, with a belt clip holding three spares.",
+      "扁平圆形定向爆破磁吸黏弹，配有渐进式环形倒计时灯与三联装快拔腰带夹，支持遥控或定时定点破障。",
+      "Flat circular magnetic shaped charges featuring progressive LED countdown dials and a three-round rapid-draw belt clip for precision demolition.",
     ),
     film: b(
-      "这组设计把黏弹从发射器延伸到手动布置和腰带补给。",
-      "The proposal extends the sticky-charge system into hand placement and belt-carried spares.",
+      "扩展自黏弹发射器的单兵手持破障体系：既可徒手吸附在装甲钢门上定时引爆，亦可与发射筒联动实现远距投送。",
+      "An expansion of the sticky-charge system: deployed by hand via powerful magnetic bases or launched through the pneumatic gun for standoff standoff breaching.",
     ),
     design: b(
-      "爆炸视图与三枚装夹具分别研究单个道具和携带方式。",
-      "Exploded views and a three-charge clip study the individual prop and its carrying arrangement.",
+      "爆炸分解图呈现磁铁底盘、聚能装药腔与环形发光时钟；专用腰带夹通过背部插扣实现戴手套下的盲操抽取。",
+      "Exploded schematics detail the magnetic foot, shaped-charge liner, and circular dial; a dedicated three-cell clip ensures blind one-handed extraction with gloved hands.",
     ),
     filmDetails: [
       b(
-        "圆形黏弹的概念把附着、启动和状态显示集中在一个扁平物件上。图版绘有磁性底面、顶部按钮与环形倒计时显示；另一组草图考虑它如何与黏弹发射器衔接。",
-        "The circular charge concept combines attachment, activation and status display in a flat object. The plate shows a magnetic base, top button and circular countdown display; another sketch considers its connection to the sticky bomb gun.",
+        "这套圆形磁吸黏弹将破障作业推向极致的高效与可控。扁平圆盘底座内嵌高强钕铁硼磁铁，能牢固吸附在任何钢铁门轴、通风锁扣或机械连杆上；顶端中央设有一触式按压激活钮，配合外圈环形倒计时灯带，让布鲁斯在分秒必争的突入行动中直观掌控安全撤离时间。",
+        "These circular magnetic charges bring demolition down to surgical precision. High-grade neodymium magnets in the base latch securely onto structural iron beams, vault hinges, or steel grates; a central tactile arming plunger and outer circular LED dial give Bruce immediate visual feedback on detonation timing under heavy fire.",
       ),
       b(
-        "腰带夹的方案可放置三枚黏弹，背面通过夹具挂在腰带上，并为取用留出开口。携带布局因此与部署方式一起设计，而不是把黏弹当成一件孤立的手持道具。",
-        "The belt-clip proposal carries three charges, attaches at the rear and leaves access openings. Carrying and deployment are developed together rather than treating the charge as an isolated hand-held object.",
+        "专用三联装腰带夹挂载于后腰侧，开式卡槽设计支持单手自上而下快速滑脱拔取。布鲁斯无需视线脱离战场，即可在潜行移动中连续取出三枚黏弹完成多点同步定点布设，展现出特种突击作战的战术严密性。",
+        "A three-round rapid-draw caddy rides on the rear hip, engineered with open guide channels for swift, blind upward slide extraction. Bruce can strip charges without breaking visual contact with hostiles, stringing synchronized multi-point breaches across fortified choke points.",
       ),
     ],
     designDetails: [
       b(
-        "手绘爆炸图将上壳、外圈、内部组件和磁性底面分层排列，并以剖视与不同图形比较倒计时显示。着色图进一步尝试圆形轮廓、暗色侧壁与金属底面的搭配。",
-        "The exploded sketch layers the upper shell, outer ring, internal components and magnetic base. Sections and alternate graphics explore the countdown display; the render develops a circular form with dark sidewalls and a metal base.",
+        "分层爆炸图清晰展现了弹体的工业微构架：顶部抗冲击阳极氧化铝外壳、内部微电子定时芯片与发光二极管环、聚能微型爆炸装药层以及底部橡胶包裹的高强磁性吸盘。各层之间设有精密防潮密封圈，确保其在哥谭连绵阴雨中绝不短路失灵。",
+        "Layered exploded diagrams reveal the internal micro-architecture: a CNC-machined top housing, timing microprocessor board with LED ring, shaped-charge payload, and rubberized magnetic base. Precision elastomeric gaskets between tiers guarantee complete waterproof reliability in Gotham's perpetual downpours.",
       ),
       b(
-        "三枚装腰带夹与圆形磁吸方案同页并列，夹具草图还保留较方正的弹体外形。不同外形展示了携带容积与道具造型在开发中的变化。",
-        "The three-charge clip sits beside the circular magnetic proposal, while its sketches retain a more angular charge shape. The variations show carrying volume and prop form evolving during development.",
+        "草图阶段还探讨了更方正的弹体与腰带夹轮廓，最终定型为边缘倒圆的紧凑圆饼造型。这一改动不仅降低了在腰间剧烈运动时的钩挂风险，更使其外径恰好吻合气动黏弹发射枪的发射筒内径，完成了‘手抛吸附’与‘枪射投送’两套系统的口径通用化。",
+        "Early concept explorations evaluated bulkier rectangular charge profiles before converging on chamfered disc geometry. This profile eliminates snag hazards on belt webbing while matching the bore diameter of the pneumatic launcher barrel, standardizing ammunition between manual magnetic placement and stand-off launching.",
       ),
     ],
     plates: [
       plate(
         "/media/gear-archive/magnetic-charge.jpg",
-        b("黏弹与三枚装腰带夹", "Charges and three-charge belt clip"),
-        b("磁性底面、环形显示与腰带取用位置。", "Magnetic base, circular display and belt access."),
+        b("聚能黏弹与三联装快拔腰带夹", "Shaped charges and three-round rapid-draw clip"),
+        b("钕铁硼磁吸底座、环形渐进发光时钟与盲拔腰带插槽。", "Neodymium magnetic foot, circular progressive LED timer, and blind-draw belt slots."),
       ),
       plate(
         "/media/gear-archive/magnetic-charge-sketch.jpg",
-        b("黏弹分层草图", "Exploded charge sketches"),
-        b("外壳、底面及显示布局研究。", "Studies of the shell, base and display layout."),
+        b("黏弹微架构分层工程图", "Exploded micro-architecture schematics"),
+        b("微电子定时芯片、聚能破障装药腔与弹性密封圈分解。", "Timing microprocessor board, shaped-charge payload, and elastomeric seals."),
       ),
     ],
   },
@@ -197,44 +197,44 @@ export const TOOLS: ArchiveGear[] = [
     category: b("近战装具", "Close-combat equipment"),
     usageLabel: USE,
     summary: b(
-      "两段握柄合并为一根短棍，展开后由内部链条连接。",
-      "Two handles stow as one short rod and separate on an internal chain.",
+      "收纳为一体化实心短棍、旋转解锁后拉出内置高抗拉链条的紧凑双节棍（Nunchucks），专为狭窄空间非致命格斗而设。",
+      "A close-combat weapon stowing as a continuous solid baton that twists to unlock an internal high-tensile chain (compact nunchucks) for non-lethal strikes in confined spaces.",
     ),
     film: b(
-      "双节棍构想为腰带增加一种可快速展开的近战工具。",
-      "The nunchucks proposal adds a quickly deployable close-combat tool to the belt.",
+      "收纳于腰带侧后方的高隐蔽近战兵器构想：在走廊与车厢等狭窄死角中瞬间变招，以沉重合金挥击瓦解持械暴徒。",
+      "A high-concealment melee concept stowed at the rear belt: twisting open in tight corridors and vehicles to disarm armed assailants with devastating kinetic momentum.",
     ),
     design: b(
-      "草图与着色方案围绕合拢收纳、旋转解锁和链条展开。",
-      "Sketches and renders explore closed storage, twist release and chain deployment.",
+      "手绘线稿研究了双柄自锁卡榫、内部弹簧收线与链条伸展力学，使一件高烈度打击器械完美伪装在腰带的几何线条中。",
+      "Sketches explore dual-handle detents, internal spring retractors, and chain kinematics, camouflaging a high-impact kinetic striking weapon within the belt's geometry.",
     ),
     filmDetails: [
       b(
-        "收纳时，两段握柄沿同一轴线合拢，在腰带上呈现为一根短棍。使用构想是解开连接部位，将两端分离后露出链条，使携带外形与使用外形产生明确变化。",
-        "Stowed, the handles meet along one axis and appear as a short rod on the belt. The proposed use releases the joint and separates the ends to expose the chain, creating a clear change between carrying and working forms.",
+        "这件双节棍（nunchucks）设计为布鲁斯在面对多名近身持械暴徒时提供了更具破坏力的非致命制敌手段。平素紧凑合拢为一根毫无多余外露件的短金属警棍插在腰间，一旦遭遇近身围堵，手腕轻拧即可顺畅解开轴心卡榫，在呼啸破风声中抽拉出高强度金属链节，凭借杠杆重击瓦解刀斧攻击。",
+        "This compact nunchucks weapon grants Bruce explosive non-lethal stopping power against multiple armed assailants in confined quarters. Carried on the belt as a seamless, rigid short baton, a flick of the wrist releases internal retention catches to draw out the steel chain, generating tremendous kinetic whip to shatter blades and blunt trauma defenses.",
       ),
       b(
-        "图版将合拢状态、拉开状态和弯折后的链条连接并列，同时以腰带与人物小图交代携带比例。这件工具的设计重点是让近战装具能融入日常的腰部收纳。",
-        "Closed, separated and articulated chain configurations sit beside small belt and figure studies. The design focuses on fitting close-combat equipment into the suit's regular waist storage.",
+        "在狭窄巷道、楼梯转角或车厢内部等无法大幅度挥舞长兵器的死角，双节棍的变向打击与柔性绞杀特性能瞬间克制持械手腕。它与蝙蝠侠不使用火器的自设底线深度契合，是纯粹依靠体能、技巧与动能守恒压制罪恶的物理延伸。",
+        "In stairwells and tight entryways where long weapons foul on walls, the articulated chain offers instantaneous angles of attack and joint entanglements to neutralize armed wrists. Deeply aligned with Bruce's refusal to use firearms, the weapon is a pure mechanical amplifier of human biomechanics and kinetic skill.",
       ),
     ],
     designDetails: [
       b(
-        "手绘稿研究扭转后拉开的释放动作，以及内部弹簧和链条的收纳关系。握柄表面分区提供抓握纹理，中央接缝在合拢时保持连续轮廓。",
-        "The sketches study a twist-and-pull release and the storage relationship of the internal spring and chain. Patterned handle sections provide grip while the center joint keeps the closed silhouette continuous.",
+        "概念手稿着重攻关了‘短棍到双截棍’的无缝形变工程：两段棍身在中部通过高精度四分之一圈旋转卡扣（Quarter-turn twist lock）咬合；拉开时，内置的高抗拉特种钢链与阻尼导套顺畅滑出，棍身内壁设有防缠绕自回位限位器，杜绝链环在高速挥击时产生死结。",
+        "Concept drawings engineer a flawless transformation from baton to flail: the two handles lock flush via a quarter-turn twist-detent mechanism; upon separation, heavy welded steel chain links and swivel bushings deploy smoothly from internal recesses, engineered with anti-twist limits to eliminate chain knotting during high-velocity whips.",
       ),
       b(
-        "着色方案以黑色主体和金属链节呈现两段工具，端部与中间连接处保留清晰的机械分界。图中的展开箭头帮助说明外观如何随取用动作变化。",
-        "The render uses dark handles and metal chain links, with clear mechanical divisions at the ends and central joint. Deployment arrows show how the appearance changes during access.",
+        "着色图版展现了精细的表面人机工程学：棍体两端加工有菱形交叉滚花与指槽凹痕，提供高摩擦力握持；深沉哑光黑与端部抛光钛合金保护箍形成鲜明对比，在满足腰带紧凑横向挂载空间的同时，展现出韦恩私制格斗装备的严密工业美感。",
+        "Render plates showcase fine tactical ergonomics: diamond knurling and shallow finger grooves maximize traction across both handles; matte black coating contrasts with heat-treated titanium end caps, fitting cleanly into the utility belt's horizontal carry envelope with uncompromising bespoke industrial precision.",
       ),
     ],
     plates: [
       plate(
         "/media/gear-archive/nunchucks.jpg",
-        b("双节棍收纳与展开", "Nunchucks stowed and deployed"),
+        b("双节棍收纳短棍与链条展开姿态", "Nunchucks stowed baton and deployed chain configuration"),
         b(
-          "合拢短棍、链条连接与腰带携带研究。",
-          "Closed rod, chain connection and belt-carry studies.",
+          "四分之一圈旋转解脱榫、内置高抗拉特种钢链与腰带横置挂载方案。",
+          "Quarter-turn twist detent, internal high-tensile steel chain, and horizontal belt carriage.",
         ),
       ),
     ],
@@ -245,44 +245,44 @@ export const TOOLS: ArchiveGear[] = [
     category: b("手套装具", "Glove equipment"),
     usageLabel: USE,
     summary: b(
-      "电击部件集中在指端，手套仍保留检查线索所需的灵活度。",
-      "Electrical components sit at the fingertips while the glove retains dexterity for examining clues.",
+      "嵌入战术手套指端的微型高压电击电弧发生器，掌面与指腹维持触觉感知以兼顾取证搜查。",
+      "Micro high-voltage arc discharge electrodes embedded in tactical glove tips, leaving palms and finger pads unhindered for forensic trace recovery.",
     ),
     film: b(
-      "电击功能与侦探工作需要的手指动作被放进同一套手部装具。",
-      "Electrical capability and the finger movement needed for detective work share one glove assembly.",
+      "近身锁喉与贴身制敌时的致命弱点打击：指尖触碰瞬间释放脉冲电流使目标肌肉痉挛，同时不剥夺搜查细小线索的指间触感。",
+      "Precision electroshock delivered during close-quarters grappling: pulsed arcs paralyze target musculature on contact without compromising tactile sensitivity for minute clues.",
     ),
     design: b(
-      "Finger Taser 图版并列展示指端方案、线路与实物手套。",
-      "The Finger Taser plate combines fingertip studies, wiring and the physical glove.",
+      "设定集图版展示了指尖电极嵌入、手背导线排布与实物道具手套，实现了格斗致残与物证勘验的精密共存。",
+      "Art-book plates pair fingertip electrodes and dorsal wire routings with prop photography, achieving an elegant coexistence of incapacitating combat and forensic dexterity.",
     ),
     filmDetails: [
       b(
-        "指部电击器把近距离电击的构想放到手套上。展示图以指端电弧说明功能，线路沿手背与腕部连接，使手掌仍能握持工具、触碰物件。",
-        "The finger taser places a close-range electrical concept on the glove. A fingertip arc illustrates the function, while wiring runs over the hand and wrist so the palm remains available to hold tools and touch objects.",
+        "指部电击器将近距瘫痪手段无缝融入蝙蝠侠的手部格斗技。在近身缠斗或锁喉擒拿时，指尖微型电极可在触及目标神经丛或颈动脉窦的瞬间释放高频电弧脉冲，在零距离令暴徒神经中枢骤停、肌肉剧烈痉挛而失去抵抗，省去了拔取外部电击枪的繁琐动作。",
+        "The finger taser integrates silent incapacitation straight into Batman's hand-to-hand combat system. In close clinch grappling or chokes, micro-electrodes at the fingertips discharge high-voltage pulsed currents into neural clusters or carotid arteries, incapacitating hostiles instantly without needing to draw an external stun gun.",
       ),
       b(
-        "这套装具面对的另一项要求是侦查动作：布鲁斯需要灵活的手指拾取线索。设计因此控制指端部件的体积，让电击功能与手部细小动作共存。",
-        "The assembly also has to serve investigative gestures: Bruce needs dexterous fingers to pick up clues. The design limits the bulk at the fingertips so electrical utility can coexist with fine movement.",
+        "更为关键的是其对侦探工作的兼顾：布鲁斯是暗夜侦探，需要拾取凶案现场极其微小的字条、细绳与化学残渣。设计团队将电击电极严格限制在指甲外缘与指尖顶端，指腹依然保留高敏度触觉感知与抓握摩擦力，使执法武力与精细勘查完美共存。",
+        "Critically, the tool never compromises detective tradecraft: Bruce must collect fragile cipher slips, severed cords, and chemical traces. By keeping electrodes strictly on nail margins and fingertips, the pulp of his fingers retains high tactile fidelity, letting lethal combat capability coexist with delicate crime-scene handling.",
       ),
     ],
     designDetails: [
       b(
-        "两组指端小图比较了电极在手套表面的排列，整只手套的展示图则把腕部线路纳入观察。功能不只靠一块突出的机械件表达，而是分布到指端和手背。",
-        "Small fingertip studies compare electrode placement, while the complete glove study includes the wrist wiring. The function is distributed over fingers and hand rather than expressed through one large protruding part.",
+        "图版深入研讨了微型电极的电气布置：柔性高绝缘扁平导线沿手背指关节自然顺延，避开频繁弯折的手指内侧；高压脉冲逆变电容与微型电池组被巧妙隐藏在护腕硬质夹层内，由大拇指轻触食指侧面的微动开关单点触发，杜绝握拳时的误触短路。",
+        "Blueprints detail the electrical circuitry: flexible flat insulated leads route along the back of the knuckles, bypassing high-friction flex zones inside the palm; pulse inverter capacitors and micro-power cells tuck within the wrist bracer, activated via an index-finger micro-switch to eliminate short circuits while clenching fists.",
       ),
       b(
-        "实物照片保留了手背上的片状部件与外露连接线。与护臂并读时，可以看到保护前臂的硬结构和需要灵活活动的手指，采用了不同的装具密度。",
-        "The prop photograph retains plate-like hand components and exposed leads. Beside the gauntlet, it shows different equipment densities for a protected forearm and fingers that need to move freely.",
+        "实物道具照片清晰记录了手套表面的分层质感：重磅牛皮与防割凯夫拉内衬上贴附着薄型合金导电触片，外露走线展现出布鲁斯在工作台上手工焊制改装的真实痕迹。这种‘不加修饰的裸露改装感’使其与纯科幻超级英雄道具划清了本质界限。",
+        "Photographs of the physical costume glove capture realistic layered textures: thin conductive alloy contacts bond over heavy leather and slash-proof Kevlar, with exposed hand-soldered leads testifying to Bruce's solitary work at the bench. This raw, unadorned aesthetic separates the equipment decisively from sci-fi fantasy.",
       ),
     ],
     plates: [
       plate(
         "/media/gear-archive/finger-taser.jpg",
-        b("电击手套设计", "Electrical glove design"),
+        b("战术手套电击系统与实物改装", "Tactical glove electroshock system and prop modifications"),
         b(
-          "指端电极、手背线路与实物手套。",
-          "Fingertip electrodes, hand wiring and physical glove.",
+          "指尖电弧触点、手背柔性绝缘导线与保留指腹触觉的皮革掌面。",
+          "Fingertip arc contacts, flexible dorsal leads, and tactile-preserving leather palm.",
         ),
       ),
     ],
@@ -293,50 +293,50 @@ export const TOOLS: ArchiveGear[] = [
     category: b("前臂挂载", "Forearm fittings"),
     usageLabel: USE,
     summary: b(
-      "护臂外侧的细长短刺，以成排储架与绑带固定。",
-      "Slender spikes sit in parallel racks and straps on the outer gauntlet.",
+      "外装于护臂储架的高抗拉特种钢投掷短刺（Bō-Shuriken），辅以外侧储架与单手快速拔取卡槽。",
+      "High-tensile steel throwing rods (Bō-Shuriken) mounted on the outer gauntlet rack, secured in quick-release tension clips.",
     ),
     film: b(
-      "投掷短刺的设计将前臂空间用作随身携带区。",
-      "The throwing-spike design uses the forearm as a carrying zone.",
+      "出勤随身远距压制飞行道具：自前臂外侧顺势拔出甩掷，精准破坏探照灯源、击落危险引信或致残敌方持械手腕。",
+      "A carried projectile for standoff suppression: drawn effortlessly from the outer forearm to shatter floodlights, sever cords, or disable armed wrists.",
     ),
     design: b(
-      "草图将这些构件标为 throwing sticks 与 bō-shuriken，另有容纳五枚短刺的储架方案。",
-      "The sketches label the fittings throwing sticks and bō-shuriken, with another proposal carrying five spikes.",
+      "手绘线稿明确将其注记为 throwing sticks 与 bō-shuriken；双侧分工使外侧五联装短刺与掌侧弹簧抓钩互不干扰。",
+      "Sketches explicitly designate the fittings as throwing sticks and bō-shuriken; bilateral architecture isolates the five outer rods from the inner spring grapnel.",
     ),
     filmDetails: [
       b(
-        "护臂手绘稿直接把外侧成排的细长构件命名为投掷棒与棒形手里剑。它们与掌侧抓钩分处前臂两侧，让护臂同时承担保护、携带和工具取用。",
-        "The gauntlet sketch identifies the parallel outer fittings as throwing sticks and bō-shuriken. Separate from the palm-side grapnel, they let the forearm assembly serve protection, carrying and access.",
+        "护臂外侧成排装载的高抗拉钢制投掷短刺（Bō-Shuriken），是蝙蝠侠在不使用火器的前提下实现中远距离战术压制的利器。在潜行渗透或正面遭遇战中，布鲁斯可顺着挥臂动作从前臂储架上行云流水般拔出钢刺甩手飞掷，精准击碎高处探照灯具、切断悬吊缆绳或击穿敌方持枪手腕。",
+        "The parallel high-tensile steel throwing rods (Bō-Shuriken) mounted along the outer gauntlet afford standoff kinetic suppression without resorting to firearms. In infiltration sweeps, Bruce draws these spikes in one fluid sweeping motion to smash overhead floodlights, sever counterweight cables, or disable weapon hands across the room.",
       ),
       b(
-        "另一页研究了能容纳五枚投掷短刺的外侧储架，图中还绘出背衬与绑带。全身设计里的金属杆由此获得更具体的工具用途与收纳结构。",
-        "Another page studies an outer rack holding five throwing spikes, with backing and straps. The rods in the full-body design gain a more specific tool function and storage structure.",
+        "这些短刺在全身装甲轮廓中形成了极具辨识度的前臂线条。它们既是取用迅速的锋利暗器，也是前臂外侧天然的防劈砍格挡加强筋，在近身战中能直接弹开砍刀和钢管的横扫，将武器携带与肢体防御合二为一。",
+        "These cylindrical steel spikes form a menacing visual signature along the forearm. Functioning simultaneously as rapid-draw throwing weapons and rigid sacrificial ribs to deflect machete chops, they merge ammunition carriage and limb armor into one solid assembly.",
       ),
     ],
     designDetails: [
       b(
-        "数字图与实物照片展示尖端方向、成排间距和固定位置；手绘稿则关注储架如何贴合前臂，以及绑带如何围绕底板形成承托。",
-        "Digital views and the prop photograph show tip direction, spacing and attachment, while sketches examine how the rack fits the forearm and how straps support its base.",
+        "Glyn Dillon 在手稿中明确使用了东方古武术‘棒手里剑’（Bō-Shuriken）与‘投掷棒’（Throwing Sticks）的原始技术注记。外侧储架可容纳 5 枚高硬度双头穿甲钢刺，每枚钢刺均经过精密动平衡车削，尾部带有细密防滑滚花以便双指牢固夹持，尖端经过高频淬火具备极强的穿甲贯穿力。",
+        "Glyn Dillon's notes explicitly apply the martial terminology of Bō-Shuriken and throwing sticks. The outer rack houses five high-hardness double-ended armor-piercing spikes, each spin-balanced on a lathe with knurled tails for two-finger pinching and induction-hardened chisel tips for maximum structural penetration.",
       ),
       b(
-        "同页的掌侧机构另行研究弹簧前送与快速释放，强调护臂不同区域有不同用途。短刺储架与抓钩机构共用装具空间，但保持各自的取用方向。",
-        "The palm-side mechanism on the same page separately explores spring-forward movement and quick release. The spike rack and grapnel share the assembly while keeping distinct access directions.",
+        "结构设计图着重展示了外侧储架与护臂基座的安装逻辑：储架底板通过阻尼弹簧卡簧分别锁紧 5 枚短刺，外力拔出顺滑而剧烈冲撞中绝不脱落；储架下方垫有双道缝线厚单宁布与缓冲胶垫，与掌侧的抓钩发射滑轨形成物理绝缘，确保双方在极端作战中各自独立运转。",
+        "Engineering schematics demonstrate how the outer rack integrates onto the bracer: spring-tensioned leaf detents retain each spike, releasing smoothly upon an intentional draw while resisting dislodgement during hard falls; heavy double-stitched denim cushions the base, keeping the dart magazine completely isolated from the palm grapnel.",
       ),
     ],
     plates: [
       plate(
         "/media/gear-archive/forearm-spikes.jpg",
-        b("护臂短刺与实物装具", "Forearm spikes and physical assembly"),
-        b("外侧成排挂载与腕部结构。", "Parallel outer fittings and wrist construction."),
+        b("外侧五联装手里剑与实物装具", "Outer five-spike rack and prop assembly"),
+        b("高频淬火穿甲双头钢刺、成排阻尼卡簧与防割单宁衬垫。", "Induction-hardened double-ended steel spikes, leaf detents, and heavy denim lining."),
         4,
       ),
       plate(
         "/media/gear-archive/gauntlet-release.jpg",
-        b("五枚短刺储架草图", "Five-spike rack sketch"),
+        b("五枚短刺储架与快速拔取工程草图", "Five-spike rack and rapid-draw engineering sketches"),
         b(
-          "外侧储架、绑带与掌侧快速释放研究。",
-          "Outer rack, straps and palm-side quick-release studies.",
+          "外侧储架装配逻辑、F-Lock 战术扣带与内侧滑轨物理绝缘结构。",
+          "Outer rack mounting, F-Lock tactical webbing, and guide rail physical isolation.",
         ),
         4,
       ),
@@ -348,42 +348,42 @@ export const TOOLS: ArchiveGear[] = [
     category: b("腰带工具", "Belt equipment"),
     usageLabel: USE,
     summary: b(
-      "警用执勤腰带的参考延伸到用于约束目标的轻便束带。",
-      "Police duty-belt references extend to lightweight restraints.",
+      "参考现代特警执勤标准的高强度聚合物束带式手铐，轻质折叠收纳于腰带附包，专供群体制服与快速拘押。",
+      "High-strength polymer zip-tie cuffs modeled on modern SWAT duty gear, folded into belt pouches for rapid multiple-suspect restraint.",
     ),
     film: b(
-      "束带式手铐属于设定集说明中的腰带携带清单。",
-      "Zip-tie cuffs form part of the belt inventory described in the art book.",
+      "现场调查与瓦解犯罪链条的控制装具：在突袭后将失去抵抗的暴徒迅速约束，确保现场物证与人证处于可控状态。",
+      "Tactical restraint hardware: swiftly binding subdued suspects after dynamic entries to secure suspects and preserve forensic integrity.",
     ),
     design: b(
-      "腰带以美国警用装具为参照，混合帆布与皮革收纳袋。",
-      "The belt draws on American police equipment, combining canvas and leather pouches.",
+      "摒弃笨重金属手铐，选用柔性特种尼龙双联环束带，完美呼应出勤第二年强调机动性、自足性与现实执法质感的装备体系。",
+      "Rejecting bulky steel handcuffs in favor of flexible dual-loop nylon ties, matching the mobility and realism of Year Two street-level policing.",
     ),
     filmDetails: [
       b(
-        "腰带的用途说明把束带式手铐与紫外灯作为随身工具的两个例子：前者用于约束，后者服务现场检查。这让腰带拥有执勤工具包的功能范围。",
-        "The belt commentary names zip-tie cuffs and UV lighting as two examples of carried tools: one for restraint, the other for scene examination. The belt therefore takes on the range of a duty toolkit.",
+        "束带式手铐是蝙蝠侠执法工具链中不可或缺的控制环节。在突袭地下赌场、废弃码头或走廊遭遇战中，面对多名被击倒失去抵抗的嫌疑人，布鲁斯从腰带侧袋抽出轻巧的双联环高强度束带，单手即可完成双腕反剪死锁，彻底切断暴徒反扑或销毁证据的可能。",
+        "Zip-tie cuffs form the vital restraint phase of Batman's operational loop. Following dynamic sweeps through illicit dens, flooded basements, or dockside warehouses, Bruce strips lightweight dual-loop ties from his belt pouches, binding suspects' wrists behind their backs in seconds to freeze the scene.",
       ),
       b(
-        "轻便束带与护甲、抓钩和爆破装具承担不同任务。它们补上行动中的控制环节，也使蝙蝠侠的装备不只围绕打击和移动展开。",
-        "Lightweight restraints serve a different purpose from armor, grapnels and breaching equipment. They cover the control stage of an encounter, extending the kit beyond striking and movement.",
+        "相较于传统沉重的金属钢铐，这种高强度工业尼龙束带几乎不占重量与腰带空间，使布鲁斯能够随身携带多达数十副，在不依赖 GCPD 巡警支援的情况下独自完成整间屋子的人员控制，彰显了这位独行侠冷静冷酷的专业执法素养。",
+        "Unlike bulky steel chain cuffs, high-tensile nylon flex-cuffs add negligible weight and bulk, allowing Bruce to pack dozens of restraints. He can secure an entire room of subdued hostiles single-handedly without waiting for police backup, epitomizing the ruthless procedural discipline of a solo vigilante.",
       ),
     ],
     designDetails: [
       b(
-        "装具袋参考美国警察与特警上街执勤时携带的工具。帆布、皮革和黑色扣具形成易于分区的收纳系统，束带式手铐属于这套携带逻辑。",
-        "The pouches refer to tools carried by American police and SWAT on the street. Canvas, leather and dark hardware create compartmentalized storage, with zip-tie cuffs belonging to that carrying logic.",
+        "设计团队深入调研了美国一线特警与特种部队在城市反恐中携带的现役执勤装备（Duty Gear）。腰带收纳袋采用哑光黑色粗帆布与加厚皮革拼接而成，内部设有分隔收纳插槽，使折叠成扁平‘U’型的双环束带能像战术弹匣一样顺畅插拔，绝不在行动中卡带。",
+        "The design department studied frontline SWAT and special operations duty kit. Belt pouches combine matte black heavy canvas and reinforced leather with internal divider sleeves, stowing flat U-folded zip-cuffs like magazines for snag-free deployment.",
       ),
       b(
-        "全身正背面设计提供腰袋与大腿绑带的总体位置；Light and Flare 页的文字进一步列出腰带工具。两组资料把外观布局与携带用途连接起来。",
-        "The full-body front and back study supplies the overall pouch and thigh-strap placement; the Light and Flare commentary names belt tools. Together they connect the visual layout to its carrying purpose.",
+        "设定集图版强调了整条腰带的系统化配重：束带式手铐与紫外线取证笔、多用途工具钳等非杀伤性工具统一分配在左侧战术袋中，与右侧重型穿甲短刺、黏弹发射器形成严格的重力与功能平衡，反映出布鲁斯在装备配置上极度理性的战术逻辑。",
+        "Art-book loadout spreads emphasize calculated belt weight distribution: flex-cuffs, UV forensics, and multi-tools populate the left-hand pouches to counterbalance heavy breaching charges and the grapnel on the right, evidencing Bruce's rigorous tactical discipline.",
       ),
     ],
     plates: [
       plate(
         "/media/gear-archive/belt.jpg",
-        b("腰带收纳布局", "Belt storage layout"),
-        b("正背面腰袋与大腿装具的位置。", "Front and rear pouch and thigh-equipment placement."),
+        b("腰带多功能装具矩阵布局", "Multi-role duty belt matrix layout"),
+        b("哑光黑粗帆布分隔附包、双联环特警高强度束带与快拆金属锁扣。", "Matte black canvas divider pouches, dual-loop SWAT flex-cuffs, and rapid buckles."),
         4,
       ),
     ],
@@ -394,44 +394,44 @@ export const TOOLS: ArchiveGear[] = [
     category: b("侦查设备", "Surveillance equipment"),
     usageLabel: USE,
     summary: b(
-      "任务结束后读取记录镜片，把现场影像接回分析设备。",
-      "Reads the recording lens after a mission and brings field imagery back into the analysis system.",
+      "连接记录镜片与车间主机的三防便携数据终端与浸润式感应读取底座，实现前线侦查视频的极速转存与解密。",
+      "A rugged field terminal and inductive fluid-well docking station bridging recording lenses with mainframes for instant data retrieval and decryption.",
     ),
     film: b(
-      "记录镜片的后续读取与回放，形成从现场观察到分析的链条。",
-      "Lens reading and playback complete the chain from field observation to analysis.",
+      "完成潜入任务后回收视网膜镜片影像：将隐形眼镜浸入读取槽，现场录制的声画数据瞬时投射至分析大屏，拼合犯罪网络拼图。",
+      "Recovering retinal lens feeds after missions: seating the contact lens into the dock transfers captured audio and video to the analysis wall, connecting syndicate clues.",
     ),
     design: b(
-      "读取器草图研究镜片接触面、数据传输与便携终端。",
-      "Reader sketches explore the lens contact surface, data transfer and a portable terminal.",
+      "Matthew Savage 的概念稿细致推敲了圆柱感应舱、旋转防尘锁扣与军规加固外壳，构建出令科技隐形于现实的硬核外设系统。",
+      "Matthew Savage's concept drafts detail cylindrical inductive docks, rotating dust covers, and hardened enclosures, grounding advanced tech in rugged peripherals.",
     ),
     filmDetails: [
       b(
-        "镜片读取器承担任务后的数据回收：布鲁斯将记录镜片放入设备，影像转入存储介质，再交给监看与分析设备处理。它与佩戴端的镜片共同组成侦查系统。",
-        "The reader handles post-mission data recovery: Bruce places the recording lens in the device, transfers imagery to storage and brings it into surveillance and analysis equipment. Reader and lens form one investigative system.",
+        "镜片读取器是整套微型光学情报网的关键解密枢纽。当瑟琳娜结束冰山俱乐部的惊险潜入后，布鲁斯在现场或车间将微型隐形眼镜小心夹入读取器的特制浸润凹槽中；设备通过圆周微型触点与感应线圈瞬间激活镜片内置闪存，将未压缩的高清第一人称影像直接导入控制台进行多源分析。",
+        "The lens reader is the decryption nexus of the micro-optic intelligence network. Following Selina's tense infiltration of the club, Bruce seats the spent contact lens into the reader's fluid dock; inductive pin arrays interface with onboard flash storage, streaming uncompressed POV footage onto the analysis consoles.",
       ),
       b(
-        "设定构想还考虑把存储卡带在腰带上，并以硬壳监看设备保护终端。侦查装备由此横跨眼部、腰部与车间，而不是只剩一副微型镜片。",
-        "The concept also places a memory card on the belt and protects the terminal in hard-shell surveillance equipment. The kit spans eye, waist and workshop rather than ending at a miniature lens.",
+        "这一装置将‘单兵现场侦查’无缝链接到‘情报研判中枢’。布鲁斯与阿尔弗雷德得以在安全屋中逐帧倒回关键画面、放大涉案嫌疑人佩戴的特殊袖扣或文件公章，使现场惊险捕捉的蛛丝马迹转化为不可辩驳的铁证。",
+        "The hardware bridges field reconnaissance with investigative analysis. Back in the sanctuary, Bruce and Alfred scrub through crucial frames, magnifying cuff links, ledger seals, and whispered conversations to forge indisputable chains of evidence.",
       ),
     ],
     designDetails: [
       b(
-        "Lens Reader 2.0 草图把镜片圆周的接触区、读取口与底座分开研究，还提出圆柱式小型设备和方形底座的不同组合。",
-        "The Lens Reader 2.0 sketch separates the contact area around the lens, reading aperture and base, exploring combinations of a small cylindrical device and square dock.",
+        "Matthew Savage 在 Lens Reader 2.0 手稿中详尽推演了微观接触界面的工程实现：读取仓内设有一圈微型镀金探针触点与电感能量发射线圈，能够自适应镜片周边的同心导电线路；外部配有高精度旋转开合防尘盖与硅胶减震衬套，确保在颠簸的车内也能完成无损数据拷贝。",
+        "Matthew Savage's Lens Reader 2.0 sheets map the microscopic interface: the dock integrates gold-plated pogo pins and inductive power coils that self-align with the lens's concentric traces; a rotating dust seal and shock-mounted sleeve ensure data transfers proceed without corruption even in transit.",
       ),
       b(
-        "便携性是草图反复考虑的问题：读取口、旋转开合件、按键和接口需要被放进能够携带的外壳。图中的大型硬壳终端构想则延续军用监看设备的外观参照。",
-        "Portability recurs in the sketches: aperture, rotating closure, controls and ports must fit a carryable enclosure. The larger hard-shell terminal proposal continues the reference to military surveillance equipment.",
+        "除车间台式读取基座外，设计团队还专门推演了可随身携带的军规加固便携手持终端：深色阳极氧化铝外壳配有橡胶防撞角与物理按键，腰带侧袋可随时收纳备用加密固态存储卡，赋予布鲁斯在任何突发恶劣环境下独立提取并销毁情报的战术自由。",
+        "Alongside the workshop desktop dock, the art book explores a hardened field terminal: an anodized aluminum shell with rubber bumpers and physical keys, paired with belt-carried encrypted SSD modules to give Bruce field extraction and sanitization capability under adverse conditions.",
       ),
     ],
     plates: [
       plate(
         "/media/gear-archive/lens-reader-study.jpg",
-        b("读取器与便携终端草图", "Reader and portable terminal sketches"),
+        b("浸润式读取底座与便携加固终端", "Fluid-well dock and hardened field terminal"),
         b(
-          "镜片接触区、读取口与底座的不同组合。",
-          "Different combinations of lens contact area, aperture and dock.",
+          "圆周镀金探针触点、旋转防尘密封盖与战术数据转存接口推演。",
+          "Gold pogo-pin arrays, rotating dust cover, and tactical data-transfer interfaces.",
         ),
       ),
     ],
@@ -441,44 +441,44 @@ export const TOOLS: ArchiveGear[] = [
     name: b("监听耳机", "Surveillance earpiece"),
     category: b("通讯设备", "Communications"),
     summary: b(
-      "与记录镜片配合，让瑟琳娜在俱乐部里与布鲁斯保持联系。",
-      "Pairs with the recording lenses to keep Selina in contact with Bruce inside the club.",
+      "微型骨传导隐藏式入耳监听耳机，与隐形眼镜协同作业，构筑第一人称视线追踪与实时暗中战术语音通讯。",
+      "A miniature bone-conduction covert in-ear transceiver pairing with recording lenses to enable live POV tracking and whispered tactical comms.",
     ),
     film: b(
-      "瑟琳娜潜入俱乐部时佩戴耳机，布鲁斯通过画面监看并向她传递信息。",
-      "Selina wears an earpiece inside the club while Bruce watches the feed and speaks to her.",
+      "瑟琳娜卧底潜入时的暗中护航生命线：布鲁斯在场外通过耳机实时指引逃脱路线与应对话术，化解一次次致命试探。",
+      "The covert lifeline during Selina's undercover infiltration: Bruce whispers escape routes and conversational counters into her ear, dodging lethal mob interrogations.",
     ),
     design: b(
-      "耳机草图研究贴耳外形、连接部件与佩戴方向。",
-      "Earpiece sketches study the close-fitting form, connection parts and wearing orientation.",
+      "手绘线稿细致模拟耳廓人体工学贴合弧度与深色隐蔽外壳，与大型光学监视基站同图呈现，构筑立体监控体系。",
+      "Drafts model concha ergonomics and darkened covert shells, presented alongside heavy optical surveillance stations to form an integrated listening network.",
     ),
     filmDetails: [
       b(
-        "瑟琳娜进入俱乐部后，记录镜片传回她的视角，耳机提供布鲁斯的声音。两件微型道具一起，让布鲁斯能够在外部参与她与目标人物的接触。",
-        "Once Selina enters the club, the recording lenses relay her view and the earpiece carries Bruce's voice. Together the miniature props let him participate in her encounters from outside.",
+        "这枚隐形监听耳机是布鲁斯与瑟琳娜在深入虎穴时的战术生命线。当瑟琳娜穿梭于充斥着持枪保镖与嗜血政客的贵宾包厢时，布鲁斯的冷静指令通过微型耳机直接送入她的耳道——无论是提醒她身后逼近的保镖，还是教她在法官面前虚与委蛇，这件道具在悄无声息中化解了一次次致命危机。",
+        "This covert in-ear transceiver serves as Selina's lifeline behind enemy lines. As she maneuvers through VIP lounges crawling with mob enforcers, Bruce whispers steady tactical directions into her ear canal—spotting trailing muscle and feeding counter-lines to disarm suspicious officials.",
       ),
       b(
-        "镜片负责观察，耳机负责即时沟通。这个分工把影像与声音连接起来，也让侦查行动能够在交谈进行时调整方向。",
-        "The lens provides observation and the earpiece provides immediate communication. Their division of roles links image and sound so the investigation can respond while a conversation is unfolding.",
+        "声音与画面的精密同步彻底改变了潜入行动的节奏：布鲁斯在车间通过视网膜镜片‘看她所看’，通过微型耳机‘语其所言’。两件微型道具让身处暗处的蝙蝠侠如同幽灵般如影随形，实现了跨越物理隔绝的深度控场。",
+        "Flawless audio-visual synchrony redefines undercover infiltration: Bruce sees what Selina sees via the retinal lens, directing her movements through the earpiece. The paired microsystems project Batman's phantom presence across walls, controlling the encounter from afar.",
       ),
     ],
     designDetails: [
       b(
-        "图版下半部以耳部小图、正侧轮廓和不同分件外形研究佩戴方式。外壳需要贴合耳部，同时给电子元件和连接件留出空间。",
-        "The lower half of the plate studies wearing through an ear diagram, profiles and component shapes. The shell has to sit close to the ear while allowing space for electronics and connections.",
+        "概念图纸深入推敲了耳机的耳廓解剖学适配：微型外壳采用亲肤哑光黑色医用树脂，依照人体外耳道三维弧度精细塑形，确保塞入后极度隐蔽且在剧烈奔跑甩头时绝不松脱；内置微型受话器与防风噪滤波麦克风，即使在低声耳语时也能保持极高信噪比。",
+        "Concept drawings engineer precise auricular fit: cast in skin-safe matte black medical resin shaped to human concha anatomy, the earpiece seats invisibly and resists expulsion during running; an integrated bone-conduction receiver and noise-filtering mic capture faint whispers with crystal fidelity.",
       ),
       b(
-        "耳机与更大的光学设备草图并列，使个人佩戴端和监看端出现在同一页。形体从耳部的小型外壳延伸到带镜头、散热与控制部件的装置。",
-        "The earpiece appears beside studies for larger optical equipment, bringing worn and monitoring devices onto one page. The forms range from a small ear shell to assemblies with lenses, ventilation and controls.",
+        "该图版将微型个人耳塞与更庞大的远程光学侦查设备并列于同一张纸面上：从几毫米大小的入耳单元，到带有散热格栅、重型镜头筒与精密微调旋钮的三脚架远程基站，生动展示了布鲁斯在暗夜中从微观单兵互联到宏观城市监视的完整技术储备。",
+        "The sheet pairs the micro in-ear bud with heavy tripod-mounted optical surveillance stations: from millimeter-scale covert transducers to heavy zoom lenses with cooling ribs, illustrating Bruce's comprehensive spectrum of technological capability from micro-comms to citywide reconnaissance.",
       ),
     ],
     plates: [
       plate(
         "/media/gear-archive/earpiece-study.jpg",
-        b("耳机与光学设备研究", "Earpiece and optical equipment studies"),
+        b("耳道骨传导耳机与远程光学基站", "Concha transceiver and long-range optical stations"),
         b(
-          "下半部为耳机佩戴与外壳方案，上半部研究光学设备。",
-          "The lower portion studies earpiece fit and housing; the upper portion explores optical equipment.",
+          "下部为人体耳廓仿生哑光树脂耳机，上部为长焦透镜侦查装置。",
+          "Lower studies of concha-molded resin earpiece; upper studies of telephoto optics.",
         ),
       ),
     ],
@@ -488,44 +488,44 @@ export const TOOLS: ArchiveGear[] = [
     name: b("流浪者侦查装束", "Drifter surveillance outfit"),
     category: b("便装侦查", "Undercover surveillance"),
     summary: b(
-      "兜帽、工装、背包和骑行装备，让布鲁斯以第三种身份穿行哥谭。",
-      "A hood, workwear, backpack and riding kit let Bruce move through Gotham under a third identity.",
+      "兜帽工装外套、重型耐磨帆布裤、暗面骑行头盔与收纳战衣的双肩包，构筑布鲁斯遁入哥谭市井平民人群的流浪者装束（Drifter Kit）。",
+      "A hooded workwear jacket, heavy canvas trousers, dark helmet, and backpack stowing the Batsuit, composing the Drifter surveillance outfit for vanishing into Gotham crowds.",
     ),
     film: b(
-      "流浪者装束让布鲁斯在穿上战衣之前观察街头，接近人群而不暴露身份。",
-      "The Drifter outfit lets Bruce observe the streets and approach crowds before putting on the Batsuit.",
+      "游走于豪门阔少与披甲义警之间的第三身份：在市长遇刺后的混乱街头低调勘查，用血丝双眼与随身日记记录哥谭溃烂的肌理。",
+      "A third identity suspended between reclusive billionaire and armored specter: walking crime-scene perimeters to log Gotham's rot in a leather journal.",
     ),
     design: b(
-      "造型结合《元年》的便装侦查与现代工人的制服，以融入人群为目标。",
-      "The look combines Year One's undercover approach with modern workers' uniforms to blend into a crowd.",
+      "罗伯特·帕丁森与服装设计师 Jacqueline Durran 深入调研曼哈顿码头工人工装；化妆师 Naomi Donne 以疲惫真实的病态阴郁妆容剥离一切明星光环。",
+      "Robert Pattinson and Jacqueline Durran drew directly on Manhattan dock worker uniforms; Naomi Donne crafted an unpolished, hollow-eyed makeup that strips away heroic glamour.",
     ),
     filmDetails: [
       b(
-        "流浪者处在公众熟悉的韦恩继承人与披甲义警之间。兜帽压低面部轮廓，宽松外套遮住身体，骑行头盔和机车让他能够穿行不同街区。这种装束服务于观察、跟踪与接近现场，随后才切换为蝙蝠侠的行动。",
-        "The Drifter sits between the publicly recognizable Wayne heir and the armored vigilante. A hood obscures his face, a loose jacket conceals his body, and a riding helmet and motorcycle carry him between neighborhoods. The outfit supports observation, following leads and approaching a scene before he acts as Batman.",
+        "‘流浪者’是布鲁斯在韦恩家族显赫继承人与披甲暗夜义警之间构筑的第三重人格。在穿上沉重战衣之前，他身披宽大洗褪色的深色工装外套，兜帽深压遮蔽冷峻眉目，骑着平民机车自如穿梭于犯罪现场周边的封锁线与底层集市。他像一个无家可归的街头幽灵般隐入人群，冷静观察着警察、记者与市民的微表情，将所见所思密密麻麻记录在随身日记之中。",
+        "The 'Drifter' is the vital third identity Bruce inhabits between the recluse billionaire and the armored vigilante. Before donning the heavy Batsuit, he slips into an oversized faded workwear jacket, hood pulled low over shadowed eyes, gliding through police cordons on a civilian bike. Vanishing into crowds like an urban phantom, he studies the faces of cops and mobsters, noting observations in his journal.",
       ),
       b(
-        "布鲁斯把街头观察记进日记，并用背包携带战衣。侦查与出勤因此连成一个过程：先以便装进入城市、记录人群与地点，再取出装备完成身份转换。背包承担运输，日记保留观察，两者都属于这套低调的行动方式。",
-        "Bruce records street observations in a journal and carries the Batsuit in a backpack. Surveillance and patrol become one process: he enters the city in civilian clothes, records people and places, then takes out his equipment to change identity. The backpack handles transport and the journal preserves observations.",
+        "这种极具生活质感的侦查装束解决了‘如何将重装战衣带至战场’的现实难题：沉重的蝙蝠战衣被严密折叠打包进背后的磨损重磅帆布双肩包内。正如帕丁森所言，这就像是‘粗粝肮脏版的超人钻进电话亭’，在肮脏逼仄的暗巷深处完成由疲惫流浪者向可怖复仇化身的蜕变。",
+        "This grounded surveillance attire solves the logistical puzzle of hauling heavy combat gear into the field: the Batsuit travels rolled inside a scuffed canvas backpack. As Pattinson described it, the sequence is 'the grimy version of Superman going into the phone box,' transforming in damp alley corners from an exhausted vagrant into an engine of vengeance.",
       ),
     ],
     designDetails: [
       b(
-        "《蝙蝠侠：元年》中布鲁斯穿便装上街的构想，提供了流浪者身份的起点。服装设计进一步考虑一个人怎样在现代人群中变得不起眼；帕丁森提出曼哈顿码头工人的工装与制服，让兜帽外套显得有日常用途，也避免穿出韦恩家族继承人的辨识度。",
-        "Bruce's civilian street work in Batman: Year One provided the starting point. Costume design then asked what makes someone inconspicuous in a modern crowd. Pattinson suggested Manhattan dock workers' workwear and uniforms, giving the hooded jacket an everyday purpose without the recognizable appearance of the Wayne heir.",
+        "服装设计总监 Jacqueline Durran 透露，帕丁森深度主导了这套服装的研发逻辑：‘在现代人群中隐形的终极方式，就是穿上一套随处可见的工装制服。’帕丁森特别指出纽约曼哈顿码头工人耐磨工装（Dock Workers' Workwear）的粗糙质感，深蓝与炭灰色重磅水洗帆布、宽大下摆以及毫无辨识度的大众款式，让任何监视者都会在扫视人流时直接将其忽略。",
+        "Costume designer Jacqueline Durran revealed that Pattinson drove the conceptual evolution of the disguise: 'What makes you invisible in a modern crowd is wearing some sort of uniform.' Pattinson specifically cited the workwear of Manhattan dock workers—faded navy and charcoal canvas, relaxed utilitarian silhouettes, and utterly generic cuts that allow a watcher to sweep over him unnoticed.",
       ),
       b(
-        "妆容也配合这种隐匿：它保留疲惫、阴沉和不修饰的状态，与工装的现实质感相接。机车和头盔则延续同一个目标，让整套侦查装束从步行到骑行都维持普通街头骑手的轮廓。",
-        "Makeup supports the disguise through a tired, withdrawn and unpolished appearance that belongs with the workwear. The bike and helmet continue the same brief, keeping the silhouette of an ordinary street rider whether Bruce is walking or riding.",
+        "化妆设计总监 Naomi Donne 更是坚决摒弃了一切好莱坞传统男主角的精致妆造，为流浪者布鲁斯设计了凹陷眼窝、苍白皮肤与暗黑疲惫眼妆，散发着终年缺乏阳光照射与深陷创伤执念的悲凉质感；搭配一顶毫无特征的磨砂全盔，完美实现了从步行穿越人潮到疾速驾车脱险的无缝潜伏闭环。",
+        "Makeup designer Naomi Donne deliberately discarded all flattering leading-man aesthetics, crafting sunken eye hollows, pallid skin, and smudged black makeup reflecting perpetual sunlight deprivation and obsessive trauma; paired with a featureless matte motorcycle helmet, the disguise creates a seamless loop from walking the streets to rapid motorized extraction.",
       ),
     ],
     plates: [
       plate(
         "/media/gear-archive/drifter-outfit.jpg",
-        b("兜帽与工装造型", "Hooded workwear costume"),
+        b("曼哈顿码头工人工装与流浪者伪装", "Manhattan dock workwear and Drifter disguise"),
         b(
-          "压低的兜帽、深色外套和自然垂落的衣身，构成流浪者的街头轮廓。",
-          "A lowered hood, dark jacket and loose garment shape form the Drifter's street silhouette.",
+          "水洗耐磨粗帆布兜帽外套、战衣收纳双肩包与去明星化的真实疲惫妆容。",
+          "Washed heavy canvas workwear, suit-carrying backpack, and unpolished realistic makeup.",
         ),
         8,
       ),

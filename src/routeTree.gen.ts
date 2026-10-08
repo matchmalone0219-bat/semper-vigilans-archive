@@ -19,7 +19,6 @@ import { Route as InterviewsRouteImport } from './routes/interviews'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as MerchRouteImport } from './routes/merch'
-import { Route as NotesWaitingForGothamRouteImport } from './routes/notes.waiting-for-gotham'
 import { Route as PeopleRouteImport } from './routes/people'
 import { Route as PlacesRouteImport } from './routes/places'
 import { Route as RataaladaRouteImport } from './routes/rataalada'
@@ -27,6 +26,7 @@ import { Route as RecapRouteImport } from './routes/recap'
 import { Route as RootsRouteImport } from './routes/roots'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as TheoriesRouteImport } from './routes/theories'
+import { Route as NotesWaitingForGothamRouteImport } from './routes/notes.waiting-for-gotham'
 import { Route as PeopleIndexRouteImport } from './routes/people.index'
 import { Route as PeopleIdRouteImport } from './routes/people.$id'
 import { Route as PlacesIndexRouteImport } from './routes/places.index'
@@ -82,11 +82,6 @@ const MerchRoute = MerchRouteImport.update({
   path: '/merch',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NotesWaitingForGothamRoute = NotesWaitingForGothamRouteImport.update({
-  id: '/notes/waiting-for-gotham',
-  path: '/notes/waiting-for-gotham',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PeopleRoute = PeopleRouteImport.update({
   id: '/people',
   path: '/people',
@@ -122,6 +117,11 @@ const TheoriesRoute = TheoriesRouteImport.update({
   path: '/theories',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotesWaitingForGothamRoute = NotesWaitingForGothamRouteImport.update({
+  id: '/notes/waiting-for-gotham',
+  path: '/notes/waiting-for-gotham',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PeopleIndexRoute = PeopleIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -154,7 +154,6 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
   '/merch': typeof MerchRoute
-  '/notes/waiting-for-gotham': typeof NotesWaitingForGothamRoute
   '/people': typeof PeopleRouteWithChildren
   '/places': typeof PlacesRouteWithChildren
   '/rataalada': typeof RataaladaRoute
@@ -162,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/roots': typeof RootsRoute
   '/search': typeof SearchRoute
   '/theories': typeof TheoriesRoute
+  '/notes/waiting-for-gotham': typeof NotesWaitingForGothamRoute
   '/people/$id': typeof PeopleIdRoute
   '/places/$id': typeof PlacesIdRoute
   '/people/': typeof PeopleIndexRoute
@@ -178,12 +178,12 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
   '/merch': typeof MerchRoute
-  '/notes/waiting-for-gotham': typeof NotesWaitingForGothamRoute
   '/rataalada': typeof RataaladaRoute
   '/recap': typeof RecapRoute
   '/roots': typeof RootsRoute
   '/search': typeof SearchRoute
   '/theories': typeof TheoriesRoute
+  '/notes/waiting-for-gotham': typeof NotesWaitingForGothamRoute
   '/people/$id': typeof PeopleIdRoute
   '/places/$id': typeof PlacesIdRoute
   '/people': typeof PeopleIndexRoute
@@ -201,7 +201,6 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
   '/merch': typeof MerchRoute
-  '/notes/waiting-for-gotham': typeof NotesWaitingForGothamRoute
   '/people': typeof PeopleRouteWithChildren
   '/places': typeof PlacesRouteWithChildren
   '/rataalada': typeof RataaladaRoute
@@ -209,6 +208,7 @@ export interface FileRoutesById {
   '/roots': typeof RootsRoute
   '/search': typeof SearchRoute
   '/theories': typeof TheoriesRoute
+  '/notes/waiting-for-gotham': typeof NotesWaitingForGothamRoute
   '/people/$id': typeof PeopleIdRoute
   '/places/$id': typeof PlacesIdRoute
   '/people/': typeof PeopleIndexRoute
@@ -227,7 +227,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/map'
     | '/merch'
-    | '/notes/waiting-for-gotham'
     | '/people'
     | '/places'
     | '/rataalada'
@@ -235,6 +234,7 @@ export interface FileRouteTypes {
     | '/roots'
     | '/search'
     | '/theories'
+    | '/notes/waiting-for-gotham'
     | '/people/$id'
     | '/places/$id'
     | '/people/'
@@ -251,12 +251,12 @@ export interface FileRouteTypes {
     | '/login'
     | '/map'
     | '/merch'
-    | '/notes/waiting-for-gotham'
     | '/rataalada'
     | '/recap'
     | '/roots'
     | '/search'
     | '/theories'
+    | '/notes/waiting-for-gotham'
     | '/people/$id'
     | '/places/$id'
     | '/people'
@@ -273,7 +273,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/map'
     | '/merch'
-    | '/notes/waiting-for-gotham'
     | '/people'
     | '/places'
     | '/rataalada'
@@ -281,6 +280,7 @@ export interface FileRouteTypes {
     | '/roots'
     | '/search'
     | '/theories'
+    | '/notes/waiting-for-gotham'
     | '/people/$id'
     | '/places/$id'
     | '/people/'
@@ -298,7 +298,6 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MapRoute: typeof MapRoute
   MerchRoute: typeof MerchRoute
-  NotesWaitingForGothamRoute: typeof NotesWaitingForGothamRoute
   PeopleRoute: typeof PeopleRouteWithChildren
   PlacesRoute: typeof PlacesRouteWithChildren
   RataaladaRoute: typeof RataaladaRoute
@@ -306,6 +305,7 @@ export interface RootRouteChildren {
   RootsRoute: typeof RootsRoute
   SearchRoute: typeof SearchRoute
   TheoriesRoute: typeof TheoriesRoute
+  NotesWaitingForGothamRoute: typeof NotesWaitingForGothamRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -380,13 +380,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MerchRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/notes/waiting-for-gotham': {
-      id: '/notes/waiting-for-gotham'
-      path: '/notes/waiting-for-gotham'
-      fullPath: '/notes/waiting-for-gotham'
-      preLoaderRoute: typeof NotesWaitingForGothamRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/people': {
       id: '/people'
       path: '/people'
@@ -434,6 +427,13 @@ declare module '@tanstack/react-router' {
       path: '/theories'
       fullPath: '/theories'
       preLoaderRoute: typeof TheoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes/waiting-for-gotham': {
+      id: '/notes/waiting-for-gotham'
+      path: '/notes/waiting-for-gotham'
+      fullPath: '/notes/waiting-for-gotham'
+      preLoaderRoute: typeof NotesWaitingForGothamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/people/': {
@@ -504,7 +504,6 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MapRoute: MapRoute,
   MerchRoute: MerchRoute,
-  NotesWaitingForGothamRoute: NotesWaitingForGothamRoute,
   PeopleRoute: PeopleRouteWithChildren,
   PlacesRoute: PlacesRouteWithChildren,
   RataaladaRoute: RataaladaRoute,
@@ -512,6 +511,7 @@ const rootRouteChildren: RootRouteChildren = {
   RootsRoute: RootsRoute,
   SearchRoute: SearchRoute,
   TheoriesRoute: TheoriesRoute,
+  NotesWaitingForGothamRoute: NotesWaitingForGothamRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

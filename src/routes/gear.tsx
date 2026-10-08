@@ -20,6 +20,12 @@ import {
   BODY_VIEW_HOTSPOTS,
   BODY_VIEW_OUTLINES,
 } from "@/lib/gear-turntable-assets";
+import {
+  GearOutlineEditor,
+  InteractiveOutlineHandles,
+  parsePathToPoints,
+  pointsToSvgPath,
+} from "@/components/gear-outline-editor";
 import "@/components/gear-archive.css";
 
 export const Route = createFileRoute("/gear")({
@@ -40,7 +46,52 @@ function Gear() {
   const [indexOpen, setIndexOpen] = useState(false);
   const [focusedId, setFocusedId] = useState<string | null>(null);
   const [bodyView, setBodyView] = useState(0);
-  const [backCapeVisible, setBackCapeVisible] = useState(true);
+  const [capeVisible, setCapeVisible] = useState(true);
+  const [editorOpen, setEditorOpen] = useState(false);
+  const [editingEquipmentId, setEditingEquipmentId] = useState<string>("cowl");
+  const [customOutlines, setCustomOutlines] = useState<Record<number, Record<string, string>>>(() => {
+    try {
+      const cached = typeof window !== "undefined" ? localStorage.getItem("custom_gear_outlines") : null;
+      return cached ? JSON.parse(cached) : {};
+    } catch {
+      return {};
+    }
+  });
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      (window.location.search.includes("calibrate") || window.location.search.includes("edit"))
+    ) {
+      setEditorOpen(true);
+    }
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.altKey && (e.key === "e" || e.key === "E")) {
+        e.preventDefault();
+        setEditorOpen((prev) => !prev);
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  function handleUpdateOutline(eqId: string, newPath: string) {
+    setCustomOutlines((prev) => {
+      const next = {
+        ...prev,
+        [bodyView]: {
+          ...(prev[bodyView] ?? {}),
+          [eqId]: newPath,
+        },
+      };
+      try {
+        localStorage.setItem("custom_gear_outlines", JSON.stringify(next));
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
+  }
   const [viewDimmed, setViewDimmed] = useState(false);
   const dragStart = useRef<{ x: number; y: number } | null>(null);
   const bodyStage = useRef<HTMLDivElement>(null);
@@ -52,7 +103,6 @@ function Gear() {
   const selected = BODY_RECORDS.find((item) => item.id === selectedId) ?? SUIT_OVERVIEW;
   const focusPoint = focusedId ? (BODY_VIEW_HOTSPOTS[bodyView]?.[focusedId] ?? null) : null;
   const bodyAngle = BODY_TURNTABLE_VIEWS[bodyView]!;
-  const capeVisible = bodyView === 3 ? backCapeVisible : selectedId === "cape";
   const vehicle = VEHICLES.find((item) => item.id === vehicleId) ?? VEHICLES[0]!;
   const workshop = WORKSHOP.find((item) => item.id === workshopId) ?? WORKSHOP[0]!;
   const tool = TOOLS.find((item) => item.id === toolId) ?? TOOLS[0]!;
@@ -66,8 +116,8 @@ function Gear() {
       setViewDimmed(false);
       setSelectedId(id);
       setFocusedId(focus && Object.values(BODY_VIEW_HOTSPOTS).some((view) => view[id]) ? id : null);
-      if (id === "light-flare" || id === "sticky-bomb-gun") setBackCapeVisible(false);
-      if (id === "cape") setBackCapeVisible(true);
+      if (id === "light-flare" || id === "sticky-bomb-gun") setCapeVisible(false);
+      if (id === "cape") setCapeVisible(true);
       if (BODY_TOOLS.some((item) => item.id === id)) setToolId(id);
       setBodyView((current) =>
         BODY_VIEW_HOTSPOTS[current]?.[id]
@@ -127,7 +177,7 @@ function Gear() {
       const bodyRecord = BODY_RECORDS.some((item) => item.id === id);
       if (bodyRecord) {
         selectBody(id, true);
-        const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 360;
+        const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 540;
         turntableTimers.current.push(window.setTimeout(() => setDossierOpen(true), delay));
       } else if (!id || id === "loadout") selectBody("suit");
       else setFocusedId(null);
@@ -151,7 +201,7 @@ function Gear() {
       selectBody(id, true);
       setIndexOpen(false);
       setDossierOpen(false);
-      const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 360;
+      const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 540;
       turntableTimers.current.push(window.setTimeout(() => setDossierOpen(true), delay));
     } else if (kind === "vehicle") {
       setVehicleId(id);
@@ -257,7 +307,13 @@ function Gear() {
               }
             }}
             onPointerDown={(event) => {
-              if (focusPoint || viewDimmed || !event.isPrimary || event.button !== 0) return;
+              if (focusPoint) {
+                if (event.isPrimary && event.button === 0) {
+                  resetBodyFocus();
+                }
+                return;
+              }
+              if (viewDimmed || !event.isPrimary || event.button !== 0) return;
               dragStart.current = { x: event.clientX, y: event.clientY };
               event.currentTarget.setPointerCapture(event.pointerId);
             }}
@@ -284,6 +340,20 @@ function Gear() {
               dragStart.current = null;
             }}
           >
+            {/* 蝙蝠洞车间纵深背景 */}
+            <div className="gear-stage-backdrop" aria-hidden="true">
+              <div
+                className="gear-backdrop-image"
+                style={
+                  {
+                    "--gear-backdrop-x": `${(bodyView - 1.5) * -2}%`,
+                  } as React.CSSProperties
+                }
+              />
+              <div className="gear-backdrop-vignette" />
+              <div className="gear-backdrop-lighting" />
+            </div>
+
             <div
               className="gear-body-pan"
               style={{
@@ -309,8 +379,8 @@ function Gear() {
                     className="gear-turntable-image"
                     src={
                       capeVisible
-                        ? "/media/gear-archive/turntable-cape.jpg"
-                        : "/media/gear-archive/turntable-armor.jpg"
+                        ? "/media/gear-archive/turntable-cape.webp"
+                        : "/media/gear-archive/turntable-armor.webp"
                     }
                     alt={
                       locale === "zh"
@@ -334,7 +404,9 @@ function Gear() {
                   aria-label={locale === "zh" ? "可探索的装备" : "Explore equipment"}
                 >
                   {BODY_MARKERS.map((item) => {
-                    const path = BODY_VIEW_OUTLINES[bodyView]?.[item.id];
+                    const path =
+                      customOutlines[bodyView]?.[item.id] ??
+                      BODY_VIEW_OUTLINES[bodyView]?.[item.id];
                     const visible =
                       item.id === "light-flare" || item.id === "sticky-bomb-gun"
                         ? !capeVisible
@@ -358,7 +430,13 @@ function Gear() {
                           aria-haspopup="dialog"
                           data-equipment={item.id}
                           onPointerDown={(event) => event.stopPropagation()}
-                          onClick={() => select(item.id, "body")}
+                          onClick={() => {
+                            if (editorOpen) {
+                              setEditingEquipmentId(item.id);
+                            } else {
+                              select(item.id, "body");
+                            }
+                          }}
                           onKeyDown={(event) => {
                             if (event.key === "Enter" || event.key === " ") {
                               event.preventDefault();
@@ -377,23 +455,69 @@ function Gear() {
                       </g>
                     );
                   })}
+                  {editorOpen && editingEquipmentId ? (
+                    <InteractiveOutlineHandles
+                      pathString={
+                        customOutlines[bodyView]?.[editingEquipmentId] ??
+                        BODY_VIEW_OUTLINES[bodyView]?.[editingEquipmentId] ??
+                        ""
+                      }
+                      onPointChange={(index, newPt) => {
+                        const raw =
+                          customOutlines[bodyView]?.[editingEquipmentId] ??
+                          BODY_VIEW_OUTLINES[bodyView]?.[editingEquipmentId] ??
+                          "";
+                        const pts = parsePathToPoints(raw);
+                        pts[index] = newPt;
+                        handleUpdateOutline(editingEquipmentId, pointsToSvgPath(pts));
+                      }}
+                      onAddPoint={(insertIndex, newPt) => {
+                        const raw =
+                          customOutlines[bodyView]?.[editingEquipmentId] ??
+                          BODY_VIEW_OUTLINES[bodyView]?.[editingEquipmentId] ??
+                          "";
+                        const pts = parsePathToPoints(raw);
+                        pts.splice(insertIndex, 0, newPt);
+                        handleUpdateOutline(editingEquipmentId, pointsToSvgPath(pts));
+                      }}
+                      onDeletePoint={(deleteIndex) => {
+                        const raw =
+                          customOutlines[bodyView]?.[editingEquipmentId] ??
+                          BODY_VIEW_OUTLINES[bodyView]?.[editingEquipmentId] ??
+                          "";
+                        const pts = parsePathToPoints(raw);
+                        if (pts.length <= 3) return;
+                        pts.splice(deleteIndex, 1);
+                        handleUpdateOutline(editingEquipmentId, pointsToSvgPath(pts));
+                      }}
+                    />
+                  ) : null}
                 </svg>
               </div>
             </div>
 
-            {bodyView === 3 && !focusPoint ? (
+            <button
+              type="button"
+              className="gear-editor-toggle-btn"
+              onClick={() => setEditorOpen(!editorOpen)}
+              title="按快捷键 Alt+E 快速开关"
+            >
+              ⚡ {editorOpen ? "关闭校准器" : "校准轮廓"}
+            </button>
+
+            {!focusPoint ? (
               <button
                 type="button"
                 className="gear-cape-toggle"
-                aria-pressed={backCapeVisible}
+                aria-pressed={capeVisible}
                 onPointerDown={(event) => event.stopPropagation()}
-                onClick={() => setBackCapeVisible((visible) => !visible)}
+                onClick={() => setCapeVisible((visible) => !visible)}
               >
                 {locale === "zh"
-                  ? backCapeVisible
+                  ? capeVisible
                     ? "隐藏披风"
                     : "显示披风"
-                  : backCapeVisible
+                  : capeVisible
                     ? "Hide cape"
                     : "Show cape"}
               </button>
@@ -455,6 +579,23 @@ function Gear() {
               : "Batsuit views · drag or use the arrows to change angle"}
           </figcaption>
         </figure>
+
+        {editorOpen ? (
+          <GearOutlineEditor
+            bodyView={bodyView}
+            availableItems={BODY_MARKERS.filter(
+              (item) => BODY_VIEW_OUTLINES[bodyView]?.[item.id],
+            ).map((item) => ({
+              id: item.id,
+              name: text(item.name),
+            }))}
+            currentOutlines={customOutlines[bodyView] ?? {}}
+            onUpdateOutline={handleUpdateOutline}
+            selectedEquipmentId={editingEquipmentId}
+            onSelectEquipment={(id) => setEditingEquipmentId(id)}
+            onClose={() => setEditorOpen(false)}
+          />
+        ) : null}
       </section>
       <section id="tools" className="gear-tools">
         <div className="gear-section-heading">

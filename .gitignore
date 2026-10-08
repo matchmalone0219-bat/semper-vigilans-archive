@@ -12,3 +12,6 @@ screenshots/
 .github-token
 scratch/
 .tanstack/
+
+# Workstation-only calibration tools; never publish or commit.
+src/local-tools/

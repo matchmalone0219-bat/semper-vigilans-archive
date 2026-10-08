@@ -20,12 +20,6 @@ import {
   BODY_VIEW_HOTSPOTS,
   BODY_VIEW_OUTLINES,
 } from "@/lib/gear-turntable-assets";
-import {
-  GearOutlineEditor,
-  InteractiveOutlineHandles,
-  parsePathToPoints,
-  pointsToSvgPath,
-} from "@/components/gear-outline-editor";
 import "@/components/gear-archive.css";
 
 export const Route = createFileRoute("/gear")({
@@ -38,6 +32,32 @@ const BODY_TOOLS = ["light-flare", "magnetic-charge", "adrenaline-injector", "th
 const BODY_RECORDS = [SUIT_OVERVIEW, ...LOADOUT, ...BODY_TOOLS];
 const BODY_MARKERS = [...LOADOUT, ...BODY_TOOLS];
 
+type OutlinePoint = { x: number; y: number };
+interface LocalOutlineEditor {
+  GearOutlineEditor: React.ComponentType<{
+    bodyView: number;
+    availableItems: Array<{ id: string; name: string }>;
+    currentOutlines: Record<string, string>;
+    onUpdateOutline: (id: string, path: string) => void;
+    selectedEquipmentId?: string;
+    onSelectEquipment?: (id: string) => void;
+    onClose?: () => void;
+  }>;
+  InteractiveOutlineHandles: React.ComponentType<{
+    pathString: string;
+    onPointChange: (index: number, point: OutlinePoint) => void;
+    onAddPoint: (index: number, point: OutlinePoint) => void;
+    onDeletePoint: (index: number) => void;
+  }>;
+  parsePathToPoints: (path: string) => OutlinePoint[];
+  pointsToSvgPath: (points: OutlinePoint[]) => string;
+}
+
+// Optional, ignored local tool: clean checkouts and production builds need no editor file.
+const localEditors = import.meta.env.DEV
+  ? import.meta.glob<LocalOutlineEditor>("/src/local-tools/gear-outline-editor.tsx")
+  : {};
+
 function Gear() {
   const { locale } = useI18n();
   const text = (value: Bilingual) => value[locale];
@@ -48,10 +68,12 @@ function Gear() {
   const [bodyView, setBodyView] = useState(0);
   const [capeVisible, setCapeVisible] = useState(true);
   const [editorOpen, setEditorOpen] = useState(false);
+  const [localEditor, setLocalEditor] = useState<LocalOutlineEditor | null>(null);
   const [editingEquipmentId, setEditingEquipmentId] = useState<string>("cowl");
   const [customOutlines, setCustomOutlines] = useState<Record<number, Record<string, string>>>(() => {
     try {
-      const cached = typeof window !== "undefined" ? localStorage.getItem("custom_gear_outlines") : null;
+      const cached = import.meta.env.DEV && typeof window !== "undefined"
+        ? localStorage.getItem("custom_gear_outlines") : null;
       return cached ? JSON.parse(cached) : {};
     } catch {
       return {};
@@ -59,20 +81,29 @@ function Gear() {
   });
 
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      (window.location.search.includes("calibrate") || window.location.search.includes("edit"))
-    ) {
-      setEditorOpen(true);
+    if (!import.meta.env.DEV) return;
+    const loadEditor = localEditors["/src/local-tools/gear-outline-editor.tsx"];
+    if (!loadEditor) return;
+    let cancelled = false;
+    async function openEditor(toggle = false) {
+      const module = await loadEditor();
+      if (cancelled) return;
+      setLocalEditor(module);
+      setEditorOpen((open) => toggle ? !open : true);
     }
+    const query = new URLSearchParams(window.location.search);
+    if (query.has("calibrate") || query.has("edit")) void openEditor();
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.altKey && (e.key === "e" || e.key === "E")) {
+      if (e.altKey && e.key.toLowerCase() === "e") {
         e.preventDefault();
-        setEditorOpen((prev) => !prev);
+        void openEditor(true);
       }
     }
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   function handleUpdateOutline(eqId: string, newPath: string) {
@@ -242,7 +273,20 @@ function Gear() {
           <a href="#related">{text(GEAR_COPY.related)}</a>
         </nav>
       </header>
-      <section id="loadout" className="gear-loadout" aria-label={text(GEAR_COPY.loadout)}>
+      <section
+        id="loadout"
+        className="gear-loadout"
+        data-focused={Boolean(focusPoint)}
+        aria-label={text(GEAR_COPY.loadout)}
+      >
+        <div className="gear-stage-backdrop" aria-hidden="true">
+          <div
+            className="gear-backdrop-image"
+            style={{ "--gear-backdrop-x": `${(bodyView - 1.5) * -2}%` } as React.CSSProperties}
+          />
+          <div className="gear-backdrop-vignette" />
+          <div className="gear-backdrop-lighting" />
+        </div>
         <nav className="gear-index" aria-label={text(GEAR_COPY.loadout)} data-open={indexOpen}>
           <button
             type="button"
@@ -340,20 +384,6 @@ function Gear() {
               dragStart.current = null;
             }}
           >
-            {/* 蝙蝠洞车间纵深背景 */}
-            <div className="gear-stage-backdrop" aria-hidden="true">
-              <div
-                className="gear-backdrop-image"
-                style={
-                  {
-                    "--gear-backdrop-x": `${(bodyView - 1.5) * -2}%`,
-                  } as React.CSSProperties
-                }
-              />
-              <div className="gear-backdrop-vignette" />
-              <div className="gear-backdrop-lighting" />
-            </div>
-
             <div
               className="gear-body-pan"
               style={{
@@ -396,7 +426,6 @@ function Gear() {
                     draggable={false}
                   />
                 </div>
-                <div className="gear-body-shade" />
                 <svg
                   className="gear-body-outlines"
                   viewBox="0 0 100 100"
@@ -405,7 +434,7 @@ function Gear() {
                 >
                   {BODY_MARKERS.map((item) => {
                     const path =
-                      customOutlines[bodyView]?.[item.id] ??
+                      (import.meta.env.DEV ? customOutlines[bodyView]?.[item.id] : undefined) ??
                       BODY_VIEW_OUTLINES[bodyView]?.[item.id];
                     const visible =
                       item.id === "light-flare" || item.id === "sticky-bomb-gun"
@@ -431,7 +460,7 @@ function Gear() {
                           data-equipment={item.id}
                           onPointerDown={(event) => event.stopPropagation()}
                           onClick={() => {
-                            if (editorOpen) {
+                            if (import.meta.env.DEV && editorOpen) {
                               setEditingEquipmentId(item.id);
                             } else {
                               select(item.id, "body");
@@ -441,7 +470,8 @@ function Gear() {
                             if (event.key === "Enter" || event.key === " ") {
                               event.preventDefault();
                               event.stopPropagation();
-                              select(item.id, "body");
+                              if (import.meta.env.DEV && editorOpen) setEditingEquipmentId(item.id);
+                              else select(item.id, "body");
                             }
                           }}
                         >
@@ -455,8 +485,8 @@ function Gear() {
                       </g>
                     );
                   })}
-                  {editorOpen && editingEquipmentId ? (
-                    <InteractiveOutlineHandles
+                  {import.meta.env.DEV && editorOpen && localEditor && editingEquipmentId ? (
+                    <localEditor.InteractiveOutlineHandles
                       pathString={
                         customOutlines[bodyView]?.[editingEquipmentId] ??
                         BODY_VIEW_OUTLINES[bodyView]?.[editingEquipmentId] ??
@@ -467,43 +497,34 @@ function Gear() {
                           customOutlines[bodyView]?.[editingEquipmentId] ??
                           BODY_VIEW_OUTLINES[bodyView]?.[editingEquipmentId] ??
                           "";
-                        const pts = parsePathToPoints(raw);
+                        const pts = localEditor.parsePathToPoints(raw);
                         pts[index] = newPt;
-                        handleUpdateOutline(editingEquipmentId, pointsToSvgPath(pts));
+                        handleUpdateOutline(editingEquipmentId, localEditor.pointsToSvgPath(pts));
                       }}
                       onAddPoint={(insertIndex, newPt) => {
                         const raw =
                           customOutlines[bodyView]?.[editingEquipmentId] ??
                           BODY_VIEW_OUTLINES[bodyView]?.[editingEquipmentId] ??
                           "";
-                        const pts = parsePathToPoints(raw);
+                        const pts = localEditor.parsePathToPoints(raw);
                         pts.splice(insertIndex, 0, newPt);
-                        handleUpdateOutline(editingEquipmentId, pointsToSvgPath(pts));
+                        handleUpdateOutline(editingEquipmentId, localEditor.pointsToSvgPath(pts));
                       }}
                       onDeletePoint={(deleteIndex) => {
                         const raw =
                           customOutlines[bodyView]?.[editingEquipmentId] ??
                           BODY_VIEW_OUTLINES[bodyView]?.[editingEquipmentId] ??
                           "";
-                        const pts = parsePathToPoints(raw);
+                        const pts = localEditor.parsePathToPoints(raw);
                         if (pts.length <= 3) return;
                         pts.splice(deleteIndex, 1);
-                        handleUpdateOutline(editingEquipmentId, pointsToSvgPath(pts));
+                        handleUpdateOutline(editingEquipmentId, localEditor.pointsToSvgPath(pts));
                       }}
                     />
                   ) : null}
                 </svg>
               </div>
             </div>
-
-            <button
-              type="button"
-              className="gear-editor-toggle-btn"
-              onClick={() => setEditorOpen(!editorOpen)}
-              title="按快捷键 Alt+E 快速开关"
-            >
-              ⚡ {editorOpen ? "关闭校准器" : "校准轮廓"}
-            </button>
 
             {!focusPoint ? (
               <button
@@ -523,6 +544,20 @@ function Gear() {
               </button>
             ) : null}
 
+            {focusPoint ? (
+              <button
+                type="button"
+                className="gear-focus-reset"
+                onPointerDown={(event) => event.stopPropagation()}
+                onClick={resetBodyFocus}
+                aria-label={locale === "zh" ? "返回全景" : "Return to full view"}
+              >
+                <Minimize2 size={14} aria-hidden="true" />
+                <span>{locale === "zh" ? "返回全景" : "Full view"}</span>
+              </button>
+            ) : null}
+          </div>
+          <figcaption>
             <div
               className="gear-view-controls"
               inert={Boolean(focusPoint)}
@@ -552,36 +587,17 @@ function Gear() {
                 <ChevronRight size={14} aria-hidden="true" />
               </button>
             </div>
-
-            {focusPoint ? (
-              <button
-                type="button"
-                className="gear-focus-reset"
-                onPointerDown={(event) => event.stopPropagation()}
-                onClick={resetBodyFocus}
-                aria-label={locale === "zh" ? "返回全景" : "Return to full view"}
-              >
-                <Minimize2 size={14} aria-hidden="true" />
-                <span>{locale === "zh" ? "返回全景" : "Full view"}</span>
-              </button>
-            ) : null}
-
             <div className="gear-body-note" aria-hidden={Boolean(focusPoint)}>
               <Crosshair size={13} aria-hidden="true" />
               {locale === "zh"
                 ? "左右拖动切换视角 · 点击轮廓探索装备"
                 : "Drag to rotate · Select an outline to explore"}
             </div>
-          </div>
-          <figcaption>
-            {locale === "zh"
-              ? "战衣四视图 · 拖动或使用箭头切换视角"
-              : "Batsuit views · drag or use the arrows to change angle"}
           </figcaption>
         </figure>
 
-        {editorOpen ? (
-          <GearOutlineEditor
+        {import.meta.env.DEV && editorOpen && localEditor ? (
+          <localEditor.GearOutlineEditor
             bodyView={bodyView}
             availableItems={BODY_MARKERS.filter(
               (item) => BODY_VIEW_OUTLINES[bodyView]?.[item.id],

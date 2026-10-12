@@ -138,6 +138,21 @@ export type InterviewQuote = {
 
 export const INTERVIEWS: InterviewQuote[] = [
   {
+    id: "pattinson-popdrop-2026-pause",
+    speakerId: "pattinson",
+    work: "part2",
+    date: "2026.10.11",
+    iso: "2026-10-11",
+    outlet: "Times Now · Official Pop Drop",
+    sourceUrl:
+      "https://www.timesnownews.com/entertainment-news/the-batman-part-ii-star-robert-pattinson-breaks-silence-on-pause-in-production-future-of-sequel-article-156323315",
+    quoteZh: "我想，对，我们会先停一阵，然后再把整件事理清楚。",
+    quoteEn:
+      "I think, yeah, we’re pausing for a little bit, and then we’re going to figure it all out.",
+    note:
+      "2026 年 10 月 11 日，BFI 伦敦电影节《Primetime》英国首映，Official Pop Drop 红毯采访。他说的是停一阵再作安排，没有谈里夫斯离开的原因，也没有给出复工日期。",
+  },
+  {
     id: "stan-hsc-2026-challenging",
     speakerId: "stan",
     work: "part2",

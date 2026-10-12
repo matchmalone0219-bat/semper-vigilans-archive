@@ -1307,6 +1307,21 @@ export const LOG: LogEntry[] = [
     hash: "stan-hsc-2026-reeves",
   },
   {
+    date: "2026.10.11",
+    id: "log-2026-10-11-pattinson-pause",
+    iso: "2026-10-11",
+    title: "罗伯特·帕丁森谈停拍：先停一阵，再把事情理清楚",
+    body: "帕丁森在 BFI 伦敦电影节《Primetime》英国首映上对 Official Pop Drop 说，剧组会先停一阵，然后再把事情理清楚。他没有谈里夫斯离开的原因，也没有说复工时间。",
+    kind: "cast",
+    source: "Times Now · Official Pop Drop 采访",
+    sourceUrl:
+      "https://www.timesnownews.com/entertainment-news/the-batman-part-ii-star-robert-pattinson-breaks-silence-on-pause-in-production-future-of-sequel-article-156323315",
+    sourceTier: "press",
+    verifiedAt: "2026.10.12",
+    href: "/interviews",
+    hash: "pattinson-popdrop-2026-pause",
+  },
+  {
     date: "2028.02.18",
     id: "log-2028-02-18",
     iso: "2028-02-18",

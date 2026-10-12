@@ -490,6 +490,11 @@ export const LOG_EN: Record<
     source: "Deadline · Warner Bros. / DC Studios statement",
     locationLabel: "Production status · Temporarily paused",
   },
+  "log-2026-10-11-pattinson-pause": {
+    title: "Robert Pattinson on the Pause: Stop for a Bit, Then Figure It Out",
+    body: "At the BFI London Film Festival UK premiere of Primetime, Robert Pattinson told Official Pop Drop that the production is pausing for a little bit and will then figure it all out. He did not discuss why Matt Reeves stepped away, and he gave no restart date.",
+    source: "Times Now · Official Pop Drop",
+  },
   "log-2028-02-18": {
     title: "Theatrical Release Across North America",
     body: "The Batman: Part II opens nationwide in premium formats including IMAX and Dolby Cinema.",

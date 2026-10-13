@@ -1322,6 +1322,21 @@ export const LOG: LogEntry[] = [
     hash: "pattinson-popdrop-2026-pause",
   },
   {
+    date: "2026.10.12",
+    id: "log-2026-10-12-stan-winter",
+    iso: "2026-10-12",
+    title: "塞巴斯蒂安·斯坦谈续集：正处在一个很深的寒冬",
+    body: "斯坦在 IndieWire 专访里说，蝙蝠侠这部电影，他们正处在一个很深、很深的寒冬里。记者接着问是不是还是 2028 年，他答「对」。同一篇把哈维·邓特 / 双面人写成广为报道、但尚未确认的角色。他没有承认。",
+    kind: "cast",
+    source: "IndieWire · Anne Thompson",
+    sourceUrl:
+      "https://www.indiewire.com/features/interviews/sebastian-stan-fjord-politics-batman-part-ii-bald-1235221322/",
+    sourceTier: "press",
+    verifiedAt: "2026.10.13",
+    href: "/interviews",
+    hash: "stan-indiewire-2026-winter",
+  },
+  {
     date: "2028.02.18",
     id: "log-2028-02-18",
     iso: "2028-02-18",

@@ -495,6 +495,11 @@ export const LOG_EN: Record<
     body: "At the BFI London Film Festival UK premiere of Primetime, Robert Pattinson told Official Pop Drop that the production is pausing for a little bit and will then figure it all out. He did not discuss why Matt Reeves stepped away, and he gave no restart date.",
     source: "Times Now · Official Pop Drop",
   },
+  "log-2026-10-12-stan-winter": {
+    title: "Sebastian Stan on the Sequel: A Very Deep Winter",
+    body: "In an IndieWire interview, Sebastian Stan said they are in a very deep, deep winter on the Batman movie. Asked if that means 2028, he said yes. The same piece calls Harvey Dent / Two-Face a widely reported but unconfirmed role. He did not confirm it.",
+    source: "IndieWire · Anne Thompson",
+  },
   "log-2028-02-18": {
     title: "Theatrical Release Across North America",
     body: "The Batman: Part II opens nationwide in premium formats including IMAX and Dolby Cinema.",

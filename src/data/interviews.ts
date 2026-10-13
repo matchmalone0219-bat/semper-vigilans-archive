@@ -138,6 +138,20 @@ export type InterviewQuote = {
 
 export const INTERVIEWS: InterviewQuote[] = [
   {
+    id: "stan-indiewire-2026-winter",
+    speakerId: "stan",
+    work: "part2",
+    date: "2026.10.12",
+    iso: "2026-10-12",
+    outlet: "IndieWire · Anne Thompson",
+    sourceUrl:
+      "https://www.indiewire.com/features/interviews/sebastian-stan-fjord-politics-batman-part-ii-bald-1235221322/",
+    quoteZh: "这部蝙蝠侠电影，我们正处在一个很深、很深的寒冬里。",
+    quoteEn: "We're in a very deep, deep winter on the Batman movie.",
+    note:
+      "2026 年 10 月 12 日 IndieWire 专访。记者问延期之后的近况，下一句问「所以是 2028 年，对吗」，他答 Right。文中把哈维·邓特 / 双面人写成 widely reported but unconfirmed，不是他承认的角色。",
+  },
+  {
     id: "pattinson-popdrop-2026-pause",
     speakerId: "pattinson",
     work: "part2",

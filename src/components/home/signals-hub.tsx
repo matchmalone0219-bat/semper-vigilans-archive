@@ -24,7 +24,7 @@ export function SignalsHub({
     (e) => (e.kind === "shoot" || e.kind === "production") && !e.upcoming,
   );
   const latestProduction = productionLogs[productionLogs.length - 1] ?? LOG[0];
-  const recentShoots = shootLogs.slice(-2).reverse();
+  const recentShoots = shootLogs.slice(-4).reverse();
   const localizedProduction = getLocalizedLog(latestProduction, locale);
   const productionPaused = latestProduction.kind === "production";
 
@@ -118,12 +118,12 @@ export function SignalsHub({
           </span>
         </div>
 
-        <div className="mt-6 grid min-w-0 items-start gap-8 md:grid-cols-2 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] xl:gap-6">
+        <div className="mt-6 grid min-w-0 items-start gap-8 md:grid-cols-2 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] xl:gap-6 xl:items-stretch">
           {/* 板块 1：预告与首曝影音 */}
           <Card
             variant="default"
             showCorners
-            className="flex min-w-0 w-full max-w-full flex-col overflow-hidden border-fg/20 bg-elevated/35 p-4 sm:p-6 md:col-span-2 xl:col-span-1"
+            className="flex min-w-0 w-full max-w-full flex-col overflow-hidden border-fg/20 bg-elevated/35 p-4 sm:p-6 md:col-span-2 xl:col-span-1 xl:justify-between xl:pb-5"
           >
             <div>
               <div className="flex min-w-0 flex-wrap items-center justify-between gap-2">
@@ -207,7 +207,7 @@ export function SignalsHub({
               <button
                 type="button"
                 onClick={() => onSelectVideo(featuredVideo)}
-                className="flex w-full items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
+                className="flex min-h-11 w-full items-center justify-between font-display text-xs font-semibold tracking-[0.18em] text-blood uppercase transition-colors hover:text-fg"
               >
                 <span>{locale === "zh" ? "▶ 弹窗播放最新影像" : "▶ Play Latest Footage"}</span>
                 <ArrowRight className="size-4" />
@@ -311,15 +311,20 @@ export function SignalsHub({
                   {locale === "zh" ? "近期关键进展" : "Recent Developments"}
                 </p>
                 <ul className="mt-2 space-y-1.5">
-                  {recentShoots.slice(0, 2).map((entry) => (
+                  {recentShoots.map((entry) => (
                     <li key={entry.date + entry.title} className="text-xs">
                       <Link
                         to="/dossier"
                         hash={entry.id}
-                        className="group/item flex items-center justify-between gap-2 text-muted hover:text-fg"
+                        className="group/item flex min-h-11 items-start justify-between gap-2 py-2 text-muted hover:text-fg"
                       >
-                        <span className="truncate transition-colors group-hover/item:text-blood">
-                          {getLocalizedLog(entry, locale).title}
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate transition-colors group-hover/item:text-blood">
+                            {getLocalizedLog(entry, locale).title}
+                          </span>
+                          <span className="mt-0.5 block truncate text-[11px] leading-relaxed text-faint">
+                            {getLocalizedLog(entry, locale).body}
+                          </span>
                         </span>
                         <span className="shrink-0 font-mono text-[10px] text-faint">{entry.date.slice(5)}</span>
                       </Link>
@@ -333,7 +338,7 @@ export function SignalsHub({
               <Link
                 to="/dossier"
                 hash="log"
-                className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
+                className="flex min-h-11 items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
               >
                 <span>{locale === "zh" ? "查阅完整制作日志" : "Explore Production Log"}</span>
                 <ArrowRight className="size-4" />
@@ -432,7 +437,7 @@ export function SignalsHub({
                         )}
                       </blockquote>
                       {locale === "zh" && (
-                        <p className="mt-2 line-clamp-1 text-[11px] italic text-faint">
+                        <p className="mt-2 text-[11px] leading-relaxed italic text-faint">
                           {latestInterview.quoteEn}
                         </p>
                       )}
@@ -449,7 +454,7 @@ export function SignalsHub({
                       {locale === "zh" ? "更多主创观点精选" : "Selected Creator Quotes"}
                     </p>
                     <ul className="mt-2 space-y-2">
-                      {secondaryInterviews.slice(0, 1).map((q) => {
+                      {secondaryInterviews.slice(0, 2).map((q) => {
                         const spk = SPEAKER_MAP[q.speakerId];
                         return (
                           <li key={q.id} className="text-xs">
@@ -458,8 +463,8 @@ export function SignalsHub({
                               hash={q.id}
                               className="group/voice block text-muted hover:text-fg"
                             >
-                              <div className="flex items-center justify-between text-[11px]">
-                                <span className="font-bold text-fg/90 transition-colors group-hover/voice:text-blood">
+                              <div className="flex min-w-0 items-start justify-between gap-2 text-[11px]">
+                                <span className="min-w-0 font-bold text-fg/90 transition-colors group-hover/voice:text-blood">
                                   {locale === "en" ? (spk?.nameEn ?? spk?.name ?? "Creator") : (spk?.name ?? "主创")}
                                   <span className="ml-1.5 font-normal text-faint">
                                     {locale === "en"
@@ -467,9 +472,9 @@ export function SignalsHub({
                                       : spk?.role.split(" / ")[0]}
                                   </span>
                                 </span>
-                                <span className="font-mono text-[10px] text-faint">{q.date.slice(2)}</span>
+                                <span className="shrink-0 font-mono text-[10px] text-faint">{q.date.slice(2)}</span>
                               </div>
-                              <p className="mt-0.5 truncate text-[11px] text-muted transition-colors group-hover/voice:text-fg">
+                              <p className="mt-1 line-clamp-3 text-[11px] leading-relaxed text-muted transition-colors group-hover/voice:text-fg">
                                 {locale === "zh" ? `“${q.quoteZh}”` : `“${q.quoteEn}”`}
                               </p>
                             </Link>
@@ -557,23 +562,23 @@ export function SignalsHub({
                       {locale === "zh" ? "近期主创动态精选" : "Recent Creator Drops"}
                     </p>
                     <ul className="mt-2 space-y-2">
-                      {secondarySocialDrops.slice(0, 1).map((drop) => (
+                      {secondarySocialDrops.slice(0, 2).map((drop) => (
                         <li key={drop.id} className="text-xs">
                           <Link
                             to="/dossier"
                             hash={drop.id}
                             className="group/drop block text-muted hover:text-fg"
                           >
-                            <div className="flex items-center justify-between text-[11px]">
-                              <span className="font-bold text-fg/90 transition-colors group-hover/drop:text-blood">
+                            <div className="flex min-w-0 items-start justify-between gap-2 text-[11px]">
+                              <span className="min-w-0 font-bold text-fg/90 transition-colors group-hover/drop:text-blood">
                                 {locale === "en" ? drop.authorNameEn : drop.authorName}
                                 <span className="ml-1.5 font-mono text-[10px] font-normal text-faint">
                                   {drop.authorHandle}
                                 </span>
                               </span>
-                              <span className="font-mono text-[10px] text-faint">{drop.date.slice(2)}</span>
+                              <span className="shrink-0 font-mono text-[10px] text-faint">{drop.date.slice(2)}</span>
                             </div>
-                            <p className="mt-0.5 truncate text-[11px] text-muted transition-colors group-hover/drop:text-fg">
+                            <p className="mt-1 line-clamp-3 text-[11px] leading-relaxed text-muted transition-colors group-hover/drop:text-fg">
                               {locale === "zh"
                                 ? (drop.textZh ? `“${drop.textZh}”` : drop.contextZh)
                                 : (drop.textEn ? `“${drop.textEn}”` : drop.contextEn)}
@@ -591,7 +596,7 @@ export function SignalsHub({
               {voiceTab === "interview" ? (
                 <Link
                   to="/interviews"
-                  className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
+                  className="flex min-h-11 items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
                 >
                   <span>{locale === "zh" ? "查阅全部人物专访" : "Explore All Interviews"}</span>
                   <ArrowRight className="size-4" />
@@ -600,7 +605,7 @@ export function SignalsHub({
                 <Link
                   to="/dossier"
                   hash="social"
-                  className="flex items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
+                  className="flex min-h-11 items-center justify-between font-display text-[11px] font-semibold tracking-[0.16em] text-blood uppercase transition-colors hover:text-fg"
                 >
                   <span>{locale === "zh" ? "查阅全部主创社媒" : "Explore Creator Posts"}</span>
                   <ArrowRight className="size-4" />

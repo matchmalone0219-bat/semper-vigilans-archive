@@ -118,15 +118,15 @@ export function SignalsHub({
           </span>
         </div>
 
-        <div className="mt-6 grid min-w-0 gap-4 sm:gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(19rem,1fr)] lg:items-start">
+        <div className="mt-6 grid min-w-0 items-start gap-8 md:grid-cols-2 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] xl:gap-6">
           {/* 板块 1：预告与首曝影音 */}
           <Card
             variant="default"
             showCorners
-            className="flex min-w-0 w-full max-w-full flex-col overflow-hidden border-fg/20 bg-elevated/35 p-4 sm:p-6"
+            className="flex min-w-0 w-full max-w-full flex-col overflow-hidden border-fg/20 bg-elevated/35 p-4 sm:p-6 md:col-span-2 xl:col-span-1"
           >
             <div>
-              <div className="flex min-w-0 items-center justify-between gap-2">
+              <div className="flex min-w-0 flex-wrap items-center justify-between gap-2">
                 <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
                   01 / Video · {locale === "zh" ? "预告与影音" : "Videos & Teasers"}
                 </span>
@@ -215,7 +215,7 @@ export function SignalsHub({
             </div>
           </Card>
 
-          <div className="grid min-w-0 gap-4 sm:gap-6">
+          <div className="contents">
           {/* 板块 2：当前制作状态与近期片场进展 */}
           <Card
             variant="default"
@@ -223,7 +223,7 @@ export function SignalsHub({
             className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden p-4 sm:p-5"
           >
             <div>
-              <div className="flex min-w-0 items-center justify-between gap-2">
+              <div className="flex min-w-0 flex-wrap items-center justify-between gap-2">
                 <span className="font-display text-[11px] font-semibold tracking-[0.22em] text-blood uppercase">
                   02 / Production · {locale === "zh" ? "制作动态" : "Production"}
                 </span>
@@ -385,7 +385,7 @@ export function SignalsHub({
 
               {voiceTab === "interview" ? (
                 <div>
-                  <div className="mt-2.5 flex items-center justify-between">
+                  <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2">
                     <span className="text-[11px] font-medium text-muted">
                       {locale === "zh" ? "媒体深度专访" : "In-Depth Interview"}
                     </span>
@@ -481,7 +481,7 @@ export function SignalsHub({
                 </div>
               ) : featuredSocialDrop ? (
                 <div>
-                  <div className="mt-2.5 flex items-center justify-between gap-2">
+                  <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2">
                     <div className="flex min-w-0 items-center gap-1.5">
                       <span className="truncate text-[11px] font-medium text-muted">
                         {locale === "zh" ? "主创社媒动态" : "Creator Social"}

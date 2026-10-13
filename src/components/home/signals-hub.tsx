@@ -7,7 +7,6 @@ import { SPEAKER_MAP } from "@/lib/interviews";
 import { logVideoPoster } from "@/lib/film";
 import { LATEST_SOCIAL_DROP, getRecentSocialDrops } from "@/lib/social";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/cn";
 import { useI18n } from "@/lib/i18n";
 import { getLocalizedLog, getLocalizedLogVideoTitle } from "@/lib/i18n/dossier-en";
@@ -120,10 +119,8 @@ export function SignalsHub({
 
         <div className="mt-6 grid min-w-0 items-start gap-8 md:grid-cols-2 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)] xl:gap-6 xl:items-stretch">
           {/* 板块 1：预告与首曝影音 */}
-          <Card
-            variant="default"
-            showCorners
-            className="flex min-w-0 w-full max-w-full flex-col overflow-hidden border-fg/20 bg-elevated/35 p-4 sm:p-6 md:col-span-2 xl:col-span-1 xl:justify-between xl:pb-5"
+          <article
+            className="flex min-w-0 w-full max-w-full flex-col overflow-hidden p-4 sm:p-6 md:col-span-2 xl:col-span-1 xl:justify-between xl:pb-5"
           >
             <div>
               <div className="flex min-w-0 flex-wrap items-center justify-between gap-2">
@@ -213,13 +210,11 @@ export function SignalsHub({
                 <ArrowRight className="size-4" />
               </button>
             </div>
-          </Card>
+          </article>
 
           <div className="contents">
           {/* 板块 2：当前制作状态与近期片场进展 */}
-          <Card
-            variant="default"
-            showCorners
+          <article
             className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden p-4 sm:p-5"
           >
             <div>
@@ -344,12 +339,10 @@ export function SignalsHub({
                 <ArrowRight className="size-4" />
               </Link>
             </div>
-          </Card>
+          </article>
 
           {/* 板块 3：主创发声与动态（深度专访 | 社媒动态） */}
-          <Card
-            variant="default"
-            showCorners
+          <article
             className="flex min-w-0 w-full max-w-full flex-col justify-between overflow-hidden p-4 sm:p-5"
           >
             <div>
@@ -612,7 +605,7 @@ export function SignalsHub({
                 </Link>
               )}
             </div>
-          </Card>
+          </article>
           </div>
         </div>
       </div>

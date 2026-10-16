@@ -27,6 +27,31 @@ export type SocialDrop = {
 
 export const SOCIAL_DROPS: SocialDrop[] = [
   {
+    id: "reeves-soderbergh-clarification-2026",
+    authorId: "reeves",
+    authorName: "马特·里夫斯",
+    authorNameEn: "Matt Reeves",
+    authorHandle: "@mattreevesLA",
+    authorRole: "导演 / 编剧 / 制片人",
+    authorRoleEn: "Director / Writer / Producer",
+    avatar: "/media/cast/reeves.jpg",
+    platform: "x",
+    platformLabel: "X (Twitter)",
+    date: "2026.10.16",
+    iso: "2026-10-16",
+    url: "https://x.com/mattreevesLA/status/2110875641495400870",
+    textEn:
+      "Just to be clear, I am not leaving The Batman Part II. I am profoundly grateful to Steven for coming to my aid during this challenging time to help me finish principal photography. Thank you to all for your concern and well wishes.",
+    textZh:
+      "在此澄清，我并没有离开《新蝙蝠侠2》。在这段艰难时期，史蒂文能赶来伸出援手协助我完成主体拍摄，我对此深怀感激。感谢所有人的关心与祝福。",
+    contextZh:
+      "针对外界关于换导演的传闻与恐慌，马特·里夫斯在 X 明确澄清自己未离开该片，并感谢索德伯格进组协助代班，确认自己将在实拍结束后全权主持后期剪辑。",
+    contextEn:
+      "After reports that he was being replaced, Matt Reeves wrote on X that he is not leaving The Batman Part II. He thanked Steven Soderbergh for helping finish principal photography and will take back post-production when shooting wraps.",
+    sourceKind: "creator",
+    verified: true,
+  },
+  {
     id: "perez-london-2026",
     authorId: "martinez",
     authorName: "吉尔·佩雷斯-亚伯拉罕",

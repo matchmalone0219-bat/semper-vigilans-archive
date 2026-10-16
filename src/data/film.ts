@@ -1337,6 +1337,20 @@ export const LOG: LogEntry[] = [
     hash: "stan-indiewire-2026-winter",
   },
   {
+    date: "2026.10.16",
+    id: "log-2026-10-16-soderbergh-assist",
+    iso: "2026-10-16",
+    title:
+      "《新蝙蝠侠2》最后实拍由史蒂文·索德伯格协助代班，马特·里夫斯与 DC 影业澄清其并未退出",
+    body: "华纳兄弟与 DC Studios 正式宣布，奥斯卡名导史蒂文·索德伯格（Steven Soderbergh）在 DC Studios 的全力支持下进组，协助编剧兼导演马特·里夫斯完成《新蝙蝠侠2》最后数周的主体拍摄。里夫斯因持续处理家庭突发事务暂时离开现场一线，但仍通过远程连线全程把控拍摄，演员与剧组紧密配合贯彻其既定视听风格；待实拍杀青后，里夫斯将重掌全部后期剪辑与制作。索德伯格公开发表声明盛赞第一部《新蝙蝠侠》精准严苛，表态此行目标纯粹是配合团队产出无缝契合的素材，帮助里夫斯完成完全属于他自己的电影。里夫斯亦亲自在社媒辟谣澄清并未退出。北美公映档期维持 2028 年 2 月 18 日不变。",
+    kind: "production",
+    locationLabel: "制作状态 · 冲刺阶段协助实拍",
+    source: "Deadline · 华纳 / DC Studios / 里夫斯联合声明",
+    sourceUrl: "https://deadline.com/2026/10/steven-soderbergh-the-batman-part-ii-1237158482/",
+    sourceTier: "press",
+    verifiedAt: "2026.10.16",
+  },
+  {
     date: "2028.02.18",
     id: "log-2028-02-18",
     iso: "2028-02-18",

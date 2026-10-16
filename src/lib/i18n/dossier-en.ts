@@ -500,6 +500,13 @@ export const LOG_EN: Record<
     body: "In an IndieWire interview, Sebastian Stan said they are in a very deep, deep winter on the Batman movie. Asked if that means 2028, he said yes. The same piece calls Harvey Dent / Two-Face a widely reported but unconfirmed role. He did not confirm it.",
     source: "IndieWire · Anne Thompson",
   },
+  "log-2026-10-16-soderbergh-assist": {
+    title:
+      "Steven Soderbergh Steps In to Help Finish The Batman Part II Shoot; Matt Reeves & DC Studios Clarify He Remains Director",
+    body: "Warner Bros. and DC Studios confirmed that Oscar-winning director Steven Soderbergh has stepped in with DC Studios' full support to assist writer-director Matt Reeves in completing the final weeks of principal photography on The Batman: Part II. Reeves temporarily stepped away from physical sets to attend to an ongoing family matter, while remaining actively engaged remotely to guide cast and crew according to his established vision. Once filming wraps, Reeves will resume full control over post-production. Soderbergh praised Reeves' first film as stunning and rigorously coherent, emphasizing that his goal is to seamlessly capture the remaining footage so Reeves can properly finish his own film. Reeves also clarified on social media that he is not departing the project. The February 18, 2028 theatrical release date remains unchanged.",
+    source: "Deadline · Warner Bros. / DC Studios / Reeves",
+    locationLabel: "Production status · Final photography with Soderbergh assisting",
+  },
   "log-2028-02-18": {
     title: "Theatrical Release Across North America",
     body: "The Batman: Part II opens nationwide in premium formats including IMAX and Dolby Cinema.",

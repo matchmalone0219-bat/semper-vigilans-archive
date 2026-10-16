@@ -162,8 +162,8 @@ function Home() {
           <div className="space-y-6">
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
               {locale === "zh"
-                ? "前作《新蝙蝠侠》（The Batman）以谜语人引爆防洪大坝、暴洪淹没哥谭落幕；而在衍生限定剧《企鹅人》（The Penguin）中，奥兹·科布（Oz Cobb）夺取地下黑道王座数周后，整座城市步入严酷凛冬，《新蝙蝠侠2》（The Batman: Part II）的故事由此正式拉开帷幕。续集以「Semper Vigilans」（永远警惕）为项目代号在英国展开主摄影；2026 年 10 月 5 日，华纳兄弟与 DC Studios 确认制作暂时暂停，复工日期尚未公布。"
-                : "The Batman (2022) concluded with the seawall breach submerging Gotham under catastrophic floods. Following Oz Cobb's rise to the underworld throne in The Penguin, the city plunges into a bitter winter as The Batman: Part II unfolds. Principal photography began in the UK under the production codename 'Semper Vigilans'. On October 5, 2026, Warner Bros. and DC Studios confirmed that production had been temporarily paused; no restart date has been announced."}
+                ? "前作《新蝙蝠侠》（The Batman）以谜语人引爆防洪大坝、暴洪淹没哥谭落幕；而在衍生限定剧《企鹅人》（The Penguin）中，奥兹·科布（Oz Cobb）夺取地下黑道王座数周后，整座城市步入严酷凛冬，《新蝙蝠侠2》（The Batman: Part II）的故事由此正式拉开帷幕。续集以「Semper Vigilans」（永远警惕）为项目代号在英国展开主摄影。2026 年 10 月 16 日，华纳兄弟与 DC Studios 宣布史蒂文·索德伯格进组，协助马特·里夫斯完成最后数周主体拍摄；里夫斯澄清自己并未退出，北美档期仍为 2028 年 2 月 18 日。"
+                : "The Batman (2022) concluded with the seawall breach submerging Gotham under catastrophic floods. Following Oz Cobb's rise to the underworld throne in The Penguin, the city plunges into a bitter winter as The Batman: Part II unfolds. Principal photography began in the UK under the production codename 'Semper Vigilans'. On October 16, 2026, Warner Bros. and DC Studios said Steven Soderbergh is helping Matt Reeves finish the final weeks of principal photography. Reeves clarified that he is not leaving the film, and the February 18, 2028 release date stands."}
             </p>
             <p className="text-pretty leading-relaxed text-muted sm:text-base">
               {locale === "zh"

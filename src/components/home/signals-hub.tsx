@@ -25,7 +25,8 @@ export function SignalsHub({
   const latestProduction = productionLogs[productionLogs.length - 1] ?? LOG[0];
   const recentShoots = shootLogs.slice(-4).reverse();
   const localizedProduction = getLocalizedLog(latestProduction, locale);
-  const productionPaused = latestProduction.kind === "production";
+  const productionUpdate = latestProduction.kind === "production";
+  const productionPaused = latestProduction.id === "log-2026-10-05-production-pause";
 
   // 1. 预告与影音：官方测试/预告优先，且不复用片场头条的封面
   const videoLogs = LOG.filter((e) => e.video && !e.upcoming);
@@ -225,7 +226,9 @@ export function SignalsHub({
                 <Badge variant={productionPaused ? "blood" : "outline"} size="sm">
                   {productionPaused
                     ? (locale === "zh" ? "制作暂停" : "PRODUCTION PAUSED")
-                    : latestProduction.date}
+                    : productionUpdate
+                      ? (locale === "zh" ? "制作状态" : "PRODUCTION")
+                      : latestProduction.date}
                 </Badge>
               </div>
 
@@ -236,7 +239,7 @@ export function SignalsHub({
                 {localizedProduction.locationLabel}
               </p>
 
-              {productionPaused ? (
+              {productionUpdate ? (
                 <Link
                   to="/dossier"
                   hash={latestProduction.id}
@@ -277,7 +280,7 @@ export function SignalsHub({
                 </Link>
               )}
 
-              {!productionPaused ? (
+              {!productionUpdate ? (
                 <p className="mt-2 line-clamp-2 text-[11px] leading-relaxed text-muted">
                   {localizedProduction.body}
                 </p>

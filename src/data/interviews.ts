@@ -127,6 +127,7 @@ export const SPEAKERS: InterviewSpeaker[] = [
     nameEn: "Brian Tyree Henry",
     role: "《新蝙蝠侠2》主演（角色未公布）",
     roleEn: "Lead Cast, The Batman: Part II (Undisclosed Role)",
+    portrait: "/media/cast/henry.jpg",
   },
 ];
 

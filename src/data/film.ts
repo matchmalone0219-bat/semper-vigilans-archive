@@ -1351,6 +1351,21 @@ export const LOG: LogEntry[] = [
     verifiedAt: "2026.10.16",
   },
   {
+    date: "2026.10.16",
+    id: "log-2026-10-16-henry-jhud",
+    iso: "2026-10-16",
+    title: "布莱恩·泰瑞·亨利谈片场：看见帕丁森穿着战衣",
+    body: "亨利在《The Jennifer Hudson Show》谈到《新蝙蝠侠2》。他说阵容出色、拍摄刺激，但因为高度保密什么都不能讲。他确认自己在片场见过罗伯特·帕丁森穿着战衣，没有公布角色。",
+    kind: "cast",
+    source: "The Jennifer Hudson Show",
+    sourceUrl:
+      "https://jenniferhudsonshow.com/videos/brian-tyree-henry-teases-top-secret-the-batman-film-and-reveals-his-friendship-with-julia-roberts/",
+    sourceTier: "press",
+    verifiedAt: "2026.10.17",
+    href: "/interviews",
+    hash: "henry-jhud-2026-batsuit",
+  },
+  {
     date: "2028.02.18",
     id: "log-2028-02-18",
     iso: "2028-02-18",

@@ -507,6 +507,11 @@ export const LOG_EN: Record<
     source: "Deadline · Warner Bros. / DC Studios / Reeves",
     locationLabel: "Production status · Final photography with Soderbergh assisting",
   },
+  "log-2026-10-16-henry-jhud": {
+    title: "Brian Tyree Henry on Set: Seeing Pattinson in the Batsuit",
+    body: "On The Jennifer Hudson Show, Brian Tyree Henry said the cast is wonderful and the shoot has been thrilling, but the film is too secret for him to say anything about it. He confirmed he has seen Robert Pattinson in the batsuit on set. He did not name his role.",
+    source: "The Jennifer Hudson Show",
+  },
   "log-2028-02-18": {
     title: "Theatrical Release Across North America",
     body: "The Batman: Part II opens nationwide in premium formats including IMAX and Dolby Cinema.",

@@ -121,6 +121,13 @@ export const SPEAKERS: InterviewSpeaker[] = [
     roleEn: "Lead Cast, The Batman: Part II (Undisclosed Role)",
     portrait: "/media/cast/johansson.jpg",
   },
+  {
+    id: "henry",
+    name: "布莱恩·泰瑞·亨利",
+    nameEn: "Brian Tyree Henry",
+    role: "《新蝙蝠侠2》主演（角色未公布）",
+    roleEn: "Lead Cast, The Batman: Part II (Undisclosed Role)",
+  },
 ];
 
 export type InterviewQuote = {
@@ -137,6 +144,22 @@ export type InterviewQuote = {
 };
 
 export const INTERVIEWS: InterviewQuote[] = [
+  {
+    id: "henry-jhud-2026-batsuit",
+    speakerId: "henry",
+    work: "part2",
+    date: "2026.10.16",
+    iso: "2026-10-16",
+    outlet: "The Jennifer Hudson Show",
+    sourceUrl:
+      "https://jenniferhudsonshow.com/videos/brian-tyree-henry-teases-top-secret-the-batman-film-and-reveals-his-friendship-with-julia-roberts/",
+    quoteZh:
+      "很棒。这是最出色的演员阵容之一。拍的过程非常刺激，但保密级别太高了，所以我什么都不能说。不过我现在可以告诉你，它会非常了不起。没有什么比在片场看着罗伯特·帕丁森穿着战衣更离谱的了。你就只能说：『嘿，怎么样，罗布？今天一切还好吗？』不过真的很好。这段经历非常美妙。",
+    quoteEn:
+      "It's wonderful. It is one of the most amazing casts. It's been really thrilling, but it's so top secret, so I can't say anything about it. But it's going to be amazing like I can tell you that right now. There is nothing crazier than being on set and just looking at Robert Pattinson in a Bat Suit. You are just like 'Hey what's up, Rob? How is everything going today?' But it's great. It's been really wonderful.",
+    note:
+      "2026 年 10 月 16 日《The Jennifer Hudson Show》。节目官网标题写的是 The Batman。他确认自己在片场见过帕丁森的战衣，没有公布角色。",
+  },
   {
     id: "stan-indiewire-2026-winter",
     speakerId: "stan",
